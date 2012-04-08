@@ -1,0 +1,12 @@
+---
+date: '2007-12-05 21:24:51'
+layout: post
+slug: spam
+status: publish
+title: Spam
+wordpress_id: '80'
+categories:
+- longer than one line
+---
+
+Getting spam/phishing is annoying, but getting spam/phishing with typos or poor grammar is even worse. IF you are not competent to write correctly, you shouldn't be trying to scam someone.

@@ -1,0 +1,13 @@
+---
+date: '2007-10-02 12:34:39'
+layout: post
+slug: i-cringe
+status: publish
+title: I cringe
+wordpress_id: '42'
+categories:
+- one liners
+---
+
+I cringe every time I hear a company PR (or similar product) or advertisement saying that X or Y is "in the company's DNA".
+

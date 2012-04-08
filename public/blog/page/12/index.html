@@ -9,8 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Let&#8217;s check the &#8220;short&#8221; way, that is basically a method that avoid the
-&#8220;explosion&#8221; of the string. Instead of &hellip;">
+  <meta name="description" content="We are going to jump the regular expression explanation that you can
+find in the book, and we will go directly to the section that introduces
+string/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,92 +64,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/02/22/counting-nucleotides-part-ii/">Counting nucleotides: part II</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-02-22T14:51:58-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Let&#8217;s check the &#8220;short&#8221; way, that is basically a method that avoid the
-&#8220;explosion&#8221; of the string. Instead of transforming the sequence from the
-file from a string to a list, we go and use the string directly,
-applying one of the methods available to manipulate strings. This time
-we read the file at once and convert the list to a string using <code>join</code>.
-To count we simply use the method <code>count</code> on our string. Pretty nice.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="c">#still keep the file fixed </span>
-</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
-</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
-</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="c">#let&#39;s join the the lines in a temporary string </span>
-</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
-</span><span class='line'><span class="c">#counting </span>
-</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c">#printing results </span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&#8217;s the short way: using <code>count</code>. This is a method that when applied
-on a string counts the number of times the substring appears in our
-string. We can even set a start and ending point to count. Notice one
-difference in this script to the previous examples: after we join the
-items of the list into a string we do not remove the carriage returns.
-Because in this case we don&#8217;t need it, as it will be an extra character
-there that won&#8217;t make any harm.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1494,6 +1409,81 @@ sequence from a file and output to the screen is</p>
 
 
 
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/01/23/transcribing-the-other-way/">Transcribing: the &#8220;other&#8221; way</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-23T13:52:30-05:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We have seen how to transcribe DNA using regular expression, even though
+the regex we used cannot be considered a real one. Now we are going to
+simplify our small script even more and take advantage of some string
+capabilities of Python. Instead of using two lines, we are going to use
+only one. And also we won&#8217;t need to import anything. Let&#8217;s start again
+with the same DNA sequence</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This time we are going to use
+<code>replace</code>. This is one of the Python&#8217;s methods to manipulate strings.
+Basically, we are asking the interpreter to replace a certain string by
+another. The method returns a new copy of your string:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">myDNA</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;U&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This tells Python: <code>myRNA</code> will receive a copy of <code>myDNA</code> where all Ts were
+changed by Us. the &#8220;dot&#8221; after <code>myDNA</code> means that the method <code>replace</code>
+will get that variable as input on that variable. So our code from above
+would like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
+</span><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">myDNA</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;U&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">myRNA</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple and efficient. Next we will use the same approach on generating the reverse complement of a DNA sequence, with no
+regex pattern.</p>
 </div>
   
   

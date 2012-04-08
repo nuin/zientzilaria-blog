@@ -1,0 +1,17 @@
+---
+date: '2008-02-18 13:33:47'
+layout: post
+slug: bosc-2008
+status: publish
+title: BOSC 2008
+wordpress_id: '105'
+categories:
+- Science
+tags:
+- bioinformatics
+- BOSC
+- ISMB
+- Toronto
+---
+
+I have tried to attend BOSC 2005 in Detroit but run out funds at the time and could only be at ISMB. I missed 06 and 07 meetings, no papers, posters ready. But 2008 ISMB and [BOSC](http://news.open-bio.org/archives/2008_02.html#000093) will be in my "hometown", Toronto. If you are coming let me know we can definitely hang out.

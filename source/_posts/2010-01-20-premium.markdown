@@ -1,0 +1,14 @@
+---
+date: '2010-01-20 20:32:52'
+layout: post
+slug: premium
+status: publish
+title: Premium
+wordpress_id: '412'
+categories:
+- Misc
+---
+
+Brazilian president is receiving a prize for global leadership in Davos. If you are not Brazilian, leave a comment if you know what his/her name is. Don't google it or check Wikipedia.
+
+Replies on Twitter (@nuin) or Friendfeed are also valid.

@@ -1,0 +1,32 @@
+---
+date: '2009-12-19 19:55:53'
+layout: post
+slug: 2009-in-review
+status: publish
+title: 2009 in review
+wordpress_id: '375'
+categories:
+- Misc
+tags:
+- best-of-the-year
+---
+
+Here's the best and worst of 2009:
+
+- Movie: Rocknrolla, not the best one, but highly entertaining, worst: Funny People
+- Book: [Born Standing Up: A Comic's Life](http://www.amazon.com/Born-Standing-Up-Comics-Thorndike/dp/1410403122%3FSubscriptionId%3D0G81C5DAZ03ZR9WH9X82%26tag%3Dzemanta-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D1410403122) by Steve Martin, highly entertaining too
+- Website: The Secret Diary of Steve Jobs, worst: of the ones I usually read is the [Daring Fireball](http://daringfireball.net/)
+- Software: Textmate, worst [Mendeley](http://www.mendeley.com), by 1000 miles
+- TV: [Stephen Colbert](http://en.wikipedia.org/wiki/Stephen_Colbert) and Jon Stewart, the best hour of TV, worst: Dexter's finale
+- Purchase: MacBook 13'', the best computer I ever had
+- Money-grabbing-scheme: Global Warming or Climate Change
+- Politician: no best in the category, but the worst is the Brazilian President.
+- Music: I didn't have a favourite this year. but Matthew Good's Vancouver is growing on me. No worst, or too many to care about
+- Best programming language was still Python, worst, still Java
+- Best operating system was Snow Leopard, worst, any Windows (including XP)
+
+
+
+
+
+[![Reblog this post [with Zemanta]](http://img.zemanta.com/reblog_e.png?x-id=5d07b746-e499-4eb9-af07-aff21e1617fc)](http://reblog.zemanta.com/zemified/5d07b746-e499-4eb9-af07-aff21e1617fc/)

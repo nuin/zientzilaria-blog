@@ -1,0 +1,12 @@
+---
+date: '2010-01-22 14:22:10'
+layout: post
+slug: stay-away
+status: publish
+title: Stay away
+wordpress_id: '416'
+categories:
+- Bioinformatics - opinion
+---
+
+Stay away from Toronto's (GTA's) streets for sometime. Twelve people died crossing the streets this year in the region. Stay away.

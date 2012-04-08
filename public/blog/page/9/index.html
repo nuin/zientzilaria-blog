@@ -9,9 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="As Daniel didn&#8217;t enlightened us on how to use csplit, I am posting
-several ways on how to split a multiple sequence FASTA file. This post
-gets &hellip;">
+  <meta name="description" content="Daniel Swan posted a comment on the previous entry
+regarding that splitting multiple sequence FASTA files is &#8220;one of those
+‘bioinformatics’ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,229 +64,6 @@ gets &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/10/10/alternative-methods-to-split-a-fasta-file/">Alternative methods to split a FASTA file - updated (again)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-10T13:53:28-04:00" pubdate data-updated="true">Oct 10<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As Daniel didn&#8217;t enlightened us on how to use csplit, I am posting
-several ways on how to split a multiple sequence FASTA file. This post
-gets out of our focus (if you haven&#8217;t noticed, our focus here is
-<strong>Python</strong>, and maybe suffers from the NIH effect. Not invented here. We
-will be back with our normal programming after this. We start with our
-&#8220;widely&#8221; available option <strong>csplit</strong>:</p>
-
-<p><code>csplit -kf seq file '%^&gt;%' '/^&gt;/' '{*}'</code></p>
-
-<p>where <code>k</code> tells the program to
-keep files in case of an error, <code>f</code> sets a prefix for the output files
-(otherwise xx00 is used) and two regex patterns are used: between <code>%s</code> is
-the one to skip and between /s is the one to copy up to but not
-including the line. In <code>{}</code> is the number of times we want to have the
-previous patterns repeated, a * meaning as many time as possible. Easy,
-eh? Now, we can check how perl fares. I am not a perl monger so I
-googled it and I found an one-liner. Quoting the original
-<a href="http://www.softpanorama.org/Scripting/Perlorama/perl_in_command_line.shtml">site</a>:
-Split a multi-sequence FastA file into individual files named after
-their description lines.</p>
-
-<p><code>perl -ne 'BEGIN{$/="&gt;"}if(/^\s*(\S+)/){open(F,"&gt;$1")||warn"$1 write failed:$!\n";chomp;print F "&gt;", $_}'</code></p>
-
-<p>and I am not daring to explain this one. But cariaso did and also sent a
-better version of it</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1"># This magic variable makes perl read lines that end with &gt; </span>
-</span><span class='line'><span class="c1"># instead of a newline n $/=&quot;&gt;&quot;; while (&lt;&gt;) { </span>
-</span><span class='line'>  <span class="o">\</span><span class="c1"># foreach line in the input files </span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="sr">/\^\&gt;(w+)/</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="o">\</span><span class="c1"># grab the first word of text </span>
-</span><span class='line'>      <span class="nb">open</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="s">&quot;\&gt;$1&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="c1"># open a file named that word</span>
-</span><span class='line'>       <span class="nb">warn</span> <span class="s">&quot;$1 write failed:$!n&quot;</span><span class="p">;</span> <span class="nb">chomp</span><span class="p">;</span>
-</span><span class='line'>      <span class="c1"># strip off the \&gt; at the end print F &quot;\&gt;&quot;, $\_; \#</span>
-</span><span class='line'><span class="k">print</span> <span class="o">&gt;</span><span class="n">text</span> <span class="n">to</span> <span class="n">the</span> <span class="n">file</span> <span class="p">}</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can also do in Python, without any OO
-programming in 5 lines:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;myfile&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="nb">str</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
-</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>that can be run with no difficulties from the interactive console. And which cariaso also
-corrected and improved</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">fileobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;myfile.fasta&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">ignore</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="n">text</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span class='line'><span class="n">records</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;\&gt;&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;\&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>along the offer of a nicer approach</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">eachfasta</span><span class="p">(</span><span class="n">fileobj</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">sofar</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileobj</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="s">&#39;&gt;&#39;</span> <span class="o">==</span> <span class="n">line</span> <span class="p">(</span><span class="n">bracket</span> <span class="n">zero</span> <span class="n">close</span> <span class="n">bracket</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">yield</span> <span class="n">sofar</span>
-</span><span class='line'>          <span class="n">sofar</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>      <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">sofar</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>          <span class="k">yield</span> <span class="n">sofar</span>
-</span><span class='line'><span class="n">fileobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;myfile.fasta&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">eachfasta</span><span class="p">(</span><span class="n">fileobj</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Also Joe wanted to dip in and
-sent his approach:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># f6smod.py 10-26-07 jto </span>
-</span><span class='line'><span class="c"># purpose: modify program by Michael Cariaso, given in Paolo Nuin&#39;s</span>
-</span><span class='line'><span class="n">blog</span><span class="p">:</span>
-</span><span class='line'><span class="c"># http://python.genedrift.org </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">fileobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;fasta.seq&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">ignore</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c"># The above line removes the first char from the file object. </span>
-</span><span class='line'><span class="c"># It can also be used to check that the first char is a &#39;&gt;&#39; </span>
-</span><span class='line'><span class="k">if</span> <span class="n">ignore</span> <span class="o">!=</span> <span class="s">&#39;&gt;&#39;</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;The first character in the supposed FASTA file is: &quot;</span> <span class="o">+</span> <span class="n">ignore</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;not &#39;&gt;&#39;, so sys.exit() is being invoked.&quot;</span>
-</span><span class='line'>  <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-</span><span class='line'><span class="n">text</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="n">records</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c"># Here, rather than use the for loop to just print out the sequences, it </span>
-</span><span class='line'><span class="c"># is used to store them in a list. After that they can be printed out, or </span>
-</span><span class='line'><span class="c"># stored in separate files, or or further split into header line and sequence </span>
-</span><span class='line'><span class="c"># (using the carriage return at the end of the header file).</span>
-</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">listcount</span> <span class="o">=</span> <span class="mi">0</span> \<span class="c"># store each header/sequence in a list </span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">i</span> <span class="o">=</span> <span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span>
-</span><span class='line'>  <span class="n">seqlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">listcount</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'><span class="c"># print the list </span>
-</span><span class='line'><span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">seq</span> \<span class="c"># Split into header line and sequence, and make the sequence a single string. </span>
-</span><span class='line'><span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">splitCR</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;header: &quot;</span> <span class="o">+</span> <span class="n">splitCR</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">splitCR</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;sequence: &quot;</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>OK, so <del>three</del> <del>five</del> six more options
-available. I am pretty sure sed and awk would be able to do it glued by
-a bash script, but I am far of being an expert in sed or awk. If you
-know how to do it, leave a comment.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1442,6 +1219,79 @@ script body</p>
 
 <p>So, we have a good idea on what to do now. We just need a function that creates a
 regular expression and searches it on the sequence. Next time &#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/07/planning/">Planning</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-07T15:51:43-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Another aspect covered in the book that we haven&#8217;t seen yet is how to
+plan, design out script or software. Usual ways to design a program
+include writing use cases and drawing
+<a href="http://en.wikipedia.org/wiki/Unified_Modeling_Language">UML</a> diagrams
+(stands for Unified Modelling Language). Here we will scratch the
+surface of <a href="http://en.wikipedia.org/wiki/Use_case">use cases</a>, where we
+will try to determine how the program will interact with the user. How
+to write use cases or design UML is not a subject taught in many biology
+courses, so we won;t see much of the theory here. Consider this a more
+informal way of planning a small script or application.</p>
+
+<p>First thing
+would be to set a goal:</p>
+
+<p><em>What is the main objective of our script?</em></p>
+
+<p>Create a simple restriction enzyme map of certain sequences Next, <em>what
+do we need to make the program work?</em> We need restriction enzyme
+information, such as names and sites and a sequence. That leads us <em>How
+do I store information?</em> Restriction enzyme data (last entry) obtained
+from a file can be stored in a dictionary, with the enzyme name as key
+and the site as value.</p>
+
+<p>Sequences are stored using our fasta class. This
+will brings us to one important issue <em>How to interact with the user?</em>
+The ideal way would be to present a list of enzymes for the user to
+select, but we do not have a graphical interface to organize it nicely.
+So, we will ask the user to enter the name of enzyme and a name of a
+file to read the sequence where the enzyme site should be found. We can
+do that interactively or by passing parameters to the script. We will do
+it by parameters here, but the interactive way can be tested as a
+homework for those following the blog.</p>
+
+<p>And finally <em>What about an
+output?</em> We will do the same way as the book: a list of positions,
+indicating the restriction sites. I welcome other options in the
+comments. It looks we have a plan. Let&#8217;s gather what we already have,
+and our previous knowledge and meet on the other side of this post.</p>
 </div>
   
   

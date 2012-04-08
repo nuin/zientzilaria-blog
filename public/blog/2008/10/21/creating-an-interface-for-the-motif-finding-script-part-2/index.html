@@ -10,7 +10,11 @@
 
   
   <meta name="description" content="Let&#8217;s take a deeper look on the code we started yesterday, piece by
-piece [sourcecode language=&#8217;python&#8217;]class pymot(wx.App): def &hellip;">
+piece 1
+2
+3
+class pymot(wx.App): def
+__init__(self, redirect=False): wx.App &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,27 +94,56 @@ piece [sourcecode language=&#8217;python&#8217;]class pymot(wx.App): def &hellip
 
 
 <div class="entry-content"><p>Let&#8217;s take a deeper look on the code we started yesterday, piece by
-piece [sourcecode language=&#8217;python&#8217;]class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect,
-filename)[/sourcecode] This is the class <code>pymot</code> we derived from wx.App,
+piece</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span> <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span>
+</span><span class='line'><span class="n">filename</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is the class <code>pymot</code> we derived from wx.App,
 and this will be the main class for your application. As any other class
-derived it needs a OnInit or a __init__ function that will take care
+derived it needs a OnInit or a <strong>init</strong> function that will take care
 of initializing things. As usual, we pass <code>self</code> and a <code>redirect</code>
 parameter, that will tell the application to redirect some output to the
 command line. We actually don&#8217;t need a <code>redirect</code>, but it can be useful
 in the future to track errors. It&#8217;s set to false as we don&#8217;t need it
-now. [sourcecode language=&#8217;python&#8217;]class pymotGUI(wx.Frame): def
-__init__(self, parent, id): wx.Frame.__init__(self, parent, id,
-&#8216;Python Motif Finder&#8217;, style=wx.DEFAULT_FRAME_STYLE)
-self.__do_layout() def __do_layout(self): pass[/sourcecode] This
-is the pymotGUI class derived, in this case, from wx.Frame. a wx.Frame
+now.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span><span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">pass</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is the pymotGUI class derived, in this case, from wx.Frame. a wx.Frame
 is the common window you see in most OS. As above, it needs a OnInit or
-__init__ function, and here it initializes the window (but does not
-show it). In the first line of __init__ we have a call to format the
+<strong>init</strong> function, and here it initializes the window (but does not show it). In the first line of <strong>init</strong> we have a call to format the
 window we want to display. The frame method would need these
 <a href="http://www.wxpython.org/docs/api/wx.Frame-class.html">paramaters</a> to
-customize the window [sourcecode language=&#8217;python&#8217;]__init__(self,
-parent, id, title, pos, size, style, name)[/sourcecode] Both title and
+customize the window</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both title and
 style are set by default (not that they cannot be changed) in the frame
 definition, and whe this is called and properly initialized, other
 parameters can be passed and/or changed. There is a second defined
@@ -118,10 +151,20 @@ function in the <code>pymotGUI</code> class, <code>__do_layout</code>. This is a
 preference of having all the layout methods for the window grouped in
 one function. It helps organizing a bit the code and easier to browse
 and correct it if needed. Most of the main part of the script could be
-moved to the wx.App class derivation, but for now, we can keep it there.
-[sourcecode language=&#8217;python&#8217;]app = pymot() frame =
-pymotGUI(parent=None, id = -1) frame.Show() app.MainLoop()[/sourcecode]
-The first line initializes the application, the second calls and
+moved to the wx.App class derivation, but for now, we can keep it there.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span>
+</span><span class='line'><span class="n">frame</span> <span class="o">=</span> <span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="n">frame</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
+</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line initializes the application, the second calls and
 initializes the frame. The method Show makes the window to be displayed.
 MainLoop we saw last time. The skeleton of a wxPython script and
 application is very simple. Now we need to populate our window, create
@@ -135,7 +178,7 @@ on the form and check how events are linked to elements.</p>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
 
       
 

@@ -62,8 +62,8 @@ class pymotGUI(wx.Frame):
 	wx.Frame.__init__(self, parent, id, 'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE) 
 	self.__do_layout() 
 	
-	def __do_layout(self): 
-		pass 
+def __do_layout(self): 
+	pass 
 		
 app = pymot() 
 frame = pymotGUI(parent=None, id = -1) 

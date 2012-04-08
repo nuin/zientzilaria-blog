@@ -9,8 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Another aspect covered in the book that we haven&#8217;t seen yet is how to
-plan, design out script or software. Usual ways to design a program &hellip;">
+  <meta name="description" content="We now jump with both feet on the main topic of the book&#8217;s chapter,
+which is generating restriction maps of DNA sequences. First step is to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,79 +63,6 @@ plan, design out script or software. Usual ways to design a program &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/09/07/planning/">Planning</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-07T15:51:43-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Another aspect covered in the book that we haven&#8217;t seen yet is how to
-plan, design out script or software. Usual ways to design a program
-include writing use cases and drawing
-<a href="http://en.wikipedia.org/wiki/Unified_Modeling_Language">UML</a> diagrams
-(stands for Unified Modelling Language). Here we will scratch the
-surface of <a href="http://en.wikipedia.org/wiki/Use_case">use cases</a>, where we
-will try to determine how the program will interact with the user. How
-to write use cases or design UML is not a subject taught in many biology
-courses, so we won;t see much of the theory here. Consider this a more
-informal way of planning a small script or application.</p>
-
-<p>First thing
-would be to set a goal:</p>
-
-<p><em>What is the main objective of our script?</em></p>
-
-<p>Create a simple restriction enzyme map of certain sequences Next, <em>what
-do we need to make the program work?</em> We need restriction enzyme
-information, such as names and sites and a sequence. That leads us <em>How
-do I store information?</em> Restriction enzyme data (last entry) obtained
-from a file can be stored in a dictionary, with the enzyme name as key
-and the site as value.</p>
-
-<p>Sequences are stored using our fasta class. This
-will brings us to one important issue <em>How to interact with the user?</em>
-The ideal way would be to present a list of enzymes for the user to
-select, but we do not have a graphical interface to organize it nicely.
-So, we will ask the user to enter the name of enzyme and a name of a
-file to read the sequence where the enzyme site should be found. We can
-do that interactively or by passing parameters to the script. We will do
-it by parameters here, but the interactive way can be tested as a
-homework for those following the blog.</p>
-
-<p>And finally <em>What about an
-output?</em> We will do the same way as the book: a list of positions,
-indicating the restriction sites. I welcome other options in the
-comments. It looks we have a plan. Let&#8217;s gather what we already have,
-and our previous knowledge and meet on the other side of this post.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1508,6 +1435,162 @@ every time you write a script to translate DNA into proteins. And it is
 not something that you would like to type (or even copy-and-paste) all
 the time. On the next post we will create the translation script and
 will also create our first Python module.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/04/10/still-simulation/">Still simulation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-10T17:23:57-04:00" pubdate data-updated="true">Apr 10<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We use our last code as a starting point in order to generate some real
+information from our simulated sequence sets. Our approach here will be
+the same: functions to do all the work for us and a very simple main
+code. We also reuse some code with applied before to count the
+nucleotides. Let&#8217;s see the code, discussion just after it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">nucleotide_percentage</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; As&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Cs &#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Gs &#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Ts&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">sequence_identity</span><span class="p">(</span><span class="nb">set</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">iden</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">])):</span>
+</span><span class='line'>            <span class="k">if</span> <span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">]:</span>
+</span><span class='line'>                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="n">iden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
+</span><span class='line'>                <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">iden</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">identity</span> <span class="o">=</span> <span class="n">sequence_identity</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;sequence identity to next sequence : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">identity</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">nucleotide_percentage</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">print</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Well, not many
+new things here. The main one might the be the assignment of the
+variable <code>count</code>, which receives initially a value of <code>0.0</code>, which in
+this case is a float. This variable is used the calculate the sequence
+identity which is a percentage, or a relative value. If we had
+initialized <code>count</code> with zero, our division <code>count/len(set(x)</code> would
+always be zero, due to the fact that count would have been an integer.
+The ideal input for this script would have equal minimum and maximum
+sequence lengths, as it the simulated set would look more like an
+alignment with no indels. Something like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$&gt;</span>python simulation.py 10 30 30
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As is
+pointed out in BPB, this example is more an indication that we are able
+to use our Python skills to actually make some real code, with some real
+output. One issue with this example is the fact that we only calculate
+sequence identity of two sequences at a time. It would be ideal to have
+sequence identity between all simulated sequences. This would require
+much more code, of course a good educational step, but it is something
+that can be easily obtained with classes and we will see this later on.
+With this entry, we finished our Section 4 and we will start Section 5
+with Python&#8217;s dictionaries, moving to FASTA files and classes next.</p>
 </div>
   
   

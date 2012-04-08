@@ -1,0 +1,13 @@
+---
+date: '2008-02-19 16:03:01'
+layout: post
+slug: empires
+status: publish
+title: Empires
+wordpress_id: '107'
+categories:
+- one liners
+---
+
+Most of those that are fighting against an empire, are trying to create one of their own.
+

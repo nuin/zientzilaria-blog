@@ -9,9 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We use our last code as a starting point in order to generate some real
-information from our simulated sequence sets. Our approach here will be
-the &hellip;">
+  <meta name="description" content="In Beginning Perl for Bioinformatics the chapter that covers simulated
+mutations on a DNA sequence is quite verbose and the code examples
+employ some &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,162 +64,6 @@ the &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/04/10/still-simulation/">Still simulation</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-04-10T17:23:57-04:00" pubdate data-updated="true">Apr 10<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We use our last code as a starting point in order to generate some real
-information from our simulated sequence sets. Our approach here will be
-the same: functions to do all the work for us and a very simple main
-code. We also reuse some code with applied before to count the
-nucleotides. Let&#8217;s see the code, discussion just after it.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">sequence</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">nucleotide_percentage</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; As&#39;</span><span class="p">,</span>
-</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Cs &#39;</span><span class="p">,</span>
-</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Gs &#39;</span><span class="p">,</span>
-</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Ts&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">sequence_identity</span><span class="p">(</span><span class="nb">set</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">iden</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">])):</span>
-</span><span class='line'>            <span class="k">if</span> <span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">]:</span>
-</span><span class='line'>                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="n">iden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
-</span><span class='line'>                <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">iden</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
-</span><span class='line'>    <span class="n">identity</span> <span class="o">=</span> <span class="n">sequence_identity</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)):</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;sequence identity to next sequence : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">identity</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">nucleotide_percentage</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">print</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Well, not many
-new things here. The main one might the be the assignment of the
-variable <code>count</code>, which receives initially a value of <code>0.0</code>, which in
-this case is a float. This variable is used the calculate the sequence
-identity which is a percentage, or a relative value. If we had
-initialized <code>count</code> with zero, our division <code>count/len(set(x)</code> would
-always be zero, due to the fact that count would have been an integer.
-The ideal input for this script would have equal minimum and maximum
-sequence lengths, as it the simulated set would look more like an
-alignment with no indels. Something like:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$&gt;</span>python simulation.py 10 30 30
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As is
-pointed out in BPB, this example is more an indication that we are able
-to use our Python skills to actually make some real code, with some real
-output. One issue with this example is the fact that we only calculate
-sequence identity of two sequences at a time. It would be ideal to have
-sequence identity between all simulated sequences. This would require
-much more code, of course a good educational step, but it is something
-that can be easily obtained with classes and we will see this later on.
-With this entry, we finished our Section 4 and we will start Section 5
-with Python&#8217;s dictionaries, moving to FASTA files and classes next.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1181,6 +1025,92 @@ format in input files.</p>
 that can be used. Some of the above were already covered here and in the
 next posts we will take a look at the other ones, creating an
 application that actually performs some useful function.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/22/counting-nucleotides-part-ii/">Counting nucleotides: part II</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:51:58-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&#8217;s check the &#8220;short&#8221; way, that is basically a method that avoid the
+&#8220;explosion&#8221; of the string. Instead of transforming the sequence from the
+file from a string to a list, we go and use the string directly,
+applying one of the methods available to manipulate strings. This time
+we read the file at once and convert the list to a string using <code>join</code>.
+To count we simply use the method <code>count</code> on our string. Pretty nice.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="c">#still keep the file fixed </span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="c">#let&#39;s join the the lines in a temporary string </span>
+</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
+</span><span class='line'><span class="c">#counting </span>
+</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#printing results </span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s the short way: using <code>count</code>. This is a method that when applied
+on a string counts the number of times the substring appears in our
+string. We can even set a start and ending point to count. Notice one
+difference in this script to the previous examples: after we join the
+items of the list into a string we do not remove the carriage returns.
+Because in this case we don&#8217;t need it, as it will be an extra character
+there that won&#8217;t make any harm.</p>
 </div>
   
   

@@ -1,0 +1,17 @@
+---
+date: '2008-06-11 17:27:29'
+layout: post
+slug: chelsea
+status: publish
+title: Chelsea
+wordpress_id: '150'
+categories:
+- Bioinformatics - opinion
+---
+
+Now I have at least [one reason](http://news.bbc.co.uk/sport2/hi/football/teams/c/chelsea/7449627.stm) to root for any other team in England but Chelsea.Related articles
+
+  * [Bayern Munich's Franck Ribery rejects Chelsea](http://www.telegraph.co.uk/sport/main.jhtml?xml=/sport/2008/06/10/sfnche110.xml) [via Zemanta]
+  * [Ancelotti not going to Chelsea](http://footballfanatix.blogspot.com/2008/06/ancelotti-not-going-to-chelsea.html) [via Zemanta]
+
+[![Zemanta Pixie](http://img.zemanta.com/reblog_a.png?x-id=d32e4325-0c64-4626-81e2-8b39d2f19ed7)](http://reblog.zemanta.com/zemified/d32e4325-0c64-4626-81e2-8b39d2f19ed7/)

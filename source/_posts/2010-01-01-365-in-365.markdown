@@ -1,0 +1,14 @@
+---
+date: '2010-01-01 10:37:04'
+layout: post
+slug: 365-in-365
+status: publish
+title: 365 in 365
+wordpress_id: '380'
+categories:
+- Bioinformatics - opinion
+---
+
+I plan to post 365 entries either here, [here](http://python.genedrift.org) or [here](http://ruby.genedrift.org) in 2010. I might not post everyday, but I will try to keep the mark, even if it's only a one-liner or some link to interesting news/software/paper.
+
+Happy New Year everyone!

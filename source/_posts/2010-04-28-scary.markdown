@@ -1,0 +1,12 @@
+---
+date: '2010-04-28 09:53:24'
+layout: post
+slug: scary
+status: publish
+title: Scary
+wordpress_id: '500'
+categories:
+- Misc
+---
+
+Driving to work today, huge traffic-jam on Westbound 401 (thank you _responsible_ truckers!!), trying to scan for news on the AM dial, only option available was Glen Beck. We're very close to the border, but this is still Canada, small city and there are no options on AM, just Glen Beck. Insane.

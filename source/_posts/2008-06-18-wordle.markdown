@@ -1,0 +1,17 @@
+---
+date: '2008-06-18 12:36:04'
+layout: post
+slug: wordle
+status: publish
+title: Wordle
+wordpress_id: '152'
+categories:
+- Misc
+tags:
+- delicious
+- wordle
+---
+
+[![](http://wordle.net/thumb/nuinondelicious)](http://wordle.net/gallery/nuinondelicious)
+
+As [Neil](http://nsaunders.wordpress.com/2008/06/19/well-everyone-else-was-doing-it/) said about his, it is difficult to guess that I am (was?) a biologist.

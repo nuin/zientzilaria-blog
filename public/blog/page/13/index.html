@@ -9,8 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We have seen how to transcribe DNA using regular expression, even though
-the regex we used cannot be considered a real one. Now we are going to &hellip;">
+  <meta name="description" content="As mentioned above, regex in Python are provided by the re module,
+which provides an interface for the regular expression engine. First
+thing we have &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,81 +64,6 @@ the regex we used cannot be considered a real one. Now we are going to &hellip;"
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/01/23/transcribing-the-other-way/">Transcribing: the &#8220;other&#8221; way</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-23T13:52:30-05:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We have seen how to transcribe DNA using regular expression, even though
-the regex we used cannot be considered a real one. Now we are going to
-simplify our small script even more and take advantage of some string
-capabilities of Python. Instead of using two lines, we are going to use
-only one. And also we won&#8217;t need to import anything. Let&#8217;s start again
-with the same DNA sequence</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This time we are going to use
-<code>replace</code>. This is one of the Python&#8217;s methods to manipulate strings.
-Basically, we are asking the interpreter to replace a certain string by
-another. The method returns a new copy of your string:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">myDNA</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;U&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This tells Python: <code>myRNA</code> will receive a copy of <code>myDNA</code> where all Ts were
-changed by Us. the &#8220;dot&#8221; after <code>myDNA</code> means that the method <code>replace</code>
-will get that variable as input on that variable. So our code from above
-would like this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
-</span><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">myDNA</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;U&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="n">myRNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Simple and efficient. Next we will use the same approach on generating the reverse complement of a DNA sequence, with no
-regex pattern.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>

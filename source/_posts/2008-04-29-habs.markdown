@@ -1,0 +1,19 @@
+---
+date: '2008-04-29 15:29:14'
+layout: post
+slug: habs
+status: publish
+title: Habs
+wordpress_id: '143'
+categories:
+- longer than one line
+- Misc
+tags:
+- bandwagon
+- canadiens
+- flyers
+---
+
+[New poll finds Montreal Canadiens as Canada's team](http://www.thehockeynews.com/articles/15664-New-poll-finds-Montreal-Canadiens-considered-Canadas-hockey-team.html), more than Toronto Maple Leafs. Ok, next Saturday when the bandwagon suddenly stops, please try not to fall and hurt yourself.
+
+Flyers in five.

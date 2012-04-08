@@ -1,0 +1,21 @@
+---
+date: '2009-08-21 09:19:51'
+layout: post
+slug: wave-test
+status: publish
+title: Wave test
+wordpress_id: '349'
+categories:
+- Misc
+---
+
+Let's see if it works.
+
+
+  
+  
+    
+
+
+  
+

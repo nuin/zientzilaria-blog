@@ -1,0 +1,14 @@
+---
+date: '2010-12-16 15:00:31'
+layout: post
+slug: question
+status: publish
+title: Question
+wordpress_id: '657'
+categories:
+- longer than one line
+---
+
+How many times did you hear that city/government/company/university has to have an Open Source Software policy or it will end up paying Microsoft more money? At the same time, how much Microsoft profit has gone down?
+
+Just askin'.

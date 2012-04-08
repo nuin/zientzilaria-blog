@@ -1,0 +1,13 @@
+---
+date: '2007-10-17 20:05:14'
+layout: post
+slug: watson
+status: publish
+title: Watson
+wordpress_id: '46'
+categories:
+- one liners
+- Science
+---
+
+I was never a fan of James Watson, I am even less now. Sad.

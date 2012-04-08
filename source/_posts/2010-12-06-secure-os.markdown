@@ -1,0 +1,15 @@
+---
+date: '2010-12-06 13:36:12'
+layout: post
+slug: secure-os
+status: publish
+title: Secure OS
+wordpress_id: '634'
+categories:
+- Bioinformatics - opinion
+---
+
+Tyring to download a file from Microsoft.com on Internet Explorer 8, under Windows 2008 server. 
+
+
+[![](http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2010/12/Screen-shot-2010-12-06-at-10.24.17-AM.png)](http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2010/12/Screen-shot-2010-12-06-at-10.24.17-AM.png)

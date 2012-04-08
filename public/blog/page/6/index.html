@@ -9,9 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Now that we have the script to generate the word quorums working (and
-working fast!) we need then to calculate the a p value for each motif
-based on &hellip;">
+  <meta name="description" content="We found a way to make the Python script as good as or better than the
+C++ executable. But for the analysis we need to do, motif counts are not
+the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,101 +64,6 @@ based on &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/">Obtaining overrepresented motifs in DNA sequences, part 5</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-21T13:50:00-04:00" pubdate data-updated="true">May 21<span>st</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Now that we have the script to generate the word quorums working (and
-working fast!) we need then to calculate the a <em>p</em> value for each motif
-based on the fore and background quorums. A <em>p</em> value cut-off will
-determine the statistically significant words, or overrepresented. These
-overrepresented words then can be analysed in more details (that we
-won&#8217;t see here) and for instance determine new or already known
-transcription factor binding sites. A well established statistical
-method to determine such overrepresented words is the <a href="http://www.mnlottery.com/hypergeo.html">Hypergeometric Distribution</a> (HD for short).</p>
-
-<p>HD
-measures &#8220;success&#8221; and &#8220;failures&#8221; for values that do not fit in the
-<a href="http://en.wikipedia.org/wiki/Binomial_distribution" title="Binomial distribution">binomial distribution</a>,
-and depend on the measurements without replacement. Basically, HD&#8217;s
-equation has a a series of binomial coefficients/combinations <img src="http://www.genedrift.org/hd.gif" alt="HD equation" /> where <em>N</em> is the population
-size, <em>m</em> is foreground cluster size, <em>k</em> is the motif quorum in the
-background gene set and <em>x</em> is the word quorum in the foreground set.
-Note that the above equation is for the cumulative HD, where a sum of
-probabilities is calculated. All the combinations in the above equation
-have to be expanded to factorials that depending on the value to be
-calculated are very computer intensive and sometimes don&#8217;t fit in the
-memory (either a float or integer).</p>
-
-<p>But
-<a href="http://python.org/" title="Python (programming language)">Python</a> is able to
-handle very large numbers and the calculation of large factorials is
-relatively fast. In C++, I had to use a couple of tricks to achieve a
-good speed in the factorial determination, and specially in the HD
-calculation that requires multiple factorials and multiplication,
-division and subtraction of large numbers. I didn&#8217;t want to use any
-mathematical trick such as <a href="http://en.wikipedia.org/wiki/Stirling's_approximation" title="Stirling's approximation">Stirling&#8217;s approximation</a>.</p>
-
-<p>13! in C++ already blows the size of long, so I had to use the <a href="http://www.tc.umn.edu/~ringx004/mapm-main.html">MAPM, A Portable Arbitrary Precision Math Library in C</a>. This library is
-quite fast to calculate the factorial values but when one needs to
-calculate more than 200,000 factorials the speed is unbearable. So, I
-decided to pre-calculate a series of factorial values, keeping 10
-decimal places as precision and saving in another column their
-exponential. Then using this table as an input I was able to multiply,
-divide and subtract the factorials and by employing the first law of
-exponents do the same operations with their exponential.</p>
-
-<p>This speeds up
-the process tremendously. In Python, we don&#8217;t need any extra third-party
-library, we just use Python itself, without importing an extra module. A
-factorial function in Python can be written in one line, but for clarity
-is better to define it separately. We can try throwing any number at it
-and see the result.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> \<span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">value</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We already saw <code>reduce</code> and <code>lambda</code> and using these two methods make
-the factorial function clear and simple. And why are we not using a
-recursive function? Because Python has a limit recursion depth (1000).
-Next time we will implement the code that calculates the HD <em>p</em> values.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1357,6 +1262,159 @@ find the matching sequences, as we need to merge them, we add both names
 and residues. Simple and easy. All merged sequences, and their
 respective merged names, are appended to a list that is returned at the
 end of the function. *<em>if there is a more direct way, just let me know</em></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/17/python-sets-intersections-reduce-and-more/">Python sets, intersections, reduce and more</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-17T16:31:43-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last time we saw how to use a set intersection to check for clusters of
+DNA/protein sequences and their genome intersections. We going to use
+the same example but this time we will see how we can change it and
+create a function that would calculate an arbitrary number of
+intersections at a time and also be able to check the intersection of
+more than two sets. Our previous code to calculate intersections was</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span><span class='line'><span class="c">#for Python 2.3 and below </span>
+</span><span class='line'><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+</span><span class='line'><span class="c">#populate the sets ... </span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and that&#8217;s does not gives us the most important
+piece of information: the intersection of A, B and C. Let&#8217;s see how we
+can do it. Python has a function that can help us this time: <code>reduce</code>.
+This function allows to reduce a series of values to a single one, by
+employing a function defined in its parameters. From the file tutorial</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">iterable</span><span class="p">[,</span><span class="n">initializer</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically <code>reduce</code> will make the function
+modify the values of a iterable (i.e. list). In our case <code>reduce</code> helps
+us calculate the intersection of many sets at once (our sets are <code>genA</code>,
+<code>genB</code> and <code>genC</code>)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="p">[</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> where <code>reduce</code> is applying the <code>Set</code> method
+intersection to a list of sets passed to the function. Python&#8217;s <code>reduce</code>
+might not be available in 3.0, but it is worth knowing. Now that we have
+a Pythonic way of checking the intersections we need to put <code>reduce</code> in
+a function, to make our code more elegant.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="n">my_set1</span><span class="p">,</span> <span class="n">my_set2</span><span class="p">,</span> <span class="n">my_set3</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="p">[</span><span class="n">my_set1</span><span class="p">,</span> <span class="n">my_set2</span><span class="p">,</span> <span class="n">my_set3</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Done. In this function <code>reduce</code> will operate by
+first checking the intersection between <code>my_set1</code> and <code>my_set2</code> and
+storing it internally, then checking for the intersection between the
+previous result and <code>my_set3</code>. But wait &#8230; <code>get_intersection</code> receives
+three arguments, so it will be able to return the intersection only when
+three sets are sent, thus we would have to create another function that
+can receive two items in order to calculate the intersection between two
+items. And if we have more than three genomes to compare &#8230; There is a
+<a href="http://farmdev.com/thoughts/24/what-does-the-def-star-variable-or-def-asterisk-parameter-syntax-do-in-python-/">trick</a>.
+If we define our function receiving only one argument and put a
+star/asterisk on it, this means that an arbitrary number of arguments
+will be provided to this function in a tuple (and a tuple is iterable,
+so it can be used in a reduce). Changing our function accordingly, we
+will have</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="o">*</span><span class="n">my_sets</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">my_sets</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>so we can send 2, 3, 4, 5 or <em>n</em> number of sets
+to this function and it will return the intersection among all of them.
+Our simple script would be (including the above function)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span><span class='line'><span class="c">#for Python 2.3 and below </span>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="o">*</span><span class="n">my_sets</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">my_sets</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#populate the sets ...</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
   
   

@@ -1,0 +1,14 @@
+---
+date: '2008-04-14 15:39:23'
+layout: post
+slug: twitter
+status: publish
+title: Twitter
+wordpress_id: '126'
+categories:
+- Bioinformatics - opinion
+tags:
+- twitter
+---
+
+[Attila Csordas](http://pimm.wordpress.com/2008/04/14/follow-biotecher-a-solution-to-find-all-biotwitters-in-1-place/) created @biotecher in Twitter so we, you, everyone can follow what every other bioinformatician, scientist, human being is doing. Just join [Twitter](http://twitter.com) and follow [@biotecher](http://twitter.com/biotecher), and [me](http://twitter.com/nuin) if you want. 

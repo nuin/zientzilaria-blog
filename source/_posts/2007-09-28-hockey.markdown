@@ -1,0 +1,12 @@
+---
+date: '2007-09-28 10:08:39'
+layout: post
+slug: hockey
+status: publish
+title: Hockey
+wordpress_id: '40'
+categories:
+- one liners
+---
+
+The most hardcore hockey team in Canada, instead of having blue vs white practices, had shirts vs skins.

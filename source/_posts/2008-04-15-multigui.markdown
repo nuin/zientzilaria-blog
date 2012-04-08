@@ -1,0 +1,22 @@
+---
+date: '2008-04-15 14:00:11'
+layout: post
+slug: multigui
+status: publish
+title: multiGUI
+wordpress_id: '111'
+categories:
+- Science
+tags:
+- bioinformatics
+- interface
+- multidivtime
+---
+
+Myself, [Federico Hoffmann](http://biokubuntu.com) and [Juan Opazo](http://biokubuntu.com) are developing a nice cross-platform interface for [multidivtime](http://statgen.ncsu.edu/thorne/multidivtime.html), a program (or a series of programs) used to estimate molecular evolution rates and divergence times. We are expecting to have a version released soon. I will post links whenever they are available.
+
+A initial page for [multiGUI ](http://genedrift.org/multigui.php)is already on GeneDrift.
+
+Update: some [screenshots were added](http://genedrift.org/multiguiscreen.php). As the application is fully cross-platform, Mac, Windows and Linux versions will be available.
+
+**Update 2: We are releasing multiGUI (Windows Vista and XP) as a limited beta. If you are interested in trying the software send an email to multigui at genedrift dot org. We are intending to provide a group of 20-30 users the opportunity to try the program, what would allow us to work on future improvements, kill some bugs that weren't found in the development/test phase and check for the level of interest of our application in the scientific community.**

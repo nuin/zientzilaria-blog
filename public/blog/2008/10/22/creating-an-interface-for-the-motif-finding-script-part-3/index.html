@@ -104,61 +104,152 @@ panel and subsequently adding objects to it is a more laborious process,
 but easier to understand. We will start by adding the
 <a href="http://www.wxpython.org/docs/api/wx.Panel-class.html">panel</a> to you
 <code>__do_layout</code> function (where most of our changes will happen for now).
-Basically, only one line is required: [sourcecode
-language=&#8217;python&#8217;]#adding the panel panel = wx.Panel(self)[/sourcecode]
-That&#8217;s it, the wx.Panel method only needs one parameter, where the panel
+Basically, only one line is required:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#adding the panel panel = wx.Panel(self)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s it, the wx.Panel method only needs one parameter, where the panel
 is being added to. The name <code>panel</code> is the one that we will be using to
 access methods and properties associated with the wx.Panel derivation
 that we just created. Adding the menu would require a little bit more
 code. As its predecessor wxWidgets, wxPython divides the menu in
 subcategories. The menubar is based on wx.Menubar method, the menu
-itself (File, Edit, etc) is a wx.Menu wehre each of the entries is
+itself (File, Edit, etc) is a wx.Menu where each of the entries is
 added. At the end each menu derived from wx.Menu will be added to the
-menubar. In order case we have to initialize a menubar [sourcecode
-language=&#8217;python&#8217;]#defines the menubar menubar =
-wx.MenuBar()[/sourcecode] and then initialize a menu element, which we
-will call filemenu and will be labeled File [sourcecode
-language=&#8217;python&#8217;]#file menu filemenu = wx.Menu()[/sourcecode] This
+menubar. In order case we have to initialize a menubar</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#defines the menubar </span>
+</span><span class='line'><span class="n">menubar</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuBar</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then initialize a menu element, which we
+will call filemenu and will be labeled File</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#file menu </span>
+</span><span class='line'><span class="n">filemenu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This
 will only initialize a menu element with the name <code>filemenu</code>, it won&#8217;t
 add anything anywhere. In our case from the start, as we didn&#8217;t do any
 planning on how our interface would look like (no UML, no case studies,
 nothing!), we need at least three menu items: one to open/set the
 foreground sequence file, one to open/set the background sequence file
 and one to quit the application. So what we are going to do is append
-these items to the <code>filemenu</code> [sourcecode language=&#8217;python&#8217;]convertmenu
-= filemenu.Append(-1, &#8216;Select foreground file&#8217;) seqmenu =
-filemenu.Append(-1, &#8216;Select background file&#8217;) sep =
-filemenu.AppendSeparator() treenooutmenu = filemenu.Append(-1,
-&#8216;Quit&#8217;)[/sourcecode] that simple. The first two lines and the last one
+these items to the <code>filemenu</code></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">convertmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select foreground file&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">seqmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select background file&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">sep</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">AppendSeparator</span><span class="p">()</span>
+</span><span class='line'><span class="n">treenooutmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;Quit&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that simple. The first two lines and the last one
 append the items that open/set files. The -1 parameter is an ID, as we
 saw previously, when no ID is required for our code we use -1, and the
 second parameter is the label of that menu item. The menu item <code>sep</code> is
 a separator, keeping apart the file open/set items and the quit element.
 One final thing is append the derived wx.Menu to the menubar and set it.
-We accomplish that by [sourcecode language=&#8217;python&#8217;]#appends the menu
-to the menubar and creates it menubar.Append(filemenu, &#8216;File&#8217;)
-self.SetMenuBar(menubar)[/sourcecode] Line 2 initializes menubar on
-self, also known as pymotGUI, our main window. Putting everything
-together our code would look like [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
-fasta class pymot(wx.App): def __init__(self, redirect=False):
-wx.App.__init__(self, redirect) class pymotGUI(wx.Frame): def
-__init__(self, parent, id): wx.Frame.__init__(self, parent, id,
-&#8216;Python Motif Finder&#8217;, style=wx.DEFAULT_FRAME_STYLE)
-self.__do_layout() # self.__do_binding() def
-__do_layout(self): #adding the panel panel = wx.Panel(self)
-#defines the menubar menubar = wx.MenuBar() #file menu filemenu =
-wx.Menu() foreground_menu = filemenu.Append(-1, &#8216;Select foreground
-file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select background file&#8217;)
-sep = filemenu.AppendSeparator() quit_menu = filemenu.Append(-1,
-&#8216;Quit&#8217;) #appends the menu to the menubar and creates it
-menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar) #if
-__name__ == &#8216;__main__&#8217;: app = pymot() frame =
-pymotGUI(parent=None, id = -1) #frame.CentreOnScreen() frame.Show()
-app.MainLoop()[/sourcecode] and this would look like the screencap below
-(on Vista).
-<a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui2.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui2-150x150.png" title="gui2" alt="gui2" /></a>
-Next time we will work on more elements and activate the menu items.</p>
+We accomplish that by</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#appends the menu to the menubar and creates it</span>
+</span><span class='line'><span class="n">menubar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">filemenu</span><span class="p">,</span> <span class="s">&#39;File&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">SetMenuBar</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Line 2 initializes menubar on self, also known as pymotGUI, our main window. Putting everything
+together our code would look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">wx</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pymot</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">)</span>
+</span><span class='line'>      
+</span><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span><span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
+</span><span class='line'>      <span class="c"># self.__do_binding() </span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>      <span class="c">#adding the panel </span>
+</span><span class='line'>      <span class="n">panel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span><span class='line'>      <span class="c">#defines the menubar </span>
+</span><span class='line'>      <span class="n">menubar</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuBar</span><span class="p">()</span>
+</span><span class='line'>      <span class="c">#file menu </span>
+</span><span class='line'>      <span class="n">filemenu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+</span><span class='line'>      <span class="n">foreground_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select foreground file&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">background_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select background file&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">sep</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">AppendSeparator</span><span class="p">()</span> <span class="n">quit_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;Quit&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="c">#appends the menu to the menubar and creates it</span>
+</span><span class='line'>      <span class="n">menubar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">filemenu</span><span class="p">,</span> <span class="s">&#39;File&#39;</span><span class="p">)</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">SetMenuBar</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
+</span><span class='line'>      
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span> <span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span> <span class="n">frame</span> <span class="o">=</span>
+</span><span class='line'><span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="c">#frame.CentreOnScreen() frame.Show()</span>
+</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next time we will work on more elements and activate the menu items.</p>
 </div>
 
 
@@ -167,7 +258,7 @@ Next time we will work on more elements and activate the menu items.</p>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
 
       
 

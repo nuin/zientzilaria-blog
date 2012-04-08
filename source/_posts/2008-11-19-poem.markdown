@@ -1,0 +1,43 @@
+---
+date: '2008-11-19 21:06:25'
+layout: post
+slug: poem
+status: publish
+title: Poem
+wordpress_id: '210'
+categories:
+- Bioinformatics - opinion
+tags:
+- poem
+---
+
+One pixel
+That's all I needed
+Give one more line
+Tree sides, and one parabola
+
+Doesn't matter how big
+the A or a are
+that's just a point
+for Hardy and Weinberg
+
+One stream
+where the frog sings
+strangely like a bird
+Sit and humid, daytime
+
+I sat and waited, got you
+Now rush, run and show me
+A sequence of colours that
+might mean something
+
+Oh, I know I put them
+on a tree, made by bits
+and pixels like
+the first one
+
+Like the next one,
+and the next, that
+might be like the previous
+or the last one on this 
+line.

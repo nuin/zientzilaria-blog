@@ -1,0 +1,17 @@
+---
+date: '2008-07-29 17:33:41'
+layout: post
+slug: shame
+status: publish
+title: Shame
+wordpress_id: '160'
+categories:
+- Bioinformatics - opinion
+tags:
+- Athletic Bilbao
+- Basque Country
+- Club
+- Spanish Cup
+- Sports
+---
+

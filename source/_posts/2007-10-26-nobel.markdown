@@ -1,0 +1,13 @@
+---
+date: '2007-10-26 08:48:51'
+layout: post
+slug: nobel
+status: publish
+title: Nobel
+wordpress_id: '64'
+categories:
+- one liners
+---
+
+I would kill for a Nobel peace prize.
+_Steven Wright_

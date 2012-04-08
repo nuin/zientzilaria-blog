@@ -1,0 +1,12 @@
+---
+date: '2010-07-22 15:59:29'
+layout: post
+slug: i
+status: publish
+title: 'I '
+wordpress_id: '537'
+categories:
+- Bioinformatics - opinion
+---
+
+I have been quite late to new events, but suddenly I have an urge to drink a cold Pepsi!

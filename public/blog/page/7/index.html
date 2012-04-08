@@ -9,9 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Last time we saw how to use a set intersection to check for clusters of
-DNA/protein sequences and their genome intersections. We going to use
-the &hellip;">
+  <meta name="description" content="Sometime ago we saw how to use sets and uniquify lists. This time we will see another example of the use of sets. Note: in the
+previous example we &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,159 +63,6 @@ the &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/17/python-sets-intersections-reduce-and-more/">Python sets, intersections, reduce and more</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-17T16:31:43-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last time we saw how to use a set intersection to check for clusters of
-DNA/protein sequences and their genome intersections. We going to use
-the same example but this time we will see how we can change it and
-create a function that would calculate an arbitrary number of
-intersections at a time and also be able to check the intersection of
-more than two sets. Our previous code to calculate intersections was</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
-</span><span class='line'><span class="c">#for Python 2.3 and below </span>
-</span><span class='line'><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
-</span><span class='line'><span class="c">#populate the sets ... </span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">))</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and that&#8217;s does not gives us the most important
-piece of information: the intersection of A, B and C. Let&#8217;s see how we
-can do it. Python has a function that can help us this time: <code>reduce</code>.
-This function allows to reduce a series of values to a single one, by
-employing a function defined in its parameters. From the file tutorial</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">iterable</span><span class="p">[,</span><span class="n">initializer</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Basically <code>reduce</code> will make the function
-modify the values of a iterable (i.e. list). In our case <code>reduce</code> helps
-us calculate the intersection of many sets at once (our sets are <code>genA</code>,
-<code>genB</code> and <code>genC</code>)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="p">[</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> where <code>reduce</code> is applying the <code>Set</code> method
-intersection to a list of sets passed to the function. Python&#8217;s <code>reduce</code>
-might not be available in 3.0, but it is worth knowing. Now that we have
-a Pythonic way of checking the intersections we need to put <code>reduce</code> in
-a function, to make our code more elegant.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="n">my_set1</span><span class="p">,</span> <span class="n">my_set2</span><span class="p">,</span> <span class="n">my_set3</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="p">[</span><span class="n">my_set1</span><span class="p">,</span> <span class="n">my_set2</span><span class="p">,</span> <span class="n">my_set3</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Done. In this function <code>reduce</code> will operate by
-first checking the intersection between <code>my_set1</code> and <code>my_set2</code> and
-storing it internally, then checking for the intersection between the
-previous result and <code>my_set3</code>. But wait &#8230; <code>get_intersection</code> receives
-three arguments, so it will be able to return the intersection only when
-three sets are sent, thus we would have to create another function that
-can receive two items in order to calculate the intersection between two
-items. And if we have more than three genomes to compare &#8230; There is a
-<a href="http://farmdev.com/thoughts/24/what-does-the-def-star-variable-or-def-asterisk-parameter-syntax-do-in-python-/">trick</a>.
-If we define our function receiving only one argument and put a
-star/asterisk on it, this means that an arbitrary number of arguments
-will be provided to this function in a tuple (and a tuple is iterable,
-so it can be used in a reduce). Changing our function accordingly, we
-will have</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="o">*</span><span class="n">my_sets</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">my_sets</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>so we can send 2, 3, 4, 5 or <em>n</em> number of sets
-to this function and it will return the intersection among all of them.
-Our simple script would be (including the above function)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
-</span><span class='line'><span class="c">#for Python 2.3 and below </span>
-</span><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="o">*</span><span class="n">my_sets</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">my_sets</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#populate the sets ...</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">))</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1431,6 +1277,124 @@ of entries, but there is a huge gain from version 2.3 to version 2.5,
 either in <code>dicts</code> or <code>sets</code>. For a more comprehensive test and more
 functions with a similar objective check this
 <a href="http://www.peterbe.com/plog/uniqifiers-benchmark">page</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/29/uniquifying-lists-with-sets-and-dictionaries/">Uniquifying lists with sets and dictionaries</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-29T22:34:21-05:00" pubdate data-updated="true">Jan 29<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We are going to use our previous example to compare the use of <code>sets</code>
+and <code>dictionaries</code> to create unique lists. We&#8217;ve already seen that when
+<code>sets</code> are used it is very simple to transform a <code>list</code> with repeated
+items in a unique <code>list</code>. The only hassle is to create the <code>set</code> and
+then transform it back into a <code>list</code>. Like last time (with one small
+addition)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span><span class='line'><span class="n">cluster1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">cluster2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">allgenes</span> <span class="o">=</span> <span class="n">cluster1</span> <span class="o">+</span> <span class="n">cluster2</span>
+</span><span class='line'><span class="n">uniqueset</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">allgenes</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">finalist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uniqueset</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can accomplish identical result by using
+a <code>dictionary</code>. We create a small function to make our code clearer and
+pass a list to it and we return the <code>dictionary</code> keys. Rmember that
+Python <code>dictionaries</code> have values and keys and the latter cannot be
+repeated, so it is basically a list of unique entries. Our function
+would look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">make_unique_list</span><span class="p">(</span><span class="n">mylist</span><span class="p">):</span>
+</span><span class='line'>  <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
+</span><span class='line'>      <span class="nb">dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="nb">dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this function we declare the object
+and in the loop, iterating over every list&#8217;s item we assign a value
+(arbitrary) to the dictionary key. As pointed above, no repeated keys
+are allowed, so every time a already checked item is seen by the
+assignment it is not included in the dictionary. Finally we return only
+the dictionary keys which is our final unique list. Our small script
+would be:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">cluster1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">cluster2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">allgenes</span> <span class="o">=</span> <span class="n">cluster1</span> <span class="o">+</span> <span class="n">cluster2</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">allgenes</span> <span class="o">=</span> <span class="n">make_unique_list</span><span class="p">(</span><span class="n">allgenes</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both methods are very
+effective and usually fast. I will post some comparisons and benchmarks,
+just for fun. Nathan posted in the comments another approach using
+dictionaries. It is below with syntax highlighting</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically in one line you pass a list of elements to dictionary and return all the
+keys that are in the dic. Very Pythonic.</p>
 </div>
   
   

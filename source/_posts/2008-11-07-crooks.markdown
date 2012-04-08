@@ -1,0 +1,19 @@
+---
+date: '2008-11-07 11:26:15'
+layout: post
+slug: crooks
+status: publish
+title: Crooks
+wordpress_id: '184'
+categories:
+- longer than one line
+tags:
+- copyright
+- dna network
+---
+
+There's a limit to everything, and when a friend is involved, things get serious. [Nils Reinton](http://sciphu.com/) posted a link on FriendFeed of a company (?!?) in Singapore using a logo that looks very similar to [Ricardo Vidal's](http://my.biotechlife.net/) logo for the DNA Network. 
+
+The original is [here](http://www.flickr.com/photos/rvidal/498699238/) and the crooks are [here](http://www.dna.jspiondetox.com/).
+
+Compare.

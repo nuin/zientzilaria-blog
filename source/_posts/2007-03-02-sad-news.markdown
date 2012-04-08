@@ -1,0 +1,14 @@
+---
+date: '2007-03-02 17:43:29'
+layout: post
+slug: sad-news
+status: publish
+title: Sad news
+wordpress_id: '7'
+categories:
+- Science
+---
+
+Sad news to any bioinformatician out there who believes in the support of companies to create nice applications. AbOrygen, creators of the fine software biOpen, very recently reviewed in this space had closed. A note left on the company's website mentions the liquidation.
+
+It is very sad to hear that and also a warning to the future to whoever is in the field.

@@ -1,0 +1,14 @@
+---
+date: '2007-11-28 19:03:12'
+layout: post
+slug: wow
+status: publish
+title: Wow!
+wordpress_id: '74'
+categories:
+- Science
+---
+
+I have been using [RepeatMasker](http://www.repeatmasker.org/) to mask common repeats of my sequences. I have just upgraded it to the version open-3.1.8 from open-3.1.6 and the speed gain was incredible. The same 10 Mb sequence that was taking more than a day to run in 3.1.6 took a couple of minutes on the newest. Nice!
+
+_I need to correct myself: I was using version open-3.1.6, not 7_
