@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Bioinformatics and interfaces - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="On the reply to my second Geneious review, an interesting point was raised: building interfaces, &#8220;which is one of the biggest workloads in &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/03/15/interfaces">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Bioinformatics and interfaces</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-15T14:39:15-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>On the reply to my second Geneious review, an interesting point was raised: building interfaces, &#8220;which is one of the biggest workloads in writing software&#8221;.</p>
+
+<p>My first programming language was the old <a href="http://www.webdevelopersjournal.com/archive/vbasic.html">Visual Basic 3.0</a> which has a visual driven user interface and programming approach. To create windows and dialogs in VB is an extremely easy process, dragging and dropping objects in a window, easily setting properties, menus and features. The interface design is straightforward, and the burden of a user-friendly program lies on the programmer and his/her ability to set the objects on the screen, manipulate their function and add programming elements to operate them.</p>
+
+<p>But Visual Basic has it drawbacks, first by not being a powerful language and restrictions of only running resulting programs on Windows machines, etc. In Bioinformatics, Visual Basic is great for simple applications where the processing speed, heavy number crunching, portability, intense I/O operations and other high-performance issues are not a requirement. Applications like <a href="http://www.genedrift.org/winpop.php">WinPop</a> (I will focus on my personal experience), that had version 1.0 released late 1998 (&#8220;compiled&#8221; with VB3.0) and version 2.5 which was released in 2004 and was &#8220;compiled&#8221; with the more advanced VB 6.0. WinPop is the perfect example of a good project for VB: simulates and represents simple Population Genetics phenomena with limited input and outputs nice looking graphs to help the user understands what is going on in each one of the models. WinPop is also geared to undergrad and grad students that need to learn Population Genetics, and can be used in any Windows machine (Windows 95 and up) and does not require a state-of-the-art box to run nor it will allow you to discover a major breakthrough in science.</p>
+
+<p>VB programming is focused on the visual part. Your whole approach to develop the software has to consider the objects you see (and sometimes not) on the screen, how to link them if needed, which event will trigger what and so on. It is different than writing your script in Python, or your number crunching application in C++ or Java. In VB, there is the possibility of generating command line applications, but this is more difficult than creating one with a window. In Java you can opt to make a command line application or to create a GUI for it with Swing. In C++, everything is command line, unless you use one the GUI frameworks available, like <a href="http://www.trolltech.com">Qt</a> or <a href="http://www.wxwidgets.org">wxWidgets</a>, which in some case is like learning a new language by itself. Some of these frameworks were ported to other languages too, like wxPython, wxPerl, PyQt.</p>
+
+<p>Until recently, advanced Bioinformatics applications were command-line only. Examples can be found everywhere: alignment packages (Clustal has), Blast (web-interface, not very powerful), TFBS determination, HMM, phylogenetics (PAUP for Mac and Mega are most recognizable exceptions), etc, etc. Nowadays it is becoming easier to find good programs with nice interfaces, like <a href="http://www.genedrift.org/sugg.php">Geneious</a>, which are portable and powerful. But still, in my opinion researchers don&#8217;t give much attention to the interface development.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-15T14:39:15-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bioinformatics-opinion/'>Bioinformatics - opinion</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/03/15/interfaces/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/03/15/interfaces/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/03/15/debugging-in-python/" title="Previous Post: Debugging in Python">&laquo; Debugging in Python</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/03/16/on-notes-to-a-young-computational-biologist/" title="next Post: On notes to a young computational biologist">On notes to a young computational biologist &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere ...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

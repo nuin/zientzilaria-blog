@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Apart from Python and Perl in Bioinformatics - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Last post received a lot of comments, mainly because I did not mention other languages on it. The reason of the post was to show that Perl and Python &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/09/16/apart-from-python-and-perl-in-bioinformatics">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Apart from Python and Perl in Bioinformatics</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T14:16:50-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Last post received a lot of comments, mainly because I did not mention other languages on it. The reason of the post was to show that Perl and Python are equivalent, just a matter of taste and personal preferences, and maybe of how comfortable one is with a programming language.</p>
+
+<p>Also a <em>mea culpa</em> of missing Perl&#8217;s interactive shell. That would give Perl a slight advantage over Python, but in the end it really doesn&#8217;t matter.</p>
+
+<p><strong>The case for Java</strong></p>
+
+<p>A lot of people mentioned Java as a must for Bioinformatics, and I agree with them. But again it wasn&#8217;t in the scope of what I intended to write. Even though I don&#8217;t like Java (personal taste) I don&#8217;t deny its importance in the field, its robustness, its easy cross-platform development and power. Several large scale Java bioinformatics applications are available, showing all its features and beauty. Two good examples are Geneious and CLC Workbench, that are the closest you can get to project and database management in molecular biology.</p>
+
+<p>I see Java dominating its niche in Bioinformatics, of the large scale, cross-platform GUI application development. At the same time Python and Perl &#8220;compete&#8221; for their niche of the small to medium applications to quickly deal with some data (sometimes large amounts), most of the time also cross-platform and sometimes only used <em>in house</em>. Ruby might be soon joining both for an extra competition. Just to be clear, I am not saying that either Perl or Python (you might include Ruby) are not engineered to large scale application development, or is not possible to use Java as an agile script language.</p>
+
+<p><strong>Other languages</strong></p>
+
+<p>I consider myself a generalist. I have tried many different languages and do not shy away of trying new ones now and then. In science the larger the diversity, the better, especially in bioinformatics. I would state the obvious by writing that each language is tailored to do different things, and it is also relevant in bioinformatics.</p>
+
+<p>But as in any software development environment, you have to attach yourself to some rules. If you are a tenured professor with your own research program you might be able to use a more obscure language and impose on your lab such language.</p>
+
+<p>On the other hand if you are a student or post-doc in a lab, you may not have that much liberty to use your language of choice. Sometimes, you will be working on someone else&#8217;s code, maybe going to upgrade an already released application. And in some cases, your boss don&#8217;t know that particular language and have no interest in learning it and have no interest in reviewing a code in a language she or he doesn&#8217;t understand. It is an identical situation for a developer or consultant starting a gig in a softhouse. You can bring your knowledge, but maybe you <strong>must</strong> code in C# even though you might not like it.</p>
+
+<p>It also depends on the final use of the program. If it is going to be used in house just to generate results for a publication, you might have more liberty on what your decisions. But if if the application will be widely released, via publication or announcement, you probably need to follow the same rules of development and deployment as any commercial package.</p>
+
+<p>And what do I consider obscure in bioinformatics? Maybe F#, OCaml, Haskell just to limit to the ones mentioned in the comments. I have F# and Haskell installed, but never toyed with them to be able to give a verdict. Never tried OCaml, but heard good things about it. R is a great environment, even though you might not do actual code in it and just use the functions and libraries available. I am starting with Ruby and giving a shot at Rails and will see how it goes.</p>
+
+<p>There is space for most languages in Bioinformatics. It depends on your personal taste, the scope of your application and the environment where you working in. Just like any software development project.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T14:16:50-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bioinformatics-opinion/'>Bioinformatics - opinion</a>, <a class='category' href='/blog/categories/science/'>Science</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/09/16/apart-from-python-and-perl-in-bioinformatics/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/09/16/apart-from-python-and-perl-in-bioinformatics/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/09/14/simplicity-sometimes-works/" title="Previous Post: Simplicity sometimes works">&laquo; Simplicity sometimes works</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/09/27/genbank-files/" title="next Post: GenBank files: take one">GenBank files: take one &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere ...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

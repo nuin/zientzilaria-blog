@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Science | Zientzilaria]]></title>
+  <link href="http://zientzilaria.genedrift.org/blog/categories/science/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.genedrift.org/"/>
+  <updated>2012-04-08T19:08:23-04:00</updated>
+  <id>http://zientzilaria.genedrift.org/</id>
+  <author>
+    <name><![CDATA[Paulo Nuin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Scientists are human beings]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/02/23/scientists-are-human-beings/"/>
+    <updated>2011-02-23T15:31:23-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/02/23/scientists-are-human-beings</id>
+    <content type="html"><![CDATA[<p>Sometimes I wonder if non-scientists perceive us a lot that only does good things, has no ego or is only searching for the betterment of Science, with the exception of climate scientists, clearly. But sometimes, I also forget that scientists are human beings too, are one aspect of being an human is to be driven by hype. Doesn't matter where you come from, hype is an important part of society, product development, PR departments, economy and Facebook groups.</p>
+
+<p>When that happens, I remember Zotero. A nice, nifty little application that does some wonderful things with references. It's open source, you can modify it, make it better, report bugs, develop with them, donate if you wish. And even better, it's developed by real scientists, not by spoon-fed intercontinental  jet-setters backed by corporations. Zotero developers are support by grants, by people like you and me, like your parents and in-laws, and it's an application that anyone can benefit from. Did I mention that it's free?</p>
+
+<p>So, when I forget about hype and scientists, I remember Zotero and I get sad with the lack of traction in Academia when compared to other similar applications. And then I remember, Zotero has no PR department, we're its PR department and we suck on being PR. After all, we're human beings too.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A plea to mankind, news outlets and even scientists]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/"/>
+    <updated>2011-02-16T16:33:49-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists</id>
+    <content type="html"><![CDATA[<p>Species name notation is not rocket science, does not require one to be a brain surgeon and in some ways help communication at large. Now that science, thanks to the internet, in getting more tangled into our lives (even companies and political parties have DNA), it is important to have some standard, especially in written text in order to make information exchange easier.</p>
+
+<p>I know is easy to understand that when someone is writing homo sapiens, he or she is referring to a human of the species <em>Home sapiens</em>, or when someone writes E.Coli, it's clear that <em>Escherichia coli</em> is the target. Most newspapers (with blogs and online presence) have writing standards and manuals; maybe including a rule that species names have to be written following the Binomial Nomenclature:</p>
+
+<p>From Wikipedia:</p>
+
+<blockquote><pre><code>* Species names are usually typeset in italics; for example, _Homo sapiens_. Generally the binomial should be printed in a font different from that used in the normal text; for example, "Several more _Homo sapiens_ were discovered." 
+* The genus name is always written with an initial capital letter.
+* In current usage, the species name is never written with an initial capital.
+</code></pre></blockquote>
+
+<pre><code>For example, the entire tiger species is _Panthera tigris_
+</code></pre>
+
+<p>Simple, eh? So, on your next seminar, C. elegans might be correctly set to <em>C. elegans</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[There are idiots everywhere ...]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/02/15/there-are-idiots-everywhere/"/>
+    <updated>2011-02-15T17:22:35-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/02/15/there-are-idiots-everywhere</id>
+    <content type="html"><![CDATA[<p>... <a href="http://artsbeat.blogs.nytimes.com/2011/02/15/the-tv-watch-man-machine-and-a-trivial-pursuit/">even at the New York Times</a>. I would just call it "At large" and remove the culture part of the title.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[There's dumb, and there's ...]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/02/09/theres-dumb-and-theres/"/>
+    <updated>2011-02-09T23:25:11-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/02/09/theres-dumb-and-theres</id>
+    <content type="html"><![CDATA[<p>... <a href="http://www.vaccinationcouncil.org/2011/02/06/a-few-things-i-know/">ultra dumb</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Interview with Rosie Redfield]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/12/07/interview-with-rosie-redfield/"/>
+    <updated>2010-12-07T22:02:39-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/12/07/interview-with-rosie-redfield</id>
+    <content type="html"><![CDATA[<p>I haven't received so many visits on one of the interviews I run some years ago, like this time with Rosie's. So, if you are looking to know her a bit more here's the <a href="http://blindscientist.genedrift.org/2007/07/26/sciview-part-4-interview-with-rosie-redfield/">link</a> for the July 2007 interview.</p>
+]]></content>
+  </entry>
+  
+</feed>

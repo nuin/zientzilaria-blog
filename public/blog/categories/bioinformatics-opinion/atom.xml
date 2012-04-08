@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Bioinformatics - opinion | Zientzilaria]]></title>
+  <link href="http://zientzilaria.genedrift.org/blog/categories/bioinformatics-opinion/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.genedrift.org/"/>
+  <updated>2012-04-08T19:08:23-04:00</updated>
+  <id>http://zientzilaria.genedrift.org/</id>
+  <author>
+    <name><![CDATA[Paulo Nuin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Goodbye and so long]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/09/06/goodbye-and-so-long/"/>
+    <updated>2011-09-06T15:06:02-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/09/06/goodbye-and-so-long</id>
+    <content type="html"><![CDATA[<p>After 270 posts here, I'm saying goodbye to Blind.Scientist to <a href="http://python.genedrift.org">Beginning Python for Bioinformatics</a> and the main <a href="http://genedrift.org">genedrift.org</a> page. I'm renovating anything, and soon this space will be something else.</p>
+
+<p>Thanks for reading, thanks for the support and, overall, thanks for not reading.</p>
+
+<p>So long!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Testing feed]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/03/06/testing-feed/"/>
+    <updated>2011-03-06T17:02:00-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/03/06/testing-feed</id>
+    <content type="html"><![CDATA[<p>Ignore, please.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bioconductor]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/02/10/bioconductor/"/>
+    <updated>2011-02-10T20:59:05-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/02/10/bioconductor</id>
+    <content type="html"><![CDATA[<p>I love Bioconductor, I really do. It's a great framework, nice set of tools that do anything that you want (not that I would want to do phylogeny with it, topic for another post). But as anything scientific it has its drawbacks, and I can point three of them:</p>
+
+<p>1 - Installing packages - we're having problems running one package, what requires us to modify R's compilation parameters from time to time, uninstall and reinstall things. And the most annoying thing is when you have a fresh R binary and framework, you do a basic install first and when you want another package installed if it has dependencies that are already in the system, they are downloaded and installed again.</p>
+
+<p>2 - Website - Looking from the design and navigation point of view, it's good. Looking at the functional side is bad. Sometimes you're looking for the package page right away and Googles's  first hit is the package's page, but for an older version of R and Bioconductor. Maybe if the URL for the current release were different than the legacy ones, would be easier for the user and for indexers to get the actual relevant item. Of course, some people might be looking for legacy stuff, and if you put links for the other version in the package's page, everything would be easier.</p>
+
+<p>3 - Documentation - That's not Bioconductor team's fault, but some of the packages have very poor documentation.</p>
+
+<p>Apart from that, I'm quite happy to have an open source powerful toolset for my data analysis. Well done.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What’s more important: the publication or the product? The publication.]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication/"/>
+    <updated>2011-02-09T11:55:16-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication</id>
+    <content type="html"><![CDATA[<p><a href="http://nsaunders.wordpress.com/2011/02/08/2462/">This</a> was asked by Neil, and I think I can answer it. Clearly, the publication is way more important than the actual product, sadly so.</p>
+
+<p>The paper (or letter, comment, correspondence, whatever it is) that he points out is a complete joke, the website is a complete joke, as the most complete page on it is the CV of each member in the project. It seems that in this case there's no peer review involved, but I bet the "authors" will dutifully used the reference in their CV.</p>
+
+<p>I can say from experience that even with peer review, the actual product is irrelevant, at least in some of the cases. Sometimes software that I published were completely dissected by the reviewers and it was clear that they installed the application and tested. In other cases, usually the rejected ones, the software wasn't even described in the review. It didn't mean that we included a good documentation for the end-user, it didn't mean that we worked on portability or an efficient code.</p>
+
+<p>Also from experience, I can tell many stories of published software (by others) that is broken, doesn't compile, has no documentation and fails to deliver what is supposed to be delivered.</p>
+
+<p>Sometime to publish software, the authors' names are the only thing that matters.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Books 2011]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2011/01/24/books-2011/"/>
+    <updated>2011-01-24T10:24:31-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2011/01/24/books-2011</id>
+    <content type="html"><![CDATA[<p>1 - <a href="http://www.amazon.com/gp/product/0060853972?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0060853972">Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0060853972" alt="" /></p>
+
+<p>2 - <a href="http://www.amazon.com/gp/product/0399156801?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0399156801">The Cobra</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0399156801" alt="" /></p>
+
+<p>3 - Redbreast</p>
+
+<p>4 - Play Dead</p>
+
+<p>5 - I drink for a reason</p>
+]]></content>
+  </entry>
+  
+</feed>

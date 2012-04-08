@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Let&#8217;s get back to the last post and check one line we entered\
-\
-[sourcecode language=&#8217;python&#8217;]self.motif_width = wx.TextCtrl(panel &hellip;">
+  <meta name="description" content="If you&#8217;re reading this blog for the first time, you&#8217;d think that I&#8217;m Mendeley&#8217;s #1 fan. If you&#8217;re a long time reader ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +68,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/11/creating-an-interface-for-the-motif-finding-script-part-7/">Creating an interface for the motif finding script, part 7</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/28/mendeley-open-source-possible-revenue-streams/">Mendeley open-source: possible revenue streams</a></h1>
     
     
       <p class="meta">
@@ -86,36 +84,26 @@
   
 
 
-<time datetime="2008-11-11T13:53:09-05:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+<time datetime="2010-08-28T08:50:49-04:00" pubdate data-updated="true">Aug 28<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Let&#8217;s get back to the last post and check one line we entered\
-\
-[sourcecode language=&#8217;python&#8217;]self.motif_width = wx.TextCtrl(panel, -1,
-&#8216;10&#8217;, (95, 50), (40,18))[/sourcecode]\
-\
-There is something in this line that I did not explain. The third
-parameter in the test box declaration is <code>'10'</code>. How does this affect
-our box? That&#8217;s the default text that will be displayed inside the box
-as soon as it is created. In our case, 10 is the motif width, and it&#8217;s
-the value we consider to be the most common search width.\
-\
-Another aspect not explained is the <code>run_finder</code>. We added a line \
-\
-[sourcecode language=&#8217;python&#8217;]wx.MessageBox(&#8216;It should run,
-eh?&#8217;)[/sourcecode]\
-\
-where we declare a wx.MessageBox. What is it? A message box is the usual
-error/information dialog that you see in most programs. In our case it
-is very simple, just a warning/reminder that we need to include some
-code there.\
-\
-Next time we will connect some Python source files and make our script
-find some motifs.</p>
+  <div class="entry-content"><p>If you&#8217;re reading this blog for the first time, you&#8217;d think that I&#8217;m Mendeley&#8217;s #1 fan. If you&#8217;re a long time reader (the five or six regulars), you might think I&#8217;m going crazy, or Mendeley has bought me (if so I haven&#8217;t received the cheque or wire transfer).</p>
+
+<p>But, as I&#8217;m giving a whole business model to them, let&#8217;s just have it in a complete package. I mentioned why Mendeley open-sourcing its apps would make sense. But still they have people backing them up, otherwise they wouldn&#8217;t be able to hire everyone and their cousins. They also need to put food on their families plates, even though the backers might be millionaires.</p>
+
+<p>It really makes sense for Mendeley to open-source and there&#8217;s an easy way for them to make money even being completely open. They have something no one has, with the exception maybe of Thomson-Reuters. They have a rich database, they have information, precious data. But stored data doesn&#8217;t make a profit. Stored data is there to be analysed, it needs to be crunched, checked, tabulated. Why not charge for it? You&#8217;re a journal publisher and want to check how many people are reading what, how&#8217;s the competition doing? Yep, you can check our db, and there&#8217;s a price to do that. You&#8217;re a company that wants to index your publications, metadata, etc? We provide the service and you pay a fee. You&#8217;re a grad student that wants to do some research? Hey, you have 100 free searches every day for free, if you pass over that number, you pay a penny for each extra search.</p>
+
+<p>There are many other options of revenue. You can make deals with libraries and offer them database and distribution rights in order to mine their internal searches, etc. Each University will have its own rules, so that might be slow in the beginning, but if someone pays millions to have PeopleSoft installed, they can pay something to have the clever guys from Mendeley to take care of their library back-end (don&#8217;t mess with librarians).</p>
+
+<p>I was criticized by Rod Page that by opening Mendeley&#8217;s source it would be pointless, but from the perspective of a comapny PR and community support that would be huge. Open what you can, profit from what no one has. Who knows if there&#8217;s some brilliant hacker that only with the API can make a better desktop client? Are you afraid of that Mendeley? Or you are afraid that your code is so messy that you are going to be criticized for it?</p>
+
+<p>At this point we can only conjecture on what they are going to do, they want you to open your data, but they don&#8217;t want to give you something else back, something that won&#8217;t cost them much and at the same time will make them the champions of a community that is known to give things back.</p>
+
+<p>They ask what side are you on, but they don&#8217;t tell where they are. At least not completely.</p>
 </div>
   
   
@@ -128,7 +116,7 @@ find some motifs.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/04/creating-an-interface-for-the-motif-finding-script-part-6/"> Creating an interface for the motif finding script, part 6</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/27/campaign-were-open-mendeley/">Campaign: We&#8217;re open, Mendeley</a></h1>
     
     
       <p class="meta">
@@ -144,83 +132,18 @@ find some motifs.</p>
   
 
 
-<time datetime="2008-11-04T17:39:01-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2008</time>
+<time datetime="2010-08-27T18:16:08-04:00" pubdate data-updated="true">Aug 27<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Last entry we saw how to allow the user to open a file. Now we need to
-work on this file and store its path so the script can process it later
-on. After the file is selected on the file menu, the filename is printed
-on the label. Let&#8217;s think for a second &#8230; If we get only the filename
-from the dialog, the program won&#8217;t work, because the file might be
-located in another directory, partition, you name it. So we need tp get
-the file&#8217;s full path. We need to change the lines [sourcecode
-language=&#8217;python&#8217;]back_file = dialog.GetFilename()
-self.fore_label.SetLabel(dialog.GetFilename())[/sourcecode] by
-[sourcecode language=&#8217;python&#8217;]back_file = dialog.GetPath()
-self.fore_label.SetLabel(back_file)[/sourcecode] (do not forget to do
-the same to the fore_file!). Let&#8217;s run the script and check what
-happens. The frame should look like the one below (with a little
-stretching for me). <a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/11/gui4.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/11/gui4.png" title="new gui" alt="new
-gui" /></a>
-OK, so this is part is solved. As we haven&#8217;t planned our application
-from the start, we will spend sometime thinking of the basic
-functionality that we migth need. So far, we need one input box, where
-the user can enter the motif width to be searched, and a button to start
-the process. Fine, let&#8217;s add the input box. For this we also need an
-extra label to tell the user what the box is for. Always working on our
-__do_layout function we add two lines [sourcecode
-language=&#8217;python&#8217;]self.one_label = wx.StaticText(panel, -1, &#8216;Motif
-width&#8217;, (10,50)) self.motif_width = wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95,
-50), (40,18))[/sourcecode] Simple as that we have a input box. For the
-button, one line will suffice [sourcecode
-language=&#8217;python&#8217;]self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10,
-80))[/sourcecode] As we can see there is not much difference in any of
-the declarations, they follow a similar process and the parameters are
-more or less identical in some of them. Now, we need to bind the button
-to a function, that we will call <code>run_finder</code>. Remember that binding
-needs an event type, a target function and an object. This time the
-event is a button event, but the other two parameters are similar.
-[sourcecode language=&#8217;python&#8217;]self.Bind(wx.EVT_BUTTON,
-self.run_finder, self.run_button)[/sourcecode] and the function, for
-now will look like [sourcecode language=&#8217;python&#8217;]def run_finder(self,
-event): wx.MessageBox(&#8216;It should run, eh?&#8217;)[/sourcecode] That&#8217;s all for
-today. Our script is growing and the full code is below [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
-fasta import os class pymot(wx.App): def __init__(self,
-redirect=False): wx.App.__init__(self, redirect) class
-pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
-&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
-panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
-#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
-&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-#input box for motif width, and label self.one_label =
-wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
-wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #run bbutton
-self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) #binding the menus to functions
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu)
-self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetPath()
-self.fore_label.SetLabel(fore_file) def on_background(self, event):
-dialog = wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() ==
-wx.ID_OK: back_file = dialog.GetPath()
-self.back_label.SetLabel(back_file) def run_finder(self, event):
-wx.MessageBox(&#8216;It should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;:
-app = pymot() frame = pymotGUI(parent=None, id = -1)
-#frame.CentreOnScreen() frame.Show() app.MainLoop()[/sourcecode]</p>
+  <div class="entry-content"><p>Due to overwhelming support I have received throughout the day on my prediction that Mendeley is going open source, I&#8217;m starting the campaign,</p>
+
+<blockquote><p>We&#8217;re open, Mendeley</p></blockquote>
+
+<p>Let&#8217;s show our community power and inundate  Twitter, <a href="http://www.facebook.com/#!/group.php?gid=153928757951484">Facebook</a> (I created a group on Facebook), Friendfeed and all social network sites with requests for making Mendeley Open Source!</p>
 </div>
   
   
@@ -233,7 +156,7 @@ app = pymot() frame = pymotGUI(parent=None, id = -1)
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/10/30/motif-interface-on-github/">Motif finding interface on github</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/27/why-it-makes-sense-re-mendeley-open-source/">Why it makes sense, re: Mendeley open source</a></h1>
     
     
       <p class="meta">
@@ -249,17 +172,18 @@ app = pymot() frame = pymotGUI(parent=None, id = -1)
   
 
 
-<time datetime="2008-10-30T14:58:46-04:00" pubdate data-updated="true">Oct 30<span>th</span>, 2008</time>
+<time datetime="2010-08-27T12:03:57-04:00" pubdate data-updated="true">Aug 27<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>There has been actual development of the GUI and most of the development
-is being added simultaneously in the blog and on the code. So, go get a
-copy of git, install it and play with the BPB repository there.
-<a href="http://github.com/nuin/beginning-python-for-bioinformatics/tree/master">http://github.com/nuin/beginning-python-for-bioinformatics/tree/master</a></p>
+  <div class="entry-content"><p>Of course it makes sense. For better or worse, Mendeley has a tight following in the among the open-sciencers and associated hipsters, that would pay, donate and help keep the company afloat (see Reddit, even though they were bought by the nasty Conde). Also, going open-source would be a gutsy move, a heck of a PR turn around. It would silence its critics (me included) and it will use the momentum to improve their products and the crappy desktop app.</p>
+
+<p>Imagine the scenario where hundreds of clever people will be buried in Mendeley&#8217;s code trying to tweak it and make it better, faster and more reliable. These are very clever people and they work usually for nothing, maybe a like on Friendfeed or an invitation to the next Science Online meeting (let&#8217;s make it in some resort location). Mendeley will also have the opportunity to show their corporate clients that they have the community behind them and the community will go wherever Mendeley will go. It&#8217;s a win-win, there&#8217;s nothing to lose. And all I&#8217;m reading and feeding from my sources suggest that&#8217;s the differential in Mendeley&#8217;s history. They have the opportunity to put their app where their mouths are.</p>
+
+<p><strong>What side of History are you on, Mendeley?</strong></p>
 </div>
   
   
@@ -272,7 +196,7 @@ copy of git, install it and play with the BPB repository there.
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/10/30/creating-an-interface-for-the-motif-finding-script-part-5/"> Creating an interface for the motif finding script, part 5</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/27/mendeley-is-going-to-be-open-source/">Mendeley is going to be open source</a></h1>
     
     
       <p class="meta">
@@ -288,100 +212,20 @@ copy of git, install it and play with the BPB repository there.
   
 
 
-<time datetime="2008-10-30T14:45:19-04:00" pubdate data-updated="true">Oct 30<span>th</span>, 2008</time>
+<time datetime="2010-08-27T07:14:56-04:00" pubdate data-updated="true">Aug 27<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Last time we saw how to bind an interface element to a function. Now we
-need to make good use of it, and make the script have some actual
-functionality. First thing we are going to do is to include a label (or
-static text) on the interface. Remember that initially we added a panel
-to the frame, so the label should go on the panel. For a label we use a
-<a href="http://wxpython.org/docs/api/wx.StaticText-class.htm">wx.StaticText</a>
-and has these parameters <a href="self,%20parent,%0Aid=-1,%20label=EmptyString,%20pos=DefaultPosition,%20size=DefaultSize,%0Astyle=0,%20name=StaticTextNameStr">sourcecode language=&#8217;python&#8217;</a>[/sourcecode] We don&#8217;t need all of them,
-just a couple would be enough. Basically, parent, id, label and pos will
-do it, as the size would be default and based on the text length we
-input. We are going to work on our __do_layout function and add two
-labels to the panel on the frame, one for each the fore and background
-files [sourcecode language=&#8217;python&#8217;]self.fore_label =
-wx.StaticText(panel, -1, &#8216;Select the foreground file&#8217;, (10, 10))
-self.back_label = wx.StaticText(panel, -1, &#8216;Select the background
-file&#8217;, (10, 30))[/sourcecode] These two lines are very similar, only the
-label, position and name change. panel is the name of the panel we
-created previously, -1 is the ID, the string is the actual text that
-will appear on the label and the values between parentheses are the X, Y
-coordinates to display them on the frame. In the beginning (or when a
-size needs to be set) we can add <code>pos=</code> to the label declaration in
-order to make clearer what the values are setting [sourcecode
-language=&#8217;python&#8217;]self.fore_label = wx.StaticText(panel, -1, &#8216;Select
-the foreground file&#8217;, pos=(10, 10))[/sourcecode] If we add these two
-lines and run our script, both labels will be there on the frame, as can
-be seen in the screencap below. <a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui3.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui3-300x187.png" title="GUI with labels" alt="GUI with
-labels" /></a>
-Now, we need to add some functionality to the menus. The menu items set
-previously, basically should work by presenting a file open dialog to
-the user, where he/she can select a file that will be processed later
-(or immediately). wxPython provides an option of automatically creating
-a file dialog, by using the <a href="http://wxpython.org/docs/api/wx.FileDialog-class.html">wx.FileDialog
-method</a>. This
-method requires only one parameter, which is the style of the dialog.
-The dialog can be of many types, i.e. for opening (single and multiple
-files) and saving. the dialog call would look like [sourcecode
-language=&#8217;python&#8217;]dialog = wx.FileDialog(self,
-style=wx.OPEN)[/sourcecode] very simple and objective. But just
-declaring won&#8217;t make it show up on the screen. We need to actually call
-the dialog&#8217;s show method. Usually, most dialogs are
-<a href="http://en.wikipedia.org/wiki/Modal_window">modal</a>, requiring some kind
-of interaction between the user and the dialog before returning to the
-application that called the dialog. Because of this behaviour we need to
-use an if clause when showing the dialog, to check what type of result
-returns from the user/dialog interaction. [sourcecode
-language=&#8217;python&#8217;]if dialog.ShowModal() == wx.ID_OK:[/sourcecode]
-wx.ID_OK is a internal method of wxPython that checks if the user
-pressed the OK button on the file open dialog. If so, the program will
-process the code, otherwise it will destroy the dialog and return to the
-main application (or do something else if we set an elif clause). So,
-all we need is set, we just need to put things together and add some
-code when the user selects a file [sourcecode language=&#8217;python&#8217;]def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetFilename()
-self.fore_label.SetLabel(forefile)[/sourcecode] After the if clause,
-the script will get the name of the selected file from the dialog and
-then set the label of our StaticText (label!) with it. Straightforward.
-We do the same thing for the background file and we have some code
-going. One last thing, the objects <code>fore_file</code> and <code>back_file</code> are
-declared on the __init__ function of the frame class, so they are
-available to the whole frame scope. Our script will look like
-[sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python import wx import
-pymot import fasta import os class pymot(wx.App): def __init__(self,
-redirect=False): wx.App.__init__(self, redirect) class
-pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
-&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
-panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
-#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
-&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) self.Bind(wx.EVT_MENU, self.on_foreground,
-foreground_menu) self.Bind(wx.EVT_MENU, self.on_background,
-background_menu) def on_foreground(self, event): dialog =
-wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() == wx.ID_OK:
-fore_file = dialog.GetFilename()
-self.fore_label.SetLabel(dialog.GetFilename()) def on_background(self,
-event): dialog = wx.FileDialog(self, style=wx.OPEN) if
-dialog.ShowModal() == wx.ID_OK: back_file = dialog.GetFilename()
-self.back_label.SetLabel(dialog.GetFilename()) #if __name__ ==
-&#8217;__main__&#8217;: app = pymot() frame = pymotGUI(parent=None, id = -1)
-#frame.CentreOnScreen() frame.Show() app.MainLoop()[/sourcecode] Next
-we will keep adding elements on the screen and functionality.</p>
+  <div class="entry-content"><p>After extensively researching some material online, analysing many blog posts and statements made by people linked to Mendeley, checking my sources, I reached the conclusion that soon Mendeley is going to be open source. They already use a good chunk of <a href="http://forums.zotero.org/discussion/6174/mendeley/">Zotero&#8217;s codebase</a> and IMHO their only move would be to open their system, so it can be vastly improved.</p>
+
+<p>Also, it does not make a sense for a company that in every level of management is publicly advocating for Open Science, Open Data, etc to keep their code closed. By opening their code, which for once I commend Mendeley&#8217;s team for deciding to do that, they will benefit from the same system they are now feeding from and will lead by example in this new Scientific movement. After all, what side of History are they on?</p>
+
+<p>I think the API, even handicapped and quickly put together with so many problem, was the initial step towards a full open source adventure for them. I think it&#8217;s a bold move, but again, for the first time Mendeley&#8217;s team made a perfect decision, that will put the company shoulder-to-shoulder to other scientific and software innovators. When they will announce this - I don&#8217;t know, but I&#8217;m guessing in a couple of months - it will be a major breakthrough to the Open-movement, and the leadership-by-example will create an unstoppable momentum for all the open-sciencers.</p>
+
+<p>You don&#8217;t read here often, but I applaud Mendeley for their boldness, openness and will to lead the New Science, from the right side of History.</p>
 </div>
   
   
@@ -394,7 +238,7 @@ we will keep adding elements on the screen and functionality.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/10/29/creating-an-interface-for-the-motif-finding-script-part-4/">Creating an interface for the motif finding script, part 4</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/25/the-rise-and-fall-of-software-sites-and-companies/">The rise and fall of software, sites and companies</a></h1>
     
     
       <p class="meta">
@@ -410,73 +254,20 @@ we will keep adding elements on the screen and functionality.</p>
   
 
 
-<time datetime="2008-10-29T13:35:27-04:00" pubdate data-updated="true">Oct 29<span>th</span>, 2008</time>
+<time datetime="2010-08-25T10:33:45-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Last time we checked how to add a menu to our simple frame.
-Unfortunately, just adding it won&#8217;t make the menu useful. In order to do
-that we need to bind some events to it. As any interface framework,
-wxPython is governed by events generated by the user, being these events
-mouse clicks on buttons and menus, objects getting/losing focus, etc. In
-our case, so far, we evidently need a event called menu event, which
-will tell the code what path to use when a menu is clicked. My personal
-preference for binding an event to menu is to create a separate function
-to store these procedures, <code>__do_binding</code>. But by using this route we
-would need to change some code in the menu declaration, and to simplify
-things we will add the menu binding at the end of the <code>__do_layout</code>
-function. And how we create a binding? In order to bind an object/menu
-to a function that will contain the executed code after the event is
-fired up, we need the name of the object/menu, the target function and
-the menu type. We already know the first and the last, we just need the
-function name then. Remember that we created the menu last time by using
-(the menu name were changed in the previous entry - it was some old code
-that got in the way - my mistake)</p>
+  <div class="entry-content"><p>I don&#8217;t know if this is just a personal perspective or if it is global. To be honest, I haven&#8217;t checked, haven&#8217;t googled about it. But there are many examples of software (paid or not) that start as a very nice option to do some type of task and in the end become a bloody nuisance. The first version is wonderful, just works, installs perfectly and gives enough functionality, nothing more, nothing less, for said task. Then this little application grows and grows, the company grows with it, maybe their codebase gets too crowded, maybe they hire a CEO, maybe new programmers.</p>
 
-<p>[sourcecode language=&#8217;python&#8217;]foreground_menu = filemenu.Append(-1, &#8216;Select
-foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) &#8230; quitmenu = filemenu.Append(-1,
-&#8216;Quit&#8217;)[/sourcecode] hence our menu names are <code>foreground_menu</code>,
-<code>background_menu</code> and <code>quit_menu</code>. Basically a wx.Bind method has this
-structure [sourcecode language=&#8217;python&#8217;]self.Bind(EVENT_TYPE, handler,
-source)[/sourcecode] where the handler is the function and the source is
-the actual source of the event. Let&#8217;s say then we want to use function
-<code>on_foreground</code> everytime someone clicks on foreground menu, and
-<code>on_background</code> everytime someone clicks on the background menu. We add
-a couple of lines to our layout function [sourcecode
-language=&#8217;python&#8217;]self.Bind(wx.EVT_MENU, self.on_foreground,
-foreground_menu) self.Bind(wx.EVT_MENU, self.on_background,
-background_menu)[/sourcecode] This will tell the code where to go when
-these items are clicked. If you start the interface, and error will be
-generated because we still haven&#8217;t created the event handler functions.
-We should define them [sourcecode language=&#8217;python&#8217;]def
-on_foreground(self, event): pass def on_background(self, event):
-pass[/sourcecode] Note that these function receive an <code>event</code> parameter,
-which is the actual event itself. The <code>pass</code> line means that the
-function is defined but no actual code has been added, so execution can
-bypass it and do nothing when the function is called. Our complete code
-would look like [sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python
-import wx import pymot import fasta class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect)
-class pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() def
-__do_layout(self): #adding the panel panel = wx.Panel(self)
-#defines the menubar menubar = wx.MenuBar() #file menu filemenu =
-wx.Menu() foreground_menu = filemenu.Append(-1, &#8216;Select foreground
-file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select background file&#8217;)
-sep = filemenu.AppendSeparator() quitmenu = filemenu.Append(-1, &#8216;Quit&#8217;)
-#appends the menu to the menubar and creates it
-menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu) def
-on_foreground(self, event): pass def on_background(self, event): pass
-app = pymot() frame = pymotGUI(parent=None, id = -1) frame.Show()
-app.MainLoop()[/sourcecode] Next time we will make good use of the
-events.</p>
+<p>And that little application becomes a bloody nuisance. The latest version wants to install a shady add-bar to your Explore/Firefox, maybe wants you to update it every hour. That little application has some many features now that the task it was suited for in the beginning, is just an afterthought now.</p>
+
+<p>One example that comes to mind are the anti-virus applications. Free like AVG, paid as McAfee, they grew and grew and some of them cannot be uninstalled without a four-page long guide, or install so many add-ons that your computer looks like a mirror of Download.com (another example of bloated app/site).</p>
+
+<p>I don&#8217;t know, again, if this is just a personal perspective, don&#8217;t know blog posts about it. But in the end, whenever something grows without control, or mismanaged control, be an application, site or company, there will be some type of <em>evil</em> component in whatever they provide. Of course, there are exceptions, but that&#8217;s what every rule asks for.</p>
 </div>
   
   
@@ -489,7 +280,7 @@ events.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/10/22/creating-an-interface-for-the-motif-finding-script-part-3/">Creating an interface for the motif finding script, part 3</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/24/mendeleys-side/">Mendeley&#8217;s side</a></h1>
     
     
       <p class="meta">
@@ -505,173 +296,54 @@ events.</p>
   
 
 
-<time datetime="2008-10-22T15:30:13-04:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2008</time>
+<time datetime="2010-08-24T15:09:07-04:00" pubdate data-updated="true">Aug 24<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Today we will add some elements to our interface. Looking at the
-previous screencap it is easy to conclude that our interface needs a lot
-of work to be ready. First, it has a dark gray background that does not
-resemble the usual window background (it looks more like a MDI frame).
-We need to change that. Also, there are no menu bars or menus, or tool
-bars. It&#8217;s pretty bare bones, and not exactly good or useful. There many
-ways of customizing the look of a window/frame in wxPython, and two of
-these methods are adding a panel to the frame or adding the so-called
-sizers. The latter is a difficult method to master, but powerful and
-very good to customize objects, look and feels of a window. Addin a
-panel and subsequently adding objects to it is a more laborious process,
-but easier to understand. We will start by adding the
-<a href="http://www.wxpython.org/docs/api/wx.Panel-class.html">panel</a> to you
-<code>__do_layout</code> function (where most of our changes will happen for now).
-Basically, only one line is required:</p>
+  <div class="entry-content"><p>Now that they dominate every single niche of scientific PR-bull, have pitbulls threatening people not to publish some negative comments about them, are trying to use free representative at universities, they also want to become the beacon of Open Science, open-whatever:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#adding the panel panel = wx.Panel(self)</span>
-</span></code></pre></td></tr></table></div></figure>
+<blockquote><p>We came to the conclusion that technology is finally at a point that if we don’t use it now, then we are holding back the progress of science. And what exactly are we to use technology on? Open science/data/access.</p></blockquote>
 
+<p>Yes, use Mendeley. More and more, and then Science will be open.</p>
 
-<p>That&#8217;s it, the wx.Panel method only needs one parameter, where the panel
-is being added to. The name <code>panel</code> is the one that we will be using to
-access methods and properties associated with the wx.Panel derivation
-that we just created. Adding the menu would require a little bit more
-code. As its predecessor wxWidgets, wxPython divides the menu in
-subcategories. The menubar is based on wx.Menubar method, the menu
-itself (File, Edit, etc) is a wx.Menu where each of the entries is
-added. At the end each menu derived from wx.Menu will be added to the
-menubar. In order case we have to initialize a menubar</p>
+<blockquote><p>For the past three centuries those two requirements could not be satisfied due to a lack of technology, but why are we not fulfilling them now? We have the tech (i.e. Internet), so something else is going on. It is easy to place the blame on publishers trying to protect business models, but that would be misplaced judgment. The business models for Open Access and Open Data are there, trust me (or go ask PLoS). Publishers are already experimenting with the models, but they are waiting for something before going full force. They are waiting for us, the researchers.</p></blockquote>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#defines the menubar </span>
-</span><span class='line'><span class="n">menubar</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuBar</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Thank you, Internet (whoever you are). Without you Science wouldn&#8217;t reach the point it is now. Wait, what? Yes, the business models are there, trust him, or just ask PLoS for all the money they are charging, and when you meet someone that is not blessed with technology (==money) and cannot publish on open access (they publish for free, but you have to wait), you can tell them the story of a place where tehcnology (==money) blesses everyone and all data flows free and papers are stored (for a price) on Mendeley&#8217;s servers.</p>
 
+<blockquote><p>Each time we hold back data or publish research that isn’t immediately open to all, we have chosen to be on the wrong side of history</p></blockquote>
 
-<p>and then initialize a menu element, which we
-will call filemenu and will be labeled File</p>
+<p>And that&#8217;s your fault to be on the wrong side of history and good people. You are evil and your wife, husband, kids need to eat, but you don&#8217;t have tenure and you hide your data; that&#8217;s all you want: to hide your data and not show to anyone, because your contract is expiring in a couple of months and if you publish in a good journal they might renew it. Cut the chains that bind you to the oppressors, come to the right side, and store your references and papers (limited quantity) on Mendeley&#8217;s servers.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#file menu </span>
-</span><span class='line'><span class="n">filemenu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+<blockquote><p>We could wait for policy changes from the top, but that is neither a timely, nor guaranteed solution</p></blockquote>
 
+<p>Post-docs and graduate students of the world unite, non-ternured staff too. Next time your boss or supervisor asks you to not disclose some data, tell them to go to hell, resign and go work for some Open Science advocate, or Mendeley (I heard they have quite good internships there)</p>
 
-<p>This
-will only initialize a menu element with the name <code>filemenu</code>, it won&#8217;t
-add anything anywhere. In our case from the start, as we didn&#8217;t do any
-planning on how our interface would look like (no UML, no case studies,
-nothing!), we need at least three menu items: one to open/set the
-foreground sequence file, one to open/set the background sequence file
-and one to quit the application. So what we are going to do is append
-these items to the <code>filemenu</code></p>
+<blockquote><p>Platforms such as Mendeley can have a hand in meeting both the first and second conditions. Mendeley is more than just a reference manager, it is also a system that aggregates the metadata of millions of documents and provides authors the opportunity to promote their works. We are now taking this one step further having created the beginnings of an author analytics platform.</p></blockquote>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">convertmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select foreground file&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">seqmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select background file&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">sep</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">AppendSeparator</span><span class="p">()</span>
-</span><span class='line'><span class="n">treenooutmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;Quit&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>There&#8217;s no free lunch out there. All that revolution-in-the-academics yada yada yada to come to the conclusion that Mendeley will solve everything, because it&#8217;s more than just a reference manager. It aggregates data and metadata (for a price) and gives me, you, the guy-next-door to promote works. Just like a journal. But it also gives you analytics: you will know how many bots accessed your paper or Mendeley farms were trained to add your papers, so it inflates the analytics and you get tenure because of that. Mendeley will do that for a price too, don&#8217;t you think? I don&#8217;t trust people that plays with censorship.</p>
 
+<blockquote><p>A publication snapshot is nothing earth shattering and it has a long way to grow. It has many valid concerns, such as gaming that must be accounted for. Fundamentally though, this is not just another metric to base the next grant or tenure selection upon, although eventually it could/should be used that way. To the point, this is about being on the right side of history in promoting Open Science.</p></blockquote>
 
-<p>that simple. The first two lines and the last one
-append the items that open/set files. The -1 parameter is an ID, as we
-saw previously, when no ID is required for our code we use -1, and the
-second parameter is the label of that menu item. The menu item <code>sep</code> is
-a separator, keeping apart the file open/set items and the quit element.
-One final thing is append the derived wx.Menu to the menubar and set it.
-We accomplish that by</p>
+<p>That explains a lot. It shouldn&#8217;t be used, but it might. Eventually. But you will be on the right side. It gets to a point that I need a compass, or for the technology blessed, a GPS.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#appends the menu to the menubar and creates it</span>
-</span><span class='line'><span class="n">menubar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">filemenu</span><span class="p">,</span> <span class="s">&#39;File&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">SetMenuBar</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>But it ends on a high note</p>
 
+<blockquote><p>Those researchers who openly and quickly publish research or data for download will be rewarded.* Those who do not will adapt or risk falling into obscurity. As we wait for policy changes to be enacted by the top, we must act at the bottom to encourage a behavioral change in how we share our knowledge. I think we owe that to the students, hipsters, and citizens in coffee shops everywhere.</p></blockquote>
 
-<p>Line 2 initializes menubar on self, also known as pymotGUI, our main window. Putting everything
-together our code would look like</p>
+<p>I never understood why sharing the knowledge means opening all your data. Why paper access metrics should be used to measure something real. It&#8217;s nice to have a highly accessed paper on BMC, but you know that some of the hits came from you or maybe colleagues. And why the changes have to come from below? If I don&#8217;t have tenure, or I&#8217;m only a student I can try changing, but the final word always comes from who signs the check that feeds your family.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">wx</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">pymot</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">)</span>
-</span><span class='line'>      
-</span><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span><span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
-</span><span class='line'>      <span class="c"># self.__do_binding() </span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>      <span class="c">#adding the panel </span>
-</span><span class='line'>      <span class="n">panel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-</span><span class='line'>      <span class="c">#defines the menubar </span>
-</span><span class='line'>      <span class="n">menubar</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuBar</span><span class="p">()</span>
-</span><span class='line'>      <span class="c">#file menu </span>
-</span><span class='line'>      <span class="n">filemenu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
-</span><span class='line'>      <span class="n">foreground_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select foreground file&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">background_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select background file&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">sep</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">AppendSeparator</span><span class="p">()</span> <span class="n">quit_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;Quit&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="c">#appends the menu to the menubar and creates it</span>
-</span><span class='line'>      <span class="n">menubar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">filemenu</span><span class="p">,</span> <span class="s">&#39;File&#39;</span><span class="p">)</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">SetMenuBar</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
-</span><span class='line'>      
-</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span> <span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span> <span class="n">frame</span> <span class="o">=</span>
-</span><span class='line'><span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c">#frame.CentreOnScreen() frame.Show()</span>
-</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+<blockquote><p>Which side of history will you be on?</p></blockquote>
 
+<p>I never understood why I should pick a side, or why someone in a company (with thugs) should challenge me to pick a side. I don&#8217;t know which side I&#8217;m on, I know History is define by powerful people, even though the burden and the work is carried by the silent millions. The only thing I could say about sides, is that I want to be on Mendeley&#8217;s opposite one, even if it becomes the standard for anything. I don&#8217;t side with censorship, hype and hot air.</p>
 
-<p>Next time we will work on more elements and activate the menu items.</p>
+<blockquote><p>*Exactly how that is rewarded through our search and recommendation engines has yet to be implemented, as we need to balance relevance as much as reputation.</p></blockquote>
+
+<p>Give me the source code of Mendeley and I will tell you how to implement. After all, it&#8217;s easy to be open with someone else&#8217;s stuff. Also, I&#8217;m looking forward to get Jason&#8217;s email with a link to all the projects he&#8217;s working on at the moment and all the data he ever generated. History is better set by example.</p>
+
+<p><em>PS: Comments from anyone financially involved with Mendeley, especially the thugs, will be blocked.</em></p>
 </div>
   
   
@@ -684,7 +356,7 @@ together our code would look like</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2/">Creating an interface for the motif finding script, part 2</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/24/the-webs-future/">The Web&#8217;s Future</a></h1>
     
     
       <p class="meta">
@@ -700,90 +372,18 @@ together our code would look like</p>
   
 
 
-<time datetime="2008-10-21T11:40:33-04:00" pubdate data-updated="true">Oct 21<span>st</span>, 2008</time>
+<time datetime="2010-08-24T08:57:02-04:00" pubdate data-updated="true">Aug 24<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Let&#8217;s take a deeper look on the code we started yesterday, piece by
-piece</p>
+  <div class="entry-content"><p>Lately, I realized that the Web&#8217;s Future (or The Future of the Web) is not Facebook. No, it doesn&#8217;t matter that all your friends (enemies) are there, doesn&#8217;t matter that all companies are moving to Facebook-based pages, that everything you like is there, and your mum is sending you friendship requests.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span> <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span>
-</span><span class='line'><span class="n">filename</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>No, the web&#8217;s future (or The Future of the Web) is much larger than Facebook. The future of the web is an application that allows you to play in the financial market, find conferences and even plot a map with them, can analyse the stars, check browser histories, do science and screw the life of your worst enemies with a complex syntax and obscure data typing. I might have forgotten that this application saved lives in Haiti, intends to bring peace to the Middle East (via a very elaborate graph) and even solve the Tea Party issue in US (via a very elaborate graph). The future of the web (or the web&#8217;s future) is the one and only <a href="http://www.r-project.org">R</a>. R can do everything and a little bit more.</p>
 
-
-<p>This is the class <code>pymot</code> we derived from wx.App,
-and this will be the main class for your application. As any other class
-derived it needs a OnInit or a <strong>init</strong> function that will take care
-of initializing things. As usual, we pass <code>self</code> and a <code>redirect</code>
-parameter, that will tell the application to redirect some output to the
-command line. We actually don&#8217;t need a <code>redirect</code>, but it can be useful
-in the future to track errors. It&#8217;s set to false as we don&#8217;t need it
-now.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span><span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">pass</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is the pymotGUI class derived, in this case, from wx.Frame. a wx.Frame
-is the common window you see in most OS. As above, it needs a OnInit or
-<strong>init</strong> function, and here it initializes the window (but does not show it). In the first line of <strong>init</strong> we have a call to format the
-window we want to display. The frame method would need these
-<a href="http://www.wxpython.org/docs/api/wx.Frame-class.html">paramaters</a> to
-customize the window</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Both title and
-style are set by default (not that they cannot be changed) in the frame
-definition, and whe this is called and properly initialized, other
-parameters can be passed and/or changed. There is a second defined
-function in the <code>pymotGUI</code> class, <code>__do_layout</code>. This is a personal
-preference of having all the layout methods for the window grouped in
-one function. It helps organizing a bit the code and easier to browse
-and correct it if needed. Most of the main part of the script could be
-moved to the wx.App class derivation, but for now, we can keep it there.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span>
-</span><span class='line'><span class="n">frame</span> <span class="o">=</span> <span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="n">frame</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
-</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The first line initializes the application, the second calls and
-initializes the frame. The method Show makes the window to be displayed.
-MainLoop we saw last time. The skeleton of a wxPython script and
-application is very simple. Now we need to populate our window, create
-menus, buttons, and specially events. Next time we will include a menu
-on the form and check how events are linked to elements.</p>
+<p>But what R cannot do is find you a girlfriend. Or at least I haven&#8217;t read about. Until then, I&#8217;m a skeptic.</p>
 </div>
   
   
@@ -796,7 +396,7 @@ on the form and check how events are linked to elements.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/10/20/creating-an-interface-for-the-motif-finding-script/">Creating an interface for the motif finding script, part 1</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/21/theres-till-hope/">There&#8217;s still hope</a></h1>
     
     
       <p class="meta">
@@ -812,113 +412,20 @@ on the form and check how events are linked to elements.</p>
   
 
 
-<time datetime="2008-10-20T16:31:50-04:00" pubdate data-updated="true">Oct 20<span>th</span>, 2008</time>
+<time datetime="2010-08-21T18:29:27-04:00" pubdate data-updated="true">Aug 21<span>st</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>And we are back. After much ado about real life, I am able to &#8220;restart&#8221;
-this blog and probably with a good frequency of posts. Last time we saw
-the final product of our motif finding series. We ended up creating a
-very elegant script in Python that efficiently counts words in FASTA
-sequences and then using a basic statistical method, calculates the
-significance of each word and output the overrepresented ones. Our
-script used a little bit less than 50 lines, and if you include the
-imported fasta module, it won&#8217;t top 100. But the number of lines is not
-important. The efficiency, clarity and speed are key here. At the same
-time, running a script from the command line is not something everyone
-is used to do. In order to add more visibility to our simple script, why
-not including a GUI? With a visual interface, more people can use our
-script, in different systems. Sounds great. Python has many options of
-GUI frameworks, some more cross-platform that others. In the end finding
-the right framework is more a matter of taste, or availability. My
-personal experience with <a href="http://www.wxwidgets.org">wxWidgets</a> lead me
-to start developing in <a href="http://www.wxpython.org">wxPython</a>, and for me
-this was a natural choice. But there are many other GUI frameworks for
-Python, each one providing more or less integration and portability (you
-can &#8220;choose&#8221; you own <a href="http://www.awaretek.com/toolkits.html">here</a>). So,
-let&#8217;s create a skeleton for our GUI. First step is to install wxPython.
-Packages for Windows are available from their website, RPMs for Linux
-and DMG for Macs (I&#8217;m quite sure OS X Leopard comes with wxPython by
-default, just test importing it). After installing it, start Python and
-check if everything is in place</p>
+  <div class="entry-content"><p>A wonderful <a href="http://www.reddit.com/r/science/comments/d3uq5/pz_myers_kurzweil_still_doesnt_understand_the/c0xd6qd">comment</a> on Reddit, regarding the Cult Leader re-response to Kurzweil:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">wx</span>
-</span><span class='line'><span class="n">wx</span><span class="o">.</span><span class="n">__version__</span>
-</span></code></pre></td></tr></table></div></figure>
+<blockquote><p>He seems almost proud of his own narcissism. As if people were just waiting with bated breath for him to grace his audience with another tit-for-tat in this petty feud. Oh what an inconvenience it is for him to have to update his own douchey blog.</p></blockquote>
 
+<p>I can&#8217;t tell who is worse: PZM or the people who look to him for what they should think about any issue.</p>
 
-<p>On my machine, I get no errors and the
-version is 2.8.9.1 (you don&#8217;t need the latest version to create the
-GUI). Everything seems to be fine. A wxPython script has the same format
-as any Python script, the only difference is that its output is not
-directed to the prompt or a file. The script&#8217;s product will be the
-screen, so in most cases the output and program usage will depend on the
-user&#8217;s interaction with objects on the screen. Like any other graphical
-interface. A very simple script would look like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">wx</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">)</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
-</span><span class='line'>  <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
-</span><span class='line'>  
-</span><span class='line'><span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">pass</span>
-</span><span class='line'>      
-</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span>
-</span><span class='line'><span class="n">frame</span> <span class="o">=</span> <span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="n">frame</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
-</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Usually a wxPython
-interface has three parts in its script: a class for the
-window/frame/dialog, a class for the application and a initialization
-routine. All wxPython applications, and scripts, need to derive an
-wx.App class and initialize it (on OnInit or on <code>__init__</code> functions),
-i.e. create the window, begin the program, etc. Another class, derived
-from wx.Frame in this case, will build the window/frame/dialog <em>per se</em>
-and will also contain initialization for the window, objects, events,
-etc. The last part is the main script where the application is started,
-by calling the derived class, the window is also called and shown. The
-last line is the <code>MainLoop</code>, present in every wxPython script, and it is
-the main line of the script, the heart of the application. MainLoop
-processes all the events and manages how the objects interact by
-receiving and dispatching such events. The script above could have been
-created differently, some lines of it omitted and there is also no need
-to derive an specific class for the frame. But this way it is easier to
-get a grasp of the script as it will need to be enlarged so accommodates
-the objects and maybe a couple of extra windows and dialogs. Running the
-above script will generate the window
-very simple and barebones. Next will explore the script above, include
-some extra elements and learn a little bit more of wxPython.</p>
+<p>Thank you, thank you. Whoever you are.</p>
 </div>
   
   
@@ -931,7 +438,7 @@ some extra elements and learn a little bit more of wxPython.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/09/05/python-overepresented-motifs-the-grand-finale/">Python, overepresented motifs, the Grand Finale</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/20/one-round-of-applause/">One round of applause</a></h1>
     
     
       <p class="meta">
@@ -947,119 +454,16 @@ some extra elements and learn a little bit more of wxPython.</p>
   
 
 
-<time datetime="2008-09-05T21:27:56-04:00" pubdate data-updated="true">Sep 5<span>th</span>, 2008</time>
+<time datetime="2010-08-20T09:07:33-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>In this final part, let&#8217;s do some very simple refactoring and modify the
-output section to make the result a little bit better. There are not
-many options about the functions to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
-expansion</a>.
-But Andrew posted some opinions on how to slight change the quorum
-function.</p>
+  <div class="entry-content"><p>I applaud anyone that stands against the cult-leader and tabloid-like science: <a href="http://www.kurzweilai.net/ray-kurzweil-responds-to-ray-kurzweil-does-not-understand-the-brain">Ray Kurzweil Responds to &#8220;Ray Kurzweil does not understand the brain&#8221;</a>. Still, unfortunately, the cult is so brainwashed, just like a far-right-Sarah-Palin-lover Republican or a far-left-Chavez-is-THE-answer Democrat that this will be just more amusement to the cyber-hooligans that levitate around the Church.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'><span class="sd">&quot;&quot;&quot; add seq id_no to a set use explicit counter to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'><span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span>
-</span><span class='line'><span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>His modifications were small but improved the code a bit, as you remove one
-variable/object from the function. At the same time there is need to
-change a bit our output section of the code, as we don&#8217;t use a
-<code>defaultdict</code> initialized with a set, but with an integer.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-</span><span class='line'><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span>
-</span><span class='line'><span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.0001</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-</span><span class='line'><span class="n">p</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice that in the <code>term1</code> line we don&#8217;t check for the
-set length anymore and just use the integer stored in <code>foreground</code> and
-<code>background</code>. Again a small change, that can make the code a little bit
-more clear. But we need to modify this section so the output is a little
-bit more clear, maybe ordered by motif sequence. But as we are reading
-the sequences as they are our results are not ordered. It would be great
-to have a final list starting with <code>AAAAAAAA</code> and ending with <code>TTTTTTTTT</code>.
-There is an easy way to do that, and very inexpensive regarding code and
-final performance. Basically we append each one of the motifs (and their
-extra information) to a list and use the <code>sort</code> method for lists. So our
-output section of the code will be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">res_motifs</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span> <span class="o">=</span>
-</span><span class='line'><span class="n">choose</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
-</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span>
-</span><span class='line'><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.0001</span><span class="p">:</span>
-</span><span class='line'><span class="n">res_motifs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span>
-</span><span class='line'><span class="nb">str</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="n">res_motifs</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
-</span><span class='line'><span class="n">res_motifs</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Putting everything together our final
-motif determination script is (batteries included):</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#!/usr/bin/env python import fasta import sys from</span>
-</span><span class='line'><span class="n">collections</span> <span class="kn">import</span> <span class="nn">defaultdict</span> <span class="nn">def</span> <span class="nn">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span> <span class="n">ntok</span> <span class="o">=</span>
-</span><span class='line'><span class="mi">1</span> <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span> <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
-</span><span class='line'><span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span> <span class="k">return</span> <span class="n">ntok</span> <span class="o">//</span> <span class="n">ktok</span> <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span> <span class="k">def</span> <span class="nf">get_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'><span class="sd">&quot;&quot;&quot; add seq id_no to a set use explicit counter to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'><span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span>
-</span><span class='line'><span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">return</span> <span class="n">quorum</span> <span class="n">input_seqs</span> <span class="o">=</span>
-</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">input_seqs2</span> <span class="o">=</span>
-</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">foreground</span> <span class="o">=</span>
-</span><span class='line'><span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">background</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">,</span>
-</span><span class='line'><span class="mi">10</span><span class="p">)</span> <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">)</span> <span class="n">res_motifs</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
-</span><span class='line'><span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">term2</span> <span class="o">=</span>
-</span><span class='line'><span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
-</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span>
-</span><span class='line'><span class="mf">0.0001</span><span class="p">:</span> <span class="n">res_motifs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span>
-</span><span class='line'><span class="nb">str</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="n">res_motifs</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
-</span><span class='line'><span class="n">res_motifs</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Next we will see some basic Python methods. And maybe start a new series and phase.</p>
+<p>More Pepsi, please.</p>
 </div>
   
   
@@ -1072,7 +476,7 @@ motif determination script is (batteries included):</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/09/03/obtaining-overrepresented-motifs-in-dna-sequences-final/">Obtaining overrepresented motifs in DNA sequences, final</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/12/note-to-self-reapi-or-who-said-mendeley-didnt-teach-me-something/">Note to self, re:API or who said Mendeley didn&#8217;t teach me something?</a></h1>
     
     
       <p class="meta">
@@ -1088,15 +492,14 @@ motif determination script is (batteries included):</p>
   
 
 
-<time datetime="2008-09-03T20:21:38-04:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2008</time>
+<time datetime="2010-08-12T14:20:10-04:00" pubdate data-updated="true">Aug 12<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>The part 13 of the motifs series is the last one. In a couple of weeks I will post a refactored code, including the suggestions from Andrew in
-the last post. I will update the blog contents on OWW and commit some of the code to the GitHub <a href="http://en.wikipedia.org/wiki/Repository" title="Repository">repository</a>.</p>
+  <div class="entry-content"><p>Next time I create an API to my (few) applications, include dozens of Easter Eggs, no documentation. Some has to think about the children!</p>
 </div>
   
   
@@ -1121,23 +524,23 @@ the last post. I will update the blog contents on OWW and commit some of the cod
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
       </li>
     
   </ul>

@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>"bioinformatic perl or python" - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="I decided to create a new series of posts (a category to be more precise) that deals with some searches that reach the blog. I use a pretty nice &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/09/12/bioinformatic-perl-or-python">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">"bioinformatic perl or python"</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-12T21:16:02-04:00" pubdate data-updated="true">Sep 12<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I decided to create a new series of posts (a category to be more precise) that deals with some searches that reach the blog. I use a pretty nice logging <a href="http://haveamint.com">application</a> so it is easy to randomly select a Google search term to discuss about it.</p>
+
+<p>About an hour ago someone in the interwebs searched for &#8220;bioinformatic perl or python&#8221; and my other <a href="http://python.genedrift.org">blog</a> is the third returned by Google. How can answer this question without praising too much Python or not despising too much perl?</p>
+
+<p>My language of choice was always C/C++ even though it can explode in your face if not handled with care. I also tried Java (did not like it), Visual Basic, Pascal, Delphi and of course Perl, before arriving in Python. The are many differences between Python and Perl, and there aren&#8217;t many differences between Python and Perl. Specially for bioinformatics development.</p>
+
+<p>Keep the score and please remind this comparison is for a bioinformatician perspective, or even a curious biologist that wants to learn programming.</p>
+
+<p>In Python, OO (object orientation) is natural, while in Perl is an added layer. Is this important for a bioinformatician? It is relative, depends how much you know programming and what you want to do. OO is really nice even for some simple things, and if it is natural or hacked on the language, does not matter.
+Tie: Python 1, Perl  1</p>
+
+<p>Python syntax is easy to understand, Perl&#8217;s not so much. Python is naturally indented, Perl no. Cleaner syntax, easier to learn, more difficult to make simple mistakes (not 100% true, but let&#8217;s assume so).
+Advantage Python: Python 2, Perl 1</p>
+
+<p>Perl has natural support for regular expressions, which are very handy in a lot of biological tasks. Python has the re module but the regex is not natural. And you bet you are going to use a lot of regex in bioinformatics.
+Advantage Perl: Python 2, Perl 2</p>
+
+<p>Speed: very similar. In most cases speed is not a problem in bioinformatics applications. Both are interpreted languages, not compiled to bytecode, so if you want speed go check C/C++.
+Tie: Python 3, Perl 3</p>
+
+<p>Python has an interpreter that can be used interactively. That&#8217;s very handy when you are not sure if some technique will work and want to test before wasting hours implementing and failing. If you are learning to program or at least learning Python, that&#8217;s very useful. Perl does not have it.
+Advantage Python: Python 4, Perl 3</p>
+
+<p>Support: Perl has CPAN, Python has Cheese Shop. But Perl has much more third-party modules than Python. On the other hand, Python community is growing. Basically anything you want to do in Perl, might have been already implemented, so there is no reinventing-the-wheel-ism.
+Advantage Perl: Python 4, Perl 4</p>
+
+<p>Functional programming: according to Wikipedia, FP is a programming paradigm that treats computation as the evaluation of mathematical functions. Like OO, is something that you want to address at a higher level of programming knowledge. Perl has it, but Python&#8217;s is better. period.
+Advantage Python: Python 5, Perl 4</p>
+
+<p>Portability: it is a tie. Both run everywhere and anywhere.
+Tie: Python 6, Perl 5</p>
+
+<p>GUIs: Python has more possibilities in the GUI department, while Perl is a little behind. If you are a beginner, you probably won&#8217;t be making any graphical interfaces, and for most of the stuff in Biology (if you are computer savvy) interfaces are not important. In the end, you type faster than you click.
+Tie: Python 7, Perl 6</p>
+
+<p>And finally, support of the biological community: Perl, hands down. BioPerl is stronger than BioPython, and more complete, so most of the stuff you want are already there. BioPython is growing (not really that much), but it will take some time to reach the BioPerl level. Perl will also let you talk with more people at conferences, so it is an ice breaker.
+Advantage Perl: Python 7, Perl 7</p>
+
+<p>Conclusion:</p>
+
+<p>It is just a matter of taste. Both languages are well balanced and powerful. Depending on your needs one will be more suited than the other, but in the end both can give you the desired result. Python has a slight advantage of being easier to learn, with a more English-like syntax, while Perl has the slight advantage of a slightly bigger community. You will be happy with both, and in the end it would be fun to know both. There are many ways of doing things, either in Perl or Python.</p>
+
+<p>And remember, this is a perspective of a biologist/bioinformatician.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-12T21:16:02-04:00" pubdate data-updated="true">Sep 12<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/google-searches/'>google searches</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/09/12/bioinformatic-perl-or-python/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/09/12/bioinformatic-perl-or-python/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/09/12/clc-free-workbench-a-new-short-review/" title="Previous Post: CLC free workbench, a new (short) review">&laquo; CLC free workbench, a new (short) review</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/09/13/restriction-enzymes-third-take/" title="next Post: Restriction enzymes, third take">Restriction enzymes, third take &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere ...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

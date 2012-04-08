@@ -1,0 +1,825 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We need to pause a bit and do some corrections on our code. First the
+code I posted on the last entry for the pymotif.py module is wrong. Ok,
+not &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/page/17">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/18/creating-an-interface-for-the-motif-finding-script-some-corrections/">Creating an interface for the motif finding script, some corrections</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-18T14:45:31-05:00" pubdate data-updated="true">Nov 18<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We need to pause a bit and do some corrections on our code. First the
+code I posted on the last entry for the pymotif.py module is wrong. Ok,
+not wrong, but some of the code I use to test ended up on the blog. Ths
+first two lines of the calculate_motifs function contained a link to
+the files I use for testing and should be replaced by [sourcecode
+language=&#8217;python&#8217;]input_seqs =
+fasta.read_seqs(open(input_seqs).readlines()) input_seqs2 =
+fasta.read_seqs(open(input_seqs2).readlines())[/sourcecode] Also both
+variables that store the filenames and paths in pymoteGUI.py are
+declared in the wrong scope. The should have be declared at the pymotGUI
+class level, so it is accessible to all the functions in that class.
+This also means that every time we access the variable it should be
+preceded by the class name in order for the interpreter to know where
+the to get the value from. So both corrected files would be [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
+pymotif import fasta import os class pymot(wx.App): def
+__init__(self, redirect=False): wx.App.__init__(self, redirect)
+class pymotGUI(wx.Frame): fore_file = &#8221; back_file = &#8221; def
+__init__(self, parent, id): wx.Frame.__init__(self, parent, id,
+&#8216;Python Motif Finder&#8217;, style=wx.DEFAULT_FRAME_STYLE)
+self.__do_layout() def __do_layout(self): #adding the panel panel
+= wx.Panel(self) #defines the menubar menubar = wx.MenuBar() #file
+menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1, &#8216;Select
+foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
+background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
+filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
+creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
+#input box for motif width, and label self.one_label =
+wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
+wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #result textbox
+self.results = wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100),
+wx.TE_MULTILINE | wx.TE_AUTO_SCROLL | wx.HSCROLL) #run bbutton
+self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
+self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
+file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
+background file&#8217;, (10, 30)) #binding the menus to functions
+self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
+self.Bind(wx.EVT_MENU, self.on_background, background_menu)
+self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
+on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
+if dialog.ShowModal() == wx.ID_OK: pymotGUI.fore_file =
+dialog.GetPath() self.fore_label.SetLabel(pymotGUI.fore_file) def
+on_background(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
+if dialog.ShowModal() == wx.ID_OK: pymotGUI.back_file =
+dialog.GetPath() self.back_label.SetLabel(pymotGUI.back_file) def
+run_finder(self, event): print pymotGUI.fore_file result =
+pymotif.calculate_motifs(pymotGUI.fore_file, pymotGUI.back_file) for
+motif in result: self.results.WriteText(motif + &#8216;n&#8217;) #wx.MessageBox(&#8216;It
+should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;: app = pymot()
+frame = pymotGUI(parent=None, id = -1) #frame.CentreOnScreen()
+frame.Show() app.MainLoop()[/sourcecode] and [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import fasta import sys from
+collections import defaultdict def choose(n, k): if 0 &lt;= k &lt;= n: ntok =
+1 ktok = 1 for t in xrange(1, min(k, n - k) + 1): ntok *= n ktok *= t
+n -= 1 return ntok // ktok else: return 0 def get_quorums(seqs, mlen):
+&#8221;&#8221;&#8221; add seq id_no to a set use explicit counter to create seq_no &#8220;&#8221;&#8221;
+quorum = defaultdict(int) for seq in seqs: for n in range(len(seq) -
+mlen): quorum[seq[n:n + mlen]] += 1 return quorum def
+calculate_motifs(input_seqs, input_seqs2): print input_seqs,
+input_seqs2 input_seqs =
+fasta.read_seqs(open(input_seqs).readlines()) input_seqs2 =
+fasta.read_seqs(open(input_seqs2).readlines()) foreground =
+get_quorums(input_seqs, 10) background = get_quorums(input_seqs2,
+10) N = len(input_seqs) + len(input_seqs2) res_motifs = [] for i in
+foreground: term1 = choose(background[i], foreground[i]) term2 =
+choose((N - background[i]), len(input_seqs) - 1) term3 = choose(N,
+len(input_seqs)) p = (float(term1) * float(term2)) / term3 if 0 &lt; p &lt;=
+0.0001: res_motifs.append(i + &#8216;t&#8217; + str(foreground[i]) + &#8216;t&#8217; +
+str(background[i]) + &#8216;t&#8217; + str(p)) res_motifs.sort() return
+res_motifs[/sourcecode] On the next post, the last in the series, we
+will just check how to get the value from the width input box and
+wrap-up everything. Technorati Tags:
+<a href="http://technorati.com/tag/wxPython">wxPython</a>,
+<a href="http://technorati.com/tag/python">python</a>,
+<a href="http://technorati.com/tag/motifs">motifs</a>,
+<a href="http://technorati.com/tag/GUI">GUI</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/16/the-community-comments-on-why-open-scienceresearch-wont-work/">The community comments on why Open Science/Research won&#8217;t work</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-16T18:49:56-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>How can you make a position on something you don’t understand?
+How can you say something won’t work when all you know if it is from a couple of Google queries?
+I understand from your blog post that you have a short attention span and are not willing to spend much time researching ideas, but just because you have reached the end of the amount of time you are willing to spend on understanding doesn’t mean that you are reached the point at which you are read to judge that concept.</p></blockquote>
+
+<p>Apparently, my writing is pretty bad, or your reading comprehension is pretty bad (but I&#8217;m betting on the first in Vegas). I know what Open Science/Research is, but the graduate student down the hall does not, and he or she has many other important things than &#8220;waste time with the hell of OS/R&#8221;. I don&#8217;t have a short attention span, but the grad student down the hall might have, who knows. eh? And I&#8217;m not judging the concept, I have a very clear idea of what the &#8220;concept&#8221; is, I just think it won&#8217;t fly, at least now.</p>
+
+<p>Egon pitches in:</p>
+
+<blockquote><p>I think you can approach Open Science from various angles. The OpenScience project (where Jmol originated!) comes from an angle that OpenSource tools is an important step in making the data analysis in science reproducibility, and people sometimes seem to forget that data analysis is science too.</p></blockquote>
+
+<p>On the other hand, data discovery can be seen as the first step where science should open up. This is closer to the Open Notebook Science things.</p>
+
+<p>I understand your confusion. Doing science involves many steps, and if you have no clue where to start doing science, it won’t work. Similarly, if you have no clue where to start making your Science Open, you won’t get it to work either. But that does not mean, it cannot work at all.</p>
+
+<p>Nice introduction, and hoping that your further analysis may trigger some thoughts on why Open Science can work.</p>
+
+<p>Yes, there is confusion, and I agree the Open Source software is an important step. I have seen many cases of closed source software hindering data analysis because you don&#8217;t know what&#8217;s going on. Many people out there don&#8217;t know, don&#8217;t want to know or don&#8217;t have time to learn about Open Science and they&#8217;ll sure get confused if they search for resources. The lack of a centralized, useful and with a nice user interface resource (website, application whatever) makes difficult to anyone to start.</p>
+
+<p>Rajarshi also wants to comment:</p>
+
+<blockquote><p>I’ve always thought of Open Science as a social process rather than a technical process (though it has technical aspects). From that point of view, the lack of a central repo of information, is certainly a bottleneck, but I doubt it’s a deal-killer. In the absence of such a repo, the ideas behind Open Science will just take longer to diffuse.</p></blockquote>
+
+<p>Indeed, it&#8217;s a social process, never technical. And no, as he pointed, is not a deal-killer, but it helps make the process slower, which is the conclusion I would like to have included in the post, or at least make the reader conclude that. If it&#8217;s social, why not take advantage of the so-called WEb2.0 (another thing that I don&#8217;t believe, just a clever name to sell books - or whatever they sell on the web these days).</p>
+
+<p>Next time, I will tell a short story of an open science blog. That was when I started thinking &#8220;If is it open, why some stuff is closed (or not shown)?&#8221;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/16/the-science-blog-meme/">The Science Blog Meme</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-16T12:21:48-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It started <a href="http://network.nature.com/groups/nnbloggername/forum/topics/3392">here</a> and I got it from <a href="http://scienceblogs.com/clock/2008/11/the_science_blog_meme.php">here</a>. Here are my responses:</p>
+
+<p><strong>1. What is your blog about?</strong></p>
+
+<p>Anything that I wish I had done and willing to do. Also there are interviews (I want to do more!).</p>
+
+<p><strong>2. What will you never write about?</strong></p>
+
+<p>Confidential stuff, anything that is very personal or people do not want to publicize. Send me a message if you want to know the latest gossip in Bioinformatics.</p>
+
+<p><strong>3. Have you ever considered leaving science?</strong></p>
+
+<p>Nope, but sometimes I have the feeling that I would like to be a airplane pilot.</p>
+
+<p><strong>4. What would you do instead?</strong></p>
+
+<p>Airplane pilot? F1 mechanic?</p>
+
+<p><strong>5. What do you think will science blogging be like in 5 years?</strong></p>
+
+<p>Oh boy, I dunno. Ask me in five years, if I&#8217;m still around.</p>
+
+<p><strong>6. What is the most extraordinary thing that happened to you because of blogging?</strong></p>
+
+<p>Extraordinary? Nothing. If you call extraordinary befriending someone, than I can say that is. Being able to feel part of a community, that&#8217;s a good one.</p>
+
+<p><strong>7. Did you write a blog post or comment you later regretted?</strong></p>
+
+<p>Nope.</p>
+
+<p><strong>8. When did you first learn about science blogging?</strong></p>
+
+<p>Nodalpoint was the catalyst. I knew about blogging for quite sometime, but Maddox influenced me not to, until I found out Nodalpoint.</p>
+
+<p><strong>9. What do your colleagues at work say about your blogging?</strong></p>
+
+<p>&#8220;What blog?&#8221;</p>
+
+<p><strong>10. Extra credit: are you able to write an entry to your blog that takes the form of a poem about your research?</strong></p>
+
+<p>Yes. If you want to read it, leave a comment. If I get 20 comments, I will post it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/13/creating-an-interface-for-the-motif-finding-script-part-8/">Creating an interface for the motif finding script, part 8</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-13T17:28:35-05:00" pubdate data-updated="true">Nov 13<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&#8217;s see now how do we connect our GUI to the the pymotif file (I
+changed the name because of some conflicts with the app name [my bad!],
+the git repo was updated accordingly). And also how to display the
+results, in a simpler manner. Ok, first to connecting the script to the
+function file, pymotif.py. The file is already imported in our script
+and we have used it before. We need to find the exact point and which
+parameters to pass. pytmotif.py is a slightly modified version of your
+command line script, and the code is below. [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import fasta import sys from
+collections import defaultdict def choose(n, k): if 0 &lt;= k &lt;= n: ntok =
+1 ktok = 1 for t in xrange(1, min(k, n - k) + 1): ntok *= n ktok *= t
+n -= 1 return ntok // ktok else: return 0 def get_quorums(seqs, mlen):
+&#8221;&#8221;&#8221; add seq id_no to a set use explicit counter to create seq_no &#8220;&#8221;&#8221;
+quorum = defaultdict(int) for seq in seqs: for n in range(len(seq) -
+mlen): quorum[seq[n:n + mlen]] += 1 return quorum def
+calculate_motifs(input_seqs, input_seqs2): input_seqs =
+fasta.read_seqs(open(&#8216;celladhesion1000.fa&#8217;).readlines()) input_seqs2 =
+fasta.read_seqs(open(&#8216;celladhesion1000C.fa&#8217;).readlines()) foreground =
+get_quorums(input_seqs, 10) background = get_quorums(input_seqs2,
+10) N = len(input_seqs) + len(input_seqs2) res_motifs = [] for i in
+foreground: term1 = choose(background[i], foreground[i]) term2 =
+choose((N - background[i]), len(input_seqs) - 1) term3 = choose(N,
+len(input_seqs)) p = (float(term1) * float(term2)) / term3 if 0 &lt; p &lt;=
+0.0001: res_motifs.append(i + &#8216;t&#8217; + str(foreground[i]) + &#8216;t&#8217; +
+str(background[i]) + &#8216;t&#8217; + str(p)) res_motifs.sort() return
+res_motifs[/sourcecode] So, basically the line we are interested is
+this one [sourcecode language=&#8217;python&#8217;]def
+calculate_motifs(input_seqs, input_seqs2):[/sourcecode] We replace
+the wx.MessageBox line in our run_finder function and use the input
+files selected by the user as parameters for calculate_motifs, and we
+are done [sourcecode language=&#8217;python&#8217;]def run_finder(self, event):
+result = pymotif.calculate_motifs(self.fore_file,
+self.back_file)[/sourcecode] Very simple and direct. This should take
+care of everything except the motif width, what we will see in the next
+post. We still need a place to write the overrepresented motifs. We can
+add a text box to the frame, and we do that by adding an extra
+declaration in our __do_layout function. This time we need to add
+some extra style to the box, so it can show multiple lines and has a
+scroll bar. [sourcecode language=&#8217;python&#8217;]self.results =
+wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100), wx.TE_MULTILINE |
+wx.TE_AUTO_SCROLL | wx.HSCROLL)[/sourcecode] Notice the wx. flags
+added. MULTILINE allows the box to have multiple lines and the other two
+turn on the auto scroll and horizontal scroll. Great. And how do we
+write the results. Notice above that the function that calculates the
+motifs, returns a list where each item has the motif sequence and the p
+value, sorted. So the only thing we need to do is to iterate over the
+list and print each line to the result box. That simple, and we
+accomplish it by using the WriteText method, that receives as a
+parameter a string, either literal or a string object. Our run_finder
+function will have a couple of extra lines [sourcecode
+language=&#8217;python&#8217;]def run_finder(self, event): result =
+pymotif.calculate_motifs(self.fore_file, self.back_file) for motif in
+result: self.results.WriteText(motif + &#8216;n&#8217;)[/sourcecode] That will
+present in a very simplistic way the resulting overrepresented motifs,
+but it&#8217;s enough for now. Our GUI script will be [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
+pymotif import fasta import os class pymot(wx.App): def
+__init__(self, redirect=False): wx.App.__init__(self, redirect)
+class pymotGUI(wx.Frame): def __init__(self, parent, id):
+wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
+style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
+&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
+panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
+#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
+&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
+background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
+filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
+creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
+#input box for motif width, and label self.one_label =
+wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
+wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #result textbox
+self.results = wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100),
+wx.TE_MULTILINE | wx.TE_AUTO_SCROLL | wx.HSCROLL) #run bbutton
+self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
+self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
+file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
+background file&#8217;, (10, 30)) #binding the menus to functions
+self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
+self.Bind(wx.EVT_MENU, self.on_background, background_menu)
+self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
+on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
+if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetPath()
+self.fore_label.SetLabel(fore_file) def on_background(self, event):
+dialog = wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() ==
+wx.ID_OK: back_file = dialog.GetPath()
+self.back_label.SetLabel(back_file) def run_finder(self, event):
+result = pymotif.calculate_motifs(self.fore_file, self.back_file) for
+motif in result: self.results.WriteText(motif + &#8216;n&#8217;) #wx.MessageBox(&#8216;It
+should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;: app = pymot()
+frame = pymotGUI(parent=None, id = -1) #frame.CentreOnScreen()
+frame.Show() app.MainLoop()[/sourcecode]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/13/why-open-scienceresearch-wont-work-at-least-for-now-first-part-of-a-long-series/">Why Open Science/Research won&#8217;t work (at least for now), first part of a long series</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-13T13:14:33-05:00" pubdate data-updated="true">Nov 13<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First what is Open Science/Research? Have you ever heard of it (no, that&#8217;s not for the <a href="http://friendfeed.com/rooms/the-life-scientists">Life Scientists room on FriendFeed</a>)? Haven&#8217;t you? I thought of it.</p>
+
+<p>As a &#8220;lay open scientist/researcher&#8221;, I decided to enter the belly of the beast, and the easiest way to do that was googling. Nice. Open and science returned me 98,500,000 links. Looks good. &#8220;Open science&#8221; returned a &#8220;mere&#8221; 200,000. What is the first search result? This <a href="http://www.openscience.org/blog/">one</a>. Looks exactly what I needed. Let&#8217;s check the about page &#8230;</p>
+
+<blockquote><p>The OpenScience project is dedicated to writing and releasing free and <strong>Open Source scientific software</strong>. We are a group of scientists, mathematicians and engineers who want to encourage a collaborative environment in which science can be pursued by anyone who is inspired to discover something new about the natural world.</p></blockquote>
+
+<p>Ah, open source software. Nope, not what I wanted (yes, I want open source software especially in science, but it&#8217;s not what I want right now).</p>
+
+<p>Let&#8217;s check the second search result: <a href="http://en.wikipedia.org/wiki/Open_research">http://en.wikipedia.org/wiki/Open_research</a>. Wikipedia, nice, good (second) place to start. OK, some definitions</p>
+
+<blockquote><p>the central theme of open research is to make clear accounts of the methodology, along with data and results extracted therefrom, freely available via the internet. This permits a massively distributed collaboration.</p></blockquote>
+
+<p>Great. But, even though the Wikipedia entry is open and anyone can edit it and add information, it&#8217;s not enough to feed my will to learn about open science. Knowing a bit about Wikipedia (remember I am a lay open scientist here and computers are not my forte), I go to the external links section and get the first one: <a href="http://openresearch.org/wiki/Main_Page">OpenResearch.org</a>. Yes! that&#8217;s what I was looking for.</p>
+
+<p>OpenResearch.org is a &#8220;a semantic Wiki aiming to collect scientific meta-data such as about calls for papers, tools, journals etc.&#8221; Great &#8230; wait what? A semantic what to collect what? I don&#8217;t know nothing (yes, double negative, my native language is no English, but I guess you guessed that, right?) about wikis, there&#8217;s Wikipedia, but wiki?</p>
+
+<p>I go to the page and I don&#8217;t know where to start. There are so many links, so many pages, and I don&#8217;t know how to navigate this messy webpage and I don&#8217;t have time to learn. Let&#8217;s get the second link on Open Research entry on Wikipedia: <a href="http://www.philoptima.org/">Philoptima</a>, Open Research Marketplace &amp; Community. Just a sec, isn&#8217;t Open Research to be open to anyone interested, why do we need a market place for it? Ok, maybe I try some other time, because now I have to get back to do some research so I can get it in the open &#8230;</p>
+
+<p>&#8211;</p>
+
+<p>I think you guessed what is the moral of the story: there is no central repository of information about open research. I have to dig deeper, waste time, and if I already have a constrained schedule, I won&#8217;t do that. If I didn&#8217;t know the open science advocates, I will never have heard of some of their sites. Don&#8217;t expect a large group of people to make a huge effort to learn about it, what do they have to do to join the &#8220;next revolution&#8221;, how to navigate an horrible wiki user interface (much less learn how to edit it). And don&#8217;t let me started on collaborating online, sharing files, connecting to other computers, etc, etc (that&#8217;s another post).</p>
+
+<p>I&#8217;m not here to suggest anything to the open scientists, just point out what is wrong and why it will be a failure for some time to come. I may be wrong, but that&#8217;s easier than being right.Technorati Tags: <a href="http://technorati.com/tag/open%20science">open science</a>, <a href="http://technorati.com/tag/open%20research">open research</a>, <a href="http://technorati.com/tag/failure">failure</a>, <a href="http://technorati.com/tag/series">series</a>, <a href="http://technorati.com/tag/long">long</a>, <a href="http://technorati.com/tag/wiki?">wiki?</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/12/how-to-improve-science-in-easy-steps/">How to improve Science, in easy steps</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-12T15:16:00-05:00" pubdate data-updated="true">Nov 12<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In my spare time I like to tackle simple problems, like how to improve science. Here I present a straightforward proposition on how to at least multiply by a large fold productivity in labs, institutes, universities and academia in general. Productivity in this case is not only on number papers published, but also on resources consumption, time management, research achievements, etc. As you can see a small, trivial problem (I will use bullet point format, so it&#8217;s even clearer).</p>
+
+<ol>
+<li><p>create an efficient informatics support for the institution - yes, that&#8217;s true. At McMaster we had in the lab a informatics guy, that not only was able to administrate our small cluster but to advise on a number of things we needed. Problem: they were understaffed. So, let&#8217;s create an IT department, not only to administrate things, but to educate people and have bioinformaticians, chemoinformaticians, whatever-science-field-ician. I don&#8217;t want these guys doing science or competing for grants, I want this as a service and a competent one.</p></li>
+<li><p>As an addition to our recently suggested IT-do-it-all department, let&#8217;s have a group of artists working on creating figures for papers, either hand drawing for those guys in morphology, or creating the latest visualization of nanotubes to those guys in nanoscience. OF course this should be a specialized group, with people from different areas working on streamlining graphical production for faculty and staff.</p></li>
+<li><p>A science related marketing department, with PR people that actually know that molecular biology, quantum physics, paleontology is. MB is more than using micropipettes (yes, news reporters have a fetish with micropipettes, so everytime I see one talking about &#8220;genetics engineering&#8221; on TV, I tend to check the pipette brand the guys are using). After all science is done with mostly public money, and I bet there a bunch of geek kids interested in learning more and more. NBA is not for everyone (below 6&#8221;).</p></li>
+<li><p>There are not enough positions? Let&#8217;s create new ranks. There are people out there that don&#8217;t want to be a PI, but don&#8217;t want to be post-docs for 10 years. There are people out there that don&#8217;t care if they are first in a publication or third, as long as he or she knows the contribution they gave to the research. Creating the above departments/services, it will be simple to create these new positions.</p></li>
+</ol>
+
+
+<p>I might have more steps, but my spare time is short today. Maybe there is no money, or political will to do these kind of things, but I didn&#8217;t promise anything.</p>
+
+<p>Next time, I will pitch in the oil crisis and Middle-East peace process. Prepare yourselves.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/11/creating-an-interface-for-the-motif-finding-script-part-7/">Creating an interface for the motif finding script, part 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-11T13:53:09-05:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&#8217;s get back to the last post and check one line we entered\
+\
+[sourcecode language=&#8217;python&#8217;]self.motif_width = wx.TextCtrl(panel, -1,
+&#8216;10&#8217;, (95, 50), (40,18))[/sourcecode]\
+\
+There is something in this line that I did not explain. The third
+parameter in the test box declaration is <code>'10'</code>. How does this affect
+our box? That&#8217;s the default text that will be displayed inside the box
+as soon as it is created. In our case, 10 is the motif width, and it&#8217;s
+the value we consider to be the most common search width.\
+\
+Another aspect not explained is the <code>run_finder</code>. We added a line \
+\
+[sourcecode language=&#8217;python&#8217;]wx.MessageBox(&#8216;It should run,
+eh?&#8217;)[/sourcecode]\
+\
+where we declare a wx.MessageBox. What is it? A message box is the usual
+error/information dialog that you see in most programs. In our case it
+is very simple, just a warning/reminder that we need to include some
+code there.\
+\
+Next time we will connect some Python source files and make our script
+find some motifs.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/11/the-11th-hour/">the 11th hour</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-11T06:43:00-05:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In Flanders Fields
+By John McCrae</p>
+
+<p>In Flanders fields the poppies blow
+Between the crosses, row on row,
+That mark our place; and in the sky
+The larks, still bravely singing, fly.
+Scarce heard amid the guns below.</p>
+
+<p>We are the dead. Short days ago
+We lived, felt dawn, saw sunset glow
+Loved, and were loved, and now we lie
+In Flanders fields.</p>
+
+<p>Take up our quarrel with the foe:
+To you from failing hands we throw
+The torch; be yours to hold it high.
+If ye break faith with us who die
+We shall not sleep, though poppies grow
+In Flanders fields.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/07/crooks/">Crooks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-07T11:26:15-05:00" pubdate data-updated="true">Nov 7<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There&#8217;s a limit to everything, and when a friend is involved, things get serious. <a href="http://sciphu.com/">Nils Reinton</a> posted a link on FriendFeed of a company (?!?) in Singapore using a logo that looks very similar to <a href="http://my.biotechlife.net/">Ricardo Vidal&#8217;s</a> logo for the DNA Network.</p>
+
+<p>The original is <a href="http://www.flickr.com/photos/rvidal/498699238/">here</a> and the crooks are <a href="http://www.dna.jspiondetox.com/">here</a>.</p>
+
+<p>Compare.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/05/software-that-i-would-never-buy/">Software that I would never buy or use (even free)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-05T10:56:05-05:00" pubdate data-updated="true">Nov 5<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.fortinet.com/products/forticlient.html">FortiClient</a>
+<a href="http://www.mendeley.com/">Mendeley</a>
+Internet Explorer (yes, I know, I used it before)
+ADrive</p>
+
+<p><em>list updated daily/weekly/monthly/yearly</em></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/18/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/16/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

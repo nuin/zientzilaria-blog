@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="After a long hiatus we are back with more Python tips, tricks, codes and
-snippets. This time we will check how set works in Python. set is
-another &hellip;">
+  <meta name="description" content="&#8220;Mendeley sucks&#8221; ® is a common search that points to this humble site. I thought I was alone and my feeling was unique, or at least I was &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +68,7 @@ another &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/01/28/python-sets/">Python sets</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/03/30/i-thought-i-was-alone-but-then-i-found-another-light/">I thought I was alone, but then I found another light</a></h1>
     
     
       <p class="meta">
@@ -86,66 +84,16 @@ another &hellip;">
   
 
 
-<time datetime="2008-01-28T16:55:35-05:00" pubdate data-updated="true">Jan 28<span>th</span>, 2008</time>
+<time datetime="2010-03-30T08:39:22-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>After a long hiatus we are back with more Python tips, tricks, codes and
-snippets. This time we will check how <code>set</code> works in Python. <code>set</code> is
-another object type available in Python (version 2.3 and up) that brings
-a lot of features to the language. From the Python Library Reference: &#8220;A
-set object is an unordered collection of immutable values. Common uses
-include membership testing, removing duplicates from a sequence, and
-computing mathematical operations such as intersection, union,
-difference, and symmetric difference.&#8221;</p>
+  <div class="entry-content"><p>&#8220;Mendeley sucks&#8221; ® is a common search that points to this humble site. I thought I was alone and my feeling was unique, or at least I was the lone voice in the crowd &#8230; But, then, someone, somewhere, some time searched &#8220;Mendeley sucks&#8221; ® on Google and I clicked on it and I found <a href="http://scripts.mit.edu/~birge/blog/mendeley-how-not-to-run-a-beta-preview-program/">this</a>. This is a MIT website, so it must be good, right?</p>
 
-<p>Yep, all these are possible with
-<code>set</code>, and let me stress that it is not duplicated. So, a <code>set</code> is
-basically a collection of item, but its unordered and not indexed,
-because it does not record element position or insertion order. Methods
-available for a <code>set</code> include <code>union()</code>, <code>intersection()</code>,
-<code>difference()</code> that we will check next time.</p>
-
-<p>First let&#8217;s see some basic
-set functionality. Differently from other commonly available Python
-object types, we need to import a library in order to use <code>set</code></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>should
-work. A first use for <code>set</code> would be to uniquify a list. Let&#8217;s say that
-you have the gene IDs of two different clusters and you want to merge
-these lists and keep only the unique ones, eliminating possible
-duplicates IDs. We could do that with a <code>dictionary</code> and a simple
-function (we will also check this later on) but a <code>set</code> makes our life
-easier.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">cluster1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">cluster2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">allgenes</span> <span class="o">=</span> <span class="n">cluster1</span> <span class="o">+</span> <span class="n">cluster2</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">uniqueset</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">allgenes</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and that&#8217;s all. Of course we won&#8217;t have a flexibility of a <code>list</code>, but
-we can easily convert the <code>set</code> to a list and manipulate as before. Next
-time we will see what else we can do with <code>sets</code> and gene lists.</p>
+<p>But remember, you heard here first. &#8220;Mendeley sucks&#8221; ®</p>
 </div>
   
   
@@ -158,7 +106,7 @@ time we will see what else we can do with <code>sets</code> and gene lists.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/11/26/e2809ccuttinge2809d-chromosomes-with-python-a-fast-approach-take-two-including-precision/">“Cutting” chromosomes with Python: a fast approach, take two, including precision</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/03/26/earth-hour-2/">Earth hour</a></h1>
     
     
       <p class="meta">
@@ -174,121 +122,21 @@ time we will see what else we can do with <code>sets</code> and gene lists.</p>
   
 
 
-<time datetime="2007-11-26T16:41:57-05:00" pubdate data-updated="true">Nov 26<span>th</span>, 2007</time>
+<time datetime="2010-03-26T13:52:37-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>On the last post we saw how to &#8220;cut&#8221;/extract a segment of a chromosome
-quickly in Python. But our last code had no precision in the
-cutting/extracting, because it didn&#8217;t take in account the line size so
-it would extract more information than actually requested. We need to
-address precision them. First take into account the size of each line,
-the number of nucleotides on each line. Then use this this information
-to remove unwanted bases. Most of the changes we need to make on our
-script is outside the main loop that cuts/extracts information. We need
-to modify the post-processing of the sequence we nust read from the
-chromosome. Also, instead of storing the sequence in a <code>string</code> it is
-easier to use a <code>list</code> (in fact it is just a matter of personal taste,
-and maybe a little be of being Pythonic). In the end our script would
-look like</p>
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Energy_Star_logo.svg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Energy_Star_logo.svg/300px-Energy_Star_logo.svg.png" alt="The Energy Star logo is placed on energy-effic..." /></a></p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">linesize</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">segment</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">name</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="n">end</span> <span class="o">+</span> <span class="n">linesize</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</span><span class='line'>          <span class="n">linesize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</span><span class='line'>          <span class="n">startline</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span><span class="o">/</span><span class="n">linesize</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>          <span class="n">endline</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">/</span><span class="n">linesize</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">if</span> <span class="ow">not</span> <span class="n">start</span> <span class="o">%</span> <span class="n">linesize</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">end</span> <span class="o">%</span> <span class="n">linesize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">startline</span> <span class="o">*</span> <span class="n">linesize</span><span class="o">-</span><span class="n">start</span><span class="p">:]</span>
-</span><span class='line'>          <span class="n">segment</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">endline</span> <span class="o">*</span><span class="n">linesize</span><span class="o">-</span><span class="n">end</span><span class="p">:]</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="ow">not</span> <span class="n">start</span> <span class="o">%</span> <span class="n">linesize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">startline</span><span class="o">*</span><span class="n">linesize</span><span class="o">-</span><span class="n">start</span><span class="p">:]</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="ow">not</span> <span class="n">end</span> <span class="o">%</span> <span class="n">linesize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">endline</span> <span class="o">*</span><span class="n">linesize</span><span class="o">-</span><span class="n">end</span><span class="p">:]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="n">name</span><span class="p">,</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre><code>Image via [Wikipedia](http://commons.wikipedia.org/wiki/Image:Energy_Star_logo.svg)
+</code></pre>
 
+<p>This year during the <a href="http://www.earthhour.org/home/">Earth Hour</a> (I don&#8217;t know when it is), I will leave all my <a href="http://www.google.com/hostednews/ap/article/ALeqM5gST3p_0UZPNsD28hz7d4N3aHULBgD9EMF1203">EnergySta</a>r ® appliances on, including my gas-powered alarm clock.</p>
 
-<p>Notice that we added a new
-variable <code>linesize</code>, to store the size of the sequence line. The loop is
-almost identical to the one before. The only changes are the line that
-checks for each line size (can be optimized somewhere else and removed)
-and instead of a segment string, it is a list.</p>
-
-<p>The bulk of
-changes/additions are after the loop. We first need to calculate the
-initial and final lines of our cut/extracted segment. We just divide the
-value of the start and end positions entered by the size of the line and
-add 1 to them in order to get a correct line in case we the entered
-values are not multiple of the line size. Dividing integers in Python
-will return us an integer. After this checking we need to add some
-processing conditionals to make sure we are returning the exact segment
-requested. The <code>%</code> operator in Python return the remainder of a
-division, even if the two values are integers. We need to check that the
-entered starting and ending positions are or aren&#8217;t multiple of the line
-size. If one or both are multiples we don&#8217;t need to process the segment.
-On the other hand some processing is needed. Clearly we only need to cut
-extra nucleotides from the first and last returned lines. That&#8217;s why the
-three clauses: one for both values not being multiple of line size, one
-for just the start and another for the end position. And to remove
-unwanted nucleotides we basically multiply the number of the
-starting/ending line by the size of each line and subtract the actual
-start/end position.</p>
-
-<p>This should give us the number of unwanted
-nucleotides in those two lines. And the fact that we stored the segment
-as a <code>list</code> makes our life easier as we access position 0 and -1 in our
-list. On the final output, we print the name and join the list elements
-by adding a new line between them.</p>
+<p><a href="http://reblog.zemanta.com/zemified/7705219f-00d8-4dda-8e7b-3cfb4dc4eccb/"><img src="http://img.zemanta.com/reblog_e.png?x-id=7705219f-00d8-4dda-8e7b-3cfb4dc4eccb" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -301,7 +149,7 @@ by adding a new line between them.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/11/20/cutting-chromosomes-with-python-a-fast-approach-take-one/">&#8220;Cutting&#8221; chromosomes with Python: a fast approach, take one</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/03/03/python-testing-beginnere28099s-guide-review/">Python Testing Beginner’s Guide, review</a></h1>
     
     
       <p class="meta">
@@ -317,92 +165,59 @@ by adding a new line between them.</p>
   
 
 
-<time datetime="2007-11-20T16:24:11-05:00" pubdate data-updated="true">Nov 20<span>th</span>, 2007</time>
+<time datetime="2010-03-03T22:46:35-05:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Last couple of posts we started with some functional programming aspects
-of Python. I was away last week and couldn&#8217;t create anything related to
-FP in the meantime, so I decided to post about a quick way to &#8220;cut&#8221;, or
-extract segments, from chromosomes stored as FASTA files. This is a
-subject that I have been investigating for some time, as I needed a tool
-that would get some segment from a chromosome for further analysis. I
-have a short C++ code that does the trick and is really fast, but I
-wanted to find a Pythonic way of doing it, and quick. I have been trying
-different methods but no one were fast. Chromosomes are usually large,
-and stored in large files, so reading line by line and using <code>readlines</code>
-were extremely slow.</p>
-
-<p>Inspired by a
-<a href="http://www.goldb.org/goldblog/2007/11/07/PythonProcessingLargeTextFilesOneLineAtATime.aspx">post</a>
-from Corey Goldberg, I decide to test the method explained there, with
-wonderful results. Basically what we need to do is to use an iterator
-protocol on the file object</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;foo.txt&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">):</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This processes the human chromosome 1
-(the largest) in less than 2 seconds. Our first take will be how to
-extract a segment, but not precisely (that we will see in a future
-post). Basically we need a start and an end point and a FASTA file. All
-three would be used as parameters and a loop should take care of the
-rest. Our script should look like this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">segment</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">name</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>          
-</span><span class='line'><span class="k">print</span> <span class="n">name</span><span class="p">,</span> <span class="n">segment</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We start getting the parameters from
-the command line, assigning a couple of variables and we start the loop.
-We open the file and use the file object iterator to check each line. We
-check each line for a FASTA sequence title. If found we store tht title
-in the variable <code>name</code>, and if not we check the size of the line and
-increment the variable that will guide us on the file position. We use
-<code>size</code> as a line by line increment and if it is between <code>start</code> and
-<code>end</code> we store the read line into the <code>segment</code> variable. That&#8217;s it. A
-few drawbacks with this script: it will fail on FASTA files where the
-sequence is stored in one line, there is no precision to get the actual
-start and end points and it can only run on unique sequence files. On
-the next post we will address some of these concerns.</p>
+  <div class="entry-content"><p>I posted about a week ago that Packt Publishing had invited me to review
+<strong><a href="http://www.packtpub.com/python-testing-beginners-guide/book/mid/240210aaphjg?utm_source=python.genedrift.org&amp;utm_medium=bookrev&amp;utm_content=blog&amp;utm_campaign=mdb_002570">Python Testing Beginner&#8217;s
+Guide</a></strong>
+by Daniel Arbuckle. Having finished reading the book (I must admit that
+I haven&#8217;t tried all the code in it), I can say that I have an excellent
+initial impression of the book. PTBG is not a long book and the topic is
+divided in 10 chapters and one appendix. One of the first things that I
+liked about the book is that there&#8217;s no <em>introduction</em> (or something
+similar) to Python. It just goes straight to the point assuming that you
+have some good understanding of the language and everything that
+surrounds it. In the past I was frustrated with some &#8220;Introduction to X
+with Python&#8221; that wasted precious space talking over and over about a
+topic, learning Python, better covered in many other books. PTBG does
+not waste time and space introducing its main topic which is testing,
+and in my opinion that&#8217;s the best approach, even though it might look a
+little bit abrupt by some. The language and text in the book is clear
+and very pleasant. PTBG is a very well written book and I really enjoyed
+its style. The first chapters of the book cover Python testing using
+doctests. For someone like me that didn&#8217;t write so many tests in the
+normal software development workflow (I know I should write more tests),
+this section seems like a really nice introduction to the topic, with
+well thought real-life like examples and a good flow on the explanation
+of the different features. One small complain that I have is that for a
+beginner sometimes the code listed in the examples might seem a little
+bit confusing, and maybe the addition of line numbers might have helped
+a bit here. But at the same I understand that this is normal style of
+some Packt books. After the doctests section, PTBG gets into more
+advanced techniques, covering a little bit mock objects with
+<a href="http://labix.org/mocker">Mocker</a>, then moving into unittest and
+<a href="http://code.google.com/p/python-nose/">nose</a>. The latter is a Python
+tool that allows for managing, running and automating tests. Also
+covered is <a href="%20http://pypi.python.org/pypi/%20twill/">Twill</a>, another
+third-party library that allows for testing of web applications. One
+full chapter is devoted to test-driven development, with a complete
+walkthrough of this approach. This gives a wrap-up of most of the
+techniques and modules covered in the book, but there&#8217;s still space for
+another chapter that shows how beautifully doctests, unittest and nose
+can be fully integrated and help the development of applications using
+the test-driven approach. Overall, I really enjoyed PTBG. As I
+mentioned, test driven development was never a high priority in the
+application I usually developed with Python. But certainly this book can
+be a good starting point for some Python test beginners to incorporate
+these techniques in their usual development workflow. Scientific
+software is also a perfect niche for this type of approach and we should
+do what is possible in order to avoid the <a href="http://boscoh.com/protein/a-sign-a-flipped-structure-and-a-scientific-flameout-of-epic-proportions">nightmares of the
+past</a>.</p>
 </div>
   
   
@@ -415,7 +230,7 @@ the next post we will address some of these concerns.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/11/01/functional-programming-in-python-using-filter-take-one/">Functional programming in Python: using filter, take one</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/22/preview-of-python-testing-beginnere28099s-guide/">Preview of Python Testing Beginner’s Guide</a></h1>
     
     
       <p class="meta">
@@ -431,57 +246,14 @@ the next post we will address some of these concerns.</p>
   
 
 
-<time datetime="2007-11-01T16:08:24-04:00" pubdate data-updated="true">Nov 1<span>st</span>, 2007</time>
+<time datetime="2010-02-22T13:22:14-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>This time we check another functional programming function from Python:
-<code>filter</code>. As the name implies, <code>filter</code> returns items from a sequence
-(list, string, etc) that are true to a certain condition defined by the
-function. The syntax is very similar to <code>map</code></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">filter</span> <span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and as <code>map</code> it returns a list (except when the sequence is a string or tuple). In
-the example here we will use <code>lambda</code> to define a one-line function.
-Let&#8217;s say we want to quickly find the sequences that contain a motif,
-sequences that are stored in a FASTA file (again, this is a very simple
-example, just a primer). Of course we can use another
-<a href="http://python.genedrift.org/2007/08/28/finding-motifs-iupac-and-regex-an-approach/">method</a>,
-but this time we want to use a functional programming approach. <code>filter</code>
-suits us best here. Again we will reuse the newly created function that
-returns only the sequences from a FASTA file and we end up with a script
-that looks like this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sequences</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="n">motif</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">motif</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sequences</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We skip the part we already seen and check the last line. Basically each
-item from the list (sequences) is a string and we are applying the
-<code>find</code> method in order to find a motif on a position larger or equal to
-0. Notice again, the syntax similar to <code>map</code>. Of course this is not very
-useful as it is, so next time we will change this script to make it more
-meaningful.</p>
+  <div class="entry-content"><p>I have been invited by Packt Publishing to review Python Testing Beginner&#8217;s Guide. You can take a look at the preview <a href="http://python.genedrift.org/2010/02/22/preview-of-python-testing-beginners-guide/">here</a> and even download one chapter of the book.</p>
 </div>
   
   
@@ -494,7 +266,7 @@ meaningful.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/10/31/functional-programming-in-python-using-map/">Functional programming in Python: using map</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/22/preview-of-python-testing-beginners-guide/">Preview of Python Testing Beginner&#8217;s Guide</a></h1>
     
     
       <p class="meta">
@@ -510,168 +282,33 @@ meaningful.</p>
   
 
 
-<time datetime="2007-10-31T13:33:59-04:00" pubdate data-updated="true">Oct 31<span>st</span>, 2007</time>
+<time datetime="2010-02-22T11:00:53-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Functional programming in Python. First we need to define what is
-functional programming. Quoting
-<a href="http://en.wikipedia.org/wiki/Functional_programming">Wikipedia</a>: &#8220;is a
-programming paradigm that treats computation as the evaluation of
-mathematical functions and avoids state and mutable data. It emphasizes
-the application of functions, in contrast with the imperative
-programming style that emphasizes changes in state.&#8221; Rather complex, eh?</p>
+  <div class="entry-content"><p>I was invited by Packt Publishing to review <strong><a href="http://www.packtpub.com/python-testing-beginners-guide/book/mid/240210aaphjg">Python Testing Beginner&#8217;s
+Guide</a></strong>
+by Daniel Arbuckle. This is a book on one of the most important aspects
+of scientific programming (even though the majority of scientific
+software don&#8217;t have any testing routines): code testing, checking if
+your code actually does what is intended to do. I can say I&#8217;m not really
+an expert on testing so I guess I&#8217;m the right audience for it:</p>
 
-<p>Another explanation can be found
-<a href="http://www.cs.nott.ac.uk/~gmh/faq.html#general-topics">here</a>:
-&#8220;Functional programming is a style of programming that emphasizes the
-evaluation of expressions, rather than execution of commands. The
-expressions in these language are formed by using functions to combine
-basic values. A functional language is a language that supports and
-encourages programming in a functional style.&#8221; Basically any functional
-programming language tries to minimize the code, reducing it, avoiding
-the use of variables and relying on the use of functions and
-expressions. Python, clearly, is a not a functional programming language
-<em>per se</em>, but it has some functions that allow a functional approach. We
-will see a couple of them in this entry. If you are interested in
-learning more about functional programming and Python, check Alan
-Gauld&#8217;s
-<a href="http://www.freenetpages.co.uk/hp/alan.gauld/tutfctnl.htm">tutorial</a>.</p>
+<blockquote><p>You&#8217;ll learn about several of Python&#8217;s automated testing tools, and
+you&#8217;ll learn about the philosophies and methodologies that they were
+designed to support, like unit testing and test-driven development.
+When you&#8217;re done, you&#8217;ll be able to produce thoroughly tested code
+faster and more easily than ever before, and you&#8217;ll be able to do it
+in a way that doesn&#8217;t distract you from your &#8220;real&#8221; programming.</p></blockquote>
 
-<p>There are many ways to use functional programming in bioinformatics. We
-will start with a very simple example, but first we need to modify the
-FASTA module we created before. Currently, this module only has two
-functions, one that reads sequences and their names and one that formats
-their output. We will add a function that reads only the sequences and
-returns a list containing them. This function is very similar to the
-<code>read_fasta</code> function</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_seqs</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
-</span><span class='line'>          <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>          <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>              <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>          <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">items</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and it uses an identical approach. Instead of creating an instance of
-<code>Fasta</code> class we only create a simple list, and ignore the sequence
-title. This will also be useful for a future code reuse, as sometimes we
-are only interested in the sequence itself and not the name. Might save
-us some typing and decrease code size depending on the situation. In
-this entry we will see one Python&#8217;s functional programming function:
-<code>map</code>. But we will need to use another one too, which is called
-<code>lambda</code>. <code>lambda</code> is the function that defines what is called an
-anonymous function, or a nameless function that can fit in one line. We
-have seen that functional programming is all about functions, so
-<code>lambda</code> is the aid to implement the small and short functions we use in
-this type of approach. One example of <code>lambda</code> use would be on the
-calculation of number exponentials, which normally can be achieved like
-this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">exp</span><span class="p">(</span><span class="n">value</span><span class="p">):</span> <span class="k">return</span>
-</span><span class='line'><span class="n">value</span>\<span class="o">*</span>\<span class="o">*</span><span class="mi">2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>(exponentials in Python are defined by **)</p>
-
-<p>Using <code>lambda</code> we can rewrite the above function like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">exp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span><span class="n">value</span>\<span class="o">*</span>\<span class="o">*</span><span class="mi">2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>with the
-following syntax:</p>
-
-<p><code>lambda [parameters] : [expression to be used on the parameters]</code></p>
-
-<p>In
-both cases you can use the functions the same way, by calling <code>exp(10)</code>
-for example. Ok, let&#8217;s move to <code>map</code> then. <code>map</code> applies a function,
-usually a <code>lambda</code>, to every item in a list of items. This list can be
-of any sequence type, but <code>map</code> always returns a list. Using the above
-exponential example, let&#8217;s say we want to calculate the cube of a series
-of values. Using <code>map</code> and <code>lambda</code> we would have something like this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span><span class="n">value</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">56</span><span class="p">])</span>
-</span><span class='line'><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">1156</span><span class="p">,</span> <span class="mi">3136</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And that&#8217;s it.
-Dissecting this line of code, we have a <code>lambda</code> function that due to
-the use of the <code>map</code> function is applied on every item of the list that
-follows. This list can be anything, previously set or not. So, applying
-this to a bioinformatics example would be simple (this might not be the
-most useful or real-world example ever, but it should give us a primer
-to endeavour in more advanced stuff). Let&#8217;s say we want to check
-sequence size for all sequences in a FASTA file. Emphasizing code reuse,
-we created a new function that returns a list of the actual sequences
-only. Without functional programming a loop to read the sequence lengths
-would be very simple</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>With a functional programming approach,
-we can do it in one line (not a large advantage here)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Yep, not
-a lot of gain with this example, as mentioned. The full script would
-look like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">seq</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>data</code> is our list of sequences, and inside the <code>map</code> function we have a
-<code>lambda</code> that checks for the size of each sequence in that list. Quite
-simple.</p>
+<p>Packt also supplied a preview/sample chapter that you can download
+<a href="http://python.genedrift.org/wordpress/wp-content/uploads/2010/02/8846-python-testing-beginners-guide-sample-chapter-5-when-doctest-isnt-enough-unittest-to-the-rescue.pdf">here</a>.
+I hope to get a review ready by the end of the week. before the Ontario
+Institute of Cancer Research retreat, otherwise I will try to post a
+full review next week.</p>
 </div>
   
   
@@ -684,7 +321,7 @@ simple.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/10/29/merging-single-or-multiple-sequence-fasta-files/">Merging single (or multiple) sequence FASTA files</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/20/if-we-tell-you-to-buzz/">If we tell you to Buzz &#8230;</a></h1>
     
     
       <p class="meta">
@@ -700,107 +337,14 @@ simple.</p>
   
 
 
-<time datetime="2007-10-29T15:17:02-04:00" pubdate data-updated="true">Oct 29<span>th</span>, 2007</time>
+<time datetime="2010-02-20T10:58:19-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Last couple of entries we saw how to split a multiple FASTA file. And
-how can we achieve the opposite, merge single (or sometimes multiples)
-sequence files in on larger multiple sequence file? In Python is very
-simple, but we need to introduce a new module that would allow us to get
-the desired result. In most scripts we have seen in previous posts, we
-end up reading a single file from the input (in some cases two) and
-that&#8217;s not enough in the case of merging multiple files.</p>
-
-<p>Python has a
-module called <code>glob</code> that is very powerful for reading contents of a
-directory. We can use any type of pattern matching to find only the
-files we want, wildcards allowed. Let&#8217;s test glob and see what we can
-get. We start with a simple script</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">glob</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s">&#39;\*.txt&#39;</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If we run this
-script in a directory (Windows or Linux or Mac) we should see a list of
-the filenames that match the patter passed to glob.glob. In this case
-every file with a txt extension. This should be enough for us, for now.
-Basically we need to create a list of all FASTA files, that match a
-certain name pattern, and then take care of the sequences using our
-already known FASTA module. To make things more flexible, we should ask
-in the command line for a pattern to match, and maybe a output filename.
-Our script would look like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">glob</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="n">filepattern</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#initialize lists </span>
-</span><span class='line'><span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#glob.glob returns a list of files that match the pattern </span>
-</span><span class='line'><span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span>  <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">filepattern</span><span class="p">):</span>
-</span><span class='line'>  <span class="c">#we read the contents and an instance of the class is returned </span>
-</span><span class='line'>  <span class="n">contents</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'>  <span class="c">#a file can contain more than one sequence so we read them in a loop</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">seqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#we print the output </span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
-</span><span class='line'>  <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Except for the
-glob part, we&#8217;ve already seen the rest in previous entries. Here, the
-input <code>filepattern</code> should be enclosed in single or double quotes in
-order to be transmitted properly (for instance when you include
-wildcards). In the first <code>for</code> loop we access the list of files created
-by <code>glob.glob</code> and extract the sequence name(s) and sequence(s) from
-each file and parse them to a list which will serve to print the final
-output. An example command line would look like
-<code>python merge.py '*.fas' merged.fa</code> Of course, there are several ways of
-merging FASTA files, but not every time you have Linux&#8217;s <code>cat</code> available.
-Next time we will (try) to have fun with Python functional programming.
-Stay tuned.</p>
+  <div class="entry-content"><p>&#8230; you will Buzz!</p>
 </div>
   
   
@@ -813,7 +357,7 @@ Stay tuned.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/10/29/splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit/">Splitting a FASTA file using awk (no sed required), or do we care about csplit?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/19/i-dont-understand-the-us/">I don&#8217;t understand the US</a></h1>
     
     
       <p class="meta">
@@ -829,42 +373,16 @@ Stay tuned.</p>
   
 
 
-<time datetime="2007-10-29T11:37:07-04:00" pubdate data-updated="true">Oct 29<span>th</span>, 2007</time>
+<time datetime="2010-02-19T17:14:43-05:00" pubdate data-updated="true">Feb 19<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We saw that &#8221;<a href="http://eridanus.net/">top notch bioinformaticians</a>&#8221; use
-csplit to split FASTA files, so I decided to
-<a href="http://python.genedrift.org/2007/10/10/alternative-methods-to-split-a-fasta-file/">post as many as possible alternatives</a>
-to split these files. As csplit, awk is something found with more
-frequency in Linux machines than Windows, but it can be installed on
-Windows (even Vista) and it runs fine.</p>
+  <div class="entry-content"><p>It seems to be a great country, a nice society, but sometimes it gets too nutty and idiotic. I don&#8217;t think a person who has more than 1 billion dollars in the bank, makes any sacrifice by doing what this idiot did. And while I&#8217;m at it, golf is not a sport.</p>
 
-<p>Awk is usually shown in parallel
-with sed, as both utilities have the main objective of text processing.
-I browsed the web searching for a sed/awk solution to split FASTA files
-something that I thought could be done in one line. And I found
-<a href="http://www.unix.com/shell-programming-scripting/14576-split-file-using-awk.html">it</a>.</p>
-
-<p>With a little tweak I ended up with a one-liner using awk that split the
-sequences in multiple files:</p>
-
-<p><code>awk '/^&gt;/{f="fasta."++d} {print &gt; f}'</code></p>
-
-<p>Awk breaks each line of its input into fields that can be checked,
-printed or ignored. In the command line above. awk&#8217;s commands are in
-between the single quotes. The first command is a regex that matches
-initial <code>&gt;</code>. Inside the curly braces we assign a variable <code>f</code> to store
-the output filename we want and also have an integer that is incremented
-every time we pass through it. The second curly braces are for the
-actual output, where we use awk&#8217;s <code>print</code> command and redirect output to
-a file named after the variable we created in the first commands in
-between curly braces. Finally, we assign an input file, outside the
-region delimited by single quotes. And that&#8217;s it. As output we will have
-a series of files called fasta each one containing one sequence.</p>
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2010/02/us.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2010/02/us.png" alt="" /></a></p>
 </div>
   
   
@@ -877,7 +395,7 @@ a series of files called fasta each one containing one sequence.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/10/26/generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one/">Generating multiple sets of random DNA sequences with one script (and a bash example) [updated]</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/19/do-you-deny-climate-change-nee-global-warming/">Do you deny Climate Change (nee Global Warming)?</a></h1>
     
     
       <p class="meta">
@@ -893,233 +411,32 @@ a series of files called fasta each one containing one sequence.</p>
   
 
 
-<time datetime="2007-10-26T12:15:47-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2007</time>
+<time datetime="2010-02-19T15:18:29-05:00" pubdate data-updated="true">Feb 19<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>A commenter, Dilmurat, gave me an idea about the <a href="http://python.genedrift.org/2007/04/04/a-script-to-simulate-dna-sequence-sets/">script</a>
-that generates random DNA sequence sets. Apparently it wasn&#8217;t clear that
-the script was intended to generate only one sequence set, and not
-multiple sets. Dilmurat also offered his solution:</p>
+  <div class="entry-content"><p>The read <a href="http://www.nature.com/news/2010/100215/full/news.2010.71.html">this</a></p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
-</span><span class='line'><span class="k">return</span> <span class="n">sequence</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'><span class="n">rlength</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">rlength</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">))</span>
-</span><span class='line'><span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">rlength</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
-</span><span class='line'>      
-</span><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
+<blockquote><p>Phil Jones holds himself defensively, his arms crossed tightly in front of his chest as if shielding himself from attack. Little wonder: Jones has spent the past three months being vilified for his central role in what is now called &#8216;climategate&#8217; (sic, arch).</p></blockquote>
 
+<p>and</p>
 
-<p>I don&#8217;t know if the lack of
-formatting in the comments might have generated a different result to
-me, but let&#8217;s see how we can generate multiple sets of random DNA
-sequence. Getting back to section 4, we can start with the original
-script that creates only one set</p>
+<blockquote><p>“I don&#8217;t think we should be taking much notice of what&#8217;s on blogs because they seem to be hijacking the peer-review process.”</p></blockquote>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">sequence</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
-</span><span class='line'>  
-</span><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>and concluding</p>
 
+<blockquote><p>It is now essential for climate researchers to stand up for their science, he says. &#8220;[I&#8217;d] like to see the climate science community supporting the climate science more. Lots of them are trying but they&#8217;re being drowned out.&#8221;</p></blockquote>
 
-<p>There is a very easy way of
-changing this code to make it output a definite number of sets. WE add a
-new input parameter and also a loop to it, and that should take care of
-everything.</p>
+<p>Some points:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">sequence</span>
-</span><span class='line'>  
-</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'><span class="n">nsets</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsets</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">print</span> <span class="n">sequence</span> <span class="k">print</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>1- He was and still is vilified, not because we (the public) think he is a villain, but his actions made him one (in the public&#8217;s eye). As a scientist, I understand the process and understand what he might be going through, what takes us to the next point &#8230;</p>
 
+<p>2- Open your data, let it be scrutinized, dissected, explored. I&#8217;m not the greatest supporter of Open Science/Research, but if you&#8217;re feeling this way, open up, show the methods, don&#8217;t go crawling into a cocoon with you fellow vil &#8230; climate scientists. I don&#8217;t trust bloggers too (including myself) but I have seen some wonderful science or science related material in blogs and by bloggers. Send us the data and we will publish some peer reviewed climate research. Want to bet?</p>
 
-<p>A test with 10 as the
-number of sequences, 20 as minimum and 30 as maximum length and 2 sets
-output something like this</p>
-
-<p><code>GAGGACGACGTGTCGGATTAGAT GCAGATAAACGGGTAAGATGA
-ATTAGGAAGGGTCTAAGAGATCCCGGTAA ATCAGCCTCCGCACGCCTCGTGTA
-AGTTTAGCTAGCCGTAGTACTTTC TTTGAAGCTCGGGGCTAAACTCCGACCAC
-GACAGGGTAAGGTGACCTTCTCAG TGGTTGACTCTGTTCTCTGGT
-CGCAATACGTCGTGGTGCCGCTCCACT TCCTGCAGGGAGGCAGCAGC
-TTCGGAGGTATTGAGTACTGTTGCATCG CCCTTATAATACCTAGTGTAACATTC
-TAGTCATGTCATATAACCTGTGTCG AGCGCGAACCCTCCAGTTTTTTT
-AGGGCGTGTAAGCGACGTTGAACAAG CCATGCGTCTTTTTGGCGATCCGT
-ACTCAGATCGGCTAGTATCCTTCGCACG CTATCGTCGTTCCCAGCAACGGCAGCAGA
-CGTGCGATGGGGCGAGATTTTT ACGCTTTGGCTAGTGGGGAGTTTCGCCACT</code></p>
-
-<p>what is basically
-what we need. Quick &#8216;n&#8217; easy. Of course a <a href="eridanus.net/blog/">top notch bioinformatician</a> that uses Linux 100% of the time
-would be able to create a simple bash script and use the initial script
-to generate multiple random sets. bash is not a primary scope of the
-blog, but let&#8217;s see how to do that. Saying the our initial script was
-saved as <code>randomset.py</code> we would have a very short script in bash to
-generate multiple sets. We want to generate 10 sets of sequences of
-length between 20 and 30 nucleotides, and each set would need to have 10
-different sequences (remember that our initial script only accepts 3
-parameters).</p>
-
-<p><strong>Off topic</strong></p>
-
-<p><code>for ((i=0;i&lt;10;i++))
-  do     
-  min=20     
-  max=30     
-  nseqs=10
-  python randomset.py $nseqs $min $max     
-echo  done</code></p>
-
-<p>That should do the trick. You can even type it from the command line.
-The <code>for</code> syntax in bash is very similar to C/C++ but it does not accept
-spaces, as all the variable assignments. When you assigning a variable
-value in bash you omit the dollar sign and when you are reading the
-variable value you access it with the dollar sign, like in the line that
-runs the script. A <code>for</code> loop in bash starts with a <code>do</code> command and
-ends in a <code>done</code> command, not brackets or parenthesis involved. The
-<code>echo</code> at the end helps adding a separating blank line after each random
-set. <strong>off topic</strong></p>
-
-<p>Of course we could use &#8220;makenucseq from the EMBOSS
-package&#8221;, we can even use <a href="http://http://scit.us/projects/dawg">Dawg</a>
-from my friend Reed Cartwright, which I believe has a shorter learning
-curve (and faster compilation) than EMBOSS, but that will be away from
-the scope of this blog, which is to show how to use <strong>Python</strong> in
-<strong>simple</strong> bioinformatics scripts. I allowed myself to post off topic
-subjects (including this last paragraph) because a (very) small
-percentage of the commenter(s) seems to misunderstand the real focus of
-this tutorial. We don&#8217;t need fancy words or complex topics to show how
-simple things can achieve good results in almost no time. My focus is
-not give the reader the fish and chips ready to eat. My focus is to show
-how to fish and peel, cut and fry the potato in order to cook the dish.
-This way, next time he or she might be cooking better things to eat.</p>
+<p>3- You can only abstract from the concluding phrase the fact that climate researchers need is more support (go figure!) and maybe to become a tighter group. Summarizing, they need more money.</p>
 </div>
   
   
@@ -1132,7 +449,7 @@ This way, next time he or she might be cooking better things to eat.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/10/18/off-topic/">Off topic</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/19/intelligent-design/">Intelligent design?</a></h1>
     
     
       <p class="meta">
@@ -1148,62 +465,14 @@ This way, next time he or she might be cooking better things to eat.</p>
   
 
 
-<time datetime="2007-10-18T08:10:59-04:00" pubdate data-updated="true">Oct 18<span>th</span>, 2007</time>
+<time datetime="2010-02-19T11:33:09-05:00" pubdate data-updated="true">Feb 19<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Mr Daniel Swan accused me of not publishing his
-<a href="http://eridanus.net/blog/?p=233#respond">comment</a> or reply to his
-comments. I have never seen his reply, either in the comments or as an
-email to me, so to fulfill his desires it is published here.</p>
-
-<blockquote><p>I admit that some of the things you have addressed in the past, whilst
-‘reinventing’ the wheel, offer important insights into the general
-problems of programming in general - this particular example was not
-one of them. From following the course which I assume was outlined by
-‘Beginning Perl for Bioinformatics’ (which I do not think is a good
-reference for beginning Perl at all) a user should already be able to
-perform the following operations - open a file, iterate over and parse
-the contents, open a file for writing, and apply some rules for
-formatting the output. Thus you have already given them the tools to
-complete the operation should they wish to do so in a Python context.
-The problem is that you are trying to educate potentially early
-career/transitional bioinformaticians here - and showing them how to
-complete tasks in X lines of Python when there is a single command
-line application to do the trick I think is disingenuous. We wouldn’t
-dream, for instance, of educating our MRes students in this way. I
-also would take issue that diversity is a key. You can be as diverse
-as you like but no-one is seriously going to suggest that you write
-your next script to parse something out of a GenBank file in
-assembler. One of the hallmarks of any computer professional in any
-field is the ability to use the right tool for the job. You should be
-technology agnostic and be prepared to string together applications or
-scripts from anywhere to reach your goal - take a look at something
-like Taverna for instance. I notice in the other post that you mention
-there is a high proportion of Windows users to this site and therefore
-command line *nix comments are of no interest. Although I know a
-number of bioinformaticians who use Windows (generally to integrate
-with an institutions existing Microsoft heavy infrastructure) they all
-have logins to dozens of *nix machines, run *nix in a VM or at the
-very least have a Cygwin installation with which to work with. Basing
-the availability of technology on the OS of your page imprints is not
-necessarily indicative. I hope you don’t mind me addressing these
-points here rather in my blog, as my blog is personal (hence the lack
-of bioinformatics content on there). I have actually been following
-these tutorials for a while (as someone who came into Bioinformatics
-some time ago - my first forays in programming were in Perl) it is
-nice for me to see tasks that I find intuitive in one language written
-in another. Consequently the fact that I felt need to comment, merely
-suggests that I felt strongly on this issue, rather than having any
-negative feelings towards what you are trying to achieve.</p></blockquote>
-
-<p>I am sorry for the usual readers of this tutorial, for posting his
-comments as an article here. We will be back to our uneducated, simple
-and basic &#8220;tutorial for bioinformatics in X lines for the noobie in
-Windows&#8221; soon. Thanks Daniel.</p>
+  <div class="entry-content"><p>If God created everything &#8220;as is&#8221; 6000 years ago, why He/She didn&#8217;t give use enough knowledge to understand His/Her design right away? Every time I look at a gene network, I feel dumb (maybe that&#8217;s just me), and if the design was more intelligent (and made sense) everything would be easier.</p>
 </div>
   
   
@@ -1216,7 +485,7 @@ Windows&#8221; soon. Thanks Daniel.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/10/10/alternative-methods-to-split-a-fasta-file/">Alternative methods to split a FASTA file - updated (again)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/19/please-stop/">Please stop &#8230;</a></h1>
     
     
       <p class="meta">
@@ -1232,201 +501,14 @@ Windows&#8221; soon. Thanks Daniel.</p>
   
 
 
-<time datetime="2007-10-10T13:53:28-04:00" pubdate data-updated="true">Oct 10<span>th</span>, 2007</time>
+<time datetime="2010-02-19T10:17:49-05:00" pubdate data-updated="true">Feb 19<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>As Daniel didn&#8217;t enlightened us on how to use csplit, I am posting
-several ways on how to split a multiple sequence FASTA file. This post
-gets out of our focus (if you haven&#8217;t noticed, our focus here is
-<strong>Python</strong>, and maybe suffers from the NIH effect. Not invented here. We
-will be back with our normal programming after this. We start with our
-&#8220;widely&#8221; available option <strong>csplit</strong>:</p>
-
-<p><code>csplit -kf seq file '%^&gt;%' '/^&gt;/' '{*}'</code></p>
-
-<p>where <code>k</code> tells the program to
-keep files in case of an error, <code>f</code> sets a prefix for the output files
-(otherwise xx00 is used) and two regex patterns are used: between <code>%s</code> is
-the one to skip and between /s is the one to copy up to but not
-including the line. In <code>{}</code> is the number of times we want to have the
-previous patterns repeated, a * meaning as many time as possible. Easy,
-eh? Now, we can check how perl fares. I am not a perl monger so I
-googled it and I found an one-liner. Quoting the original
-<a href="http://www.softpanorama.org/Scripting/Perlorama/perl_in_command_line.shtml">site</a>:
-Split a multi-sequence FastA file into individual files named after
-their description lines.</p>
-
-<p><code>perl -ne 'BEGIN{$/="&gt;"}if(/^\s*(\S+)/){open(F,"&gt;$1")||warn"$1 write failed:$!\n";chomp;print F "&gt;", $_}'</code></p>
-
-<p>and I am not daring to explain this one. But cariaso did and also sent a
-better version of it</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1"># This magic variable makes perl read lines that end with &gt; </span>
-</span><span class='line'><span class="c1"># instead of a newline n $/=&quot;&gt;&quot;; while (&lt;&gt;) { </span>
-</span><span class='line'>  <span class="o">\</span><span class="c1"># foreach line in the input files </span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="sr">/\^\&gt;(w+)/</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="o">\</span><span class="c1"># grab the first word of text </span>
-</span><span class='line'>      <span class="nb">open</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="s">&quot;\&gt;$1&quot;</span><span class="p">)</span> <span class="o">||</span>
-</span><span class='line'>      <span class="c1"># open a file named that word</span>
-</span><span class='line'>       <span class="nb">warn</span> <span class="s">&quot;$1 write failed:$!n&quot;</span><span class="p">;</span> <span class="nb">chomp</span><span class="p">;</span>
-</span><span class='line'>      <span class="c1"># strip off the \&gt; at the end print F &quot;\&gt;&quot;, $\_; \#</span>
-</span><span class='line'><span class="k">print</span> <span class="o">&gt;</span><span class="n">text</span> <span class="n">to</span> <span class="n">the</span> <span class="n">file</span> <span class="p">}</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can also do in Python, without any OO
-programming in 5 lines:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;myfile&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="nb">str</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
-</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>that can be run with no difficulties from the interactive console. And which cariaso also
-corrected and improved</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">fileobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;myfile.fasta&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">ignore</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="n">text</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span class='line'><span class="n">records</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;\&gt;&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;\&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>along the offer of a nicer approach</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">eachfasta</span><span class="p">(</span><span class="n">fileobj</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">sofar</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileobj</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="s">&#39;&gt;&#39;</span> <span class="o">==</span> <span class="n">line</span> <span class="p">(</span><span class="n">bracket</span> <span class="n">zero</span> <span class="n">close</span> <span class="n">bracket</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">yield</span> <span class="n">sofar</span>
-</span><span class='line'>          <span class="n">sofar</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>      <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">sofar</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>          <span class="k">yield</span> <span class="n">sofar</span>
-</span><span class='line'><span class="n">fileobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;myfile.fasta&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">eachfasta</span><span class="p">(</span><span class="n">fileobj</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Also Joe wanted to dip in and
-sent his approach:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># f6smod.py 10-26-07 jto </span>
-</span><span class='line'><span class="c"># purpose: modify program by Michael Cariaso, given in Paolo Nuin&#39;s</span>
-</span><span class='line'><span class="n">blog</span><span class="p">:</span>
-</span><span class='line'><span class="c"># http://python.genedrift.org </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">fileobj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;fasta.seq&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">ignore</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c"># The above line removes the first char from the file object. </span>
-</span><span class='line'><span class="c"># It can also be used to check that the first char is a &#39;&gt;&#39; </span>
-</span><span class='line'><span class="k">if</span> <span class="n">ignore</span> <span class="o">!=</span> <span class="s">&#39;&gt;&#39;</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;The first character in the supposed FASTA file is: &quot;</span> <span class="o">+</span> <span class="n">ignore</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;not &#39;&gt;&#39;, so sys.exit() is being invoked.&quot;</span>
-</span><span class='line'>  <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-</span><span class='line'><span class="n">text</span> <span class="o">=</span> <span class="n">fileobj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="n">records</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c"># Here, rather than use the for loop to just print out the sequences, it </span>
-</span><span class='line'><span class="c"># is used to store them in a list. After that they can be printed out, or </span>
-</span><span class='line'><span class="c"># stored in separate files, or or further split into header line and sequence </span>
-</span><span class='line'><span class="c"># (using the carriage return at the end of the header file).</span>
-</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">listcount</span> <span class="o">=</span> <span class="mi">0</span> \<span class="c"># store each header/sequence in a list </span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">i</span> <span class="o">=</span> <span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span>
-</span><span class='line'>  <span class="n">seqlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">listcount</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'><span class="c"># print the list </span>
-</span><span class='line'><span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">seq</span> \<span class="c"># Split into header line and sequence, and make the sequence a single string. </span>
-</span><span class='line'><span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">splitCR</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;header: &quot;</span> <span class="o">+</span> <span class="n">splitCR</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">splitCR</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&quot;sequence: &quot;</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>OK, so <del>three</del> <del>five</del> six more options
-available. I am pretty sure sed and awk would be able to do it glued by
-a bash script, but I am far of being an expert in sed or awk. If you
-know how to do it, leave a comment.</p>
+  <div class="entry-content"><p>&#8230; using &#8216;gate&#8217; for every crisis, problem, scandal. &#8217;<a href="http://www.thebigmoney.com/articles/judgments/2010/02/17/did-twitter-topple-toyota">Throttlegate</a>&#8217; for the Toyota recall? Really, are you sure? Sometimes I wish that the Watergate hotel was called Watercrap or something similar. But that&#8217;s only a wish.</p>
 </div>
   
   
@@ -1451,23 +533,23 @@ know how to do it, leave a comment.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
       </li>
     
   </ul>

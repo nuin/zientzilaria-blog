@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Daniel Swan posted a comment on the previous entry
-regarding that splitting multiple sequence FASTA files is &#8220;one of those
-‘bioinformatics’ &hellip;">
+  <meta name="description" content="Image via [Wikipedia](http://en.wikipedia.org/wiki/Image:All_London_2012_logos.svg) I&#8217;m buying a front row seat to every event in the London&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +68,7 @@ regarding that splitting multiple sequence FASTA files is &#8220;one of those
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/10/10/splitting-multiple-fasta-file-or-why-shouldnt-we-reinvent-the-wheel/">Splitting multiple FASTA file, or why shouldn&#8217;t we reinvent the wheel?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/18/london-2012-vancouver-2010/">London 2012, Vancouver 2010</a></h1>
     
     
       <p class="meta">
@@ -86,765 +84,29 @@ regarding that splitting multiple sequence FASTA files is &#8220;one of those
   
 
 
-<time datetime="2007-10-10T12:04:59-04:00" pubdate data-updated="true">Oct 10<span>th</span>, 2007</time>
+<time datetime="2010-02-18T09:47:39-05:00" pubdate data-updated="true">Feb 18<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="eridanus.net/blog">Daniel Swan</a> posted a comment on the previous entry
-regarding that splitting multiple sequence FASTA files is &#8220;one of those
-‘bioinformatics’ tasks where people are seriously guilty of reinventing
-the wheel&#8221;.</p>
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:All_London_2012_logos.svg"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/1/10/All_London_2012_logos.svg/300px-All_London_2012_logos.svg.png" alt="The Paralympics logo (far left) and the differ..." /></a></p>
 
-<p>Biologically, let&#8217;s dissect his comment. As there are not
-many comments in this blog, we take advantage of the few ones posted. I
-don&#8217;t disagree with the fact that many applications in Bioinformatics
-are reinventing the wheel, but at the same time this blog is not to
-teach anyone advanced bioinformatics development. Here, we deal with
-Python and I try to use real life examples to show how powerful (or not,
-depends on your point of view) Python is.The splitting FASTA example is
-not the first one that &#8220;reinvents the wheel&#8221;.</p>
-
-<p>Who needs a new GenBank parser? Or a restriction site finder? Or a new class to read FASTA file?
-Basically who needs Python if we can do everything else with Perl, C++?
-What the heck, let&#8217;s just learn Assembler. Diversity, that&#8217;s the first
-rule here. Perl mongers usually say that are many ways to do the same
-thing, and that&#8217;s very close to the truth. What would be of blue if
-everyone liked green? At the same time he presents us with an
-alternative for the job which is &#8220;‘csplit’&#8221; and this &#8220;should probably be
-your first port of call for context based splitting of files!&#8221;. Yes, I
-know csplit.</p>
-
-<p>I also know dozens of other methods (see next post) to do
-same thing. But maybe he didn&#8217;t notice the title of the site: Beginning
-<strong>Python</strong> for Bioinformatics. If the main reason of the blog was to
-show *nix commands I would have titled it Beginning *nix Commands for
-Bioinformatics. We also learn from his comment that csplit is &#8220;far more
-widely applicable than for just this example.&#8221;</p>
-
-<p>I know in bioinformatics
-we are in a microuniverse with its own idiosyncrasies. Because we live
-in this bioinfo universe we might think that every other person in the
-world has immediate access to a *nix terminal. Biologists <em>don&#8217;t use</em>
-Windows. Because of that, I cannot disagree more that csplit is far more
-widely applicable than any other method. Again, diversity. Not every
-system is equal, not every solution is widely applicable. And lastly, he
-tells us &#8220;Remember - if it seems like a logical operation and you are in
-the ‘why hasn’t anyone made a utility to do this?’ frame of mind - look
-around because they probably have!&#8221;. Oh, I look around. And I see the
-diversity of systems, applications, programming languages. I even see
-diversity among biologists and bioinformaticians.</p>
-
-<p>Again, what I try to
-emphasize with this post is diversity. Since the beginning my main focus
-was to show a Pythonistic view of basic bioinformatics development. I am
-probably reinventing the wheel every week, in every post. For the ones
-that are learning Python or bioinformatics, it is a seed. For those that
-are already established bioinformaticians, it might be a new option on
-how to accomplish things. Diversity is the key. Out there is evolve or
-perish. In (bio)informatics that&#8217;s also true.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/10/09/splitting-a-multiple-sequence-fasta-file-making-it-better/">Splitting a multiple sequence FASTA file, making it better</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-09T16:13:30-04:00" pubdate data-updated="true">Oct 9<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>On the last entry we saw how to split a multiple FASTA file with our
-previous FASTA module. The previous script saved a sequence per file,
-where the filename was identical to the original file with the exception
-of a number added to the end. Let&#8217;s say we have the file mysequences.fa,
-our script would save mysequences.fa1, mysequences.fa2, &#8230;,
-mysequences.fa<em>n</em>. This is fine, but we need to make it better. Ideally
-we should ask the user for a prefix or a filename for the output. On the
-other hand, it would be an improvement if we put the number before the
-file tag. We will do that in a couple of lines. First we need to find
-the tag and the actual filename. We could go through a longer route if
-we used the <code>find</code> method to find the dot and then extract portions of
-the string to the actual name and tag.</p>
-
-<p>But we can use <code>split</code></p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'><span class="n">tag</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We split the original
-string at the dot and the first item or the returned list is the file
-name and the second item is the tag. Now we just need to change a little
-bit the code for the output and we are done. The final script is</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#!/usr/bin/env python</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'><span class="n">tag</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">sequences</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
-</span><span class='line'>  <span class="c">#this is the only different line </span>
-</span><span class='line'>  <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s">&#39;_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="o">+</span><span class="s">&#39;.&#39;</span><span class="o">+</span><span class="n">tag</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/10/09/splitting-a-multiple-sequence-fasta-file/">Splitting a multiple sequence FASTA file</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-09T15:22:39-04:00" pubdate data-updated="true">Oct 9<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Starting the new phase of the website, we
-will see the easiest way to split a FASTA file. There are many ways to
-name each file after the split, and we will use a simple <em>original
-filename</em> + number. We also going to use the FASTA class and functions
-defined previously in <code>fasta.py</code>.</p>
-
-<p>To refresh our memories here is the code</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Fasta</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">read_fasta</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;\&gt;&quot;</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>              <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aninstance</span><span class="p">)</span>
-</span><span class='line'>              <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
-</span><span class='line'>          <span class="n">name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>          <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>          <span class="n">aninstance</span> <span class="o">=</span> <span class="n">Fasta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>          <span class="n">aninstance</span> <span class="o">=</span> <span class="n">Fasta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aninstance</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">items</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So, basically we need to create a script that reads
-the file and then in a loop saves every sequence in a separate file. For
-the sake of simplicity all saved files will be in the same directory. To
-the script</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#define a variable with the input filename </span>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="c">#open the file and read the sequences in one line </span>
-</span><span class='line'><span class="n">sequences</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="c">#counter to keep the number the sequences and to #be written to the output files </span>
-</span><span class='line'><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
-</span><span class='line'>  <span class="c">#open a file to output output =</span>
-</span><span class='line'>  <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">),</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="c">#write the name and sequence</span>
-</span><span class='line'>  <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>  <span class="c">#increment the counter </span>
-</span><span class='line'>  <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Very simple, but nice script. In the end
-we will have a list of files with only one sequence in it, with
-identical name of the original file but with a number in the end. Next
-we will see how to modify the filename and even extract some information
-from the FASTA sequence to use as a filename.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/10/03/genbank-parsing-some-features-and-a-change-for-the-future/">GenBank: parsing some features (and a change for the future)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-03T16:25:16-04:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This is the last entry based on the book. In my opinion, further topics
-in the book are a little bit redundant and can be accomplished quite
-easily if you have followed the tutorial here.</p>
-
-<p>If a good number of
-people have interest in checking the remainder of the book, just let me
-know and I will get back and follow the book. At the same time I am
-accepting suggestions on topics to be covered (send me an email or leave
-a comment). I already have some in mind and I am preparing a couple for
-the next phase of the website. So, here is the last entry. Last time we
-saw how to extract the sequence from a GenBank file.</p>
-
-<p>This time we are
-going to parse some other information from these files. Basically we
-will use the same idea of our last post to extract the Organism name,
-the Locus and the Accession number of the item. From our last entry we
-have to remember this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="n">issequence</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">issequence</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39;0123456789 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">issequence</span> <span class="o">=</span> <span class="bp">True</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and modify it to our needs. Looks simple, and it is. Let&#8217;s see</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span> <span class="nn">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">locus</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="n">organism</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'> <span class="n">accession</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;LOCUS&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">locus</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ACCESSION&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">accession</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORGANISM&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">organism</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'><span class="k">print</span> <span class="n">locus</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'><span class="k">print</span> <span class="n">organism</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'><span class="k">print</span> <span class="n">accession</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Just add a flag for each entry you want
-to parse and that&#8217;s it. For longer entries, such as the sequence, we
-have to use the same approach used before, with a boolean flag and
-concatenating the lines until another flag is found.</p>
-
-<hr />
-
-<p>Well, that&#8217;s it. After 46 entries we start a new phase.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/09/28/genbank-files-take-two/">GenBank files: take two</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-28T09:50:27-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last time we saw how to extract the sequence from our GenBank file, but
-the final result might not be as nice as we wanted it to be. So, we need
-to make it prettier. Running last entry&#8217;s script we end up with this
-sequence</p>
-
-<blockquote><p>1 gtttggtcct aaccttgtaa tcaattttta cttaatatac acatgcaagt ctccgcaccc
-61 ctgtgaaaac gcccttaaat cccccatggg ataaggagct ggtatcaggc acgaaaatct <br/>
-121 gcccaaaaca cctagctatg ccacacccac aagggtactc agcagtgattgacattattt <br/>
-181 ataagcgcca gcttgactca gttaaagtaa agagagccgg caaatctggt gccagccgcc <br/>
-241 gcggttaccc cacgtggctc aaattgattt ctttcggcgt aaagcgtgat taaagtgccc <br/>
-301 atcaacattg gagttaaact aaaattaagc tgtgacacgc ttattttaca gaaaagcaca <br/>
-361 aacgaaagtt acttcaattt aaacaacttg aattcacgac agtcaggaca caaactggga <br/>
-421 ttagataccc cactatgccc gaccgtaaac tttaatttac accatcaccg ccagagaact <br/>
-481 acgagcaaag cttaaaactc aaaggacttg acggtccccc acatccccct agaggagcct <br/>
-541 gtcctttaat cgataatccc cgcttaacct caccattctt agtctttcag cctgtatacc <br/>
-601 tccgtcgtca gcttaccccg tgagcgaaaa ttagtgagct taatgtccac acgtctacac <br/>
-661 gtcaggtcaa ggtgcagcaa atataatggg aagagatggg ctacactttc tagtctagaa <br/>
-721 tatacgaaag accacctatg aaacctggtc agaaggcgga tttagaagta aaaggaaacc <br/>
-781 agagcatccc ttttaatttg gcactggggc atgtacacac cgcccgtcac cctcttcaaa <br/>
-841 gcctaatttt agtatctaac caactaacgc ctagtagaag aggcaagtcg taacatggta <br/>
-901 agtataccgg aaggtgtgct tggaaacaaa atatagccta atcaaagcat ttcgcttaca <br/>
-961 ccgaaaagtt atctgtgaaa ttcagattat tttgagctaa aaatctagcc ccactttatt <br/>
-1021 ctataatccc ttatcactta aattcatgaa tcaaaacatt ttaataatca agtaaaggcg <br/>
-1081 attgaaaaat taataggagc aatatatact gtaccgcaag ggaaagatga aatagaaatg <br/>
-1141 aaataataat taaagcataa aaaagtaaag attaaatctt gtaccttttg catcatgatt <br/>
-1201 taactagtct acccaggcaa aatgatttta agtctgacct cccgaaacta agtgagctac <br/>
-1261 ttcaaggcag cttaatgagc aaatccgtct ctgtcgcaaa agagtggaga gaccttcaag <br/>
-1321 tagaagtgat agacctaacg aacttagtaa tagctggtta ttcaagaaaa ggatctcagt <br/>
-1381 ccaacctaaa gtcaaattaa tgtttaaaaa taaaaattct gaccttagag taattcaatt <br/>
-1441 aaggtacagc ctacttgaaa caggatacaa ccttaactaa tgggtaactt accccttcat <br/>
-1501 cttttaagtg ggcctaaaag cagccacctt taaaatagcg tcaaagctta gccgtcctat <br/>
-1561 acatctaata ccaaaaacat ctatgaaccc tatactcata ttgaataatt ctatattatt <br/>
-1621 atagagattt ttatgttaaa actagtaaca agaattaaat tttctctatt atgttcgtgt <br/>
-1681 acatcagaaa ggataaacca ctgataattg acatgcatga gtaaaaagca gtaacttaac <br/>
-1741 aagaaaaccc tcctaactct aatgttaacc taacacaagt acatctcaag aaagatttaa <br/>
-1801 agaaaaagaa ggaactcggc aaacattaac ctcgcctgtt taccaaaaac atcgcctctt <br/>
-1861 gtcaaaattt aagaggtcca gcctgcccag tgaccctgtt caacggccgc ggtatcctaa <br/>
-1921 ccgtgcgaag gtagcgtaat cacttgttct ttaaataagg actagtatga atggcaccac <br/>
-1981 gagggttata ctgtctcctt tttctaatca gtgaaactaa tcttcccgtg aagaagcggg <br/>
-2041 aatttttata taagacgaga agaccctatg gagctttaga cgagtaacaa ctgctaattt <br/>
-2101 tataatattt cagataatat ctctatccta gcattatgat tataagtctt tggttggggt <br/>
-2161 gaccgcggag aaaaaaataa cctccacatt gaaagaatat tattctaagc aaaaagacac <br/>
-2221 atctttaagc atcaacaaat tgacatctat tgacccaata ttttgatcaa cgaaccaagt <br/>
-2281 taccctaggg ataacagcgc aatccacttc gagagctctt atcgacaagt gggcttacga <br/>
-2341 cctcgatgtt ggatcagggt atcctagtgg tgtagccgct actaaaggtt cgtttgttca <br/>
-2401 acgattaaaa ccct //</p></blockquote>
-
-<p>Notice that there were no mention to
-the <code>//</code> at the end of the file This double slash represents the EOF of
-a GenBank file. Ideally we need to remove it from the final output, as
-we need to remove the nucleotide number at the beginning of each line.
-In order to do that we need to modify our last script. First we will add
-a condition on the <code>for</code> loop that will take care of the double slash at
-the end. Then we need to use a trick to remove the numbers from the
-lines.</p>
-
-<p>We should expect the numbers to be at the beginning of the line,
-and never in another place. The long way would be to create a regular
-expression and then replace every number occurrence with an empty
-string. But Python comes with batteries included, so we will take the
-short path. We use the <code>lstrip</code> string method that will remove
-characters from the left part of the string, and set it to remove
-numbers from 0 to 9 and the extra space before the nucleotides. And our
-script will like this:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="n">issequence</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">issequence</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39;0123456789 &#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">issequence</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>      <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice that the first <code>if</code>
-condition was modified to include a condition that we do <strong>not</strong> find a
-slash. And at the line where we concatenate the sequence we added a
-<code>lstrip('0123456789 ')</code> to modify the string on the fly. The final
-result looks much better now. But we still have a small &#8220;problem&#8221;: there
-are spaces between groups of 10 nucleotides and we want to get rid of
-them. We would be surprised if it was difficult, and as expected it is
-not. We used <a href="http://python.genedrift.org/2007/09/07/restrinction-enzymes-second-take/">here</a>
-the replace method and we can use it here too. We only need to modify
-the line that concatenates the sequence, and our final script will be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="n">issequence</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">issequence</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39;0123456789 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">issequence</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>      <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice that we add the
-<code>replace</code> method after the <code>lstrip</code>, but it can either way. The output
-should be only the nucleotides, with no space or numbers.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/09/27/genbank-files/">GenBank files: take one</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-27T16:13:14-04:00" pubdate data-updated="true">Sep 27<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We are back, moving to a new chapter of the book and starting a new
-section on the site. This chapter deals with the manipulation of
-<a href="http://www.ncbi.nlm.nih.gov">GenBank</a> files. These files are used by
-NCBI to store information about RNA, DNA and protein sequences. It is
-usually composed of an annotation section, that gives information about
-the sequence present in the particular file. I won&#8217;t spend much time
-explaining the GenBank format, because it is not the goal of the site.
-The perl book has some good explanation about it and you can also find
-more information
-<a href="http://www.umanitoba.ca/afs/plant_science/psgendb/doc/GenBank/gbrel.txt">here</a>.
-Also, we are going to see here some of the characteristics of such
-files. The GenBank file we are going to manipulate from now on is this
-one</p>
-
-<p>`LOCUS       DQ283072                2414 bp    DNA     linear   VRT 12-MAR-2010
-DEFINITION  Megaelosia goeldii voucher Paulo Nuin 12S ribosomal RNA gene,</p>
-
-<pre><code>        partial sequence; tRNA-Val gene, complete sequence; and 16S
-        ribosomal RNA gene, partial sequence; mitochondrial.
+<pre><code>Image via [Wikipedia](http://en.wikipedia.org/wiki/Image:All_London_2012_logos.svg)
 </code></pre>
 
-<p>ACCESSION   DQ283072
-VERSION     DQ283072.1  GI:90296241
-KEYWORDS    .
-SOURCE      mitochondrion Megaelosia goeldii (Rio big-tooth frog)
-  ORGANISM  Megaelosia goeldii</p>
+<p>I&#8217;m buying a front row seat to every event in the London&#8217;s 2012 Olympics, even at the simultaneous ones (I will figure out cloning by then), and I will report every small glitch th happens there. Still on the topic, how come a country/city/whatever that designed that logo can criticize anyone, ever, in any subject of modern and past life?</p>
 
-<pre><code>        Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
-        Amphibia; Batrachia; Anura; Neobatrachia; Hyloidea; Hylodidae;
-        Megaelosia.
-</code></pre>
+<h6>Related articles by Zemanta</h6>
 
-<p>REFERENCE   1  (bases 1 to 2414)
-  AUTHORS   Frost,D.R., Grant,T., Faivovich,J., Bain,R., Haas,A.,</p>
-
-<pre><code>        Haddad,C.F.B., de Sa,R.O., Channing,A., Wilkinson,M.,
-        Donnellan,S.C., Raxworthy,C., Campbell,J.A., Blotto,B.L., Moler,P.,
-        Drewes,R.C., Nussbaum,R.A., Lynch,J.D., Green,D.M. and Wheeler,W.C.
-</code></pre>
-
-<p>  TITLE     The Amphibian Tree of Life
-  JOURNAL   Bull. Am. Mus. Nat. Hist. 297, 1-291 (2006)
-REFERENCE   2  (bases 1 to 2414)
-  AUTHORS   Frost,D.R., Grant,T., Faivovich,J., Bain,R., Haas,A.,</p>
-
-<pre><code>        Haddad,C.F.B., de Sa,R.O., Channing,A., Wilkinson,M.,
-        Donnellan,S.C., Raxworthy,C., Campbell,J.A., Blotto,B.L., Moler,P.,
-        Drewes,R.C., Nussbaum,R.A., Lynch,J.D., Green,D.M. and Wheeler,W.C.
-</code></pre>
-
-<p>  TITLE     Direct Submission
-  JOURNAL   Submitted (26-OCT-2005) Herpetology, Division of Vertebrate</p>
-
-<pre><code>        Zoology, American Museum of Natural History, Central Park West at
-        79th Street, New York, NY 10024, USA
-</code></pre>
-
-<p>FEATURES             Location/Qualifiers</p>
-
-<pre><code> source          1..2414
-                 /organism="Megaelosia goeldii"
-                 /organelle="mitochondrion"
-                 /mol_type="genomic DNA"
-                 /specimen_voucher="Paulo Nuin"
-                 /db_xref="taxon:209670"
-                 /country="Brazil: Rio de Janeiro, Teresopolis, Rio Beija
-                 Flor, 910 m, 22'24'S, 42'69'W"
- misc_feature    &lt;1..&gt;2414
-                 /note="contains 12S ribosomal RNA, tRNA-Val, and 16S
-                 ribosomal RNA"
-</code></pre>
-
-<p>ORIGIN</p>
-
-<pre><code>    1 gtttggtcct aaccttgtaa tcaattttta cttaatatac acatgcaagt ctccgcaccc
-   61 ctgtgaaaac gcccttaaat cccccatggg ataaggagct ggtatcaggc acgaaaatct
-  121 gcccaaaaca cctagctatg ccacacccac aagggtactc agcagtgatt gacattattt
-  181 ataagcgcca gcttgactca gttaaagtaa agagagccgg caaatctggt gccagccgcc
-  241 gcggttaccc cacgtggctc aaattgattt ctttcggcgt aaagcgtgat taaagtgccc
-  301 atcaacattg gagttaaact aaaattaagc tgtgacacgc ttattttaca gaaaagcaca
-  361 aacgaaagtt acttcaattt aaacaacttg aattcacgac agtcaggaca caaactggga
-  421 ttagataccc cactatgccc gaccgtaaac tttaatttac accatcaccg ccagagaact
-  481 acgagcaaag cttaaaactc aaaggacttg acggtccccc acatccccct agaggagcct
-  541 gtcctttaat cgataatccc cgcttaacct caccattctt agtctttcag cctgtatacc
-  601 tccgtcgtca gcttaccccg tgagcgaaaa ttagtgagct taatgtccac acgtctacac
-  661 gtcaggtcaa ggtgcagcaa atataatggg aagagatggg ctacactttc tagtctagaa
-  721 tatacgaaag accacctatg aaacctggtc agaaggcgga tttagaagta aaaggaaacc
-  781 agagcatccc ttttaatttg gcactggggc atgtacacac cgcccgtcac cctcttcaaa
-  841 gcctaatttt agtatctaac caactaacgc ctagtagaag aggcaagtcg taacatggta
-  901 agtataccgg aaggtgtgct tggaaacaaa atatagccta atcaaagcat ttcgcttaca
-  961 ccgaaaagtt atctgtgaaa ttcagattat tttgagctaa aaatctagcc ccactttatt
- 1021 ctataatccc ttatcactta aattcatgaa tcaaaacatt ttaataatca agtaaaggcg
- 1081 attgaaaaat taataggagc aatatatact gtaccgcaag ggaaagatga aatagaaatg
- 1141 aaataataat taaagcataa aaaagtaaag attaaatctt gtaccttttg catcatgatt
- 1201 taactagtct acccaggcaa aatgatttta agtctgacct cccgaaacta agtgagctac
- 1261 ttcaaggcag cttaatgagc aaatccgtct ctgtcgcaaa agagtggaga gaccttcaag
- 1321 tagaagtgat agacctaacg aacttagtaa tagctggtta ttcaagaaaa ggatctcagt
- 1381 ccaacctaaa gtcaaattaa tgtttaaaaa taaaaattct gaccttagag taattcaatt
- 1441 aaggtacagc ctacttgaaa caggatacaa ccttaactaa tgggtaactt accccttcat
- 1501 cttttaagtg ggcctaaaag cagccacctt taaaatagcg tcaaagctta gccgtcctat
- 1561 acatctaata ccaaaaacat ctatgaaccc tatactcata ttgaataatt ctatattatt
- 1621 atagagattt ttatgttaaa actagtaaca agaattaaat tttctctatt atgttcgtgt
- 1681 acatcagaaa ggataaacca ctgataattg acatgcatga gtaaaaagca gtaacttaac
- 1741 aagaaaaccc tcctaactct aatgttaacc taacacaagt acatctcaag aaagatttaa
- 1801 agaaaaagaa ggaactcggc aaacattaac ctcgcctgtt taccaaaaac atcgcctctt
- 1861 gtcaaaattt aagaggtcca gcctgcccag tgaccctgtt caacggccgc ggtatcctaa
- 1921 ccgtgcgaag gtagcgtaat cacttgttct ttaaataagg actagtatga atggcaccac
- 1981 gagggttata ctgtctcctt tttctaatca gtgaaactaa tcttcccgtg aagaagcggg
- 2041 aatttttata taagacgaga agaccctatg gagctttaga cgagtaacaa ctgctaattt
- 2101 tataatattt cagataatat ctctatccta gcattatgat tataagtctt tggttggggt
- 2161 gaccgcggag aaaaaaataa cctccacatt gaaagaatat tattctaagc aaaaagacac
- 2221 atctttaagc atcaacaaat tgacatctat tgacccaata ttttgatcaa cgaaccaagt
- 2281 taccctaggg ataacagcgc aatccacttc gagagctctt atcgacaagt gggcttacga
- 2341 cctcgatgtt ggatcagggt atcctagtgg tgtagccgct actaaaggtt cgtttgttca
- 2401 acgattaaaa ccct
-</code></pre>
-
-<p>//`</p>
-
-<p>which stores a sequence of a mitochondrial gene of a stream frog from
-South America, called <em>Megaelosia goeldii</em>, also known as Rio big-tooth
-frog. (get a better formatted file <a href="http://python.genedrift.org/megaelosia.gbk">here</a>) Our fast task will
-be to extract the DNA sequence from the file. This sounds easy, and not
-surprisingly it is. If we take a closer look at the file we will see
-that the sequence starts after the mark <strong>ORIGIN</strong>. From what we have
-seen before we just need to read the file, the a boolean variable that
-checks for <strong>ORIGIN</strong> and concatenate everything after that. Something
-like this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="n">issequence</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">issequence</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>  <span class="k">elif</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">issequence</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>      <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li><a href="http://r.zemanta.com/?u=http%3A//www.calgaryherald.com/Gold%2Bwhining%2Bgoes%2BBritish%2Breporters/2575644/story.html&amp;a=13191879&amp;rid=c333e38a-9472-43cb-9f6e-3f91bf37c604&amp;e=57b9c5f97f257284f41e91c1aa4c03b8">Gold for whining goes to&#8230; British reporters</a> (calgaryherald.com)</li>
+<li><a href="http://deadspin.com/5474364/ukcanada-spat-uncharacteristically-crude-penis+related">UK/Canada Spat Uncharacteristically Crude, Penis-Related [Media Meltdowns]</a> (deadspin.com)</li>
+</ul>
 
 
-<p>Quick and easy. When we find <strong>ORIGIN</strong>, <code>issequence</code> has its state
-changed to True and the lines below will concatenated into a string. We
-print at the end. Next time we will do more fancy things.</p>
+<p><a href="http://reblog.zemanta.com/zemified/c333e38a-9472-43cb-9f6e-3f91bf37c604/"><img src="http://img.zemanta.com/reblog_e.png?x-id=c333e38a-9472-43cb-9f6e-3f91bf37c604" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -857,7 +119,7 @@ print at the end. Next time we will do more fancy things.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/09/13/restriction-enzymes-the-grand-finale/">Restriction enzymes: the grand finale</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/17/google-wave-and-buzz/">Google Wave and Buzz</a></h1>
     
     
       <p class="meta">
@@ -873,98 +135,14 @@ print at the end. Next time we will do more fancy things.</p>
   
 
 
-<time datetime="2007-09-13T16:17:28-04:00" pubdate data-updated="true">Sep 13<span>th</span>, 2007</time>
+<time datetime="2010-02-17T12:05:26-05:00" pubdate data-updated="true">Feb 17<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We get to the last piece of the puzzle. On the last four posts we have
-seen each part of the restriction enzyme site searcher script, and now
-we put everything together. If someone is also following the book, will
-see that the Python code we are producing here is slightly different,
-but in essence achieves the same result.</p>
-
-<p>Ok, we saw last time that the
-function which searches for the enzyme sites returns a tuple with the
-actual sites and positions. Why is it better to return sites and
-positions? Because one enzyme can have multiple sites and you might want
-to know where are they. Also, it helps us practice some Python skills.
-We will start by the last piece, and part of it we already saw before.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="s">&#39;</span>
-</span><span class='line'><span class="k">if</span> <span class="n">isname</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;Name found&#39;</span>
-</span><span class='line'>  <span class="n">sequences</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">sites</span><span class="p">,</span> <span class="n">positions</span> <span class="o">=</span> <span class="n">find_sites</span><span class="p">(</span><span class="n">enzyme</span><span class="p">,</span> <span class="n">enzymeset</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">print</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;...&#39;</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">sites</span><span class="p">,</span> <span class="n">positions</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">print</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;Enzyme name not found, please try again&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is the <code>if</code> that checks to see if
-the input enzyme name was found in the list. Clearly we added a couple
-of things. Already covered here, if <code>isname</code> is true we go and read the
-sequence file, which can contain a single or multiple sequences. We
-start a loop and call the <code>find_sites</code> and expect the return on a tuple
-<code>sites, positions</code>. Next line, we print the sequence name for the
-output. And then &#8230; Yes, and then we have something new: <code>zip</code>. This is
-a function that returns a list of tuples from each one of the arguments
-passed to it. In our case we are passing two lists (sites and positions)
-and we know that each site has one position, and we also know that
-because of the way we build both lists the i-th element in sites will be
-equivalent to the i-th element in positions. Using <code>zip</code> we create n
-tuples where the i-th tuple is equivalent to the i-th element in sites
-and the i-th element in positions.</p>
-
-<p>Confused? Let&#8217;s see. Imagine that sites has is composed of</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;AAA&#39;</span><span class="p">,</span> <span class="s">&#39;AAC&#39;</span><span class="p">,</span> <span class="s">&#39;ACA&#39;</span><span class="p">,</span> <span class="s">&#39;TAA&#39;</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and positions is composed of</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;300&#39;</span><span class="p">,</span> <span class="s">&#39;454&#39;</span><span class="p">,</span> <span class="s">&#39;23&#39;</span><span class="p">,</span> <span class="s">&#39;345&#39;</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and we want
-to ouput this <code>AAA -&gt; 300 AAC -&gt; 454 ACA -&gt; 23 TAA -&gt; 345</code> The first
-idea that comes to mind is to do a loop, with a range as we already know
-that both lists will have the same size. Something in the lines of</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)):</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">sites</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and it will work fine and it
-is not that long (codewise). <code>zip</code> might not be an advantage here, but
-it will be somewhere else, for sure. We print the results and we are
-done. The full code will be posted in the repository soon. Next we will
-move to the book&#8217;s chapter 10 and we start a new section here, checking
-for GenBank files.</p>
+  <div class="entry-content"><p>is a bust. So much hype, for nothing, useless piece of software (or website). Then came Buzz and the amount of crap increase ten-fold. And then the privacy problems came, something they apologized for, but will forget next time they release some new forever-beta product. Sometimes, I wish I was able to remove Google from my life, but then what I would use: Bing, Hotmail?</p>
 </div>
   
   
@@ -977,7 +155,7 @@ for GenBank files.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/09/13/restriction-enzymes-third-take/">Restriction enzymes, third take</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/15/thats-basically-it/">That&#8217;s basically it</a></h1>
     
     
       <p class="meta">
@@ -993,80 +171,16 @@ for GenBank files.</p>
   
 
 
-<time datetime="2007-09-13T12:08:42-04:00" pubdate data-updated="true">Sep 13<span>th</span>, 2007</time>
+<time datetime="2010-02-15T11:45:16-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We come to the penultimate part of our restriction enzyme site finder.
-Just a couple of pieces lacking in the puzzle and we are there. First,
-the most important: the function that searches for the sites, using
-regex patterns. We called it <code>find_sites</code></p>
+  <div class="entry-content"><p>Feynman summarizes everything I think about awards, prizes and societies in science. No, I never won anything, and if I do someday (remote probability) I will decline it.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">find</span>\<span class="n">_sites</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">iupacdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span><span class="s">&#39;[A]&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span><span class="s">&#39;[C]&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">:</span><span class="s">&#39;[G]&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span><span class="s">&#39;[T]&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">:</span><span class="s">&#39;[AC]&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">:</span><span class="s">&#39;[AG]&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s">&#39;W&#39;</span><span class="p">:</span><span class="s">&#39;[AT]&#39;</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">:</span><span class="s">&#39;[CG]&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">:</span><span class="s">&#39;[CT]&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">:</span><span class="s">&#39;[GT]&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">:</span><span class="s">&#39;[ACG]&#39;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s">&#39;H&#39;</span><span class="p">:</span><span class="s">&#39;[ACT]&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">:</span><span class="s">&#39;[AGT]&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">:</span><span class="s">&#39;[CGT]&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">,</span> <span class="s">&#39;N&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">}</span>
-</span><span class='line'>  <span class="n">site</span> <span class="o">=</span> <span class="nb">set</span><span class="p">[</span><span class="nb">input</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">pattern</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">site</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">pattern</span> <span class="o">+=</span>
-</span><span class='line'>      <span class="n">iupacdict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">searchpattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">sites</span> <span class="o">=</span> <span class="n">searchpattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">temppos</span> <span class="o">=</span> <span class="n">searchpattern</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temppos</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">span</span><span class="p">()</span>
-</span><span class='line'>      <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">begin</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">sites</span><span class="p">,</span> <span class="n">positions</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We use the
-IUPAC dictionary created previously to translate the nucleotides entries
-in the restriction enzyme file. The function also receives three values:
-the input name of the selected enzyme, the dictionary with all the
-enzymes and sites and the sequence where to search. We could easily
-remove one of those, but let&#8217;s leave it there.</p>
-
-<p>First we get the site
-from the dictionary and initialize an empty string to receive the patter
-and a empty list to receive the positions. We will see why we don&#8217;t need
-an empty list to store the found sites. We then iterate over the site
-and create a pattern using the values for each letter of the site
-(dictionary key). Created the patter, we compile the regex and with
-<code>findall</code> we find every entry of the site in the sequence. As we already
-have seen, using the regex <code>findall</code> will generate a list with all the
-entries for that particular regex in the string we are searching. This
-is pretty handy because some enzymes have degenerated restriction sites.
-That&#8217;s why we don&#8217;t need a pre-initialized empty list for the sites.
-Then we use the <code>finditer</code> to find the the exact position of each one of
-the sites. Each iterator is a tuple with a start and end positions. In
-our case we only need the start position, so in a small loop we iterate
-over the temporary variable and just append to the positions empty list
-the start value. We have two integers, <code>begin</code> and <code>end</code> that receive
-the values from <code>i.span</code>, but we only use <code>begin</code>. The function then
-returns two lists as a tuple: one for the sites and one for the
-positions. If our programming is correct, both lists should have the
-same size and are ready to generate the output.</p>
+<p>This only reminds me more and more about some scientists websites that first mention their awards, prizes and interviews before any scientific content. You know who you are.</p>
 </div>
   
   
@@ -1079,7 +193,7 @@ same size and are ready to generate the output.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/09/07/restrinction-enzymes-second-take/">Restriction enzymes: second take</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/07/palin/">Palin</a></h1>
     
     
       <p class="meta">
@@ -1095,130 +209,14 @@ same size and are ready to generate the output.</p>
   
 
 
-<time datetime="2007-09-07T16:48:50-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
+<time datetime="2010-02-07T16:42:18-05:00" pubdate data-updated="true">Feb 7<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We already have a function that reads the enzymes from a dataset in a
-flat file (with one change: return)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_enzymes</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>  <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>          <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
-</span><span class='line'>              <span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>              <span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;\^&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>              
-</span><span class='line'>  <span class="k">return</span> <span class="n">resenz</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We now need a function to write a function
-that searches for the sites and a main function that accepts the
-parameters, coordinate the search and return the results. Looks like we
-are more than halfway there. Parameters input was shown before, starting
-on section 3. We import the <code>sys</code> module and use the array inside
-<code>sys.argv</code> to send the parameters to the script. A basic skeleton of our
-main function would look like this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="c">#reading the ezyme dataset in one line and storing enzyme information in enzymeset </span>
-</span><span class='line'><span class="n">enzymeset</span> <span class="o">=</span> <span class="n">read_enzymes</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;bionet.709&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-</span><span class='line'><span class="c">#storing enzyme name on a string</span>
-</span><span class='line'><span class="n">enzyme</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="c">#reading a FASTA file and storing the sequences</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&#8217;s a start. Now we have to write a
-function that will check for the enzyme name entered by the user in
-order to check for the existence of such enzyme. Something like this
-would work</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">check_enzyme</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="nb">set</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">return</span> <span class="bp">True</span>
-</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">return</span> <span class="bp">False</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This
-basically tests of the dictionary contains the name entered. If yes then
-we return True, otherwise False is returned. This changes our main
-script body</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="c">#reading the ezyme dataset in one line and storing enzyme information in enzymeset </span>
-</span><span class='line'><span class="n">enzymeset</span> <span class="o">=</span> <span class="n">read</span>\<span class="n">_enzymes</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;bionet.709&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">))</span>
-</span><span class='line'><span class="c">#storing enzyme name on a string </span>
-</span><span class='line'><span class="n">enzyme</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="c">#check if the name entered is valid </span>
-</span><span class='line'><span class="n">isname</span> <span class="o">=</span> <span class="n">check_enzyme</span><span class="p">(</span><span class="n">enzyme</span><span class="p">,</span> <span class="n">enzymeset</span><span class="p">)</span>
-</span><span class='line'><span class="c">#if it is valid, continue, otherwise abort </span>
-</span><span class='line'><span class="k">if</span> <span class="n">isname</span><span class="p">:</span>
-</span><span class='line'>  <span class="c">#reading a FASTA file and storing the sequences </span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;Name invalid. Please try again.&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So, we have a good idea on what to do now. We just need a function that creates a
-regular expression and searches it on the sequence. Next time &#8230;</p>
+  <div class="entry-content"><p>Sarah Palin is the closest you can get to a populist Latin American president, such as Lula, the Kirchners, Chavez, etc. If you live in US, raise your hands to heaven and thank whoever that you don&#8217;t live in Latin American. You can get the taste.</p>
 </div>
   
   
@@ -1231,7 +229,7 @@ regular expression and searches it on the sequence. Next time &#8230;</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/09/07/planning/">Planning</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/02/06/laboratory-walkover-a-pitch-for-a-tv-show/">Laboratory Walkover: a pitch for a TV show</a></h1>
     
     
       <p class="meta">
@@ -1247,51 +245,222 @@ regular expression and searches it on the sequence. Next time &#8230;</p>
   
 
 
-<time datetime="2007-09-07T15:51:43-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
+<time datetime="2010-02-06T15:55:28-05:00" pubdate data-updated="true">Feb 6<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Another aspect covered in the book that we haven&#8217;t seen yet is how to
-plan, design out script or software. Usual ways to design a program
-include writing use cases and drawing
-<a href="http://en.wikipedia.org/wiki/Unified_Modeling_Language">UML</a> diagrams
-(stands for Unified Modelling Language). Here we will scratch the
-surface of <a href="http://en.wikipedia.org/wiki/Use_case">use cases</a>, where we
-will try to determine how the program will interact with the user. How
-to write use cases or design UML is not a subject taught in many biology
-courses, so we won;t see much of the theory here. Consider this a more
-informal way of planning a small script or application.</p>
+  <div class="entry-content"><p>I can count in one hand how many times I&#8217;ve ever been in a ultra organized scientific lab. In some of them I don&#8217;t know how people work and are able to publish results obtained in the lab. Because of that and inspired by the countless <em>reality</em> TV shows, I decided to start pitching the idea of the <strong>Laboratory Walkover</strong>.</p>
 
-<p>First thing
-would be to set a goal:</p>
+<p>We will come to your lab with a TV crew, a interior designer and a high level authority in your field of research and we are going to stop to nothing to make your lab the best research space on earth. You won&#8217;t need to pay a dime for the makeover/walkover/takeover, on the contrary we will give you $5000 for consumables and a new PCR machine (if applicable).</p>
 
-<p><em>What is the main objective of our script?</em></p>
+<p>I&#8217;m already looking for sponsors and channels, and if you want your lab o qualify for the walkover, send me a picture.</p>
+</div>
+  
+  
 
-<p>Create a simple restriction enzyme map of certain sequences Next, <em>what
-do we need to make the program work?</em> We need restriction enzyme
-information, such as names and sites and a sequence. That leads us <em>How
-do I store information?</em> Restriction enzyme data (last entry) obtained
-from a file can be stored in a dictionary, with the enzyme name as key
-and the site as value.</p>
 
-<p>Sequences are stored using our fasta class. This
-will brings us to one important issue <em>How to interact with the user?</em>
-The ideal way would be to present a list of enzymes for the user to
-select, but we do not have a graphical interface to organize it nicely.
-So, we will ask the user to enter the name of enzyme and a name of a
-file to read the sequence where the enzyme site should be found. We can
-do that interactively or by passing parameters to the script. We will do
-it by parameters here, but the interactive way can be tested as a
-homework for those following the blog.</p>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/28/its-really-strange-or-why-the-ipad/">It&#8217;s really strange or why the iPad?</a></h1>
+    
+    
+      <p class="meta">
+        
 
-<p>And finally <em>What about an
-output?</em> We will do the same way as the book: a list of positions,
-indicating the restriction sites. I welcome other options in the
-comments. It looks we have a plan. Let&#8217;s gather what we already have,
-and our previous knowledge and meet on the other side of this post.</p>
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-28T20:37:34-05:00" pubdate data-updated="true">Jan 28<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It&#8217;s really strange to read so many negative stories about the iPad, why it will fail, why it sucks, etc, etc. So many bytes wasted (including these here) to cover something that nobody used yet, no one has ever seen, nor was actually released. So many bytes wasted on stories about something that, if you don&#8217;t like and think Apple and Steve Jobs are trying to control their users/customers, you have full control of: like it, buy it, don&#8217;t, don&#8217;t buy it.</p>
+
+<p>So many stories about how closed source computer, software is being forced upon fearful customers. While we worry about that, in the US, companies, corporations are now persons.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/28/something-is-not-open-at-plos-maybe/">Something is not open at PLoS, maybe &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-28T12:44:04-05:00" pubdate data-updated="true">Jan 28<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I really like reading some articles posted on Hacker News. Usually they focus on the entrepreneur side of the software/web business, but sometimes there are some nice pointers to scientific stuff. And most of the comments are also really nice, a lot of clever people around there. But this is what you expect of these virtual communities. Anyway, I&#8217;m here to talk about PLoS.</p>
+
+<p>Yesterday somebody posted at HN, an article about open access to publications: <a href="http://cacm.acm.org/magazines/2010/2/69353-open-access-to-scientific-publications/fulltext">Open Access to Scientific Publications The good, the bad, and the ugly</a>. It&#8217;s a so-so read, but gives some information on the current scenario of open and closed access publishers. But what really caught my eye (thanks initially to a comment on HN) is this passage:</p>
+
+<blockquote><p>But how much are authors ready to pay to publish an article? A few hundred dollars? The most prominent Open Access publisher, the Public Library of Science (PLOS), is a nonprofit organization that has received several million dollars in donations. Yet it charges between $1,350 and $2,900 per paper, depending on the journal.d In fact, many in the profession estimate that to be sustainable, the author-pay model will need to charge up to $5,000–$8,000 per publication.</p></blockquote>
+
+<p>There are seven journals on PLoS, with an average publication fee of $2125. In average each journal publishes around 310 papers per year [I took Computational Biology (388 pubs) and Neglected Tropical Diseases (236 pubs) for 2009]. With the fees and number of publications in each journal being quite similar, that the total revenue for one year is around $4,000,000. From the article we have the idea that these fees should be (and will be) higher in the future, from double to quadruple of what we see now. This, of course, will double or quadruple the revenue. The <a href="http://news.ycombinator.com/item?id=1081228">comment</a> on HN that made me read the article is this:</p>
+
+<blockquote><p>WTF? $8000 per article would pay for each article to have its own EC2 instance for >10 years, including bandwidth costs. Something not right there&#8230;</p></blockquote>
+
+<p>Indeed, something is not right here. With the costs of hardware infrastructure going down every day, nothing justifies these fees (or a bit of them) to &#8220;host it [publication] on a server that is accessible around the clock.&#8221; I really like PLoS, but in almost no time is becoming another publishing company. I don&#8217;t know if PLoS financial books are open, and if not, don&#8217;t you think they should be open too?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/28/ipad-is-excellent/">iPad is excellent!!!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-28T10:08:17-05:00" pubdate data-updated="true">Jan 28<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just sayin&#8217;. With all the negative reviews, ponderations, blog posts, newspaper reports, I just wanted to give so kudos to Steve and the Apple family. Is it the best product ever? No. Is it the next coming of Jesus Christ? No. So what is it? It&#8217;s just another product, and you, only you (maybe with your wife/husband/partner/household) will decide if it fits your budget, if it is useful for you and if you actually need to buy it. Apart from that, rants are always good for the people that writes them (I know it firsthand).</p>
+
+<p>The icing on the cake is when I overheard two homeless guys discussing if you could multitask on an iPad. When they discovered you couldn&#8217;t, they decided not to buy it. Last time I saw them they were in the public library computers.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/28/microsoft-is-more-detrimental-to-science-than-the-lack-of-open-science/">Microsoft is more detrimental to Science, than the lack of Open Science, &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-28T09:56:54-05:00" pubdate data-updated="true">Jan 28<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>than the lack of funding, than the publishing companies, than old-fashioned scientists, than <a href="http://scienceblogs.com/pharyngula/2010/01/poor_science_standard_in_minne.php">PZ Meyers</a>, more than Linux, more than Apple, more than anything I know.</p>
+
+<p>Ok, let me explain then. But before that, a disclaimer: I own Windows 95, 98, XP and Vista, and this represents only my opinion, not the opinion of my employers, co-workers and family.</p>
+
+<p>And why is MSFT more detrimental to Science than anything else? It&#8217;s simple: the openness of their system. Maybe open is not the right word, transparency might better to explain it. As MSFT has the leadership on the OS market, vendors tend to attach their products (in this case laboratory equipments, analysis software, etc) to the OS. And how that is bad? Because when it works, it works fine, but when it doesn&#8217;t work, it&#8217;s a nightmare. Software registry that fails, legacy software that doesn&#8217;t work even when compatibility mode, no control over installation protocols. Most of the time you also don&#8217;t have free/open source tools that help you solver the problem.</p>
+
+<p>After all this, you have to throw in license costs, expensive certification for sys admin in order to manage the machines, time wasted troubleshooting applications, OS, updates, etc. All of this drag all the way up and all the way down the Scientific ladder, increasing costs all over the board, and man-months of work that could be used in different aspects of research.</p>
+
+<p>I&#8217;m not advocating either OS X, Linux, BSD or Solaris, I&#8217;m just saying that these systems are easier to use, cheaper (maybe not OS X) and provide a better experience to the users. And I&#8217;m not advocating that &#8220;regular&#8221; users should migrate to these systems, I&#8217;m just saying that if you are cost conscious scientist, they are a better alternative. Maybe if every university had an introduction to Linux/Unix course, maybe we would be able to cut costs every where, have better scientists and work more efficiently with our computers.</p>
+
+<p>Do you think universities would have a course like this? I don&#8217;t think so, but it would be nice to see.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/27/feynman-and-me/">Feynman and me</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-01-27T20:40:01-05:00" pubdate data-updated="true">Jan 27<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m reading the second book on Feynman, <a href="http://www.amazon.com/gp/product/0393320928?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393320928">What Do You Care What Other People Think?: Further Adventures of a Curious Character</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0393320928" alt="" /> and the only thing I can he was an incredible person, one that any one can admire. I have no idols, I don&#8217;t worship anyone, but Feynman gets the closest possible to being one for me.</p>
 </div>
   
   
@@ -1316,23 +485,23 @@ and our previous knowledge and meet on the other side of this post.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
       </li>
     
   </ul>

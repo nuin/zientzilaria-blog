@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>TNT: a(n) (almost) comprehensive review - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="As promised I&#8217;m writing about the free version of TNT. So far I was able to test the Linux version which does not have a graphical interface. I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/01/30/tnt-a-comprehensive-review">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">TNT: a(n) (almost) comprehensive review</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-30T14:41:52-05:00" pubdate data-updated="true">Jan 30<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>As promised I&#8217;m writing about the free version of TNT. So far I was able to test the Linux version which does not have a graphical interface. I am planning to download a Windows version and test it, but not until next week. So far here are my impressions.</p>
+
+<p>When you start TNT you are greeted by its own prompt, in identical fashion to PAUP and MrBayes. As a regular user (or most of the regular users) I fired up TNT without reading the manual, so my first attempt was to write help at the prompt and the prompt answered by changing itself from &#8220;>tnt*&#8221; to &#8220;>help&#8221;. One point against TNT, as either PAUP of MrBayes at least display a list of possible commands. Feeling helpless I decided to access the manual.</p>
+
+<p><strong>The Manual</strong></p>
+
+<p>Oh, my eyes!!! Whoever chose the background colour for the html manual might have an agreement with some optometrist. I cannot read a paragraph without averting my eyes for a &#8220;refresh&#8221; (if you are interested search for bgcolor=aqua). Anyway, the introductory part of the manual tells you to do exactly what I did, by entering &#8220;help&#8221; at the prompt. Second thing it tells you is that if you don&#8217;t have a Windows version it is not possible to convert your files (i.e. fasta, phylip, nexus) to TNT&#8217;s own format. Usual, it follows the rule, <em>one application</em> - <em>one format</em>, they just forgot to include <em>one converter</em>. Just adding insult to injure they suggest that you use a text editor, anyone, and check their example files. Yeah, right. Basically TNT read Hennig86 matrices. Just get them from your 5 1/4&#8221; floppies.</p>
+
+<blockquote><p>update: there is a way to display the commands at the prompt. &#8220;help&#8221; alone does not work, it has to be followed by a &#8220;;&#8221;, but the manual says &#8220;help &#8221;</p>
+
+<p>update II: according to the manual TNT is able to read NEXUS files and can even include TNT commands in a block. Good.</p></blockquote>
+
+<p><strong>Using TNT</strong></p>
+
+<p>Apparently TNT has a good selection of commands, from what can be seen from its help. It covers most of the things you want to study by using parsimony. It is mentioned in the manual that TNT does not do maximum likelihood (don&#8217;t say!) or bayesian analysis (geez!), but they will incorporate some ML algorithms, even though rudimentary (I bet!).</p>
+
+<p>So, from my shell I started TNT and as I would do in the PAUP CLI version just put the filename as a parameter</p>
+
+<p>./tnt primate-mtDNA.nex (if you really noticed I was using one of PAUP&#8217;s example files)</p>
+
+<p>No dice. So I dig deeper in the manual and find a section dedicated to us poor Linux and OS X users</p>
+
+<blockquote><p>Linux and Mac OS X versions of TNT have a couple differences with the standard versions.  First, those versions can take a comma ( , ) instead of a semicolon ( ; ).  This is because the shells there use semicolons to separate commands, and giving arguments to TNT from the command line becomes difficult. Second difference is that those versions can run in the background.  If you want to start TNT in the background, use bground as first argument, then give the normal arguments you would give the program (do not activate reports and do not change the silent status, but you can set report+ to report every certain number of trees, replications, or seconds, so that you can monitor progress by inspecting the output file; make sure you do have output files, otherwise the program would run and exit without doing anything!), and end with the usual &#8216;&amp;&#8217;.  TNT will not write to the console, or expect console input (at least if no errors occur). It will write its results to a file and exit smoothly (exit code is 0; if the program runs out of commands while in the background it exits with code 1). Should some error occur during the search, the program writes a message to the ouptut file, and exits with code 255.  Try</p></blockquote>
+
+<pre><code> ./tnt bground p zilla.tnt, echo=, log peep, rep+1, mu10=ho3, le, ne, quit, &amp;
+</code></pre>
+
+<p>and do &#8220;tail –f peep&#8221; to monitor search progress.</p>
+
+<p>Very simple and straightforward. But at least I got a clue on how to open a file or use it as a parameter. So I repeat my first command line with the parameter p and then the filename</p>
+
+<p>./tnt p primate-mtDNA.nex</p>
+
+<p>Success &#8230; no not so fast. An error is reported:</p>
+
+<p>PISH (Phylogenetic Inference SHell)</p>
+
+<p>Reading from primate-mtDNA.nex
+Reading file primate-mtDNA.nex as NEXUS</p>
+
+<blockquote><p>Data from:</p>
+
+<pre><code>    Hayasaka, K., T. Gojobori, and S. Horai. 1988. Molecular phylogeny
+            and evolution of primate mitochondrial DNA. Mol. Biol. Evol.
+            5:626-644.
+</code></pre></blockquote>
+
+<p>  &#8230; Skipping taxa block &#8230;
+  &#8230; Skipping characters block &#8230;
+Error reading NEXUS file: expected cost
+Error reading primate-mtDNA.nex
+g = coding;    usertype 2_1 = 4  [weights transversions 2 times transitions</p>
+
+<p>OK, fine. But what&#8217;s PISH? No clue. I edited the file and removed the assumptions block, as TNT seems buggy to read square-bracket enclosed comments on PAUP blocks. I tried again and it worked but skipped both the characters and taxa blocks. Time to use one TNT&#8217;s example files. So I chose the more evident <em>example.tnt</em>. I repeated the above command now using the tnt file as input. Everything works fine, data is read, stored and ready to go. Basically you have a number of commands that you can use to obtain your trees.  I used only <strong>mult</strong> which does multiple random addition sequences plus TBR (RAS+TBR) to find the most parsimonious tree(s). The program is fast for a morphology matrix of 84 characters and 112 taxa. In less than a second the tree is calculated.</p>
+
+<p>But there is a major problem visualizing the tree(s): the so called PISH (Phylogenetic Inference SHell) does not allow scroll. So after obtaining the tree and using the <strong>ne</strong> command to visualize it you are left with a &#8220;tail&#8221; of the tree only. After some fidgeting I found a way to export trees to NEXUS format and could check the trees obtained. By using the command <strong>export</strong> with a dash and filenames as parameters.</p>
+
+<p>tnt*>export -</p>
+
+<p><strong>Conclusions</strong></p>
+
+<p>TNT seems to be a powerful software and should be able to please anyone intending to employ parsimony as their phylogenetic method of choice. It is fast and, according to the documentation, is loaded.</p>
+
+<p>On the other hand it is still (and probably will be for some time) limited and the CLI version for Linux is not the poster version of a user friendly application. There are many drawbacks and it is very difficult to learn the program without a deep study of the manual. Also the documentation is more focused to the GUI Windows version and the commands that can be used in Linux/OS X are not clear at first. In my opinion the worst feature of PISH is the lack of scroll (if there is scroll I wasn&#8217;t able to turn it on) especially when the tree visualization is selected.</p>
+
+<p>Overall is TNT is a fair application, geared to its already known audience. Even being free, I don&#8217;t see it occupying the place of PAUP, Phylip and MrBayes in the phyloege. Not without major changes.</p>
+
+<p><strong>_Update: another review, of the GUI version is available <a href="http://blindscientist.genedrift.org/2008/02/03/tnt-review-of-the-graphical-interface/">here</a>.</strong>_</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-30T14:41:52-05:00" pubdate data-updated="true">Jan 30<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bioinformatics-opinion/'>Bioinformatics - opinion</a>, <a class='category' href='/blog/categories/science/'>Science</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/01/30/tnt-a-comprehensive-review/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/01/30/tnt-a-comprehensive-review/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/01/30/benchmarking-python-fastest-way-to-generate-unique-lists/" title="Previous Post: Benchmarking Python: fastest way to generate unique lists">&laquo; Benchmarking Python: fastest way to generate unique lists</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/01/30/things-you-can-only-learn-from-science-the-journal-not-science-itself/" title="next Post: Things you can only learn from Science (the journal, not science itself)">Things you can only learn from Science (the journal, not science itself) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere ...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

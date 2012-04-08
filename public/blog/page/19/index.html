@@ -1,0 +1,820 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Image by ! S4N7Y ! via Flickr I promised myself that I would never use Mendeley, but I am not very good in keeping promises to myself and I decided &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/page/19">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/25/mendeley-a-very-short-review/">Mendeley: a very short review</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-25T15:17:38-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/9541154@N03/2796169357/"><img src="http://farm4.static.flickr.com/3243/2796169357_806c275210_m.jpg" alt="Lost Thoughts" /></a>Image by <a href="http://www.flickr.com/photos/9541154@N03/2796169357/">! <em>S4N7Y</em> !</a> via Flickr  I promised myself that I would never use Mendeley, but I am not very good in keeping promises to myself and I decided to install it, after I got a comment from the co-founder (??) of the software/company.</p>
+
+<p>It seems that it is based on Qt, and a good point (maybe the only one) is that the program is cross-platform. I decided to give it a go and import around 700 PDFs that I have in one directory (I&#8217;m using it on Vista). It has been almost an hour already and the import hasn&#8217;t ended, and it is using one core of my AMD CPU. Process Lasso already lowered its priority 10 times, because it is taking too much cycles. For read a PDF file?</p>
+
+<p>Yep, uninstalling it soon. And not recommending it at all. I will keep using Citeulike, Zotero and the like.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/2d9ecc28-6fcd-40ba-8a3b-26203175eadc/"><img src="http://img.zemanta.com/reblog_e.png?x-id=2d9ecc28-6fcd-40ba-8a3b-26203175eadc" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/">Obtaining overrepresented motifs in DNA sequences, part 13</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T21:32:09-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that we have the best quorum determination function and the ideal
+function to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
+expansions</a>
+it is easy to program a script to calculate the <em>p</em> value of motifs in
+DNA sequences. To the script <em>below in the code there are a couple of
+errors that wordpress don&#8217;t let me fix. The > and &lt; are replaced by
+their literal html enconding. I am working on it, sorry</em></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>          <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>          <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>          <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>          
+</span><span class='line'>          <span class="c">#print ntok // ktok return ntok // ktok else: return 0 def</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id\_no to a set use explicit</span>
+</span><span class='line'><span class="s">counter to create seq\_no &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">for</span>
+</span><span class='line'><span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span>
+</span><span class='line'><span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">id</span>\<span class="n">_no</span><span class="p">)</span> <span class="k">return</span> <span class="n">quorum</span> <span class="nb">input</span>\<span class="n">_seqs</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="nb">input</span>\<span class="n">_seqs2</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">foreground</span> <span class="o">=</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">background</span> <span class="o">=</span> <span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">,</span>
+</span><span class='line'><span class="mi">10</span><span class="p">)</span> <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span>
+</span><span class='line'><span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> \<span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span>
+</span><span class='line'><span class="mf">0.0001</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We already defined choose in the last post (more information in the link
+from the Python&#8217;s cookbook) and earlier Mike sent us a series of
+quorum-determination functions and one of the best was portrayed and
+explained here.</p>
+
+<p>We also need our fasta module to read the sequences (and only the
+sequences) in order to use it in the quorum function. Basically we use
+the foreground and background files as input, determine the quorum of
+the different words (width 10) and then we iterate over the results,
+calculating the <em>p</em> value for each motif found in the foreground set.
+The tree terms of the Hypergeometric Distribution are calculated
+separately and we test for a <em>p</em> value smaller that 0.0001 (this can be
+modified) and we only print the results that fall in this category.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/20/that-should-do-it/">That should do it!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T20:17:44-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:Guitarhero-screen.jpg"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/6/6c/Guitarhero-screen.jpg/202px-Guitarhero-screen.jpg" alt="To play a note, the fret button and strum bar ..." /></a>Image via <a href="http://en.wikipedia.org/wiki/Image:Guitarhero-screen.jpg">Wikipedia</a> Now that <a href="http://en.wikipedia.org/wiki/BMX">BMX</a> and trampoline are in the Olympics (OK, all right, trampoline got in a couple of editions ago) I can say that the Olympics are a <a href="http://en.wikipedia.org/wiki/Good_faith">bona fide</a> international competition. I would like to thank to the enlightened people that include those wonderful &#8220;sports&#8221; in the competition. I can&#8217;t wait to see <a href="http://en.wikipedia.org/wiki/Rock-paper-scissors">rock-paper-scissors</a> and <a href="http://en.wikipedia.org/wiki/Guitar_Hero">Guitar Hero</a> in 2012.</p>
+
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://abcnews.go.com/International/China/wireStory?id=5608227">Counter-Culture BMX Makes Debut in Beijing</a></li>
+<li><a href="http://kotaku.com/5037975/parents-let-kid-drop-out-of-high-school-to-focus-on-guitar-hero">Parents Let Kid Drop Out of High School to Focus on Guitar Hero [Guitar Hero]</a></li>
+<li><a href="http://www.russellbeattie.com/blog/holy-shit-look-at-the-size-of-that-ramp">Holy SHIT, look at the size of that ramp!</a></li>
+</ul>
+
+
+<p><a href="http://reblog.zemanta.com/zemified/44c6dd6e-2c47-48cd-bbfe-20f4bf6025a7/"><img src="http://img.zemanta.com/reblog_e.png?x-id=44c6dd6e-2c47-48cd-bbfe-20f4bf6025a7" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/19/business-opportunities/">Business opportunities</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-19T10:27:41-04:00" pubdate data-updated="true">Aug 19<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li>make flags during the Olympics</li>
+<li><a href="http://www.foxsports.com.au/beijing_olympics/story/0,27313,24207254-5016791,00.html">ultra fast boat repair during the Olympics (in the case we are unable to repair your boat in time, a boat from some other country will be provided and you can sail incognito</a></li>
+</ul>
+
+
+<p><em>this post is continuously updated as soon as new opportunities arise</em></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/15/obtaining-overrepresented-motifs-in-dna-sequences-part-12/">Obtaining overrepresented motifs in DNA sequences, part 12.5</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-15T17:15:21-04:00" pubdate data-updated="true">Aug 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So let&#8217;s modify a little bit the <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a> and then
+benchmark both by using <code>timeit</code>. Ideally our factorial function would
+need to calculate a value similar to the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial expansion</a>,
+as we have three factorials to calculate in for each binomial in the
+Hypergeometric Distribution. So we can add two extra factorial
+calculations to our function and perform the multiplication and division
+to return the equivalent to the binomial calculation. So the function
+would be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">value1</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">value1</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>      <span class="n">value2</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">value2</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>      <span class="n">value3</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">value3</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">return</span> <span class="n">value1</span> <span class="o">/</span> <span class="p">(</span><span class="n">value2</span> <span class="o">*</span> <span class="n">value3</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> <code>m</code> and <code>n</code> are both values of the binomial and <code>n - m</code> is the subtraction of one by the
+other that forms the last factorial to be calculated. This way it makes
+easier to time the performance of both functions. In the end the
+complete script would look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">timeit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">result1</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">result1</span> <span class="o">*=</span> <span class="n">i</span> <span class="n">result2</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span>
+</span><span class='line'><span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">result2</span> <span class="o">*=</span> <span class="n">i</span> <span class="n">result3</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span>
+</span><span class='line'><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">result3</span> <span class="o">*=</span> <span class="n">i</span> <span class="k">return</span> <span class="n">result1</span> <span class="o">/</span> <span class="p">(</span><span class="n">result2</span> <span class="o">*</span> <span class="n">result3</span><span class="p">)</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'><span class="o">=</span> <span class="mi">1</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">while</span> <span class="n">j</span> \<span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span> <span class="k">return</span> <span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span> <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>
+</span><span class='line'><span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span> <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span> <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span> \<span class="c">#print ntok // ktok</span>
+</span><span class='line'><span class="k">return</span> <span class="n">ntok</span> <span class="o">//</span> <span class="n">ktok</span> <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> \<span class="n">_</span>\<span class="n">_name</span>\<span class="n">_</span>\<span class="n">_</span> <span class="o">==</span> <span class="s">&quot;\_\_main\_\_&quot;</span><span class="p">:</span>
+</span><span class='line'><span class="n">stmt</span> <span class="o">=</span> <span class="s">&quot;fac(3000, 7)&quot;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="s">&#39;from</span>
+</span><span class='line'>\<span class="n">_</span>\<span class="n">_main</span>\<span class="n">_</span>\<span class="n">_</span> <span class="kn">import</span> <span class="nn">fac</span><span class="s">&#39;) stmt2 = &quot;binom(3000, 7)&quot; t2 =</span>
+</span><span class='line'><span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt2</span><span class="p">,</span> <span class="n">setup</span> <span class="o">=</span> <span class="s">&#39;from \_\_main\_\_ import binom&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">stmt3</span> <span class="o">=</span> <span class="s">&quot;choose(3000, 7)&quot;</span> <span class="n">t3</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt3</span><span class="p">,</span> <span class="n">setup</span> <span class="o">=</span> <span class="s">&#39;from</span>
+</span><span class='line'>\<span class="n">_</span>\<span class="n">_main</span>\<span class="n">_</span>\<span class="n">_</span> <span class="kn">import</span> <span class="nn">choose</span><span class="s">&#39;) print &#39;</span><span class="n">fac</span><span class="p">:</span> <span class="o">%.</span><span class="mi">9</span><span class="n">f</span><span class="s">&#39; % (t.timeit(100)/100)</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&#39;binom: </span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t2</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span> <span class="k">print</span> <span class="s">&#39;choose </span><span class="si">%.9f</span><span class="s">&#39;</span> <span class="o">%</span>
+</span><span class='line'><span class="p">(</span><span class="n">t3</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The final result of the average for
+ten repetitions is as follow fac = 0.10 s binom = 43.24 s choose =
+0.000005 s <del>Clearly, the factorial function gets a huge advantage over
+the binomial one. So we will modify it a little bit and use it for our
+HD script.</del> Clearly the <code>choose</code> function is the fastest one, so we
+will incorporate it on out HD script.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/12/obtaining-overrepresented-motifs-in-dna-sequences-part-11/">Obtaining overrepresented motifs in DNA sequences, part 11</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-12T20:50:17-04:00" pubdate data-updated="true">Aug 12<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After a long hiatus we are (almost) back on track in order to get our
+scripts to determine overrepresented motifs in DNA sequences. Last time
+we checked we defined the &#8220;best&#8221; <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a> in Python</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac_01</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
+</span><span class='line'><span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="n">result</span> \<span class="o">*=</span> <span class="n">i</span> <span class="k">return</span> <span class="n">result</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> and Andrew Dalke
+sent a couple of links pointing out to a binomial calculation function,
+one of them is below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c"># This file contains the Python code from Program 14.10 of</span>
+</span><span class='line'><span class="c"># &quot;Data Structures and Algorithms with Object-Oriented Design Patterns in Python&quot; </span>
+</span><span class='line'><span class="c"># by Bruno R. Preiss. </span>
+</span><span class='line'><span class="c">## Copyright (c) 2003 by Bruno R. Preiss, P.Eng. All rights reserved. </span>
+</span><span class='line'><span class="c">## http://www.brpreiss.com/books/opus7/programs/pgm14_10.txt # </span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>          <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">return</span> <span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There is a similar implementation in the Python Cookbook
+online and it is clearly more convenient using this function than
+actually coding to calculate an identical value using factorials. But
+anyway, let&#8217;s see how a function that calculates one binomial
+coefficient from the Hypergeometric Distribution (HD) by using the
+factorial function. Later we benchmark both methods. Each <a href="http://en.wikipedia.org/wiki/Binomial_coefficient" title="Binomial coefficient">binomial coefficient</a>
+can be expanded as
+<img src="http://codecogs.izyba.com/png.latex?%5C200dpi%20%5Cbegin%7Bpmatrix%7Dn%5C%5Cr%5Cend%7Bpmatrix%7D%20=%20%5Cfrac%7Bn!%7D%7Br!(nr" alt="image" />!%7D)
+and the HD has three of them. From the Wikipedia &#8220;In probability theory
+and statistics, the <a href="http://en.wikipedia.org/wiki/Hypergeometric_distribution" title="Hypergeometric distribution">hypergeometric distribution</a>
+is a discrete probability distribution that describes the number of
+successes in a sequence of n draws from a finite population without
+replacement.&#8221; In the next post we will define each term of the HD for
+the motifs case. In each <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial expansion</a>
+we would have to calculate three factorial values, nine in total. With
+the binomial function, only three values need to be calculated. So,
+using the factorial function we would need to code something like this
+in order to calculate one of the binomials</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>
+</span><span class='line'><span class="c">#let&#39;s say the motif quorum in the foreground is 7</span>
+</span><span class='line'><span class="c">#and the total number of sequences is 3000 </span>
+</span><span class='line'><span class="c">#we won&#39;t touch the other required values </span>
+</span><span class='line'><span class="n">fore</span> <span class="o">=</span> <span class="mi">7</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">3000</span>
+</span><span class='line'><span class="n">hd</span> <span class="o">=</span> <span class="n">fac_01</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">fac_01</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="n">fac_01</span><span class="p">(</span><span class="mi">2993</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">hd</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next, we will benchmark and see if there is an advantage to either method.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/31/these-are-really-my-sequences/">These are really my sequences!!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-31T16:45:00-04:00" pubdate data-updated="true">Jul 31<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Just an update to my previous post: I submitted around 40 sequences to NCBI, all of them from South American frogs and toads. You can find all of them <a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=nucleotide&amp;cmd=&amp;term=nuin+[AUTH]&amp;go=Go">here</a>. If you ever use them, I&#8217;d be happy to know and we can even share a beer sometime.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/31/those-are-my-sequences/">Those are my sequences!!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-31T16:37:53-04:00" pubdate data-updated="true">Jul 31<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Yesterday I was lazily browsing the web, reading my RSS feeds when I found <a href="http://treethinkers.blogspot.com/2008/07/phylota-my-mind-is-blown.html">this</a>:</p>
+
+<blockquote><p>As a side note, I talked to a colleague who got harassed at the Ichs and Herps meeting for&#8230; gasp&#8230; downloading sequences from GenBank and using them without asking the author&#8217;s permission! Good lord, what is the world coming to? I&#8217;m surprised to hear of such active resistance to public availability of information.</p></blockquote>
+
+<p>Oh, boy, that brought me back memories of the time I spent at the Museu de Zoologia (MZUSP) doing my PhD. I think that people that make such kind of remarks are the same that say Clustal W masks the &#8220;parsimony&#8221; of the sequence as it generates a Neighbour Joining tree to guide the alignment. Strange times, why would you complain that someone used your sequences without asking permission if your sequences are stored in a public repository? If you don&#8217;t want anyone to use don&#8217;t submit to NCBI or keep renewing the deadline to make them public. It might give you time to actually learn them by heart &#8230;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/29/shame/">Shame</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-29T17:33:41-04:00" pubdate data-updated="true">Jul 29<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/23/staring-at-the-clouds/">Staring at the clouds</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-23T21:54:00-04:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Us-nasa-columbia.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Us-nasa-columbia.jpg/202px-Us-nasa-columbia.jpg" alt="An example of a computer cluster" /></a>Image via <a href="http://commons.wikipedia.org/wiki/Image:Us-nasa-columbia.jpg">Wikipedia</a>In my opinion the best aspect of the so-called Web 2.0 (a catchy name) is the interaction we get from tools such <a href="http://friendfeed.com/">FriendFeed</a> and <a href="http://www.twitter.com/">Twitter</a>. Accessing these sites, one can be overwhelmed by the amount of information, all kinds of information, ranging from the new photos of tropical fruits, to the end of science as we now it, being liveblogged from ISMB 2008.</p>
+
+<p>In the past months I have been accessing these services/tools more and more, and in the past months by the power of the crowd (at the least the small scientific crowd) a <a href="http://friendfeed.com/rooms/the-life-scientists">small group of scientists</a> have been exchanging information, ideas, links, tools, comments, learning and teaching anything that comes to mind. There I learned more about the computer cloud (an example <a href="http://www.amazon.com/gp/browse.html?node=201590011">here</a>) and one idea leading to another I thought about the possibility of creating an startup that provides bioinformatics computing services on the cloud.</p>
+
+<p>Say you are in a small lab with limited or no access to a large cluster and you have some really interesting data that can analyzed quickly by a cluster, but slowly by a desktop PC, and generate a good set of results for a nice publication. You can always throw the data on a qsub in a university cluster and wait to the big shots to calculate the next prime number before you start your analysis or you can have a personalized virtual image with only the software you need and use the cloud to generate your results and have them when you need. Of course there is a cost to this use, but not close to the cost of applying for a grant to get your cluster, dealing with the sys admin to install the applications you want, dealing with the bureaucracy red tape and finding the right location to put your server.</p>
+
+<p>It has become a cliche to say that (bio)informatics is becoming prevalent in scientific life and research (true but a cliche nonetheless), and it is not difficult to find scientist that don&#8217;t have available the infrastructure of a <a href="http://en.wikipedia.org/wiki/High-performance_computing">HPC</a> node or a personal cluster. The same way people outsource their sequencing os mass-spec needs, why not outsource their (bio)informatics needs? Many labs have clusters or paid access to clusters even though their use is limited or inconstant. Why invest in a cluster or pay an annual fee while you are using a couple of CPU-hours a week?</p>
+
+<p>When I threw the idea on Twitter and FriendFeed, I didn&#8217;t know what to expect. Surprisingly for me there was a good reception to it with some people jumping right into it. I got a nice email from <a href="http://freesci.wordpress.com/">Pawel</a> with some more comments that I think were right on the spot. I don&#8217;t see many hurdles to create a startup to provide these kind of services, especially because we live in a virtual world at the moment. There is no need for a physical office, computer infrastructure or employees. The founders, as long as you have a nice and diverse group of people with broad knowledge and interests, can provide all the service and grow together. I am not saying that it will be easy, but after learning a lot from the bright group of people that make our small online community, I think this is a feasible project that can be on the street in a short time.</p>
+
+<p>I am going to prepare a small plan (some ideas on a virtual paper) and anyone interested would be able to join, contribute and start the &#8220;company&#8221;.</p>
+
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://yihongs-research.blogspot.com/2008/07/failure-and-success-of-web-startups.html">Failure and Success of Web Startups</a></li>
+</ul>
+
+
+<p><a href="http://reblog.zemanta.com/zemified/a6329016-177e-4379-a14d-591db006964d/"><img src="http://img.zemanta.com/reblog_e.png?x-id=a6329016-177e-4379-a14d-591db006964d" alt="Zemanta Pixie" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/20/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/18/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

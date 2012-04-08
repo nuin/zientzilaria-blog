@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Are we there yet? Pretty much. - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Are We There Yet it is a simple web application to explore graphically convergence in Markov Chain Monte Carlo in Bayesian phylogenetic inference. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/03/10/are-we-there-yet-pretty-much">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Are we there yet? Pretty much.</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-10T15:22:56-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.researchblogging.org"><img src="http://www.researchblogging.org/images/rbicons/ResearchBlogging-Medium-White.png" alt="ResearchBlogging.org" /></a></p>
+
+<p>Are We There Yet it is a simple web application to explore graphically convergence in Markov Chain Monte Carlo in Bayesian phylogenetic inference. The website name comes from one of the most important factors in Bayesian phylogenetic inference, that is the convergence of branch lengths and splits. Usually a linear plot of likelihood scores is used to define convergence (a plateau in the graph) where supposedly the variables in the estimation reached a &#8220;convergent&#8221; status. But as pointed in AWTY original article this method can incur in assessment errors of such convergence and because of this they developed the web application.</p>
+
+<p>AWTY is pretty simple interface, the simple here being a compliment. No frills and easy to use. Basically the whole process can be summarized by:</p>
+
+<p>upload tree file(s) -> select analysis type -> click Plot -> check result</p>
+
+<p>The application is nothing more than a wrapper to <a href="http://www.gnuplot.info/">GnuPlot</a> and in some cases <a href="http://paup.csit.fsu.edu">PAUP</a>. A nice touch is that everything created in the site is logged and all commands used on the background GnuPlot are also output and linked, so if you don&#8217;t like the graph created by AWTY you can run your own. No complete help is available but the simplicity of the interface makes it very user friendly. Each of the nine methods have short explanatory texts in order to guide the user on parameter selection and/or the number of required file(s) for the analysis.</p>
+
+<p>One change that I would make is to include the possibility of uploading more than one file at once. But apart of that AWTY is a very nice application and should be very useful for exploratory Bayesian phylogenetic inference.</p>
+
+<p><em>Tested on Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.12) Gecko/20080201 Firefox/2.0.0.12</em></p>
+
+<p>Nylander, J.A., Wilgenbusch, J.C., Warren, D.L., Swofford, D.L. (2007). AWTY (are we there yet?): a system for graphical exploration of MCMC convergence in Bayesian phylogenetics. Bioinformatics, 24(4), 581-583. DOI: <a href="http://dx.doi.org/10.1093/bioinformatics/btm388">10.1093/bioinformatics/btm388</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-10T15:22:56-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bioinformatics-opinion/'>Bioinformatics - opinion</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/03/10/are-we-there-yet-pretty-much/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/03/10/are-we-there-yet-pretty-much/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/03/06/parsing-genbank-getting-dna-from-genome-entries-part-i/" title="Previous Post: Parsing GenBank: getting DNA from genome entries, part I">&laquo; Parsing GenBank: getting DNA from genome entries, part I</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/03/11/genbank-parsing-part-ii/" title="next Post: GenBank parsing: part II">GenBank parsing: part II &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere ...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1011 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We have seen, briefly, how to define and use a function in Python. Now
+we are going to jump forward a bit and create a new function and at the
+same &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/page/37">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/26/command-line-arguments-and-a-second-take-on-functions/">Command line arguments and a second take on functions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-26T13:18:48-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We have seen, briefly, how to define and use a function in Python. Now
+we are going to jump forward a bit and create a new function and at the
+same time take a look on command line parameters that can be passed to
+the script. If you have used command line applications before, you might
+have encountered programs that asks for a file name, a calculation
+parameter, etc to be passed in the command line. Python scripts are no
+different, they accept such parameters. For this we have the <code>sys</code>
+module that has system specific parameters and functions. We have used
+before the <code>sys.exit</code>, imported as an extra module function.</p>
+
+<p>Every operating system (even Windows) has arguments in its command line, and
+programming languages usually call such arguments <code>argv</code> (in the C/C++
+you have argv in the parameters of the main function). Lists in Python
+start at 0 (zero), and for the argument list the first item is the
+script/program name. Basically if we have this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$&gt;</span> python myscript.py DNA.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>myscript.py</code> is the argument 0 in the
+list and <code>DNA.txt</code> is the argument 1. So whenever we create a script that
+receives arguments in the command line, we have to start (in most cases,
+be aware) from 1.</p>
+
+<p>In Python using system arguments in the CLI will look
+like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="n">valueone</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We will a variation of our
+previous script that counts the bases, now with command line arguments
+and a function (with no &#8220;error&#8221; checking at first)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python import sys </span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">count_nucleotide_types</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">totalA</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">totalC</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">totalG</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">totalT</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sequencefile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sequencefile</span><span class="p">)</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">values</span> <span class="o">=</span> <span class="n">count_nucleotide_types</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;As&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Cs&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Gs&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Ts&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Few new things here. We created a function <code>count_nucleotide_types</code> that should receive a string
+containing the sequence. The &#8220;real&#8221; first line of the program flow is
+the one that gets the name of the file from the command line argument,
+open and read it. We then convert the list to a string, modify it a but
+and throw it to the function. Get the result back, and done. With
+functions we actually don&#8217;t save coding time/length (at least here), we
+make out code more organized, easier to read and somewhat easier to
+someone else read and understand it. It is not a good coding practice to
+have long programs/scripts with no functions, no subdivision, no
+structure. Functions are sometimes good program nuggets that can be
+reused in the same application or even ported/copied to other
+applications and reused indefinitely. Soon we will see a function and
+class that reads a FASTA file in Python that can be used anywhere in any
+program that needs such feature. Try the code and come back later for more.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/22/python-functions-simple-example/">Python functions: simple example</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-22T09:04:10-04:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Python subroutines do not exist. <a href="http://www.diveintopython.org/getting_to_know_python/declaring_functions.html">Everything is a function, all
+functions return a value (even if it&#8217;s None), and all functions start
+with <code>def</code></a>.
+This statement is from Dive into Python, a book on Python programming
+available for free. As mentioned Python functions start with the word
+<code>def</code>, which is followed by the function name that is followed by the
+arguments the function receives in between parentheses. Something like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">my_first_function</span><span class="p">(</span><span class="n">somevalue</span><span class="p">):</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Usually Python coders
+(sometime called Pythonistas, among others), following the Python coding
+style (that states: <em>Function names should be lowercase, with words
+separated by underscores as necessary to improve readability</em>) name
+their functions with words separated by underscores. And we are going to
+use this style here, whenever a function becomes handy. The parameters
+passed to the function (above <code>somevalue</code>) do not have a datatype,
+Python should handle it whatever is being passed. It is also attribute
+of your code to handle the parameter/value passed inside the function
+and avoid errors. Functions also follow the same indentation of normal
+programming and the line after the declaration should be indented with
+four spaces</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">my_first_function</span><span class="p">(</span><span class="n">somevalue</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">do_something</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, let&#8217;s
+warmup with functions. The following script is just the start: it adds a
+poly-T tail to a DNA sequence. We are going to use our old friend
+AY162388.seq. I will be back after the script</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">add_tail</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="n">seq</span> <span class="o">+</span> <span class="s">&#39;TTTTTTTTTTTTTTTTTTTTT&#39;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&#39;AY162388.seq&#39;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">sequence</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="n">add</span>\<span class="n">_tail</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Not very useful, at first sight, but gives us an
+impression of what a function looks like. Basically we define a function
+<code>add_tail</code> that receives <code>seq</code> as a parameter. Don&#8217;t worry about
+variable scope now, we will see it later. The rest of the script is just
+like things we saw before, except for the line
+<code>sequence = add_tail(sequence)</code>. Here we are saving memory (yep, not
+that much and not even impressive) by assigning the return value of the
+function to the same string where we have the sequence stored. Run the
+scritp and get ready for the command line arguments.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/16/reccommended-read/">Recommended read</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-16T13:20:13-04:00" pubdate data-updated="true">Mar 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>On the latest post I forgot to mention a book that is wonderful for those with no programming habits and for those who have (in this case more like vices).</p>
+
+<p><a href="http://www.amazon.com/gp/product/1593271190?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593271190">Code Craft: The Practice of Writing Excellent Code</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1593271190" alt="" /></p>
+
+<p>It is a very good read, with several insights on how to write programs.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/16/on-notes-to-a-young-computational-biologist/">On notes to a young computational biologist</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-16T11:14:15-04:00" pubdate data-updated="true">Mar 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Yes, I never blogged, never liked to. I always been a tad recluse when posting opinions, comments and other things on websites. But recently I have found many nice blogs and personal pages that have insightful posts, interesting information and tips-and-tricks for your daily routine. Pages that are really a good read. I have the feed to <a href="http://www.nodalpoint.org">nodalpoint</a> which is more a community than a personal page, and the latest feed brought me to this <a href="http://boscoh.com/protein/notes-to-a-young-computational-biologist">post</a> written by Bosco in his blog. The post gives a list of advices for young computational biologists.</p>
+
+<p>I cannot agree more with his post, and I wish that I had the same information in 1995 when I started my internship in the lab where I would come to do my <a href="http://www.genedrift.org/winpop.php">masters</a>. Back then we did not have the internet the way it is today, with the amount of information, the large number of open-source software available, no easy Linux installation, among other things that make anyone&#8217;s life easier (sometimes) today. As for any kind of list, one cannot be satisfied until s/he gives her/his own opinion about it. All his eleven entries are great, and here I take the liberty to expand each one of them giving my humble opinion (as pointed <a href="http://www.craigslist.org/about/best/sfo/279126743.html">elsewhere</a>, 97% of all advice is worthless, use whatever is good for you and throw away the rest):</p>
+
+<p>1- On scripting language: definitely a must, either one of them. But I would stress some knowledge of shell script as a key point too. You don&#8217;t have to be an expert on bash scripting, for instance, but some basic stuff might come handy when nothing else is available (such as a Solaris machine with no Python, Perl or Ruby). Use this <a href="http://tldp.org/LDP/abs/html/">link</a> as a reference guide (or have any published book at arm&#8217;s distance).</p>
+
+<p>2- On programmable statistics package: just one addition R, free, open source and a great user base.</p>
+
+<p>5 - On delete data that you don&#8217;t need: I would do that, but be careful. Backup, compress, move to obscure partitions, directories, whatever is easier before deleting data. You might think that the data is useless today, until tomorrow proves you wrong. The Gb price is going down every day, we are not in the age of <a href="http://www.findarticles.com/p/articles/mi_m0SMG/is_n9_v13/ai_13926185">doubledisk</a> anymore. But annotation of everything you have is crucial.</p>
+
+<p>8- On command line plotting program: very nice advice, just pick one that fits you better. This is also a must if you don&#8217;t want to publish lame graphs in your papers.</p>
+
+<p>9- On programming editor: I personally use <a href="http://kate-editor.org/">Kate</a> , but any other option is great. Be sure to find something you are comfortable with.</p>
+
+<p>I cannot find further advices on the other points, but I would again take the liberty to add some points of my own (always follow the 97% rule):</p>
+
+<p>1- As one of the comments in his post pointed out: subversion. Maybe not the greatest invention after sliced bread, but it really gives you a great deal of help when working in different places/machines. Say you have a great idea at home and want to update your scripts but forgot to copy everything to your usb disk. Yep, subversion is there.</p>
+
+<p>2- Be a generalist: learn as many languages as you can. You don&#8217;t have to be an expert in any of them [after all you are a biologist, right?(??)], but sometimes one feature that will save your day is available in a language that you never noticed.</p>
+
+<p>3- System administration skills: yep, you will need then. Not the crazy things as knowing where every log file is in your system, but at least some handy commands help you check your system or maybe give you more ability to use such system. One extra advice here: don&#8217;t buy any books on Windows system administration.</p>
+
+<p>4- Three words: Linux, Linux and Mac OSX. That&#8217;s what you really need. Yep, you need to know your way on Windows, but when you master the power of the command line, new worlds will open for your. Always remember: you can type faster than you click.</p>
+
+<p>Thanks for Bosco to post his insightful advices. I just added my two cents of worth(less) advice.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/15/interfaces/">Bioinformatics and interfaces</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-15T14:39:15-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>On the reply to my second Geneious review, an interesting point was raised: building interfaces, &#8220;which is one of the biggest workloads in writing software&#8221;.</p>
+
+<p>My first programming language was the old <a href="http://www.webdevelopersjournal.com/archive/vbasic.html">Visual Basic 3.0</a> which has a visual driven user interface and programming approach. To create windows and dialogs in VB is an extremely easy process, dragging and dropping objects in a window, easily setting properties, menus and features. The interface design is straightforward, and the burden of a user-friendly program lies on the programmer and his/her ability to set the objects on the screen, manipulate their function and add programming elements to operate them.</p>
+
+<p>But Visual Basic has it drawbacks, first by not being a powerful language and restrictions of only running resulting programs on Windows machines, etc. In Bioinformatics, Visual Basic is great for simple applications where the processing speed, heavy number crunching, portability, intense I/O operations and other high-performance issues are not a requirement. Applications like <a href="http://www.genedrift.org/winpop.php">WinPop</a> (I will focus on my personal experience), that had version 1.0 released late 1998 (&#8220;compiled&#8221; with VB3.0) and version 2.5 which was released in 2004 and was &#8220;compiled&#8221; with the more advanced VB 6.0. WinPop is the perfect example of a good project for VB: simulates and represents simple Population Genetics phenomena with limited input and outputs nice looking graphs to help the user understands what is going on in each one of the models. WinPop is also geared to undergrad and grad students that need to learn Population Genetics, and can be used in any Windows machine (Windows 95 and up) and does not require a state-of-the-art box to run nor it will allow you to discover a major breakthrough in science.</p>
+
+<p>VB programming is focused on the visual part. Your whole approach to develop the software has to consider the objects you see (and sometimes not) on the screen, how to link them if needed, which event will trigger what and so on. It is different than writing your script in Python, or your number crunching application in C++ or Java. In VB, there is the possibility of generating command line applications, but this is more difficult than creating one with a window. In Java you can opt to make a command line application or to create a GUI for it with Swing. In C++, everything is command line, unless you use one the GUI frameworks available, like <a href="http://www.trolltech.com">Qt</a> or <a href="http://www.wxwidgets.org">wxWidgets</a>, which in some case is like learning a new language by itself. Some of these frameworks were ported to other languages too, like wxPython, wxPerl, PyQt.</p>
+
+<p>Until recently, advanced Bioinformatics applications were command-line only. Examples can be found everywhere: alignment packages (Clustal has), Blast (web-interface, not very powerful), TFBS determination, HMM, phylogenetics (PAUP for Mac and Mega are most recognizable exceptions), etc, etc. Nowadays it is becoming easier to find good programs with nice interfaces, like <a href="http://www.genedrift.org/sugg.php">Geneious</a>, which are portable and powerful. But still, in my opinion researchers don&#8217;t give much attention to the interface development.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/15/debugging-in-python/">Debugging in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-15T09:43:10-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Beginning the third section in our tutorial/guide, we are going to see
+the chapter six of BPB. This chapter discusses the topics of creating
+subroutines (in Python&#8217;s case functions) and debugging the code. We are
+going to start by the end.</p>
+
+<p>In Python, code debugging can be done as in
+any other programming language: Perl has pdb, C/C++ has gdb, etc. Python
+also has a pdb module that can be imported and run to check for errors
+in your code. Using this command line:</p>
+
+<p><code>python -m pdb myscript</code></p>
+
+<p>will
+start the debug module and this will run your script. If you are an
+experienced programmer, who is just starting Python, pdb usage might
+look simple and straightforward. On the other hand, if you don&#8217;t have a
+lot of experience in programming I would suggest a different approach,
+as you become more comfortable with the language. Python has a great
+advantage over some other interpreted languages, allowing you to
+interactively code using the interpreter. So if your code is not working
+properly, maybe a wrong output or a value that is not being correctly
+calculated you have the options of coding the part of your script that
+is not working using the interpreter or use the first rule of debugging:
+include <code>print</code> statements that output the value of variables/objects.
+Another option is to use a Python code editor, what will also help you
+with highlight your code. I have little experience with Python code
+editors, as I normally code in Linux and use
+<a href="http://kate-editor.org/">Kate</a>. Lately I have been trying <a href="http://www.activestate.com/products/komodo_edit/">Komodo edit</a> which is a
+cross-platform freeware from Active State. It looks pretty good but I
+never tried debugging my code with it. So, these are my advices if you
+are just starting to program. Maybe because of the age of Beginning Perl
+for Bioinformatics (published in 2001), Perl&#8217;s pdb was the only option
+back then. Thanks to major advances on open-source and free software
+there are many other options nowadays to debug your code.
+<code>python -m pdb myscript</code></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/14/section-2-a-nice-summary-script/">Section 2: a nice summary script</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-14T15:32:24-04:00" pubdate data-updated="true">Mar 14<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Closing section two, let&#8217;s use everything we saw before and write a nice
+script that will read a sequence file (DNA) and report us of any
+&#8220;errors&#8221; and the number of different nucleotides. It is very simple, but
+a good exercise. Depending on your needs you can easily modify it to
+check for other characteristics of sequences, even change it to read
+amino acids sequences. We start with the code, comments coming after it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="n">fileentered</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="k">while</span> <span class="n">fileentered</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">filename</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Please enter a file to check: &#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">totalA</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">totalC</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">totalG</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">totalT</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">otherletter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;[BDEFHIJKLMNOPQRSUVXZ]&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">extra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">otherletter</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s">&#39;.count&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Count report for file &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;A = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;C = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;G = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;T = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Also were found &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; errors</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">extra</span><span class="p">:</span>
+</span><span class='line'>                    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39; &#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">else</span><span class="p">:</span> <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;No error found&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Result file saved on &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.count&#39;</span>
+</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;File not found. Please try again.&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The main change here is that we use a <code>while</code>
+loop to control de program flow. Notice that we import <code>sys</code> and <code>re</code>.
+Basically we ask for an user input, the filename, and depending on the
+input given we process the file or exit the program. The early exit is
+done with the <code>sys.exit</code> method which is a shortcut to get out of the
+script processing. Very handy. If the input is valid we <code>try</code> to open
+it. If the operation is successful, great, we read the file, count the
+nucleotides and use a quite scary regular expression to search all the
+&#8220;errors&#8221; in our sequence. The regex is compiled with the pattern
+<code>'[BDEFHIJKLMNOPQRSUVXZ]'</code> which means &#8220;match any character in this
+range&#8221;. Take a closer look at the pattern and you will see that is every
+letter in the alphabet, except for ACGT. And when searching for these
+&#8220;errors&#8221; instead of using <code>re.search</code> we use <code>re.findall</code>, which
+conveniently returns a list with all the substrings found. That&#8217;s even
+more handy. On the final part of the script we take care of the output,
+opening a file called <code>.count</code> where we print the counts and the errors,
+if they actually exist. One thing I left from the previous post, is that
+we need to close the file opened to write. In some cases if the file is
+not properly closed, errors might occur. So always remember to close the
+files used for writing/appending, using <code>.close()</code>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/13/writing-to-files/">Writing to files</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-13T14:58:58-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We already know how to read from files, now we are going to see how to
+write to them. We will start with a simple example, writing some content
+to a &#8220;fresh&#8221; file that does not exist in the system. Sometime ago, we
+have seen the <code>print</code> statement in Python, that prints to the system
+standard output (usually the screen). This output can be redirected
+using <code>&gt;</code> to a stream/file. But if we are going to create really
+professional applications (even to our own use), usually stream
+redirection is not really the nicest approach. In some cases the best
+alternative is to save a file. Also, some posts ago, we covered the
+methodology to <code>open</code> a file. We are going to use here the same command,
+<code>open</code> to (in our case) create the file. Remember that to read the file
+we used</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where the <code>'r'</code> is the mode we are using to open the
+file. In that case we used the <em>read</em> mode, now we are going to use the
+<em>write</em> mode. When we open a file with this command in <em>write</em> mode if
+the file (with the name with pass) does not exist it is created. If it
+does exist, all the contents of the current file will be erased, so be
+careful when opening a file from your script. Check for the location,
+file name, etc before opening the file. So, basically we have</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and
+the file is open and ready to receive data. Let&#8217;s cheat and use the
+previous script that counts nucleotides and modify it to save a
+<code>count.txt</code> file wit the results:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#let&#39;s keep the file fixed for now</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list </span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#initialize a string to receive the data </span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>    <span class="c">#notice the strip, to remove n </span>
+</span><span class='line'>    <span class="c">#&quot;exploding&quot; the sequence in a list </span>
+</span><span class='line'>    <span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'><span class="c">#initializing integers to store the counts </span>
+</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="c">#checking each item in the list and updating counts </span>
+</span><span class='line'><span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalA</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalC</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;G&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalG</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="c">#printing results</span>
+</span><span class='line'><span class="n">resultfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;counts.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The only difference is at the end of the script. Here instead of <code>print</code> we use
+<code>write</code>. Notice that <code>write</code> is a method of the opened file.(in our case
+called <code>resultfile</code>. This method only accepts strings, so we need to
+convert everything to string before writing in the file. Notice also
+that we need to add a carriage return/newline at the end of the string
+to be written. Differently of <code>print</code>, <code>write</code> does not automatically
+puts a new line at the end of the output.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/13/manipulating-strings-again/">Manipulating strings: again</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-13T14:30:54-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As I have not updated the website in a couple of weeks, I will try to
+catch up with the book instead of revisiting (for the time being) our
+past scripts. I am going to finish the book&#8217;s chapter 5 (our section 2)
+in the next post, where I will give a small introduction on how to
+output data to a file in Python. On this post we will check some of the
+methods that can be used to manipulate strings. The book gives only a
+couple of methods to be used in perl on string, but here I will show a
+longer list of Python methods that can be used on its immutable strings.</p>
+
+<p>A full list of the methods can be found
+<a href="http://docs.python.org/lib/string-methods.html">here</a> and I will will
+give brief explanations on the ones I think are key for bioinformatics.</p>
+
+<p>Remember that string cannot be changed in Python, so we will always
+going to use a buffer/temp variable to store our changed string when
+needed. - <strong>count</strong> this method returns the number of times you see a
+substring (a letter/number, a word, etc) in another string. You can also
+specify a start and an end positions to look for. This is handy if you
+are counting nucleotides/aaminoacids in a sequence. This method returns
+an integer - <strong>endswith</strong> this method checks the end of your string for
+a determined substring. Very handy of you need to check the tail end of
+your sequence right away. - <strong>find</strong> returns the position of the
+substring being searched, and -1 if it is not found. It is similar to
+the re.search we used before. This is very useful if you are looking for
+a determined motif/subsequence in a hurry. - <strong>islower</strong> returns a true
+bool (true or false) if all characters in the string are lowercase.
+False if at least one of the characters is uppercase. Very handy if you
+need to convert lowercase to UPPERCASE files for input in some
+application. Works in conjunction with the <strong>isupper</strong> which is
+basically the opposite. - <strong>join</strong>. We have seen this before: it
+concatenates strings using a determined separator. - <strong>lower</strong> and
+<strong>upper</strong>, that as their name might indicate return the string converted
+to lowercase/uppercase.This is also good for the conversion of sequence
+format in input files.</p>
+
+<p>I will stop here. There are many other methods
+that can be used. Some of the above were already covered here and in the
+next posts we will take a look at the other ones, creating an
+application that actually performs some useful function.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/02/wikipedia-ii/">Wikipedia II</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-02T17:46:10-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Quite &#8220;old&#8221; (for the new standards) but very relevant.</p>
+
+<p>Here - <a href="http://www.wired.com/news/culture/0,70670-0.html">The Wikipedia FAQK</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/38/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/36/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

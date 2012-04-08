@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="As mentioned above, regex in Python are provided by the re module,
-which provides an interface for the regular expression engine. First
-thing we have &hellip;">
+  <meta name="description" content="While we are on the Scienceblogs-doing-more-harm-than-good and scientific communication topic, let&#8217;s keep going (I have nothing against Seed &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +68,7 @@ thing we have &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/01/16/the-regular-expression/">The Regular Expression</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/05/13/doing-more-harm-than-good/">Doing more harm than good</a></h1>
     
     
       <p class="meta">
@@ -86,77 +84,22 @@ thing we have &hellip;">
   
 
 
-<time datetime="2007-01-16T13:49:07-05:00" pubdate data-updated="true">Jan 16<span>th</span>, 2007</time>
+<time datetime="2009-05-13T12:21:56-04:00" pubdate data-updated="true">May 13<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>As mentioned above, regex in Python are provided by the <code>re</code> module,
-which provides an interface for the regular expression engine. First
-thing we have to do is to tell the interpreter what to do and what
-expression to use. Let&#8217;s start with a DNA sequence.</p>
+  <div class="entry-content"><p>While we are on the <a href="http://scienceblogs.com/">Scienceblogs</a>-doing-more-harm-than-good and scientific communication topic, let&#8217;s keep going (I have nothing against Seed magazine and some nice people that blog <a href="http://scienceblogs.com/"> there </a>, just to be clear)</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Recently, the Brazilian branch of the blog &#8220;community&#8221; was launched. I don&#8217;t know if I&#8217;m fortunate or not of being able to read  Portuguese, but a respected online organization has to support some type of editorial/post quality. The amount of grammatical errors that appear on the blog posts there is astounding. One of the bloggers even discuss with commenters that he spelled a word wrong because it makes more sense to him. This followed by some subject-verb concordance errors.</p>
 
+<p>I understand, you will find identical mistakes here, in English of all languages. But I&#8217;m not a native English speaker. And my audience is much more restrict than any of the Brazilian Scienceblogs.</p>
 
-<p>How to
-transcribe it to RNA? Transcription creates a single-strand RNA molecule
-from the double-strand DNA; basically the final result is a similar
-sequence, with all <code>T</code>&#8217;s changed to <code>U</code>&#8217;s. So our regular expression has
-to find all <code>T</code> nucleotides in the above sequence and then replace them.
-Regular expressions in Python need to be compiled into a RegexObject,
-that contains all possible regular expression operations. In our case we
-need to search and replace, what can be done by using the <code>sub()</code>
-method. According to the Python&#8217;s <a href="http://www.amk.ca/python/howto/regex/regex.html">Regular Expression HOWTO</a> <code>sub()</code> returns
-the string obtained by replacing the leftmost non-overlapping
-occurrences of the RE in string by the replacement replacement. If the
-pattern isn&#8217;t found, string is returned unchanged. Let&#8217;s put everything
-above in real code. First we need to compile a new RegexObject that will
-search for all thymines in our sequence. It can be achieved by using
-this:</p>
+<p>Communicating science is important. Communicating science correctly is primordial. Using the right spelling and grammar is key. We don&#8217;t have to think or assume that lay (scientifically) people would accept such mistakes, and you would expect that a scientist or a to-be-scientist would try to avoid making writing mistakes.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Simple as that. This line of code tells the
-Python interpreter that our &#8220;regular expression&#8221; is every T in our
-string. Now, we have to make replace those Ts with Us. In order to do
-that we just tell the interpreter:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="n">myDNA</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Let&#8217;s look at the last two lines of
-code. On the first line we created a new RegexObject, <code>regexp</code> (that
-could have any name, as any variable) and compiled it, making our
-regular expression to be every T in our string. On the second line, we
-assigned our soon to be created RNA sequence to a new string (remember
-that strings in Python are immutable) and used the command <code>sub</code> to
-replace in the Ts by Us present in our original DNA string. Putting all
-together our transcription code will be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
-</span><span class='line'><span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="n">myDNA</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="n">myRNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<p>And to whoever is managing the Scienceblogs (Brazil at least), maybe investing a little bit of money on proof-reading the entries to avoid some embarassing things.</p>
 </div>
   
   
@@ -169,7 +112,7 @@ together our transcription code will be</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/01/15/python-printing-statement/">Python printing statement</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/05/12/the-new-americas-cult/">The new America&#8217;s cult </a></h1>
     
     
       <p class="meta">
@@ -185,84 +128,38 @@ together our transcription code will be</p>
   
 
 
-<time datetime="2007-01-15T18:40:41-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
+<time datetime="2009-05-12T08:45:57-04:00" pubdate data-updated="true">May 12<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Just an apart from the bioinformatics aspect of programming: Python&#8217;s
-<code>print</code> statement. As in most computer languages Python allows an easy
-way to write to the standard output. Python&#8217;s <code>print</code> only accepts
-output of strings, and if the variable sent to it is not a string it is
-first converted and then output. The <code>print</code> always put a linebreak
-(<code>'\n'</code> or <code>"\n"</code>) at the end of the expression to be output, except
-when the <code>print</code> statement ends with a comma. For example:</p>
+  <div class="entry-content"><p><a href="http://scienceblogs.com/pharyngula/">He</a> has been &#8220;portrayed&#8221; here a a cult leader, and that&#8217;s maybe only my opinion. And in he latest diatribes he <a href="http://scienceblogs.com/pharyngula/2009/05/idiot_america_new_and_expanded.php">continues to attack head on</a> the &#8220;problems&#8221; with America and how <a href="http://scienceblogs.com/pharyngula/">He</a> will be able to solve it, by just creating a new cult, by breeding new cult followers that think are doing something great and in the end are just putting more fuel in the fire.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&quot;This is a&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;test&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p><a href="http://scienceblogs.com/pharyngula/">He</a> just forgets that, the more you fight the more you give your opponent an opportunity to fight back and gain more support (Yes, this post is a <a href="http://en.wikipedia.org/wiki/Catch-22">Catch 22</a>, but I&#8217;m David in this case).</p>
 
+<p>I spent around 700 words last time saying that we scientists need to rethink the way we tell the world the things we do:</p>
 
-<p>will print</p>
+<blockquote><p>We are horrible communicators, most of our websites are dreadful and do no contain any useful information and when we are confronted with a dumb Playboy bombshell we lose the argument. We lose because usually the argument is so ludicrous that we have no patience to explain. We lose because we are unable to communicate in lay terms. We lose because we&#8217;re not entertainers or crowd manipulators. We lose because we make our arguments difficult to understand. We lose because we get angry.</p></blockquote>
 
-<p><strong>This is a</strong>
-<strong>test</strong></p>
+<p>and someone on reddit <a href="http://www.reddit.com/r/science/comments/8jp4i/the_rise_of_idiot_america/c09ic2j">was spot on analysing</a> <a href="http://scienceblogs.com/pharyngula/">His</a> article:</p>
 
-<p>while</p>
+<blockquote><p>The author of the article doesn&#8217;t seem to realise the article itself is part of the reason people (smart people, not just morons) are starting to distrust &#8220;experts&#8221; -</p></blockquote>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&quot;This is a&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;test&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>-Climate predictions have not yet been confirmed. It isn&#8217;t stupid to be on the fence (also known as &#8220;scepticism&#8221;) on that issue. Note that I&#8217;m talking about man-made climate change here, not climate change generally, which is very well established.</p>
 
+<p>-<a href="http://en.wikipedia.org/wiki/Immanuel_Velikovsky">Velikovsky</a> was not a crank. He just had some unusual ideas.</p>
 
-<p>will print</p>
+<p>Generally, calling people cranks when their ideas don&#8217;t fit with yours is a stupid thing to do. Hence, an &#8220;expert&#8220;&#8216;s opinion is sometimes distrusted because it&#8217;s seen - correctly - to be biased. Science is changing, and moving forward, at a very fast pace. Ideas that are the pillars of various fields of science today will be historical curiosities tomorrow. Some of those pillars were even ridiculed in their day - tectonic shift for example.</p>
 
-<p><strong>This is a test</strong></p>
+<p>When scientists start thinking of themselves as science, and science starts thinking of itself as an institution and starts using character attacks to defend itself, it shouldn&#8217;t surprise anyone that those scientists will lose trust.</p>
 
-<p>Of course Python&#8217;s <code>print</code> statement allows any programming escape character, such
-as <code>'\n'</code> and <code>'\t'</code>.</p>
+<p>I don&#8217;t want to come across as anti-science here - that couldn&#8217;t be further from the truth. I just think we should take care to distinguish the non-ideal scientists (matriculated and not) doing science from the ideal methodology of science.</p>
 
-<p><strong>Concatenating strings on output</strong></p>
+<p>I couldn&#8217;t have written any better. And I think <a href="http://scienceblogs.com/">ScienceBlogs</a> are doing more damage than good. But that&#8217;s another catch 22.</p>
 
-<p>To concatenate two strings on output there are two possible ways in Python. You can
-either separate the strings with a comma, like we did here</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA</span><span class="p">,</span> <span class="n">myDNA2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> or you can use the &#8220;+&#8221; sign in roder to obtain almost the same result. This is similar to
-what was used here</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA3</span> <span class="o">=</span> <span class="n">myDNA</span> <span class="o">+</span> <span class="n">myDNA2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>but instead we would use the <code>print</code> command as</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA3</span> <span class="o">+</span> <span class="n">myDNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In the latter case, both strings will not be separated by a space and will be
-merged. To get the same result you would have to concatenate an extra
-space between the strings like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA3</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">myDNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p><a href="http://reblog.zemanta.com/zemified/a57b194d-1784-48b6-abd3-e929237c3ffc/"><img src="http://img.zemanta.com/reblog_a.png?x-id=a57b194d-1784-48b6-abd3-e929237c3ffc" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -275,7 +172,7 @@ space between the strings like</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/01/15/importing-and-regular-expressions/">Importing and regular expressions</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/05/08/on-anti-vaccine-and-the-internet/">On anti-vaccine and the internet</a></h1>
     
     
       <p class="meta">
@@ -291,66 +188,28 @@ space between the strings like</p>
   
 
 
-<time datetime="2007-01-15T13:47:54-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
+<time datetime="2009-05-08T14:02:22-04:00" pubdate data-updated="true">May 8<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Tisdall&#8217;s book on Perl introduces next the ability to transcripts DNA
-sequences into RNA. In order to do that we need to check a different
-aspect of programming: regular expressions (or regex). Regular
-expressions is a pattern/string expression that works
-matching/describing/filtering other strings. Let&#8217;s say you want to
-examine or extract all vowels contained in one phrase, one page, one
-word. Another example would be to remove all html tags from a downloaded
-webpage. As HTML tags are encapsulated between <code>&lt;</code> and <code>&gt;</code> signs we can
-create a regex that will search for any characters in between the signs
-and remove (parse) them from our page. We will deal very briefly with
-regex, and if you are interested in learning more about it you can
-search for countless references on the internet (such as <a href="http://www.regular-expressions.info/">this one</a>).</p>
+  <div class="entry-content"><p>A lot of controversy has been raised about vaccinating or not children. The main advocates of the anti-vaccination campaign are, what I call, the sprouts of the internet. They are celebrities, right-wing pundits, people &#8220;that have brains&#8221; and are able to do research on the topic while browsing the internet.</p>
 
-<p>In order to use regular
-expression in Python we need to check another concept present in the
-language: importing modules. Python core functionality provides most of
-the usual operations and also comes with a built-in library of functions
-that &#8220;access to operations that are not part of the core of the language
-but are nevertheless built in&#8221;. One of this operations is the ability to
-interpret regular expression that in Python is located in the <code>re</code>
-module. Apart from the language core, built in modules, Python can be
-further extended by using third-party modules imported into the
-language. Anyone can create a module and distribute to every Python user
-and programmer. So, in order to have regex capabilities we literally
-have to <code>import</code> the regex module. We do that by entering the line:</p>
+<p>I&#8217;m not linking this post to any of the sources for the anti-vaccination gang. I&#8217;ve seen horrible and sad things. An Australian woman said she researched 20 years about vaccines, and she is not a MD or a PhD on anything, and still she has more followers than the national vaccine coordination of Australia. Jenny McCarthy has a brain, but not a very developed one, and my wife and I would never follow the advice of a Playboy bunny, terrible actress and worse TV personality on how to take care of our children (no, we don&#8217;t have children now, but we will). So basically these people have the power of bringing together a dark cloud against reason, science and community well-being. And how they do that? Ah, the internet.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>My father usually says that the internet is the worst invention of humanity. The distances were erased, information runs freely (most of it) and nutjobs have credibility. Unimportant things, like dijon mustard on an hamburger, become important in minutes. The head ache afflicting a saudi prince brings the oil price up. In the past, the not so distant one when I was a kid, it took ages (compared to today) for the information to cross the globe. It took ages for North American fads to get to Brazil, not to mention TV shows. I still don&#8217;t know how Twin Peaks ended. Today, a nutjob creates a website with fake or dubious information, post the link to some social website and in a matter of hours he or she has thousands of followers, in New Zealand and Gabon. The power of the viral spreading of news.</p>
 
+<p>This nutjob-power is very similar to what Jon Stewart asked George Stephanopoulos a couple of days ago on The Daily Show: when Bush was a president, do the aides planted news in respected outlets allowing the government to say &#8220;see, NY Times is reporting it, so it must be true&#8221;? When you confront an anti-vaccine nutjob, he will point &#8220;hundreds of researches&#8221; on the topic and these so-called researches will be listed in one website, with a nice layout and a bunch of real and fake &#8220;researches&#8221; backing up their claims. It&#8217;s easy and cheap to create a website today that will serve as the main information source for all your fake allegations and theories. And the more &#8220;credibility&#8221; you gain in the right (right for this kind of lunacy) circles, the easier to increase the ferocious herd following you.</p>
 
-<p>Python&#8217;s code style
-guide suggests that <code>import</code> statements should be on separate lines</p>
+<p>You might say that TV is an accomplice to the internet in providing fuel to the nutjobs and I would say that I partially agree with you. In the not so distant past, I had 6 or 7 channels to watch, now I have 200. This helps the vicious circle,  internet nutjobs are backed on TV and TV nutjobs point to their websites. With their own sites and TV channels.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span> <span class="nn">import</span> <span class="nn">re</span> <span class="o">...</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>You might say that you have to rationally analyse everything you read on the internet and I would say that I agree with you. Just don&#8217;t ask most of the people, you might be surprised by their answer.</p>
 
+<p>And what all of this has to deal with us scientists? We are horrible communicators, most of our websites are dreadful and do no contain any useful information and when we are confronted with a dumb Playboy bombshell we lose the argument. We lose because usually the argument is so ludicrous that we have no patience to explain. We lose because we are unable to communicate in lay terms. We lose because we&#8217;re not entertainers or crowd manipulators. We lose because we make our arguments difficult to understand. We lose because we get angry.</p>
 
-<p>and
-to be put on the top of the file (usually below the line that tells your
-OS to use Python&#8217;s interpreter on the script). So the first two lines of
-our new script would be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env</span>
-</span><span class='line'><span class="n">python</span> <span class="kn">import</span> <span class="nn">re</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now that we have the ability to use regex,we need to create one expression that will transcribe our DNA sequences
-into RNA.</p>
+<p>We invented the internet, we were the first ones to use it and we still haven&#8217;t fully grasped how to take advantage of it. And I think, now it&#8217;s too late. We are years behind any other social group. Our social interaction on the internet is laughable and we cannot even create a movement to improve Open Science. And we have another problem: we think we are too clever to accept anyone else&#8217;s ideas. And while we do that, we let the internet and dumb Playboy bunnies take care of the future of children. Maybe if all future scientist die because of the lack of mass vaccination, we will learn.</p>
 </div>
   
   
@@ -363,7 +222,7 @@ into RNA.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2006/12/14/sequences-and-strings-part-ii/">Sequences and Strings - part II</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/25/its-not-just-me-victor/">It&#8217;s not just me, Victor.</a></h1>
     
     
       <p class="meta">
@@ -379,73 +238,31 @@ into RNA.</p>
   
 
 
-<time datetime="2006-12-14T15:30:32-05:00" pubdate data-updated="true">Dec 14<span>th</span>, 2006</time>
+<time datetime="2009-04-25T09:27:13-04:00" pubdate data-updated="true">Apr 25<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Another important task for many biologists is to merge/concatenate
-different strings of DNA in one unique sequence. We can modify the
-previous script to concatenate two distinct DNA sequences in one. We
-start using code_01 structure, adding some extra elements (line 3):</p>
+  <div class="entry-content"><p>&#8220;<a href="http://en.wikipedia.org/wiki/Mendeley">Mendeley</a> seems to be choking while importing my 1039 pdfs from ~/Documents/Papers/. Beachballing, can&#8217;t tell what it is doing.&#8221; <a href="http://twitter.com/mja/status/1612595721">mja on Twitter</a>.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python </span>
-</span><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTACGTACGTACGTACGTACGT&#39;</span>
-</span><span class='line'><span class="n">myDNA2</span> <span class="o">=</span> <span class="s">&quot;TCGATCGATCGATCGATCGA&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="n">myDNA</span><span class="p">,</span> <span class="n">myDNA2</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>And in reply:</p>
 
+<p>&#8220;@mja Mendeley did exactly the same to me. Hangs on every start up now.&#8221; <a href="http://twitter.com/sjcockell/status/1612725193">sjcockell on Twitter</a>.</p>
 
-<p>So far, we added a new string containing an extra
-DNA sequence and we <code>print</code> both sequences. In Python <code>print</code> statement
-automatically adds a new line at the end of the string to be printed,
-unless you add a comma (,) to the end. The comma is also needed if you
-are going to print more than one string in order to separate them (<em>try
-removing the comma from the code above</em>). Now, how do we merge myDNA and
-myDNA2? Easy in Python: just <em>sum</em> them with a plus signal:</p>
+<p>So, I guess it&#8217;s not something personal to the nice chaps that work at Mendeley. The software is pretty bad, and that&#8217;s the only reality here. And I&#8217;m not criticizing, I&#8217;m just stating.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA3</span> <span class="o">=</span> <span class="n">myDNA</span> <span class="o">+</span> <span class="n">myDNA2</span>
-</span><span class='line'><span class="k">print</span> <span class="n">myDNA3</span>
-</span></code></pre></td></tr></table></div></figure>
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://my.biotechlife.net/2009/03/04/community-liaison-mendeley/">Community Liaison @ Mendeley</a> (my.biotechlife.net)</li>
+<li><a href="http://blindscientist.genedrift.org/2009/03/18/i-havent-joined-mendeley-as-community-liaison/">I haven&#8217;t joined Mendeley as community liaison</a> (blindscientist.genedrift.org)</li>
+<li><a href="http://blindscientist.genedrift.org/2009/04/03/mendeley-an-extremely-short-review-sort-of/"> Mendeley: an extremely short review (sort of) </a> (blindscientist.genedrift.org)</li>
+</ul>
 
 
-<p>Notice that in Python strings are immutable, meaning they cannot be
-changed. This immutability confers some advantages to the code where
-strings (<em>in Python strings are not <strong>variables</strong></em>) cannot be modified
-anywhere in the program and also allowing some performance gain in the
-interpreter. So, in order to have our sequences merged we create a third
-sequence that receives both strings. Finally our code will be (some
-captions were added):</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env</span>
-</span><span class='line'><span class="n">python</span> <span class="n">myDNA</span> <span class="o">=</span> <span class="s">&quot;ACGTACGTACGTACGTACGTACGT&quot;</span>
-</span><span class='line'><span class="n">myDNA2</span> <span class="o">=</span> <span class="s">&quot;TCGATCGATCGATCGATCGA&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;First and Second sequences&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="n">myDNA</span><span class="p">,</span> <span class="n">myDNA2</span>
-</span><span class='line'><span class="n">myDNA3</span> <span class="o">=</span> <span class="n">myDNA</span> <span class="o">+</span> <span class="n">myDNA2</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Concatenated sequence&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="n">myDNA3</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Easy, eh? Of course these two simple scripts do no
-scratch the surface of Python programming, but they are a start.</p>
+<p><a href="http://reblog.zemanta.com/zemified/7352cb9c-7ac1-4a61-800e-55eec6897904/"><img src="http://img.zemanta.com/reblog_a.png?x-id=7352cb9c-7ac1-4a61-800e-55eec6897904" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -458,7 +275,7 @@ scratch the surface of Python programming, but they are a start.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2006/12/13/hands-on-code-sequences-and-strings-part-i/">Hands on code: Sequences and strings - part I</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/22/managing-a-simple-database-with-python-sqlite-and-wxpython-8/">Managing a simple database with Python, SQLite and wxPython, 8</a></h1>
     
     
       <p class="meta">
@@ -474,92 +291,96 @@ scratch the surface of Python programming, but they are a start.</p>
   
 
 
-<time datetime="2006-12-13T22:27:48-05:00" pubdate data-updated="true">Dec 13<span>th</span>, 2006</time>
+<time datetime="2009-04-22T10:04:17-04:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>As pointed in <strong>Beginning Perl for Bioinformatics</strong>, a large percentage
-of bioinformatics procedures deals with strings, especially DNA and
-amino acids sequence data. As is largely known DNA is composed of four
-different nucleotides: A, C, T and G and proteins can contain up to 20
-amino acids. Each one of these elements have one letter of the alphabet
-assigned to them. In the DNA case some letters represent one or more
-nucleotides that can be present at some sequence position (click
-<a href="http://www.cns.fr/externe/English/Projets/Resultats/iupaciub.html">here</a>
-for more ).</p>
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Gene.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Gene.png/200px-Gene.png" title="Diagram of the location of introns and exons w..." alt="Diagram of the location of introns and exons
+w..." /></a>
+  ~ Image via</p>
 
-<p>So, as the amino acid is the basic building block of
-proteins (AKA polypeptides), strings containing sequence is our most
-basic block, from where all the bioinformatics magic will work on.
-Usually in Perl a string is represented by the dollar sign in front of
-the variable name, like this <code>$sequence</code>. Python is dynamically typed,
-meaning variable types are assigned/discovered by the interpreter at run
-time. This means that the value after the equal sign will tell the
-interpreter what variable type you are declaring. So in Python if you
-want to store a DNA sequence you can just enter</p>
+<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:Gene.png)
+</code></pre>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mydna</span><span class="o">=</span><span class="s">&quot;ACGTACGTACGTACGTACGTACGT&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Thanks to the comments and suggestions to the last post, it&#8217;s possible
+to make now a more pythonic and clearly generic database update class.
+Let&#8217;s check how the &#8220;generic&#8221; update/edit entry function is currently:
+[sourcecode language=&#8217;python&#8217;]def update_data(self, values_list):
+&#8221;&#8217;edits and updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
+database) = link_db(self.db_path) else: (cursor, database) =
+link_db() cursor.execute(&#8220;UPDATE bac SET projects = ?, comments = ?,
+temperature = ?, cell = ?, box = ?, tubes = ?, chromosome = ?, sdate =
+?, clone = ?, source = ?, location1 = ?, startpos = ?, endpos = ?, gene
+= ?, genelink = ?, dnaex = ?, validation = ?, pcr = ?, refs = ?,
+antibiotic = ? WHERE idbac = ?&#8221;, values_list[&#8216;projects&#8217;],
+values_list[&#8216;comments&#8217;], values_list[&#8216;temperature&#8217;],
+values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;], values_list[&#8216;tubes&#8217;],
+values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;], values_list[&#8216;clone&#8217;],
+values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;], values_list[&#8216;start&#8217;]
+values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;], values_list[&#8216;genelink&#8217;],
+values_list[&#8216;dna&#8217;], values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;],
+values_list[&#8216;refs&#8217;], values_list[&#8216;antibiotic&#8217;],
+values_list[&#8216;idbac&#8217;])) database.commit() database.close()[/sourcecode]
+which is really ugly and, although it works, is not really useful
+outside this small project. Based on the comments the best option was to
+use placeholders and a dictionary, similar to the approach used on the
+insert data function. Pre-formatting a string to have both the field
+name to be updated and a placeholder (for instance <code>:idbac</code>) that will
+receive the values [sourcecode language=&#8217;python&#8217;]update =
+&#8217;,&#8217;.join([&#8216;%s=:%s&#8217; % (y, y) for y in values_list])[/sourcecode] where
+update is the string we want and values_list is the dictionary with all
+the key-value pairs. I tried this approach, using this structure in the
+generic function, but then I decided that the best alternative was to
+put this <code>join</code> in the derived class function and pre-populate the
+string with the values and then send this string directly to the update
+function. In the end I opted to use this [sourcecode
+language=&#8217;python&#8217;]update = &#8216;,&#8217;.join([&#8216;%s=&#34;%s&#34;&#8217; % (y,
+values_list[y]) for y in values_list])[/sourcecode] The latter is
+slightly different to what was suggested. The original one would create
+a tuple with the keys from the dictionary, making for instance
+<code>sdate:sdate</code>. With all these place holders just pass the dictionary and
+you have all the values inserted. This would be handy if the insert
+string was being created on the &#8220;generic&#8221; function. If we move this to
+the derived class, we can use the the alternative, keeping in mind that
+the values parsed should be surrounded by quotes, otherwise the SQL
+UPDATE statement will have problems with spaces and other foreign
+characters that should not be there. So instead of placeholders we will
+have <code>gene:"PTEN"</code> and we can attache this joined string to the actual
+commands. We then can move all the machinery from the &#8220;generic&#8221; function
+that can be written as [sourcecode language=&#8217;python&#8217;]def
+update_data(self, update_string): &#8221;&#8217;edits and updates fields&#8221;&#8217; if
+sys.platform == &#8216;darwin&#8217;: (cursor, database) = link_db(self.db_path)
+else: (cursor, database) = link_db() cursor.execute(update_string)
+database.commit() database.close()[/sourcecode] That&#8217;s it, very elegant
+(we will see the derived class in the next post). And finishing our
+generic class, we would need a delete function, so the user can
+eliminate entries that he/she doesn&#8217;t want anymore. It&#8217;s also a very
+simple function [sourcecode language=&#8217;python&#8217;]def delete_data(self,
+delete_string): &#8221;&#8217;deletes one field&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;:
+(cursor, database) = link_db(self.db_path) else: (cursor, database) =
+link_db() cursor.execute(delete_string) database.commit()
+database.close()[/sourcecode] We will check the delete string next time.
+Again, I would like to thank for all the comments, it has been really
+helpful for me. Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
+5</a>
+<a href="http://python.genedrift.org/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/">Part
+6</a>
+<a href="http://python.genedrift.org/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/">Part
+7</a></p>
 
-
-<p><em>a quick
-note: Python can be used with the interpreter command line or by
-previously saved scripts. I will try to use the latter in the code
-examples.</em></p>
-
-<p>OK, we are ready to create our first Bioinformatics Python
-Hello World script. Let&#8217;s get the sequence above and print it on the
-screen. The first line will tell the operating system what to use and
-where to find the Python interpreter</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Next we will create the variable myDNA
-and assign the corresponding sequence</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&quot;ACGTACGTACGTACGTACGTACGT&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And finally, we will print the contents of the variable to the screen:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As mentioned above, Python mandates that you have your code indented, but in our
-final script this is not needed:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env </span>
-</span><span class='line'><span class="n">python</span> <span class="n">myDNA</span> <span class="o">=</span> <span class="s">&quot;ACGTACGTACGTACGTACGTACGT&quot;</span> <span class="k">print</span> <span class="n">myDNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The first line tells your operating system that this
-is a Python script and to use the interpreter located in that directory;
-line two declares a variable called <code>myDNA</code> and assigns the sequence
-string to it and the last line simply output this variable to the
-screen. That simple! To run this (extremely simple) script you can copy
-and paste the code above to your favourite text editor save the file
-with a <code>.py</code> extension (recommended but not necessary). To run the
-script, as long as you have Python installed, just open a shell and type
-on the command line:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&gt; python code_01.py
-</span></code></pre></td></tr></table></div></figure>
-
+<p><a href="http://reblog.zemanta.com/zemified/e8dc77f5-e3de-4d4f-8ec1-8c0006225743/" title="Reblog this post [with Zemanta]"><img src="http://img.zemanta.com/reblog_a.png?x-id=e8dc77f5-e3de-4d4f-8ec1-8c0006225743" alt="Reblog this post [with
+Zemanta]" /></a></p>
 </div>
   
   
@@ -572,7 +393,7 @@ on the command line:</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2006/12/13/4/">Why Python and not Perl?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/">Managing a simple database with Python, SQLite and wxPython, 7 (includes a question)</a></h1>
     
     
       <p class="meta">
@@ -588,43 +409,78 @@ on the command line:</p>
   
 
 
-<time datetime="2006-12-13T22:00:09-05:00" pubdate data-updated="true">Dec 13<span>th</span>, 2006</time>
+<time datetime="2009-04-20T12:21:59-04:00" pubdate data-updated="true">Apr 20<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>According to the official Python
-<a href="http://www.python.org/doc/essays/comparisons.html">website</a>:</p>
-
-<blockquote><p>Python and Perl come from a similar background (Unix scripting, which
-both have long outgrown) [to learn more about that check this
-tutorial], and sport many similar features, but have a different
-philosophy. Perl emphasizes support for common application-oriented
-tasks, e.g. by having built-in regular expressions, file scanning and
-report generating features. Python emphasizes support for common
-programming methodologies such as data structure design and
-object-oriented programming, and encourages programmers to write
-readable (and thus maintainable) code by providing an elegant but not
-overly cryptic notation. As a consequence, Python comes close to Perl
-but rarely beats it in its original application domain; however Python
-has an applicability well beyond Perl&#8217;s niche.</p></blockquote>
-
-<p>I couldn&#8217;t explain better than that. But still I have to give my take on
-why I prefer Python over Perl, and why I decided to use it in my
-day-to-day programming. First I have to admit that I am lousy Perl
-programmer (not even close to an apprentice monger) and I always get
-confused by its syntax. Second I come from a Basic/Pascal/C++
-background, all of them having slightly better syntaxes than Perl. Thus,
-it was natural to get on the Python bandwagon, and as the paragraph
-above states Python code is &#8220;extremely&#8221; readable (emphasis are mine); in
-no-time you can grasp it completely. OK, I admit that it has at least
-one odd feature : the &#8220;mandatory&#8221; indentation. In Python you have to
-tabulate (using tabs or space &lt;- recommended) loops, if clauses,
-functions, anything. Maybe this is the first and only hard step to get,
-but after a couple of hours of coding you will be satisfied on how good
-your code look.</p>
+  <div class="entry-content"><p>And we&#8217;re back. After a couple of weeks of inactivity we will get back
+to our small soap-opera pf Python, wxPython and SQLite. Continuing in
+our database management code let&#8217;s check two other functions that
+changed since our first inception of the code. The first one is the
+<code>insert_data</code> function that looks like this now [sourcecode
+language=&#8217;python&#8217;]def insert_data(self, values_list, insert_string):
+&#8221;&#8217;inserts data in the database&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
+database) = link_db(self.db_path) else: (cursor, database) =
+link_db() cursor.execute(insert_string % self.table_name,
+values_list) database.commit() database.close()[/sourcecode] Basically
+no changes, apart from the obvious check for the current running
+operating system, which was explained in the last post. The other
+function to check is the <code>update_data</code>. This function is new and it
+wasn&#8217;t in the first version, but as it can be seen it has a problem
+being a &#8220;generic&#8221; function, because it contains information pertained to
+the table and database being used in the interface. This function
+basically received information that needs to be updated in the table&#8217;s
+fields and by using the SQL <code>UPDATE ... SET</code> edits and updates data in
+the changed fields. I have tried several different syntaxes to make the
+execute generic, mainly trying to pre-format the string without success.
+IF anyone reading this can help, I&#8217;d appreciate. [sourcecode
+language=&#8217;python&#8217;]def update_data(self, values_list): &#8221;&#8217;edits and
+updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor, database) =
+link_db(self.db_path) else: (cursor, database) = link_db()
+cursor.execute(&#8220;UPDATE bac SET projects = ?, comments = ?, temperature =
+?, cell = ?, box = ?, tubes = ?, chromosome = ?, sdate = ?, clone = ?,
+source = ?, location1 = ?, startpos = ?, endpos = ?, gene = ?, genelink
+= ?, dnaex = ?, validation = ?, pcr = ?, refs = ?, antibiotic = ? WHERE
+idbac = ?&#8221;, values_list[&#8216;projects&#8217;], values_list[&#8216;comments&#8217;],
+values_list[&#8216;temperature&#8217;], values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;],
+values_list[&#8216;tubes&#8217;], values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;],
+values_list[&#8216;clone&#8217;], values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;],
+values_list[&#8216;start&#8217;], values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;],
+values_list[&#8216;genelink&#8217;], values_list[&#8216;dna&#8217;],
+values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;], values_list[&#8216;refs&#8217;],
+values_list[&#8216;antibiotic&#8217;], values_list[&#8216;idbac&#8217;])) database.commit()
+database.close()[/sourcecode] Anyway, I will explain the logic of the
+command (OK for a stop gap, but not as a definite solution).
+<code>values_list</code> is a dictionary that is passed to the function and
+contains the field names as keys and the new/changed information as
+values. The execute method simply parses the values from each key in the
+update string which is then sent to the database and table to be
+changed. Everything is committed and the database is closed. As this is
+a &#8220;generic&#8221; function from a &#8220;generic&#8221; class the ideal scenario would be
+to the function to receive a pre-formatted string with all the
+information, as in the insert data function, and update the information
+in the database. I would like to thank in advance anyone that can
+comment on this. Next time we will continue checking the generic class
+and finalize this part in order to start with the interface build
+process.\
+\
+ Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
+5</a>
+<a href="http://python.genedrift.org/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/">Part
+6</a>
+<a href="http://reblog.zemanta.com/zemified/d0bb5d11-6f9d-8521-9a2f-6cd30868e375/" title="Reblog this post [with Zemanta]"><img src="http://img.zemanta.com/reblog_a.png?x-id=d0bb5d11-6f9d-8521-9a2f-6cd30868e375" alt="Reblog this post [with
+Zemanta]" /></a></p>
 </div>
   
   
@@ -637,7 +493,7 @@ your code look.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2006/12/13/3/">Beginning the begin</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/04/19/thanks-jim/">Thanks, Jim!</a></h1>
     
     
       <p class="meta">
@@ -653,28 +509,151 @@ your code look.</p>
   
 
 
-<time datetime="2006-12-13T21:36:29-05:00" pubdate data-updated="true">Dec 13<span>th</span>, 2006</time>
+<time datetime="2009-04-19T19:35:46-04:00" pubdate data-updated="true">Apr 19<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>This website uses as a premise the book: Beginning Perl for
-Bioinformatics by James Tisdal (click
-<a href="" title="http://www.amazon.com/gp/product/0596000804/ref=as_li_tf_tl?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596000804&quot;&gt;here&lt;/a&gt;&lt;img src=&quot;http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0596000804&quot; width=&quot;1&quot; height=&quot;1&quot; border=&quot;0&quot; alt=&quot;&quot; style=&quot;border:none !important; margin:0px !important;">here</a>
-to buy it). which was published in 2001. My idea here is to follow the
-structure of the book, analyzing each chapter and converting the Perl
-scripts into Python. The original book is very well written and an
-excellent starting point for any aspiring bioinformatician, either if
-you are a biologist that does not understand programming or a computer
-scientist that does not know a lot of biology and maybe even Perl. In no
-way this website/tutorial tries to plagiarize the book and I will try to
-include a minimum amount Perl code, as the book is only used as an
-starting point (a very good one indeed) to this journey into Python.
-Here you will not find biological concept explanations and criticisms
-towards Perl. Making this clear, I will start from the beginning. <strong>Why
-Python (and not Perl)?</strong></p>
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:EmpireOfTheSun%281stEd%29.jpg"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/0/0e/EmpireOfTheSun%281stEd%29.jpg/202px-EmpireOfTheSun%281stEd%29.jpg" alt="Empire of the Sun" /></a></p>
+
+<pre><code>Image via [Wikipedia](http://en.wikipedia.org/wiki/Image:EmpireOfTheSun%281stEd%29.jpg)
+</code></pre>
+
+<p>It was a great ride. It all started (for me) with a Crash and it will never end. Thanks for all the metaphors and for the books, they will be sorely missed.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/c9c943e8-3f4f-442c-8339-2a5a580bd314/"><img src="http://img.zemanta.com/reblog_a.png?x-id=c9c943e8-3f4f-442c-8339-2a5a580bd314" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/17/this-should-not-be-here-or-notes-to-a-bioinformatician-two-years-later/">This should not be here &#8230; or Notes to a bioinformatician - two years later</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-17T11:07:25-04:00" pubdate data-updated="true">Apr 17<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/03/mendeley-an-extremely-short-review-sort-of/">Mendeley: an extremely short review (sort of)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-03T14:21:27-04:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Fivestagespipeline.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Fivestagespipeline.png/202px-Fivestagespipeline.png" alt="Basic five-stage pipeline.  In the best case s..." /></a></p>
+
+<pre><code>Image via [Wikipedia](http://commons.wikipedia.org/wiki/Image:Fivestagespipeline.png)
+</code></pre>
+
+<p>I decided to test <a href="http://en.wikipedia.org/wiki/Mendeley">Mendeley</a> again (Yes, I have some kind of a masochist behaviour for software), and as the <a href="http://blindscientist.genedrift.org/2008/08/25/mendeley-a-very-short-review/">last time I tried</a>, I can say I&#8217;m not impressed.</p>
+
+<p>I tested on a directory containing mixed bag of PDFs, books, book chapters, articles and misc stuff. Most of the time the data was extracted but I ended with a wrong reference or garbage information about the file. Not mentoning that it took almost one full hour to analyse a little bit more than 500 files. I think I need to buy an eight-core machine now. The CPU peaked at 25-30% (one full core for it) on Vista, and the memory got up to 300 Mbs.</p>
+
+<p>Not impressed, maybe one day.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/f02ae34d-704f-429c-be7e-a17b33688633/"><img src="http://img.zemanta.com/reblog_a.png?x-id=f02ae34d-704f-429c-be7e-a17b33688633" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/31/phasing-out-scientific-software/">Phasing out scientific software</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-31T13:51:49-04:00" pubdate data-updated="true">Mar 31<span>st</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Hemagglutinin-alignments.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Hemagglutinin-alignments.png/202px-Hemagglutinin-alignments.png" alt="Sequence alignment of 27 H9N2 avian influenza ..." /></a></p>
+
+<pre><code>Image via [Wikipedia](http://commons.wikipedia.org/wiki/Image:Hemagglutinin-alignments.png)
+</code></pre>
+
+<p>There&#8217;s always the right time for everything. And for some scientific software it&#8217;s time for retirement. I will give here a one examples, but I bet if you&#8217;re a bioinformatician you will have others, and if you&#8217;re something else you will scratch your head and think &#8220;This guy is right!&#8221;. So let&#8217;s see the case of <strong><a href="http://www.clustal.org">ClustalW</a></strong>.</p>
+
+<p>ClustalW was the first massively used alignment program and it&#8217;s a great program. But in my opinion it was a great program and has to be remembered as such, a great tool that introduced the mysteries of sequence alignment to so many people. It had everything, an UI, a command line, and more important it converted and many file formats.</p>
+
+<p>A quick search on Google Scholar shows about 45000 results for ClustalW, but I&#8217;m sorry, it has to go. You have to stop using it, please. If you&#8217;re a bioinformatician, stop supporting it, don&#8217;t create a ClustalW(X) wrapper on any tool, forget about it. Every time someone mentions the word Clustal in front of you, pretend that he/she is a creationist. If you are not a bioinformatician, ask your local bioinformatician what is the best tool to use (Muscle, <a href="http://align.bmr.kyushu-u.ac.jp/mafft/software/">MAFFT</a> and <a href="http://probcons.stanford.edu/">ProbCons</a> are my favourite), delete the ClustalW on your HD (save one for posterity) and start living the high-alignment-life.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/825ffe3c-3961-4bb4-9dfe-a5332cf658cb/"><img src="http://img.zemanta.com/reblog_a.png?x-id=825ffe3c-3961-4bb4-9dfe-a5332cf658cb" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -683,6 +662,8 @@ Python (and not Perl)?</strong></p>
     </article>
   
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/14/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -697,23 +678,23 @@ Python (and not Perl)?</strong></p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
       </li>
     
   </ul>

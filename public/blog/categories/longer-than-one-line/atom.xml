@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: longer than one line | Zientzilaria]]></title>
+  <link href="http://zientzilaria.genedrift.org/blog/categories/longer-than-one-line/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.genedrift.org/"/>
+  <updated>2012-04-08T19:08:23-04:00</updated>
+  <id>http://zientzilaria.genedrift.org/</id>
+  <author>
+    <name><![CDATA[Paulo Nuin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Question]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/12/16/question/"/>
+    <updated>2010-12-16T15:00:31-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/12/16/question</id>
+    <content type="html"><![CDATA[<p>How many times did you hear that city/government/company/university has to have an Open Source Software policy or it will end up paying Microsoft more money? At the same time, how much Microsoft profit has gone down?</p>
+
+<p>Just askin'.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Brazil, the country of the future. Always.]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/12/16/brazil-the-country-of-the-future-always/"/>
+    <updated>2010-12-16T13:13:21-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/12/16/brazil-the-country-of-the-future-always</id>
+    <content type="html"><![CDATA[<p>A perfect <a href="http://news.ycombinator.com/item?id=2005685">comment</a> on Hackernews, in response to this <a href="http://www.webiphany.com/2010/12/14/is-brazil-finally-ready-to-fulfill-on-its-destiny-as-the-country-of-the-future/">article</a>:</p>
+
+<blockquote><p>No, it's not. Most of my extended family is in Brazil so my wife and I decided to work remote from Brazil for a couple months this fall. It's hard to really understand how crippling the culture of bureaucracy and corruption is until you experience it.</p></blockquote>
+
+<p>Internet. $200/mo USD for a theoretical 1MB connection. That's assuming the power stays on. Lots of people use the internet (mostly at cafes) but it's only for games and social networking -- nobody thinks of it as legitimate way to make money.</p>
+
+<p>Crime. In many parts of Sao Paulo and Rio people don't even stop at stoplights because the risk of getting shot and carjacked is too real.</p>
+
+<p>Education. Completely broken. Cheating is so rampant most teachers don't even try to prevent it from happening. That's at the private schools where my cousins have attended-- public schools are apparently far worse.</p>
+
+<p>Entrepreneurs. Most people literally don't even have a mental category for this. At best they make vague negative associations about you being a "capitalist." The dream job is either working for the government or getting an engineering position at some multi-national corporation.</p>
+
+<p>All of this is unfortunate because the Brazilian people are really delightful and quite creative. My wife is a designer and she says some of the best design is coming out of Brazil right now. Unfortunately corruption and regulation has completely driven out the spirit of innovation and that is unlikely to change anytime soon.</p>
+
+<p>Nailed it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Draft blog posts]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/04/01/draft-blog-posts/"/>
+    <updated>2010-04-01T20:38:28-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/04/01/draft-blog-posts</id>
+    <content type="html"><![CDATA[<p>Have so many draft posts, no will to write. Ask me anything, I might answer.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[I thought I was alone, but then I found another light]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/03/30/i-thought-i-was-alone-but-then-i-found-another-light/"/>
+    <updated>2010-03-30T08:39:22-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/03/30/i-thought-i-was-alone-but-then-i-found-another-light</id>
+    <content type="html"><![CDATA[<p>"Mendeley sucks" ® is a common search that points to this humble site. I thought I was alone and my feeling was unique, or at least I was the lone voice in the crowd ... But, then, someone, somewhere, some time searched "Mendeley sucks" ® on Google and I clicked on it and I found <a href="http://scripts.mit.edu/~birge/blog/mendeley-how-not-to-run-a-beta-preview-program/">this</a>. This is a MIT website, so it must be good, right?</p>
+
+<p>But remember, you heard here first. "Mendeley sucks" ®</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[If we tell you to Buzz ...]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/02/20/if-we-tell-you-to-buzz/"/>
+    <updated>2010-02-20T10:58:19-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/02/20/if-we-tell-you-to-buzz</id>
+    <content type="html"><![CDATA[<p>... you will Buzz!</p>
+]]></content>
+  </entry>
+  
+</feed>

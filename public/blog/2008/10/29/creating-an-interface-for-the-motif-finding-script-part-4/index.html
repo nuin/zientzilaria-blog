@@ -109,46 +109,103 @@ function name then. Remember that we created the menu last time by using
 (the menu name were changed in the previous entry - it was some old code
 that got in the way - my mistake)</p>
 
-<p>[sourcecode language=&#8217;python&#8217;]foreground_menu = filemenu.Append(-1, &#8216;Select
-foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) &#8230; quitmenu = filemenu.Append(-1,
-&#8216;Quit&#8217;)[/sourcecode] hence our menu names are <code>foreground_menu</code>,
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">foreground_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select</span>
+</span><span class='line'><span class="n">foreground</span> <span class="nb">file</span><span class="s">&#39;) background_menu = filemenu.Append(-1, &#39;</span><span class="n">Select</span>
+</span><span class='line'><span class="n">background</span> <span class="nb">file</span><span class="s">&#39;) ... quitmenu = filemenu.Append(-1,</span>
+</span><span class='line'><span class="s">&#39;Quit&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  hence our menu names are <code>foreground_menu</code>,
 <code>background_menu</code> and <code>quit_menu</code>. Basically a wx.Bind method has this
-structure [sourcecode language=&#8217;python&#8217;]self.Bind(EVENT_TYPE, handler,
-source)[/sourcecode] where the handler is the function and the source is
+structure</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">EVENT_TYPE</span><span class="p">,</span> <span class="n">handler</span><span class="p">,</span>
+</span><span class='line'><span class="n">source</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  where the handler is the function and the source is
 the actual source of the event. Let&#8217;s say then we want to use function
-<code>on_foreground</code> everytime someone clicks on foreground menu, and
-<code>on_background</code> everytime someone clicks on the background menu. We add
-a couple of lines to our layout function [sourcecode
-language=&#8217;python&#8217;]self.Bind(wx.EVT_MENU, self.on_foreground,
-foreground_menu) self.Bind(wx.EVT_MENU, self.on_background,
-background_menu)[/sourcecode] This will tell the code where to go when
+<code>on_foreground</code> every time someone clicks on foreground menu, and
+<code>on_background</code> every time someone clicks on the background menu. We add
+a couple of lines to our layout function</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_foreground</span><span class="p">,</span>
+</span><span class='line'><span class="n">foreground_menu</span><span class="p">)</span> <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_background</span><span class="p">,</span>
+</span><span class='line'><span class="n">background_menu</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> This will tell the code where to go when
 these items are clicked. If you start the interface, and error will be
 generated because we still haven&#8217;t created the event handler functions.
-We should define them [sourcecode language=&#8217;python&#8217;]def
-on_foreground(self, event): pass def on_background(self, event):
-pass[/sourcecode] Note that these function receive an <code>event</code> parameter,
+We should define them</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span>
+</span><span class='line'><span class="nf">on_foreground</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span> <span class="k">pass</span> <span class="k">def</span> <span class="nf">on_background</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'><span class="k">pass</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  Note that these function receive an <code>event</code> parameter,
 which is the actual event itself. The <code>pass</code> line means that the
 function is defined but no actual code has been added, so execution can
 bypass it and do nothing when the function is called. Our complete code
-would look like [sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python
-import wx import pymot import fasta class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect)
-class pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() def
-__do_layout(self): #adding the panel panel = wx.Panel(self)
-#defines the menubar menubar = wx.MenuBar() #file menu filemenu =
-wx.Menu() foreground_menu = filemenu.Append(-1, &#8216;Select foreground
-file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select background file&#8217;)
-sep = filemenu.AppendSeparator() quitmenu = filemenu.Append(-1, &#8216;Quit&#8217;)
-#appends the menu to the menubar and creates it
-menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu) def
-on_foreground(self, event): pass def on_background(self, event): pass
-app = pymot() frame = pymotGUI(parent=None, id = -1) frame.Show()
-app.MainLoop()[/sourcecode] Next time we will make good use of the
+would look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">wx</span> <span class="nn">import</span> <span class="nn">pymot</span> <span class="nn">import</span> <span class="nn">fasta</span> <span class="nn">class</span> <span class="nn">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span> <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">)</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span> <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span class='line'><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span> <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> \<span class="c">#adding the panel panel = wx.Panel(self)</span>
+</span><span class='line'>\<span class="c">#defines the menubar menubar = wx.MenuBar() \#file menu filemenu =</span>
+</span><span class='line'><span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span> <span class="n">foreground_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select foreground</span>
+</span><span class='line'><span class="nb">file</span><span class="s">&#39;) background_menu = filemenu.Append(-1, &#39;</span><span class="n">Select</span> <span class="n">background</span> <span class="nb">file</span><span class="s">&#39;)</span>
+</span><span class='line'><span class="n">sep</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">AppendSeparator</span><span class="p">()</span> <span class="n">quitmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Quit&#39;</span><span class="p">)</span>
+</span><span class='line'>\<span class="c">#appends the menu to the menubar and creates it</span>
+</span><span class='line'><span class="n">menubar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">filemenu</span><span class="p">,</span> <span class="s">&#39;File&#39;</span><span class="p">)</span> <span class="bp">self</span><span class="o">.</span><span class="n">SetMenuBar</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
+</span><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_foreground</span><span class="p">,</span> <span class="n">foreground_menu</span><span class="p">)</span>
+</span><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_background</span><span class="p">,</span> <span class="n">background_menu</span><span class="p">)</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">on_foreground</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span> <span class="k">pass</span> <span class="k">def</span> <span class="nf">on_background</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span> <span class="k">pass</span>
+</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">frame</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
+</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>  Next time we will make good use of the
 events.</p>
 </div>
 
@@ -209,23 +266,23 @@ events.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere ...</a>
       </li>
     
   </ul>

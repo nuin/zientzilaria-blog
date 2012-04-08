@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="In Beginning Perl for Bioinformatics the chapter that covers simulated
-mutations on a DNA sequence is quite verbose and the code examples
-employ some &hellip;">
+  <meta name="description" content="At the time of the Copenhagen meeting about climate change, Brazilian representatives were major protagonists, specially when criticizing all &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,7 +68,7 @@ employ some &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/04/04/a-script-to-simulate-dna-sequence-sets/">A script to simulate DNA sequence sets</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/01/02/lies-lies-and-even-more-lies/">Lies, lies and even more lies</a></h1>
     
     
       <p class="meta">
@@ -86,84 +84,38 @@ employ some &hellip;">
   
 
 
-<time datetime="2007-04-04T12:17:22-04:00" pubdate data-updated="true">Apr 4<span>th</span>, 2007</time>
+<time datetime="2010-01-02T21:59:28-05:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>In Beginning Perl for Bioinformatics the chapter that covers simulated
-mutations on a DNA sequence is quite verbose and the code examples
-employ some subroutines to do what we have done on the last post.
-Basically the code example that generates a random DNA sequence is the
-last one on the chapter, but it was the first one we covered. Also this
-code example has a twist that our code from the last post does not have,
-which is it allows you to generate a set of sequences with different
-length instead of one sequence with fixed length that our script does.
-So, the script that generates a user defined simulated DNA sequence set
-is</p>
+  <div class="entry-content"><p>At the time of the Copenhagen meeting about climate change, Brazilian representatives were major protagonists, specially when criticizing all developed countries about their carbon emissions. The crook, also known as the Brazilian president, kept reminding everyone how advance Brazil is on &#8220;green&#8221; policies, how much native forests are still there, and saying the the developed countries have to do something to erase their polluted heritage.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">sequence</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Well, I don&#8217;t think many of my 3 readers (yes, I got an extra one this last week!) have ever been to Brazil, so I would like to list some of the lies about Brazilian &#8220;green&#8221; policies and actions:</p>
+
+<ul>
+<li><a href="http://www.prefeitura.sp.gov.br">São Paulo</a> is the largest city of the Southern Hemisphere, and there&#8217;s no effective recycling service. Now, imagine, 10+ million people not recycling, dumping sewage (non treated) on the rivers that cross the city, among other things do to the environment.</li>
+<li>Add that to the 4+ million cars and buses emitting carbon during the average 2-3 hour commute in traffic jams</li>
+<li>Add that to all major Brazilian cities</li>
+<li>Ethanol technology is quite old in Brazil and that helps. What doesn&#8217;t help is the amount of native forest that has been cut to be used as sugarcane plantation, and to the fact that is cheaper to fill the tank with gas (most cars are flex fuels, most of the new cars, I mean)</li>
+<li>Sugarcane crops are burnt for the harvest. Not every plantation has mechanized means.</li>
+<li>Brazilian so-called green energy from hydro plants, is not so green.</li>
+<li>There&#8217;s basically no railway transportation there, so everything moves inside trucks. And there&#8217;s almost none hydro transportation too.</li>
+</ul>
 
 
-<p>Simple and efficient. First we
-define a function that generates a simulated DNA sequence from the four
-nucleotides, again using the <code>random.choice</code>. The sequence length is
-based on the parameter received by the function. The sequence length is
-another random number defined in the main body of the script. This
-random number is generated by <code>random.randint</code> with a range based on the
-arguments given by the user when running the script. And finally, the
-number of sequences to be simulated is define by the first parameter.
-Seventeen lines. Next we will see how to draw some scientific
-information about the sequences, such as sequence identity and
-nucleotide frequency.</p>
+<p>These are some quick examples, I guess if I spent ten more minutes, I would be able to come up with the double or triple. So, every time you hear that Brazil is an example of green country, and you end up feeling guilty that you live in a developed country that is harming the climate, don&#8217;t be.</p>
+
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://www.treehugger.com/files/2009/10/what-is-brazil-planning-to-propose-at-copenhagen.php?dcitc=th_rss">What is Brazil Planning to Propose at Copenhagen</a> (treehugger.com)</li>
+</ul>
+
+
+<p><a href="http://reblog.zemanta.com/zemified/f6f11811-b5fb-449a-ab36-b13e18c59ec8/"><img src="http://img.zemanta.com/reblog_e.png?x-id=f6f11811-b5fb-449a-ab36-b13e18c59ec8" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -176,7 +128,7 @@ nucleotide frequency.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/04/02/random-sequences-in-python/">Random sequences in Python</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/01/01/365-in-365/">365 in 365</a></h1>
     
     
       <p class="meta">
@@ -192,57 +144,16 @@ nucleotide frequency.</p>
   
 
 
-<time datetime="2007-04-02T12:57:24-04:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2007</time>
+<time datetime="2010-01-01T10:37:04-05:00" pubdate data-updated="true">Jan 1<span>st</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>There is a reason to say that Python has batteries included. On the last
-post we have seen a small example of randomization in Python, generating
-random integer values for a (extremely) simple dice game. We move to
-another example, still simple which will allow us to generate random DNA
-sequences. The script is</p>
+  <div class="entry-content"><p>I plan to post 365 entries either here, <a href="http://python.genedrift.org">here</a> or <a href="http://ruby.genedrift.org">here</a> in 2010. I might not post everyday, but I will try to keep the mark, even if it&#8217;s only a one-liner or some link to interesting news/software/paper.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span><span class='line'><span class="n">dnaseq</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s">&#39;ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">result</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dnaseq</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="n">result</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Not fancy at all, just plain simple (yet again). We
-import a couple of modules, <code>sys</code> and <code>random</code>, and ask for the sequence
-length as a script parameter. <code>dnaseq</code> is a list containing a tandem
-repeat of ACGT, and from there we will extract our random nucleotides.
-In fact <code>dnaseq</code> could have been &#8216;ACGT&#8217; only. The fact that we create a
-string and convert it to a list, is just for convenience of writing
-<code>'ACGT...'</code> easier than <code>['A', 'C' ...]</code>. We then declare an empty
-string that will be used to store the random sequence. And inside the
-loop, the command that does all the magic: <code>random.choice()</code>. This
-command will return a random element from the list passed as subject.
-Using it inside a loop we will get a random nucleotide on each iteration
-and add it to our string. This is a very simple command, but at the same
-time extremely powerful and easy to implement. A good exercise from this
-would be to modify the <code>dnaseq</code> string and see if there is any change in
-the final random sequence.</p>
+<p>Happy New Year everyone!</p>
 </div>
   
   
@@ -255,7 +166,7 @@ the final random sequence.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/30/ramdomization/">Ramdomization</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/12/30/best-of-the-decade/">Best of the decade</a></h1>
     
     
       <p class="meta">
@@ -271,83 +182,16 @@ the final random sequence.</p>
   
 
 
-<time datetime="2007-03-30T15:19:30-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2007</time>
+<time datetime="2009-12-30T22:37:38-05:00" pubdate data-updated="true">Dec 30<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We start section 4 with a very short introduction to randomization.
-Chapter 7 of BPB discuss the use of randomization to obtain mutations in
-DNA and protein sequences. The example given in the book is at the same
-time simple and interesting, as it creates a paragraph from random
-selections of nouns, adjectives, verbs and other grammar elements. Here
-we are going to to create a very (stress on very) simple dice game,
-where each time you run the script it will throw two dices for you and
-two dices for the computer. It then prints the sum of the dices and
-tells who won the match. Randomization is an important feature of
-computer languages. There are different researchers involved in the
-creation of the best approaches to generate random number in computers.
-Random number are important in the simulation of different natural
-processes, such as genetic mutation, gene drift, epidemiology, weather
-forecast, etc. The better the generator, the better the simulation.
-Python has a random module included, with a myriad of functions that can
-perform different randomizations. In this post we will see the <code>integer</code>
-randomization, and in later entries we will see some other powerful
-functions. Our script is quite simple, and the only new aspect for us
-here is the random module and the <code>randint</code> function.</p>
+  <div class="entry-content"><p>Friends, as the year draws to a close, I felt compelled to compile the best of the decade of 00s. The list is:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">dice1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-</span><span class='line'><span class="n">dice2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-</span><span class='line'><span class="n">computerdice1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-</span><span class='line'><span class="n">computerdice2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
-</span><span class='line'><span class="n">mine</span> <span class="o">=</span> <span class="n">dice1</span> <span class="o">+</span> <span class="n">dice2</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">his</span> <span class="o">=</span> <span class="n">computerdice1</span> <span class="o">+</span> <span class="n">computerdice2</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="s">&#39;mine = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">mine</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; vs. computer = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">his</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="n">mine</span> <span class="o">&gt;</span> <span class="n">his</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;I won&quot;</span>
-</span><span class='line'><span class="k">elif</span> <span class="n">mine</span> <span class="o">&lt;</span> <span class="n">his</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;Computer won&quot;</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&quot;Tie. Try again&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>random.randint</code> is a function that generates an integer random number
-between a range specified by the number between parentheses. In the
-above case, we are using a dice of 6 values. So, for every call of
-<code>random.randint(1,6)</code> a random number between 1 and 6 will be generated.
-We store this number in a variable, sum the user&#8217;s dices and the
-computer&#8217;s and check with a <code>if</code> clause to see the winner. A good
-exercise would be to make this script interactive, allowing multiple
-matches. Next we will see another random module function and then we
-will generate mutations on DNA sequences.</p>
+<p><strong>will be posted here as soon as the decade ends on Dec 31st, 2010.</strong></p>
 </div>
   
   
@@ -360,7 +204,7 @@ will generate mutations on DNA sequences.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/26/command-line-arguments-and-a-second-take-on-functions/">Command line arguments and a second take on functions</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/12/19/2009-in-review/">2009 in review</a></h1>
     
     
       <p class="meta">
@@ -376,118 +220,31 @@ will generate mutations on DNA sequences.</p>
   
 
 
-<time datetime="2007-03-26T13:18:48-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2007</time>
+<time datetime="2009-12-19T19:55:53-05:00" pubdate data-updated="true">Dec 19<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We have seen, briefly, how to define and use a function in Python. Now
-we are going to jump forward a bit and create a new function and at the
-same time take a look on command line parameters that can be passed to
-the script. If you have used command line applications before, you might
-have encountered programs that asks for a file name, a calculation
-parameter, etc to be passed in the command line. Python scripts are no
-different, they accept such parameters. For this we have the <code>sys</code>
-module that has system specific parameters and functions. We have used
-before the <code>sys.exit</code>, imported as an extra module function.</p>
+  <div class="entry-content"><p>Here&#8217;s the best and worst of 2009:</p>
 
-<p>Every operating system (even Windows) has arguments in its command line, and
-programming languages usually call such arguments <code>argv</code> (in the C/C++
-you have argv in the parameters of the main function). Lists in Python
-start at 0 (zero), and for the argument list the first item is the
-script/program name. Basically if we have this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$&gt;</span> python myscript.py DNA.txt
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>Movie: Rocknrolla, not the best one, but highly entertaining, worst: Funny People</li>
+<li>Book: <a href="http://www.amazon.com/Born-Standing-Up-Comics-Thorndike/dp/1410403122%3FSubscriptionId%3D0G81C5DAZ03ZR9WH9X82%26tag%3Dzemanta-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D1410403122">Born Standing Up: A Comic&#8217;s Life</a> by Steve Martin, highly entertaining too</li>
+<li>Website: The Secret Diary of Steve Jobs, worst: of the ones I usually read is the <a href="http://daringfireball.net/">Daring Fireball</a></li>
+<li>Software: Textmate, worst <a href="http://www.mendeley.com">Mendeley</a>, by 1000 miles</li>
+<li>TV: <a href="http://en.wikipedia.org/wiki/Stephen_Colbert">Stephen Colbert</a> and Jon Stewart, the best hour of TV, worst: Dexter&#8217;s finale</li>
+<li>Purchase: MacBook 13&#8221;, the best computer I ever had</li>
+<li>Money-grabbing-scheme: Global Warming or Climate Change</li>
+<li>Politician: no best in the category, but the worst is the Brazilian President.</li>
+<li>Music: I didn&#8217;t have a favourite this year. but Matthew Good&#8217;s Vancouver is growing on me. No worst, or too many to care about</li>
+<li>Best programming language was still Python, worst, still Java</li>
+<li>Best operating system was Snow Leopard, worst, any Windows (including XP)</li>
+</ul>
 
 
-<p><code>myscript.py</code> is the argument 0 in the
-list and <code>DNA.txt</code> is the argument 1. So whenever we create a script that
-receives arguments in the command line, we have to start (in most cases,
-be aware) from 1.</p>
-
-<p>In Python using system arguments in the CLI will look
-like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">valueone</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We will a variation of our
-previous script that counts the bases, now with command line arguments
-and a function (with no &#8220;error&#8221; checking at first)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python import sys </span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">count_nucleotide_types</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="n">totalA</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">totalC</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">totalG</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">totalT</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sequencefile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sequencefile</span><span class="p">)</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">values</span> <span class="o">=</span> <span class="n">count_nucleotide_types</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;As&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Cs&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Gs&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Ts&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Few new things here. We created a function <code>count_nucleotide_types</code> that should receive a string
-containing the sequence. The &#8220;real&#8221; first line of the program flow is
-the one that gets the name of the file from the command line argument,
-open and read it. We then convert the list to a string, modify it a but
-and throw it to the function. Get the result back, and done. With
-functions we actually don&#8217;t save coding time/length (at least here), we
-make out code more organized, easier to read and somewhat easier to
-someone else read and understand it. It is not a good coding practice to
-have long programs/scripts with no functions, no subdivision, no
-structure. Functions are sometimes good program nuggets that can be
-reused in the same application or even ported/copied to other
-applications and reused indefinitely. Soon we will see a function and
-class that reads a FASTA file in Python that can be used anywhere in any
-program that needs such feature. Try the code and come back later for more.</p>
+<p><a href="http://reblog.zemanta.com/zemified/5d07b746-e499-4eb9-af07-aff21e1617fc/"><img src="http://img.zemanta.com/reblog_e.png?x-id=5d07b746-e499-4eb9-af07-aff21e1617fc" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -500,7 +257,7 @@ program that needs such feature. Try the code and come back later for more.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/22/python-functions-simple-example/">Python functions: simple example</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/30/open-scienceaccess-challenge/">Open Science/Access challenge</a></h1>
     
     
       <p class="meta">
@@ -516,89 +273,21 @@ program that needs such feature. Try the code and come back later for more.</p>
   
 
 
-<time datetime="2007-03-22T09:04:10-04:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2007</time>
+<time datetime="2009-11-30T11:41:02-05:00" pubdate data-updated="true">Nov 30<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Python subroutines do not exist. <a href="http://www.diveintopython.org/getting_to_know_python/declaring_functions.html">Everything is a function, all
-functions return a value (even if it&#8217;s None), and all functions start
-with <code>def</code></a>.
-This statement is from Dive into Python, a book on Python programming
-available for free. As mentioned Python functions start with the word
-<code>def</code>, which is followed by the function name that is followed by the
-arguments the function receives in between parentheses. Something like</p>
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Open_Access_logo_PLoS_white.svg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Open_Access_logo_PLoS_white.svg/300px-Open_Access_logo_PLoS_white.svg.png" alt="Open Access logo, converted into svg, designed..." /></a></p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">my_first_function</span><span class="p">(</span><span class="n">somevalue</span><span class="p">):</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre><code>Image via [Wikipedia](http://commons.wikipedia.org/wiki/Image:Open_Access_logo_PLoS_white.svg)
+</code></pre>
 
+<p>A quick challenge, mainly because I&#8217;m lazy as hell to do these kind of things: if you advocate Open Science or Open Access, please leave a comment with your list of publications on PubMed or your own website/repository.</p>
 
-<p>Usually Python coders
-(sometime called Pythonistas, among others), following the Python coding
-style (that states: <em>Function names should be lowercase, with words
-separated by underscores as necessary to improve readability</em>) name
-their functions with words separated by underscores. And we are going to
-use this style here, whenever a function becomes handy. The parameters
-passed to the function (above <code>somevalue</code>) do not have a datatype,
-Python should handle it whatever is being passed. It is also attribute
-of your code to handle the parameter/value passed inside the function
-and avoid errors. Functions also follow the same indentation of normal
-programming and the line after the declaration should be indented with
-four spaces</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">my_first_function</span><span class="p">(</span><span class="n">somevalue</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">do_something</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So, let&#8217;s
-warmup with functions. The following script is just the start: it adds a
-poly-T tail to a DNA sequence. We are going to use our old friend
-AY162388.seq. I will be back after the script</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">add_tail</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="n">seq</span> <span class="o">+</span> <span class="s">&#39;TTTTTTTTTTTTTTTTTTTTT&#39;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&#39;AY162388.seq&#39;</span>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">sequence</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="n">add</span>\<span class="n">_tail</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Not very useful, at first sight, but gives us an
-impression of what a function looks like. Basically we define a function
-<code>add_tail</code> that receives <code>seq</code> as a parameter. Don&#8217;t worry about
-variable scope now, we will see it later. The rest of the script is just
-like things we saw before, except for the line
-<code>sequence = add_tail(sequence)</code>. Here we are saving memory (yep, not
-that much and not even impressive) by assigning the return value of the
-function to the same string where we have the sequence stored. Run the
-scritp and get ready for the command line arguments.</p>
+<p><a href="http://reblog.zemanta.com/zemified/0721cdd0-d2e3-424b-b8c1-847c358cc3dc/"><img src="http://img.zemanta.com/reblog_e.png?x-id=0721cdd0-d2e3-424b-b8c1-847c358cc3dc" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -611,7 +300,7 @@ scritp and get ready for the command line arguments.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/15/debugging-in-python/">Debugging in Python</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/11/26/dialign-tx-has-all-the-problems-with-scientific-software/">DIALIGN-TX has all the problems with scientific software </a></h1>
     
     
       <p class="meta">
@@ -627,48 +316,31 @@ scritp and get ready for the command line arguments.</p>
   
 
 
-<time datetime="2007-03-15T09:43:10-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
+<time datetime="2009-11-26T09:21:06-05:00" pubdate data-updated="true">Nov 26<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Beginning the third section in our tutorial/guide, we are going to see
-the chapter six of BPB. This chapter discusses the topics of creating
-subroutines (in Python&#8217;s case functions) and debugging the code. We are
-going to start by the end.</p>
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Victorinox_SwissChamp.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Victorinox_SwissChamp.jpg/300px-Victorinox_SwissChamp.jpg" alt="Victorinox SwissChamp army knife" /></a></p>
 
-<p>In Python, code debugging can be done as in
-any other programming language: Perl has pdb, C/C++ has gdb, etc. Python
-also has a pdb module that can be imported and run to check for errors
-in your code. Using this command line:</p>
+<pre><code>Image via [Wikipedia](http://commons.wikipedia.org/wiki/Image:Victorinox_SwissChamp.jpg)
+</code></pre>
 
-<p><code>python -m pdb myscript</code></p>
+<p>Yes, <a href="http://dialign-tx.gobics.de/">DIALIGN-TX</a> has all the problems with scientific software. All of them in 1.8 Mb of data, and I&#8217;m being kind. Let me explain that. I have this small project, and DIALIGN-TX is one of the programs I want to check. I compiled fine, or so I think: it runs ok on the Mac, shows me the parameters to run it, in a large list of options. Most of these options have a &#8220;DEFAULT&#8221; value, which means they are not needed to run the program. And there&#8217;s an usage example</p>
 
-<p>will
-start the debug module and this will run your script. If you are an
-experienced programmer, who is just starting Python, pdb usage might
-look simple and straightforward. On the other hand, if you don&#8217;t have a
-lot of experience in programming I would suggest a different approach,
-as you become more comfortable with the language. Python has a great
-advantage over some other interpreted languages, allowing you to
-interactively code using the interpreter. So if your code is not working
-properly, maybe a wrong output or a value that is not being correctly
-calculated you have the options of coding the part of your script that
-is not working using the interpreter or use the first rule of debugging:
-include <code>print</code> statements that output the value of variables/objects.
-Another option is to use a Python code editor, what will also help you
-with highlight your code. I have little experience with Python code
-editors, as I normally code in Linux and use
-<a href="http://kate-editor.org/">Kate</a>. Lately I have been trying <a href="http://www.activestate.com/products/komodo_edit/">Komodo edit</a> which is a
-cross-platform freeware from Active State. It looks pretty good but I
-never tried debugging my code with it. So, these are my advices if you
-are just starting to program. Maybe because of the age of Beginning Perl
-for Bioinformatics (published in 2001), Perl&#8217;s pdb was the only option
-back then. Thanks to major advances on open-source and free software
-there are many other options nowadays to debug your code.
-<code>python -m pdb myscript</code></p>
+<p><code>Usage: dialign-t [OPTIONS]  []</code></p>
+
+<p>(notice the error on the usage, I just copied and pasted)</p>
+
+<p>I tried every possible combination, with and without options, setting and not setting them, with different input files, no one worked. Then I decided to read the documentation. No true. First I decided to get the documentation, nowhere to be found. The I rechecked the website. Nada. Then I googled it. Nada to the power of 2. Then I tried the command line options list again. Nothing worked. Now, the next step is to try on a different operating system (I will update here).</p>
+
+<p>But why did I state that it has all the problems of scientific software in one tarball? Well, it has the main problem of scientific software: it&#8217;s used as a mean to achieve the largest number of publications possible, and that&#8217;s it. There&#8217;s no documentation, no support on its website whatsoever. If you want to run it, you&#8217;re out there in wood by yourself with your little pocket-knife and a compass. It&#8217;s a miracle that I was able to compile it.</p>
+
+<p>If I weren&#8217;t interested in running this software (for scientific reasons) and were a little bit less computer savvy, would I elect to use DIALIGN-TX in my research? Not in 1 billion years. No wonder why people stick to ClustalW and ClustalX. They are well documented, everyone knows it, and you can run in any system as it is pre-compiled for them. In the meantime DIALIGN-TX is still a niche alignment software, that maybe (I don&#8217;t know) no one uses it.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/9ff46c33-91e2-448b-b58b-e0a5b5f5d8ca/"><img src="http://img.zemanta.com/reblog_e.png?x-id=9ff46c33-91e2-448b-b58b-e0a5b5f5d8ca" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -681,7 +353,7 @@ there are many other options nowadays to debug your code.
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/14/section-2-a-nice-summary-script/">Section 2: a nice summary script</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/10/01/google-wave-invite-who-wants-one/">Google Wave invite: who wants one?</a></h1>
     
     
       <p class="meta">
@@ -697,113 +369,18 @@ there are many other options nowadays to debug your code.
   
 
 
-<time datetime="2007-03-14T15:32:24-04:00" pubdate data-updated="true">Mar 14<span>th</span>, 2007</time>
+<time datetime="2009-10-01T09:12:26-04:00" pubdate data-updated="true">Oct 1<span>st</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Closing section two, let&#8217;s use everything we saw before and write a nice
-script that will read a sequence file (DNA) and report us of any
-&#8220;errors&#8221; and the number of different nucleotides. It is very simple, but
-a good exercise. Depending on your needs you can easily modify it to
-check for other characteristics of sequences, even change it to read
-amino acids sequences. We start with the code, comments coming after it.</p>
+  <div class="entry-content"><p>I have two Google Wave invites to go. If you want one send me an email (paulo.nuin on Gmail) or leave a comment here. The best &#8220;offer&#8221; takes it.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="n">fileentered</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'><span class="k">while</span> <span class="n">fileentered</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">filename</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Please enter a file to check: &#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">totalA</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">totalC</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">totalG</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">totalT</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">otherletter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;[BDEFHIJKLMNOPQRSUVXZ]&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">extra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">otherletter</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s">&#39;.count&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Count report for file &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;A = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;C = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;G = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;T = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>                <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Also were found &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; errors</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">extra</span><span class="p">:</span>
-</span><span class='line'>                    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39; &#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">else</span><span class="p">:</span> <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;No error found&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Result file saved on &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.count&#39;</span>
-</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
-</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;File not found. Please try again.&#39;</span>
-</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Offer means anything: a poem, a sticker, another invite to another service, a scientific collaboration, anything. Be creative and you will have it.</p>
 
-
-<p>The main change here is that we use a <code>while</code>
-loop to control de program flow. Notice that we import <code>sys</code> and <code>re</code>.
-Basically we ask for an user input, the filename, and depending on the
-input given we process the file or exit the program. The early exit is
-done with the <code>sys.exit</code> method which is a shortcut to get out of the
-script processing. Very handy. If the input is valid we <code>try</code> to open
-it. If the operation is successful, great, we read the file, count the
-nucleotides and use a quite scary regular expression to search all the
-&#8220;errors&#8221; in our sequence. The regex is compiled with the pattern
-<code>'[BDEFHIJKLMNOPQRSUVXZ]'</code> which means &#8220;match any character in this
-range&#8221;. Take a closer look at the pattern and you will see that is every
-letter in the alphabet, except for ACGT. And when searching for these
-&#8220;errors&#8221; instead of using <code>re.search</code> we use <code>re.findall</code>, which
-conveniently returns a list with all the substrings found. That&#8217;s even
-more handy. On the final part of the script we take care of the output,
-opening a file called <code>.count</code> where we print the counts and the errors,
-if they actually exist. One thing I left from the previous post, is that
-we need to close the file opened to write. In some cases if the file is
-not properly closed, errors might occur. So always remember to close the
-files used for writing/appending, using <code>.close()</code>.</p>
+<p><em>Update: I will send both invites later tonight, Canada&#8217;s ET. Google says it might take a while for the invite to reach the recipient. Some people are selling invites on Ebay, some for 100 dollars. Again the best &#8220;offer&#8221; wins. And remember, I&#8217;m not checking Twitter or Friendfeed.</em></p>
 </div>
   
   
@@ -816,7 +393,7 @@ files used for writing/appending, using <code>.close()</code>.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/13/writing-to-files/">Writing to files</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/30/mendeleys-pr-machine-and-more/">Mendeley&#8217;s PR machine and more</a></h1>
     
     
       <p class="meta">
@@ -832,125 +409,28 @@ files used for writing/appending, using <code>.close()</code>.</p>
   
 
 
-<time datetime="2007-03-13T14:58:58-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2007</time>
+<time datetime="2009-09-30T15:00:55-04:00" pubdate data-updated="true">Sep 30<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We already know how to read from files, now we are going to see how to
-write to them. We will start with a simple example, writing some content
-to a &#8220;fresh&#8221; file that does not exist in the system. Sometime ago, we
-have seen the <code>print</code> statement in Python, that prints to the system
-standard output (usually the screen). This output can be redirected
-using <code>&gt;</code> to a stream/file. But if we are going to create really
-professional applications (even to our own use), usually stream
-redirection is not really the nicest approach. In some cases the best
-alternative is to save a file. Also, some posts ago, we covered the
-methodology to <code>open</code> a file. We are going to use here the same command,
-<code>open</code> to (in our case) create the file. Remember that to read the file
-we used</p>
+  <div class="entry-content"><p>There has been a somewhat heated debate in Roderic Page&#8217;s blog about Mendeley&#8217;s hype in the current reference management scenario. Also, I was forwarded to this <a href="http://entangled.wordpress.com/2009/08/21/with-zotero-do-you-need-other-fee-based-on-line-tool/">blog post</a>, which praises the right horse in the ref-management race, Zotero. The comments in that post are pure gold, showing how PR in science is pernicious to science itself. I will give two examples.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>For those who don&#8217;t know, I&#8217;m one of the poster-boys of the anti-Mendeley movement. Not because I want to be a poster-boy, but because I&#8217;m not afraid to confront their PR machine, even more after the censorship attempt. One of the worst aspects of this efficient PR machine is to use scientists to inflate the hype on the so-called social media websites, and answer everyone that might be criticizing the program in blogs and any other site. I have in high regard both (AFAIK, they are two) scientists that are paid by Mendeley. In so high regard, that one of them, Ricardo, is joining our research group.</p>
 
+<p>I can&#8217;t say that what they are doing is wrong, far from it, it&#8217;s a honest money, and they do the work very well. They are highly connected on the different social websites, and very influential. And it doesn&#8217;t seem that what they do is only for money, they seem to enjoy the software and are very attentive to comments about it on Twitter and Friendfeed (the two sites I used to follow). But I also can&#8217;t say that is not morally wrong to do this. Maybe moral is too strong, but it&#8217;s in the neighbourhood. For the non-trained eye, what they are doing might seem like a personal crusade to support Mendeley, there&#8217;s no disclaimer, no warning that they are paid to do so. If you don&#8217;t google it, you won&#8217;t now that they are Mendeley employees. And that&#8217;s where they are wrong: every post, comment they do, they should include a disclaimer, because they have conflicting interests. That&#8217;s the least they can do.</p>
 
-<p>where the <code>'r'</code> is the mode we are using to open the
-file. In that case we used the <em>read</em> mode, now we are going to use the
-<em>write</em> mode. When we open a file with this command in <em>write</em> mode if
-the file (with the name with pass) does not exist it is created. If it
-does exist, all the contents of the current file will be erased, so be
-careful when opening a file from your script. Check for the location,
-file name, etc before opening the file. So, basically we have</p>
+<p>One of the arguments used by the Mendeley&#8217;s employee when he tried to censor me, was that if I continue to criticize the software, it will disappear and science as a whole would lose the possibility of using such a marvelous creation. What science doesn&#8217;t need is an obnoxious PR machine, that every time you say that Mendeley sucks (true) you will get lots of comments saying that they are working to remove the suckage from it. As I said, for the untrained eye, just two guys that really like Mendeley, the truth, employees.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>The other example is a little bit obscure to Northern Hemisphere (and some Southern too) citizens, and comes from a country where the moral and good habits have fled Science a long time ago. I remember in the late 90&#8217;s going to a Brazilian Genetics Society Meeting and seeing a very dubious advertisement on the conference&#8217;s guide: Monsanto. It was the start of the genetically modified plants craze, and Monsanto was starting to invest heavily on soy and corn plantations in Brazil. I have nothing against genetically modified plants, nothing against the betterment of science and food crops. But I have a lot against the Genetics Society accepting an advertisement from such a company, with so many conflicting interests, as some members of the society influence the decisions of the government body that decides on the use or not of genetically modified seeds.</p>
 
+<p>For a common Brazilian, used to some much corruption in every sphre of the government, that might not seem bad at all. But for the scientific society to accept that without saying anything, that&#8217;s pretty bad. And this is not a small meeting, around 3000 people attend every year. And Monsanto is still a large advertiser, even today. No wonder, almost no discussion was generated when the genetically modified seeds were approved to be used on crops. What is the moral of a scientific society to criticize Monsanto now? Are they willing to lose the support? The company is doing the PR, the scientists are just being amoral.</p>
 
-<p>and
-the file is open and ready to receive data. Let&#8217;s cheat and use the
-previous script that counts nucleotides and modify it to save a
-<code>count.txt</code> file wit the results:</p>
+<p>So, these are just small examples of how bad scientific PR is for science. I know, I know, I&#8217;m an old skool guy, with some principles that I don&#8217;t try to sell, and we&#8217;re a living in a new time and age. I just don&#8217;t know if this is the right time and age for me, where everything, even a irrelevant software company becomes a nuisance in your daily life. Maybe if Mendeley wasn&#8217;t around we will be saying good things about the good ref-management programs available, instead of being constantly bombarded with hype and PR gibberish. But that just me.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'><span class="c">#let&#39;s keep the file fixed for now</span>
-</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
-</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list </span>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c">#initialize a string to receive the data </span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'>    <span class="c">#notice the strip, to remove n </span>
-</span><span class='line'>    <span class="c">#&quot;exploding&quot; the sequence in a list </span>
-</span><span class='line'>    <span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'><span class="c">#initializing integers to store the counts </span>
-</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="c">#checking each item in the list and updating counts </span>
-</span><span class='line'><span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">totalA</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">totalC</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;G&#39;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">totalG</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'><span class="c">#printing results</span>
-</span><span class='line'><span class="n">resultfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;counts.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The only difference is at the end of the script. Here instead of <code>print</code> we use
-<code>write</code>. Notice that <code>write</code> is a method of the opened file.(in our case
-called <code>resultfile</code>. This method only accepts strings, so we need to
-convert everything to string before writing in the file. Notice also
-that we need to add a carriage return/newline at the end of the string
-to be written. Differently of <code>print</code>, <code>write</code> does not automatically
-puts a new line at the end of the output.</p>
+<p><em>I will cut every comment praising Mendeley, from Mendeley staff, from Ricardo and Mr Gunn that doesn&#8217;t contain a full disclaimer of their activities. They have enough platforms to praise it.</em></p>
 </div>
   
   
@@ -963,7 +443,7 @@ puts a new line at the end of the output.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/13/manipulating-strings-again/">Manipulating strings: again</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/09/28/this-is-when-i-say-farewell/">This is when I say farewell &#8230;</a></h1>
     
     
       <p class="meta">
@@ -979,52 +459,22 @@ puts a new line at the end of the output.</p>
   
 
 
-<time datetime="2007-03-13T14:30:54-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2007</time>
+<time datetime="2009-09-28T15:46:34-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>As I have not updated the website in a couple of weeks, I will try to
-catch up with the book instead of revisiting (for the time being) our
-past scripts. I am going to finish the book&#8217;s chapter 5 (our section 2)
-in the next post, where I will give a small introduction on how to
-output data to a file in Python. On this post we will check some of the
-methods that can be used to manipulate strings. The book gives only a
-couple of methods to be used in perl on string, but here I will show a
-longer list of Python methods that can be used on its immutable strings.</p>
+  <div class="entry-content"><p>to &#8220;social websites&#8221;.</p>
 
-<p>A full list of the methods can be found
-<a href="http://docs.python.org/lib/string-methods.html">here</a> and I will will
-give brief explanations on the ones I think are key for bioinformatics.</p>
+<p>Yes, this is a farewell to my two readers and the handful of people that read my tweets/friendfeed posts. I&#8217;m not going away, everything is still going to be channeled through FriendFeed, and posted on Twitter, but I won&#8217;t comment anymore or actually write them. It will be automatic, and personal to the level where it&#8217;s generated by my selections, not meaning they are good or bad, right or wrong, just that whatever caught my eye.</p>
 
-<p>Remember that string cannot be changed in Python, so we will always
-going to use a buffer/temp variable to store our changed string when
-needed. - <strong>count</strong> this method returns the number of times you see a
-substring (a letter/number, a word, etc) in another string. You can also
-specify a start and an end positions to look for. This is handy if you
-are counting nucleotides/aaminoacids in a sequence. This method returns
-an integer - <strong>endswith</strong> this method checks the end of your string for
-a determined substring. Very handy of you need to check the tail end of
-your sequence right away. - <strong>find</strong> returns the position of the
-substring being searched, and -1 if it is not found. It is similar to
-the re.search we used before. This is very useful if you are looking for
-a determined motif/subsequence in a hurry. - <strong>islower</strong> returns a true
-bool (true or false) if all characters in the string are lowercase.
-False if at least one of the characters is uppercase. Very handy if you
-need to convert lowercase to UPPERCASE files for input in some
-application. Works in conjunction with the <strong>isupper</strong> which is
-basically the opposite. - <strong>join</strong>. We have seen this before: it
-concatenates strings using a determined separator. - <strong>lower</strong> and
-<strong>upper</strong>, that as their name might indicate return the string converted
-to lowercase/uppercase.This is also good for the conversion of sequence
-format in input files.</p>
+<p>I will still write here, have my Facebook account and the other &#8220;social&#8221; things, but myself, I&#8217;ll be gone. There&#8217;s a feeling of deja vu writing this, I feel that I&#8217;ve written this before, but this time it&#8217;s true and definitive. I need to focus on my work, and got tired of the obviousness of the online world. As the very good Portuguese author, João Pereira Coutinho, wrote &#8221;<a href="http://www1.folha.uol.com.br/folha/pensata/joaopereiracoutinho/ult2707u600623.shtml">Internet is a theme park</a>&#8221;. My ride is over, at least on the social side.</p>
 
-<p>I will stop here. There are many other methods
-that can be used. Some of the above were already covered here and in the
-next posts we will take a look at the other ones, creating an
-application that actually performs some useful function.</p>
+<p>If you want to contact me, just drop me a note via email, or comment on the rambles here.</p>
+
+<p>Cheers</p>
 </div>
   
   
@@ -1037,7 +487,7 @@ application that actually performs some useful function.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/02/22/counting-nucleotides-part-ii/">Counting nucleotides: part II</a></h1>
+      <h1 class="entry-title"><a href="/blog/2009/08/30/books-2009/">Books 2009</a></h1>
     
     
       <p class="meta">
@@ -1053,64 +503,70 @@ application that actually performs some useful function.</p>
   
 
 
-<time datetime="2007-02-22T14:51:58-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+<time datetime="2009-08-30T12:36:00-04:00" pubdate data-updated="true">Aug 30<span>th</span>, 2009</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Let&#8217;s check the &#8220;short&#8221; way, that is basically a method that avoid the
-&#8220;explosion&#8221; of the string. Instead of transforming the sequence from the
-file from a string to a list, we go and use the string directly,
-applying one of the methods available to manipulate strings. This time
-we read the file at once and convert the list to a string using <code>join</code>.
-To count we simply use the method <code>count</code> on our string. Pretty nice.</p>
+  <div class="entry-content"><p><a href="http://www.amazon.com/Surely-Youre-Joking-Mr-Feynman/dp/0393019217%3FSubscriptionId%3D0G81C5DAZ03ZR9WH9X82%26tag%3Dzemanta-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D0393019217"><img src="http://ecx.images-amazon.com/images/I/51oE-rurB1L._SL300_.jpg" alt="Cover of &quot;Surely You're Joking, Mr. Feynm..." /></a></p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="c">#still keep the file fixed </span>
-</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
-</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
-</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="c">#let&#39;s join the the lines in a temporary string </span>
-</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
-</span><span class='line'><span class="c">#counting </span>
-</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c">#printing results </span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
+<pre><code>[Cover via Amazon](http://www.amazon.com/Surely-Youre-Joking-Mr-Feynman/dp/0393019217%3FSubscriptionId%3D0G81C5DAZ03ZR9WH9X82%26tag%3Dzemanta-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D0393019217)
+</code></pre>
+
+<p>List of books read in 2009 - updated regularly</p>
+
+<p>1 - <a href="http://www.amazon.com/gp/product/0843959665?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0843959665">The Max (Hard Case Crime)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0843959665" alt="" /></p>
+
+<p>2 - <a href="http://www.amazon.com/gp/product/0826429106?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0826429106">Gentlemen (33 1/3)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0826429106" alt="" /></p>
+
+<p>3 - <a href="http://www.amazon.com/gp/product/082642788X?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=082642788X">Celine Dion&#8217;s Let&#8217;s Talk About Love: A Journey to the End of Taste (33 1/3)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=082642788X" alt="" /></p>
+
+<p>4 - <a href="http://www.amazon.com/gp/product/1400033535?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1400033535">Musicophilia: Tales of Music and the Brain, Revised and Expanded Edition</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1400033535" alt="" /></p>
+
+<p>5 - <a href="http://www.amazon.com/gp/product/1416553657?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1416553657">Born Standing Up: A Comic&#8217;s Life</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1416553657" alt="" /></p>
+
+<p>6 - <a href="http://www.amazon.com/gp/product/1400031524?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1400031524">The Dogs of Riga</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1400031524" alt="" /></p>
+
+<p>7 - <a href="http://www.amazon.com/gp/product/045122650X?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=045122650X">Hold Tight</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=045122650X" alt="" /></p>
+
+<p>8 - <a href="http://www.amazon.com/gp/product/0060584750?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0060584750">Mystic River</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0060584750" alt="" /></p>
+
+<p>9 - <a href="http://www.amazon.com/gp/product/1400031559?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1400031559">The White Lioness</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1400031559" alt="" /></p>
+
+<p>10 - <a href="http://www.amazon.com/gp/product/B001TMCF0G?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B001TMCF0G">Long Lost</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=B001TMCF0G" alt="" /></p>
+
+<p>11 - <a href="http://www.amazon.com/gp/product/0515143820?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0515143820">Echo Burning (Jack Reacher)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0515143820" alt="" /></p>
+
+<p>12 - <a href="http://www.amazon.com/gp/product/0312979479?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0312979479">And Then There Were None</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0312979479" alt="" /></p>
+
+<p>13 - <a href="http://www.amazon.com/gp/product/084396118X?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=084396118X">Fake I.D. (Hard Case Crime)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=084396118X" alt="" /></p>
+
+<p>14 - <a href="http://www.amazon.com/gp/product/B000V78URW?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000V78URW">The Shock Doctrine</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=B000V78URW" alt="" /></p>
+
+<p>15 - <a href="http://www.amazon.com/gp/product/1582430179?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1582430179">Cocaine Nights</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1582430179" alt="" /></p>
+
+<p>16 - <a href="http://www.amazon.com/gp/product/0679740678?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0679740678">The Man in the High Castle</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0679740678" alt="" /></p>
+
+<p>17 - <a href="http://www.amazon.com/gp/product/0393316041?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393316041">Surely You&#8217;re Joking, Mr. Feynman! (Adventures of a Curious Character)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0393316041" alt="" /></p>
+
+<p>18 - Sobre os Sonhos e Outros Diálogos - <a href="http://en.wikipedia.org/wiki/Jorge_Luis_Borges">Jorge Luis Borges</a> and Osvaldo Ferrari</p>
+
+<p>19 - <a href="http://www.amazon.com/gp/product/0312426380?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0312426380">Jar City: A Reykjavik Thriller</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0312426380" alt="" /></p>
+
+<p>20 - <a href="http://www.amazon.com/gp/product/0393316041?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393316041">Surely You&#8217;re Joking, Mr. Feynman! (Adventures of a Curious Character)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0393316041" alt="" /></p>
+
+<p>21 - Bloodline - Mark Billingham</p>
+
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://www.johnchow.com/how-to-make-2009-your-best-blogging-year/">How To Make 2009 Your Best Blogging Year</a></li>
+</ul>
 
 
-<p>That&#8217;s the short way: using <code>count</code>. This is a method that when applied
-on a string counts the number of times the substring appears in our
-string. We can even set a start and ending point to count. Notice one
-difference in this script to the previous examples: after we join the
-items of the list into a string we do not remove the carriage returns.
-Because in this case we don&#8217;t need it, as it will be an extra character
-there that won&#8217;t make any harm.</p>
+<p><a href="http://reblog.zemanta.com/zemified/74ac487e-8c76-4569-98cf-0bffe0bbffa3/"><img src="http://img.zemanta.com/reblog_e.png?x-id=74ac487e-8c76-4569-98cf-0bffe0bbffa3" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -1135,23 +591,23 @@ there that won&#8217;t make any harm.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
       </li>
     
   </ul>

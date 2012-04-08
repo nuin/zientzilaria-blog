@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>jModelTest - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="tested on a Pentium 4, 3 Ghz running Fedora Core 8 David Posada released sometime ago jModelTest, a program that tries to be the ultimate maximum &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/04/21/jmodeltest">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">jModelTest</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-21T14:26:03-04:00" pubdate data-updated="true">Apr 21<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://www.researchblogging.org"><img src="http://www.researchblogging.org/images/rbicons/ResearchBlogging-Medium-White.png" alt="ResearchBlogging.org" /></a></p>
+
+<p><em>tested on a Pentium 4, 3 Ghz running Fedora Core 8</em></p>
+
+<p>David Posada released sometime ago <a href="http://darwin.uvigo.es">jModelTest</a>, a program that tries to be the ultimate maximum likelihood model selector for phylogenies. Written in Java, jModelTest is cross-platform, but differently from the latest available Java-based programs that are executables, the program is distributed as a jar file. Other programs like <a href="http://tree.bio.ed.ac.uk/software/treestat/">TreeStat</a> have &#8220;compiled&#8221; versions for Macs and Windows, so why not jModelTest?</p>
+
+<p>The manual mentions that it was created using Xcode under OS X and even though Xcode provides a great environment for interface design, jModelTest interface is very simple, poor. It is basically a non-shrinkable window with a text editor/log occupying its entirety. All actions are provided with menus, no buttons or other widgets at first. Some example files are bundled with the package, and they show the versatility of jModelTest that allows input of different file types, phylip, nexus among others. This is an excellent aspect of the application that should be followed by other packages and programs.</p>
+
+<p>After firing up jModelTest, I decided to load one of the files, example.phy, composed of 10 sequences of 1000 nucleotides. After using the File menu, it was easy to notice a major problem with the menu items. All of them have menu accelerators, simple key combinations to easy access menu items from the keyboard, but they are noted as Meta + <em>letter</em> (I am having trouble uploading images on Wordpress, I will find a solution later). OK, the Meta (option) key on a Mac is easy to get, and Windows and Linux? The file loaded fine but so my next guess (yes, I don&#8217;t read manuals upfront) was to use the Analysis menu. Luckily only one item was enabled, the one to calculate the likelihood scores.</p>
+
+<p>ModelTest, that can be called a predecessor of jModelTest, used PAUP externally to calculate the likelihood scores for different methods. Now, <a href="http://atgc.lirmm.fr/phyml/">Phyml</a> is used on the background, hence the average to good speed of jModelTest calculations. After selecting <em>Analysis->Compute likelihood scores</em> the program presented a simple dialog with some options to set the likelihood calculation parameters. I tested the ML optimized topology with 11 substitution schemes (default). It took roughly 4 minutes to calculate the 88 available models for the example.phy file, with a good amount of log information output to the main screen. After that, there were three other items enabled in the <em>Analysis</em> menu, allowing for different statistical calculations of the best ML model. It was possible to generate AIC (Akaike Information Criterion), BIC (Bayesian Information Criterion) and DT (Decision Theory) to determine the best (or ideal) ML evolutionary model while hLRT calculation was not enabled. All three were performed with default parameters, with AIC and BIC being very fast and DT very slow and memory hungry.</p>
+
+<p>The results from the statistical analysis were displayed in the same log text box and in some places very confusing</p>
+
+<blockquote><p>There are 88 models in the 100% confidence interval: [ HKY+G TPM2uf+G TrN+G TIM2+G TPM1uf+G TIM1+G TIM3+G TPM3uf+G GTR+G TVM+G TVM+I+G GTR+I+G TPM3uf+I+G TIM3+I+G TPM2uf+I+G TIM2+I+G HKY+I+G TrN+I+G TPM1uf+I+G TIM1+I+G TPM1+I+G K80+I+G TPM2+I+G TPM3+I+G TrNef+I+G TIM1ef+I+G TVMef+I+G TIM3ef+I+G TIM2ef+I+G SYM+I+G K80+G TPM1+G TrNef+G TIM1ef+G TPM3+G TPM2+G TIM3ef+G TPM1uf+I TPM2uf+I TVMef+G TIM2ef+G HKY+I TIM2+I TPM3uf+I TrN+I TVM+I TIM1+I SYM+G GTR+I TIM3+I K80+I TPM1+I TPM3+I TrNef+I TPM2+I TIM1ef+I TIM3ef+I TVMef+I TIM2ef+I SYM+I F81+I+G F81+G JC+I+G JC+G F81+I JC+I TIM1 TIM3 TrN TPM3uf TPM1uf TVM TIM2 HKY GTR TPM2uf TIM1ef TrNef TPM1 K80 TIM3ef TPM3 F81 TIM2ef TPM2 SYM TVMef JC ]</p></blockquote>
+
+<p>and in other places misleading</p>
+
+<blockquote><p>Model selection results also available at the &#8220;Model > Show model table&#8221; menu</p></blockquote>
+
+<p>as there is no such menu entry. Maybe the developer was referring to <em>Results->Show Results table</em> menu, but you never know. This results table presented all the values calculated for all test models, pointing out the suggested model in red. It was clearer to check the values in a grid than the main log window/text interface. There were some other tools in jModelTest to calculate the likelihood ratio test and model-averaged phylogeny. Also most calculations allowed the generation of a PAUP block, which in still widely used.</p>
+
+<p>As a package, jModelTest is somewhat solid, even though the interface is bland and buggy (menu accelerators, wrong information in logs, it does not access help in Linux), computation of certain tasks is time consuming (Java?) and the manual contains some wrong terms (Operative (sic) Systems). It is easy to use and should be a good replacement for ModelTest (and PAUP).</p>
+
+<p>Apart from the ease of use and the analytical capabilities, there are some issues with the jModelTest:</p>
+
+<ul>
+<li><p>the program is distributed under the GPL, but there is no source code in the package and no information on how to get the source in the manual or the webpage. Should I write the author?</p></li>
+<li><p>indeed is great the jModelTest makes possible to break free from the PAUP relationship, but at the same time is a double standard to use other applications under-the-hood and not allowing ModelTest to be distributed the same way in the past. As an excuse to control all possible copies and downloads of ModelTest, Posada didn&#8217;t allow me to distribute the ModelTest executable with <a href="http://genedrift.org/mtgui.php">MrMTgui</a>. So much for GPL&#8217;ing your programs</p></li>
+<li><p>the download process is very &#8216;95ish, where you have to enter name, email and institution in order to get the link. Someone should invent access logs &#8230;</p></li>
+</ul>
+
+
+<p>Posada, D. (2008). jModelTest: Phylogenetic Model Averaging. Molecular Biology and Evolution DOI: <a href="http://dx.doi.org/10.1093/molbev/msn083">10.1093/molbev/msn083</a></p>
+
+<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=abf013e6-fd32-47a5-ae50-afad381cbdfb" alt="" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-21T14:26:03-04:00" pubdate data-updated="true">Apr 21<span>st</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/bioinformatics-opinion/'>Bioinformatics - opinion</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/04/21/jmodeltest/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/04/21/jmodeltest/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/04/20/twitter-updates-for-2008-04-20/" title="Previous Post: Twitter Updates for 2008-04-20">&laquo; Twitter Updates for 2008-04-20</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/04/21/xkcd-got-it-wrong/" title="next Post: XKCD got it wrong">XKCD got it wrong &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere ...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -9,10 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Now that we have the best quorum determination function and the ideal
-function to calculate the binomial
-expansions
-it is easy to program a script to &hellip;">
+  <meta name="description" content="I tried to become a Mendeley University Advisor, whatever it is. It&#8217;s the old saying &#8220;I&#8217;m in the System to destroy it from within&# &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +68,7 @@ it is easy to program a script to &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/">Obtaining overrepresented motifs in DNA sequences, part 13</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/08/09/damn-mendeley/">Damn, Mendeley!</a></h1>
     
     
       <p class="meta">
@@ -87,93 +84,22 @@ it is easy to program a script to &hellip;">
   
 
 
-<time datetime="2008-08-20T21:32:09-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+<time datetime="2010-08-09T10:21:22-04:00" pubdate data-updated="true">Aug 9<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Now that we have the best quorum determination function and the ideal
-function to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
-expansions</a>
-it is easy to program a script to calculate the <em>p</em> value of motifs in
-DNA sequences. To the script <em>below in the code there are a couple of
-errors that wordpress don&#8217;t let me fix. The > and &lt; are replaced by
-their literal html enconding. I am working on it, sorry</em></p>
+  <div class="entry-content"><p>I tried to become a Mendeley University Advisor, whatever it is. It&#8217;s the old saying &#8220;I&#8217;m in the System to destroy it from within&#8221;. Understandably, I didn&#8217;t get the gig. But what surprised me is the <em>personal</em> touch in the their message:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
-</span><span class='line'>          <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
-</span><span class='line'>          <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
-</span><span class='line'>          
-</span><span class='line'>          <span class="c">#print ntok // ktok return ntok // ktok else: return 0 def</span>
-</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id\_no to a set use explicit</span>
-</span><span class='line'><span class="s">counter to create seq\_no &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">for</span>
-</span><span class='line'><span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span>
-</span><span class='line'><span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">id</span>\<span class="n">_no</span><span class="p">)</span> <span class="k">return</span> <span class="n">quorum</span> <span class="nb">input</span>\<span class="n">_seqs</span> <span class="o">=</span>
-</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="nb">input</span>\<span class="n">_seqs2</span> <span class="o">=</span>
-</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">foreground</span> <span class="o">=</span>
-</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">background</span> <span class="o">=</span> <span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">,</span>
-</span><span class='line'><span class="mi">10</span><span class="p">)</span> <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span>
-</span><span class='line'><span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span>
-</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
-</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> \<span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span>
-</span><span class='line'><span class="mf">0.0001</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
-</span></code></pre></td></tr></table></div></figure>
+<blockquote><p>Thank you for your interest in becoming a Mendeley University Advisor!</p></blockquote>
 
+<p>We have now received hundreds of applications from around the globe representing a wide range of academic disciplines. The sheer amount of applicants has been overwhelming and we’re currently filled to capacity. Over the next few months, we will further expand the Advisor program, at which point we would love to have you join us! You don’t need to do anything to follow up, we’ve added you to the waitlist and will be in touch as space becomes available. Thanks again for your interest and please don’t hesitate to get in touch if you have any questions or comments.</p>
 
-<p>We already defined choose in the last post (more information in the link
-from the Python&#8217;s cookbook) and earlier Mike sent us a series of
-quorum-determination functions and one of the best was portrayed and
-explained here.</p>
+<p>So, I guess Mendeley, apart from huge PR campaign, acts like they&#8217;re a huge company when they need to send automatic emails to the thousands of applicants to this desirable position. But, yet they forget to add the sucker&#8217;s name to the email.</p>
 
-<p>We also need our fasta module to read the sequences (and only the
-sequences) in order to use it in the quorum function. Basically we use
-the foreground and background files as input, determine the quorum of
-the different words (width 10) and then we iterate over the results,
-calculating the <em>p</em> value for each motif found in the foreground set.
-The tree terms of the Hypergeometric Distribution are calculated
-separately and we test for a <em>p</em> value smaller that 0.0001 (this can be
-modified) and we only print the results that fall in this category.</p>
+<p>I think I will have a Pepsi.</p>
 </div>
   
   
@@ -186,7 +112,7 @@ modified) and we only print the results that fall in this category.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/08/15/obtaining-overrepresented-motifs-in-dna-sequences-part-12/">Obtaining overrepresented motifs in DNA sequences, part 12.5</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/07/28/gates-and-fountains-more-pepsi/">Gates and fountains, more Pepsi</a></h1>
     
     
       <p class="meta">
@@ -202,111 +128,18 @@ modified) and we only print the results that fall in this category.</p>
   
 
 
-<time datetime="2008-08-15T17:15:21-04:00" pubdate data-updated="true">Aug 15<span>th</span>, 2008</time>
+<time datetime="2010-07-28T10:03:18-04:00" pubdate data-updated="true">Jul 28<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>So let&#8217;s modify a little bit the <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a> and then
-benchmark both by using <code>timeit</code>. Ideally our factorial function would
-need to calculate a value similar to the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial expansion</a>,
-as we have three factorials to calculate in for each binomial in the
-Hypergeometric Distribution. So we can add two extra factorial
-calculations to our function and perform the multiplication and division
-to return the equivalent to the binomial calculation. So the function
-would be</p>
+  <div class="entry-content"><p>Sometimes, I wish that the famous Watergate Hotel in my beloved Washington, DC was called Waterfountain. It would be much more difficult for the cliche-driven media to use a &#8220;fountain&#8221; suffix at the end of every scandal (just imagine the Climategate becoming the Climatefountain), but in some situations it would be great.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">value1</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">value1</span> <span class="o">*=</span> <span class="n">i</span>
-</span><span class='line'>      <span class="n">value2</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">value2</span> <span class="o">*=</span> <span class="n">i</span>
-</span><span class='line'>      <span class="n">value3</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">value3</span> <span class="o">*=</span> <span class="n">i</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="n">value1</span> <span class="o">/</span> <span class="p">(</span><span class="n">value2</span> <span class="o">*</span> <span class="n">value3</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>Think now that the <a href="http://www.newsweek.com/2010/07/26/the-pepsi-challenge.html">Pepsigate</a> (really? Newsweek. Slow news day?) would become, in a excellent fit, the Pepsifountain.</p>
 
-
-<p> <code>m</code> and <code>n</code> are both values of the binomial and <code>n - m</code> is the subtraction of one by the
-other that forms the last factorial to be calculated. This way it makes
-easier to time the performance of both functions. In the end the
-complete script would look like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">timeit</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">result1</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="n">result1</span> <span class="o">*=</span> <span class="n">i</span> <span class="n">result2</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span>
-</span><span class='line'><span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">result2</span> <span class="o">*=</span> <span class="n">i</span> <span class="n">result3</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span>
-</span><span class='line'><span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">result3</span> <span class="o">*=</span> <span class="n">i</span> <span class="k">return</span> <span class="n">result1</span> <span class="o">/</span> <span class="p">(</span><span class="n">result2</span> <span class="o">*</span> <span class="n">result3</span><span class="p">)</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'><span class="o">=</span> <span class="mi">1</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">while</span> <span class="n">j</span> \<span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span> <span class="k">return</span> <span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span> <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>
-</span><span class='line'><span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span> <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span> <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span> \<span class="c">#print ntok // ktok</span>
-</span><span class='line'><span class="k">return</span> <span class="n">ntok</span> <span class="o">//</span> <span class="n">ktok</span> <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span> <span class="k">if</span> \<span class="n">_</span>\<span class="n">_name</span>\<span class="n">_</span>\<span class="n">_</span> <span class="o">==</span> <span class="s">&quot;\_\_main\_\_&quot;</span><span class="p">:</span>
-</span><span class='line'><span class="n">stmt</span> <span class="o">=</span> <span class="s">&quot;fac(3000, 7)&quot;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="s">&#39;from</span>
-</span><span class='line'>\<span class="n">_</span>\<span class="n">_main</span>\<span class="n">_</span>\<span class="n">_</span> <span class="kn">import</span> <span class="nn">fac</span><span class="s">&#39;) stmt2 = &quot;binom(3000, 7)&quot; t2 =</span>
-</span><span class='line'><span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt2</span><span class="p">,</span> <span class="n">setup</span> <span class="o">=</span> <span class="s">&#39;from \_\_main\_\_ import binom&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">stmt3</span> <span class="o">=</span> <span class="s">&quot;choose(3000, 7)&quot;</span> <span class="n">t3</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt3</span><span class="p">,</span> <span class="n">setup</span> <span class="o">=</span> <span class="s">&#39;from</span>
-</span><span class='line'>\<span class="n">_</span>\<span class="n">_main</span>\<span class="n">_</span>\<span class="n">_</span> <span class="kn">import</span> <span class="nn">choose</span><span class="s">&#39;) print &#39;</span><span class="n">fac</span><span class="p">:</span> <span class="o">%.</span><span class="mi">9</span><span class="n">f</span><span class="s">&#39; % (t.timeit(100)/100)</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&#39;binom: </span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t2</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span> <span class="k">print</span> <span class="s">&#39;choose </span><span class="si">%.9f</span><span class="s">&#39;</span> <span class="o">%</span>
-</span><span class='line'><span class="p">(</span><span class="n">t3</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The final result of the average for
-ten repetitions is as follow fac = 0.10 s binom = 43.24 s choose =
-0.000005 s <del>Clearly, the factorial function gets a huge advantage over
-the binomial one. So we will modify it a little bit and use it for our
-HD script.</del> Clearly the <code>choose</code> function is the fastest one, so we
-will incorporate it on out HD script.</p>
+<p>More Pepsi for everyone!!</p>
 </div>
   
   
@@ -319,7 +152,7 @@ will incorporate it on out HD script.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/08/12/obtaining-overrepresented-motifs-in-dna-sequences-part-11/">Obtaining overrepresented motifs in DNA sequences, part 11</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/07/23/my-take-on-the-future-scientific-blog-community-long-post/">My take on the future scientific blog community (long post)</a></h1>
     
     
       <p class="meta">
@@ -335,102 +168,14 @@ will incorporate it on out HD script.</p>
   
 
 
-<time datetime="2008-08-12T20:50:17-04:00" pubdate data-updated="true">Aug 12<span>th</span>, 2008</time>
+<time datetime="2010-07-23T09:39:16-04:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>After a long hiatus we are (almost) back on track in order to get our
-scripts to determine overrepresented motifs in DNA sequences. Last time
-we checked we defined the &#8220;best&#8221; <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a> in Python</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac_01</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
-</span><span class='line'><span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="n">result</span> \<span class="o">*=</span> <span class="n">i</span> <span class="k">return</span> <span class="n">result</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> and Andrew Dalke
-sent a couple of links pointing out to a binomial calculation function,
-one of them is below</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c"># This file contains the Python code from Program 14.10 of</span>
-</span><span class='line'><span class="c"># &quot;Data Structures and Algorithms with Object-Oriented Design Patterns in Python&quot; </span>
-</span><span class='line'><span class="c"># by Bruno R. Preiss. </span>
-</span><span class='line'><span class="c">## Copyright (c) 2003 by Bruno R. Preiss, P.Eng. All rights reserved. </span>
-</span><span class='line'><span class="c">## http://www.brpreiss.com/books/opus7/programs/pgm14_10.txt # </span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>          <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There is a similar implementation in the Python Cookbook
-online and it is clearly more convenient using this function than
-actually coding to calculate an identical value using factorials. But
-anyway, let&#8217;s see how a function that calculates one binomial
-coefficient from the Hypergeometric Distribution (HD) by using the
-factorial function. Later we benchmark both methods. Each <a href="http://en.wikipedia.org/wiki/Binomial_coefficient" title="Binomial coefficient">binomial coefficient</a>
-can be expanded as
-<img src="http://codecogs.izyba.com/png.latex?%5C200dpi%20%5Cbegin%7Bpmatrix%7Dn%5C%5Cr%5Cend%7Bpmatrix%7D%20=%20%5Cfrac%7Bn!%7D%7Br!(nr" alt="image" />!%7D)
-and the HD has three of them. From the Wikipedia &#8220;In probability theory
-and statistics, the <a href="http://en.wikipedia.org/wiki/Hypergeometric_distribution" title="Hypergeometric distribution">hypergeometric distribution</a>
-is a discrete probability distribution that describes the number of
-successes in a sequence of n draws from a finite population without
-replacement.&#8221; In the next post we will define each term of the HD for
-the motifs case. In each <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial expansion</a>
-we would have to calculate three factorial values, nine in total. With
-the binomial function, only three values need to be calculated. So,
-using the factorial function we would need to code something like this
-in order to calculate one of the binomials</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>
-</span><span class='line'><span class="c">#let&#39;s say the motif quorum in the foreground is 7</span>
-</span><span class='line'><span class="c">#and the total number of sequences is 3000 </span>
-</span><span class='line'><span class="c">#we won&#39;t touch the other required values </span>
-</span><span class='line'><span class="n">fore</span> <span class="o">=</span> <span class="mi">7</span> <span class="n">total</span> <span class="o">=</span> <span class="mi">3000</span>
-</span><span class='line'><span class="n">hd</span> <span class="o">=</span> <span class="n">fac_01</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">fac_01</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">*</span> <span class="n">fac_01</span><span class="p">(</span><span class="mi">2993</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="n">hd</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Next, we will benchmark and see if there is an advantage to either method.</p>
+  <div class="entry-content"><p>In my opinion the future of the scientific blog community is the same as always.</p>
 </div>
   
   
@@ -443,7 +188,7 @@ in order to calculate one of the binomials</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/06/a-quick-assessment-of-factorial-functions-in-python/">A quick assessment of factorial functions in Python</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/07/22/more-pepsi-for-everyone/">More Pepsi for everyone &#8230;</a></h1>
     
     
       <p class="meta">
@@ -459,84 +204,18 @@ in order to calculate one of the binomials</p>
   
 
 
-<time datetime="2008-06-06T11:52:35-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
+<time datetime="2010-07-22T17:07:40-04:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>A short pause on the motifs subject. As mentioned on comments there is a
-lot of different ways of calculating
-<a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorials</a> in
-Python (the same &#8220;problem&#8221; can be found in some other languages too).
-<a href="http://python.genedrift.org/2008/06/04/obtaining-overrepresented-motifs-in-dna-sequences-part-10/#comment-14054">Cariaso</a>
-suggested to time the execution of different factorial functions,
-including the ones found on <a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/67668">Python&#8217;s cookbook</a>
-(which I should have included in the beginning of last post).</p>
+  <div class="entry-content"><p>Staying on the thirsty-topic of my earlier post, I think Pepsi contributed more to Science and related fields than most of us could. I had lost all hope that corporations could be good, but I was wrong. I don&#8217;t usually drink cola, but when I do I prefer (and always will) Pepsi.</p>
 
-<p>Anyway all
-functions from the webpage were included, as the one mentioned on a
-comment and both functions seen here. Using timeit (thanks Mike!) the
-execution time of all of them were measured by calculating the factorial
-of 800 and 4000. First, the functions:</p>
+<p>After I finish my seventh cold Pepsi can of the day (it&#8217;s hot here!) I might even want to check Science Blogs again.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac_01</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="n">result</span> \<span class="o">*=</span> <span class="n">i</span> <span class="k">return</span>
-</span><span class='line'><span class="n">result</span> <span class="k">def</span> <span class="nf">fac_02</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> \<span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span>
-</span><span class='line'><span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">value</span> <span class="k">def</span> <span class="nf">fac_03</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="kn">import</span> <span class="nn">operator</span> <span class="nn">value</span> <span class="o">=</span>
-</span><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">value</span> <span class="k">def</span> <span class="nf">fac_04</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span>
-</span><span class='line'><span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>\<span class="o">*</span><span class="nb">long</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">fac_05</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span>\<span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>\<span class="o">*</span><span class="n">n</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">fac_06</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">a</span>\<span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span>
-</span><span class='line'><span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_07</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="n">n</span> \<span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span>
-</span><span class='line'><span class="n">y</span><span class="p">:</span> <span class="n">x</span>\<span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_08</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span>\<span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">fac_09</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[[[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="n">j</span> \<span class="o">*</span> <span class="n">i</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
-</span><span class='line'><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_10</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span>
-</span><span class='line'><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="n">j</span> \<span class="o">*</span> <span class="n">i</span><span class="p">]]</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>fac_01</code> was suggested by bearophile on a comment (no psyco import here),
-<code>fac_02</code> was the first one we have seen
-in the blog, <code>fac_03</code> was the one &#8220;selected as the fastest&#8221; (mentioned
-on comments too) and functions 4 to 10 were gathered from the cookbook,
-all of them using <code>lambda</code>. Now, to the results (no fancy graphs, yet),
-average over 1000 repeats, time in seconds:</p>
-
-<p><em>800!</em> fac_01: <strong>0.0010</strong>
-fac_02: 0.0012 fac_03: <strong>0.0010</strong> fac_04: 0.0022 fac_05: 0.0020
-fac_06: 0.0015 fac_07: 0.0013 fac_08: 0.0013 fac_09: 0.0017 fac_10:
-0.0015 <em>4000!</em> fac_01: <strong>0.0226</strong> fac_02: 0.0242 fac_03: <strong>0.0230</strong>
-fac_04: N/A fac_05: N/A fac_06: 0.0244 fac_07: 0.0239 fac_08:
-0.0241 fac_09: 0.0380 fac_10: 0.0362 In both cases the &#8220;best&#8221;
-functions were 1 and 3. For the smallest factorial (800!) 1 and 3 didn&#8217;t
-have a lot of advantage for 2, 6-10, while 4 and 5 were 2 times slower.
-For the largest factorial (4000!) 1 was 4% better than 3, and the third
-best (6) was also 4% slower than 3. Why do 4 and 5 have no computed
-time? Because they are recursive and it blows the recursion limit in
-Python. So I guess it is a safe bet to use either function 1 or 3, with
-a slightly advantage for 3 in the case of large factorials. But at the
-same time a believe for our case of overrepresented motifs, it would be
-better to pre-calculate the factorials, store them and access the value
-when needed. Andrew&#8217;s idea of using binomials is also interesting, and I
-am planning to test it here. He also gave a couple of other suggestions
-that would need extra imports, scipy and gmpy.</p>
+<p>Cheers, with Pepsi.</p>
 </div>
   
   
@@ -549,7 +228,7 @@ that would need extra imports, scipy and gmpy.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/04/obtaining-overrepresented-motifs-in-dna-sequences-part-10/">Obtaining overrepresented motifs in DNA sequences, part 10</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/07/22/i/">I </a></h1>
     
     
       <p class="meta">
@@ -565,61 +244,14 @@ that would need extra imports, scipy and gmpy.</p>
   
 
 
-<time datetime="2008-06-04T11:33:51-04:00" pubdate data-updated="true">Jun 4<span>th</span>, 2008</time>
+<time datetime="2010-07-22T15:59:29-04:00" pubdate data-updated="true">Jul 22<span>nd</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Let&#8217;s get back to the statistical module, that will calculate an
-Hypergeometric Distribution (HD) <em>p</em> value so we can define the
-overrepresented motifs. Last time we saw it, we just had defined the
-<a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a>, which is
-immensely helpful in this case due to the number of factorial
-calculations needed in the HD. The factorial function was the one below</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">value</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>but as mentioned in the comments by
-<a href="http://python.genedrift.org/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/#comment-13532">Dave</a>
-and by Mike via email the method used is not the best method to
-calculate factorial in
-<a href="http://python.org/" title="Python (programming language)">Python</a>. The best
-approach in this case is to use <code>operator.mul</code>. All functions in the
-operator modules are in implemented in pure C and they mimic the same
-operators in Python. So in this module we can find <code>mul</code> for
-multiplication, <code>sub</code> for subtraction, <code>add</code> for additions, etc. The
-<code>operator.mul</code> needs two arguments to multiply, and in our case we still
-need to use <code>reduce</code> to sum all the results from a series of
-multiplications. As parameters we should use a <code>range</code>, that can start
-with 2, that should go up to the number we want the factorial plus one.
-Finally our function would be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">operator</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="n">value</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The time gain, quickly measured in a non-scientific
-fashion in my system, is around 5 to 15%, depending on the factorial
-being calculated. It may seem a small gain, but when you need to
-calculate almost a million factorials for all possible motifs the amount
-of time saved is crucial. Next time we will be back with more
-statistics, expanding the module.</p>
+  <div class="entry-content"><p>I have been quite late to new events, but suddenly I have an urge to drink a cold Pepsi!</p>
 </div>
   
   
@@ -632,7 +264,7 @@ statistics, expanding the module.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-8/">Obtaining overrepresented motifs in DNA sequences, part 9</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/07/12/world-cup-2010-final-impression/">World Cup 2010, final impression</a></h1>
     
     
       <p class="meta">
@@ -648,74 +280,14 @@ statistics, expanding the module.</p>
   
 
 
-<time datetime="2008-06-03T13:59:28-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
+<time datetime="2010-07-12T20:08:47-04:00" pubdate data-updated="true">Jul 12<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Back on new functions for motif quorums. We jump function 7 in order to
-explain &#8220;simpler&#8221; ones, 8 and 9. Both functions use <code>generators</code>. We&#8217;ve
-already seen here <code>generators</code>, which are functions that use the <code>yield</code>
-statement to generate iterators. The generator is very similar to a
-function but instead of returning a value, it yields one and waits for
-another call to resume. In function 8, a generator is used to return the
-motif sequence that is used as a key in the <code>defaultdict</code>. Notice the
-scope of the generator that is coded inside a function.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_08</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'><span class="sd">&quot;&quot;&quot;add seq id_no to a set use enumerate to create seq_no use an explicit generator to</span>
-</span><span class='line'><span class="sd">create the motifs &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">motif_gen</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">yield</span> <span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]</span>
-</span><span class='line'>          <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>          <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>              <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="n">motif_gen</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>                  <span class="n">quorum</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In function 9 a
-very similar structure is used but in this cases instead of a &#8220;pure&#8221;
-<code>generator</code> it uses <code>generator expressions</code> which a very similar to
-<a href="http://python.genedrift.org/2008/03/11/fasta-module-generating-reverse-complement-of-dna-sequences/">list comprehensions</a>
-but with parentheses instead of square brackets. <code>Generator expressions</code>
-are generators that can be written in one line and have identical
-behaviour as generators coded in the &#8220;regular&#8221; inception. In the
-function below the <code>generator expressions</code> provide the iterator for the
-loop with <code>motif</code> as index. Very simple and elegant.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_09</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id_no</span>
-</span><span class='line'><span class="s">to a set use enumerate to create seq_no use a generator expression to</span>
-</span><span class='line'><span class="s">create the motifs &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span>
-</span><span class='line'><span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span> <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span>
-</span><span class='line'><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">)):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span> <span class="k">return</span>
-</span><span class='line'><span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In the next post we will go back to the statistical
-module and soon we will see the remainder 5 functions sent by Mike.</p>
+  <div class="entry-content"><p>Viva España!!</p>
 </div>
   
   
@@ -728,7 +300,7 @@ module and soon we will see the remainder 5 functions sent by Mike.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8/">Obtaining overrerpresented motifs in DNA sequences, part 9</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/06/26/safari-5-the-worst/">Safari 5: the worst</a></h1>
     
     
       <p class="meta">
@@ -744,58 +316,14 @@ module and soon we will see the remainder 5 functions sent by Mike.</p>
   
 
 
-<time datetime="2008-06-03T12:49:53-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
+<time datetime="2010-06-26T19:58:39-04:00" pubdate data-updated="true">Jun 26<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We keep on introducing Mike&#8217;s functions. This time there are a couple of
-Python methods that we haven&#8217;t seen here and need some introduction,
-<code>izip</code> and <code>count</code>. To use these two we also need to import new modules</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">izip</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> <code>count</code> returns consecutive integers starting at a
-defined point (the method&#8217;s parameter). If empty it starts from zero.
-Basically, by starting a <code>count</code> it will give an iterable with a
-increasing integer values, in a fashion similar to a function with
-yield. Every time our loop accesses the <code>count</code> it will &#8220;remember&#8221; the
-last return value and increment it by one. <code>izip</code> also returns an
-iterator, but from a list of iterables. It is basically used to iterate
-through a list of many iterables at the same time. In the function below
-it is used twice: one to generate a tuple (with <code>count</code>) with a sequence
-number and the sequence itself. The sequence in the tuple is then used
-in another <code>izip</code> to create the windows on the sequences to count
-motifs.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_06</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'><span class="sd">&quot;&quot;&quot; add seq id\_no to a set use &#39;izip(count(),...) to create seq_no use</span>
-</span><span class='line'><span class="sd">&#39;izip(count(),range(...)) to create start/stop indices for motifs &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In the next couple of posts we still be
-checking motif quorum functions. Stay tuned.</p>
+  <div class="entry-content"><p>Safari 5 is the worst web browser I have ever used, IE6 included. Halting, stalling, not loading and not finding pages. A complete failure, running on OS X with all updates from the same company that programs the browser.</p>
 </div>
   
   
@@ -808,7 +336,7 @@ checking motif quorum functions. Stay tuned.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/">Obtaining overrepresented motifs in DNA sequences, part 7</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/06/26/2010-world-cup-second-impressions/">2010 World Cup: second impressions</a></h1>
     
     
       <p class="meta">
@@ -824,102 +352,21 @@ checking motif quorum functions. Stay tuned.</p>
   
 
 
-<time datetime="2008-06-03T10:27:49-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
+<time datetime="2010-06-26T18:07:03-04:00" pubdate data-updated="true">Jun 26<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Continuing on Mike&#8217;s functions to obtain motif quorums. We see function
-3, 4 and 5. Function get_quorums_03, uses an old friend of the blog,
-<code>sets</code>. Recall that <code>sets</code> are very similar to lists, but their are
-unordered and items are unique.</p>
+  <div class="entry-content"><p>Here are some thoughts after the first round of knockout games:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_03</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use explicit counter to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> Basically,
-the sequence numbers (an incremented counter) are added to a <code>defaultdict</code>
-which was initialized as a set. This way you don&#8217;t need to check for the
-existence of the sequence number in the <code>defaultdict</code> list and count on
-the ability of <code>set</code> of being unique. Function 4 is very similar to
-function 3 with the difference of using enumerate (as in function 02) to
-make the sequence numbers.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_04</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>          
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Function 5
-adds a twist, which is to have an enumerate to set the sequence range
-(motif/word width) start and stop. This way the window is sliding based
-on the tuple created by the enumerate method and not on the slicing that
-were used in all other functions. Again, a <code>defaultdict</code> is initialized as
-set and the sequence numbers are generated by an enumerate.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_05</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no use enumerate(range(...)) </span>
-</span><span class='line'><span class="sd"> to create start/stop indices for motif &quot;&quot;&quot;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>          
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<ul>
+<li><p>Sad that Italy had to leave, even though they played poorly, it&#8217;s better to watch them play than the Slovaks.</p></li>
+<li><p>So much for the revival of &#8220;soccer&#8221; in US, it went out with a bad bang. Even worse is reading the American media talking about the most resilient team in the world, ready for prime time, the chances to win it all now, yes we can. It can be summarized by saying that the American media is composed by a bunch of idiots that only watch US games every four years. Thanks God the Canadians didn&#8217;t jump on their bandwagon.</p></li>
+<li><p>Brazil has a chance of wining it all, even though I detest that bunch of millionaire whiner. The level of competition is so low that the less bad will win. But watch out for Uruguay and Argentina, two major rivals that know how to make the whiners cringe.</p></li>
+<li><p>Sad the South Africa left in the first phase. There was no help from FIFA like South Korea in 2002. FIFA is one the most corrupt international bodies and I guess the South Africans were already happy to be hosting the games.</p></li>
+</ul>
 
 </div>
   
@@ -933,7 +380,7 @@ set and the sequence numbers are generated by an enumerate.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/30/obtaining-overrepresented-motifs-part-6/">Obtaining overrepresented motifs in DNA sequences, part 6</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/06/25/bad-street-cred/">Bad street cred</a></h1>
     
     
       <p class="meta">
@@ -949,106 +396,16 @@ set and the sequence numbers are generated by an enumerate.</p>
   
 
 
-<time datetime="2008-05-30T21:30:44-04:00" pubdate data-updated="true">May 30<span>th</span>, 2008</time>
+<time datetime="2010-06-25T07:20:59-04:00" pubdate data-updated="true">Jun 25<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We will take a break on developing the statistical module to obtain
-overrepresented motifs (I will introduce mul in the next stats post),
-and take a deeper look at the possibilities on obtaining the motif
-quorums. Mike DeHaemer, a regular commenter and contributor to the blog,
-sent me a <a href="http://python.org/" title="Python (programming language)">Python</a>
-script with 8 different ways distributed in 13 distinct functions for
-obtaining the motif quorums.</p>
+  <div class="entry-content"><p>That&#8217;s the way you become a &#8220;new&#8221; MSFT: launch a browser that stalls, halts and doesn&#8217;t &#8220;find&#8221; the server, only after a refresh. The launch a operating system that takes hours to upgrade from the previous one, wasting an enormous amount of time on backing up the previous version. And finally launch a phone that doesn&#8217;t make and receive calls when you are holding it.</p>
 
-<p>I will take advantage of his contribution
-and post all of them, with some quick comments on each one of them (his
-code comments were kept in each function). After, a small benchmarking
-will be posted. Most of the functions need to import a couple of module</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">deque</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">izip</span><span class="p">,</span> <span class="n">tee</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and they have two
-parameters, a sequence list and the length of the motifs. The first
-function uses again the <code>defaultdict</code> and it is very similar to the one
-used in the final version of the quorum script. The <code>defaultdict</code> is
-initialized as a list and the ids are added to a the list, keys are
-motifs, only if they are not already present in it. The sequence id is
-generated in a variable incremented each time the loop iterates.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_01</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot;append seq id_no to list after checking to see if already present use explicit counter to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]:</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The second function is very similar to the
-first one, with the caveat that sequence id numbers are generated with
-<code>enumerate</code>.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_02</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; append seq id_no to list after checking to see if already present use &#39;enumerate&#39; to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">id_no</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]:</span>
-</span><span class='line'>              <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>              
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>enumerate</code> is a object based on another iterable object. When called
-<code>enumerate</code> always returns a tuple of an indexed series. For instance,
-in our case above, enumerate will return a series of tuples
-<code>(0, sequence1), (1, sequence2) ... (n, sequenceN)</code>. That&#8217;s the reason
-the enumerate loop uses a tuple as its index</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Next couple of posts will cover the other functions sent by Mike. Then we
-will go back to the statistical module.</p>
+<p>Three lessons on how to become the highly adorable MSFT. You have a long way to go Apple, but you will get there.</p>
 </div>
   
   
@@ -1061,7 +418,7 @@ will go back to the statistical module.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/">Obtaining overrepresented motifs in DNA sequences, part 5</a></h1>
+      <h1 class="entry-title"><a href="/blog/2010/06/14/2010-world-cup-first-impressions/">2010 World Cup: first impressions</a></h1>
     
     
       <p class="meta">
@@ -1077,73 +434,23 @@ will go back to the statistical module.</p>
   
 
 
-<time datetime="2008-05-21T13:50:00-04:00" pubdate data-updated="true">May 21<span>st</span>, 2008</time>
+<time datetime="2010-06-14T18:51:54-04:00" pubdate data-updated="true">Jun 14<span>th</span>, 2010</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Now that we have the script to generate the word quorums working (and
-working fast!) we need then to calculate the a <em>p</em> value for each motif
-based on the fore and background quorums. A <em>p</em> value cut-off will
-determine the statistically significant words, or overrepresented. These
-overrepresented words then can be analysed in more details (that we
-won&#8217;t see here) and for instance determine new or already known
-transcription factor binding sites. A well established statistical
-method to determine such overrepresented words is the <a href="http://www.mnlottery.com/hypergeo.html">Hypergeometric Distribution</a> (HD for short).</p>
+  <div class="entry-content"><p>Some irrelevant impressions about the World Cup in South Africa:</p>
 
-<p>HD
-measures &#8220;success&#8221; and &#8220;failures&#8221; for values that do not fit in the
-<a href="http://en.wikipedia.org/wiki/Binomial_distribution" title="Binomial distribution">binomial distribution</a>,
-and depend on the measurements without replacement. Basically, HD&#8217;s
-equation has a a series of binomial coefficients/combinations <img src="http://www.genedrift.org/hd.gif" alt="HD equation" /> where <em>N</em> is the population
-size, <em>m</em> is foreground cluster size, <em>k</em> is the motif quorum in the
-background gene set and <em>x</em> is the word quorum in the foreground set.
-Note that the above equation is for the cumulative HD, where a sum of
-probabilities is calculated. All the combinations in the above equation
-have to be expanded to factorials that depending on the value to be
-calculated are very computer intensive and sometimes don&#8217;t fit in the
-memory (either a float or integer).</p>
+<ul>
+<li><p>vuvuzela will probably be the only thing that you will remember about this cup. And that&#8217;s sad.</p></li>
+<li><p>mediocre players so far (with few exceptions), mediocre ball</p></li>
+<li><p>According to CBC (Canada) Australia is (was) one the coming powers in football. I guess they need to hire some real analysts, or let me comment hockey</p></li>
+<li><p>Apart from Messi and Germany, nothing good so far. And the English goalkeeper too, classic. It&#8217;s becoming a norm to make fun of the poor Englishmen every four years.</p></li>
+<li><p>Also according to Canadian TV, Italy is not known for slow starts. They don&#8217;t have tapes from the matches since 1982. Again, better analysts.</p></li>
+</ul>
 
-<p>But
-<a href="http://python.org/" title="Python (programming language)">Python</a> is able to
-handle very large numbers and the calculation of large factorials is
-relatively fast. In C++, I had to use a couple of tricks to achieve a
-good speed in the factorial determination, and specially in the HD
-calculation that requires multiple factorials and multiplication,
-division and subtraction of large numbers. I didn&#8217;t want to use any
-mathematical trick such as <a href="http://en.wikipedia.org/wiki/Stirling's_approximation" title="Stirling's approximation">Stirling&#8217;s approximation</a>.</p>
-
-<p>13! in C++ already blows the size of long, so I had to use the <a href="http://www.tc.umn.edu/~ringx004/mapm-main.html">MAPM, A Portable Arbitrary Precision Math Library in C</a>. This library is
-quite fast to calculate the factorial values but when one needs to
-calculate more than 200,000 factorials the speed is unbearable. So, I
-decided to pre-calculate a series of factorial values, keeping 10
-decimal places as precision and saving in another column their
-exponential. Then using this table as an input I was able to multiply,
-divide and subtract the factorials and by employing the first law of
-exponents do the same operations with their exponential.</p>
-
-<p>This speeds up
-the process tremendously. In Python, we don&#8217;t need any extra third-party
-library, we just use Python itself, without importing an extra module. A
-factorial function in Python can be written in one line, but for clarity
-is better to define it separately. We can try throwing any number at it
-and see the result.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> \<span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">value</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We already saw <code>reduce</code> and <code>lambda</code> and using these two methods make
-the factorial function clear and simple. And why are we not using a
-recursive function? Because Python has a limit recursion depth (1000).
-Next time we will implement the code that calculates the HD <em>p</em> values.</p>
 </div>
   
   
@@ -1168,23 +475,23 @@ Next time we will implement the code that calculates the HD <em>p</em> values.</
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
       </li>
     
   </ul>

@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using subversion and svn-time-lapse to edit a manuscript, take 2, a short tutorial - PART I - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Last post I introduced svn-time-lapse, which is already in version 1.3. Jon included the option to view only the changes what I think might be an &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/10/24/using-subversion-and-svn-time-lapse-to-edit-a-manuscript-take-2-a-short-tutorial">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Using subversion and svn-time-lapse to edit a manuscript, take 2, a short tutorial - PART I</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-24T22:25:26-04:00" pubdate data-updated="true">Oct 24<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Last post I introduced svn-time-lapse, which is already in <a href="http://svn-time-lapse-view.googlecode.com/files/svn-time-lapse-view-1.3.zip">version 1.3</a>. Jon included the option to view only the changes what I think might be an extra advantage when you are editing a manuscript. I outline here a small tutorial on how to edit a manuscript with subversion and svn-time-lapse. This is based on a Windows system, but it can be used with small changes for Linux, which has the advantage of having (most of the time) subversion installed.</p>
+
+<p>(Be aware that this won&#8217;t work for Word files, you need to be using a text based, ie Latex, document)</p>
+
+<p>First you need to <a href="http://tortoisesvn.net/downloads">download </a>and install the TortoiseSVN interface for Windows. After installing it, the Windows Explorer right-click menu will have some extra options, as can be seen on the figure below.</p>
+
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn1.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn1.png" alt="svn1.png" /></a></p>
+
+<p>Checkout allows you to get the source from a repository, while TortoiseSVN gives a list of features to use with subversion. Now, we need to create a directory where the manuscript repository is going to reside. You can create the repository in any place, online, locally, etc. But if you don&#8217;t have an online place to create it, I suggest to create underneath a Documents type of location. On Windows you can create a new folder inside the (My) Documents directory. So, make the new folder <strong>manuscript</strong>. <a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn2.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn2.png" alt="svn2.png" /></a></p>
+
+<p>and the right-click on it and navigate to <strong>TortoiseSVN>>Create repository here</strong>. You can select either format. Done, your repository is set.</p>
+
+<p><strong>SVN</strong><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn3.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn3.png" alt="svn3.png" /></a></p>
+
+<p>If you open the manuscript directory you will see different files, but of course it is empty of actual content. You need to add some content to it and the ideal way is to check out (create a copy for edition) the repository in another location, drop files into this copy and add them to the version control.</p>
+
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn4.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn4.png" alt="svn4.png" /></a></p>
+
+<p>You created the repository in your &#8220;Documents&#8221; directory, so you can check out it to your Desktop (or to any location). This will be your &#8220;local&#8221; copy of the manuscript, the one that you will work on. Close all open windows and right click on your desktop and select <strong>SVN Checkout</strong> from the popup menu.</p>
+
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn5.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn5.png" alt="svn5.png" /></a></p>
+
+<p>In the dialog that appear enter the location of the repository (in your &#8220;Documents&#8221; dir) and the location where you want to checkout to (your &#8220;Desktop&#8221; location), just like the figure below.</p>
+
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn6.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn6.png" alt="svn6.png" /></a></p>
+
+<p>Click OK and a &#8220;local&#8221; copy of the repository will be created.</p>
+
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn7.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/10/svn7.png" alt="svn7.png" /></a></p>
+
+<p>To be continued.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-24T22:25:26-04:00" pubdate data-updated="true">Oct 24<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/misc/'>Misc</a>, <a class='category' href='/blog/categories/science/'>Science</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/10/24/using-subversion-and-svn-time-lapse-to-edit-a-manuscript-take-2-a-short-tutorial/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/10/24/using-subversion-and-svn-time-lapse-to-edit-a-manuscript-take-2-a-short-tutorial/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/10/23/rowling-dumbledore-is-gay/" title="Previous Post: Rowling: 'Dumbledore Is Gay'">&laquo; Rowling: 'Dumbledore Is Gay'</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/10/25/so-he-is-gone/" title="next Post: So, he is gone">So, he is gone &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/">A plea to mankind, news outlets and even scientists</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere ...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
