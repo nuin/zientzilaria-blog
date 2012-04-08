@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>GenBank files: take two - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Last time we saw how to extract the sequence from our GenBank file, but
+the final result might not be as nice as we wanted it to be. So, we need
+to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/09/28/genbank-files-take-two">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">GenBank files: take two</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-28T09:50:27-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Last time we saw how to extract the sequence from our GenBank file, but
+the final result might not be as nice as we wanted it to be. So, we need
+to make it prettier. Running last entry&#8217;s script we end up with this
+sequence</p>
+
+<blockquote><p>1 gtttggtcct aaccttgtaa tcaattttta cttaatatac acatgcaagt ctccgcaccc
+61 ctgtgaaaac gcccttaaat cccccatggg ataaggagct ggtatcaggc acgaaaatct <br/>
+121 gcccaaaaca cctagctatg ccacacccac aagggtactc agcagtgattgacattattt <br/>
+181 ataagcgcca gcttgactca gttaaagtaa agagagccgg caaatctggt gccagccgcc <br/>
+241 gcggttaccc cacgtggctc aaattgattt ctttcggcgt aaagcgtgat taaagtgccc <br/>
+301 atcaacattg gagttaaact aaaattaagc tgtgacacgc ttattttaca gaaaagcaca <br/>
+361 aacgaaagtt acttcaattt aaacaacttg aattcacgac agtcaggaca caaactggga <br/>
+421 ttagataccc cactatgccc gaccgtaaac tttaatttac accatcaccg ccagagaact <br/>
+481 acgagcaaag cttaaaactc aaaggacttg acggtccccc acatccccct agaggagcct <br/>
+541 gtcctttaat cgataatccc cgcttaacct caccattctt agtctttcag cctgtatacc <br/>
+601 tccgtcgtca gcttaccccg tgagcgaaaa ttagtgagct taatgtccac acgtctacac <br/>
+661 gtcaggtcaa ggtgcagcaa atataatggg aagagatggg ctacactttc tagtctagaa <br/>
+721 tatacgaaag accacctatg aaacctggtc agaaggcgga tttagaagta aaaggaaacc <br/>
+781 agagcatccc ttttaatttg gcactggggc atgtacacac cgcccgtcac cctcttcaaa <br/>
+841 gcctaatttt agtatctaac caactaacgc ctagtagaag aggcaagtcg taacatggta <br/>
+901 agtataccgg aaggtgtgct tggaaacaaa atatagccta atcaaagcat ttcgcttaca <br/>
+961 ccgaaaagtt atctgtgaaa ttcagattat tttgagctaa aaatctagcc ccactttatt <br/>
+1021 ctataatccc ttatcactta aattcatgaa tcaaaacatt ttaataatca agtaaaggcg <br/>
+1081 attgaaaaat taataggagc aatatatact gtaccgcaag ggaaagatga aatagaaatg <br/>
+1141 aaataataat taaagcataa aaaagtaaag attaaatctt gtaccttttg catcatgatt <br/>
+1201 taactagtct acccaggcaa aatgatttta agtctgacct cccgaaacta agtgagctac <br/>
+1261 ttcaaggcag cttaatgagc aaatccgtct ctgtcgcaaa agagtggaga gaccttcaag <br/>
+1321 tagaagtgat agacctaacg aacttagtaa tagctggtta ttcaagaaaa ggatctcagt <br/>
+1381 ccaacctaaa gtcaaattaa tgtttaaaaa taaaaattct gaccttagag taattcaatt <br/>
+1441 aaggtacagc ctacttgaaa caggatacaa ccttaactaa tgggtaactt accccttcat <br/>
+1501 cttttaagtg ggcctaaaag cagccacctt taaaatagcg tcaaagctta gccgtcctat <br/>
+1561 acatctaata ccaaaaacat ctatgaaccc tatactcata ttgaataatt ctatattatt <br/>
+1621 atagagattt ttatgttaaa actagtaaca agaattaaat tttctctatt atgttcgtgt <br/>
+1681 acatcagaaa ggataaacca ctgataattg acatgcatga gtaaaaagca gtaacttaac <br/>
+1741 aagaaaaccc tcctaactct aatgttaacc taacacaagt acatctcaag aaagatttaa <br/>
+1801 agaaaaagaa ggaactcggc aaacattaac ctcgcctgtt taccaaaaac atcgcctctt <br/>
+1861 gtcaaaattt aagaggtcca gcctgcccag tgaccctgtt caacggccgc ggtatcctaa <br/>
+1921 ccgtgcgaag gtagcgtaat cacttgttct ttaaataagg actagtatga atggcaccac <br/>
+1981 gagggttata ctgtctcctt tttctaatca gtgaaactaa tcttcccgtg aagaagcggg <br/>
+2041 aatttttata taagacgaga agaccctatg gagctttaga cgagtaacaa ctgctaattt <br/>
+2101 tataatattt cagataatat ctctatccta gcattatgat tataagtctt tggttggggt <br/>
+2161 gaccgcggag aaaaaaataa cctccacatt gaaagaatat tattctaagc aaaaagacac <br/>
+2221 atctttaagc atcaacaaat tgacatctat tgacccaata ttttgatcaa cgaaccaagt <br/>
+2281 taccctaggg ataacagcgc aatccacttc gagagctctt atcgacaagt gggcttacga <br/>
+2341 cctcgatgtt ggatcagggt atcctagtgg tgtagccgct actaaaggtt cgtttgttca <br/>
+2401 acgattaaaa ccct //</p></blockquote>
+
+<p>Notice that there were no mention to
+the <code>//</code> at the end of the file This double slash represents the EOF of
+a GenBank file. Ideally we need to remove it from the final output, as
+we need to remove the nucleotide number at the beginning of each line.
+In order to do that we need to modify our last script. First we will add
+a condition on the <code>for</code> loop that will take care of the double slash at
+the end. Then we need to use a trick to remove the numbers from the
+lines.</p>
+
+<p>We should expect the numbers to be at the beginning of the line,
+and never in another place. The long way would be to create a regular
+expression and then replace every number occurrence with an empty
+string. But Python comes with batteries included, so we will take the
+short path. We use the <code>lstrip</code> string method that will remove
+characters from the left part of the string, and set it to remove
+numbers from 0 to 9 and the extra space before the nucleotides. And our
+script will like this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="n">issequence</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">issequence</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39;0123456789 &#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">issequence</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>      <span class="k">print</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice that the first <code>if</code>
+condition was modified to include a condition that we do <strong>not</strong> find a
+slash. And at the line where we concatenate the sequence we added a
+<code>lstrip('0123456789 ')</code> to modify the string on the fly. The final
+result looks much better now. But we still have a small &#8220;problem&#8221;: there
+are spaces between groups of 10 nucleotides and we want to get rid of
+them. We would be surprised if it was difficult, and as expected it is
+not. We used <a href="http://python.genedrift.org/2007/09/07/restrinction-enzymes-second-take/">here</a>
+the replace method and we can use it here too. We only need to modify
+the line that concatenates the sequence, and our final script will be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="n">issequence</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">issequence</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39;0123456789 &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">issequence</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>      <span class="k">print</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice that we add the
+<code>replace</code> method after the <code>lstrip</code>, but it can either way. The output
+should be only the nucleotides, with no space or numbers.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-28T09:50:27-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/09/28/genbank-files-take-two/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/09/28/genbank-files-take-two/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/09/27/genbank-files/" title="Previous Post: GenBank files: take one">&laquo; GenBank files: take one</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/10/03/genbank-parsing-some-features-and-a-change-for-the-future/" title="next Post: GenBank: parsing some features (and a change for the future)">GenBank: parsing some features (and a change for the future) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

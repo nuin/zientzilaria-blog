@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Managing a simple database with Python, SQLite and wxPython, 5 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We have seen how to connect, get and insert data (at least
+theoretically) in the database. Now, a little not about the SQL engine
+of choice here: &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Managing a simple database with Python, SQLite and wxPython, 5</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-02T19:23:42-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We have seen how to connect, get and insert data (at least
+theoretically) in the database. Now, a little not about the SQL engine
+of choice here: SQLite. SQLite databases have the main characteristic
+that they are self-contained files. Also it does not require an
+installation, works without a server and works pretty well in most
+operating systems. Basically for the type of application we&#8217;re
+developing here, SQLite seems ideal. It eliminates a lot of
+infrastructure that would be needed if we were working with MySQL or
+postgresql. We don&#8217;t need a server or know how to configure users or
+manage the databases and tables. All we need is contained in a single
+file that can be transported from system to system and can be accesed
+from the computers used in the lab, mainly XP and OS X. Also some web
+frameworks (Rails and
+<a href="http://www.djangoproject.com" title="Django (web framework)">Django</a>, for
+instance) can use SQLite, so in the end we can have a desktop
+application and a web application accessing the same file without extra
+configuration. Now the database created for this application has 8
+tables and almost no relationships among them. SQLite allows the
+creation of relationships but in our case only a couple of cases were
+required. For the table we are using at the moment (bac) there is no
+need for relationships, although there are some fileds that can benefit
+from a more relational structure. Also SQLite don&#8217;t have the same data
+types that are found on the bigger SQL engines. All values can be stored
+as text, integer, real (floating point numbers), null and blob (verbose
+type, what you store is what you get). As actual types, you can set
+columns as Boolean and Data for instance and SQLite will understand
+them. If you have no experience in creating databases, let&#8217;s check again
+the table we are using in this small project. First, I would recommend
+the use of some SQLite database editor. You can find pretty good ones
+for any computer system and there is even a Firefox extension that
+allows you to edit some files. Editors make it easier to generate the
+SQL table creation scripts and make easier to visualize what we are
+doing. So, the table bac looks like [sourcecode language=&#8217;sql&#8217;]CREATE
+TABLE bac (idbac INTEGER PRIMARY KEY, clone Text, sdate Date, source
+Text, gene Text, chromosome Text, startpos Integer, endpos Integer,
+antibiotic Text, location1 Text, temperature Integer, tubes Integer, box
+Integer, cell Integer, dnaex Boolean, validation Boolean, pcr Boolean,
+projects Text, comments Text, genelink Text, refs Text);[/sourcecode] If
+you go back to our last post, you will see that in the insert statement
+there is no mention of the <code>idbac</code> field. We don&#8217;t actually insert ay
+value there, the values that populate this field are created
+automatically. And <code>idbac</code> is our primary key, meaning it&#8217;s the unique
+identifier of each bac we insert in this table. And in SQLite a integer
+primary key is automatically incremented whenever values are inserted in
+the table. So our first insertion will create <code>idbac</code> 1, the second will
+create <code>idbac</code> 2 and so on. I&#8217;m not going to enter in details about
+database development and administration, but it&#8217;s usual and safe to
+create tables with an auto-incremental integer primary keys. These
+fields, apart from make it easier t identify records, make access to
+such records faster and are great when relationships among tables are
+set. Let&#8217;s say that we had a column user in our bac table. And let&#8217;s say
+we had an user table with two columns: user_id and name, user_id being
+a auto-increment primary key. The user column in back could be linked
+with the user_id column in the user table, in what we call a
+one-to-many relationship (one user can insert as many bacs as he wants).
+One day we want to know who is actually working in the lab and we want
+to check how many bacs were catalogued by each user. We can easily
+search the user table and extract information from bacs at the same time
+thanks to the relationship between the tables. And the result should be
+returned quite quickly, as we are only searching integers. All the other
+fields/columns in our table are straightforward to understand. They are
+basically related to the type of data they need to store. <code>validation</code>
+is a boolean because the bac might have been validated or not, just as
+<code>danex</code> (DNA extraction). At the same time, the number of tubes stored
+in the freezer will always be an integer. So, why does temperature is an
+integer? Because we can only store bacs in two type of freezers: -80
+(ultra freezers) or -20 (regular freezer that we can have at home), and
+we don&#8217;t need to worry about fractional numbers. Well, this is a very
+short and limited explanation of tables and SQLite. The web is full of
+resources about it, so next time we will get back to Python. Previously
+in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://reblog.zemanta.com/zemified/4be1389f-5603-4b76-961b-b79d985066cc/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=4be1389f-5603-4b76-961b-b79d985066cc" alt="Reblog this post [with
+Zemanta]" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-02T19:23:42-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/" title="Previous Post: Managing a simple database with Python, SQLite and wxPython, 4">&laquo; Managing a simple database with Python, SQLite and wxPython, 4</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/03/13/biopython-and-cvs/" title="next Post: BioPython and CVS">BioPython and CVS &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

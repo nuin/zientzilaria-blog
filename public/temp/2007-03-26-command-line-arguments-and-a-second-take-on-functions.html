@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Command line arguments and a second take on functions - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We have seen, briefly, how to define and use a function in Python. Now
+we are going to jump forward a bit and create a new function and at the
+same &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-03-26-command-line-arguments-and-a-second-take-on-functions.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Command line arguments and a second take on functions</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-26T13:18:48-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We have seen, briefly, how to define and use a function in Python. Now
+we are going to jump forward a bit and create a new function and at the
+same time take a look on command line parameters that can be passed to
+the script. If you have used command line applications before, you might
+have encountered programs that asks for a file name, a calculation
+parameter, etc to be passed in the command line. Python scripts are no
+different, they accept such parameters. For this we have the <code>sys</code>
+module that has system specific parameters and functions. We have used
+before the <code>sys.exit</code>, imported as an extra module function. Every
+operating system (even Windows) has arguments in its command line, and
+programming languages usually call such arguments <code>argv</code> (in the C/C++
+you have argv in the parameters of the main function). Lists in Python
+start at 0 (zero), and for the argument list the first item is the
+script/program name. Basically if we have this
+<code>$&gt; python myscript.py DNA.txt</code> <code>myscript.py</code> is the argument 0 in the
+list and DNA.txt is the argument 1. So whenever we create a script that
+receives arguments in the command line, we have to start (in most cases,
+be aware) from 1. In Python using system arguments in the CLI will look
+like [sourcecode language=&#8217;python&#8217;]import sys filename = sys.argv[1]
+valueone = sys.argv[2] &#8230;[/sourcecode] We will a variation of our
+previous script that counts the bases, now with command line arguments
+and a function (with no &#8220;error&#8221; checking at first) [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import sys def
+count_nucleotide_types(seq): result = [] totalA = seq.count(&#8216;A&#8217;)
+totalC = seq.count(&#8216;C&#8217;) totalG = seq.count(&#8216;G&#8217;) totalT = seq.count(&#8216;T&#8217;)
+result.append(totalA) result.append(totalC) result.append(totalG)
+result.append(totalT) return result sequencefile = open(sys.argv[1],
+&#8216;r&#8217;).readlines() sequence = &#8221;.join(sequencefile) sequence =
+sequence.replace(&#8216;n&#8217;, &#8221;) values = count_nucleotide_types(sequence)
+print &#8220;Found &#8221; + str(result[0] + &#8220;As&#8221; print &#8220;Found &#8221; + str(result[0] +
+&#8220;Cs&#8221; print &#8220;Found &#8221; + str(result[0] + &#8220;Gs&#8221; print &#8220;Found &#8221; +
+str(result[0] + &#8220;Ts&#8221;[/sourcecode] Few new things here. We created a
+function <code>count_nucleotide_types</code> that should receive a string
+containing the sequence. The &#8220;real&#8221; first line of the program flow is
+the one that gets the name of the file from the command line argument,
+open and read it. We then convert the list to a string, modify it a but
+and throw it to the function. Get the result back, and done. With
+functions we actually don&#8217;t save coding time/length (at least here), we
+make out code more organized, easier to read and somewhat easier to
+someone else read and understand it. It is not a good coding practice to
+have long programs/scripts with no functions, no subdivision, no
+structure. Functions are sometimes good program nuggets that can be
+reused in the same application or even ported/copied to other
+applications and reused indefinitely. Soon we will see a function and
+class that reads a FASTA file in Python that can be used anywhere in any
+program that needs such feature. Try the code and come back later for
+more.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-26T13:18:48-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-03-26-command-line-arguments-and-a-second-take-on-functions.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-03-26-command-line-arguments-and-a-second-take-on-functions.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

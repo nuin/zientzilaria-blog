@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Creating an interface for the motif finding script, part 2 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Let&#8217;s take a deeper look on the code we started yesterday, piece by
+piece [sourcecode language=&#8217;python&#8217;]class pymot(wx.App): def &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Creating an interface for the motif finding script, part 2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-21T11:40:33-04:00" pubdate data-updated="true">Oct 21<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Let&#8217;s take a deeper look on the code we started yesterday, piece by
+piece [sourcecode language=&#8217;python&#8217;]class pymot(wx.App): def
+__init__(self, redirect=False): wx.App.__init__(self, redirect,
+filename)[/sourcecode] This is the class <code>pymot</code> we derived from wx.App,
+and this will be the main class for your application. As any other class
+derived it needs a OnInit or a __init__ function that will take care
+of initializing things. As usual, we pass <code>self</code> and a <code>redirect</code>
+parameter, that will tell the application to redirect some output to the
+command line. We actually don&#8217;t need a <code>redirect</code>, but it can be useful
+in the future to track errors. It&#8217;s set to false as we don&#8217;t need it
+now. [sourcecode language=&#8217;python&#8217;]class pymotGUI(wx.Frame): def
+__init__(self, parent, id): wx.Frame.__init__(self, parent, id,
+&#8216;Python Motif Finder&#8217;, style=wx.DEFAULT_FRAME_STYLE)
+self.__do_layout() def __do_layout(self): pass[/sourcecode] This
+is the pymotGUI class derived, in this case, from wx.Frame. a wx.Frame
+is the common window you see in most OS. As above, it needs a OnInit or
+__init__ function, and here it initializes the window (but does not
+show it). In the first line of __init__ we have a call to format the
+window we want to display. The frame method would need these
+<a href="http://www.wxpython.org/docs/api/wx.Frame-class.html">paramaters</a> to
+customize the window [sourcecode language=&#8217;python&#8217;]__init__(self,
+parent, id, title, pos, size, style, name)[/sourcecode] Both title and
+style are set by default (not that they cannot be changed) in the frame
+definition, and whe this is called and properly initialized, other
+parameters can be passed and/or changed. There is a second defined
+function in the <code>pymotGUI</code> class, <code>__do_layout</code>. This is a personal
+preference of having all the layout methods for the window grouped in
+one function. It helps organizing a bit the code and easier to browse
+and correct it if needed. Most of the main part of the script could be
+moved to the wx.App class derivation, but for now, we can keep it there.
+[sourcecode language=&#8217;python&#8217;]app = pymot() frame =
+pymotGUI(parent=None, id = -1) frame.Show() app.MainLoop()[/sourcecode]
+The first line initializes the application, the second calls and
+initializes the frame. The method Show makes the window to be displayed.
+MainLoop we saw last time. The skeleton of a wxPython script and
+application is very simple. Now we need to populate our window, create
+menus, buttons, and specially events. Next time we will include a menu
+on the form and check how events are linked to elements.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-21T11:40:33-04:00" pubdate data-updated="true">Oct 21<span>st</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/10/20/creating-an-interface-for-the-motif-finding-script/" title="Previous Post: Creating an interface for the motif finding script, part 1">&laquo; Creating an interface for the motif finding script, part 1</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/10/22/creating-an-interface-for-the-motif-finding-script-part-3/" title="next Post: Creating an interface for the motif finding script, part 3">Creating an interface for the motif finding script, part 3 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

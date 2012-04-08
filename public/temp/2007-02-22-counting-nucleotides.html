@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Counting nucleotides - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We are going to jump the regular expression explanation that you can
+find in the book, and we will go directly to the section that introduces
+string/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-02-22-counting-nucleotides.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Counting nucleotides</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:48:35-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We are going to jump the regular expression explanation that you can
+find in the book, and we will go directly to the section that introduces
+string/list/array manipulation and adapt it to Python. We are going to
+see two different methods: a &#8220;long&#8221; and a &#8220;short&#8221; one. In many places
+and computer languages you will see that there are different ways of
+doing the same thing, with advantages and disadvantages. It is up to you
+to define which methods are better or worse, as this is a very personal
+matter. Some people prefer the longer way because it might be clearer
+and easier to understand, or it might be necessary to use it due to code
+maintainability. Other people would rather use the shorter path because
+they want to generate code faster. It does not matter the path you
+select, as long as you get your task done. That&#8217;s the key: focus on the
+end product not on how exactly got there. If you used 10 lines of code
+more, or 10 less, that&#8217;s irrelevant as long as you did what you wanted.
+Live and learn and someday you will use the even shorter way. So we
+start with the long way. We want to count the individual number of
+nucleotides in a sequence, determining they relative frequency. Remember
+that we read the lines of a sequence file into a list, using
+<code>readlines</code>. But on the long method we will read the file and store the
+data into a string like [sourcecode language=&#8217;python&#8217;]file =
+open(filename, &#8216;r&#8217;) sequence = &#8221; for line in file sequence +=
+line[/sourcecode] This way it will be easier to &#8220;explode&#8221; the sequence
+in separated items. After the &#8220;explosion&#8221; we can check each item in the
+list and get our result. The code is below, I will be back after it.
+[sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python #let&#8217;s keep the
+file fixed for now dnafile = &#8220;AY162388.seq&#8221; #opening the file, reading
+the sequence and storing in a list file = open(dnafile, &#8216;r&#8217;)
+#initialize a string to receive the data sequence = &#8221; for line in
+file: sequence += line.strip() #notice the strip, to remove \n
+#&#8221;exploding&#8221; the sequence in a list seqlist = list(sequence)
+#initializing integers to store the counts totalA = 0 totalC = 0 totalG
+= 0 totalT = 0 #checking each item in the list and updating counts for
+base in seqlist: if base == &#8216;A&#8217;: totalA += 1 elif base == &#8216;C&#8217;: totalC +=
+1 elif base == &#8216;G&#8217;: totalG += 1 elif base == &#8216;T&#8217;: totalT += 1 #printing
+results print str(totalA) + &#8217; As found&#8217; print str(totalC) + &#8217; Cs found&#8217;
+print str(totalG) + &#8217; Gs found&#8217; print str(totalT) + &#8217; Ts
+found&#8217;[/sourcecode] Most of the above code was already covered before.
+Let&#8217;s look at the different stuff, like the &#8220;explosion line&#8221; [sourcecode
+language=&#8217;python&#8217;]seqlist = list(sequence)[/sourcecode] Here we
+basically transform our string <code>sequence</code> into a list, by putting the
+object type we want before the object we want converted, like we do here
+[sourcecode language=&#8217;python&#8217;]print str(totalA) + &#8217; As
+found&#8217;[/sourcecode] This construction <code>type_to_convert(to_be_converted)</code>
+tells Python to get whatever is inside the parentheses and transform
+into whatever is outside. Converting the string to a list will get
+[sourcecode language=&#8217;python&#8217;]GTGACTTTGTTCAACGGCCGCGGTATCCTAACCGT
+GCGAAGGTAGCGTAATCACTTGTTCTTTAAATAAGGACTAGTATG
+AATGGCATCACGAGGGCTTTACTGTCTCCTTTTTCTAATCAGTGAA &#8230;[/sourcecode] and
+transform it into [sourcecode language=&#8217;python&#8217;][&#8216;G&#8217;, &#8216;T&#8217;, &#8216;G&#8217;, &#8216;A&#8217;,
+&#8216;C&#8217;, &#8216;T&#8217;, &#8216;T&#8217;, &#8216;T&#8217;, &#8216;G&#8217;, &#8216;T&#8217;, &#8216;T&#8217;, &#8216;C&#8217;, &#8216;A&#8217;, &#8216;A&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;G&#8217;, &#8216;C&#8217;,
+&#8216;C&#8217;, &#8216;G&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;G&#8217;, &#8216;T&#8217;, &#8216;A&#8217;, &#8216;T&#8217;, &#8216;C&#8217;, &#8216;C&#8217;, &#8216;T&#8217;, &#8216;A&#8217;, &#8216;A&#8217;, &#8216;C&#8217;,
+&#8216;C&#8217;, &#8216;G&#8217;, &#8216;T&#8217;, &#8216;G&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;A&#8217;, &#8216;A&#8217;, &#8216;G&#8217;, &#8216;G&#8217;, &#8216;T&#8217;, &#8216;A&#8217;, &#8216;G&#8217;, &#8216;C&#8217;,
+&#8216;G&#8217;, &#8216;T&#8217;, &#8216;A&#8217;, &#8216;A&#8217;, &#8216;T&#8217;, &#8216;C&#8217;, &#8216;A&#8217;, &#8216;C&#8217;, &#8216;T&#8217;, &#8216;T&#8217;, &#8216;G&#8217;, &#8216;T&#8217;, &#8216;T&#8217;, &#8216;C&#8217;,
+&#8216;T&#8217;, &#8216;T&#8217;, &#8216;T&#8217;, &#8216;A&#8217;, &#8216;A&#8217;, &#8216;A&#8217;, &#8216;T&#8217;, &#8216;A&#8217;, &#8216;A&#8217;, &#8216;G&#8217;, &#8216;G&#8217;, &#8216;A&#8217;, &#8216;C&#8217;, &#8216;T&#8217;,
+&#8216;A&#8217;, &#8216;G&#8217;, &#8216;T&#8217;, &#8216;A&#8217;, &#8216;T&#8217;, &#8216;G&#8217;, &#8216;A&#8217;, &#8216;A&#8217;, &#8216;T&#8217;, &#8216;G&#8217;, &#8216;G&#8217;, &#8216;C&#8217;, &#8216;A&#8217;,
+&#8216;T&#8217;,&#8230;][/sourcecode] After &#8220;exploding&#8221;, we use a <code>for</code> loop to iterate
+over every item in the list and use conditional statements to do the
+counts. Regarding the counts, we use this operator [sourcecode
+language=&#8217;python&#8217;]totalT += 1[/sourcecode] that, in C/C++, tells the
+interpreter to get the value of <code>totalT</code> and add 1 to it. On the next
+post, we will see the short way and further modify the above script,
+that can be downloaded from the
+<a href="http://python.genedrift.org/repository/">repository</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:48:35-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-02-22-counting-nucleotides.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-02-22-counting-nucleotides.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

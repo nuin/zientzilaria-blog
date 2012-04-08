@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Still simulation - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We use our last code as a starting point in order to generate some real
+information from our simulated sequence sets. Our approach here will be
+the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/04/10/still-simulation">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Still simulation</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-10T17:23:57-04:00" pubdate data-updated="true">Apr 10<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We use our last code as a starting point in order to generate some real
+information from our simulated sequence sets. Our approach here will be
+the same: functions to do all the work for us and a very simple main
+code. We also reuse some code with applied before to count the
+nucleotides. Let&#8217;s see the code, discussion just after it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">nucleotide_percentage</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; As&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Cs &#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Gs &#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Ts&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">sequence_identity</span><span class="p">(</span><span class="nb">set</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">iden</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">])):</span>
+</span><span class='line'>            <span class="k">if</span> <span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">]:</span>
+</span><span class='line'>                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="n">iden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
+</span><span class='line'>                <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">iden</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">identity</span> <span class="o">=</span> <span class="n">sequence_identity</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;sequence identity to next sequence : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">identity</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">nucleotide_percentage</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">print</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Well, not many
+new things here. The main one might the be the assignment of the
+variable <code>count</code>, which receives initially a value of <code>0.0</code>, which in
+this case is a float. This variable is used the calculate the sequence
+identity which is a percentage, or a relative value. If we had
+initialized <code>count</code> with zero, our division <code>count/len(set(x)</code> would
+always be zero, due to the fact that count would have been an integer.
+The ideal input for this script would have equal minimum and maximum
+sequence lengths, as it the simulated set would look more like an
+alignment with no indels. Something like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$&gt;</span>python simulation.py 10 30 30
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As is
+pointed out in BPB, this example is more an indication that we are able
+to use our Python skills to actually make some real code, with some real
+output. One issue with this example is the fact that we only calculate
+sequence identity of two sequences at a time. It would be ideal to have
+sequence identity between all simulated sequences. This would require
+much more code, of course a good educational step, but it is something
+that can be easily obtained with classes and we will see this later on.
+With this entry, we finished our Section 4 and we will start Section 5
+with Python&#8217;s dictionaries, moving to FASTA files and classes next.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-10T17:23:57-04:00" pubdate data-updated="true">Apr 10<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/04/10/still-simulation/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/04/10/still-simulation/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/04/04/a-script-to-simulate-dna-sequence-sets/" title="Previous Post: A script to simulate DNA sequence sets">&laquo; A script to simulate DNA sequence sets</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/04/19/genetic-code-part-i/" title="next Post: Genetic code: part I">Genetic code: part I &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

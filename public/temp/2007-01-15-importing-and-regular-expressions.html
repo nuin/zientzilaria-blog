@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Importing and regular expressions - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Tisdall&#8217;s book on Perl introduces next the ability to transcripts DNA
+sequences into RNA. In order to do that we need to check a different &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-01-15-importing-and-regular-expressions.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Importing and regular expressions</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-15T13:47:54-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Tisdall&#8217;s book on Perl introduces next the ability to transcripts DNA
+sequences into RNA. In order to do that we need to check a different
+aspect of programming: regular expressions (or regex). Regular
+expressions is a pattern/string expression that works
+matching/describing/filtering other strings. Let&#8217;s say you want to
+examine or extract all vowels contained in one phrase, one page, one
+word. Another example would be to remove all html tags from a downloaded
+webpage. As HTML tags are encapsulated between <code>&lt;</code> and <code>&gt;</code> signs we can
+create a regex that will search for any characters in between the signs
+and remove (parse) them from our page. We will deal very briefly with
+regex, and if you are interested in learning more about it you can
+search for countless references on the internet (such as <a href="http://www.regular-expressions.info/">this
+one</a>). In order to use regular
+expression in Python we need to check another concept present in the
+language: importing modules. Python core functionality provides most of
+the usual operations and also comes with a built-in library of functions
+that &#8220;access to operations that are not part of the core of the language
+but are nevertheless built in&#8221;. One of this operations is the ability to
+interpret regular expression that in Python is located in the <code>re</code>
+module. Apart from the language core, built in modules, Python can be
+further extended by using third-party modules imported into the
+language. Anyone can create a module and distribute to every Python user
+and programmer. So, in order to have regex capabilities we literally
+have to <code>import</code> the regex module. We do that by entering the line:
+[sourcecode language=&#8217;python&#8217;]import re[/sourcecode] Python&#8217;s code style
+guide suggests that <code>import</code> statements should be on separate lines
+[sourcecode language=&#8217;python&#8217;]import sys import re &#8230;[/sourcecode] and
+to be put on the top of the file (usually below the line that tells your
+OS to use Python&#8217;s interpreter on the script). So the first two lines of
+our new script would be [sourcecode language=&#8217;python&#8217;]#! /usr/bin/env
+python import re[/sourcecode] Now that we have the ability to use regex,
+we need to create one expression that will transcribe our DNA sequences
+into RNA.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-15T13:47:54-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-01-15-importing-and-regular-expressions.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-01-15-importing-and-regular-expressions.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

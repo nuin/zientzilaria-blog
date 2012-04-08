@@ -1,0 +1,26 @@
+---
+author: admin
+date: '2009-05-11 17:43:31'
+layout: post
+slug: wiki
+status: publish
+title: Wiki
+wordpress_id: '294'
+? ''
+: - bioinformatics
+  - Phase 2
+  - python
+  - wiki
+---
+
+[![History comparison reports highlight the
+chang...](http://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/History_comparison_example.png/300px-History_comparison_example.png "History comparison reports highlight the chang...")](http://commons.wikipedia.org/wiki/Image:History_comparison_example.png)
+  ~ Image via
+    [Wikipedia](http://commons.wikipedia.org/wiki/Image:History_comparison_example.png)
+
+I'm slowly moving the posts from the blog to a wiki. It makes easier to
+display post series and allows people to modify/enhance/discuss. The
+wiki address is [http://wiki.genedrift.org](http://wiki.genedrift.org).
+
+[![Reblog this post [with
+Zemanta]](http://img.zemanta.com/reblog_a.png?x-id=ddf23630-4b1e-4cb1-8363-47b964768c18)](http://reblog.zemanta.com/zemified/ddf23630-4b1e-4cb1-8363-47b964768c18/ "Reblog this post [with Zemanta]")

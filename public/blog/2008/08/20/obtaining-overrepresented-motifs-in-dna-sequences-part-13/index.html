@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Obtaining overrepresented motifs in DNA sequences, part 13 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Now that we have the best quorum determination function and the ideal
+function to calculate the binomial
+expansions
+it is easy to program a script to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Obtaining overrepresented motifs in DNA sequences, part 13</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T21:32:09-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Now that we have the best quorum determination function and the ideal
+function to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
+expansions</a>
+it is easy to program a script to calculate the <em>p</em> value of motifs in
+DNA sequences. To the script <em>below in the code there are a couple of
+errors that wordpress don&#8217;t let me fix. The > and &lt; are replaced by
+their literal html enconding. I am working on it, sorry</em></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>          <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>          <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>          <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>          
+</span><span class='line'>          <span class="c">#print ntok // ktok return ntok // ktok else: return 0 def</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id\_no to a set use explicit</span>
+</span><span class='line'><span class="s">counter to create seq\_no &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">for</span>
+</span><span class='line'><span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span>
+</span><span class='line'><span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">id</span>\<span class="n">_no</span><span class="p">)</span> <span class="k">return</span> <span class="n">quorum</span> <span class="nb">input</span>\<span class="n">_seqs</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="nb">input</span>\<span class="n">_seqs2</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">foreground</span> <span class="o">=</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">background</span> <span class="o">=</span> <span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">,</span>
+</span><span class='line'><span class="mi">10</span><span class="p">)</span> <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span>
+</span><span class='line'><span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> \<span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span>
+</span><span class='line'><span class="mf">0.0001</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We already defined choose in the last post (more information in the link
+from the Python&#8217;s cookbook) and earlier Mike sent us a series of
+quorum-determination functions and one of the best was portrayed and
+explained here.</p>
+
+<p>We also need our fasta module to read the sequences (and only the
+sequences) in order to use it in the quorum function. Basically we use
+the foreground and background files as input, determine the quorum of
+the different words (width 10) and then we iterate over the results,
+calculating the <em>p</em> value for each motif found in the foreground set.
+The tree terms of the Hypergeometric Distribution are calculated
+separately and we test for a <em>p</em> value smaller that 0.0001 (this can be
+modified) and we only print the results that fall in this category.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T21:32:09-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/08/15/obtaining-overrepresented-motifs-in-dna-sequences-part-12/" title="Previous Post: Obtaining overrepresented motifs in DNA sequences, part 12.5">&laquo; Obtaining overrepresented motifs in DNA sequences, part 12.5</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/09/03/obtaining-overrepresented-motifs-in-dna-sequences-final/" title="next Post: Obtaining overrepresented motifs in DNA sequences, final">Obtaining overrepresented motifs in DNA sequences, final &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

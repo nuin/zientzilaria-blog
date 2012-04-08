@@ -1,0 +1,21 @@
+---
+author: admin
+date: '2008-07-24 17:59:12'
+layout: post
+slug: new-posts
+status: publish
+title: New posts
+wordpress_id: '117'
+? ''
+: - off topic
+  - posts
+  - vacation
+---
+
+[![CPython](http://upload.wikimedia.org/wikipedia/en/thumb/0/06/Python_logo.svg/202px-Python_logo.svg.png)](http://en.wikipedia.org/wiki/Image:Python_logo.svg)Image
+via [Wikipedia](http://en.wikipedia.org/wiki/Image:Python_logo.svg)Posts
+will resume next week. I was off on vacation and then I changed jobs, so
+there was no time for
+[Python](http://www.python.org/ "Python (programming language)") fun.
+[![Zemanta
+Pixie](http://img.zemanta.com/reblog_e.png?x-id=90106b90-f576-4234-be6c-4aa36029c6b0)](http://reblog.zemanta.com/zemified/90106b90-f576-4234-be6c-4aa36029c6b0/ "Zemified by Zemanta")

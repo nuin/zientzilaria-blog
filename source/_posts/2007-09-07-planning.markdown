@@ -1,0 +1,51 @@
+---
+author: admin
+date: '2007-09-07 15:51:43'
+layout: post
+slug: planning
+status: publish
+title: Planning
+wordpress_id: '50'
+? ''
+: - Section 6
+---
+
+Another aspect covered in the book that we haven't seen yet is how to
+plan, design out script or software. Usual ways to design a program
+include writing use cases and drawing
+[UML](http://en.wikipedia.org/wiki/Unified_Modeling_Language) diagrams
+(stands for Unified Modelling Language). Here we will scratch the
+surface of [use cases](http://en.wikipedia.org/wiki/Use_case), where we
+will try to determine how the program will interact with the user. How
+to write use cases or design UML is not a subject taught in many biology
+courses, so we won;t see much of the theory here. Consider this a more
+informal way of planning a small script or application. 
+
+First thing
+would be to set a goal: 
+
+*What is the main objective of our script?*
+
+
+Create a simple restriction enzyme map of certain sequences Next, *what
+do we need to make the program work?* We need restriction enzyme
+information, such as names and sites and a sequence. That leads us *How
+do I store information?* Restriction enzyme data (last entry) obtained
+from a file can be stored in a dictionary, with the enzyme name as key
+and the site as value. 
+
+Sequences are stored using our fasta class. This
+will brings us to one important issue *How to interact with the user?*
+The ideal way would be to present a list of enzymes for the user to
+select, but we do not have a graphical interface to organize it nicely.
+So, we will ask the user to enter the name of enzyme and a name of a
+file to read the sequence where the enzyme site should be found. We can
+do that interactively or by passing parameters to the script. We will do
+it by parameters here, but the interactive way can be tested as a
+homework for those following the blog. 
+
+And finally *What about an
+output?* We will do the same way as the book: a list of positions,
+indicating the restriction sites. I welcome other options in the
+comments. It looks we have a plan. Let's gather what we already have,
+and our previous knowledge and meet on the other side of this post.

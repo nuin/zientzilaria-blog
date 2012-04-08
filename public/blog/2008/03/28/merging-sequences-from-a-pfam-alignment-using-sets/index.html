@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Merging sequences from a Pfam alignment: using sets - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="A colleague came with a &#8220;problem&#8221;: what would be the most efficient way
+to merge Pfam alignments? He had FASTA
+files containing sequences &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Merging sequences from a Pfam alignment: using sets</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-28T20:58:24-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A colleague came with a &#8220;problem&#8221;: what would be the most efficient way
+to merge <a href="http://pfam.sanger.ac.uk/">Pfam</a> alignments? He had FASTA
+files containing sequences and he wanted to find identical IDs in two
+files and merge the related sequences from different domains of the same
+protein. His C++ approach was taking too long to run so I jumped in to
+help with some Python tricks.</p>
+
+<p>Fasta headers of Pfam alignments look like
+this <code>&gt;P00526.2|SRC_RSVP/147-229</code> where the first section, before the
+pipe, is the protein family, the section between the pipe and the slash
+is the protein ID and the after the slash are the start and end
+positions. Basically we want to match the protein ID, between | and /,
+which is the only section that should not change from one alignment from
+the other, if there are similar sequences in both files. His dataset
+size was around 8000 FASTA files and he wanted to compare
+all-versus-all.</p>
+
+<p>The first idea that comes to mind is to read the two
+files and basically run nested loops checking for matches between two
+sequence names. Simple and easy. But it would be good to find something
+else to do in the meantime, instead of checking for its progress.
+Another idea, to simplify the process, is to read both files, extract
+the protein IDs and check for the intersection of the two sets of IDs
+and then just extract the sequences from a list of matches.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">myset1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">myset2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">mylist</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">if</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>              <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]:</span>
+</span><span class='line'>                  <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-\&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>                  <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>                  <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This
+is the function that matches the sequence IDs. As we are reading the
+FASTA file with the functions/classes in the <code>fasta</code> module there is
+no* direct way to transform the list of sequence names into a set, that
+would make easier to extract the intersection between two sets of IDs
+from distinct files. In the above function, <code>data1</code> and <code>data2</code> are
+instances of the <code>fasta</code> class, and we read these lists and add the
+<code>fasta.name</code> to a couple of sets and get the intersection of them. The
+<code>intersection</code> method returns a list that we use in the nested loops to
+find the matching sequences, as we need to merge them, we add both names
+and residues. Simple and easy. All merged sequences, and their
+respective merged names, are appended to a list that is returned at the
+end of the function. *<em>if there is a more direct way, just let me know</em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-28T20:58:24-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/03/17/python-sets-intersections-reduce-and-more/" title="Previous Post: Python sets, intersections, reduce and more">&laquo; Python sets, intersections, reduce and more</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/03/30/merging-sequences-from-a-pfam-alignment-using-sets-part-ii/" title="next Post: Merging sequences from a Pfam alignment: using sets, part II">Merging sequences from a Pfam alignment: using sets, part II &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

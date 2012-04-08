@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Translating DNA into proteins - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="After a long time away, I am back. Things have been hectic in the lab
+and there is a shortage of free time to do everything else. Let&#8217;s get &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-05-24-translating-dna-into-proteins.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Translating DNA into proteins</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-24T16:19:10-04:00" pubdate data-updated="true">May 24<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After a long time away, I am back. Things have been hectic in the lab
+and there is a shortage of free time to do everything else. Let&#8217;s get
+back to Python. Last time we have seen a dictionary structure that
+contained our genetic code. We are going to see a script that will
+translate DNA into proteins and we are also going to see how to create a
+module in Python that can be imported in any script. This module will
+contain the function that translates the DNA, and for the time being
+only that. Let&#8217;s see how our module looks like: [sourcecode
+language=&#8217;python&#8217;]def translate_dna(sequence): gencode = { &#8216;ATA&#8217;:&#8217;I&#8217;,
+&#8216;ATC&#8217;:&#8217;I&#8217;, &#8216;ATT&#8217;:&#8217;I&#8217;, &#8216;ATG&#8217;:&#8217;M&#8217;, &#8216;ACA&#8217;:&#8217;T&#8217;, &#8216;ACC&#8217;:&#8217;T&#8217;, &#8216;ACG&#8217;:&#8217;T&#8217;,
+&#8216;ACT&#8217;:&#8217;T&#8217;, &#8216;AAC&#8217;:&#8217;N&#8217;, &#8216;AAT&#8217;:&#8217;N&#8217;, &#8216;AAA&#8217;:&#8217;K&#8217;, &#8216;AAG&#8217;:&#8217;K&#8217;, &#8216;AGC&#8217;:&#8217;S&#8217;,
+&#8216;AGT&#8217;:&#8217;S&#8217;, &#8216;AGA&#8217;:&#8217;R&#8217;, &#8216;AGG&#8217;:&#8217;R&#8217;, &#8216;CTA&#8217;:&#8217;L&#8217;, &#8216;CTC&#8217;:&#8217;L&#8217;, &#8216;CTG&#8217;:&#8217;L&#8217;,
+&#8216;CTT&#8217;:&#8217;L&#8217;, &#8216;CCA&#8217;:&#8217;P&#8217;, &#8216;CCC&#8217;:&#8217;P&#8217;, &#8216;CCG&#8217;:&#8217;P&#8217;, &#8216;CCT&#8217;:&#8217;P&#8217;, &#8216;CAC&#8217;:&#8217;H&#8217;,
+&#8216;CAT&#8217;:&#8217;H&#8217;, &#8216;CAA&#8217;:&#8217;Q&#8217;, &#8216;CAG&#8217;:&#8217;Q&#8217;, &#8216;CGA&#8217;:&#8217;R&#8217;, &#8216;CGC&#8217;:&#8217;R&#8217;, &#8216;CGG&#8217;:&#8217;R&#8217;,
+&#8216;CGT&#8217;:&#8217;R&#8217;, &#8216;GTA&#8217;:&#8217;V&#8217;, &#8216;GTC&#8217;:&#8217;V&#8217;, &#8216;GTG&#8217;:&#8217;V&#8217;, &#8216;GTT&#8217;:&#8217;V&#8217;, &#8216;GCA&#8217;:&#8217;A&#8217;,
+&#8216;GCC&#8217;:&#8217;A&#8217;, &#8216;GCG&#8217;:&#8217;A&#8217;, &#8216;GCT&#8217;:&#8217;A&#8217;, &#8216;GAC&#8217;:&#8217;D&#8217;, &#8216;GAT&#8217;:&#8217;D&#8217;, &#8216;GAA&#8217;:&#8217;E&#8217;,
+&#8216;GAG&#8217;:&#8217;E&#8217;, &#8216;GGA&#8217;:&#8217;G&#8217;, &#8216;GGC&#8217;:&#8217;G&#8217;, &#8216;GGG&#8217;:&#8217;G&#8217;, &#8216;GGT&#8217;:&#8217;G&#8217;, &#8216;TCA&#8217;:&#8217;S&#8217;,
+&#8216;TCC&#8217;:&#8217;S&#8217;, &#8216;TCG&#8217;:&#8217;S&#8217;, &#8216;TCT&#8217;:&#8217;S&#8217;, &#8216;TTC&#8217;:&#8217;F&#8217;, &#8216;TTT&#8217;:&#8217;F&#8217;, &#8216;TTA&#8217;:&#8217;L&#8217;,
+&#8216;TTG&#8217;:&#8217;L&#8217;, &#8216;TAC&#8217;:&#8217;Y&#8217;, &#8216;TAT&#8217;:&#8217;Y&#8217;, &#8216;TAA&#8217;:&#8217;_&#8217;, &#8216;TAG&#8217;:&#8217;_&#8217;, &#8216;TGC&#8217;:&#8217;C&#8217;,
+&#8216;TGT&#8217;:&#8217;C&#8217;, &#8216;TGA&#8217;:&#8217;_&#8217;, &#8216;TGG&#8217;:&#8217;W&#8217;, } print sequence proteinseq = &#8221; for n
+in range(0,len(sequence),3): if gencode.has_key(sequence[n:n+3]) ==
+True: proteinseq += gencode[sequence[n:n+3]] return
+proteinseq[/sourcecode] One function, called translate_dna, that
+receives a DNA sequence and outputs a protein sequence. It is a &#8220;long&#8221;
+function because we have in the middle the genetic code in Python&#8217;s
+dictionary format. Our translation loop is very simple, it reads the DNA
+sequence three nucleotides at a time [sourcecode language=&#8217;python&#8217;]for n
+in range(0,len(sequence),3):[/sourcecode] means that it will loop from 0
+to the size of the DNA sequence in steps of 3, so basically we start at
+0 and then jumping directly to 3. This is done to obey the translation
+structure based on codons of three nucleotides. Sometimes the DNA
+sequence entered does not have a size multiple of three and that&#8217;s the
+reason we use an error checking before accessing the dictionary
+[sourcecode language=&#8217;python&#8217;]if gencode.has_key(sequence[n:n+3]) ==
+True:[/sourcecode] This will test for any possible error, or codons that
+are smaller than three nucleotides. If the key exists it is returned and
+addes to our protein string. The code that will use this function is
+this: [sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python import
+dnatranslate dnafile = open(&#8220;AY162388.seq&#8221;, &#8216;r&#8217;).readlines() sequence =
+&#8221; for line in dnafile: sequence += line.strip() protein =
+dnatranslate.translate_dna(sequence) print sequence, len(sequence)
+print print protein, len(protein)[/sourcecode] No secrets or new things
+here. Just notice that we import a module which is not part of the
+common Python modules, but was created by us. In this case the
+identification in the import will be the name of the <code>.py</code> file that
+contains the function(s) we are going to use. This file also needs to be
+located in the same directory of the script, if not installed in the
+Python libraries/modules directory. Notice that to use the function we
+need to call [sourcecode language=&#8217;python&#8217;]protein =
+dnatranslate.translate_dna(sequence)[/sourcecode] as we would do with
+the <code>sys</code> or the <code>re</code> modules. We can now create any modules that will
+contain different functions that can be reused anytime without need of
+extra coding. For instance, someone can create a module that would read
+a FASTA file and return sequences and sequence names in string or a list
+and send it to anyone interested in the same functionality. Everything
+we would need to do is to have this file installed in Python or in the
+same directory of our script and we would take advantage of all
+functionality contained in the module. That easy.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-24T16:19:10-04:00" pubdate data-updated="true">May 24<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-05-24-translating-dna-into-proteins.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-05-24-translating-dna-into-proteins.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

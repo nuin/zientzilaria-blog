@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Obtaining overrepresented motifs in DNA sequences, part 6 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We will take a break on developing the statistical module to obtain
+overrepresented motifs (I will introduce mul in the next stats post),
+and take a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2008-05-30-obtaining-overrepresented-motifs-part-6.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Obtaining overrepresented motifs in DNA sequences, part 6</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-30T21:30:44-04:00" pubdate data-updated="true">May 30<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We will take a break on developing the statistical module to obtain
+overrepresented motifs (I will introduce mul in the next stats post),
+and take a deeper look at the possibilities on obtaining the motif
+quorums. Mike DeHaemer, a regular commenter and contributor to the blog,
+sent me a <a href="http://python.org/" title="Python (programming language)">Python</a>
+script with 8 different ways distributed in 13 distinct functions for
+obtaining the motif quorums. I will take advantage of his contribution
+and post all of them, with some quick comments on each one of them (his
+code comments were kept in each function). After, a small benchmarking
+will be posted. Most of the functions need to import a couple of module
+[sourcecode language=&#8217;python&#8217;]from collections import defaultdict, deque
+from itertools import count, izip, tee[/sourcecode] and they have two
+parameters, a sequence list and the length of the motifs. The first
+function uses again the defaultdict and it is very similar to the one
+used in the final version of the quorum script. The defaultdict is
+initialized as a list and the ids are added to a the list, keys are
+motifs, only if they are not already present in it. The sequence id is
+generated in a variable incremented each time the loop iterates.
+[sourcecode language=&#8217;python&#8217;]def get_quorums_01(seqs, mlen): &#8220;&#8221;&#8221;
+append seq id_no to list after checking to see if already present use
+explicit counter to create seq_no &#8220;&#8221;&#8221; quorum = defaultdict(list) id_no
+= 0 for seq in seqs: id_no += 1 for n in range(len(seq) - mlen): if id
+not in quorum[seq[n:n+mlen]]: quorum[seq[n:n + mlen]].append(id_no)
+return quorum[/sourcecode] The second function is very similar to the
+first one, with the caveat that sequence id numbers are generated with
+<code>enumerate</code>. [sourcecode language=&#8217;python&#8217;]def get_quorums_02(seqs,
+mlen): &#8220;&#8221;&#8221; append seq id_no to list after checking to see if already
+present use &#8216;enumerate&#8217; to create seq_no &#8220;&#8221;&#8221; quorum = defaultdict(list)
+for id_no, seq in enumerate(seqs): for n in range(len(seq) - mlen): if
+id_no not in quorum[seq[n:n+mlen]]:
+quorum[seq[n:n+mlen]].append(id_no) return quorum[/sourcecode]
+<code>enumerate</code> is a object based on another iterable object. When called
+<code>enumerate</code> always returns a tuple of an indexed series. For instance,
+in our case above, enumerate will return a series of tuples
+<code>(0, sequence1), (1, sequence2) ... (n, sequenceN)</code>. That&#8217;s the reason
+the enumerate loop uses a tuple as its index [sourcecode
+language=&#8217;python&#8217;]for id_no, seq in enumerate(seqs)[/sourcecode] Next
+couple of posts will cover the other functions sent by Mike. Then we
+will go back to the statistical module.
+<a href="http://www.zemanta.com/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/pixie.png?x-id=056c1508-ad72-47fe-b53c-1b2c241e5ee6" alt="Zemanta
+Pixie" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-30T21:30:44-04:00" pubdate data-updated="true">May 30<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2008-05-30-obtaining-overrepresented-motifs-part-6.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2008-05-30-obtaining-overrepresented-motifs-part-6.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

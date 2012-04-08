@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Revisiting Pfam alignments: using defaultdicts, chains ... - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="I haven&#8217;t posted in a while, so let&#8217;s get back to the last topic covered
+here, merging sequences from Pfam alignments. Two comments to my &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2008-05-02-revisiting-pfam-alignments.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Revisiting Pfam alignments: using defaultdicts, chains ...</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-02T10:11:47-04:00" pubdate data-updated="true">May 2<span>nd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I haven&#8217;t posted in a while, so let&#8217;s get back to the last topic covered
+here, merging sequences from Pfam alignments. Two comments to my last
+post suggested some changes to the original code, and both comments made
+a considerable improvement to script. But following our line of thought
+here, there were many things in both posts that we haven&#8217;t covered in
+the series. In order to make it clear to anyone that is chronologically
+following the entries, we will see what new things were suggested in the
+comments. We will start with Mike&#8217;s comment. The code is below.
+[sourcecode language=&#8217;python&#8217;]def merge_seqs(data1, data2): from
+collections import defaultdict from itertools import chain data =
+defaultdict(list) for item in chain(data1, data2): ident =
+item.name[item.name.find(&#8216;|&#8217;) + 1 : item.name.find(&#8216;/&#8217;)]
+data[ident].append((item.name, item.sequence)) format =
+&#8220;%s-%s->%d\n%s%s&#8221; flist = [] for key, value in data.iteritems(): if
+len(value) == 2: jname, jseq = value[0] kname, kseq = value[1]
+flist.append(format % (jname, kname, len(jseq), jseq, kseq) ) return
+flist[/sourcecode] Mike&#8217;s code would only run on Python 2.5, due to the
+import of <code>collections</code>. He imports only <code>defaultdict</code> from collections,
+which is similar to a regular dictionary except for the fact that is
+takes an extra argument, a <code>factory function</code> (that we will examine
+soon), and this <code>factory function</code> is called everytime a dict key is
+found for the the first time, initializing the object. The line
+[sourcecode language=&#8217;python&#8217;]data = defaultdict(list)[/sourcecode]
+creates and intializes a <code>defaultdict</code> from an empty list. This
+defaultdict is used to store data from a <code>chain</code> formed by both input
+files being compared. A <code>chain</code> makes an iterator that &#8220;returns elements
+from the first iterable until it is exhausted, the proceeds to the next
+iterable&#8221; (from Python docs). Basically a <code>chain</code> in our case will make
+the loop iterate first through <code>data1</code> until its last item then will
+start the iteration through <code>data2</code>. In the loop it will use the region
+in the FASTA sequence name as a defaultdict key, and store the fasta
+name and sequence as the value. Notice that the defaultdict, as it has
+been initialized as a list, allows appending more than one value to each
+key, so every time that it finds a sequence with a name identical to
+some key already present in the defaultdict, it will append the
+information to the value of that key in a list. So, all the matching is
+done with this short loop, we only need then to iterate through the keys
+and print the result. For the results, Mike set up a format string (we
+will see in a future post) that receives the merged sequences and their
+names in a formatted way. The iteration along the defaultdict checks for
+both keys and values and every time it finds a value with a length of 2
+(meaning two sequences shared identical names) it puts the items of the
+defaultdict&#8217;s value list into two tuples. These tuples, containing
+sequence and name, are then formatted for output and appended to a list
+of merged sequences. There are a lot of new concepts, objects and
+methods but Mike&#8217;s suggestion shows how powerful Python is. For a set of
+25 alignments, there is little performance improvement, but our coding
+ability improves exponentially with clever suggestions. I will comment
+and explain Luke&#8217;s comments later.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-02T10:11:47-04:00" pubdate data-updated="true">May 2<span>nd</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2008-05-02-revisiting-pfam-alignments.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2008-05-02-revisiting-pfam-alignments.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

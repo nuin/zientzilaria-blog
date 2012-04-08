@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Generating multiple sets of random DNA sequences with one script (and a bash example) [updated] - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="A commenter, Dilmurat, gave me an idea about the script
+that generates random DNA sequence sets. Apparently it wasn&#8217;t clear that
+the script was &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/10/26/generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Generating multiple sets of random DNA sequences with one script (and a bash example) [updated]</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-26T12:15:47-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A commenter, Dilmurat, gave me an idea about the <a href="http://python.genedrift.org/2007/04/04/a-script-to-simulate-dna-sequence-sets/">script</a>
+that generates random DNA sequence sets. Apparently it wasn&#8217;t clear that
+the script was intended to generate only one sequence set, and not
+multiple sets. Dilmurat also offered his solution:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span class='line'><span class="k">return</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span class='line'><span class="n">rlength</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">rlength</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">))</span>
+</span><span class='line'><span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">rlength</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+</span><span class='line'>      
+</span><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I don&#8217;t know if the lack of
+formatting in the comments might have generated a different result to
+me, but let&#8217;s see how we can generate multiple sets of random DNA
+sequence. Getting back to section 4, we can start with the original
+script that creates only one set</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
+</span><span class='line'>  
+</span><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There is a very easy way of
+changing this code to make it output a definite number of sets. WE add a
+new input parameter and also a loop to it, and that should take care of
+everything.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">sequence</span>
+</span><span class='line'>  
+</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span class='line'><span class="n">nsets</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsets</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">print</span> <span class="n">sequence</span> <span class="k">print</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A test with 10 as the
+number of sequences, 20 as minimum and 30 as maximum length and 2 sets
+output something like this</p>
+
+<p><code>GAGGACGACGTGTCGGATTAGAT GCAGATAAACGGGTAAGATGA
+ATTAGGAAGGGTCTAAGAGATCCCGGTAA ATCAGCCTCCGCACGCCTCGTGTA
+AGTTTAGCTAGCCGTAGTACTTTC TTTGAAGCTCGGGGCTAAACTCCGACCAC
+GACAGGGTAAGGTGACCTTCTCAG TGGTTGACTCTGTTCTCTGGT
+CGCAATACGTCGTGGTGCCGCTCCACT TCCTGCAGGGAGGCAGCAGC
+TTCGGAGGTATTGAGTACTGTTGCATCG CCCTTATAATACCTAGTGTAACATTC
+TAGTCATGTCATATAACCTGTGTCG AGCGCGAACCCTCCAGTTTTTTT
+AGGGCGTGTAAGCGACGTTGAACAAG CCATGCGTCTTTTTGGCGATCCGT
+ACTCAGATCGGCTAGTATCCTTCGCACG CTATCGTCGTTCCCAGCAACGGCAGCAGA
+CGTGCGATGGGGCGAGATTTTT ACGCTTTGGCTAGTGGGGAGTTTCGCCACT</code></p>
+
+<p>what is basically
+what we need. Quick &#8216;n&#8217; easy. Of course a <a href="eridanus.net/blog/">top notch bioinformatician</a> that uses Linux 100% of the time
+would be able to create a simple bash script and use the initial script
+to generate multiple random sets. bash is not a primary scope of the
+blog, but let&#8217;s see how to do that. Saying the our initial script was
+saved as <code>randomset.py</code> we would have a very short script in bash to
+generate multiple sets. We want to generate 10 sets of sequences of
+length between 20 and 30 nucleotides, and each set would need to have 10
+different sequences (remember that our initial script only accepts 3
+parameters).</p>
+
+<p><strong>Off topic</strong></p>
+
+<p><code>for ((i=0;i&lt;10;i++))
+  do     
+  min=20     
+  max=30     
+  nseqs=10
+  python randomset.py $nseqs $min $max     
+echo  done</code></p>
+
+<p>That should do the trick. You can even type it from the command line.
+The <code>for</code> syntax in bash is very similar to C/C++ but it does not accept
+spaces, as all the variable assignments. When you assigning a variable
+value in bash you omit the dollar sign and when you are reading the
+variable value you access it with the dollar sign, like in the line that
+runs the script. A <code>for</code> loop in bash starts with a <code>do</code> command and
+ends in a <code>done</code> command, not brackets or parenthesis involved. The
+<code>echo</code> at the end helps adding a separating blank line after each random
+set. <strong>off topic</strong></p>
+
+<p>Of course we could use &#8220;makenucseq from the EMBOSS
+package&#8221;, we can even use <a href="http://http://scit.us/projects/dawg">Dawg</a>
+from my friend Reed Cartwright, which I believe has a shorter learning
+curve (and faster compilation) than EMBOSS, but that will be away from
+the scope of this blog, which is to show how to use <strong>Python</strong> in
+<strong>simple</strong> bioinformatics scripts. I allowed myself to post off topic
+subjects (including this last paragraph) because a (very) small
+percentage of the commenter(s) seems to misunderstand the real focus of
+this tutorial. We don&#8217;t need fancy words or complex topics to show how
+simple things can achieve good results in almost no time. My focus is
+not give the reader the fish and chips ready to eat. My focus is to show
+how to fish and peel, cut and fry the potato in order to cook the dish.
+This way, next time he or she might be cooking better things to eat.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-26T12:15:47-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/10/26/generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/10/26/generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/10/18/off-topic/" title="Previous Post: Off topic">&laquo; Off topic</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/10/29/splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit/" title="next Post: Splitting a FASTA file using awk (no sed required), or do we care about csplit?">Splitting a FASTA file using awk (no sed required), or do we care about csplit? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

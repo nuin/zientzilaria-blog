@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>GenBank parsing: part II - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Last thing we saw in the previous entry was the function to parse a
+GenBank file in order to get the DNA sequences of an annotated gene.
+This time we &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2008-03-11-genbank-parsing-part-ii.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">GenBank parsing: part II</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-11T08:49:47-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Last thing we saw in the previous entry was the function to parse a
+GenBank file in order to get the DNA sequences of an annotated gene.
+This time we will dissect the function. [sourcecode
+language=&#8217;python&#8217;]def parse_entry(gene_data): #changes a string to
+list, splitting at line ends gene_data = gene_data.split(&#8216;\n&#8217;) start,
+end = 0, 0 gi_id = &#8221; id = &#8221; complement = False for line in
+gene_data: if line.find(&#8217; CDS &#8216;) >=0: temp = line.split() if
+temp[1].find(&#8216;complement&#8217;) >= 0: complement = True temp[1] =
+temp[1].replace(&#8216;complement(&#8216;, &#8221;) temp[1] = temp[1].replace(&#8216;)&#8217;, &#8221;)
+temp2 = temp[1].split(&#8216;..&#8217;) start = temp2[0] end = temp2[1] elif
+line.find(&#8216;GI:&#8217;) >= 0: gi_id = &#8216;gi&#8217; + line[line.find(&#8216;GI:&#8217;)+3:-1] elif
+line.find(&#8216;/product&#8217;) >=0: id = line[line.find(&#8216;=&#8217;) + 2:-1] elif
+line.find(&#8216;protein_id&#8217;) >= 0: id += &#8216;\t&#8217; + line[line.find(&#8216;=&#8217;) + 2:
+-1] return CDSinfo(gi_id, id, start, end, complement)[/sourcecode]
+First things first. As in the CDS/protein parsing example, the function
+receives a string and it is easier for us to operate with lists, so we
+split the string at the carriage returns. This time we also need to
+check for the start and end positions of the gene in the long string
+that is the DNA sequence of a GenBank file, so we just declare a couple
+of integers <code>start</code> and <code>end</code>. We also have a couple of strings to
+receive the gi ID and the gene product (<code>id</code>). And finally a boolean,
+that will tell us if the sequence in question is on the DNA complement
+strand, meaning it is a reverse complement of the DNA that is stored in
+the file. So we start our loop checking for the elements of each line.
+If we find a <code>'  CDS  '</code> we know that we can extract the start and end
+positions of the gene [sourcecode language=&#8217;python&#8217;]if line.find(&#8217; CDS
+&#8217;) >=0: temp = line.split() if temp[1].find(&#8216;complement&#8217;) >= 0:
+complement = True temp[1] = temp[1].replace(&#8216;complement(&#8216;, &#8221;) temp[1] =
+temp[1].replace(&#8216;)&#8217;, &#8221;) temp2 = temp[1].split(&#8216;..&#8217;) start = temp2[0]
+end = temp2[1][/sourcecode] We use temporary list and split the line at
+the spaces and then move to get the information from it. If the line is
+a reverse complement we remove the word from the entry and the
+parentheses. Whenever the gene annotation relates to the complement
+strand the entry is as such <code>complement(10728..11330)</code>. We then use
+another temp object and split the second element in the split line and
+separate it at the double dots. From this latter split, we end up with
+two elements, the first is the start position and the second the end
+position of the gene. To extract the other information everything works
+as the previous script, basically checking for the presence of certain
+words in the each line. In the end we return an instance of the class
+<code>CDSinfo</code> which will be used to extract the DNA sequence.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-11T08:49:47-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2008-03-11-genbank-parsing-part-ii.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2008-03-11-genbank-parsing-part-ii.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

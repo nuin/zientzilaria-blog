@@ -1,0 +1,14 @@
+---
+author: admin
+date: '2008-02-23 16:26:05'
+layout: post
+slug: test-ii
+status: publish
+title: Test II
+wordpress_id: '83'
+? ''
+: - Uncategorized
+---
+
+[sourcecode language='python']import sys for i in file: print
+i[/sourcecode]

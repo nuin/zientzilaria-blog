@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Reading FASTA files: introduction - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Again after a long period we are back. We already have most of the
+knowledge to create very useful scripts and small programs in Python.
+And in this &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/07/03/reading-fasta-files">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Reading FASTA files: introduction</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-03T16:39:37-04:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Again after a long period we are back. We already have most of the
+knowledge to create very useful scripts and small programs in Python.
+And in this post we will create a routine that will make the biologist&#8217;s
+life even easier (when programming Python). A great part of
+bioinformatics is to store data, how to store it and which format to
+use. Anyone working in a wetlab or on a pure bioinformatics lab had had
+problems with file formats one day or another. In fact, you don&#8217;t have
+to be in a bioinformatics environment to have such problems, but in
+biology people tend to create a file format for everyt program they
+write. We can call it a lack of standards, sometimes. But one very well
+established format is the FASTA (pronounced FAST-Aye, according to the
+EMBl-EBI page for the software with identical name. This format is
+really simple and easy to manipulate with most computer languages and
+being text-based adds an extra advantage of portability for the files.
+Usually a FASTA file has a structure like this</p>
+
+<pre><code>&gt;title/name/extra information about the sequence  
+sequence in one or many lines
+</code></pre>
+
+<p>There is
+no limit on the number of sequences that can be stored in a file,
+neither on the size of each sequence. Usually sequences that are larger
+than 70-80 nucleotides/amino acids are displayed in multiple lines.</p>
+
+<p><code>&gt;Q15465|SHH_HUMAN Sonic hedgehog protein - Homo sapiens (Human).
+MLLLARCLLLVLVSSLLVCSGLACGPGRGFGKRRHPKKLTPLAYKQFIPNVAEKTLGASG
+RYEGKISRNSERFKELTPNYNPDIIFKDEENTGADRLMTQRCKDKLNALAISVMNQWPGV
+KLRVTEGWDEDGHHSEESLHYEGRAVDITTSDRDRSKYGMLARLAVEAGFDWVYYESKAH
+IHCSVKAENSVAAKSGGCFPGSATVHLEQGGTKLVKDLSPGDRVLAADDQGRLLYSDFLT
+FLDRDDGAKKVFYVIETREPRERLLLTAAHLLFVAPHNDSATGEPEASSGSGPPSGGALG
+PRALFASRVRPGQRVYVVAERDGDRRLLPAAVHSVTLSEEAAGAYAPLTAQGTILINRVL
+ASCYAVIEEHSWAHRAFAPFRLAHALLAALAPARTDRGGDSGGGDRGGGGGRVALTAPGA
+ADAPGAGATAGIHWYSQLLYQIGTWLLDSEALHPLGMAVKSS</code></p>
+
+<p>So, let&#8217;s write a function
+and a small script to read a typical FASTA file and display the output.
+Later we will see how to manipulate the file and in the end we will have
+created a list of scripts that will be useful for the everyday
+laboratory life. But before we get to our final goal, we need to learn
+some new features of Python. In our case <strong>Classes</strong>. Classes in Python
+are very similar to classes in C++, and they are the building blocks of
+Object Oriented Programming (OOP). This guide will only scratch the
+surface of OOP, as it is a very complex subject, requiring a guide of
+its own. There are plenty of good introductory material online and any
+Google search will return dozens of links. Let&#8217;s focus on some basic
+concepts, what will be exactly what we will need here. Classes are
+basically objects with associated properties (attributes) and methods. A
+traditional introductory example of classes is the employee list. In a
+company all employees are registered and they basic information are
+stored in the human resources file system. Let&#8217;s call the main class
+<code>Employee</code> with three attributes: <code>name</code>, <code>room_number</code> and
+<code>favourite_colour</code>. This defines a class. Let&#8217;s see how to do that in
+Python:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="n">room</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">colour</span> <span class="o">=</span> <span class="n">colour</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&#8217;s dissect this piece of code.
+First we declare a class and give a name to it <code>Employee</code>. The next
+thing we need to do is to define the initiation (constructor) method of
+the class and give it the attributes we need, that&#8217;s the <code>__init__</code>
+method. Every time we create a copy of the main class object the copy
+will be initialized with the values we are passing to the method.
+According to Dive into Python &#8220;The first argument of every class method,
+including <code>__init__</code>, is always a reference to the current instance of
+the class&#8221;. That&#8217;s the <code>self</code> on the method definition, which is
+followed by what we want to store in the object: name, room and
+favourite colour. The lines in the method are the ones assigning the
+received values to the different class&#8217; attributes.</p>
+
+<p>Again from Dive into
+Python we have &#8220;To reference this attribute from code outside the class,
+you qualify it with the instance name, instance.data, in the same way
+that you qualify a function with its module name. To reference a data
+attribute from within the class, you use self as the qualifier&#8221;. In
+other words the attributes of the class are seen internally by it by the
+use of <code>self</code> while from the outside (another part of the script) it is
+seen by the name given to the instance of the class. It is a little bit
+confusing, so let&#8217;s see an example below.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="n">room</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">colour</span> <span class="o">=</span> <span class="n">colour</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">employeename</span> <span class="o">=</span> <span class="s">&quot;Paulo&quot;</span>
+</span><span class='line'><span class="n">roomnumber</span> <span class="o">=</span> <span class="s">&quot;21&quot;</span>
+</span><span class='line'><span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span>
+</span><span class='line'><span class="n">newemployee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">employeename</span><span class="p">,</span> <span class="n">roomnumber</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">newemployee</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we run this simple code we will get
+something like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">Employee</span> <span class="n">instance</span> <span class="n">at</span> <span class="mh">0x7379cc</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that&#8217;s exactly what we need here: that&#8217;s a class instance that was created by</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">newemployee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">employeename</span><span class="p">,</span> <span class="n">roomnumber</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Printing this information is not very useful. We
+don&#8217;t want to know the memory address of the object, we want to get the
+attributes of it, so we need to change <code>print newemployee</code> by these
+lines:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">newemployee</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'><span class="k">print</span> <span class="n">newemployee</span><span class="o">.</span><span class="n">room</span>
+</span><span class='line'><span class="k">print</span> <span class="n">newemployee</span><span class="o">.</span><span class="n">colour</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There they are,
+run it and see what is being printed to the screen. Of course, as is
+this script does not accomplish anything useful, but imagine that you
+need to read a file with 1000 new employees everyt month. That&#8217;s what we
+need to do with FASTA files everyday and we will see how to do that on
+the next post.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-03T16:39:37-04:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/07/03/reading-fasta-files/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/07/03/reading-fasta-files/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/05/24/translating-dna-into-proteins/" title="Previous Post: Translating DNA into proteins">&laquo; Translating DNA into proteins</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/07/04/reading-fasta-files-2/" title="next Post: Reading FASTA files">Reading FASTA files &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

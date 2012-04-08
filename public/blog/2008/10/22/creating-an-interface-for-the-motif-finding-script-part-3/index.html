@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Creating an interface for the motif finding script, part 3 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Today we will add some elements to our interface. Looking at the
+previous screencap it is easy to conclude that our interface needs a lot
+of work to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/10/22/creating-an-interface-for-the-motif-finding-script-part-3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Creating an interface for the motif finding script, part 3</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-22T15:30:13-04:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Today we will add some elements to our interface. Looking at the
+previous screencap it is easy to conclude that our interface needs a lot
+of work to be ready. First, it has a dark gray background that does not
+resemble the usual window background (it looks more like a MDI frame).
+We need to change that. Also, there are no menu bars or menus, or tool
+bars. It&#8217;s pretty bare bones, and not exactly good or useful. There many
+ways of customizing the look of a window/frame in wxPython, and two of
+these methods are adding a panel to the frame or adding the so-called
+sizers. The latter is a difficult method to master, but powerful and
+very good to customize objects, look and feels of a window. Addin a
+panel and subsequently adding objects to it is a more laborious process,
+but easier to understand. We will start by adding the
+<a href="http://www.wxpython.org/docs/api/wx.Panel-class.html">panel</a> to you
+<code>__do_layout</code> function (where most of our changes will happen for now).
+Basically, only one line is required: [sourcecode
+language=&#8217;python&#8217;]#adding the panel panel = wx.Panel(self)[/sourcecode]
+That&#8217;s it, the wx.Panel method only needs one parameter, where the panel
+is being added to. The name <code>panel</code> is the one that we will be using to
+access methods and properties associated with the wx.Panel derivation
+that we just created. Adding the menu would require a little bit more
+code. As its predecessor wxWidgets, wxPython divides the menu in
+subcategories. The menubar is based on wx.Menubar method, the menu
+itself (File, Edit, etc) is a wx.Menu wehre each of the entries is
+added. At the end each menu derived from wx.Menu will be added to the
+menubar. In order case we have to initialize a menubar [sourcecode
+language=&#8217;python&#8217;]#defines the menubar menubar =
+wx.MenuBar()[/sourcecode] and then initialize a menu element, which we
+will call filemenu and will be labeled File [sourcecode
+language=&#8217;python&#8217;]#file menu filemenu = wx.Menu()[/sourcecode] This
+will only initialize a menu element with the name <code>filemenu</code>, it won&#8217;t
+add anything anywhere. In our case from the start, as we didn&#8217;t do any
+planning on how our interface would look like (no UML, no case studies,
+nothing!), we need at least three menu items: one to open/set the
+foreground sequence file, one to open/set the background sequence file
+and one to quit the application. So what we are going to do is append
+these items to the <code>filemenu</code> [sourcecode language=&#8217;python&#8217;]convertmenu
+= filemenu.Append(-1, &#8216;Select foreground file&#8217;) seqmenu =
+filemenu.Append(-1, &#8216;Select background file&#8217;) sep =
+filemenu.AppendSeparator() treenooutmenu = filemenu.Append(-1,
+&#8216;Quit&#8217;)[/sourcecode] that simple. The first two lines and the last one
+append the items that open/set files. The -1 parameter is an ID, as we
+saw previously, when no ID is required for our code we use -1, and the
+second parameter is the label of that menu item. The menu item <code>sep</code> is
+a separator, keeping apart the file open/set items and the quit element.
+One final thing is append the derived wx.Menu to the menubar and set it.
+We accomplish that by [sourcecode language=&#8217;python&#8217;]#appends the menu
+to the menubar and creates it menubar.Append(filemenu, &#8216;File&#8217;)
+self.SetMenuBar(menubar)[/sourcecode] Line 2 initializes menubar on
+self, also known as pymotGUI, our main window. Putting everything
+together our code would look like [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
+fasta class pymot(wx.App): def __init__(self, redirect=False):
+wx.App.__init__(self, redirect) class pymotGUI(wx.Frame): def
+__init__(self, parent, id): wx.Frame.__init__(self, parent, id,
+&#8216;Python Motif Finder&#8217;, style=wx.DEFAULT_FRAME_STYLE)
+self.__do_layout() # self.__do_binding() def
+__do_layout(self): #adding the panel panel = wx.Panel(self)
+#defines the menubar menubar = wx.MenuBar() #file menu filemenu =
+wx.Menu() foreground_menu = filemenu.Append(-1, &#8216;Select foreground
+file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select background file&#8217;)
+sep = filemenu.AppendSeparator() quit_menu = filemenu.Append(-1,
+&#8216;Quit&#8217;) #appends the menu to the menubar and creates it
+menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar) #if
+__name__ == &#8216;__main__&#8217;: app = pymot() frame =
+pymotGUI(parent=None, id = -1) #frame.CentreOnScreen() frame.Show()
+app.MainLoop()[/sourcecode] and this would look like the screencap below
+(on Vista).
+<a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui2.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui2-150x150.png" title="gui2" alt="gui2" /></a>
+Next time we will work on more elements and activate the menu items.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-22T15:30:13-04:00" pubdate data-updated="true">Oct 22<span>nd</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/10/22/creating-an-interface-for-the-motif-finding-script-part-3/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/10/22/creating-an-interface-for-the-motif-finding-script-part-3/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2/" title="Previous Post: Creating an interface for the motif finding script, part 2">&laquo; Creating an interface for the motif finding script, part 2</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/10/29/creating-an-interface-for-the-motif-finding-script-part-4/" title="next Post: Creating an interface for the motif finding script, part 4">Creating an interface for the motif finding script, part 4 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

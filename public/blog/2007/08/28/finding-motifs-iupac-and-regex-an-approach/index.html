@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Finding motifs: IUPAC and RegEx, an approach - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="After a long delay, we are back. Before entering in the next topic,
+Restriction Enzymes, let&#8217;s take a look how to create a regex pattern
+from &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/08/28/finding-motifs-iupac-and-regex-an-approach">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Finding motifs: IUPAC and RegEx, an approach</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-28T17:21:33-04:00" pubdate data-updated="true">Aug 28<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After a long delay, we are back. Before entering in the next topic,
+Restriction Enzymes, let&#8217;s take a look how to create a regex pattern
+from user input and the dictionary of IUPAC code for nucleotides. We
+will use the same dictionary from the previous entry</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">iupacdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;M&#39;</span><span class="p">:</span><span class="s">&#39;[AC]&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">:</span><span class="s">&#39;[AG]&#39;</span><span class="p">,</span> <span class="s">&#39;W&#39;</span><span class="p">:</span><span class="s">&#39;[AT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;S&#39;</span><span class="p">:</span><span class="s">&#39;[CG]&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">:</span><span class="s">&#39;[CT]&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">:</span><span class="s">&#39;[GT]&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">:</span><span class="s">&#39;[ACG]&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">:</span><span class="s">&#39;[ACT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;D&#39;</span><span class="p">:</span><span class="s">&#39;[AGT]&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">:</span><span class="s">&#39;[CGT]&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">,</span> <span class="s">&#39;N&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and the same consensus sequence of the GATA3 binding site NNGATARNG This
+consensus sequence will be provided as a script parameter, along with
+the filename</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="n">sequencefile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">motif</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>First line reads the sequence file from the
+user input and second line stores the input motif in a string. Now we
+have to get the motif string and check for each letter (IUPAC code) and
+get the correspondent set of nucleotides. For this we will use a loop
+and a the method <code>get</code> method of Python dictionaries. This method, as
+its name implies, gets the <code>value of the key</code> in parentheses. Like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">motif</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">iupacdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we combine both excerpts above and run
+using as input the GATA3 model the result would like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="n">ACGT</span><span class="p">]</span> <span class="p">[</span><span class="n">ACGT</span><span class="p">]</span> <span class="p">[</span><span class="n">AG</span><span class="p">]</span> <span class="p">[</span><span class="n">ACGT</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which is five nucleotides short of the motif length. How to correct it? Pretty simple
+we just add to the dictionary the &#8220;regular&#8221; nucleotide codes</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">iupacdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;M&#39;</span><span class="p">:</span><span class="s">&#39;[AC]&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">:</span><span class="s">&#39;[AG]&#39;</span><span class="p">,</span> <span class="s">&#39;W&#39;</span><span class="p">:</span><span class="s">&#39;[AT]&#39;</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">:</span><span class="s">&#39;[CG]&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">:</span><span class="s">&#39;[CT]&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">:</span><span class="s">&#39;[GT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;V&#39;</span><span class="p">:</span><span class="s">&#39;[ACG]&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">:</span><span class="s">&#39;[ACT]&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">:</span><span class="s">&#39;[AGT]&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">:</span><span class="s">&#39;[CGT]&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;N&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This would solve our &#8220;problem&#8221; without adding
+a line of code to the final script. Fastforwarding to creating the regex</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mregex</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">motif</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">mregex</span> <span class="o">+=</span> <span class="n">iupacdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">mregex</span>
+</span><span class='line'><span class="c">#just to check </span>
+</span><span class='line'><span class="n">tosearch</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mregex</span><span class="p">))</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tosearch</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequencefile</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">i</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple and quick. The final output is not really elaborated, but we can improve it. Next time.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-28T17:21:33-04:00" pubdate data-updated="true">Aug 28<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/08/28/finding-motifs-iupac-and-regex-an-approach/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/08/28/finding-motifs-iupac-and-regex-an-approach/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/07/16/finding-motifs-iupac-and-regex-an-overview/" title="Previous Post: Finding motifs: IUPAC and RegEx, an overview">&laquo; Finding motifs: IUPAC and RegEx, an overview</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/08/31/restriction-enzymes-first-take/" title="next Post: Restriction enzymes: first take">Restriction enzymes: first take &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+---
+author: admin
+date: '2009-01-31 12:30:45'
+layout: post
+slug: finally-its-2009
+status: publish
+title: Finally it's 2009 ...
+wordpress_id: '220'
+? ''
+: - Phase 2
+---
+
+[![Python logo,
+1990s-2005](http://upload.wikimedia.org/wikipedia/en/thumb/2/25/PythonProgLogo.png/202px-PythonProgLogo.png "Python logo, 1990s-2005")](http://en.wikipedia.org/wiki/Image:PythonProgLogo.png)
+  ~ Image via
+    [Wikipedia](http://en.wikipedia.org/wiki/Image:PythonProgLogo.png)
+
+And ... we're back. The long and cold winter is still out there and
+January 2009 is almost in the books. After a long period without
+updating I'll try to "rush" some posts this week, trying to get back on
+track. So, a little bit of what's up and coming: - a patch provided by
+Robin Stocker to make all scripts published here (at least the ones on
+GitHub) [PEP 8](http://www.python.org/dev/peps/pep-0008/) compliant. -
+using SQLite databases in Python - developing an interface to access the
+database - anything that you might suggest, just leave a comment. Let's
+start 2009 then.
+
+[![Reblog this post [with
+Zemanta]](http://img.zemanta.com/reblog_e.png?x-id=3e82d2d2-7738-437f-80c3-9ac14da72974)](http://reblog.zemanta.com/zemified/3e82d2d2-7738-437f-80c3-9ac14da72974/ "Zemified by Zemanta")

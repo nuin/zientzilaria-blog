@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Obtaining overrepresented motifs in DNA sequences, part 1 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Changing gears now, leaving behind Pfam alignments. I decided to start a
+new series of posts based on the conversion of some small C++ programs I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2008-05-09-obtaining-overrepresented-motifs-in-dna-sequences-part-i.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Obtaining overrepresented motifs in DNA sequences, part 1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-09T21:46:50-04:00" pubdate data-updated="true">May 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Changing gears now, leaving behind Pfam alignments. I decided to start a
+new series of posts based on the conversion of some small C++ programs I
+developed in the past. These small programs (I call them modules because
+they were part of a larger application) were used to count motifs, short
+nucleotide <em>words</em> up to 10-12 base pairs, and then calculate
+statistical overrepresentation of these words by comparing a foreground
+set of DNA sequences against a background set. We will start comparing
+the different approaches of the C++ and the
+<a href="http://python.org/" title="Python (programming language)">Python</a> codes and
+point out advantages and disadvantages of doing it in one language or
+the other. First thing we need to do is to count the motifs in all
+sequences from our foreground and background sets. For the project I was
+working on, the ideal word length was 10 nucleotides. Basically our C++
+approach to increase speed was to transform the character DNA sequences
+into numbers and then, while sliding a window with the desired word
+length,
+<a href="http://en.wikipedia.org/wiki/Hash_function" title="Hash function">hash</a> the
+base-four numbers into base 10 and increment a vector position,
+previously initialized with 0. For four nucleotides and a word size of
+10 there are 1,048,576 permutations possible, from AAAAAAAAAA to
+TTTTTTTTTT. Initially the C++ program would do [sourcecode
+language=&#8217;c&#8217;]for(j = 0; j &lt; seqsize; j++) { seqfile.get(base); if(base
+!= &#8216;\n&#8217;) { switch(base) { case &#8216;A&#8217;: bseq.push_back(0); break; case
+&#8216;C&#8217;: bseq.push_back(1); break; case &#8216;G&#8217;: bseq.push_back(2); break;
+case &#8216;T&#8217;: bseq.push_back(3); break; } } }[/sourcecode] reading all
+sequences and pushing an figure for each nucleotide in a vector, and
+then sliding a window on this vector and hashing the base-four number
+[sourcecode language=&#8217;c&#8217;]int hashSeq(vector subseq) { int w, i,
+hashvalue = 0, power; w = subseq.size() - 1; for(i = 0; i &lt;
+subseq.size(); i++) { power = 0; hashvalue += subseq[i] *
+pow((double)4,(double)w); w&#8211;; } return hashvalue; } if(binseq[i].size()
+> motifwidth) { for(j = 0; j &lt; binseq[i].size()-motifwidth+1; j++) {
+sub.assign(binseq[i].begin() + j, binseq[i].begin() + j+motifwidth);
+hashed = hashSeq(sub); nmercount[hashed]++; sub.clear(); }
+}[/sourcecode] The whole C++ code has about 400 lines, including all the
+possible output formatting and printing. Timing with <code>time</code> the C++
+executable takes a little bit less than 2 seconds to read, count and
+output different files. For Python, we will use a different approach and
+gain a lot in code simplicity. As we want to count the number of times
+size-10 words appear in all sequences, we first need to generate all
+possible permutations (with replacement) of four nucleotides. This can
+be easily accomplished by using generator functions. Regular functions
+run until completion and the return a value. For instance, a function
+that calculates the factorial of 10 will return the last value only,
+after multiplying 10.9.8.7.6.5.4.3.2. A generator function runs until a
+value is available to return, <code>yielding</code> it and then suspending its
+operation until called again. The yielding part was emphasized because
+<code>yield</code> is the command used by Python to return the value and suspend
+the function until further notice. In the <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial
+function</a>, a
+generator would return the intermediary factorial values up to 10. To
+generate all 1 million plus permutations of 4 nucleotides we need a
+function similar to the one below (modified from
+<a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/190465">here</a>)
+[sourcecode language=&#8217;python&#8217;]def permutations(items, n): if n == 0:
+yield &#8221; else: for i in range(len(items)): for base in
+permutations(items, n - 1): yield str(items[i]) + str(base)[/sourcecode]
+Basically, what this generator function does is to combine all four
+nucleotides in words of size 10. This is a <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science">recursive
+function</a> &#8220;Recursion (computer science)&#8221;),
+where the result of the function is dependent on the n-1 value
+calculated by the function until n equals 0. The first <code>for</code> loop over
+the items that we want to permute (the nucleotides) and the second <code>for</code>
+recursively calls <code>permutations starting with the initial n</code> passed (10)
+until we reach 0. Debugging this function we will see that <code>i</code> is
+constant for each iteration of the second loop and only <code>n</code> changes from
+10 to 0, while one by one nucleotides are joined to form a motif. It
+starts with AAAAAAAAAA, then AAAAAAAAAC, then AAAAAAAAAG, until it gets
+to a poly-T. Our final code would look like the one below [sourcecode
+language=&#8217;python&#8217;]import fasta import sys def permutations(items, n): if
+n == 0: yield &#8221; else: for i in range(len(items)): for base in
+permutations(items, n - 1): yield str(items[i]) + str(base) seqs =
+fasta.get_seqs(open(sys.argv[1]).readlines()) length = sys.argv[2]
+nucleotides = [&#8216;A&#8217;, &#8216;C&#8217;, &#8216;G&#8217;, &#8216;T&#8217;] merged_seqs = &#8221; for i in seqs:
+merged_seqs += i.sequence for i in permutations(nucleotides,
+int(length)): print i + &#8216;\t&#8217; + merged_seqs.count(i)[/sourcecode] where
+we read the input sequence(s), merge them in one long string and as we
+generate all possible combinations we count the number of times they
+appear. This code running on the same input file used on the C++
+executable is 60 times slower, taking in average one full minute to
+count motifs in 8 500 bp DNA sequences. The slowest section is the
+count, as the generation of all possible combinations is
+straightforward. We lose some speed, but gain a lot on code simplicity
+and clarity. Next we will modify this code to output different counts
+needed for the statistical analysis.
+<a href="http://www.zemanta.com/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/pixie.png?x-id=9e5576a3-3aac-421a-8959-197194f2d876" alt="image" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-09T21:46:50-04:00" pubdate data-updated="true">May 9<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2008-05-09-obtaining-overrepresented-motifs-in-dna-sequences-part-i.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2008-05-09-obtaining-overrepresented-motifs-in-dna-sequences-part-i.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

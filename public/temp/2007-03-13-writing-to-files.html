@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Writing to files - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We already know how to read from files, now we are going to see how to
+write to them. We will start with a simple example, writing some content
+to a &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-03-13-writing-to-files.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Writing to files</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-13T14:58:58-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We already know how to read from files, now we are going to see how to
+write to them. We will start with a simple example, writing some content
+to a &#8220;fresh&#8221; file that does not exist in the system. Sometime ago, we
+have seen the <code>print</code> statement in Python, that prints to the system
+standard output (usually the screen). This output can be redirected
+using <code>&gt;</code> to a stream/file. But if we are going to create really
+professional applications (even to our own use), usually stream
+redirection is not really the nicest approach. In some cases the best
+alternative is to save a file. Also, some posts ago, we covered the
+methodology to <code>open</code> a file. We are going to use here the same command,
+<code>open</code> to (in our case) create the file. Remember that to read the file
+we used [sourcecode language=&#8217;python&#8217;]file = open(dnafile,
+&#8216;r&#8217;)[/sourcecode] where the <code>'r'</code> is the mode we are using to open the
+file. In that case we used the <em>read</em> mode, now we are going to use the
+<em>write</em> mode. When we open a file with this command in <em>write</em> mode if
+the file (with the name with pass) does not exist it is created. If it
+does exist, all the contents of the current file will be erased, so be
+careful when opening a file from your script. Check for the location,
+file name, etc before opening the file. So, basically we have
+[sourcecode language=&#8217;python&#8217;]file = open(output, &#8216;w&#8217;)[/sourcecode] and
+the file is open and ready to receive data. Let&#8217;s cheat and use the
+previous script that counts nucleotides and modify it to save a
+<code>count.txt</code> file wit the results: [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python #let&#8217;s keep the file fixed for
+now dnafile = &#8220;AY162388.seq&#8221; #opening the file, reading the sequence
+and storing in a list file = open(dnafile, &#8216;r&#8217;) #initialize a string to
+receive the data sequence = &#8221; for line in file: sequence +=
+line.strip() #notice the strip, to remove n #&#8221;exploding&#8221; the sequence
+in a list seqlist = list(sequence) #initializing integers to store the
+counts totalA = 0 totalC = 0 totalG = 0 totalT = 0 #checking each item
+in the list and updating counts for base in seqlist: if base == &#8216;A&#8217;:
+totalA += 1 elif base == &#8216;C&#8217;: totalC += 1 elif base == &#8216;G&#8217;: totalG += 1
+elif base == &#8216;T&#8217;: totalT += 1 #printing results resultfile =
+open(&#8216;counts.txt&#8217;, &#8216;w&#8217;) resultfile.write(str(totalA) + &#8217; As found \n&#8217;)
+resultfile.write(str(totalC) + &#8217; Cs found \n&#8217;)
+resultfile.write(str(totalG) + &#8217; Gs found \n&#8217;)
+resultfile.write(str(totalT) + &#8217; Ts found \n&#8217;)[/sourcecode] The only
+difference is at the end of the script. Here instead of <code>print</code> we use
+<code>write</code>. Notice that <code>write</code> is a method of the opened file.(in our case
+called <code>resultfile</code>. This method only accepts strings, so we need to
+convert everything to string before writing in the file. Notice also
+that we need to add a carriage return/newline at the end of the string
+to be written. Differently of <code>print</code>, <code>write</code> does not automatically
+puts a new line at the end of the output.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-13T14:58:58-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-03-13-writing-to-files.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-03-13-writing-to-files.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

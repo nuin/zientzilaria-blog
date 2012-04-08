@@ -1,0 +1,17 @@
+---
+author: admin
+date: '2008-03-28 21:17:53'
+layout: post
+slug: rss-2
+status: publish
+title: RSS
+wordpress_id: '93'
+? ''
+: - off topic
+  - rss
+  - unofficial planet python
+---
+
+I added a more evident link to the RSS feed on the sidebar. If you
+haven't already subscribed, please do so. The feed is now syndicated
+through the Unofficial Planet Python.

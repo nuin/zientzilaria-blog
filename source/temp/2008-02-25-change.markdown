@@ -1,0 +1,15 @@
+---
+author: admin
+date: '2008-02-25 15:37:48'
+layout: post
+slug: change
+status: publish
+title: Change
+wordpress_id: '84'
+? ''
+: - off topic
+---
+
+I changed the plugin that handles code highlighting, making possible to
+also change the theme. I don't know if I let some unmodified code
+lingering, so if anyone see any problem, just drop me a note.

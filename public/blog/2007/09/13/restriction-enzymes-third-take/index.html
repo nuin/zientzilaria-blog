@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Restriction enzymes, third take - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We come to the penultimate part of our restriction enzyme site finder.
+Just a couple of pieces lacking in the puzzle and we are there. First,
+the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/09/13/restriction-enzymes-third-take">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Restriction enzymes, third take</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-13T12:08:42-04:00" pubdate data-updated="true">Sep 13<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We come to the penultimate part of our restriction enzyme site finder.
+Just a couple of pieces lacking in the puzzle and we are there. First,
+the most important: the function that searches for the sites, using
+regex patterns. We called it <code>find_sites</code></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">find</span>\<span class="n">_sites</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">iupacdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span><span class="s">&#39;[A]&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span><span class="s">&#39;[C]&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">:</span><span class="s">&#39;[G]&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span><span class="s">&#39;[T]&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">:</span><span class="s">&#39;[AC]&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">:</span><span class="s">&#39;[AG]&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s">&#39;W&#39;</span><span class="p">:</span><span class="s">&#39;[AT]&#39;</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">:</span><span class="s">&#39;[CG]&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">:</span><span class="s">&#39;[CT]&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">:</span><span class="s">&#39;[GT]&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">:</span><span class="s">&#39;[ACG]&#39;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s">&#39;H&#39;</span><span class="p">:</span><span class="s">&#39;[ACT]&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">:</span><span class="s">&#39;[AGT]&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">:</span><span class="s">&#39;[CGT]&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">,</span> <span class="s">&#39;N&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">}</span>
+</span><span class='line'>  <span class="n">site</span> <span class="o">=</span> <span class="nb">set</span><span class="p">[</span><span class="nb">input</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">pattern</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">site</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">pattern</span> <span class="o">+=</span>
+</span><span class='line'>      <span class="n">iupacdict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">searchpattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">sites</span> <span class="o">=</span> <span class="n">searchpattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">temppos</span> <span class="o">=</span> <span class="n">searchpattern</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temppos</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">span</span><span class="p">()</span>
+</span><span class='line'>      <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">begin</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">sites</span><span class="p">,</span> <span class="n">positions</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We use the
+IUPAC dictionary created previously to translate the nucleotides entries
+in the restriction enzyme file. The function also receives three values:
+the input name of the selected enzyme, the dictionary with all the
+enzymes and sites and the sequence where to search. We could easily
+remove one of those, but let&#8217;s leave it there.</p>
+
+<p>First we get the site
+from the dictionary and initialize an empty string to receive the patter
+and a empty list to receive the positions. We will see why we don&#8217;t need
+an empty list to store the found sites. We then iterate over the site
+and create a pattern using the values for each letter of the site
+(dictionary key). Created the patter, we compile the regex and with
+<code>findall</code> we find every entry of the site in the sequence. As we already
+have seen, using the regex <code>findall</code> will generate a list with all the
+entries for that particular regex in the string we are searching. This
+is pretty handy because some enzymes have degenerated restriction sites.
+That&#8217;s why we don&#8217;t need a pre-initialized empty list for the sites.
+Then we use the <code>finditer</code> to find the the exact position of each one of
+the sites. Each iterator is a tuple with a start and end positions. In
+our case we only need the start position, so in a small loop we iterate
+over the temporary variable and just append to the positions empty list
+the start value. We have two integers, <code>begin</code> and <code>end</code> that receive
+the values from <code>i.span</code>, but we only use <code>begin</code>. The function then
+returns two lists as a tuple: one for the sites and one for the
+positions. If our programming is correct, both lists should have the
+same size and are ready to generate the output.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-13T12:08:42-04:00" pubdate data-updated="true">Sep 13<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/09/13/restriction-enzymes-third-take/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/09/13/restriction-enzymes-third-take/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/09/07/restrinction-enzymes-second-take/" title="Previous Post: Restriction enzymes: second take">&laquo; Restriction enzymes: second take</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/09/13/restriction-enzymes-the-grand-finale/" title="next Post: Restriction enzymes: the grand finale">Restriction enzymes: the grand finale &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

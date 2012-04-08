@@ -1,0 +1,45 @@
+---
+author: admin
+date: '2006-12-13 22:00:09'
+layout: post
+slug: '4'
+status: publish
+title: Why Python and not Perl?
+wordpress_id: '4'
+? ''
+: - bioinformatics
+  - perl
+  - python
+  - Section 1
+---
+
+According to the official Python
+[website](http://www.python.org/doc/essays/comparisons.html):
+
+> Python and Perl come from a similar background (Unix scripting, which
+> both have long outgrown) [to learn more about that check this
+> tutorial], and sport many similar features, but have a different
+> philosophy. Perl emphasizes support for common application-oriented
+> tasks, e.g. by having built-in regular expressions, file scanning and
+> report generating features. Python emphasizes support for common
+> programming methodologies such as data structure design and
+> object-oriented programming, and encourages programmers to write
+> readable (and thus maintainable) code by providing an elegant but not
+> overly cryptic notation. As a consequence, Python comes close to Perl
+> but rarely beats it in its original application domain; however Python
+> has an applicability well beyond Perl's niche.
+
+I couldn't explain better than that. But still I have to give my take on
+why I prefer Python over Perl, and why I decided to use it in my
+day-to-day programming. First I have to admit that I am lousy Perl
+programmer (not even close to an apprentice monger) and I always get
+confused by its syntax. Second I come from a Basic/Pascal/C++
+background, all of them having slightly better syntaxes than Perl. Thus,
+it was natural to get on the Python bandwagon, and as the paragraph
+above states Python code is "extremely" readable (emphasis are mine); in
+no-time you can grasp it completely. OK, I admit that it has at least
+one odd feature : the "mandatory" indentation. In Python you have to
+tabulate (using tabs or space <- recommended) loops, if clauses,
+functions, anything. Maybe this is the first and only hard step to get,
+but after a couple of hours of coding you will be satisfied on how good
+your code look.

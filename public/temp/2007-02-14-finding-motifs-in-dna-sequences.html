@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Finding motifs in DNA sequences - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="As you might have noticed, BPB generally uses protein sequences. I am a
+&#8220;DNA guy&#8221;, and basically in our simple examples either type of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-02-14-finding-motifs-in-dna-sequences.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Finding motifs in DNA sequences</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-14T14:26:26-05:00" pubdate data-updated="true">Feb 14<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>As you might have noticed, BPB generally uses protein sequences. I am a
+&#8220;DNA guy&#8221;, and basically in our simple examples either type of sequence
+(except the example on transcribing) could have been used. I will stick
+with this molecule for a while, or until I can. We are going to use our
+good old AY162388.seq file, still assigning the file name inside the
+script there will be a twist in the end. Also, remember the Regular
+Expression module? We are going to use it too. I am going to do just as
+the book: I will paste the code below with comments in the middle and
+explain it afterwards. [sourcecode language=&#8217;python&#8217;]#!/usr/bin/env
+python #finding motifs in DNA sequences # we use the RegEx module
+import re #still keep the file fixed dnafile = &#8220;AY162388.seq&#8221; #opening
+the file, reading the sequence and storing in a list seqlist =
+open(dnafile, &#8216;r&#8217;).readlines() #let&#8217;s join the the lines in a temporary
+string temp = &#8221;.join(seqlist) #assigning our sequence, with no
+carriage returns to our #final variable/object sequence =
+temp.replace(&#8216;\n&#8217;, &#8221;) #we start to deal with user input #first we
+use a boolean variable to check for valid input inputfromuser = True
+#while loop: while there is an motif larger than 0 #the loop continues
+while inputfromuser: #raw_input received the user input as string
+inmotif = raw_input(&#8216;Enter motif to search: &#8216;) #now we check for the
+size of the input if len(inmotif) >= 1: #we compile a regex with the
+input given motif = re.compile(&#8216;%s&#8217; % inmotif) #looking to see if the
+entered motif is in the sequence if re.search(motif, sequence): print
+&#8216;Yep, I found it&#8217; else: print &#8216;Sorry, try another one&#8217; else: print
+&#8216;Done, thanks for using motif_search&#8217; inputfromuser =
+False[/sourcecode] Now let&#8217;s dissect the code, in a biological way. We
+already seen everything up to the part the list&#8217;s lines are joined.
+First new lines for us is this [sourcecode language=&#8217;python&#8217;]sequence =
+temp.replace(&#8216;\n&#8217;, &#8221;)[/sourcecode] Most of the methods in Python have
+very intuitive names (ok, most languages do), so it is easy to deduce
+that <code>replace</code> actually replaces something. And why do we need to use
+this method? First, we joined the lines in one temporary string (yep,
+strings are immutable), but the lines come with everything, including
+carriage returns that we need to get rid of. So our &#8220;final&#8221; string
+<code>sequence</code> receives the value in <code>temp</code> and we apply the method
+<code>replace</code> to modify it. <code>replace</code> has two arguments, the first is the
+string we want to change from, while the second is the string we want to
+replace with (in fact <code>replace</code> accepts three arguments, the last being
+the number of times we want to do the change). In our case, we are
+telling the interpreter to get every substring <code>'\n'</code> and put an empty
+one in their places. The next line is a simple value assignment:
+[sourcecode language=&#8217;python&#8217;]inputfromuser = True[/sourcecode] and the
+variable will manage the <code>while</code> that checks input from the user.
+Basically we will run the loop until a certain type of input is given,
+that will make the variable value become <code>False</code>. That&#8217;s why we have the
+line [sourcecode language=&#8217;python&#8217;]while inputfromuser[/sourcecode] with
+no check. Yep, notice that we don&#8217;t need to check for the variable&#8217;s
+value, Python assumes that it is True. To understand better, imagine
+that <code>inputfromuser</code> is a flag that appears when True and disappears
+when False. Python can only &#8220;see&#8221; it when it appears, and when it does
+disappear it needs to check for it. We will elaborate more later.
+Another different line awaits us [sourcecode language=&#8217;python&#8217;]inmotif =
+raw_input(&#8216;Enter motif to search: &#8216;)[/sourcecode] <code>raw_input</code> is a
+function that takes a line input by the user and returns a string. In
+our case, we assign the value returned by the function to a new string
+called <code>inmotif</code>. Also, <code>raw_input</code> has one <em>prompt</em> argument which is
+written to the screen with no trailing line, waiting for the user to
+input something. This takes us to the <code>while</code> loop [sourcecode
+language=&#8217;python&#8217;]if len(inmotif) >= 1: #we compile a regex with the
+input given motif = re.compile(r&#8217;%s&#8217; % inmotif) #looking to see if the
+entered motif is in the sequence if re.search(motif, sequence): print
+&#8216;Yep, I found it&#8217; else: print &#8216;Sorry, try another one&#8217; else: print
+&#8216;Done, thanks for using motif_search&#8217; inputfromuser =
+False[/sourcecode] After getting the input from the user, we need to
+check the size of such input: if it is greater or equal to one, we will
+search it in our sequence, otherwise we will finish the loop. So if we
+get a valid input (valid in the sense of size, for now) we will compile
+the regex and search for it. There is a difference in regex compilation.
+In the DNA transcribing we assigned a string to the regex directly, now
+we have a string coming from a variable/object [sourcecode
+language=&#8217;python&#8217;]motif = re.compile(r&#8217;%s&#8217; % inmotif)[/sourcecode]
+Notice the difference in the argument that is passed to the <code>compile</code>
+function. In this case the regex to be compiled is coming from the
+string entered by the user, and we have to pass it by using Python&#8217;s
+string formatting operator, noted as a <code>%</code>. This formatting operator
+uses two parameters: a string with formatting characters and the data to
+be formatted, separated by the percent sign. In our case the formatting
+character will receive a string, hence the <code>%s</code> (s for string), and the
+data to be formatted that is the input. Previously, we used the regex
+function to replace characters/substrings in a sequence. This time, we
+are interested to know if the motif entered by the user is in our
+sequence. So we use the search method instead [sourcecode
+language=&#8217;python&#8217;]if re.search(motif, sequence):[/sourcecode] Notice
+that we do the search in at the same time we are testing for its result.
+The same case as the checking we do at the while loop. If there is a
+positive result from the regex search a True flag will be raised and the
+interpreter will execute the code of the initial branch, not testing for
+the <code>elif</code> and <code>else</code> [sourcecode language=&#8217;python&#8217;]print &#8216;Yep, I found
+it&#8217; else: print &#8216;Sorry, try another one&#8217;[/sourcecode] This condition is
+nested inside another condition, the one that tests for the size of the
+input entered. So, if our search returns a regex object, we print
+<code>Yep, I found it</code>, otherwise the user will receive
+<code>Sorry, try another one</code>. Now back to our upper <code>if</code>, if the user input
+length is equal to zero (just pressing the Enter key) the interpreter
+will process the line [sourcecode language=&#8217;python&#8217;]print &#8216;Done, thanks
+for using motif_search&#8217;[/sourcecode] and then [sourcecode
+language=&#8217;python&#8217;]inputfromuser = False[/sourcecode] that will tell the
+while loop that there is no True variable anymore, ending the loop and
+consequently our script. Let&#8217;s review the script and its flow:
+[sourcecode language=&#8217;python&#8217;]1) assign a filename to be opened 2) read
+the file 3) join the lines 4) remove carriage returns 5) ask for user
+input, while is valid 6) if input length is greater or equal to 1,
+process it 6a) compile regex with input 6b) search for it 6b1) if it is
+found print yes 6b2) if it is not found print no 7) if input length is
+equal to zero, end while loop, end string[/sourcecode] I know it is a
+lot of information, take your time. The code can be downloaded from the
+<a href="http://python.genedrift.org/repository/">repository</a>. Next I will
+change a bit this script using other methods to find the motifs, and
+making the promised twist in the method that reads the file.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-14T14:26:26-05:00" pubdate data-updated="true">Feb 14<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-02-14-finding-motifs-in-dna-sequences.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-02-14-finding-motifs-in-dna-sequences.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

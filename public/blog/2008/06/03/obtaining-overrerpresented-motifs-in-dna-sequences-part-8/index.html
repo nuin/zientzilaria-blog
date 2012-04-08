@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Obtaining overrerpresented motifs in DNA sequences, part 9 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We keep on introducing Mike&#8217;s functions. This time there are a couple of
+Python methods that we haven&#8217;t seen here and need some &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Obtaining overrerpresented motifs in DNA sequences, part 9</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-03T12:49:53-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We keep on introducing Mike&#8217;s functions. This time there are a couple of
+Python methods that we haven&#8217;t seen here and need some introduction,
+<code>izip</code> and <code>count</code>. To use these two we also need to import new modules</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">izip</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> <code>count</code> returns consecutive integers starting at a
+defined point (the method&#8217;s parameter). If empty it starts from zero.
+Basically, by starting a <code>count</code> it will give an iterable with a
+increasing integer values, in a fashion similar to a function with
+yield. Every time our loop accesses the <code>count</code> it will &#8220;remember&#8221; the
+last return value and increment it by one. <code>izip</code> also returns an
+iterator, but from a list of iterables. It is basically used to iterate
+through a list of many iterables at the same time. In the function below
+it is used twice: one to generate a tuple (with <code>count</code>) with a sequence
+number and the sequence itself. The sequence in the tuple is then used
+in another <code>izip</code> to create the windows on the sequences to count
+motifs.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_06</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'><span class="sd">&quot;&quot;&quot; add seq id\_no to a set use &#39;izip(count(),...) to create seq_no use</span>
+</span><span class='line'><span class="sd">&#39;izip(count(),range(...)) to create start/stop indices for motifs &quot;&quot;&quot;</span>
+</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="n">seqs</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
+</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the next couple of posts we still be
+checking motif quorum functions. Stay tuned.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-03T12:49:53-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/" title="Previous Post: Obtaining overrepresented motifs in DNA sequences, part 7">&laquo; Obtaining overrepresented motifs in DNA sequences, part 7</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-8/" title="next Post: Obtaining overrepresented motifs in DNA sequences, part 9">Obtaining overrepresented motifs in DNA sequences, part 9 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

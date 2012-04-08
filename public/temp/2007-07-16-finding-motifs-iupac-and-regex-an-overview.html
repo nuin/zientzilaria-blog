@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Finding motifs: IUPAC and RegEx, an overview - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="End of Section 5, moving to Section 6. For anyone also following the
+book there will be a jump at the end of chapter 8, so we are not
+touching the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-07-16-finding-motifs-iupac-and-regex-an-overview.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Finding motifs: IUPAC and RegEx, an overview</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-16T11:59:56-04:00" pubdate data-updated="true">Jul 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>End of Section 5, moving to Section 6. For anyone also following the
+book there will be a jump at the end of chapter 8, so we are not
+touching the final script that deals with different reading frames here.
+We are going straight, or almost, to another take of Regular
+Expressions. We are going to check some aspects of restriction enzymes,
+but first we are going to touch base with motif finding in DNA
+sequences. We already saw how to use the <code>re</code> module and to do some
+simple regular expression searches. Basically our motif search was very
+simple, with run-time user input using [sourcecode
+language=&#8217;python&#8217;]motif = re.compile(&#8216;%s&#8217; % inmotif)[/sourcecode] where
+<code>inmotif</code> was the short string sequence entered. Enhancing this a little
+bit we will first create a more advanced regex search using mismatches
+in the sequences and after we will see (as in the book) how to translate
+IUPAC code to regex. The IUPAC table is A - Adenine C - Cytosine G -
+Guanine T - Thymine U - Uracil M - A or C R - A or G W - A or T S - C or
+G Y - C or T K - G or T V - A or C or G H - A or C or T D - A or G or T
+B - C or G or T X - A or C or G or T N - A or C or G or T You are going
+to use basic Python to do this. There are mode advanced ways to reach
+the same goals, but as we haven&#8217;t seen a lot of dictionaries it would be
+great to check them again. The first idea for the table above is to use
+a dictionary for the codes that represent two or more nucleotides, as
+dictionary keys would be ideal to include in regex elements. Our basic
+dictionary would look like this [sourcecode language=&#8217;python&#8217;]iupacdict
+= {&#8216;M&#8217;:&#8217;[AC]&#8217;, &#8216;R&#8217;:&#8217;[AG]&#8217;, &#8216;W&#8217;:&#8217;[AT]&#8217;, &#8216;S&#8217;:&#8217;[CG]&#8217;, &#8216;Y&#8217;:&#8217;[CT]&#8217;,
+&#8216;K&#8217;:&#8217;[GT]&#8217;, &#8216;V&#8217;:&#8217;[ACG]&#8217;, &#8216;H&#8217;:&#8217;[ACT]&#8217;, &#8216;D&#8217;:&#8217;[AGT]&#8217;, &#8216;B&#8217;:&#8217;[CGT]&#8217;,
+&#8216;X&#8217;:&#8217;[ACGT]&#8217;, &#8216;N&#8217;:&#8217;[ACGT]&#8217;}[/sourcecode] We include the square brackets
+around each key because these brackets inside a regex indicate a match
+in one of the characters. This dictionary would be really advantageous
+for restriction enzymes too. Now in order to find a motif we need to
+create a regular expression from the consensus sequence of the motif
+model, that can be for instance a transcription factor binding site.
+Let&#8217;s say we have a GATA3 model of binding site which has a model
+NNGATARNG what would give us a regular expression [sourcecode
+language=&#8217;python&#8217;]motif =
+re.compile(&#8216;[ACGT][ACGT]GATA[AG][ACGT]G&#8217;)[/sourcecode] that can be
+extracted directly from the <code>iupacdict</code>. Next time, we will check how to
+create these regex on the fly, from input and the dictionary.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-16T11:59:56-04:00" pubdate data-updated="true">Jul 16<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-07-16-finding-motifs-iupac-and-regex-an-overview.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-07-16-finding-motifs-iupac-and-regex-an-overview.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

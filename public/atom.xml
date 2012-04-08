@@ -1,0 +1,1147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Zientzilaria]]></title>
+  <link href="http://zientzilaria.genedrift.org/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.genedrift.org/"/>
+  <updated>2012-04-07T17:27:02-04:00</updated>
+  <id>http://zientzilaria.genedrift.org/</id>
+  <author>
+    <name><![CDATA[Paulo Nuin]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Why I left Biostar, but I still like Stackoverflow]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/"/>
+    <updated>2010-12-01T10:44:08-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow</id>
+    <content type="html"><![CDATA[<p>About eight months ago I started using Biostar as I saw it as a great
+opportunity to exchange some ideas, concepts, tips in biology and
+bioinformatics. I even mentioned the website in this space, trying to
+bring more people to the mix; at the time the community wasn&#8217;t big
+enough, and some days went by without any question being posted. But a
+couple of months ago my interest started to go down the drain. I don&#8217;t
+know if it was the constant next-generation sequencing barrage of
+questions every day, if it was the infantile blog/twitter posts from
+members competing for points or maybe the lack of votes for some answers
+that I posted (that&#8217;s selfish on my part, I admit). But at some point it
+seemed that the website turned into a competition of CVs or knowledge,
+very different from what I could see in different Stackoverflow
+spin-offs or in the main site. I guess the turning-point, or the moment
+I realized that the scientific community (at least in bioinformatics and
+related fields) will never the be the same as the programming and
+statistical ones, was the time I gave an answer that had less votes that
+the one saying &#8220;it&#8217;s not possible&#8221;. Maybe the problem is myself, I don&#8217;t
+like cliques, don&#8217;t mind helping people for nothing, don&#8217;t care about
+reputation. I didn&#8217;tt care about how many points I had, and used the
+down-vote to actually vote down answers that I didn&#8217;t see as pertinent
+(if you never used those sites, every down-vote removes one point from
+your score). I still think that Biostar is a great idea, and I wish it
+becomes a great resource for all the bio fields. Maybe if the community
+gets big enough, maybe if don&#8217;t see the same group of people that you
+see every where else it might become a better place to hang-out online.
+But right now, I&#8217;m over it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Preview of Django 1.1 Testing and Debugging]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/"/>
+    <updated>2010-05-20T16:34:41-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging</id>
+    <content type="html"><![CDATA[<p>Packt Publishing invited me to review <a href="http://www.packtpub.com/django-1-1-testing-and-debugging/book/mid/280410xne4fe?utm_source=python.genedrift.org&amp;utm_medium=affiliate&amp;utm_content=blog&amp;utm_campaign=mdb_003140">Django 1.1 Testing and
+Debugging</a>by
+Karen M. Tracey. They also kindly provided a free chapter that you can
+download from the link below. A full review will be posted as soon as I
+finish the book. preview chapter - <a href="http://python.genedrift.org/7566_Django%201.1%20Testing%20and%20Debugging_SampleChapter_1.pdf">Chapter No.3 &#8220;Testing 1, 2, 3: Basic
+Unit
+Testing&#8221;</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Initial impressions about Bioinformatics Programming using Python]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/"/>
+    <updated>2010-05-01T20:59:17-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python</id>
+    <content type="html"><![CDATA[<p>Last week I made a 5 book order at Amazon and one of them was
+<a href="http://www.amazon.com/gp/product/059615450X?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=059615450X">Bioinformatics Programming Using Python: Practical Programming for
+Biological Data (Animal
+Guide)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=059615450X" alt="image" />
+by Mitchell L Model. I started reading the book late Friday night, and
+I&#8217;m on the third chapter, where there&#8217;s an introduction to sequences. So
+far, I found the book very confusing, especially as it claims to be a
+book for people with no programming background. The examples are OK, but
+there&#8217;s a very messy mixture of Python interpreter and standalone script
+usage, as the author jumps back and forth them. Another thing is that
+some examples are explained in detail including the line number, while
+others you depend on the code&#8217;s docstring to understand it. So far, I&#8217;m
+not impressed. The initial Python sequence example is a set and in this
+chapter there already are some functional programming concepts, what can
+be quite challenging to someone that has never programmed in their life.
+And in the second chapter the reader sees a ternary operator. Another
+criticism, is that in the preface the author suggests using Python 3,
+instead of 2, what might add to the frustration of the beginner when a
+module cannot be installed. I will continue reading it and post whenever
+I have a more complete overview of the book.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python for Bioinformatics by Sebastian Bassi: a (short) review]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/"/>
+    <updated>2010-04-19T09:01:08-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review</id>
+    <content type="html"><![CDATA[<p>I promised some time ago to post a complete review of <a href="http://www.amazon.com/gp/product/1584889292?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1584889292">Python for
+Bioinformatics (Chapman &amp; Hall/CRC Mathematical &amp; Computational
+Biology)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1584889292" alt="image" />
+by Sebastian Bassi. It&#8217;s long overdue, but the delay allowed me to get
+more acquainted to the book and its contents. I can only say that I
+highly recommend this book, especially for the biologist that is
+beginning in bioinformatics or python (or both). I cannot compare it to
+any other Python and Bioinformatics books (I&#8217;m planning to buy the
+another one), but I can say that I could learn a thing or two from
+Sebastian&#8217;s book. Evidently is not a perfect book, as some of the
+explanations are a little bit rushed and might be difficult for a
+beginner. At the same time this is a very carefully thought and planned
+book and has more than enough for one to learn Python and apply the
+language to solve biological problems. I really liked the BioPython
+section, and this section made me use BioPython for the first time. Some
+of BioPython&#8217;s examples in the book are light years ahead of the
+examples in the tool&#8217;s website. Lastly, I would like to congratulate
+Sebastian for his work and effort in putting together a nice tome for
+Python and Bioinformatics. It&#8217;s a valuable resource for everyone in the
+field and certainly will help spread Python in the community.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Biostar: bioinformatics community]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/04/17/biostar-bioinformatics-community/"/>
+    <updated>2010-04-17T13:26:08-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/04/17/biostar-bioinformatics-community</id>
+    <content type="html"><![CDATA[<p><a href="http://biostar.stackexchange.com/">Biostar</a> is a bioinformatics
+community on the StackExchange network. It&#8217;s still small and not a lot
+of questions are asked and answered every day, so we need more people
+participating. If you are new to bioinformatics, or are just curious
+about the newest trends in the field, help us grow.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The real value of blogging]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/04/10/the-real-value-of-blogging/"/>
+    <updated>2010-04-10T13:45:03-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/04/10/the-real-value-of-blogging</id>
+    <content type="html"><![CDATA[<p>A couple of days ago I posted on here an entry called &#8217;<a href="http://python.genedrift.org/2010/04/08/the-sickest-python-code-ive-ever-created-1/">The &#8220;sickest&#8221;
+Python code I&#8217;ve ever
+created</a>&#8217;.
+It&#8217;s a code that does some file management for proteomics data, with a
+different set of inputs each time you run it. The &#8220;sickest&#8221; part of the
+title is that it was a small challenge to me. I&#8217;ve been away of actual
+hard-core coding for quite sometime, and you lose some of the gist of
+the thing with time. Mostly, nowadays, I make simple scripts that don&#8217;t
+require any kind of advanced skills (in any language) and I don&#8217;t worry
+that much of releasing code or about ultra fast performance. I knew from
+the time I posted that a lot of people would jump and help and teach me,
+as I was aware it wasn&#8217;t the most elegant code out there, not even the
+most Pythonic one too. What also helped me is that my
+Python/Bioinformatics blog is indexed on Planet Python, and the audience
+is far more hard-core Python that I ever dreamed of getting by myself
+alone. But the real deal is that I believe it would be much more
+difficult for me to get some positive feedback or even an answer if I
+had posted bits of my code on a online forum or community or list. Every
+time I used one of these methods, I either got no answer, or got
+schooled for not posting in the right format or somebody replied that no
+one knew how to do it. There&#8217;s the real deal of blogging, and the value
+is even higher if your audience knows more than you do. I appreciate
+every comment I got on that post and on others too, I learned things
+that I wasn&#8217;t able to learn from computer books and online tutorials
+(yes, I searched sometimes before reading the comments, and sometimes
+after).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The "sickest" Python code I've ever created 1]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/04/08/the-sickest-python-code-ive-ever-created-1/"/>
+    <updated>2010-04-08T20:59:54-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/04/08/the-sickest-python-code-ive-ever-created-1</id>
+    <content type="html"><![CDATA[<p>But, I guess, it can be easily refactored/enhanced/despised by the
+audience that read or have access to this blog via Planet Python.
+Anyway, for someone like me, whose main task now is not to generate tons
+of code and lines, I think the code (or part of it) that I will present
+below is quite good. Feel free to comment, criticize and say bad and
+good things about it. We needed a script that would take files coming
+out from protein search engines that would be able to compare the
+peptides and protein sequences, their abundance and some other
+characteristics. We had a combination of protein and peptide files, with
+a list of proteins (one protein per line in a tab delimited file) that
+was related to a list of peptides in another file (one peptide per line,
+with multiple peptides/lines related to one protein in the original
+list). Also each line in both files had more than 50 columns, and 8 or
+16 of them were the values we wanted to extract. I say 8 or 16 of them
+because we didn&#8217;t know how many will output each time, as it would
+depend on the number of samples per run (4 to 8 samples) . So, we had a
+couple of issues: we didn&#8217;t know how many proteins would be output
+(actually found) in each file, we wouldn&#8217;t know how many peptides for
+each protein would be found and we didn&#8217;t know before hand how many
+samples would be run at once. One good thing is that the 8-16 columns of
+values were fixed, always in the same position and with empty cells if
+no value was registered there. And we had a fourth problem: usually the
+samples attributions would be random, meaning a control could come in
+the first value column or could come in the last. And a fifth as we
+didn&#8217;t know before hand (the tech knew) how many treatments would be run
+each time. A treatment could be a different experimental condition, a
+sample grouping or some other extraneous factor. An extra issue is that
+we would need to compare multiple files, and get protein and peptide
+abundances in all of them at the same time and finally compare each
+treatment. Basically, in order to create an universal script we needed
+something flexible enough that whatever the experiments threw at use we
+would be able to handle. First step we decided to use a YAML file that
+could be filled by the experimental researchers with sample assignments,
+treatments, etc. The YAML would look like this B0: - 114: A - 115: D -
+116: B - 117: C B1: - 114: C - 115: A - 116: D - 117: B In this file B0
+and B1 would be the result file names, 114 is the column/channel where
+the sample was run and and A, B, C and D the treatment. With this set,
+out objective was to get all proteins and their peptides for treatment A
+in files B0 and B1, do some calculation and them compare to all proteins
+and peptides from treatment B, C and D extracted also from files B0 and
+B1. First step was to get the names of the treatments from the YAML file
+[sourcecode language=&#8217;python&#8217;]]def get_treatments(mapping): treats =
+set([]) for entry in mapping: [treats.add(list(t.values())[0]) for t in
+mapping[entry]] return treats[/sourcecode] where [code]mapping[/code] is
+the YAML file name. We used a set to store and sets have unique items,
+and treatment names can vary from file to file. In the code above we
+basically read the YAML and the value for each entry. We then needed a
+class to store protein information, and there was the story got hairy.
+With all my (lack of ) experience, I decided to use [code]exec[/code]
+statements to fix all the uncertainty of the experimental data details.
+I didn&#8217;t have the treatment names before hand (or in a fixed immutable
+list), and didn&#8217;t have the columns (channels) that were being used at
+the time and I have to correctly assign each protein abundance (area) to
+its place. In the end our class look like this [sourcecode
+language=&#8217;python&#8217;]class Protein(): &#8220;&#8221;&#8220;Class Protein, stores all the
+information about channels and areas, name and accession&#8221;&#8220;&#8221; def
+__init__(self, accession, name, treatments): self.accession =
+accession self.name = name #ratio channels are called based on their
+name for i in treatments: exec(&#8216;self.%s = []&#8217; %i) exec(&#8216;self.area%s =
+[]&#8217; %i) def add_to_channel(self, channel, peptide):
+exec(&#8216;self.%s.append(peptide)&#8217; % channel) def add_to_area(self,
+channel, area): exec(&#8216;self.area%s.append(area)&#8217; % channel)[/sourcecode]
+In order to be faithful to this blog&#8217;s name, I will explain how the code
+above is supposed to work. First, [code]exec[/code] is a Python
+statement that support dynamic execution of code. In our case above it
+was used to name the objects, so we would be able to access them by name
+in subsequent functions. Let&#8217;s take this for example [sourcecode
+language=&#8217;python&#8217;]for i in treatments: exec(&#8216;self.%s = []&#8217; %i)
+exec(&#8216;self.area%s = []&#8217; %i)[/sourcecode] In this snippet we were trying
+to create lists called (for the YAML file above) A, B, C and D, and
+another set of lists called areaA, areaB, areaC and areaD. Let&#8217;s say for
+another experiment we would have treatments &#8220;Control&#8221;, &#8220;Low&#8221; and &#8220;High&#8221;
+and so on. The next two functions use the same approach, with exec, this
+time appending to the freshly created lists. This way it&#8217;s easy to
+control what the user is throwing at us. I don&#8217;f know if this the best
+approach possible, or if it is or not harmful. Maybe experts reading
+this might have better ideas, and I appreciate them. We check the rest
+of the script next time.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python Testing Beginner’s Guide, review]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/03/03/python-testing-beginnere28099s-guide-review/"/>
+    <updated>2010-03-03T22:46:35-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/03/03/python-testing-beginnere28099s-guide-review</id>
+    <content type="html"><![CDATA[<p>I posted about a week ago that Packt Publishing had invited me to review
+<strong><a href="http://www.packtpub.com/python-testing-beginners-guide/book/mid/240210aaphjg?utm_source=python.genedrift.org&amp;utm_medium=bookrev&amp;utm_content=blog&amp;utm_campaign=mdb_002570">Python Testing Beginner&#8217;s
+Guide</a></strong>
+by Daniel Arbuckle. Having finished reading the book (I must admit that
+I haven&#8217;t tried all the code in it), I can say that I have an excellent
+initial impression of the book. PTBG is not a long book and the topic is
+divided in 10 chapters and one appendix. One of the first things that I
+liked about the book is that there&#8217;s no <em>introduction</em> (or something
+similar) to Python. It just goes straight to the point assuming that you
+have some good understanding of the language and everything that
+surrounds it. In the past I was frustrated with some &#8220;Introduction to X
+with Python&#8221; that wasted precious space talking over and over about a
+topic, learning Python, better covered in many other books. PTBG does
+not waste time and space introducing its main topic which is testing,
+and in my opinion that&#8217;s the best approach, even though it might look a
+little bit abrupt by some. The language and text in the book is clear
+and very pleasant. PTBG is a very well written book and I really enjoyed
+its style. The first chapters of the book cover Python testing using
+doctests. For someone like me that didn&#8217;t write so many tests in the
+normal software development workflow (I know I should write more tests),
+this section seems like a really nice introduction to the topic, with
+well thought real-life like examples and a good flow on the explanation
+of the different features. One small complain that I have is that for a
+beginner sometimes the code listed in the examples might seem a little
+bit confusing, and maybe the addition of line numbers might have helped
+a bit here. But at the same I understand that this is normal style of
+some Packt books. After the doctests section, PTBG gets into more
+advanced techniques, covering a little bit mock objects with
+<a href="http://labix.org/mocker">Mocker</a>, then moving into unittest and
+<a href="http://code.google.com/p/python-nose/">nose</a>. The latter is a Python
+tool that allows for managing, running and automating tests. Also
+covered is <a href="%20http://pypi.python.org/pypi/%20twill/">Twill</a>, another
+third-party library that allows for testing of web applications. One
+full chapter is devoted to test-driven development, with a complete
+walkthrough of this approach. This gives a wrap-up of most of the
+techniques and modules covered in the book, but there&#8217;s still space for
+another chapter that shows how beautifully doctests, unittest and nose
+can be fully integrated and help the development of applications using
+the test-driven approach. Overall, I really enjoyed PTBG. As I
+mentioned, test driven development was never a high priority in the
+application I usually developed with Python. But certainly this book can
+be a good starting point for some Python test beginners to incorporate
+these techniques in their usual development workflow. Scientific
+software is also a perfect niche for this type of approach and we should
+do what is possible in order to avoid the <a href="http://boscoh.com/protein/a-sign-a-flipped-structure-and-a-scientific-flameout-of-epic-proportions">nightmares of the
+past</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Preview of Python Testing Beginner's Guide]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/02/22/preview-of-python-testing-beginners-guide/"/>
+    <updated>2010-02-22T11:00:53-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/02/22/preview-of-python-testing-beginners-guide</id>
+    <content type="html"><![CDATA[<p>I was invited by Packt Publishing to review <strong><a href="http://www.packtpub.com/python-testing-beginners-guide/book/mid/240210aaphjg">Python Testing Beginner&#8217;s
+Guide</a></strong>
+by Daniel Arbuckle. This is a book on one of the most important aspects
+of scientific programming (even though the majority of scientific
+software don&#8217;t have any testing routines): code testing, checking if
+your code actually does what is intended to do. I can say I&#8217;m not really
+an expert on testing so I guess I&#8217;m the right audience for it:</p>
+
+<blockquote><p>You&#8217;ll learn about several of Python&#8217;s automated testing tools, and
+you&#8217;ll learn about the philosophies and methodologies that they were
+designed to support, like unit testing and test-driven development.
+When you&#8217;re done, you&#8217;ll be able to produce thoroughly tested code
+faster and more easily than ever before, and you&#8217;ll be able to do it
+in a way that doesn&#8217;t distract you from your &#8220;real&#8221; programming.</p></blockquote>
+
+<p>Packt also supplied a preview/sample chapter that you can download
+<a href="http://python.genedrift.org/wordpress/wp-content/uploads/2010/02/8846-python-testing-beginners-guide-sample-chapter-5-when-doctest-isnt-enough-unittest-to-the-rescue.pdf">here</a>.
+I hope to get a review ready by the end of the week. before the Ontario
+Institute of Cancer Research retreat, otherwise I will try to post a
+full review next week.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Preliminary review of Python for Bioinformatics by Sebastian Bassi]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/01/03/preliminary-review-of-python-for-bioinformatics-by-sebastian-bassi/"/>
+    <updated>2010-01-03T14:25:00-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/01/03/preliminary-review-of-python-for-bioinformatics-by-sebastian-bassi</id>
+    <content type="html"><![CDATA[<p>Let me start by saying that <a href="http://www.amazon.com/gp/product/1584889292?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1584889292">Python for Bioinformatics (Chapman &amp;
+Hall/Crc Mathematical &amp; Computational
+Biology)</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1584889292" alt="image" />
+is a massive book, massive in a way that it contains a lot of material.
+I still didn&#8217;t have enough time to check everything, but I&#8217;m well into
+the first section of the book that gives an initial view of Python and
+how to program it. The initial section of the book is well written (I&#8217;m
+not going criticize the book in terms of good/poor English, as I&#8217;m not
+well qualified to do that), and gives a clear perspective on how to
+program Python for scientists, who are the main target demographic of
+the book. Of course, it always help to have some basic knowledge of
+command line shells, but the book also includes some explanations of
+IDLE and other Python-capable IDEs. I cannot say that I read this
+section with the enough care and attention, but what I can say is that
+you won&#8217;t miss a beat with PfB, as it has more material than I expected.
+I still have to start with the more advanced topics, like
+<a href="http://biopython.org/" title="Biopython">BioPython</a> and so forth, what I plan
+to do in the coming month, and as I don&#8217;t have a lot of experience with
+BioPython, I&#8217;m looking forward to it. On the other hand I have a
+small-ish complaint, that maybe is more about style than substance. I
+don&#8217;t like the design of the book, the way the code interleaves with the
+text and the way the code explanations are presented. Most of the code
+blocks are followed by a careful explanation, but this explanation works
+as a figure label for the code block. That is quite annoying because
+there are too many stops in the text fluidity as one tends to lose
+attention to it (my case, not exactly everyone&#8217;s). Another minor detail
+is the use of &#8220;he&#8221; every time scientists are referred (one example is on
+page 3 on the second phrase of the introduction). The (politically)
+correct would be to use &#8220;he or she&#8221; or &#8220;she or he&#8221; (but that&#8217;s OK with
+me). I will try to post more complete reviews of the sections that I
+don&#8217;t master. I would also like to thank Sebastian for sending me a copy
+of the book.
+<a href="http://reblog.zemanta.com/zemified/99930d7a-5cef-4e74-b46c-71e031c4d627/" title="Reblog this post [with Zemanta]"><img src="http://img.zemanta.com/reblog_e.png?x-id=99930d7a-5cef-4e74-b46c-71e031c4d627" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Managing a simple database with Python, SQLite and wxPython, 8]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/04/22/managing-a-simple-database-with-python-sqlite-and-wxpython-8/"/>
+    <updated>2009-04-22T10:04:17-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/04/22/managing-a-simple-database-with-python-sqlite-and-wxpython-8</id>
+    <content type="html"><![CDATA[<p><a href="http://commons.wikipedia.org/wiki/Image:Gene.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Gene.png/200px-Gene.png" title="Diagram of the location of introns and exons w..." alt="Diagram of the location of introns and exons
+w..." /></a>
+  ~ Image via</p>
+
+<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:Gene.png)
+</code></pre>
+
+<p>Thanks to the comments and suggestions to the last post, it&#8217;s possible
+to make now a more pythonic and clearly generic database update class.
+Let&#8217;s check how the &#8220;generic&#8221; update/edit entry function is currently:
+[sourcecode language=&#8217;python&#8217;]def update_data(self, values_list):
+&#8221;&#8217;edits and updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
+database) = link_db(self.db_path) else: (cursor, database) =
+link_db() cursor.execute(&#8220;UPDATE bac SET projects = ?, comments = ?,
+temperature = ?, cell = ?, box = ?, tubes = ?, chromosome = ?, sdate =
+?, clone = ?, source = ?, location1 = ?, startpos = ?, endpos = ?, gene
+= ?, genelink = ?, dnaex = ?, validation = ?, pcr = ?, refs = ?,
+antibiotic = ? WHERE idbac = ?&#8221;, values_list[&#8216;projects&#8217;],
+values_list[&#8216;comments&#8217;], values_list[&#8216;temperature&#8217;],
+values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;], values_list[&#8216;tubes&#8217;],
+values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;], values_list[&#8216;clone&#8217;],
+values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;], values_list[&#8216;start&#8217;]
+values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;], values_list[&#8216;genelink&#8217;],
+values_list[&#8216;dna&#8217;], values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;],
+values_list[&#8216;refs&#8217;], values_list[&#8216;antibiotic&#8217;],
+values_list[&#8216;idbac&#8217;])) database.commit() database.close()[/sourcecode]
+which is really ugly and, although it works, is not really useful
+outside this small project. Based on the comments the best option was to
+use placeholders and a dictionary, similar to the approach used on the
+insert data function. Pre-formatting a string to have both the field
+name to be updated and a placeholder (for instance <code>:idbac</code>) that will
+receive the values [sourcecode language=&#8217;python&#8217;]update =
+&#8217;,&#8217;.join([&#8216;%s=:%s&#8217; % (y, y) for y in values_list])[/sourcecode] where
+update is the string we want and values_list is the dictionary with all
+the key-value pairs. I tried this approach, using this structure in the
+generic function, but then I decided that the best alternative was to
+put this <code>join</code> in the derived class function and pre-populate the
+string with the values and then send this string directly to the update
+function. In the end I opted to use this [sourcecode
+language=&#8217;python&#8217;]update = &#8216;,&#8217;.join([&#8216;%s=&#34;%s&#34;&#8217; % (y,
+values_list[y]) for y in values_list])[/sourcecode] The latter is
+slightly different to what was suggested. The original one would create
+a tuple with the keys from the dictionary, making for instance
+<code>sdate:sdate</code>. With all these place holders just pass the dictionary and
+you have all the values inserted. This would be handy if the insert
+string was being created on the &#8220;generic&#8221; function. If we move this to
+the derived class, we can use the the alternative, keeping in mind that
+the values parsed should be surrounded by quotes, otherwise the SQL
+UPDATE statement will have problems with spaces and other foreign
+characters that should not be there. So instead of placeholders we will
+have <code>gene:"PTEN"</code> and we can attache this joined string to the actual
+commands. We then can move all the machinery from the &#8220;generic&#8221; function
+that can be written as [sourcecode language=&#8217;python&#8217;]def
+update_data(self, update_string): &#8221;&#8217;edits and updates fields&#8221;&#8217; if
+sys.platform == &#8216;darwin&#8217;: (cursor, database) = link_db(self.db_path)
+else: (cursor, database) = link_db() cursor.execute(update_string)
+database.commit() database.close()[/sourcecode] That&#8217;s it, very elegant
+(we will see the derived class in the next post). And finishing our
+generic class, we would need a delete function, so the user can
+eliminate entries that he/she doesn&#8217;t want anymore. It&#8217;s also a very
+simple function [sourcecode language=&#8217;python&#8217;]def delete_data(self,
+delete_string): &#8221;&#8217;deletes one field&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;:
+(cursor, database) = link_db(self.db_path) else: (cursor, database) =
+link_db() cursor.execute(delete_string) database.commit()
+database.close()[/sourcecode] We will check the delete string next time.
+Again, I would like to thank for all the comments, it has been really
+helpful for me. Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
+5</a>
+<a href="http://python.genedrift.org/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/">Part
+6</a>
+<a href="http://python.genedrift.org/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/">Part
+7</a></p>
+
+<p><a href="http://reblog.zemanta.com/zemified/e8dc77f5-e3de-4d4f-8ec1-8c0006225743/" title="Reblog this post [with Zemanta]"><img src="http://img.zemanta.com/reblog_a.png?x-id=e8dc77f5-e3de-4d4f-8ec1-8c0006225743" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Managing a simple database with Python, SQLite and wxPython, 7 (includes a question)]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/"/>
+    <updated>2009-04-20T12:21:59-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question</id>
+    <content type="html"><![CDATA[<p>And we&#8217;re back. After a couple of weeks of inactivity we will get back
+to our small soap-opera pf Python, wxPython and SQLite. Continuing in
+our database management code let&#8217;s check two other functions that
+changed since our first inception of the code. The first one is the
+<code>insert_data</code> function that looks like this now [sourcecode
+language=&#8217;python&#8217;]def insert_data(self, values_list, insert_string):
+&#8221;&#8217;inserts data in the database&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
+database) = link_db(self.db_path) else: (cursor, database) =
+link_db() cursor.execute(insert_string % self.table_name,
+values_list) database.commit() database.close()[/sourcecode] Basically
+no changes, apart from the obvious check for the current running
+operating system, which was explained in the last post. The other
+function to check is the <code>update_data</code>. This function is new and it
+wasn&#8217;t in the first version, but as it can be seen it has a problem
+being a &#8220;generic&#8221; function, because it contains information pertained to
+the table and database being used in the interface. This function
+basically received information that needs to be updated in the table&#8217;s
+fields and by using the SQL <code>UPDATE ... SET</code> edits and updates data in
+the changed fields. I have tried several different syntaxes to make the
+execute generic, mainly trying to pre-format the string without success.
+IF anyone reading this can help, I&#8217;d appreciate. [sourcecode
+language=&#8217;python&#8217;]def update_data(self, values_list): &#8221;&#8217;edits and
+updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor, database) =
+link_db(self.db_path) else: (cursor, database) = link_db()
+cursor.execute(&#8220;UPDATE bac SET projects = ?, comments = ?, temperature =
+?, cell = ?, box = ?, tubes = ?, chromosome = ?, sdate = ?, clone = ?,
+source = ?, location1 = ?, startpos = ?, endpos = ?, gene = ?, genelink
+= ?, dnaex = ?, validation = ?, pcr = ?, refs = ?, antibiotic = ? WHERE
+idbac = ?&#8221;, values_list[&#8216;projects&#8217;], values_list[&#8216;comments&#8217;],
+values_list[&#8216;temperature&#8217;], values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;],
+values_list[&#8216;tubes&#8217;], values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;],
+values_list[&#8216;clone&#8217;], values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;],
+values_list[&#8216;start&#8217;], values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;],
+values_list[&#8216;genelink&#8217;], values_list[&#8216;dna&#8217;],
+values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;], values_list[&#8216;refs&#8217;],
+values_list[&#8216;antibiotic&#8217;], values_list[&#8216;idbac&#8217;])) database.commit()
+database.close()[/sourcecode] Anyway, I will explain the logic of the
+command (OK for a stop gap, but not as a definite solution).
+<code>values_list</code> is a dictionary that is passed to the function and
+contains the field names as keys and the new/changed information as
+values. The execute method simply parses the values from each key in the
+update string which is then sent to the database and table to be
+changed. Everything is committed and the database is closed. As this is
+a &#8220;generic&#8221; function from a &#8220;generic&#8221; class the ideal scenario would be
+to the function to receive a pre-formatted string with all the
+information, as in the insert data function, and update the information
+in the database. I would like to thank in advance anyone that can
+comment on this. Next time we will continue checking the generic class
+and finalize this part in order to start with the interface build
+process.\
+\
+ Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
+5</a>
+<a href="http://python.genedrift.org/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/">Part
+6</a>
+<a href="http://reblog.zemanta.com/zemified/d0bb5d11-6f9d-8521-9a2f-6cd30868e375/" title="Reblog this post [with Zemanta]"><img src="http://img.zemanta.com/reblog_a.png?x-id=d0bb5d11-6f9d-8521-9a2f-6cd30868e375" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Managing a simple database with Python, SQLite and wxPython, 6]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/"/>
+    <updated>2009-03-31T12:06:08-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6</id>
+    <content type="html"><![CDATA[<p><a href="http://commons.wikipedia.org/wiki/Image:SQLite_Logo_4.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/19/SQLite_Logo_4.png/202px-SQLite_Logo_4.png" title="The :en:SQLite logo as of 2007-12-15" alt="The :en:SQLite logo as of
+2007-12-15" /></a>
+  ~ Image via</p>
+
+<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:SQLite_Logo_4.png)
+</code></pre>
+
+<p>Let&#8217;s get back to our SQLite and wxPython project. We haven&#8217;t seen
+anything on wxPython yet, and we will check the interface only on the
+next post. For now, let&#8217;s see some extra code added to the SQLite access
+class. Remember that we have a generic class and one class derived from
+it that would work on accessing specific tables in our database file.
+When we last covered the db access routines, there was no search for an
+entry (the function returned everything in the table no matter what),
+there was no update function in case someone would want to modify an
+entry and there was no delete method if you wanted to delete something.
+In the meantime, I added all of this functionality (and some other) to
+the generic class and extended it to the class derived from it. Let&#8217;s
+check how the generic class is now (you will notice that there is an
+issue in one of the methods, if someone can help me I&#8217;d appreciate. More
+details later.) [sourcecode language=&#8217;python&#8217;]class DB_Generic():
+&#8221;&#8217;generic class to add DB functionality&#8221;&#8217; def __init__(self,
+table_name, db_path = &#8221;): #par= name of the table to be used
+self.table_name = table_name if len(db_path) > 0: self.db_path =
+db_path print db_path def get_data_generic(self, range = 1,
+bac_to_get = 0): &#8221;&#8217;gets the data from the database&#8221;&#8217; if sys.platform
+== &#8216;darwin&#8217;: (cursor, database) = link_db(self.db_path) else: (cursor,
+database) = link_db() if range == 1: cursor.execute(&#8220;&#8221;&#8220;SELECT * FROM
+%s&#8221;&#8220;&#8221; % self.table_name) elif range == 2: cursor.execute(&#8220;&#8221;&#8220;SELECT *
+FROM %s where idbac = %d&#8221;&#8220;&#8221; % (self.table_name, bac_to_get))
+table_data = cursor.fetchall() raw_data = [] for i in table_data:
+raw_data.append(list(i)) self.table_data = raw_data database.close()
+def insert_data(self, values_list, insert_string): &#8221;&#8217;inserts data in
+the database&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor, database) =
+link_db(self.db_path) else: (cursor, database) = link_db()
+cursor.execute(insert_string % self.table_name, values_list)
+database.commit() database.close() def update_data(self, values_list):
+&#8221;&#8217;edits and updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
+database) = link_db(self.db_path) else: (cursor, database) =
+link_db() #change this to generic!!!!!!!!!!!! cursor.execute(&#8220;UPDATE
+bac SET projects = ?, comments = ?, temperature = ?, cell = ?, box = ?,
+tubes = ?, chromosome = ?, sdate = ?, clone = ?, source = ?, location1 =
+?, startpos = ?, endpos = ?, gene = ?, genelink = ?, dnaex = ?,
+validation = ?, pcr = ?, refs = ?, antibiotic = ? WHERE idbac = ?&#8221;,
+(values_list[&#8216;projects&#8217;], values_list[&#8216;comments&#8217;],
+values_list[&#8216;temperature&#8217;], values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;],
+values_list[&#8216;tubes&#8217;], values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;],
+values_list[&#8216;clone&#8217;], values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;],
+values_list[&#8216;start&#8217;], values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;],
+values_list[&#8216;genelink&#8217;], values_list[&#8216;dna&#8217;],
+values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;], values_list[&#8216;refs&#8217;],
+values_list[&#8216;antibiotic&#8217;], values_list[&#8216;idbac&#8217;])) database.commit()
+database.close() def delete_data(self, delete_string): &#8221;&#8217;deletes one
+field&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor, database) =
+link_db(self.db_path) else: (cursor, database) = link_db()
+cursor.execute(delete_string) database.commit()
+database.close()[/sourcecode] In the next couple of posts we&#8217;ll dissect
+each function and see what&#8217;s going on. The class definition wasn&#8217;t
+changed, so we start with <code>get_data_generic</code> [sourcecode
+language=&#8217;python&#8217;]def get_data_generic(self, range = 1, bac_to_get =
+0): &#8221;&#8217;gets the data from the database&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;:
+(cursor, database) = link_db(self.db_path) else: (cursor, database) =
+link_db() if range == 1: cursor.execute(&#8220;&#8221;&#8220;SELECT * FROM %s&#8221;&#8220;&#8221; %
+self.table_name) elif range == 2: cursor.execute(&#8220;&#8221;&#8220;SELECT * FROM %s
+where idbac = %d&#8221;&#8220;&#8221; % (self.table_name, bac_to_get)) table_data =
+cursor.fetchall() raw_data = [] for i in table_data:
+raw_data.append(list(i)) self.table_data = raw_data
+database.close()[/sourcecode] The first difference we notice here is the
+<code>sys.platform</code> usage. This is required if we intend to package our
+application as an OS X app, using py2app. When a Python/wxPython
+application is packaged in OS X, the actual application executable is
+inside the a directory named after the application (or whatever you set
+up). In our case here we don&#8217;t provide a way for the Python script to
+receive the path and name for the database on a command line, as we
+expect it to be in the executable&#8217;s current directory. Because of that
+we need to provide a &#8220;config&#8221; file (in our case here a one-line text
+file with the database path) inside the application wrapper, something
+we will see in the end of the series. Another modification here is the
+<code>range</code> parameter and the addition of the <code>bac_to_get</code> parameter. Notice
+that both parameters have a value assigned to it. This means that they
+are optional, the function&#8217;s call can pass them or not. If it doesn&#8217;t
+pass, their value will be the one assigned on the function declaration.
+So, here if we are interested in getting all bacs, <code>range</code> will have the
+value of 1 and we don&#8217;t need to worry about it. If we want an specific
+bac we will pass <code>range</code> as 2 and then pass the <code>bac_to_get</code> ID to be
+returned. A final change/addition is that we added a new select
+statement for the cases when <code>range</code> equals 2. This time we are adding
+the bac ID to be returned. Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
+5</a></p>
+
+<p><a href="http://reblog.zemanta.com/zemified/ea53b728-33c6-47db-aabf-0c695dcfabd8/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_a.png?x-id=ea53b728-33c6-47db-aabf-0c695dcfabd8" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[BioPython and CVS]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/03/13/biopython-and-cvs/"/>
+    <updated>2009-03-13T14:25:38-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/03/13/biopython-and-cvs</id>
+    <content type="html"><![CDATA[<p><a href="http://en.wikipedia.org/wiki/Image:Bazaar_logo_(software_product"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Bazaar_logo_(software_product" alt="Bazaar" />.svg/125px-Bazaar_logo_(software_product).svg.png &#8220;Bazaar&#8221;)</a>.svg)
+  ~ Image via</p>
+
+<pre><code>[Wikipedia](http://en.wikipedia.org/wiki/Image:Bazaar_logo_(software_product).svg)
+</code></pre>
+
+<p>I start this post with an apology. I usually don&#8217;t rant or vent here,
+which are feelings that I usually reserve to my personal blog. I don&#8217;t
+use BioPython, never used it. I have it installed in my systems, but I
+never wrote a piece of code importing BioPython routines. But I
+subscribe to their mailing lists, both user and developer. I maybe have
+written once to the list, and I just follow the discussions there. Since
+last year one of the main topics has been the possibility of moving
+BioPython from CVS to another version control system. Yes, you read it
+right. It&#8217;s 2009 and BioPython uses CVS and their version control
+system. Soon, CVS will be like typewriters and LPs to young developers.
+Last stable release of CVS was sometime in 2005, what in interwebs time
+is equivalent to something like 1972. Since 2005, Subversion has taken
+the world of version control by storm, and Git is getting also very
+strong, not to mention Bazaar, Darcs, Mercurial and some others that I
+might not be aware of. This is a discussion that have been dragging for
+sometime in the list. And it&#8217;s a shame, a clear lack of leadership from
+whoever is (not) leading the project. BioRuby is Git, BioPerl SVN and
+BioPython is CVS, because they &#8220;need to care for the legacy developers&#8221;.
+It&#8217;s like MSFT keeping two copies of the Notepad executable because they
+needed to cater to legacy applications, but with a different scale of
+course. With the current Python steam in the non-bioinformatics and
+bioinformatics community is very sad to see BioPython not evolving
+(before you ask me, no, I&#8217;m not interested in helping, not the way
+things are now). Perl which is language forever-in-waiting for its holy
+grail (Perl 6) has a strong community behind it, and more important an
+excellent leadership, that&#8217;s not scare of making decisions. So, if
+you&#8217;re still using CVS, it&#8217;s 2009!</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/06117f0a-6d25-497d-b686-1a96e8a7d81c/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=06117f0a-6d25-497d-b686-1a96e8a7d81c" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Managing a simple database with Python, SQLite and wxPython, 5]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/"/>
+    <updated>2009-03-02T19:23:42-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5</id>
+    <content type="html"><![CDATA[<p>We have seen how to connect, get and insert data (at least
+theoretically) in the database. Now, a little not about the SQL engine
+of choice here: SQLite. SQLite databases have the main characteristic
+that they are self-contained files. Also it does not require an
+installation, works without a server and works pretty well in most
+operating systems. Basically for the type of application we&#8217;re
+developing here, SQLite seems ideal. It eliminates a lot of
+infrastructure that would be needed if we were working with MySQL or
+postgresql. We don&#8217;t need a server or know how to configure users or
+manage the databases and tables. All we need is contained in a single
+file that can be transported from system to system and can be accesed
+from the computers used in the lab, mainly XP and OS X. Also some web
+frameworks (Rails and
+<a href="http://www.djangoproject.com" title="Django (web framework)">Django</a>, for
+instance) can use SQLite, so in the end we can have a desktop
+application and a web application accessing the same file without extra
+configuration. Now the database created for this application has 8
+tables and almost no relationships among them. SQLite allows the
+creation of relationships but in our case only a couple of cases were
+required. For the table we are using at the moment (bac) there is no
+need for relationships, although there are some fileds that can benefit
+from a more relational structure. Also SQLite don&#8217;t have the same data
+types that are found on the bigger SQL engines. All values can be stored
+as text, integer, real (floating point numbers), null and blob (verbose
+type, what you store is what you get). As actual types, you can set
+columns as Boolean and Data for instance and SQLite will understand
+them. If you have no experience in creating databases, let&#8217;s check again
+the table we are using in this small project. First, I would recommend
+the use of some SQLite database editor. You can find pretty good ones
+for any computer system and there is even a Firefox extension that
+allows you to edit some files. Editors make it easier to generate the
+SQL table creation scripts and make easier to visualize what we are
+doing. So, the table bac looks like [sourcecode language=&#8217;sql&#8217;]CREATE
+TABLE bac (idbac INTEGER PRIMARY KEY, clone Text, sdate Date, source
+Text, gene Text, chromosome Text, startpos Integer, endpos Integer,
+antibiotic Text, location1 Text, temperature Integer, tubes Integer, box
+Integer, cell Integer, dnaex Boolean, validation Boolean, pcr Boolean,
+projects Text, comments Text, genelink Text, refs Text);[/sourcecode] If
+you go back to our last post, you will see that in the insert statement
+there is no mention of the <code>idbac</code> field. We don&#8217;t actually insert ay
+value there, the values that populate this field are created
+automatically. And <code>idbac</code> is our primary key, meaning it&#8217;s the unique
+identifier of each bac we insert in this table. And in SQLite a integer
+primary key is automatically incremented whenever values are inserted in
+the table. So our first insertion will create <code>idbac</code> 1, the second will
+create <code>idbac</code> 2 and so on. I&#8217;m not going to enter in details about
+database development and administration, but it&#8217;s usual and safe to
+create tables with an auto-incremental integer primary keys. These
+fields, apart from make it easier t identify records, make access to
+such records faster and are great when relationships among tables are
+set. Let&#8217;s say that we had a column user in our bac table. And let&#8217;s say
+we had an user table with two columns: user_id and name, user_id being
+a auto-increment primary key. The user column in back could be linked
+with the user_id column in the user table, in what we call a
+one-to-many relationship (one user can insert as many bacs as he wants).
+One day we want to know who is actually working in the lab and we want
+to check how many bacs were catalogued by each user. We can easily
+search the user table and extract information from bacs at the same time
+thanks to the relationship between the tables. And the result should be
+returned quite quickly, as we are only searching integers. All the other
+fields/columns in our table are straightforward to understand. They are
+basically related to the type of data they need to store. <code>validation</code>
+is a boolean because the bac might have been validated or not, just as
+<code>danex</code> (DNA extraction). At the same time, the number of tubes stored
+in the freezer will always be an integer. So, why does temperature is an
+integer? Because we can only store bacs in two type of freezers: -80
+(ultra freezers) or -20 (regular freezer that we can have at home), and
+we don&#8217;t need to worry about fractional numbers. Well, this is a very
+short and limited explanation of tables and SQLite. The web is full of
+resources about it, so next time we will get back to Python. Previously
+in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://reblog.zemanta.com/zemified/4be1389f-5603-4b76-961b-b79d985066cc/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=4be1389f-5603-4b76-961b-b79d985066cc" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Managing a simple database with Python, SQLite and wxPython, 4]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/"/>
+    <updated>2009-03-02T11:58:09-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4</id>
+    <content type="html"><![CDATA[<p><a href="http://commons.wikipedia.org/wiki/Image:SQLite_Logo_4.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/19/SQLite_Logo_4.png/202px-SQLite_Logo_4.png" title="The :en:SQLite logo as of 2007-12-15" alt="The :en:SQLite logo as of
+2007-12-15" /></a>
+  ~ Image via</p>
+
+<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:SQLite_Logo_4.png)
+</code></pre>
+
+<p>Let&#8217;s continue building our small db app. As mentioned in the previous
+post we need now to instantiate a specific class from our generic
+<a href="http://sqlite.org/" title="SQLite">SQLite</a> access class. In order to do this
+we just have to declare a new class and its type will be <code>DB_Generic</code>.
+[sourcecode language=&#8217;python&#8217;]class Bac(DB_Generic)[/sourcecode] This
+new class is called Bac because it&#8217;s linked to the bac table in our
+database file. A side note, bacs are Bacterial Artificial Chromosomes
+and are used in different molecular biology techniques. Mainly in our
+case bacs have incorporated human DNA segments and are used as probes
+for deletion, duplication, etc studies. Now, back to our Python code, as
+soon as we instantiate our generic class, the object (class) we create
+has access to all methods and functions from the parent class (by using
+<code>self</code>), but we still need to create functionality and expose other
+methods that can be accessed from a class object derived from <code>Bac</code>. Our
+instantiated class will be [sourcecode language=&#8217;python&#8217;]class
+Bac(DB_Generic): def __init_(self): self.bac_data = []
+DB_Generic.__init__(self, &#8216;bac&#8217;) def get_data(self): return
+self.get_data_generic() def load_data(self): pass def add_data(self,
+values_list): insert_string = &#8220;&#8221;&#8220;INSERT INTO %s (projects, comments,
+temperature, cell, box, tubes, chromosome, sdate, clone, source,
+location1, startpos, endpos, gene, genelink, dnaex, validation, pcr,
+refs, antibiotic) VALUES (:projects, :comments, :temperature, :cell,
+:box, :tubes, :chromo, :date, :clone, :source, :location, :start, :end,
+:gene, :genelink, :dna, :validation, :pcr, :refs, :antibiotic)&#8221;&#8220;&#8221;
+self.insert_data(values_list, insert_string)[/sourcecode] Pretty
+simple so far, as we don&#8217;t have a lot of declared methods. Let&#8217;s check
+one by one [sourcecode language=&#8217;python&#8217;]def __init_(self):
+DB_Generic.__init__(self, &#8216;bac&#8217;)[/sourcecode] The only line is the
+initialization required by the parent class, and we&#8217;re passing the value
+that is the table to be accessed. [sourcecode language=&#8217;python&#8217;]def
+get_data(self): self.get_data_generic() return
+self.table_data[/sourcecode] The <code>get_data</code> function returns the all
+elements in our table (So far, we still don&#8217;t have an elegant range
+option) and has one too many lines in it. We will get rid of some
+useless code here in the future, but it&#8217;s OK the way it is. Basically
+this code access the <code>get_data_generic</code> from the parent class and gets
+all the values stored in the table. There is a function not yet complete
+that will load data, and will be used in the future. And the last one is
+the function that actually adds the data to the table with a SQL insert
+statement [sourcecode language=&#8217;python&#8217;]def add_data(self,
+values_list): insert_string = &#8220;&#8221;&#8220;INSERT INTO %s (projects, comments,
+temperature, cell, box, tubes, chromosome, sdate, clone, source,
+location1, startpos, endpos, gene, genelink, dnaex, validation, pcr,
+refs, antibiotic) VALUES (:projects, :comments, :temperature, :cell,
+:box, :tubes, :chromo, :date, :clone, :source, :location, :start, :end,
+:gene, :genelink, :dna, :validation, :pcr, :refs, :antibiotic)&#8221;&#8220;&#8221;
+self.insert_data(values_list, insert_string)[/sourcecode] In this
+function, we have a large string with all the SQL insert options. A SQL
+insert statement is divided into two parts, one where you point where to
+insert the values and another where you input the values. Usually simple
+insert statements will have this structure [sourcecode
+language=&#8217;sql&#8217;]INSERT INTO my_table_name (table_column1,
+table_column2) VALUES (value1, value2);[/sourcecode] So, we have the
+table we want to insert values into, its columns and the values we set
+for each column. After executed this will put value1 into table_column1
+and value2 into table_column2. The actual syntax can vary a bit for
+different SQL engines but the structure is identical in most cases.
+Pretty simple. For our insert string above, there are some aspects to
+call for attention. Again note the triple quote around the statement.
+This make sure that it&#8217;s not changed and parsed correctly. We also have
+a <code>%s</code> for the table name, which will be parsed by the parent class
+function that insert values, then a list of all the tables in the
+database and then a list of values to insert. And why the values to be
+inserted have this <code>:value</code> syntax? Because we are previously storing
+the values in a dictionary, and the &#8220;:&#8221; indicates that we need to get
+the dictionary value for the correspondent key. The insert string, and
+the list of values (actually a dictionary, not the best variable/object
+name I must admit) is then sent to the parent class to be inserted.
+Storing the values to be inserted in a dictionary is OK for a one time
+insert case, where the values are obtained from a form. If you are
+parsing a large CSV or TSV file, ideally it&#8217;s better to put it in a
+list, and dump them at the same time. We&#8217;re progressing. Next we will
+take a look on some simple SQL table structure and then move to create
+the form to insert the values and check the table. Previously in the
+series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a></p>
+
+<p><a href="http://reblog.zemanta.com/zemified/4c2737a4-f1de-46bf-ae53-c5de040daf97/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=4c2737a4-f1de-46bf-ae53-c5de040daf97" alt="Reblog this post [with
+Zemanta]" /></a></p>
+
+<p>evi</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why do I blog. Or: Science Blogging, is it worth?]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/02/21/why-do-i-blog-or-science-blogging-is-it-worth/"/>
+    <updated>2009-02-21T18:18:24-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/02/21/why-do-i-blog-or-science-blogging-is-it-worth</id>
+    <content type="html"><![CDATA[<p><a href="http://en.wikipedia.org/wiki/Image:Nshl.jpg"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/6/61/Nshl.jpg/202px-Nshl.jpg" title="High/Low album cover" alt="High/Low album
+cover" /></a>
+  ~ Image via <a href="http://en.wikipedia.org/wiki/Image:Nshl.jpg">Wikipedia</a></p>
+
+<p><em>Mirroring the post that appeared on Blind.Scientist</em> Some time ago
+there was a meme about science blogging and one of the questions were
+&#8220;why do you blog&#8221;. Well, I do it because of the &#8221;<a href="http://www.nadasurf.com/" title="Nada Surf">Nada
+Surf</a> effect&#8221;. You don&#8217;t know the
+&#8220;Nada Surf effect&#8221;? Pity you weren&#8217;t in Washington, DC 2001. In March or
+April of 2001, Nada Surf played a concert there. It was a small bar on
+14th Street W, close to the more famous Black Cat. It was a spring
+night, I was with a couple of Dutch friends that had told me about the
+concert, if I&#8217;m not wrong, a couple of days before. It was also
+mid-week, so you wouldn&#8217;t expect big crowds in most concerts. We left
+ISH around 7 pm, with spare time for the 9 pm concert. We didn&#8217;t know
+the venue, we got there and it was empty, just a couple of souls at the
+bar. We sat and for about an hour we were pondering if we were in the
+right place, until a guy came and asked if we were staying for the
+concert. We said yes, paid th US$ 7.50 of the admittance and sipped our
+beers waiting for the opening act. Soon after we paid, a van parked
+outside and some guys started bringing music equipment inside. At that
+time there must have been around 20 people there. The van guys set the
+instruments, wasted 5 minutes soundchecking, and started. IT was Ashtray
+Babyhead. They played for 40 minutes and as fast as they arrived they
+left. Another van parked outside and this time Nada Surf members started
+unloading and setting up the stage. Now roadies. OK, maybe one guy
+helped, but I&#8217;m getting old and the memory sometimes falters. At that
+point in time, almost 9 pm, the number of brave souls was at 50. They
+played as they were playing for 50.000 people in Wembley. Nice set,
+great songs, unforgettable night. After the show, they sold CDs at the
+usual after-show gathering, we talked about New York, Brazil and
+feijoada. And why do I call it the &#8220;Nada Surf effect&#8221;? A band that used
+to play for thousands of people in festivals and stadiums, had a number
+one video on MTV (Popular), played in a midweek night in a small bar in
+Washington, DC as it was the band farewell. Every fan that night felt
+that they were the most important one, maybe even the only one. And this
+type of example is the one that brings me to write this, and to write
+Beginning Python for Bioinformatics. Especially the latter (as I spend
+too much time here, writing about non-important stuff). If I can make
+one person have an idea, one person there to use Python, or least to
+learn something extra in their lives, I&#8217;m happy. I don&#8217;t care if I have
+a huge audience or if I&#8217;m famous. I care for the undergrad that is
+starting today, the high school kid that is hacking at night, or the
+Java coder that is looking for some better language (Ok, not really, but
+I couldn&#8217;t resist). And this is one of the things that I learned in
+Science, always give back and don&#8217;t expect anything in return. Just add
+to the pile of knowledge. So, my advice for the three people that read
+this site is: let Nada Surf in!</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/2db17c83-bb95-4371-911a-0b58b781409b/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=2db17c83-bb95-4371-911a-0b58b781409b" alt="Reblog this post [with
+Zemanta]" /></a></p>
+
+<p>\
+\</p>
+
+<p><img src="http://img.zemanta.com/pixy.gif?x-id=90407633-45c2-41dc-912f-4b3d57e7eb2b" alt="image" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Managing a simple database with Python, SQLite and wxPython, 3]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/"/>
+    <updated>2009-02-18T11:06:58-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3</id>
+    <content type="html"><![CDATA[<p>In the last post we saw how to connect to a
+<a href="http://sqlite.org/" title="SQLite">SQLite</a> database file and generate a
+cursor that would allow us to actually interact with such database. Now
+we need some functionality that will interact with the data, add, read,
+delete and search. As was mentioned before the idea is to have a generic
+database interaction class and have unique instantiated class objects
+for each database of the project. In the <code>db_obj.py</code> file we have an
+initial structure set, so let&#8217;s check the <code>DB_Generic</code> class.
+[sourcecode language=&#8217;python&#8217;]class DB_Generic(): &#8221;&#8217;generic class to
+add DB functionality&#8221;&#8217; def __init__(self, table_name): #par= name
+of the table to be used self.table_name = table_name def
+delete_entry(self): pass def get_data_generic(self): &#8221;&#8217;gets the data
+from the database generic so far, needs to be updated to include
+range&#8221;&#8217; range = 1 (cursor, database) = link_db() if range == 1:
+cursor.execute(&#8220;&#8221;&#8220;SELECT * from %s&#8221;&#8220;&#8221; % self.table_name) table_data =
+cursor.fetchall() raw_data = [] for i in table_data:
+raw_data.append(list(i)) self.table_data = raw_data database.close()
+def insert_data(self, values_list, insert_string): &#8221;&#8217;inserts data in
+the database&#8221;&#8217; (cursor, database) = link_db()
+cursor.execute(insert_string % self.table_name, values_list)
+database.commit() database.close()[/sourcecode] There are different
+functions in this class, we will take a look at each one individually.
+We can see that the class is far from being complete, something that
+we&#8217;ll do in the next posts. We start with the class initialization:
+[sourcecode language=&#8217;python&#8217;]def __init__(self, table_name):
+#par= name of the table to be used self.table_name =
+table_name[/sourcecode] Very simple and direct, it receives the table
+name that is being used by the interface (in this case). The table name
+is then stored in a object that can be accessed by other functions in
+the class. The function to delete entries is not finished as we only
+have a <code>pass</code> in it. We&#8217;ll will do it soon. Next we have a function that
+gets the data from the table. [sourcecode language=&#8217;python&#8217;] def
+get_data_generic(self): &#8221;&#8217;gets the data from the database generic so
+far, needs to be updated to include range&#8221;&#8217; range = 1 (cursor,
+database) = link_db() if range == 1: cursor.execute(&#8220;&#8221;&#8220;SELECT * from
+%s&#8221;&#8220;&#8221; % self.table_name) table_data = cursor.fetchall() raw_data = []
+for i in table_data: raw_data.append(list(i)) self.table_data =
+raw_data database.close()[/sourcecode] So far it grabs everything,
+there is no range selection based on any of the table fields, so it&#8217;s a
+generic SQL <code>SELECT</code>. Let&#8217;s dissect it. The <code>range</code> object is a dummy
+variable that at the moment is there only to remind us that we need to
+include a range select. The next line is the most important in this
+function: it will call the <code>link_db</code> function and start the connection.
+Remember that <code>link_db</code> returns a tuple with the cursor and database
+connection. Basically we will work with cursor methods to get the data,
+and the first action is to execute a SQL <code>SELECT</code> stetement where we
+select everything in the table [sourcecode
+language=&#8217;python&#8217;]cursor.execute(&#8220;&#8221;&#8220;SELECT * from %s&#8221;&#8220;&#8221; %
+self.table_name)[/sourcecode] Notice that the statement is a regular
+string and we use string formating <code>%</code> in ordert o add the table that we
+are searching, which was defined when we initialized the class object in
+the first place. Also, notice the triple quotes around the select
+statement: this will avoid any problems in parsing it when sending to
+the database, making it a <a href="http://en.wikipedia.org/wiki/String_literal" title="String literal">string
+literal</a>.
+So this line executes the statement we pass to the method, but it does
+not actually get the data <em>per se</em>. We need to use another method and
+fetch everything returned by the select. This is done by [sourcecode
+language=&#8217;python&#8217;]table_data = cursor.fetchall()[/sourcecode] A couple
+of things here. The data fetched will be always (or in most cases) in
+unicode, when it&#8217;s a string field. And the data returned will be in a
+list of tuples, with the actual number of fields from the table. We know
+that it&#8217;s easier to work with lists than tuples, so we code something to
+convert types [sourcecode language=&#8217;python&#8217;]table_data =
+cursor.fetchall() raw_data = [] for i in table_data:
+raw_data.append(list(i)) self.table_data = raw_data[/sourcecode]
+There are extra lines here that are not needed, and we will get rid of
+them in a code refactoring soon. This short function is able to connect
+to database, execute a SQL statement on a specified table and grab the
+data selected, returning a list of lists with every field and value
+available. We need to add a better selection statement later, and we
+will do as soon as we have a good structure set. The last function in
+this generic class is the one that inserts data into the table.
+[sourcecode language=&#8217;python&#8217;]def insert_data(self, values_list,
+insert_string): &#8221;&#8217;inserts data in the database&#8221;&#8217; cursor, database) =
+link_db() cursor.execute(insert_string % self.table_name,
+values_list) database.commit() database.close()[/sourcecode] Identical
+procedure: connect, get a cursor, execute a statement. But in this case
+the extra step is not to get the data, but to commit the data to the
+table, which is done by the commit method. We will explain later how the
+execute method works here and what are the <code>insert_string</code> and
+<code>values_list</code>. Notice at the end that we need to close the connection to
+the database, so we know that the data has been inserted properly. Next,
+we will instantiate a class from this generic one and see how easy is to
+manipulate the data. Stay tuned. Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://reblog.zemanta.com/zemified/1663854e-5aba-4ff1-9a75-dffb8e6b7945/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=1663854e-5aba-4ff1-9a75-dffb8e6b7945" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Managing a simple database with Python, SQLite and wxPython, 2]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/"/>
+    <updated>2009-02-17T11:04:18-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2</id>
+    <content type="html"><![CDATA[<p>Let&#8217;s continue coding our small Python + SQLite application. The initial
+idea was to have a file for the interface and another file for the DB
+access. We will start with the later. If you have access to the
+repository you will see two Python files, <code>bac_form.py</code> and <code>db_obj.py</code>.
+At the moment they are not well commented and have some junk lines at
+the bottom, legacy from older versions. Take a look on <code>db_obj.py</code>. It
+has two class declarations, one called <code>DB_Generic</code> and another one
+called <code>Bac</code>. Remember in the last post where I mentioned that the idea
+was to have different simple tables in the same SQLite database and each
+table would have a simple input/output interface (If I didn&#8217;t mention
+that, I just did!). So, we can create a generic DB access class and we
+can subtype from it for every table that we will be using. In the
+<code>db_obj.py</code> file we have at the moment the generic database management
+class, a class derived from the generic to access the Bac database and
+an initialization function, that opens the access to the SQLite file.
+Let&#8217;s take a look at it: [sourcecode language=&#8217;python&#8217;]def link_db():
+&#8221;&#8217;initializes the database file&#8221;&#8217; try: db =
+sqlite3.connect(&#8220;samples.db&#8221;) except sqlite3.Error, errmsg: print &#8216;DB
+not available &#8217; + str(errmsg) sys.exit() db_cursor = db.cursor() return
+db_cursor, db[/sourcecode] In order to access a SQLite database file we
+need initially the name of the file. After importing sqlite3 (we&#8217;re
+using the latest version of SQLite here) Python has everything it needs
+to access, change and manipulate data in a SQLite database. Just to be
+sure the database file is there and we don&#8217;t get an error, we have the
+initialization code inside an exception. We have seen exceptions before
+and in this case we use it to be sure the database file has been
+accessed with no problems. The exception structure looks like
+[sourcecode language=&#8217;python&#8217;]try: #here we try to do something #the
+code placed here would be executed #if no error reported it will go
+until the end and exit #if not, some error (exception) raised except:
+#the code under except will be executed[/sourcecode] So, the first step
+is to connect to the database file [sourcecode language=&#8217;python&#8217;]db =
+sqlite3.connect(&#8220;samples.db&#8221;)[/sourcecode] In our case it&#8217;s a fixed
+file, but the connect method receives any kind of string. It could have
+been some parameter obtained from the command line or a string from a
+configuration file. If the connect is successful, no error will be
+raised and we are safe to continue. We connected to database, now what?
+We need a cursor, an object that will actually access the data and allow
+us to execute <a href="http://en.wikipedia.org/wiki/SQL" title="SQL">SQL</a> commands on
+it. [sourcecode language=&#8217;python&#8217;]db_cursor = db.cursor()[/sourcecode]
+<code>cursor</code> method works on the database connection object that we created
+previously. We&#8217;re set. This function returns the cursor and database
+connection objects that we created, in a tuple and this function can be
+called from the classes we are going to work. The classes will then have
+connection to the database and a cursor that would manage, select,
+delete and add data to it. Next time we&#8217;ll see how our generic table
+class works. Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://reblog.zemanta.com/zemified/cbbab23e-338a-4756-8f4c-25cc0a5239dc/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=cbbab23e-338a-4756-8f4c-25cc0a5239dc" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Managing a simple database with Python, SQLite and wxPython, 1]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/"/>
+    <updated>2009-02-09T15:11:57-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1</id>
+    <content type="html"><![CDATA[<p><a href="http://commons.wikipedia.org/wiki/Image:WxPython-logo.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/WxPython-logo.png/202px-WxPython-logo.png" title="The official wxPython logo" alt="The official wxPython
+logo" /></a>
+  ~ Image via</p>
+
+<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:WxPython-logo.png)
+</code></pre>
+
+<p>A little break from reviewing the book, let&#8217;s check some database topics
+in Python. I was asked to create a simple database to organize wet-lab
+stuff. No relationships needs, no relational tables required. Just a
+simple table with determined columns, and a nice GUI to go with it so
+people can edit, search and use. My first idea was to use SQLite
+database, and I stuck with it. After the initial phase of &#8220;interviews&#8221;
+to check database requirements, I ended up with a list of tables and
+decided to start working on the table that organizes the BACs used in
+the lab. BAC is a DNA vector into which large DNA fragments can be
+inserted and cloned in a bacterial host, and are used mainly in
+cytogenetics around here. In the end the table had this structure
+[sourcecode language=&#8217;sql&#8217;]CREATE TABLE bac (idbac INTEGER PRIMARY KEY,
+clone Text, sdate Date, source Text, gene TEXT, chromosome Text,
+startpos Integer, endpos Integer, antibiotic Text, location1 Text,
+temperature Integer, tubes Integer, box Integer, cell Integer, dnaex
+Boolean, validation Boolean, pcr Boolean, projects Text, comments Text,
+genelink Text, refs Text);[/sourcecode] I won&#8217;t explain in detail each
+of the fields, but we can see that there is a mix of different types.
+SQLite doesn&#8217;t allow many different field types, so we stick to the
+basics. And why SQLite? The module to access it comes with Python 2.5,
+the whole database is stored in one file that can be moved around and it
+allows a full SQL query language, which is perfect for these simple
+cases. So we will going to use Python, SQLite and wxPython to create a
+simple application to manage our simple database. I already created a
+GitHub
+<a href="http://github.com/nuin/python_sqlite_wxpython/tree/master">repository</a>
+for the upcoming code.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/1a2359cd-d9c7-4cee-a26b-c41b281ec3d2/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=1a2359cd-d9c7-4cee-a26b-c41b281ec3d2" alt="Reblog this post [with
+Zemanta]" /></a></p>
+]]></content>
+  </entry>
+  
+</feed>

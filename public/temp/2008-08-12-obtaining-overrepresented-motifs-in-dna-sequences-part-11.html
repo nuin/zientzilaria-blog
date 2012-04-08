@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Obtaining overrepresented motifs in DNA sequences, part 11 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="After a long hiatus we are (almost) back on track in order to get our
+scripts to determine overrepresented motifs in DNA sequences. Last time
+we &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2008-08-12-obtaining-overrepresented-motifs-in-dna-sequences-part-11.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Obtaining overrepresented motifs in DNA sequences, part 11</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-12T20:50:17-04:00" pubdate data-updated="true">Aug 12<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After a long hiatus we are (almost) back on track in order to get our
+scripts to determine overrepresented motifs in DNA sequences. Last time
+we checked we defined the &#8220;best&#8221; <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial
+function</a> in Python
+[sourcecode language=&#8217;python&#8217;]def fac_01(n): result = 1 for i in
+xrange(2, n+1): result *= i return result[/sourcecode] and Andrew Dalke
+sent a couple of links pointing out to a binomial calculation function,
+one of them is below [sourcecode language=&#8217;python&#8217;]# This file contains
+the Python code from Program 14.10 of # &#8220;Data Structures and Algorithms
+# with Object-Oriented Design Patterns in Python&#8221; # by Bruno R.
+Preiss. # # Copyright (c) 2003 by Bruno R. Preiss, P.Eng. All rights
+reserved. # #
+http://www.brpreiss.com/books/opus7/programs/pgm14_10.txt # def
+binom(n, m): b = [0] * (n + 1) b[0] = 1 for i in xrange(1, n + 1): b[i]
+= 1 j = i - 1 while j > 0: b[j] += b[j - 1] j -= 1 return b[m]
+[/sourcecode] There is a similar implementation in the Python Cookbook
+online and it is clearly more convenient using this function than
+actually coding to calculate an identical value using factorials. But
+anyway, let&#8217;s see how a function that calculates one binomial
+coefficient from the Hypergeometric Distribution (HD) by using the
+factorial function. Later we benchmark both methods. Each <a href="http://en.wikipedia.org/wiki/Binomial_coefficient" title="Binomial coefficient">binomial
+coefficient</a>
+can be expanded as
+<img src="http://codecogs.izyba.com/png.latex?%5C200dpi%20%5Cbegin%7Bpmatrix%7Dn%5C%5Cr%5Cend%7Bpmatrix%7D%20=%20%5Cfrac%7Bn!%7D%7Br!(n-r" alt="image" />!%7D)
+and the HD has three of them. From the Wikipedia &#8220;In probability theory
+and statistics, the <a href="http://en.wikipedia.org/wiki/Hypergeometric_distribution" title="Hypergeometric distribution">hypergeometric
+distribution</a>
+is a discrete probability distribution that describes the number of
+successes in a sequence of n draws from a finite population without
+replacement.&#8221; In the next post we will define each term of the HD for
+the motifs case. In each <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
+expansion</a>
+we would have to calculate three factorial values, nine in total. With
+the binomial function, only three values need to be calculated. So,
+using the factorial function we would need to code something like this
+in order to calculate one of the binomials [sourcecode
+language=&#8217;python&#8217;] #let&#8217;s say the motif quorum in the foreground is 7
+#and the total number of sequences is 3000 #we won&#8217;t touch the other
+required values fore = 7 total = 3000 hd = fac_01(3000) / (fac_01(7)
+* fac_01(2993) print hd[/sourcecode] Next, we will benchmark and see
+if there is an advantage to either method.
+<a href="http://reblog.zemanta.com/zemified/20cae2f2-5ae2-4e8d-b367-9a6e684efa94/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=20cae2f2-5ae2-4e8d-b367-9a6e684efa94" alt="Reblog this post [with
+Zemanta]" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-12T20:50:17-04:00" pubdate data-updated="true">Aug 12<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2008-08-12-obtaining-overrepresented-motifs-in-dna-sequences-part-11.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2008-08-12-obtaining-overrepresented-motifs-in-dna-sequences-part-11.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

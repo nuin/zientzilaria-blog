@@ -1,0 +1,19 @@
+---
+author: admin
+date: '2008-12-19 12:34:15'
+layout: post
+slug: thats-it-for-2008
+status: publish
+title: That's it for 2008
+wordpress_id: '212'
+? ''
+: - Phase 2
+---
+
+The date came and is now gone, and I forgot to "celebrate" two years of
+Beginning Python for Bioinformatics on December 13th. I would like to
+thank everyone that commented, helped with posts and suggested anything
+that would make this website better. Clearly it is far from being what I
+wanted it to be, but slowly but surely we will get there. Thanks again
+and I wish an excellent holiday season and a great 2009 to everyone! See
+you in 2009.

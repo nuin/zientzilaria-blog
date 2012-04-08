@@ -1,0 +1,33 @@
+---
+author: admin
+date: '2008-07-26 21:15:52'
+layout: post
+slug: bpb-on-oww
+status: publish
+title: BPB on OWW
+wordpress_id: '121'
+? ''
+: - OWW
+  - Phase 2
+---
+
+[![OpenWetWare logo, designed by Jennifer
+Cook-Ch...](http://upload.wikimedia.org/wikipedia/en/a/ad/OWWEmblem.png)](http://en.wikipedia.org/wiki/Image:OWWEmblem.png)Image
+via [Wikipedia](http://en.wikipedia.org/wiki/Image:OWWEmblem.png)The
+contents of this site/blog are being (slowly) transferred to a
+[wiki-like page on Open Wet
+Ware](http://openwetware.org/wiki/Open_writing_projects/Beginning_Python_for_Bioinformatics).
+Thanks to [Ricardo Vidal](http://my.biotechlife.net/) that started
+including the articles and was the person responsible for this
+initiative ([and a great artist,
+illustrator](http://my.biotechlife.net/science-icons-and-logos/)).
+**What is the OWW?**
+[OpenWetWare](http://en.wikipedia.org/wiki/OpenWetWare "OpenWetWare") is
+an effort to promote the sharing of information, know-how, and wisdom
+among researchers and groups who are working in
+[biology](http://en.wikipedia.org/wiki/Biology "Biology") & biological
+engineering. Learn more about us. If you would like edit access, would
+be interested in helping out, or want your lab website hosted on
+OpenWetWare, please join us.
+[![Zemanta
+Pixie](http://img.zemanta.com/reblog_e.png?x-id=0a0a3c0a-2659-44b1-be1b-efff3f61ca57)](http://reblog.zemanta.com/zemified/0a0a3c0a-2659-44b1-be1b-efff3f61ca57/ "Zemified by Zemanta")

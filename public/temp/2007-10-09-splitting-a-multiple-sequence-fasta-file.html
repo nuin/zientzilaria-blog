@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Splitting a multiple sequence FASTA file - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="starting the new phase of the website, we are going to see some random
+thought in Python and Bioinformatics. Any ideas would be highly
+appreciated, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-10-09-splitting-a-multiple-sequence-fasta-file.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Splitting a multiple sequence FASTA file</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-09T15:22:39-04:00" pubdate data-updated="true">Oct 9<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>starting the new phase of the website, we are going to see some random
+thought in Python and Bioinformatics. Any ideas would be highly
+appreciated, and I will use some terms used in searches that ended up
+finding this blog or <a href="http://blindscientist.genedrift.org">this</a> or
+<a href="http://infasta.genedrift.org">this</a>. We will also see some of the ideas
+that are being developed in <a href="http://infasta.genedrift.org">Infasta</a>. We
+will see the easiest way to split a FASTA file. There are many ways to
+name each file after the split, and we will use a simple <em>original
+filename</em> + number. We also going to use the FASTA class and functions
+defined previously in <code>fasta.py</code>. To refresh our memories here is the
+code [sourcecode language=&#8217;python&#8217;]class Fasta: def __init__(self,
+name, sequence): self.name = name self.sequence = sequence def
+read_fasta(file): items = [] index = 0 for line in file: if
+line.startswith(&#8220;>&#8221;): if index >= 1: items.append(aninstance) index+=1
+name = line[:-1] seq = &#8221; aninstance = Fasta(name, seq) else: seq +=
+line[:-1] aninstance = Fasta(name, seq) items.append(aninstance) return
+items[/sourcecode] So, basically we need to create a script that reads
+the file and then in a loop saves every sequence in a separate file. For
+the sake of simplicity all saved files will be in the same directory. To
+the script [sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python import
+sys import fasta #define a variable with the input filename file =
+sys.argv[1] #open the file and read the sequences in one line sequences
+= fasta.read_fasta(open(file, &#8216;r&#8217;).readlines()) #counter to keep the
+number the sequences and to #be written to the output files count = 1
+for i in sequences: #open a file to output output =
+open(file+str(count), &#8216;w&#8217;) #write the name and sequence
+output.write(i.name+&#8217;\n&#8217;) output.write(i.sequence) #increment the
+counter count += 1[/sourcecode] Very simple but nice script. In the end
+we will have a list of files with only one sequence in it, with
+identical name of the original file but with a number in the end. Next
+we will see how to modify the filename and even extract some information
+from the FASTA sequence to use as a filename.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-09T15:22:39-04:00" pubdate data-updated="true">Oct 9<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-10-09-splitting-a-multiple-sequence-fasta-file.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-10-09-splitting-a-multiple-sequence-fasta-file.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

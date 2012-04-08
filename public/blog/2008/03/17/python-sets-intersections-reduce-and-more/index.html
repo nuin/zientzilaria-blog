@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Python sets, intersections, reduce and more - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Last time we saw how to use a set intersection to check for clusters of
+DNA/protein sequences and their genome intersections. We going to use
+the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/03/17/python-sets-intersections-reduce-and-more">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Python sets, intersections, reduce and more</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-17T16:31:43-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Last time we saw how to use a set intersection to check for clusters of
+DNA/protein sequences and their genome intersections. We going to use
+the same example but this time we will see how we can change it and
+create a function that would calculate an arbitrary number of
+intersections at a time and also be able to check the intersection of
+more than two sets. Our previous code to calculate intersections was</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span><span class='line'><span class="c">#for Python 2.3 and below </span>
+</span><span class='line'><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+</span><span class='line'><span class="c">#populate the sets ... </span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and that&#8217;s does not gives us the most important
+piece of information: the intersection of A, B and C. Let&#8217;s see how we
+can do it. Python has a function that can help us this time: <code>reduce</code>.
+This function allows to reduce a series of values to a single one, by
+employing a function defined in its parameters. From the file tutorial</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">iterable</span><span class="p">[,</span><span class="n">initializer</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically <code>reduce</code> will make the function
+modify the values of a iterable (i.e. list). In our case <code>reduce</code> helps
+us calculate the intersection of many sets at once (our sets are <code>genA</code>,
+<code>genB</code> and <code>genC</code>)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="p">[</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> where <code>reduce</code> is applying the <code>Set</code> method
+intersection to a list of sets passed to the function. Python&#8217;s <code>reduce</code>
+might not be available in 3.0, but it is worth knowing. Now that we have
+a Pythonic way of checking the intersections we need to put <code>reduce</code> in
+a function, to make our code more elegant.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="n">my_set1</span><span class="p">,</span> <span class="n">my_set2</span><span class="p">,</span> <span class="n">my_set3</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="p">[</span><span class="n">my_set1</span><span class="p">,</span> <span class="n">my_set2</span><span class="p">,</span> <span class="n">my_set3</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Done. In this function <code>reduce</code> will operate by
+first checking the intersection between <code>my_set1</code> and <code>my_set2</code> and
+storing it internally, then checking for the intersection between the
+previous result and <code>my_set3</code>. But wait &#8230; <code>get_intersection</code> receives
+three arguments, so it will be able to return the intersection only when
+three sets are sent, thus we would have to create another function that
+can receive two items in order to calculate the intersection between two
+items. And if we have more than three genomes to compare &#8230; There is a
+<a href="http://farmdev.com/thoughts/24/what-does-the-def-star-variable-or-def-asterisk-parameter-syntax-do-in-python-/">trick</a>.
+If we define our function receiving only one argument and put a
+star/asterisk on it, this means that an arbitrary number of arguments
+will be provided to this function in a tuple (and a tuple is iterable,
+so it can be used in a reduce). Changing our function accordingly, we
+will have</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="o">*</span><span class="n">my_sets</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">my_sets</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>so we can send 2, 3, 4, 5 or <em>n</em> number of sets
+to this function and it will return the intersection among all of them.
+Our simple script would be (including the above function)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span><span class='line'><span class="c">#for Python 2.3 and below </span>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="o">*</span><span class="n">my_sets</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">my_sets</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#populate the sets ...</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">get_intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-17T16:31:43-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/03/17/python-sets-intersections-reduce-and-more/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/03/17/python-sets-intersections-reduce-and-more/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/03/14/python-sets-and-intersections/" title="Previous Post: Python sets and intersections">&laquo; Python sets and intersections</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/" title="next Post: Merging sequences from a Pfam alignment: using sets">Merging sequences from a Pfam alignment: using sets &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

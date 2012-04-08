@@ -1,0 +1,21 @@
+---
+author: admin
+date: '2007-07-16 12:08:26'
+layout: post
+slug: krugle
+status: publish
+title: Krugle
+wordpress_id: '46'
+? ''
+: - Uncategorized
+---
+
+A suggestion: whenever you are coding or leaning a new language it is
+always opportune to have at hand some code to compare, check and learn.
+One of the good tools to do code search is
+[Krugle](http://www.krugle.com), where you can extensively search code
+based on language, project name, among other variables. One example: I
+searched for IUPAC entries on Krugle and found a lot of results, in
+different computer languages and could see the projects that they were
+linked to. It is a way to check if your approach is the ideal or if
+there is a way to improve your code.

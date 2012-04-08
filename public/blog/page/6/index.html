@@ -1,0 +1,1451 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Now that we have the script to generate the word quorums working (and
+working fast!) we need then to calculate the a p value for each motif
+based on &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/page/6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/">Obtaining overrepresented motifs in DNA sequences, part 5</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-21T13:50:00-04:00" pubdate data-updated="true">May 21<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that we have the script to generate the word quorums working (and
+working fast!) we need then to calculate the a <em>p</em> value for each motif
+based on the fore and background quorums. A <em>p</em> value cut-off will
+determine the statistically significant words, or overrepresented. These
+overrepresented words then can be analysed in more details (that we
+won&#8217;t see here) and for instance determine new or already known
+transcription factor binding sites. A well established statistical
+method to determine such overrepresented words is the <a href="http://www.mnlottery.com/hypergeo.html">Hypergeometric Distribution</a> (HD for short).</p>
+
+<p>HD
+measures &#8220;success&#8221; and &#8220;failures&#8221; for values that do not fit in the
+<a href="http://en.wikipedia.org/wiki/Binomial_distribution" title="Binomial distribution">binomial distribution</a>,
+and depend on the measurements without replacement. Basically, HD&#8217;s
+equation has a a series of binomial coefficients/combinations <img src="http://www.genedrift.org/hd.gif" alt="HD equation" /> where <em>N</em> is the population
+size, <em>m</em> is foreground cluster size, <em>k</em> is the motif quorum in the
+background gene set and <em>x</em> is the word quorum in the foreground set.
+Note that the above equation is for the cumulative HD, where a sum of
+probabilities is calculated. All the combinations in the above equation
+have to be expanded to factorials that depending on the value to be
+calculated are very computer intensive and sometimes don&#8217;t fit in the
+memory (either a float or integer).</p>
+
+<p>But
+<a href="http://python.org/" title="Python (programming language)">Python</a> is able to
+handle very large numbers and the calculation of large factorials is
+relatively fast. In C++, I had to use a couple of tricks to achieve a
+good speed in the factorial determination, and specially in the HD
+calculation that requires multiple factorials and multiplication,
+division and subtraction of large numbers. I didn&#8217;t want to use any
+mathematical trick such as <a href="http://en.wikipedia.org/wiki/Stirling's_approximation" title="Stirling's approximation">Stirling&#8217;s approximation</a>.</p>
+
+<p>13! in C++ already blows the size of long, so I had to use the <a href="http://www.tc.umn.edu/~ringx004/mapm-main.html">MAPM, A Portable Arbitrary Precision Math Library in C</a>. This library is
+quite fast to calculate the factorial values but when one needs to
+calculate more than 200,000 factorials the speed is unbearable. So, I
+decided to pre-calculate a series of factorial values, keeping 10
+decimal places as precision and saving in another column their
+exponential. Then using this table as an input I was able to multiply,
+divide and subtract the factorials and by employing the first law of
+exponents do the same operations with their exponential.</p>
+
+<p>This speeds up
+the process tremendously. In Python, we don&#8217;t need any extra third-party
+library, we just use Python itself, without importing an extra module. A
+factorial function in Python can be written in one line, but for clarity
+is better to define it separately. We can try throwing any number at it
+and see the result.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> \<span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">value</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We already saw <code>reduce</code> and <code>lambda</code> and using these two methods make
+the factorial function clear and simple. And why are we not using a
+recursive function? Because Python has a limit recursion depth (1000).
+Next time we will implement the code that calculates the HD <em>p</em> values.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-4/">Obtaining overrepresented motifs in DNA sequences, part 4</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-12T14:35:13-04:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We found a way to make the Python script as good as or better than the
+C++ executable. But for the analysis we need to do, motif counts are not
+the value we want. We need the quorum: the number of sequences the motif
+is present at least once. For instance, if the desired motifs was
+<code>AAACCCTTTG</code> we will check in which sequences this word was present. Let&#8217;s
+say in a cluster of 10 sequences, we would find it in sequences 1, 2, 3,
+4 and 5, giving us a quorum of 5 out of 10, or 50%. The quorum will be
+used in the future in the statistical calculation in order to determine
+the overrepresented motifs. With only a couple of modifications, we can
+adapt the script used to get the motif counts to get the quorum.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/scratch/python/bin/python </span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seq_number</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">seq_number</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)):</span>
+</span><span class='line'>      <span class="k">if</span> <span class="ow">not</span> <span class="n">seq_number</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]:</span>
+</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span>\<span class="n">_number</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">:</span>
+</span><span class='line'>              <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> Basically, we change the way the
+<code>defaultdict</code> is initialized, this time as a list instead of int and we
+also change the procedure that used to get the counts. The loop does
+identical work, iterating along the sequences, with a window (of the
+input length) sliding on them and checking each word. This time instead
+of incrementing the value of the <code>defaultdict</code>, we append to the list
+the sequence number, obtained from a index integer variable (incremented
+in each iteration of the loop), if this number is not already in the
+list value. In the end each value of <code>quorum</code> will be a list os numbers
+and by printing the list length we obtain the quorum. Testing the above
+script there is no performance loss when comparing to the previous count
+script. Next we will see which statistical method to use and start to
+devising an script to calculate it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-3/">Obtaining overrepresented motifs in DNA sequences, part 3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-12T13:16:29-04:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We take a break of developing code and check for performance (non-scientific testing!).</p>
+
+<p>In the previous entry a simple file was used
+as input: 8 DNA sequences of 500 bases each. That&#8217;s not enough to test
+the performance of the Python script against the C++ compiled
+executable. So, we use a larger file; two larger files to be more exact.</p>
+
+<p>First, we use a 555 sequence file with the sequences averaging 19371
+nucleotides and another with 3854 sequences averaging 20000 nucleotides
+in length.</p>
+
+<p>Those files were the largest foreground and background
+clusters used in analysis. Let&#8217;s see how the Pyhton and C++ fared
+(Linux&#8217;s time was used in the comparison, for simplicity).</p>
+
+<p><strong>Foreground cluster</strong> Average of 10 runs <br/>
+C++: 45.66 seconds<br/>
+Python: 36.4 seconds</p>
+
+<p><strong>Background cluster</strong> Average of 10 runs <br/>
+C++: 5 minutes and 4 seconds<br/>
+Python: 2 minutes and 44 seconds</p>
+
+<p>The C++ analysis of the background
+cluster was done on a cluster&#8217;s node, and not on my desktop computer,
+due to the fact that my desktop could not handle it. C++ defense: the
+code was developed by me and I am not a computer scientist. Clearly
+there is room for improvement and performance gain. But, definitely we
+can see that by using some advanced techniques in Python we are able to
+outperform C++ (at least C++ code developed by me) and still have a
+short and easy to read script. Next time we will change the Python&#8217;s
+script output.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/10/obtaining-overrepresented-motifs-in-dna-sequences-part-2/">Obtaining overrepresented motifs in DNA sequences, part 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-10T21:56:51-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We move one on our search for overrepresented motifs in DNA sequences. I
+was preparing this entry when the comments to part 1 arrived. Because of
+that we will modify our previous code to include some suggestions and
+then we will change t a little bit to output the actual values we want.
+As Titus pointed out in his comment, when we merge the sequences we
+generate errors, because we artificially including motifs that are not
+supposed to be there. But in the end we will see that we are no after
+the actual number of times a motif appears in the sequence and what
+matters is the motif quorum. The main focus of the part one was to show
+the decrease in code length from C++ to Python, introduce generator
+functions and yield and also show the nice permutation function. Turns
+out by using the approach of the previous entry there is a big drawback
+in code execution, which is around 60 times slower than C++.</p>
+
+<p>So we need
+to find another approach, and Mike showed us how (with some small
+modifications)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#for a missing key, the dict entry is initialized to zero </span>
+</span><span class='line'><span class="n">counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span class='line'><span class="c">#count the length-element subsequences in each sequence </span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span> <span class="o">-</span> <span class="n">length</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="c">#counts.keys() will then return the nucleotide sequences that were actually in merged_seqs </span>
+</span><span class='line'>  <span class="c">#print out the sequences that occur more than once </span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">count</span><span class="p">),</span> <span class="n">counts</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This time the counting is
+done with a <code>defaultdict</code> initialized with integers (all zeroes), and
+instead of generating all possible combinations (which was cool and
+fast, but in the end made our script slower) a window with the input
+length is slid along the each sequence and the key of the default
+dictionary is the motif and the value is the actual count incremented as
+we determine each motif. Checking this code performance using Linux&#8217;s
+time, we get 0.2 seconds, an improvement of 5 fold on the C++ code and
+300 fold on our previous Python code (Thanks Mike and everyone else for
+the suggestions). What is different here is that the output is not
+ordered and only the seen motifs are printed in the end. We will see
+next time how to get the quorums.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/09/obtaining-overrepresented-motifs-in-dna-sequences-part-i/">Obtaining overrepresented motifs in DNA sequences, part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-09T21:46:50-04:00" pubdate data-updated="true">May 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Changing gears now, leaving behind Pfam alignments. I decided to start a
+new series of posts based on the conversion of some small C++ programs I
+developed in the past. These small programs (I call them modules because
+they were part of a larger application) were used to count motifs, short
+nucleotide <em>words</em> up to 10-12 base pairs, and then calculate
+statistical overrepresentation of these words by comparing a foreground
+set of DNA sequences against a background set.</p>
+
+<p>We will start comparing
+the different approaches of the C++ and the
+<a href="http://python.org/" title="Python (programming language)">Python</a> codes and
+point out advantages and disadvantages of doing it in one language or
+the other.</p>
+
+<p>First thing we need to do is to count the motifs in all
+sequences from our foreground and background sets. For the project I was
+working on, the ideal word length was 10 nucleotides. Basically our C++
+approach to increase speed was to transform the character DNA sequences
+into numbers and then, while sliding a window with the desired word
+length,
+<a href="http://en.wikipedia.org/wiki/Hash_function" title="Hash function">hash</a> the
+base-four numbers into base 10 and increment a vector position,
+previously initialized with 0. For four nucleotides and a word size of
+10 there are 1,048,576 permutations possible, from <code>AAAAAAAAAA</code> to
+<code>TTTTTTTTTT</code>. Initially the C++ program would do</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">seqsize</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">seqfile</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">base</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">base</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">switch</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;A&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;C&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;G&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;T&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> reading all
+sequences and pushing an figure for each nucleotide in a vector, and
+then sliding a window on this vector and hashing the base-four number</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">hashSeq</span><span class="p">(</span><span class="n">vector</span> <span class="n">subseq</span><span class="p">)</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span>
+</span><span class='line'><span class="n">hashvalue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">power</span><span class="p">;</span> <span class="n">w</span> <span class="o">=</span> <span class="n">subseq</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span>
+</span><span class='line'><span class="n">subseq</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">power</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">hashvalue</span> <span class="o">+=</span> <span class="n">subseq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="err">\</span><span class="o">*</span>
+</span><span class='line'><span class="n">pow</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="mi">4</span><span class="p">,(</span><span class="kt">double</span><span class="p">)</span><span class="n">w</span><span class="p">);</span> <span class="n">w</span><span class="o">--</span><span class="p">;</span> <span class="p">}</span> <span class="k">return</span> <span class="n">hashvalue</span><span class="p">;</span> <span class="p">}</span> <span class="k">if</span><span class="p">(</span><span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span>
+</span><span class='line'><span class="err">\</span><span class="o">&gt;</span> <span class="n">motifwidth</span><span class="p">)</span> <span class="p">{</span> <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="n">motifwidth</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="n">sub</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">j</span><span class="o">+</span><span class="n">motifwidth</span><span class="p">);</span>
+</span><span class='line'><span class="n">hashed</span> <span class="o">=</span> <span class="n">hashSeq</span><span class="p">(</span><span class="n">sub</span><span class="p">);</span> <span class="n">nmercount</span><span class="p">[</span><span class="n">hashed</span><span class="p">]</span><span class="o">++</span><span class="p">;</span> <span class="n">sub</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The whole C++ code has about 400 lines, including all the
+possible output formatting and printing. Timing with <code>time</code> the C++
+executable takes a little bit less than 2 seconds to read, count and
+output different files. For Python, we will use a different approach and
+gain a lot in code simplicity. As we want to count the number of times
+size-10 words appear in all sequences, we first need to generate all
+possible permutations (with replacement) of four nucleotides. This can
+be easily accomplished by using generator functions. Regular functions
+run until completion and the return a value. For instance, a function
+that calculates the factorial of 10 will return the last value only,
+after multiplying 10.9.8.7.6.5.4.3.2.</p>
+
+<p>A generator function runs until a
+value is available to return, <code>yielding</code> it and then suspending its
+operation until called again. The yielding part was emphasized because
+<code>yield</code> is the command used by Python to return the value and suspend
+the function until further notice. In the <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a>, a
+generator would return the intermediary factorial values up to 10. To
+generate all 1 million plus permutations of 4 nucleotides we need a
+function similar to the one below (modified from
+<a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/190465">here</a>)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">yield</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+</span><span class='line'>          <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>              <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically, what this generator function does is to combine all four
+nucleotides in words of size 10. This is a <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science">recursive
+function</a> &#8220;Recursion (computer science)&#8221;),
+where the result of the function is dependent on the n-1 value
+calculated by the function until n equals 0. The first <code>for</code> loop over
+the items that we want to permute (the nucleotides) and the second <code>for</code>
+recursively calls <code>permutations starting with the initial n</code> passed (10)
+until we reach 0. Debugging this function we will see that <code>i</code> is
+constant for each iteration of the second loop and only <code>n</code> changes from
+10 to 0, while one by one nucleotides are joined to form a motif. It
+starts with <code>AAAAAAAAAA</code>, then <code>AAAAAAAAAC</code>, then <code>AAAAAAAAAG</code>, until it gets
+to a poly-T. Our final code would look like the one below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">yield</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+</span><span class='line'>          <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>              <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">merged_seqs</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">merged_seqs</span> <span class="o">+=</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">nucleotides</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)):</span>
+</span><span class='line'>      <span class="k">print</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">merged_seqs</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where
+we read the input sequence(s), merge them in one long string and as we
+generate all possible combinations we count the number of times they
+appear. This code running on the same input file used on the C++
+executable is 60 times slower, taking in average one full minute to
+count motifs in 8 500 bp DNA sequences. The slowest section is the
+count, as the generation of all possible combinations is
+straightforward. We lose some speed, but gain a lot on code simplicity
+and clarity. Next we will modify this code to output different counts
+needed for the statistical analysis.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/05/still-on-merging-pfam-alignments/">Still on merging Pfam alignments &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-05T15:54:10-04:00" pubdate data-updated="true">May 5<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of the things I like about Python and the Python community is the
+search for the making code simple and clear. Tal left a comment in the
+last post about merging Pfam alignment sequences suggesting another
+approach to our problem. The code is below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span><span class="p">,</span> <span class="n">groupby</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">-\&gt;</span><span class="si">%d</span><span class="se">\\</span><span class="s">n</span><span class="si">%s%s</span><span class="s">&quot;</span>
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="n">keyfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">it</span><span class="p">:</span> <span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">it</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">keyfunc</span><span class="p">),</span> <span class="n">keyfunc</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">jname</span><span class="p">,</span> <span class="n">jseq</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+</span><span class='line'>          <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>          <span class="n">kname</span><span class="p">,</span> <span class="n">kseq</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>          <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format</span> <span class="o">%</span> <span class="p">(</span><span class="n">jname</span><span class="p">,</span> <span class="n">kname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">jseq</span><span class="p">),</span> <span class="n">jseq</span><span class="p">,</span> <span class="n">kseq</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The code also uses the <code>itertools</code> module, importing
+<code>chains</code> and <code>groupby</code>. We already saw chains in the previous post, but
+<code>groupby</code> is new to us here. <code>groupby</code> was introduced in the 2.4 version
+of Python and is a method returns keys and groups from an <code>iterable</code>. An
+Python <code>iterable</code> is any object that can return its elements at given
+time, for instance in a <code>for</code> loop, while the index of this loop is the
+<code>iterator</code>. So, in our case <code>groupby</code> will return the sequence names
+based on the <code>lambda</code> function defined before the <code>groupby</code> and the
+<code>chain</code> method. Usually <code>groupby</code> has this syntax</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">groupby</span><span class="p">(</span><span class="n">iterable</span><span class="p">[,</span> <span class="n">key</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The key is
+optional, and in our case it is the lambda function. Another method new
+to use that uses the same lambda function is <code>sorted</code>. As its name
+hints, <code>sorted</code> returns a sorted list of iterables. The key in this case
+is the sorting algorithm, that actually creates the comparison between
+items. Basically in the code above, a lambda function extracts the
+desired regions from the sequence names, which are them iterated in a
+<code>groupby</code> method that returns they key values, one value when the sequence
+is unique, two values when there are two sequences, of a sorted iterable
+generated by a chain that read both input lists in one pass. After this
+we just need to check the number of returned values and we have our list
+of matching sequences.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/03/revisting-pfam-alignments-again/">Revisting Pfam alignments, again &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-03T08:39:31-04:00" pubdate data-updated="true">May 3<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Continuing on the <a href="http://en.wikipedia.org/wiki/Pfam" title="Pfam">Pfam</a>
+alignment sequence merge, Luke provided two solutions, one for case
+where we have duplicates in the file (that happens) and another one
+where duplicates are not tested. First for the case with no duplicates:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">()</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">i</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">i</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">shared_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shared_ids</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">j</span> <span class="o">=</span> <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>      <span class="n">k</span> <span class="o">=</span> <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>      <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-\&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>      <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>      <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically, his approach is to create two dictionaries, <code>first</code> and
+<code>second</code> to store the data from our lists of
+<a href="http://fasta.bioch.virginia.edu/" title="FASTA">FASTA</a> objects. The
+dictionaries keys are the sections for each sequence name, and the values
+are the FASTA object created when we read the file. After that, a <code>set</code>
+of both dictionaries is created, and this represents everything we need
+in order to find shared sequences between both files. The output is
+trivial, basically iterating the set and getting the values from both
+dictionaries. But, in some cases there are some duplicates in each Pfam
+alignment, and this would make the above approach to miss some
+sequences. Luke also provided a solution for this case</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">shared_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shared_ids</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">cross</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="n">cross</span><span class="p">:</span> <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-\&gt;&#39;</span><span class="err">’</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>      <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>      <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>      
+</span><span class='line'><span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which
+is similar to what Mike suggested. In his approach <code>defaultdict</code> is used
+instead of a regular dict, initialized as a list. Again we can take
+advantage of the fact that we that the value of <code>defaultdict</code> has the
+same features as the object that was used to initialized it. The same
+<code>set</code> approach is used and we have a nice set of merged sequences from
+two Pfam alignments. Remember that <code>defaultdict</code> were introduced in Python
+2.5, it won&#8217;t work on older versions.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/02/revisiting-pfam-alignments/">Revisiting Pfam alignments: using defaultdicts, chains &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-02T10:11:47-04:00" pubdate data-updated="true">May 2<span>nd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I haven&#8217;t posted in a while, so let&#8217;s get back to the last topic covered
+here, merging sequences from Pfam alignments. Two comments to my last
+post suggested some changes to the original code, and both comments made
+a considerable improvement to script. But following our line of thought
+here, there were many things in both posts that we haven&#8217;t covered in
+the series. In order to make it clear to anyone that is chronologically
+following the entries, we will see what new things were suggested in the
+comments. We will start with Mike&#8217;s comment. The code is below.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>  <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">ident</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span>
+</span><span class='line'>      <span class="n">data</span><span class="p">[</span><span class="n">ident</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">-\&gt;</span><span class="si">%d</span><span class="se">\\</span><span class="s">n</span><span class="si">%s%s</span><span class="s">&quot;</span>
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">jname</span><span class="p">,</span> <span class="n">jseq</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>          <span class="n">kname</span><span class="p">,</span> <span class="n">kseq</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>          <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format</span> <span class="o">%</span> <span class="p">(</span><span class="n">jname</span><span class="p">,</span> <span class="n">kname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">jseq</span><span class="p">),</span> <span class="n">jseq</span><span class="p">,</span> <span class="n">kseq</span><span class="p">)</span> <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Mike&#8217;s code would only run on Python 2.5, due to the
+import of <code>collections</code>. He imports only <code>defaultdict</code> from collections,
+which is similar to a regular dictionary except for the fact that is
+takes an extra argument, a <code>factory function</code> (that we will examine
+soon), and this <code>factory function</code> is called every time a <code>dict</code> key is
+found for the the first time, initializing the object. The line</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>creates and intializes a <code>defaultdict</code> from an empty list. This
+defaultdict is used to store data from a <code>chain</code> formed by both input
+files being compared. A <code>chain</code> makes an iterator that &#8220;returns elements
+from the first iterable until it is exhausted, the proceeds to the next
+iterable&#8221; (from Python docs). Basically a <code>chain</code> in our case will make
+the loop iterate first through <code>data1</code> until its last item then will
+start the iteration through <code>data2</code>. In the loop it will use the region
+in the FASTA sequence name as a defaultdict key, and store the fasta
+name and sequence as the value. Notice that the defaultdict, as it has
+been initialized as a list, allows appending more than one value to each
+key, so every time that it finds a sequence with a name identical to
+some key already present in the defaultdict, it will append the
+information to the value of that key in a list.</p>
+
+<p>So, all the matching is
+done with this short loop, we only need then to iterate through the keys
+and print the result. For the results, Mike set up a format string (we
+will see in a future post) that receives the merged sequences and their
+names in a formatted way. The iteration along the defaultdict checks for
+both keys and values and every time it finds a value with a length of 2
+(meaning two sequences shared identical names) it puts the items of the
+defaultdict&#8217;s value list into two tuples. These tuples, containing
+sequence and name, are then formatted for output and appended to a list
+of merged sequences.</p>
+
+<p>There are a lot of new concepts, objects and
+methods but Mike&#8217;s suggestion shows how powerful Python is. For a set of
+25 alignments, there is little performance improvement, but our coding
+ability improves exponentially with clever suggestions. I will comment
+and explain Luke&#8217;s comments later.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/30/merging-sequences-from-a-pfam-alignment-using-sets-part-ii/">Merging sequences from a Pfam alignment: using sets, part II</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-30T19:30:49-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Mike and Luke left comments and suggestions on how to attack the problem
+from the previous entry. I copied their comments here in order to
+maintain code formatting a little bit better (comments do not have code
+highlighting and formatting). Mike: Why not build a dictionary of the
+fasta data keyed by protein ID. The value of each dictionary entry would
+be a list of (name,sequence) tuples. Then iterate over the dictionary
+items and build the output list from dictionary entries of length == 2.
+Obviously, I don’t have any data sets to test it on, but something like
+this might work:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>  <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+</span><span class='line'>  <span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">ident</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="err">’</span><span class="o">|</span><span class="s">&#39;)+1:i.name.find(’/&#39;</span><span class="p">)]</span>
+</span><span class='line'>      <span class="n">data</span><span class="p">[</span><span class="n">ident</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>      <span class="n">format</span> <span class="o">=</span> <span class="err">“</span><span class="o">%</span><span class="n">s</span><span class="o">-%</span><span class="n">s</span><span class="o">-</span>\<span class="o">&gt;%</span><span class="n">d</span>\\<span class="n">n</span><span class="o">%</span><span class="n">s</span><span class="o">%</span><span class="n">s</span><span class="err">”</span>
+</span><span class='line'>      <span class="n">flist</span> <span class="o">=</span> <span class="p">[</span> <span class="p">]</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+</span><span class='line'>          <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>              <span class="n">jname</span><span class="p">,</span><span class="n">jseq</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>              <span class="n">kname</span><span class="p">,</span><span class="n">kseq</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>              <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fmt</span> <span class="o">%</span> <span class="p">(</span><span class="n">jname</span><span class="p">,</span> <span class="n">kname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">jseq</span><span class="p">),</span> <span class="n">jseq</span><span class="p">,</span> <span class="n">kseq</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Luke: Are there duplicate IDs in a single
+file? If not, no reason to perform the intersection twice (once by set,
+once by nested loop). Sets and dictionaries are both hashes, so just
+remember the instances with the id:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">()</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="err">’</span><span class="o">|</span><span class="s">&#39;) + 1:i.name.find(’/&#39;</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">i</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="err">’</span><span class="o">|</span><span class="s">&#39;) + 1:i.name.find(’/&#39;</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">i</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">shared_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shared_ids</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">j</span> <span class="o">=</span> <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>      <span class="n">k</span> <span class="o">=</span> <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>      <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="err">‘</span><span class="o">-</span><span class="err">’</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="err">‘</span><span class="o">-</span>\<span class="o">&gt;</span><span class="err">’</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>      <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>      <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="err">‘</span>\\<span class="n">n</span><span class="err">’</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If there are duplicate IDs in a file, and you want the behaviour of your
+original script of giving every combination <em>between</em> files, how about
+a dictionary of lists and the cross-product of j &amp; k? (I’m going to use
+python2.5’s <code>collections.defaultdict</code>, if you’re on an earlier version use
+.<code>setdefault</code> . The cross product brings back a nested loop, but it’s only
+over values we want rather than the whole datasets.)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>      <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="err">’</span><span class="o">|</span><span class="s">&#39;)+1:i.name.find(’/&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="err">’</span><span class="o">|</span><span class="s">&#39;)+1:i.name.find(’/&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">shared_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shared_ids</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">cross</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="n">cross</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="err">‘</span><span class="o">-</span><span class="err">’</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="err">‘</span><span class="o">-</span>\<span class="o">&gt;</span><span class="err">’</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>      <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>      <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="err">‘</span>\\<span class="n">n</span><span class="err">’</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And
+if you want combinations from within a file as well, just use one
+dictionary of lists and cross each list value with itself, excluding
+identical elements:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">cross</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="n">b</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To your
+question of more directly creating the sets of names, can’t be much more
+direct, but perhaps more concise using a generator (or list, with the
+extra cost) comprehension:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myset1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="err">…</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Could do equivalently for the
+dict-based first example above, noting that the dict() constructor can
+take a sequence of (key, value) tuples. This would not work for the
+<code>defaultdict</code> or <code>setdefault</code> based version.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/">Merging sequences from a Pfam alignment: using sets</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-28T20:58:24-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A colleague came with a &#8220;problem&#8221;: what would be the most efficient way
+to merge <a href="http://pfam.sanger.ac.uk/">Pfam</a> alignments? He had FASTA
+files containing sequences and he wanted to find identical IDs in two
+files and merge the related sequences from different domains of the same
+protein. His C++ approach was taking too long to run so I jumped in to
+help with some Python tricks.</p>
+
+<p>Fasta headers of Pfam alignments look like
+this <code>&gt;P00526.2|SRC_RSVP/147-229</code> where the first section, before the
+pipe, is the protein family, the section between the pipe and the slash
+is the protein ID and the after the slash are the start and end
+positions. Basically we want to match the protein ID, between | and /,
+which is the only section that should not change from one alignment from
+the other, if there are similar sequences in both files. His dataset
+size was around 8000 FASTA files and he wanted to compare
+all-versus-all.</p>
+
+<p>The first idea that comes to mind is to read the two
+files and basically run nested loops checking for matches between two
+sequence names. Simple and easy. But it would be good to find something
+else to do in the meantime, instead of checking for its progress.
+Another idea, to simplify the process, is to read both files, extract
+the protein IDs and check for the intersection of the two sets of IDs
+and then just extract the sequences from a list of matches.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">myset1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">myset2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">mylist</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">if</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>              <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]:</span>
+</span><span class='line'>                  <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-\&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>                  <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>                  <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This
+is the function that matches the sequence IDs. As we are reading the
+FASTA file with the functions/classes in the <code>fasta</code> module there is
+no* direct way to transform the list of sequence names into a set, that
+would make easier to extract the intersection between two sets of IDs
+from distinct files. In the above function, <code>data1</code> and <code>data2</code> are
+instances of the <code>fasta</code> class, and we read these lists and add the
+<code>fasta.name</code> to a couple of sets and get the intersection of them. The
+<code>intersection</code> method returns a list that we use in the nested loops to
+find the matching sequences, as we need to merge them, we add both names
+and residues. Simple and easy. All merged sequences, and their
+respective merged names, are appended to a list that is returned at the
+end of the function. *<em>if there is a more direct way, just let me know</em></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/7/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/5/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

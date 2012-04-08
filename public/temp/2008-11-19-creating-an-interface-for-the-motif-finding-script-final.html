@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Creating an interface for the motif finding script, final - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We can say that this would be our final version of the script. There are
+many nice wxPython programming resources, and one is a very good book
+called &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2008-11-19-creating-an-interface-for-the-motif-finding-script-final.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Creating an interface for the motif finding script, final</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-19T16:57:24-05:00" pubdate data-updated="true">Nov 19<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We can say that this would be our final version of the script. There are
+many nice wxPython programming resources, and one is a very good book
+called <a href="http://manning.com/rappin/">wxPython in Action</a>, which is
+co-written by Robin Dunn, the wxPython maintainer. Go check it out. So
+for the last entry in this series, we just need to add a couple of
+changes to our interface and motif finding scripts. Basically on the
+interface script we need to add a line that gets the value entered (or
+the default one, if not changed) in the motif width input box. And we
+can do that by including the line below in the <code>run_finder</code> function.
+[sourcecode language=&#8217;python&#8217;]width =
+self.motif_width.GetValue()[/sourcecode] This line tells the script to
+get the value of the box and assign to the variable width. This method
+will get whatever is inside the input box and save as a string to the
+variable assigned. Now, we need to create the structure to actually send
+this value to the motif finder functions. Last version of our function
+<code>calculate_motifs</code> received two parameters, we need to add an extra one,
+and also change the lines that call the function that get the quorums.
+Basically the first lines of the function will be [sourcecode
+language=&#8217;python&#8217;]def calculate_motifs(input_seqs, input_seqs2,
+width): print input_seqs, input_seqs2 input_seqs =
+fasta.read_seqs(open(input_seqs).readlines()) input_seqs2 =
+fasta.read_seqs(open(input_seqs2).readlines()) foreground =
+get_quorums(input_seqs, width) background = get_quorums(input_seqs2,
+width)[/sourcecode] And that&#8217;s it. Our simple interface is ready to
+primetime. OK, not prime primetime, we didn&#8217;t add a series of features
+that will make it useful by everyone. For instance, there is no error
+control, so someone could enter &#8216;ABC&#8217; in the width input box and that
+value would be sent and an error will occur. Also you can click the run
+button without any file selected. And we could go on and on. But this is
+just a primer, and we can build from it. The code is on
+<a href="http://github.com/nuin/beginning-python-for-bioinformatics/tree/master/scripts/motifs">Github</a>,
+so get it there and have fun. Next time we will see &#8230; no plans yet.
+We&#8217;ll see &#8230; Technorati Tags:
+<a href="http://technorati.com/tag/wxPython">wxPython</a>,
+<a href="http://technorati.com/tag/motifs">motifs</a>,
+<a href="http://technorati.com/tag/Python">Python</a>,
+<a href="http://technorati.com/tag/bioinformatics">bioinformatics</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-19T16:57:24-05:00" pubdate data-updated="true">Nov 19<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2008-11-19-creating-an-interface-for-the-motif-finding-script-final.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2008-11-19-creating-an-interface-for-the-motif-finding-script-final.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

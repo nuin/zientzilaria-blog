@@ -1,0 +1,15 @@
+---
+author: admin
+date: '2009-01-30 19:47:48'
+layout: post
+slug: twitter
+status: publish
+title: Twitter
+wordpress_id: '218'
+? ''
+: - Phase 2
+---
+
+I'm on Twitter, for quite some time. Some Python stuff, some biology,
+some bioinformatics, and a little bit of everything else.
+[nuin](http://twitter.com/nuin).

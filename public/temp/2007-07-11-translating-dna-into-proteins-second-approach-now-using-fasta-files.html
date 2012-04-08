@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Translating DNA into proteins: second approach, now using FASTA files - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We have seen before how to translate DNA sequences into amino acids
+sequences. We have even created a module that contains the dictionary
+for the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-07-11-translating-dna-into-proteins-second-approach-now-using-fasta-files.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Translating DNA into proteins: second approach, now using FASTA files</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-11T15:10:09-04:00" pubdate data-updated="true">Jul 11<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We have seen before how to translate DNA sequences into amino acids
+sequences. We have even created a module that contains the dictionary
+for the genetic code. Now we are going to combine both (very simple)
+modules we created in one nice script for day-to-day use. So, we have
+the <a href="http://python.genedrift.org/code/dnatranslate.py">dnatranslate.py</a>
+and the <a href="http://python.genedrift.org/code/fasta.py">fasta.py</a> that we
+are going to import into our script. And that&#8217;s basically it: calling
+function already created, stored in modules that can be reused anytime.
+In the end our script that translates DNA sequences to proteins takes a
+little bit more than a handful of lines. [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import dnatranslate import sys
+import fasta dna = fasta.read_fasta(open(sys.argv[1], &#8216;r&#8217;).readlines())
+for item in dna: protein = dnatranslate.translate_dna(item.sequence)
+print item.name print protein[/sourcecode] That&#8217;s it. A good example of
+reusable code, that once created fits everywhere and handles most type
+of data. We read the FASTA file in the first line, and iterate over the
+items created translating them as we go. As an extra exercise, we can
+include the output formatting function. First we need to update the
+<code>fasta.py</code> module (already on the repository) and slightly change the
+formatting function, that ends up looking like this [sourcecode
+language=&#8217;python&#8217;]def format_output(sequence, length): temp = [] for j
+in range(0,len(sequence),length): temp.append(sequence[j:j+length])
+return &#8216;\n&#8217;.join(temp)[/sourcecode] For this case the ideal formatting
+function would go through the &#8220;longer&#8221; route mentioned before, because
+the final printing should be done by the main script and not by the
+imported module. This gives us more control on what we want to do with
+the resulting string. The <code>format_output</code> function receives two
+arguments: the first is the actual DNA/protein sequence to be formatted
+and the length we want to output it. We had to remove the loop too, so
+only one sequence can be sent to the function and, as pointed, the
+function returns a string with the formatted sequence. In the end our
+post&#8217;s initial sequence has one modification only [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import dnatranslate import sys
+import fasta dna = fasta.read_fasta(open(sys.argv[1], &#8216;r&#8217;).readlines())
+for item in dna: protein = dnatranslate.translate_dna(item.sequence)
+print item.name print fasta.format_output(protein, 60)[/sourcecode] the
+last line, that instead of printing directly the result of the
+translation, sends the sequence to the formatting function before.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-11T15:10:09-04:00" pubdate data-updated="true">Jul 11<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-07-11-translating-dna-into-proteins-second-approach-now-using-fasta-files.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-07-11-translating-dna-into-proteins-second-approach-now-using-fasta-files.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A quick assessment of factorial functions in Python - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="A short pause on the motifs subject. As mentioned on comments there is a
+lot of different ways of calculating
+factorials in
+Python (the same &#8220; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/06/06/a-quick-assessment-of-factorial-functions-in-python">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A quick assessment of factorial functions in Python</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-06T11:52:35-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A short pause on the motifs subject. As mentioned on comments there is a
+lot of different ways of calculating
+<a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorials</a> in
+Python (the same &#8220;problem&#8221; can be found in some other languages too).
+<a href="http://python.genedrift.org/2008/06/04/obtaining-overrepresented-motifs-in-dna-sequences-part-10/#comment-14054">Cariaso</a>
+suggested to time the execution of different factorial functions,
+including the ones found on <a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/67668">Python&#8217;s cookbook</a>
+(which I should have included in the beginning of last post).</p>
+
+<p>Anyway all
+functions from the webpage were included, as the one mentioned on a
+comment and both functions seen here. Using timeit (thanks Mike!) the
+execution time of all of them were measured by calculating the factorial
+of 800 and 4000. First, the functions:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac_01</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="n">result</span> \<span class="o">*=</span> <span class="n">i</span> <span class="k">return</span>
+</span><span class='line'><span class="n">result</span> <span class="k">def</span> <span class="nf">fac_02</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> \<span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span>
+</span><span class='line'><span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">value</span> <span class="k">def</span> <span class="nf">fac_03</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="kn">import</span> <span class="nn">operator</span> <span class="nn">value</span> <span class="o">=</span>
+</span><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">value</span> <span class="k">def</span> <span class="nf">fac_04</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span>
+</span><span class='line'><span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>\<span class="o">*</span><span class="nb">long</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">fac_05</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span>\<span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>\<span class="o">*</span><span class="n">n</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">fac_06</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">a</span>\<span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span>
+</span><span class='line'><span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_07</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="n">n</span> \<span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span>
+</span><span class='line'><span class="n">y</span><span class="p">:</span> <span class="n">x</span>\<span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_08</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span>\<span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
+</span><span class='line'><span class="nf">fac_09</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[[[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="n">j</span> \<span class="o">*</span> <span class="n">i</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
+</span><span class='line'><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_10</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span>
+</span><span class='line'><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="n">j</span> \<span class="o">*</span> <span class="n">i</span><span class="p">]]</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>fac_01</code> was suggested by bearophile on a comment (no psyco import here),
+<code>fac_02</code> was the first one we have seen
+in the blog, <code>fac_03</code> was the one &#8220;selected as the fastest&#8221; (mentioned
+on comments too) and functions 4 to 10 were gathered from the cookbook,
+all of them using <code>lambda</code>. Now, to the results (no fancy graphs, yet),
+average over 1000 repeats, time in seconds:</p>
+
+<p><em>800!</em> fac_01: <strong>0.0010</strong>
+fac_02: 0.0012 fac_03: <strong>0.0010</strong> fac_04: 0.0022 fac_05: 0.0020
+fac_06: 0.0015 fac_07: 0.0013 fac_08: 0.0013 fac_09: 0.0017 fac_10:
+0.0015 <em>4000!</em> fac_01: <strong>0.0226</strong> fac_02: 0.0242 fac_03: <strong>0.0230</strong>
+fac_04: N/A fac_05: N/A fac_06: 0.0244 fac_07: 0.0239 fac_08:
+0.0241 fac_09: 0.0380 fac_10: 0.0362 In both cases the &#8220;best&#8221;
+functions were 1 and 3. For the smallest factorial (800!) 1 and 3 didn&#8217;t
+have a lot of advantage for 2, 6-10, while 4 and 5 were 2 times slower.
+For the largest factorial (4000!) 1 was 4% better than 3, and the third
+best (6) was also 4% slower than 3. Why do 4 and 5 have no computed
+time? Because they are recursive and it blows the recursion limit in
+Python. So I guess it is a safe bet to use either function 1 or 3, with
+a slightly advantage for 3 in the case of large factorials. But at the
+same time a believe for our case of overrepresented motifs, it would be
+better to pre-calculate the factorials, store them and access the value
+when needed. Andrew&#8217;s idea of using binomials is also interesting, and I
+am planning to test it here. He also gave a couple of other suggestions
+that would need extra imports, scipy and gmpy.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-06T11:52:35-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/06/06/a-quick-assessment-of-factorial-functions-in-python/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/06/06/a-quick-assessment-of-factorial-functions-in-python/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/06/04/obtaining-overrepresented-motifs-in-dna-sequences-part-10/" title="Previous Post: Obtaining overrepresented motifs in DNA sequences, part 10">&laquo; Obtaining overrepresented motifs in DNA sequences, part 10</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/07/27/python-for-bioinformatics-a-room-on-friendfeed/" title="next Post: Python for Bioinformatics: a room on FriendFeed">Python for Bioinformatics: a room on FriendFeed &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

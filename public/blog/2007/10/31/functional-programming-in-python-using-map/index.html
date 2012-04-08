@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Functional programming in Python: using map - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Functional programming in Python. First we need to define what is
+functional programming. Quoting
+Wikipedia: &#8220;is a
+programming paradigm that &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/10/31/functional-programming-in-python-using-map">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Functional programming in Python: using map</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-31T13:33:59-04:00" pubdate data-updated="true">Oct 31<span>st</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Functional programming in Python. First we need to define what is
+functional programming. Quoting
+<a href="http://en.wikipedia.org/wiki/Functional_programming">Wikipedia</a>: &#8220;is a
+programming paradigm that treats computation as the evaluation of
+mathematical functions and avoids state and mutable data. It emphasizes
+the application of functions, in contrast with the imperative
+programming style that emphasizes changes in state.&#8221; Rather complex, eh?</p>
+
+<p>Another explanation can be found
+<a href="http://www.cs.nott.ac.uk/~gmh/faq.html#general-topics">here</a>:
+&#8220;Functional programming is a style of programming that emphasizes the
+evaluation of expressions, rather than execution of commands. The
+expressions in these language are formed by using functions to combine
+basic values. A functional language is a language that supports and
+encourages programming in a functional style.&#8221; Basically any functional
+programming language tries to minimize the code, reducing it, avoiding
+the use of variables and relying on the use of functions and
+expressions. Python, clearly, is a not a functional programming language
+<em>per se</em>, but it has some functions that allow a functional approach. We
+will see a couple of them in this entry. If you are interested in
+learning more about functional programming and Python, check Alan
+Gauld&#8217;s
+<a href="http://www.freenetpages.co.uk/hp/alan.gauld/tutfctnl.htm">tutorial</a>.</p>
+
+<p>There are many ways to use functional programming in bioinformatics. We
+will start with a very simple example, but first we need to modify the
+FASTA module we created before. Currently, this module only has two
+functions, one that reads sequences and their names and one that formats
+their output. We will add a function that reads only the sequences and
+returns a list containing them. This function is very similar to the
+<code>read_fasta</code> function</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_seqs</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>          <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>              <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>          <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">items</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and it uses an identical approach. Instead of creating an instance of
+<code>Fasta</code> class we only create a simple list, and ignore the sequence
+title. This will also be useful for a future code reuse, as sometimes we
+are only interested in the sequence itself and not the name. Might save
+us some typing and decrease code size depending on the situation. In
+this entry we will see one Python&#8217;s functional programming function:
+<code>map</code>. But we will need to use another one too, which is called
+<code>lambda</code>. <code>lambda</code> is the function that defines what is called an
+anonymous function, or a nameless function that can fit in one line. We
+have seen that functional programming is all about functions, so
+<code>lambda</code> is the aid to implement the small and short functions we use in
+this type of approach. One example of <code>lambda</code> use would be on the
+calculation of number exponentials, which normally can be achieved like
+this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">exp</span><span class="p">(</span><span class="n">value</span><span class="p">):</span> <span class="k">return</span>
+</span><span class='line'><span class="n">value</span>\<span class="o">*</span>\<span class="o">*</span><span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(exponentials in Python are defined by **)</p>
+
+<p>Using <code>lambda</code> we can rewrite the above function like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">exp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span><span class="n">value</span>\<span class="o">*</span>\<span class="o">*</span><span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with the
+following syntax:</p>
+
+<p><code>lambda [parameters] : [expression to be used on the parameters]</code></p>
+
+<p>In
+both cases you can use the functions the same way, by calling <code>exp(10)</code>
+for example. Ok, let&#8217;s move to <code>map</code> then. <code>map</code> applies a function,
+usually a <code>lambda</code>, to every item in a list of items. This list can be
+of any sequence type, but <code>map</code> always returns a list. Using the above
+exponential example, let&#8217;s say we want to calculate the cube of a series
+of values. Using <code>map</code> and <code>lambda</code> we would have something like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span><span class="n">value</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">56</span><span class="p">])</span>
+</span><span class='line'><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">1156</span><span class="p">,</span> <span class="mi">3136</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that&#8217;s it.
+Dissecting this line of code, we have a <code>lambda</code> function that due to
+the use of the <code>map</code> function is applied on every item of the list that
+follows. This list can be anything, previously set or not. So, applying
+this to a bioinformatics example would be simple (this might not be the
+most useful or real-world example ever, but it should give us a primer
+to endeavour in more advanced stuff). Let&#8217;s say we want to check
+sequence size for all sequences in a FASTA file. Emphasizing code reuse,
+we created a new function that returns a list of the actual sequences
+only. Without functional programming a loop to read the sequence lengths
+would be very simple</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With a functional programming approach,
+we can do it in one line (not a large advantage here)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yep, not
+a lot of gain with this example, as mentioned. The full script would
+look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">seq</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>data</code> is our list of sequences, and inside the <code>map</code> function we have a
+<code>lambda</code> that checks for the size of each sequence in that list. Quite
+simple.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-31T13:33:59-04:00" pubdate data-updated="true">Oct 31<span>st</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/10/31/functional-programming-in-python-using-map/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/10/31/functional-programming-in-python-using-map/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/10/29/merging-single-or-multiple-sequence-fasta-files/" title="Previous Post: Merging single (or multiple) sequence FASTA files">&laquo; Merging single (or multiple) sequence FASTA files</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/11/01/functional-programming-in-python-using-filter-take-one/" title="next Post: Functional programming in Python: using filter, take one">Functional programming in Python: using filter, take one &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

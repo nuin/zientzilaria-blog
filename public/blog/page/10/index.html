@@ -1,0 +1,1602 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Another aspect covered in the book that we haven&#8217;t seen yet is how to
+plan, design out script or software. Usual ways to design a program &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/page/10">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/07/planning/">Planning</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-07T15:51:43-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Another aspect covered in the book that we haven&#8217;t seen yet is how to
+plan, design out script or software. Usual ways to design a program
+include writing use cases and drawing
+<a href="http://en.wikipedia.org/wiki/Unified_Modeling_Language">UML</a> diagrams
+(stands for Unified Modelling Language). Here we will scratch the
+surface of <a href="http://en.wikipedia.org/wiki/Use_case">use cases</a>, where we
+will try to determine how the program will interact with the user. How
+to write use cases or design UML is not a subject taught in many biology
+courses, so we won;t see much of the theory here. Consider this a more
+informal way of planning a small script or application.</p>
+
+<p>First thing
+would be to set a goal:</p>
+
+<p><em>What is the main objective of our script?</em></p>
+
+<p>Create a simple restriction enzyme map of certain sequences Next, <em>what
+do we need to make the program work?</em> We need restriction enzyme
+information, such as names and sites and a sequence. That leads us <em>How
+do I store information?</em> Restriction enzyme data (last entry) obtained
+from a file can be stored in a dictionary, with the enzyme name as key
+and the site as value.</p>
+
+<p>Sequences are stored using our fasta class. This
+will brings us to one important issue <em>How to interact with the user?</em>
+The ideal way would be to present a list of enzymes for the user to
+select, but we do not have a graphical interface to organize it nicely.
+So, we will ask the user to enter the name of enzyme and a name of a
+file to read the sequence where the enzyme site should be found. We can
+do that interactively or by passing parameters to the script. We will do
+it by parameters here, but the interactive way can be tested as a
+homework for those following the blog.</p>
+
+<p>And finally <em>What about an
+output?</em> We will do the same way as the book: a list of positions,
+indicating the restriction sites. I welcome other options in the
+comments. It looks we have a plan. Let&#8217;s gather what we already have,
+and our previous knowledge and meet on the other side of this post.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/08/31/restriction-enzymes-first-take/">Restriction enzymes: first take</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-31T16:08:12-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We now jump with both feet on the main topic of the book&#8217;s chapter,
+which is generating restriction maps of DNA sequences. First step is to
+obtain restriction enzyme information, read it and format in a way that
+our main script will understand. We will use the same dataset as the
+book, the <a href="http://rebase.neb.com/rebase/rebase.html">Rebase</a> database at
+New England Biolabs. In the book, Tisdall suggests the download of a
+<em>bionet</em> format, which can be downloaded
+<a href="ftp://ftp.neb.com/pub/rebase/">here</a> (scroll down to bionet.709).</p>
+
+<p>This file looks like this:</p>
+
+<pre><code>AaaI (XmaIII)                     C^GGCCG  
+AacI (BamHI)                      GGATCC  
+AaeI (BamHI)                      GGATCC  
+AagI (ClaI)                       AT^CGAT  
+AanI (PsiI)                       TTA^TAA  
+AaqI (ApaLI)                      GTGCAC
+</code></pre>
+
+<p>where the first column contains the enzyme names and the second column
+has the actual cleavage sites.</p>
+
+<p>It won&#8217;t be difficult to parse this file
+and create a dictionary with the names and sites, but it would be easier
+if the file the data was tab-separated, but it is nothing we will have
+problem dealing with. The file also has some header lines which we will
+have to avoid. Next entry will deal with user cases and some other
+aspects of coding, as we head to our most complex script until now. Noe
+we will only create a function that reads the file and generates the
+dictionary, what sounds very simple. There are two ways (maybe even
+more) to discard the header lines: programatically or actively deleting
+such lines. We won&#8217;t delete the lines this time, so we have to follow
+the other path.</p>
+
+<p>The easiest way to eliminate header lines from our
+parsing function would be to count the lines and start the parsing
+procedure after that certain number but that would mean a high
+confidence of the format being constant in every release. So, first we
+get rid of the header lines</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_enzymes</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>          <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> where we already
+declared the dictionary that will receive the name and sites. We have a
+flag boolean that tells the script where the actual enzyme list starts
+(<code>start</code>), declared as false and then modified to true when the line
+containing <code>Rich Roberts</code> is found. The line <code>line = file.next()</code> tells
+the script that the current line is equal to the next line of the file.
+We do this to avoid starting the parsing of the file at the line we
+found <code>Rich Roberts</code>. the <code>if</code> statement checks for the line size in
+order to split and parse only the actual lines and discard empty ones.
+Now, in order to get the sites and enzyme names we will use split,
+differently than we used before. This time we won&#8217;t pass any arguments
+to split as a separator. This will trigger another type of splitting
+procedure, where some characters will be stripped from the string
+(spaces, tabs, newlines, returns, and form feeds) and the resulting words
+will be then separated by arbitrary length strings of white spaces.
+Basically, this split will return a list with the words in that particular
+line. Inspecting the file carefully, we notice that some enzyme names
+have an extra id between parentheses. We will not consider this extra
+id. After splitting we will get the first and last elements of the list
+and put them in our dictionary.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span class='line'><span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;\^&#39;</span><span class="p">,</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Done. We have the dictionary ready. And using Python&#8217;s
+included batteries we use the last line in the function to remove the
+circumflex characters. Putting everything together we have</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_enzymes</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>      <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span class='line'>          <span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span class='line'>          <span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;\^&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/08/28/finding-motifs-iupac-and-regex-an-approach/">Finding motifs: IUPAC and RegEx, an approach</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-28T17:21:33-04:00" pubdate data-updated="true">Aug 28<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After a long delay, we are back. Before entering in the next topic,
+Restriction Enzymes, let&#8217;s take a look how to create a regex pattern
+from user input and the dictionary of IUPAC code for nucleotides. We
+will use the same dictionary from the previous entry</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">iupacdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;M&#39;</span><span class="p">:</span><span class="s">&#39;[AC]&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">:</span><span class="s">&#39;[AG]&#39;</span><span class="p">,</span> <span class="s">&#39;W&#39;</span><span class="p">:</span><span class="s">&#39;[AT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;S&#39;</span><span class="p">:</span><span class="s">&#39;[CG]&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">:</span><span class="s">&#39;[CT]&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">:</span><span class="s">&#39;[GT]&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">:</span><span class="s">&#39;[ACG]&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">:</span><span class="s">&#39;[ACT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;D&#39;</span><span class="p">:</span><span class="s">&#39;[AGT]&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">:</span><span class="s">&#39;[CGT]&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">,</span> <span class="s">&#39;N&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and the same consensus sequence of the GATA3 binding site NNGATARNG This
+consensus sequence will be provided as a script parameter, along with
+the filename</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="n">sequencefile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">motif</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>First line reads the sequence file from the
+user input and second line stores the input motif in a string. Now we
+have to get the motif string and check for each letter (IUPAC code) and
+get the correspondent set of nucleotides. For this we will use a loop
+and a the method <code>get</code> method of Python dictionaries. This method, as
+its name implies, gets the <code>value of the key</code> in parentheses. Like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">motif</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">iupacdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we combine both excerpts above and run
+using as input the GATA3 model the result would like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="n">ACGT</span><span class="p">]</span> <span class="p">[</span><span class="n">ACGT</span><span class="p">]</span> <span class="p">[</span><span class="n">AG</span><span class="p">]</span> <span class="p">[</span><span class="n">ACGT</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which is five nucleotides short of the motif length. How to correct it? Pretty simple
+we just add to the dictionary the &#8220;regular&#8221; nucleotide codes</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">iupacdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;M&#39;</span><span class="p">:</span><span class="s">&#39;[AC]&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">:</span><span class="s">&#39;[AG]&#39;</span><span class="p">,</span> <span class="s">&#39;W&#39;</span><span class="p">:</span><span class="s">&#39;[AT]&#39;</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">:</span><span class="s">&#39;[CG]&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">:</span><span class="s">&#39;[CT]&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">:</span><span class="s">&#39;[GT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;V&#39;</span><span class="p">:</span><span class="s">&#39;[ACG]&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">:</span><span class="s">&#39;[ACT]&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">:</span><span class="s">&#39;[AGT]&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">:</span><span class="s">&#39;[CGT]&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;N&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This would solve our &#8220;problem&#8221; without adding
+a line of code to the final script. Fastforwarding to creating the regex</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mregex</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">motif</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">mregex</span> <span class="o">+=</span> <span class="n">iupacdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">mregex</span>
+</span><span class='line'><span class="c">#just to check </span>
+</span><span class='line'><span class="n">tosearch</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mregex</span><span class="p">))</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tosearch</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequencefile</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">i</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple and quick. The final output is not really elaborated, but we can improve it. Next time.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/16/finding-motifs-iupac-and-regex-an-overview/">Finding motifs: IUPAC and RegEx, an overview</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-16T11:59:56-04:00" pubdate data-updated="true">Jul 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>End of Section 5, moving to Section 6. For anyone also following the
+book there will be a jump at the end of chapter 8, so we are not
+touching the final script that deals with different reading frames here.
+We are going straight, or almost, to another take of Regular
+Expressions. We are going to check some aspects of restriction enzymes,
+but first we are going to touch base with motif finding in DNA
+sequences. We already saw how to use the <code>re</code> module and to do some
+simple regular expression searches. Basically our motif search was very
+simple, with run-time user input using</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where <code>inmotif</code> was the short string sequence entered. Enhancing this a little
+bit we will first create a more advanced regex search using mismatches
+in the sequences and after we will see (as in the book) how to translate
+IUPAC code to regex. The IUPAC table is</p>
+
+<pre><code>A - Adenine 
+C - Cytosine 
+G - Guanine 
+T - Thymine 
+U - Uracil 
+M - A or C 
+R - A or G 
+W - A or T 
+S - C or G 
+Y - C or T 
+K - G or T 
+V - A or C or G 
+H - A or C or T 
+D - A or G or T
+B - C or G or T 
+X - A or C or G or T 
+N - A or C or G or T 
+</code></pre>
+
+<p>You are going
+to use basic Python to do this. There are mode advanced ways to reach
+the same goals, but as we haven&#8217;t seen a lot of dictionaries it would be
+great to check them again. The first idea for the table above is to use
+a dictionary for the codes that represent two or more nucleotides, as
+dictionary keys would be ideal to include in regex elements. Our basic
+dictionary would look like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">iupacdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;M&#39;</span><span class="p">:</span><span class="s">&#39;[AC]&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">:</span><span class="s">&#39;[AG]&#39;</span><span class="p">,</span> <span class="s">&#39;W&#39;</span><span class="p">:</span><span class="s">&#39;[AT]&#39;</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">:</span><span class="s">&#39;[CG]&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">:</span><span class="s">&#39;[CT]&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;K&#39;</span><span class="p">:</span><span class="s">&#39;[GT]&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">:</span><span class="s">&#39;[ACG]&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">:</span><span class="s">&#39;[ACT]&#39;</span><span class="p">,</span> <span class="s">&#39;D&#39;</span><span class="p">:</span><span class="s">&#39;[AGT]&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">:</span><span class="s">&#39;[CGT]&#39;</span><span class="p">,</span> <span class="s">&#39;X&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">,</span> <span class="s">&#39;N&#39;</span><span class="p">:</span><span class="s">&#39;[ACGT]&#39;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We include the square brackets
+around each key because these brackets inside a regex indicate a match
+in one of the characters. This dictionary would be really advantageous
+for restriction enzymes too. Now in order to find a motif we need to
+create a regular expression from the consensus sequence of the motif
+model, that can be for instance a transcription factor binding site.
+Let&#8217;s say we have a GATA3 model of binding site which has a model
+NNGATARNG what would give us a regular expression</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">]</span><span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;[ACGT][ACGT]GATA[AG][ACGT]G&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that can be extracted directly from the <code>iupacdict</code>. Next time, we will check how to
+create these regex on the fly, from input and the dictionary.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/11/translating-dna-into-proteins-second-approach-now-using-fasta-files/">Translating DNA into proteins: second approach, now using FASTA files</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-11T15:10:09-04:00" pubdate data-updated="true">Jul 11<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We have seen before how to translate DNA sequences into amino acids
+sequences. We have even created a module that contains the dictionary
+for the genetic code. Now we are going to combine both (very simple)
+modules we created in one nice script for day-to-day use. So, we have
+the <a href="http://python.genedrift.org/code/dnatranslate.py">dnatranslate.py</a>
+and the <a href="http://python.genedrift.org/code/fasta.py">fasta.py</a> that we
+are going to import into our script. And that&#8217;s basically it: calling
+function already created, stored in modules that can be reused anytime.
+In the end our script that translates DNA sequences to proteins takes a
+little bit more than a handful of lines.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">dnatranslate</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">dna</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">protein</span> <span class="o">=</span> <span class="n">dnatranslate</span><span class="o">.</span><span class="n">translate_dna</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">protein</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s it. A good example of
+reusable code, that once created fits everywhere and handles most type
+of data. We read the FASTA file in the first line, and iterate over the
+items created translating them as we go. As an extra exercise, we can
+include the output formatting function. First we need to update the
+<code>fasta.py</code> module (already on the repository) and slightly change the
+formatting function, that ends up looking like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">format_output</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">),</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="n">length</span><span class="p">])</span>
+</span><span class='line'>    <span class="k">return</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For this case the ideal formatting
+function would go through the &#8220;longer&#8221; route mentioned before, because
+the final printing should be done by the main script and not by the
+imported module. This gives us more control on what we want to do with
+the resulting string. The <code>format_output</code> function receives two
+arguments: the first is the actual DNA/protein sequence to be formatted
+and the length we want to output it. We had to remove the loop too, so
+only one sequence can be sent to the function and, as pointed, the
+function returns a string with the formatted sequence. In the end our
+post&#8217;s initial sequence has one modification only</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">dnatranslate</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">dna</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dna</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">protein</span> <span class="o">=</span> <span class="n">dnatranslate</span><span class="o">.</span><span class="n">translate_dna</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">fasta</span><span class="o">.</span><span class="n">format_output</span><span class="p">(</span><span class="n">protein</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>the last line, that instead of printing directly the result of the
+translation, sends the sequence to the formatting function before.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/10/formatting-output-of-fasta-files/">Formatting output of FASTA files</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-10T11:30:15-04:00" pubdate data-updated="true">Jul 10<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The Beginning Perl for Bioinformatics book shows a script to print
+formatted sequence data, specifying that no more than 80 characters
+(either nucleotides or amino acids) should be printed across a page.
+Here, we will see a similar script in Python and will include it in our
+<code>fasta.py</code> module in order to use it a default output, taking advantage
+of its usability. Basically, our FASTA reader strips all the carriage
+returns/new lines (if existent) from the input file, so the sequence
+itself is stored continuously in a string. Of course we could do it
+differently and store the sequence as is in the file, but then they
+might differ on the number of characters per line and other features.
+Our goal then is to <em>break</em> the sequence in chunks, making it look like
+a justified paragraph. We use the code below to obtain this, back after
+it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sequences</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">),</span><span class="mi">80</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="mi">80</span><span class="p">])</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The script, as always, is very
+simple and does the job. A new feature of the range method is
+introduced: the <em>step</em>. From previous posts we have seen that function
+range generates a sequence of integers based either on one value</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or two values</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <em>step</em> parameter makes the generated to jump a
+certain number of values.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;&gt;</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is similar to the
+<code>for</code> loop in C/C++ where the loop is define by three parameters on a
+construction like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where the first parameter sets the initial value of
+<code>i</code>, the second value sets the maximum value of <code>i</code> and the last one
+sets the <em>step</em> that <code>i</code> will be incremented. In our small script above,
+we read the sequence (this time putting everything in one line), get the
+sequences and then iterate along the instances of our class, printing
+first the name of the sequence. Then we iterate on the whole length of
+each sequence, this time generating a range that starts on zero and goes
+up to the final nucleotide/amino acid and has a <em>step</em> that defines the
+number of characters we want to print in one line. To print the sequence
+to the screen we had two options: directly print using</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="mi">80</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or use the
+longer route shown in our script. Trying this script will output the
+sequences from the original file with 80 characters along the line. Next
+following the book we will write a script to translate DNA to protein
+using our FASTA reading function and modify our FASTA module to include
+the formatted output function.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/04/reading-fasta-files-2/">Reading FASTA files</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-04T12:33:41-04:00" pubdate data-updated="true">Jul 4<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We now have an idea on how to create a class in Python. For our FASTA
+reader we will use a very similar approach as the employee class created
+before. Based on the simplicity of the FASTA format it is easy to see
+what attributes we need in our class: sequence title (header) and
+sequence. That&#8217;s it. Speeding up, our class will look like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Fasta</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s
+all we need for now. Of course we could include sequence length,
+sequence type, or any other relevant information as a class attribute.
+But we will stick with those for the time being. NOw that we have the
+class declared, we need to read the file and create instances of the
+<code>Fasta</code> class to store all our sequences. We already know how to open
+and read a file and create functions. We put everything together in a
+simple script:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="c">#class declaration with both attributes we need </span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Fasta</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>        <span class="c">#this will store the sequence name</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span class='line'>        <span class="c">#this will store the sequence itself </span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#this function will receive the list with the file contents,</span>
+</span><span class='line'><span class="c">#create instances of the Fasta class as it scans the list, putting the</span>
+</span><span class='line'><span class="c">#sequence name on the first attribute and the sequence itself on the</span>
+</span><span class='line'><span class="c">#second attribute </span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">read_fasta</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+</span><span class='line'>    <span class="c">#we declare an empty list that will store all Fasta class instances generated </span>
+</span><span class='line'>    <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>        <span class="c">#we check to see if the line starts with a &gt; sign</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">):</span>
+</span><span class='line'>            <span class="c">#if so and our counter is large than 1 we add the created class instance to our list </span>
+</span><span class='line'>            <span class="c">#a counter larger than 1 means we are reading from sequences 2 and above </span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>                 <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aninstance</span><span class="p">)</span>
+</span><span class='line'>                 <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
+</span><span class='line'>            <span class="c">#we add the line contents to a string</span>
+</span><span class='line'>            <span class="n">name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>            <span class="c">#and initialize the string to store the sequence </span>
+</span><span class='line'>            <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>            <span class="c">#this creates a class instance and we add the attributes </span>
+</span><span class='line'>            <span class="c">#which are the strings name and seq </span>
+</span><span class='line'>            <span class="n">aninstance</span> <span class="o">=</span> <span class="n">Fasta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="c">#the line does not start with &gt; so it has to be #a sequence line, so we</span>
+</span><span class='line'>            <span class="c">#increment the string and \#add it to the created instance </span>
+</span><span class='line'>            <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>            <span class="n">aninstance</span> <span class="o">=</span> <span class="n">Fasta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>            <span class="c">#the loop reads everything but the penultimate</span>
+</span><span class='line'>            <span class="c">#sequence is added at the end, so we need to add it after the loop ends </span>
+</span><span class='line'>       <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aninstance</span><span class="p">)</span>
+</span><span class='line'>       <span class="c">#a list with all read sequences is returned </span>
+</span><span class='line'>       <span class="k">return</span> <span class="n">items</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">fastafile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">mysequences</span> <span class="o">=</span> <span class="n">read_fasta</span><span class="p">(</span><span class="n">fastafile</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">mysequences</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mysequences</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">name</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>At
+first, it looks scary. But is not. There are many ways to create this
+loop and to read the sequences, and many ways to make this loop shorter.
+We will get there, eventually, but for starters this is OK. Basically,
+in the above script we have a <code>Fasta</code> class, a <code>read_fasta</code> function and
+a couple of lines to read a print the results. The <code>read_fasta</code> function
+basically checks all items of a list and see which is the first
+character of each item: a <code>&gt;</code> sign indicates that the item should be
+parsed to the temporary name string, another character redirects the
+item to the sequence string. Instances are created on the fly and the
+attributes assigned as what was file content is being scanned. In the
+end, just to be sure of what we accomplished with the function we print
+the list and loop through it and print the name of each sequence read.
+Notice that the loop counter/index is the one that receives the class
+attribute. The biggest advantage of this way of reading FASTA files is
+that the class and the function are reusable. Basically we can create a
+file (for instance called readfasta.py) and import into another script
+and we have a FASTA reader ready to rock. We would need to tweak a
+little bit in order to catch exceptions, but with consistent FASTA files
+this would work fine.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/07/03/reading-fasta-files/">Reading FASTA files: introduction</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-03T16:39:37-04:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Again after a long period we are back. We already have most of the
+knowledge to create very useful scripts and small programs in Python.
+And in this post we will create a routine that will make the biologist&#8217;s
+life even easier (when programming Python). A great part of
+bioinformatics is to store data, how to store it and which format to
+use. Anyone working in a wetlab or on a pure bioinformatics lab had had
+problems with file formats one day or another. In fact, you don&#8217;t have
+to be in a bioinformatics environment to have such problems, but in
+biology people tend to create a file format for everyt program they
+write. We can call it a lack of standards, sometimes. But one very well
+established format is the FASTA (pronounced FAST-Aye, according to the
+EMBl-EBI page for the software with identical name. This format is
+really simple and easy to manipulate with most computer languages and
+being text-based adds an extra advantage of portability for the files.
+Usually a FASTA file has a structure like this</p>
+
+<pre><code>&gt;title/name/extra information about the sequence  
+sequence in one or many lines
+</code></pre>
+
+<p>There is
+no limit on the number of sequences that can be stored in a file,
+neither on the size of each sequence. Usually sequences that are larger
+than 70-80 nucleotides/amino acids are displayed in multiple lines.</p>
+
+<p><code>&gt;Q15465|SHH_HUMAN Sonic hedgehog protein - Homo sapiens (Human).
+MLLLARCLLLVLVSSLLVCSGLACGPGRGFGKRRHPKKLTPLAYKQFIPNVAEKTLGASG
+RYEGKISRNSERFKELTPNYNPDIIFKDEENTGADRLMTQRCKDKLNALAISVMNQWPGV
+KLRVTEGWDEDGHHSEESLHYEGRAVDITTSDRDRSKYGMLARLAVEAGFDWVYYESKAH
+IHCSVKAENSVAAKSGGCFPGSATVHLEQGGTKLVKDLSPGDRVLAADDQGRLLYSDFLT
+FLDRDDGAKKVFYVIETREPRERLLLTAAHLLFVAPHNDSATGEPEASSGSGPPSGGALG
+PRALFASRVRPGQRVYVVAERDGDRRLLPAAVHSVTLSEEAAGAYAPLTAQGTILINRVL
+ASCYAVIEEHSWAHRAFAPFRLAHALLAALAPARTDRGGDSGGGDRGGGGGRVALTAPGA
+ADAPGAGATAGIHWYSQLLYQIGTWLLDSEALHPLGMAVKSS</code></p>
+
+<p>So, let&#8217;s write a function
+and a small script to read a typical FASTA file and display the output.
+Later we will see how to manipulate the file and in the end we will have
+created a list of scripts that will be useful for the everyday
+laboratory life. But before we get to our final goal, we need to learn
+some new features of Python. In our case <strong>Classes</strong>. Classes in Python
+are very similar to classes in C++, and they are the building blocks of
+Object Oriented Programming (OOP). This guide will only scratch the
+surface of OOP, as it is a very complex subject, requiring a guide of
+its own. There are plenty of good introductory material online and any
+Google search will return dozens of links. Let&#8217;s focus on some basic
+concepts, what will be exactly what we will need here. Classes are
+basically objects with associated properties (attributes) and methods. A
+traditional introductory example of classes is the employee list. In a
+company all employees are registered and they basic information are
+stored in the human resources file system. Let&#8217;s call the main class
+<code>Employee</code> with three attributes: <code>name</code>, <code>room_number</code> and
+<code>favourite_colour</code>. This defines a class. Let&#8217;s see how to do that in
+Python:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="n">room</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">colour</span> <span class="o">=</span> <span class="n">colour</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&#8217;s dissect this piece of code.
+First we declare a class and give a name to it <code>Employee</code>. The next
+thing we need to do is to define the initiation (constructor) method of
+the class and give it the attributes we need, that&#8217;s the <code>__init__</code>
+method. Every time we create a copy of the main class object the copy
+will be initialized with the values we are passing to the method.
+According to Dive into Python &#8220;The first argument of every class method,
+including <code>__init__</code>, is always a reference to the current instance of
+the class&#8221;. That&#8217;s the <code>self</code> on the method definition, which is
+followed by what we want to store in the object: name, room and
+favourite colour. The lines in the method are the ones assigning the
+received values to the different class&#8217; attributes.</p>
+
+<p>Again from Dive into
+Python we have &#8220;To reference this attribute from code outside the class,
+you qualify it with the instance name, instance.data, in the same way
+that you qualify a function with its module name. To reference a data
+attribute from within the class, you use self as the qualifier&#8221;. In
+other words the attributes of the class are seen internally by it by the
+use of <code>self</code> while from the outside (another part of the script) it is
+seen by the name given to the instance of the class. It is a little bit
+confusing, so let&#8217;s see an example below.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">room</span><span class="p">,</span> <span class="n">colour</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="n">room</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">colour</span> <span class="o">=</span> <span class="n">colour</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">employeename</span> <span class="o">=</span> <span class="s">&quot;Paulo&quot;</span>
+</span><span class='line'><span class="n">roomnumber</span> <span class="o">=</span> <span class="s">&quot;21&quot;</span>
+</span><span class='line'><span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;blue&quot;</span>
+</span><span class='line'><span class="n">newemployee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">employeename</span><span class="p">,</span> <span class="n">roomnumber</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">newemployee</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we run this simple code we will get
+something like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="o">&lt;</span><span class="n">__main__</span><span class="o">.</span><span class="n">Employee</span> <span class="n">instance</span> <span class="n">at</span> <span class="mh">0x7379cc</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that&#8217;s exactly what we need here: that&#8217;s a class instance that was created by</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">newemployee</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">employeename</span><span class="p">,</span> <span class="n">roomnumber</span><span class="p">,</span> <span class="n">colour</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Printing this information is not very useful. We
+don&#8217;t want to know the memory address of the object, we want to get the
+attributes of it, so we need to change <code>print newemployee</code> by these
+lines:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">newemployee</span><span class="o">.</span><span class="n">name</span>
+</span><span class='line'><span class="k">print</span> <span class="n">newemployee</span><span class="o">.</span><span class="n">room</span>
+</span><span class='line'><span class="k">print</span> <span class="n">newemployee</span><span class="o">.</span><span class="n">colour</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There they are,
+run it and see what is being printed to the screen. Of course, as is
+this script does not accomplish anything useful, but imagine that you
+need to read a file with 1000 new employees everyt month. That&#8217;s what we
+need to do with FASTA files everyday and we will see how to do that on
+the next post.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/05/24/translating-dna-into-proteins/">Translating DNA into proteins</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-05-24T16:19:10-04:00" pubdate data-updated="true">May 24<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After a long time away, I am back. Things have been hectic in the lab
+and there is a shortage of free time to do everything else. Let&#8217;s get
+back to Python. Last time we have seen a dictionary structure that
+contained our genetic code. We are going to see a script that will
+translate DNA into proteins and we are also going to see how to create a
+module in Python that can be imported in any script. This module will
+contain the function that translates the DNA, and for the time being
+only that. Let&#8217;s see how our module looks like:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">gencode</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;ATA&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;ATC&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATT&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATG&#39;</span><span class="p">:</span><span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="s">&#39;ACA&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACC&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACG&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;ACT&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;AAC&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;AAT&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;AAA&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="s">&#39;AAG&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="s">&#39;AGC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;AGT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;AGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;AGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTC&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;CTT&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CCA&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCC&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCG&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCT&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CAC&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;CAT&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;CAA&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;CAG&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;CGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGC&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;CGT&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;GTA&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTC&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTG&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTT&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GCA&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;GCC&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCG&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCT&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GAC&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;GAT&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;GAA&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;GAG&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;GGA&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGC&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGG&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGT&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;TCA&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;TCC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCG&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TTC&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;TTT&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;TTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;TTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;TAC&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;TAT&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;TAA&#39;</span><span class="p">:</span><span class="s">&#39;\_&#39;</span><span class="p">,</span> <span class="s">&#39;TAG&#39;</span><span class="p">:</span><span class="s">&#39;\_&#39;</span><span class="p">,</span> <span class="s">&#39;TGC&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&#39;TGT&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;TGA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;TGG&#39;</span><span class="p">:</span><span class="s">&#39;W&#39;</span><span class="p">,</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">sequence</span>
+</span><span class='line'>    <span class="n">proteinseq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">),</span><span class="mi">3</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">gencode</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">proteinseq</span> <span class="o">+=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="mi">3</span><span class="p">]]</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">proteinseq</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One function, called <code>translate_dna</code>, that
+receives a DNA sequence and outputs a protein sequence. It is a &#8220;long&#8221;
+function because we have in the middle the genetic code in Python&#8217;s
+dictionary format. Our translation loop is very simple, it reads the DNA
+sequence three nucleotides at a time</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">),</span><span class="mi">3</span><span class="p">):</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>means that it will loop from 0
+to the size of the DNA sequence in steps of 3, so basically we start at
+0 and then jumping directly to 3. This is done to obey the translation
+structure based on codons of three nucleotides. Sometimes the DNA
+sequence entered does not have a size multiple of three and that&#8217;s the
+reason we use an error checking before accessing the dictionary</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">gencode</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will test for any possible error, or codons that
+are smaller than three nucleotides. If the key exists it is returned and
+addes to our protein string. The code that will use this function is
+this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">dnatranslate</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;AY162388.seq&quot;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">dnafile</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">protein</span> <span class="o">=</span> <span class="n">dnatranslate</span><span class="o">.</span><span class="n">translate_dna</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">sequence</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span>
+</span><span class='line'><span class="k">print</span> <span class="n">protein</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>No secrets or new things
+here. Just notice that we import a module which is not part of the
+common Python modules, but was created by us. In this case the
+identification in the import will be the name of the <code>.py</code> file that
+contains the function(s) we are going to use. This file also needs to be
+located in the same directory of the script, if not installed in the
+Python libraries/modules directory. Notice that to use the function we
+need to call</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">protein</span> <span class="o">=</span> <span class="n">dnatranslate</span><span class="o">.</span><span class="n">translate_dna</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>as we would do with
+the <code>sys</code> or the <code>re</code> modules. We can now create any modules that will
+contain different functions that can be reused anytime without need of
+extra coding. For instance, someone can create a module that would read
+a FASTA file and return sequences and sequence names in string or a list
+and send it to anyone interested in the same functionality. Everything
+we would need to do is to have this file installed in Python or in the
+same directory of our script and we would take advantage of all
+functionality contained in the module. That easy.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/04/19/genetic-code-part-i/">Genetic code: part I</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-19T16:53:29-04:00" pubdate data-updated="true">Apr 19<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The Python dictionary data-type is like hash in Perl. It is a very
+similar structure, where each element in the variable is composed of two
+values, more specifically a key-value pair. This is the ideal data type
+to store the genetic code. As you might know the genetic code governs
+the translation of DNA into proteins, where each codon (3 bases or
+nucleotides in the DNA sequence) correspond to an amino acid in the
+protein sequence. So for every sequence of 3 nucleotides (key) will
+represent an amino acid (value). Important things: dictionaries do not
+accept duplicated key values, and every time a new value is assigned to
+a key the old value is erased. To create a new dictionary use the curly
+brackets</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">first_dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> inside the curly braces we first assign a key and
+separated by a colon (:), while multiple pairs should be separated by
+comma. Both key and value have to be between single or double quotes.
+Let&#8217;s see how we will represent the genetic code in a Python dictionary,
+assigning values to keys</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">gencode</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'><span class="s">&#39;ATA&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="c">#Isoleucine </span>
+</span><span class='line'><span class="s">&#39;ATC&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="c">#Isoleucine </span>
+</span><span class='line'><span class="s">&#39;ATT&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="c"># Isoleucine</span>
+</span><span class='line'><span class="s">&#39;ATG&#39;</span><span class="p">:</span><span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="c"># Methionine </span>
+</span><span class='line'><span class="s">&#39;ACA&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="c"># Threonine </span>
+</span><span class='line'><span class="s">&#39;ACC&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="c"># Threonine</span>
+</span><span class='line'><span class="s">&#39;ACG&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="c"># Threonine </span>
+</span><span class='line'><span class="s">&#39;ACT&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="c"># Threonine </span>
+</span><span class='line'><span class="s">&#39;AAC&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="c"># Asparagine</span>
+</span><span class='line'><span class="s">&#39;AAT&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="c"># Asparagine </span>
+</span><span class='line'><span class="s">&#39;AAA&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="c"># Lysine </span>
+</span><span class='line'><span class="s">&#39;AAG&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="c"># Lysine</span>
+</span><span class='line'><span class="s">&#39;AGC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;AGT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;AGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine</span>
+</span><span class='line'><span class="s">&#39;AGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine </span>
+</span><span class='line'><span class="s">&#39;CTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;CTC&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine</span>
+</span><span class='line'><span class="s">&#39;CTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;CTT&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;CCA&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="c"># Proline</span>
+</span><span class='line'><span class="s">&#39;CCC&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="c"># Proline </span>
+</span><span class='line'><span class="s">&#39;CCG&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="c"># Proline </span>
+</span><span class='line'><span class="s">&#39;CCT&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="c"># Proline</span>
+</span><span class='line'><span class="s">&#39;CAC&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="c"># Histidine </span>
+</span><span class='line'><span class="s">&#39;CAT&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="c"># Histidine </span>
+</span><span class='line'><span class="s">&#39;CAA&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="c"># Glutamine</span>
+</span><span class='line'><span class="s">&#39;CAG&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="c"># Glutamine </span>
+</span><span class='line'><span class="s">&#39;CGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine </span>
+</span><span class='line'><span class="s">&#39;CGC&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine</span>
+</span><span class='line'><span class="s">&#39;CGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine </span>
+</span><span class='line'><span class="s">&#39;CGT&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine </span>
+</span><span class='line'><span class="s">&#39;GTA&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="c"># Valine</span>
+</span><span class='line'><span class="s">&#39;GTC&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="c"># Valine </span>
+</span><span class='line'><span class="s">&#39;GTG&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="c"># Valine </span>
+</span><span class='line'><span class="s">&#39;GTT&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="c"># Valine</span>
+</span><span class='line'><span class="s">&#39;GCA&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="c"># Alanine </span>
+</span><span class='line'><span class="s">&#39;GCC&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="c"># Alanine </span>
+</span><span class='line'><span class="s">&#39;GCG&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="c"># Alanine</span>
+</span><span class='line'><span class="s">&#39;GCT&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="c"># Alanine </span>
+</span><span class='line'><span class="s">&#39;GAC&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="c"># Aspartic Acid </span>
+</span><span class='line'><span class="s">&#39;GAT&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="c"># Aspartic Acid </span>
+</span><span class='line'><span class="s">&#39;GAA&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="c"># Glutamic Acid </span>
+</span><span class='line'><span class="s">&#39;GAG&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="c"># Glutamic Acid </span>
+</span><span class='line'><span class="s">&#39;GGA&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="c"># Glycine </span>
+</span><span class='line'><span class="s">&#39;GGC&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="c"># Glycine </span>
+</span><span class='line'><span class="s">&#39;GGG&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="c"># Glycine </span>
+</span><span class='line'><span class="s">&#39;GGT&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="c"># Glycine </span>
+</span><span class='line'><span class="s">&#39;TCA&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;TCC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;TCG&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine</span>
+</span><span class='line'><span class="s">&#39;TCT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;TTC&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="c"># Phenylalanine </span>
+</span><span class='line'><span class="s">&#39;TTT&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="c"># Phenylalanine </span>
+</span><span class='line'><span class="s">&#39;TTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;TTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;TAC&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="c"># Tyrosine </span>
+</span><span class='line'><span class="s">&#39;TAT&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="c"># Tyrosine </span>
+</span><span class='line'><span class="s">&#39;TAA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="c"># Stop </span>
+</span><span class='line'><span class="s">&#39;TAG&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="c"># Stop</span>
+</span><span class='line'><span class="s">&#39;TGC&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="c"># Cysteine </span>
+</span><span class='line'><span class="s">&#39;TGT&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="c"># Cysteine </span>
+</span><span class='line'><span class="s">&#39;TGA&#39;</span><span class="p">:</span><span class="s">&#39;</span><span class="se">\&#39;</span><span class="s">, # Stop</span>
+</span><span class='line'><span class="s">&#39;TGG&#39;</span><span class="p">:</span><span class="s">&#39;W&#39;</span><span class="p">,</span> <span class="c"># Tryptophan }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple, yet efficient. But this
+is the type of functionality that would be great to have at hand
+every time you write a script to translate DNA into proteins. And it is
+not something that you would like to type (or even copy-and-paste) all
+the time. On the next post we will create the translation script and
+will also create our first Python module.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/11/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/9/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

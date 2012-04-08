@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Obtaining overrepresented motifs in DNA sequences, part 2 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We move one on our search for overrepresented motifs in DNA sequences. I
+was preparing this entry when the comments to part 1 arrived. Because of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2008-05-10-obtaining-overrepresented-motifs-in-dna-sequences-part-2.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Obtaining overrepresented motifs in DNA sequences, part 2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-10T21:56:51-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We move one on our search for overrepresented motifs in DNA sequences. I
+was preparing this entry when the comments to part 1 arrived. Because of
+that we will modify our previous code to include some suggestions and
+then we will change t a little bit to output the actual values we want.
+As Titus pointed out in his comment, when we merge the sequences we
+generate errors, because we artificially including motifs that are not
+supposed to be there. But in the end we will see that we are no after
+the actual number of times a motif appears in the sequence and what
+matters is the motif quorum. The main focus of the part one was to show
+the decrease in code length from C++ to Python, introduce generator
+functions and yield and also show the nice permutation function. Turns
+out by using the approach of the previous entry there is a big drawback
+in code execution, which is around 60 times slower than C++. So we need
+to find another approach, and Mike showed us how (with some small
+modifications) [sourcecode language=&#8217;python&#8217;] #!/usr/bin/env python
+from collections import defaultdict import sys import fasta seqs =
+fasta.get_seqs(open(sys.argv[1]).readlines()) length = int(sys.argv[2])
+#for a missing key, the dict entry is initialized to zero counts =
+defaultdict(int) #count the length-element subsequences in each
+sequence for i in seqs: for n in range(len(i.sequence) - length):
+counts[i.sequence[n : n + length]] += 1 #counts.keys() will then return
+the nucleotide sequences #that were actually in merged_seqs #print
+out the sequences that occur more than once for count in counts: print
+&#8221;.join(count), counts[count][/sourcecode] This time the counting is
+done with a defaultdict initialized with integers (all zeroes), and
+instead of generating all possible combinations (which was cool and
+fast, but in the end made our script slower) a window with the input
+length is slided along the each sequence and the key of the default
+dictionary is the motif and the value is the actual count incremented as
+we determine each motif. Checking this code performance using Linux&#8217;s
+time, we get 0.2 seconds, an improvement of 5 fold on the C++ code and
+300 fold on our previous Python code (Thanks Mike and everyone else for
+the suggestions). What is different here is that the output is not
+ordered and only the seen motifs are printed in the end. We will see
+next time how to get the quorums.
+<a href="http://www.zemanta.com/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/pixie.png?x-id=29d95384-32e6-4c9c-8e9b-140819e795d6" alt="image" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-10T21:56:51-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2008-05-10-obtaining-overrepresented-motifs-in-dna-sequences-part-2.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2008-05-10-obtaining-overrepresented-motifs-in-dna-sequences-part-2.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

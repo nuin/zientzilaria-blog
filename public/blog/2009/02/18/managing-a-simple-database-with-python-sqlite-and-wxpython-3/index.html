@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Managing a simple database with Python, SQLite and wxPython, 3 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="In the last post we saw how to connect to a
+SQLite database file and generate a
+cursor that would allow us to actually interact with such database. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Managing a simple database with Python, SQLite and wxPython, 3</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-18T11:06:58-05:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In the last post we saw how to connect to a
+<a href="http://sqlite.org/" title="SQLite">SQLite</a> database file and generate a
+cursor that would allow us to actually interact with such database. Now
+we need some functionality that will interact with the data, add, read,
+delete and search. As was mentioned before the idea is to have a generic
+database interaction class and have unique instantiated class objects
+for each database of the project. In the <code>db_obj.py</code> file we have an
+initial structure set, so let&#8217;s check the <code>DB_Generic</code> class.
+[sourcecode language=&#8217;python&#8217;]class DB_Generic(): &#8221;&#8217;generic class to
+add DB functionality&#8221;&#8217; def __init__(self, table_name): #par= name
+of the table to be used self.table_name = table_name def
+delete_entry(self): pass def get_data_generic(self): &#8221;&#8217;gets the data
+from the database generic so far, needs to be updated to include
+range&#8221;&#8217; range = 1 (cursor, database) = link_db() if range == 1:
+cursor.execute(&#8220;&#8221;&#8220;SELECT * from %s&#8221;&#8220;&#8221; % self.table_name) table_data =
+cursor.fetchall() raw_data = [] for i in table_data:
+raw_data.append(list(i)) self.table_data = raw_data database.close()
+def insert_data(self, values_list, insert_string): &#8221;&#8217;inserts data in
+the database&#8221;&#8217; (cursor, database) = link_db()
+cursor.execute(insert_string % self.table_name, values_list)
+database.commit() database.close()[/sourcecode] There are different
+functions in this class, we will take a look at each one individually.
+We can see that the class is far from being complete, something that
+we&#8217;ll do in the next posts. We start with the class initialization:
+[sourcecode language=&#8217;python&#8217;]def __init__(self, table_name):
+#par= name of the table to be used self.table_name =
+table_name[/sourcecode] Very simple and direct, it receives the table
+name that is being used by the interface (in this case). The table name
+is then stored in a object that can be accessed by other functions in
+the class. The function to delete entries is not finished as we only
+have a <code>pass</code> in it. We&#8217;ll will do it soon. Next we have a function that
+gets the data from the table. [sourcecode language=&#8217;python&#8217;] def
+get_data_generic(self): &#8221;&#8217;gets the data from the database generic so
+far, needs to be updated to include range&#8221;&#8217; range = 1 (cursor,
+database) = link_db() if range == 1: cursor.execute(&#8220;&#8221;&#8220;SELECT * from
+%s&#8221;&#8220;&#8221; % self.table_name) table_data = cursor.fetchall() raw_data = []
+for i in table_data: raw_data.append(list(i)) self.table_data =
+raw_data database.close()[/sourcecode] So far it grabs everything,
+there is no range selection based on any of the table fields, so it&#8217;s a
+generic SQL <code>SELECT</code>. Let&#8217;s dissect it. The <code>range</code> object is a dummy
+variable that at the moment is there only to remind us that we need to
+include a range select. The next line is the most important in this
+function: it will call the <code>link_db</code> function and start the connection.
+Remember that <code>link_db</code> returns a tuple with the cursor and database
+connection. Basically we will work with cursor methods to get the data,
+and the first action is to execute a SQL <code>SELECT</code> stetement where we
+select everything in the table [sourcecode
+language=&#8217;python&#8217;]cursor.execute(&#8220;&#8221;&#8220;SELECT * from %s&#8221;&#8220;&#8221; %
+self.table_name)[/sourcecode] Notice that the statement is a regular
+string and we use string formating <code>%</code> in ordert o add the table that we
+are searching, which was defined when we initialized the class object in
+the first place. Also, notice the triple quotes around the select
+statement: this will avoid any problems in parsing it when sending to
+the database, making it a <a href="http://en.wikipedia.org/wiki/String_literal" title="String literal">string
+literal</a>.
+So this line executes the statement we pass to the method, but it does
+not actually get the data <em>per se</em>. We need to use another method and
+fetch everything returned by the select. This is done by [sourcecode
+language=&#8217;python&#8217;]table_data = cursor.fetchall()[/sourcecode] A couple
+of things here. The data fetched will be always (or in most cases) in
+unicode, when it&#8217;s a string field. And the data returned will be in a
+list of tuples, with the actual number of fields from the table. We know
+that it&#8217;s easier to work with lists than tuples, so we code something to
+convert types [sourcecode language=&#8217;python&#8217;]table_data =
+cursor.fetchall() raw_data = [] for i in table_data:
+raw_data.append(list(i)) self.table_data = raw_data[/sourcecode]
+There are extra lines here that are not needed, and we will get rid of
+them in a code refactoring soon. This short function is able to connect
+to database, execute a SQL statement on a specified table and grab the
+data selected, returning a list of lists with every field and value
+available. We need to add a better selection statement later, and we
+will do as soon as we have a good structure set. The last function in
+this generic class is the one that inserts data into the table.
+[sourcecode language=&#8217;python&#8217;]def insert_data(self, values_list,
+insert_string): &#8221;&#8217;inserts data in the database&#8221;&#8217; cursor, database) =
+link_db() cursor.execute(insert_string % self.table_name,
+values_list) database.commit() database.close()[/sourcecode] Identical
+procedure: connect, get a cursor, execute a statement. But in this case
+the extra step is not to get the data, but to commit the data to the
+table, which is done by the commit method. We will explain later how the
+execute method works here and what are the <code>insert_string</code> and
+<code>values_list</code>. Notice at the end that we need to close the connection to
+the database, so we know that the data has been inserted properly. Next,
+we will instantiate a class from this generic one and see how easy is to
+manipulate the data. Stay tuned. Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://reblog.zemanta.com/zemified/1663854e-5aba-4ff1-9a75-dffb8e6b7945/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=1663854e-5aba-4ff1-9a75-dffb8e6b7945" alt="Reblog this post [with
+Zemanta]" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-18T11:06:58-05:00" pubdate data-updated="true">Feb 18<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/" title="Previous Post: Managing a simple database with Python, SQLite and wxPython, 2">&laquo; Managing a simple database with Python, SQLite and wxPython, 2</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/02/21/why-do-i-blog-or-science-blogging-is-it-worth/" title="next Post: Why do I blog. Or: Science Blogging, is it worth?">Why do I blog. Or: Science Blogging, is it worth? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

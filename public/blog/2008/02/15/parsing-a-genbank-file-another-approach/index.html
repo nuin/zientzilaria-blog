@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Parsing a GenBank file, another approach - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Last couple of entries we learnt a little bit about sets and that
+newer Python versions make its use a lost faster than dictionaries to
+uniquify &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2008/02/15/parsing-a-genbank-file-another-approach">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Parsing a GenBank file, another approach</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-15T11:35:13-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Last couple of entries we learnt a little bit about <code>sets</code> and that
+newer Python versions make its use a lost faster than <code>dictionaries</code> to
+uniquify <code>lists</code>. And soon we will see good examples of <code>sets</code> usage.
+And now for some completely different &#8230; we go back to parsing GenBank
+files. We saw sometime ago how to extract some simple information
+contained in this type of files. I am working on a project that requires
+a lot of work in GenBank files, and instead of learning how to use an
+available parser I decided to write a simple one on my own. The
+requirements were simple: extract all protein sequences from a whole
+genome GenBank file and also the DNA from the sequence available in it
+(this time we will see how to get the proteins and next time the
+latter). We all know that GenBank files have an annotation section, with
+IDs, references, organism and some other information at the top. The DNA
+sequence at the bottom, after ORIGIN, and the protein sequences are in
+annotated regions of CDSs. An example is below:</p>
+
+<p><code>     gene            8330..9475                      /gene="COS1"                      /locus_tag="YNL336W"                      /db_xref="GeneID:855380"      CDS             8330..9475                      /gene="COS1"                      /locus_tag="YNL336W"                      /experiment="experimental evidence, no additional details                      recorded"                      /note="Protein of unknown function, member of the DUP380                      subfamily of conserved, often subtelomerically-encoded                      proteins"                      /codon_start=1                      /product="Cos1p"                      /protein_id="NP_014063.1"                      /db_xref="GI:6323993"                      /db_xref="SGD:S000005280"                      /db_xref="GeneID:855380"                      /translation="MKENELKNEKSVDVLSFKQLESQKIVLPQDLFRSSFTWFCYEIY                      KSLAFRIWMLLWLPLSVWWKLSNNCIYPLIVSLLVLFLGPIFVLVICGLSRKRSLSKQ                      LIQFCKEVTENTPSSDPHDWEVVAANLNSYLYENKAWNTKYFFFNAMVCQEAFRTTLL                      EPFSLKKDEAAKVKSFKDSVPYIEEALGVYFREVEKQWKLFNSEKSWSPVGLEDAKLP                      KEAYRFKLTWFLKRISNIFMLIPFLNFLCCIYVSRGMCLLLRTFYLGWILFMLVQGFQ                      NMRMIVLSVKMEHKMQFLSTIINEQESGANGWDEIAKKMNRYLFEKKVWKNEEFFFDG
+IDCEWFFSHFFYRVLSAKKSMRALSLNVELWPYIKEAQLSCSEESLA"</code></p>
+
+<p>In a GenBank file each coding gene corresponds to at least one protein.
+The first line, gene, contains the nucleotide region, as the CDS line.
+The other lines, starting with a slash provide information about the
+gene and the last piece of information is the DNA translation with the
+whole protein sequence. In my case, the first objective was to obtain
+the protein sequence, get the protein ID and the gi ID from each entry
+in a genome file. An initial assessment, tell us that creating a class
+for each protein in the file is a good start.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Protein</span><span class="p">:</span> <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>  <span class="bp">self</span><span class="o">.</span><span class="n">gi</span> <span class="o">=</span> <span class="n">gi</span>
+</span><span class='line'>  <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+</span><span class='line'>  <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So we declare the class and have elements for the
+IDs and the amino acid sequence. The next problem is how do get each
+gene/CDS information, extract what we need and store in a list of class
+instances? This is much like we do with our FASTA entries, reading line
+by line and looking for FASTA sequence names, which start with <code>&gt;</code>. For
+GenBank files we will look for lines containing the word gene. Of course
+this would mean that every gene that has this word in its name will be a
+problem, so we match against <code>'  gene  '</code> (the word gene flanked by two
+spaces).</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">proteins</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39; gene &#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">index</span> \<span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>      <span class="c">#parses the CDS and appends to a list</span>
+</span><span class='line'>      <span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+</span><span class='line'>      <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>      <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
+</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="c">#found the DNA sequence, we can stop now </span>
+</span><span class='line'>      <span class="k">break</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> In the above excerpt we read
+the file line by line, having an index just to keep the code aware of
+which entry we are at. Every time we find a line with <code>'  gene  '</code>, we
+check for the index and if it is larger than one we parse the entry that
+has been compiled already and start a new one. If we find &#8216;ORIGIN&#8217; we
+bail out, breaking the loop, and in every other case we add a line to
+our current entry. When this is sent to the parsing function we clear
+the string and start compiling the information again. Using a string for
+an entry might be a second choice, as lists are easier to manipulate
+after (and eventually we will transform our string in a list by
+splitting it). Notice that we have a call to a function <code>parse_entry</code>,
+let&#8217;s see how this function is</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">prot_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">prot_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">prot_id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/translation&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">sequence</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span>
+</span><span class='line'>      <span class="n">temp</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_data</span><span class="p">)):</span>
+</span><span class='line'>          <span class="n">sequence</span> <span class="o">+=</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">Protein</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="n">prot_id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> As mentioned
+above, we split the string in a list (we will check if there is any
+improvement in speed if we use a list from the beginning) and then
+analyse each one of the lines. In this case, we only need the protein,
+the gene name and, evidently, the protein sequence. Dissecting the
+excerpt above we have</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">prot_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">prot_id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will get us the protein ID from
+<code>/protein_id="NP_014063.1"</code> and also the gene name/info from
+<code>/product="Cos1p"</code>, which them can be stored in the <code>prot_id</code> string
+that will be passed to the class instance. The gi ID can be extracted in
+similar fashion. In order to get the sequence we have to do a small
+trick, that can be seen on the excerpt below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/translation&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span>
+</span><span class='line'>  <span class="n">temp</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_data</span><span class="p">)):</span>
+</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> We find the beginning of the
+translation information by checking the line that contains
+<code>/translation</code> and we extract the initial part of the sequence my
+finding the equal sign and getting everything after it. Then the trick.
+We know that the end of the translation information will be the last
+line of the whole gene/CDS entry. So we check for the index of the first
+sequence line and store it in a temp variable. Using this variable as
+the first value of a range we are able to get every other line of the
+sequence. That simple. To do the output, we can just iterate the list of
+class objects and print all the information in FASTA format or any other
+that we wish. Put everything together and we have a simple but effective
+GenBank parser. Please notice that this script wouldn&#8217;t work in every
+possible scenario, but with minor tweaks it should be applicable in most
+cases. Next time, we will see how we can get the DNA sequence in an
+effective way. <em>An example of GenBank file can be found
+<a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=nuccore&amp;id=117937805">here</a></em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-15T11:35:13-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2008/02/15/parsing-a-genbank-file-another-approach/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2008/02/15/parsing-a-genbank-file-another-approach/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/01/30/benchmarking-python-fastest-way-to-generate-unique-lists/" title="Previous Post: Benchmarking Python: fastest way to generate unique lists">&laquo; Benchmarking Python: fastest way to generate unique lists</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/02/20/a-comparison-between-python-and-c-parsing-a-genbank-file/" title="next Post: A comparison between Python and C(++): parsing a GenBank file">A comparison between Python and C(++): parsing a GenBank file &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

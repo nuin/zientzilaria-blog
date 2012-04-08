@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Restriction enzymes: first take - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We now jump with both feet on the main topic of the book&#8217;s chapter,
+which is generating restriction maps of DNA sequences. First step is to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-08-31-restriction-enzymes-first-take.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Restriction enzymes: first take</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-31T16:08:12-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We now jump with both feet on the main topic of the book&#8217;s chapter,
+which is generating restriction maps of DNA sequences. First step is to
+obtain restriction enzyme information, read it and format in a way that
+our main script will understand. We will use the same dataset as the
+book, the <a href="http://rebase.neb.com/rebase/rebase.html">Rebase</a> database at
+New England Biolabs. In the book, Tisdall suggests the download of a
+<em>bionet</em> format, which can be downloaded
+<a href="ftp://ftp.neb.com/pub/rebase/">here</a> (scroll down to bionet.709). This
+file looks like this:
+<code>AaaI (XmaIII)                     C^GGCCG AacI (BamHI)                      GGATCC AaeI (BamHI)                      GGATCC AagI (ClaI)                       AT^CGAT AanI (PsiI)                       TTA^TAA AaqI (ApaLI)                      GTGCAC</code>
+where the first column contains the enzyme names and the second column
+has the actual cleavage sites. It won&#8217;t be difficult to parse this file
+and create a dictionary with the names and sites, but it would be easier
+if the file the data was tab-separated, but it is nothing we will have
+problem dealing with. The file also has some header lines which we will
+have to avoid. Next entry will deal with user cases and some other
+aspects of coding, as we head to our most complex script until now. Noe
+we will only create a function that reads the file and generates the
+dictionary, what sounds very simple. There are two ways (maybe even
+more) to discard the header lines: progamatically or actively deleting
+such lines. We won&#8217;t delete the lines this time, so we have to follow
+the other path. The easiest way to eliminate header lines from our
+parsing function would be to count the lines and start the parsing
+procedure after that certain number but that would mean a high
+confidence of the format being constant in every release. So, first we
+get rid of the header lines [sourcecode language=&#8217;python&#8217;]def
+read_enzymes(file): resenz = {} start = False for line in file: if
+line.find(&#8216;Rich Roberts&#8217;) >= 0: start = True line = file.next() if
+start == True and len(line) > 10:[/sourcecode] where we already
+declared the dictionary that will receive the name and sites. We have a
+flag boolean that tells the script where the actual enzyme list starts
+(<code>start</code>), declared as false and then modified to true when the line
+containing <code>Rich Roberts</code> is found. The line <code>line = file.next()</code> tells
+the script that the current line is equal to the next line of the file.
+We do this to avoid starting the parsing of the file at the line we
+found <code>Rich Roberts</code>. the <code>if</code> statement checks for the line size in
+order to split and parse only the actual lines and discard empty ones.
+Now, in order to get the sites and enzyme names we will use split,
+differently than we used before. This time we won&#8217;t pass any arguments
+to split as a separator. This will trigger another type of splitting
+procedure, where some characters will be stripped from the string
+(spaces, tabs, newlines, returns, and formfeeds) and the resulting words
+will be then separated by arbitrary length strings of whitspaces.
+Basicall this split will return a list with the words in that particular
+line. Inpecting the file carefully, we notice that some enzyme names
+have an extra id between parentheses. We will not consider this extra
+id. After splitting we will get the first and last elements of the list
+and put them in our dictionary. [sourcecode language=&#8217;python&#8217;]buffer =
+line.split() resenz[buffer[0]] = buffer[-1].replace(&#8216;\<sup>&#8217;,</sup>
+&#8221;)[/sourcecode] Done. We have the dictionary ready. And using Python&#8217;s
+included batteries we use the last line in the function to remove the
+circumflex characters. Putting everything together we have [sourcecode
+language=&#8217;python&#8217;]def read_enzymes(file): resenz = {} start = False for
+line in file: if line.find(&#8216;Rich Roberts&#8217;) >= 0: start = True line =
+file.next() if start == True and len(line) > 10: buffer = line.split()
+resenz[buffer[0]] = buffer[-1].replace(&#8216;\<sup>&#8217;,</sup> &#8221;)[/sourcecode]</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-31T16:08:12-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-08-31-restriction-enzymes-first-take.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-08-31-restriction-enzymes-first-take.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

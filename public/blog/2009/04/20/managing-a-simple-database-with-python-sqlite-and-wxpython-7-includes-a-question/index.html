@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Managing a simple database with Python, SQLite and wxPython, 7 (includes a question) - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="And we&#8217;re back. After a couple of weeks of inactivity we will get back
+to our small soap-opera pf Python, wxPython and SQLite. Continuing in &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Managing a simple database with Python, SQLite and wxPython, 7 (includes a question)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-20T12:21:59-04:00" pubdate data-updated="true">Apr 20<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>And we&#8217;re back. After a couple of weeks of inactivity we will get back
+to our small soap-opera pf Python, wxPython and SQLite. Continuing in
+our database management code let&#8217;s check two other functions that
+changed since our first inception of the code. The first one is the
+<code>insert_data</code> function that looks like this now [sourcecode
+language=&#8217;python&#8217;]def insert_data(self, values_list, insert_string):
+&#8221;&#8217;inserts data in the database&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
+database) = link_db(self.db_path) else: (cursor, database) =
+link_db() cursor.execute(insert_string % self.table_name,
+values_list) database.commit() database.close()[/sourcecode] Basically
+no changes, apart from the obvious check for the current running
+operating system, which was explained in the last post. The other
+function to check is the <code>update_data</code>. This function is new and it
+wasn&#8217;t in the first version, but as it can be seen it has a problem
+being a &#8220;generic&#8221; function, because it contains information pertained to
+the table and database being used in the interface. This function
+basically received information that needs to be updated in the table&#8217;s
+fields and by using the SQL <code>UPDATE ... SET</code> edits and updates data in
+the changed fields. I have tried several different syntaxes to make the
+execute generic, mainly trying to pre-format the string without success.
+IF anyone reading this can help, I&#8217;d appreciate. [sourcecode
+language=&#8217;python&#8217;]def update_data(self, values_list): &#8221;&#8217;edits and
+updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor, database) =
+link_db(self.db_path) else: (cursor, database) = link_db()
+cursor.execute(&#8220;UPDATE bac SET projects = ?, comments = ?, temperature =
+?, cell = ?, box = ?, tubes = ?, chromosome = ?, sdate = ?, clone = ?,
+source = ?, location1 = ?, startpos = ?, endpos = ?, gene = ?, genelink
+= ?, dnaex = ?, validation = ?, pcr = ?, refs = ?, antibiotic = ? WHERE
+idbac = ?&#8221;, values_list[&#8216;projects&#8217;], values_list[&#8216;comments&#8217;],
+values_list[&#8216;temperature&#8217;], values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;],
+values_list[&#8216;tubes&#8217;], values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;],
+values_list[&#8216;clone&#8217;], values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;],
+values_list[&#8216;start&#8217;], values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;],
+values_list[&#8216;genelink&#8217;], values_list[&#8216;dna&#8217;],
+values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;], values_list[&#8216;refs&#8217;],
+values_list[&#8216;antibiotic&#8217;], values_list[&#8216;idbac&#8217;])) database.commit()
+database.close()[/sourcecode] Anyway, I will explain the logic of the
+command (OK for a stop gap, but not as a definite solution).
+<code>values_list</code> is a dictionary that is passed to the function and
+contains the field names as keys and the new/changed information as
+values. The execute method simply parses the values from each key in the
+update string which is then sent to the database and table to be
+changed. Everything is committed and the database is closed. As this is
+a &#8220;generic&#8221; function from a &#8220;generic&#8221; class the ideal scenario would be
+to the function to receive a pre-formatted string with all the
+information, as in the insert data function, and update the information
+in the database. I would like to thank in advance anyone that can
+comment on this. Next time we will continue checking the generic class
+and finalize this part in order to start with the interface build
+process.\
+\
+ Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
+5</a>
+<a href="http://python.genedrift.org/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/">Part
+6</a>
+<a href="http://reblog.zemanta.com/zemified/d0bb5d11-6f9d-8521-9a2f-6cd30868e375/" title="Reblog this post [with Zemanta]"><img src="http://img.zemanta.com/reblog_a.png?x-id=d0bb5d11-6f9d-8521-9a2f-6cd30868e375" alt="Reblog this post [with
+Zemanta]" /></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-20T12:21:59-04:00" pubdate data-updated="true">Apr 20<span>th</span>, 2009</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/" title="Previous Post: Managing a simple database with Python, SQLite and wxPython, 6">&laquo; Managing a simple database with Python, SQLite and wxPython, 6</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/04/22/managing-a-simple-database-with-python-sqlite-and-wxpython-8/" title="next Post: Managing a simple database with Python, SQLite and wxPython, 8">Managing a simple database with Python, SQLite and wxPython, 8 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

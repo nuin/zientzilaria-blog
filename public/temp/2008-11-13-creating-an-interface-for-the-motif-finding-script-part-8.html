@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Creating an interface for the motif finding script, part 8 - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Let&#8217;s see now how do we connect our GUI to the the pymotif file (I
+changed the name because of some conflicts with the app name [my bad!],
+the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2008-11-13-creating-an-interface-for-the-motif-finding-script-part-8.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Creating an interface for the motif finding script, part 8</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-13T17:28:35-05:00" pubdate data-updated="true">Nov 13<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Let&#8217;s see now how do we connect our GUI to the the pymotif file (I
+changed the name because of some conflicts with the app name [my bad!],
+the git repo was updated accordingly). And also how to display the
+results, in a simpler manner. Ok, first to connecting the script to the
+function file, pymotif.py. The file is already imported in our script
+and we have used it before. We need to find the exact point and which
+parameters to pass. pytmotif.py is a slightly modified version of your
+command line script, and the code is below. [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import fasta import sys from
+collections import defaultdict def choose(n, k): if 0 &lt;= k &lt;= n: ntok =
+1 ktok = 1 for t in xrange(1, min(k, n - k) + 1): ntok *= n ktok *= t
+n -= 1 return ntok // ktok else: return 0 def get_quorums(seqs, mlen):
+&#8221;&#8221;&#8221; add seq id_no to a set use explicit counter to create seq_no &#8220;&#8221;&#8221;
+quorum = defaultdict(int) for seq in seqs: for n in range(len(seq) -
+mlen): quorum[seq[n:n + mlen]] += 1 return quorum def
+calculate_motifs(input_seqs, input_seqs2): input_seqs =
+fasta.read_seqs(open(&#8216;celladhesion1000.fa&#8217;).readlines()) input_seqs2 =
+fasta.read_seqs(open(&#8216;celladhesion1000C.fa&#8217;).readlines()) foreground =
+get_quorums(input_seqs, 10) background = get_quorums(input_seqs2,
+10) N = len(input_seqs) + len(input_seqs2) res_motifs = [] for i in
+foreground: term1 = choose(background[i], foreground[i]) term2 =
+choose((N - background[i]), len(input_seqs) - 1) term3 = choose(N,
+len(input_seqs)) p = (float(term1) * float(term2)) / term3 if 0 &lt; p &lt;=
+0.0001: res_motifs.append(i + &#8216;t&#8217; + str(foreground[i]) + &#8216;t&#8217; +
+str(background[i]) + &#8216;t&#8217; + str(p)) res_motifs.sort() return
+res_motifs[/sourcecode] So, basically the line we are interested is
+this one [sourcecode language=&#8217;python&#8217;]def
+calculate_motifs(input_seqs, input_seqs2):[/sourcecode] We replace
+the wx.MessageBox line in our run_finder function and use the input
+files selected by the user as parameters for calculate_motifs, and we
+are done [sourcecode language=&#8217;python&#8217;]def run_finder(self, event):
+result = pymotif.calculate_motifs(self.fore_file,
+self.back_file)[/sourcecode] Very simple and direct. This should take
+care of everything except the motif width, what we will see in the next
+post. We still need a place to write the overrepresented motifs. We can
+add a text box to the frame, and we do that by adding an extra
+declaration in our __do_layout function. This time we need to add
+some extra style to the box, so it can show multiple lines and has a
+scroll bar. [sourcecode language=&#8217;python&#8217;]self.results =
+wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100), wx.TE_MULTILINE |
+wx.TE_AUTO_SCROLL | wx.HSCROLL)[/sourcecode] Notice the wx. flags
+added. MULTILINE allows the box to have multiple lines and the other two
+turn on the auto scroll and horizontal scroll. Great. And how do we
+write the results. Notice above that the function that calculates the
+motifs, returns a list where each item has the motif sequence and the p
+value, sorted. So the only thing we need to do is to iterate over the
+list and print each line to the result box. That simple, and we
+accomplish it by using the WriteText method, that receives as a
+parameter a string, either literal or a string object. Our run_finder
+function will have a couple of extra lines [sourcecode
+language=&#8217;python&#8217;]def run_finder(self, event): result =
+pymotif.calculate_motifs(self.fore_file, self.back_file) for motif in
+result: self.results.WriteText(motif + &#8216;n&#8217;)[/sourcecode] That will
+present in a very simplistic way the resulting overrepresented motifs,
+but it&#8217;s enough for now. Our GUI script will be [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
+pymotif import fasta import os class pymot(wx.App): def
+__init__(self, redirect=False): wx.App.__init__(self, redirect)
+class pymotGUI(wx.Frame): def __init__(self, parent, id):
+wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
+style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
+&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
+panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
+#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
+&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
+background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
+filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
+creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
+#input box for motif width, and label self.one_label =
+wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
+wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #result textbox
+self.results = wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100),
+wx.TE_MULTILINE | wx.TE_AUTO_SCROLL | wx.HSCROLL) #run bbutton
+self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
+self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
+file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
+background file&#8217;, (10, 30)) #binding the menus to functions
+self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
+self.Bind(wx.EVT_MENU, self.on_background, background_menu)
+self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
+on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
+if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetPath()
+self.fore_label.SetLabel(fore_file) def on_background(self, event):
+dialog = wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() ==
+wx.ID_OK: back_file = dialog.GetPath()
+self.back_label.SetLabel(back_file) def run_finder(self, event):
+result = pymotif.calculate_motifs(self.fore_file, self.back_file) for
+motif in result: self.results.WriteText(motif + &#8216;n&#8217;) #wx.MessageBox(&#8216;It
+should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;: app = pymot()
+frame = pymotGUI(parent=None, id = -1) #frame.CentreOnScreen()
+frame.Show() app.MainLoop()[/sourcecode]</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-13T17:28:35-05:00" pubdate data-updated="true">Nov 13<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2008-11-13-creating-an-interface-for-the-motif-finding-script-part-8.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2008-11-13-creating-an-interface-for-the-motif-finding-script-part-8.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

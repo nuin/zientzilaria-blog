@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Alternative methods to split a FASTA file - updated (again) - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="As Daniel didn&#8217;t enlightened us on how to use csplit, I am posting
+several ways on how to split a multiple sequence FASTA file. This post
+gets &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-10-10-alternative-methods-to-split-a-fasta-file.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Alternative methods to split a FASTA file - updated (again)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-10T13:53:28-04:00" pubdate data-updated="true">Oct 10<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>As Daniel didn&#8217;t enlightened us on how to use csplit, I am posting
+several ways on how to split a multiple sequence FASTA file. This post
+gets out of our focus (if you haven&#8217;t noticed, our focus here is
+<strong>Python</strong>, and maybe suffers from the NIH effect. Not invented here. We
+will be back with our normal programming after this. We start with our
+&#8220;widely&#8221; available option <strong>csplit</strong>:
+<code>csplit -kf seq file '%^&gt;%' '/^&gt;/' '{*}'</code> where <code>k</code> tells the program to
+keep files in case of an error, <code>f</code> sets a prefix for the output files
+(otherwise xx00 is used) and two regex patterns are used: between %s is
+the one to skip and between /s is the one to copy up to but not
+including the line. In {} is the number of times we want to have the
+previous patterns repeated, a * meaning as many time as possible. Easy,
+eh? Now, we can check how perl fares. I am not a perl monger so I
+googled it and I found an one-liner. Quoting the original
+<a href="http://www.softpanorama.org/Scripting/Perlorama/perl_in_command_line.shtml">site</a>:
+Split a multi-sequence FastA file into individual files named after
+their description lines.
+<code>perl -ne 'BEGIN{$/="&gt;"}if(/^\s*(\S+)/){open(F,"&gt;$1")||warn"$1 write failed:$!\n";chomp;print F "&gt;", $_}'</code>
+and I am not daring to explain this one. But cariaso did and also sent a
+better version of it # This magic variable makes perl read lines #
+that end with > # instead of a newline n $/=&#8221;>&#8221;; while (&lt;>) { #
+foreach line in the input files if (/\<sup>>(w+)/)</sup> { # grab the first word
+of text open(F,&#8221;>$1&#8221;) || # open a file named that word warn &#8220;$1 write
+failed:$!n&#8221;; chomp; # strip off the > at the end print F &#8220;>&#8221;, $_; #
+print >text to the file } } You can also do in Python, without any OO
+programming in 5 lines: [sourcecode language=&#8217;python&#8217;]file =
+open(&#8216;myfile&#8217;).readlines() str = &#8221;.join(file) temp = str.split(&#8216;>&#8217;)
+for i in temp: print &#8216;>&#8217; + i[/sourcecode] that can be run with no
+difficulties from the interactive console. And which cariaso also
+corrected and improved [sourcecode language=&#8217;python&#8217;]fileobj =
+open(&#8220;myfile.fasta&#8221;) ignore = fileobj.read(1) text = fileobj.read()
+records = text.split(&#8220;>&#8221;) for i in records: print &#8216;>&#8217; + i[/sourcecode]
+along the offer of a nicer approach [sourcecode language=&#8217;python&#8217;]def
+eachfasta(fileobj): sofar = fileobj.readline() for line in fileobj: if
+&#8217;>&#8217; == line (bracket zero close bracket): yield sofar sofar = line
+else: sofar += line yield sofar fileobj = open(&#8220;myfile.fasta&#8221;) for i in
+eachfasta(fileobj): print i[/sourcecode] Also Joe wanted to dip in and
+sent his approach: [sourcecode language=&#8217;python&#8217;]# f6smod.py 10-26-07
+jto # purpose: modify program by Michael Cariaso, given in Paolo Nuin&#8217;s
+blog: # http://python.genedrift.org import sys fileobj =
+open(&#8216;fasta.seq&#8217;) ignore = fileobj.read(1) # The above line removes the
+first char from the file object. # It can also be used to check that
+the first char is a &#8216;>&#8217; if ignore != &#8216;>&#8217;: print &#8220;The first character
+in the supposed FASTA file is: &#8221; + ignore print &#8220;not &#8216;>&#8217;, so sys.exit()
+is being invoked.&#8221; sys.exit() text = fileobj.read() records =
+text.split(&#8216;>&#8217;) # Here, rather than use the for loop to just print out
+the sequences, it # is used to store them in a list. After that they
+can be printed out, or # stored in separate files, or or further split
+into header line and sequence # (using the carriage return at the end
+of the header file). seqlist = [] listcount = 0 # store each
+header/sequence in a list for i in records: i = &#8216;>&#8217; + i
+seqlist.append(i) listcount += 1 # print the list for seq in seqlist:
+print seq # Split into header line and sequence, and make the sequence
+a single string. for seq in seqlist: splitCR = seq.split(&#8216;\n&#8217;) print
+&#8220;header: &#8221; + splitCR[0] sequence = &#8221;.join(splitCR[1:]) print &#8220;sequence:
+&#8221; print sequence[/sourcecode] OK, so <del>three</del> <del>five</del> six more options
+available. I am pretty sure sed and awk would be able to do it glued by
+a bash script, but I am far of being an expert in sed or awk. If you
+know how to do it, leave a comment.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-10T13:53:28-04:00" pubdate data-updated="true">Oct 10<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-10-10-alternative-methods-to-split-a-fasta-file.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-10-10-alternative-methods-to-split-a-fasta-file.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

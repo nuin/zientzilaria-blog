@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Section 2: a nice summary script - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Closing section two, let&#8217;s use everything we saw before and write a nice
+script that will read a sequence file (DNA) and report us of any
+&# &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-03-14-section-2-a-nice-summary-script.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Section 2: a nice summary script</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-14T15:32:24-04:00" pubdate data-updated="true">Mar 14<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Closing section two, let&#8217;s use everything we saw before and write a nice
+script that will read a sequence file (DNA) and report us of any
+&#8220;errors&#8221; and the number of different nucleotides. It is very simple, but
+a good exercise. Depending on your needs you can easily modify it to
+check for other characteristics of sequences, even change it to read
+amino acids sequences. We start with the code, comments coming after it.
+[sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python import sys import
+re fileentered = True while fileentered == True: filename =
+raw_input(&#8216;Please enter a file to check: &#8216;) if len(filename) >= 1:
+try: seqlist = open(filename, &#8216;r&#8217;).readlines() sequence =
+&#8221;.join(seqlist) sequence = sequence.replace(&#8216;\n&#8217;, &#8221;) totalA =
+sequence.count(&#8216;A&#8217;) totalC = sequence.count(&#8216;C&#8217;) totalG =
+sequence.count(&#8216;G&#8217;) totalT = sequence.count(&#8216;T&#8217;) otherletter =
+re.compile(&#8216;[BDEFHIJKLMNOPQRSUVXZ]&#8217;) extra = re.findall(otherletter,
+sequence) output = open(filename+&#8217;.count&#8217;, &#8216;w&#8217;) output.write(&#8216;Count
+report for file &#8217; + filename + &#8216;\n&#8217;) output.write(&#8216;A = &#8217; + str(totalA)
++ &#8216;\n&#8217;) output.write(&#8216;C = &#8217; + str(totalC) + &#8216;\n&#8217;) output.write(&#8216;G = &#8217;
++ str(totalG) + &#8216;\n&#8217;) output.write(&#8216;T = &#8217; + str(totalT) + &#8216;\n&#8217;) if
+len(extra) > 0: output.write(&#8216;Also were found &#8217; + str(len(extra)) + &#8217;
+errors\n&#8217;) for i in extra: output.write(i + &#8217; &#8216;) else: output.write(&#8216;No
+error found&#8217;) output.close() print &#8216;Result file saved on &#8217; + filename +
+&#8216;.count&#8217; except: print &#8216;File not found. Please try again.&#8217; else:
+sys.exit()[/sourcecode] The main change here is that we use a <code>while</code>
+loop to control de program flow. Notice that we import <code>sys</code> and <code>re</code>.
+Basically we ask for an user input, the filename, and depending on the
+input given we process the file or exit the program. The early exit is
+done with the <code>sys.exit</code> method which is a shortcut to get out of the
+script processing. Very handy. If the input is valid we <code>try</code> to open
+it. If the operation is successful, great, we read the file, count the
+nucleotides and use a quite scary regular expression to search all the
+&#8220;errors&#8221; in our sequence. The regex is compiled with the pattern
+<code>'[BDEFHIJKLMNOPQRSUVXZ]'</code> which means &#8220;match any character in this
+range&#8221;. Take a closer look at the pattern and you will see that is every
+letter in the alphabet, except for ACGT. And when searching for these
+&#8220;errors&#8221; instead of using <code>re.search</code> we use <code>re.findall</code>, which
+conveniently returns a list with all the substrings found. That&#8217;s even
+more handy. On the final part of the script we take care of the output,
+opening a file called <code>.count</code> where we print the counts and the errors,
+if they actually exist. One thing I left from the previous post, is that
+we need to close the file opened to write. In some cases if the file is
+not properly closed, errors might occur. So always remember to close the
+files used for writing/appending, using <code>.close()</code>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-14T15:32:24-04:00" pubdate data-updated="true">Mar 14<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-03-14-section-2-a-nice-summary-script.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-03-14-section-2-a-nice-summary-script.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

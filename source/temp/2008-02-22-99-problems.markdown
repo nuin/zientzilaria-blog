@@ -1,0 +1,17 @@
+---
+author: admin
+date: '2008-02-22 23:13:17'
+layout: post
+slug: 99-problems
+status: publish
+title: 99 problems
+wordpress_id: '81'
+? ''
+: - Crunchy
+  - off topic
+  - Python problems
+---
+
+André Roberge, of [Crunchy](http://code.google.com/p/crunchy/) fame, is
+converting a list of 99 Prolog problems to Python. [Check it
+out](http://aroberge.blogspot.com/2008/02/99-problems-looking-for-volunteers.html).

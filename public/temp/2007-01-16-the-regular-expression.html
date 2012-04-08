@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>The Regular Expression - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="As mentioned above, regex in Python are provided by the re module,
+which provides an interface for the regular expression engine. First
+thing we have &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-01-16-the-regular-expression.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">The Regular Expression</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-16T13:49:07-05:00" pubdate data-updated="true">Jan 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>As mentioned above, regex in Python are provided by the <code>re</code> module,
+which provides an interface for the regular expression engine. First
+thing we have to do is to tell the interpreter what to do and what
+expression to use. Let&#8217;s start with a DNA sequence. [sourcecode
+language=&#8217;python&#8217;]myDNA = &#8216;ACGTTGCAACGTTGCAACGTTGCA&#8217;[/sourcecode] How to
+transcribe it to RNA? Transcription creates a single-strand RNA molecule
+from the double-strand DNA; basically the final result is a similar
+sequence, with all <code>T</code>&#8217;s changed to <code>U</code>&#8217;s. So our regular expression has
+to find all <code>T</code> nucleotides in the above sequence and then replace them.
+Regular expressions in Python need to be compiled into a RegexObject,
+that contains all possible regular expression operations. In our case we
+need to search and replace, what can be done by using the <code>sub()</code>
+method. According to the Python&#8217;s <a href="http://www.amk.ca/python/howto/regex/regex.html">Regular Expression
+HOWTO</a> <code>sub()</code> returns
+the string obtained by replacing the leftmost non-overlapping
+occurrences of the RE in string by the replacement replacement. If the
+pattern isn&#8217;t found, string is returned unchanged. Let&#8217;s put everything
+above in real code. First we need to compile a new RegexObject that will
+search for all thymines in our sequence. It can be achieved by using
+this: [sourcecode language=&#8217;python&#8217;]regexp =
+re.compile(&#8216;T&#8217;)[/sourcecode] Simple as that. This line of code tells the
+Python interpreter that our &#8220;regular expression&#8221; is every T in our
+string. Now, we have to make replace those Ts with Us. In order to do
+that we just tell the interpreter: [sourcecode language=&#8217;python&#8217;]myRNA =
+regexp.sub(&#8216;U&#8217;, myDNA)[/sourcecode] Let&#8217;s look at the last two lines of
+code. On the first line we created a new RegexObject, <code>regexp</code> (that
+could have any name, as any variable) and compiled it, making our
+regular expression to be every T in our string. On the second line, we
+assigned our soon to be created RNA sequence to a new string (remember
+that strings in Python are immutable) and used the command <code>sub</code> to
+replace in the Ts by Us present in our original DNA string. Putting all
+together our transcription code will be [sourcecode
+language=&#8217;python&#8217;]#! /usr/bin/env python import re myDNA =
+&#8216;ACGTTGCAACGTTGCAACGTTGCA&#8217; regexp = re.compile(&#8216;T&#8217;) myRNA =
+regexp.sub(&#8216;U&#8217;, myDNA) print myRNA[/sourcecode] You can download the
+resulting script <a href="http://python.genedrift.org/codepy/code_03.py">here</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-16T13:49:07-05:00" pubdate data-updated="true">Jan 16<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-01-16-the-regular-expression.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-01-16-the-regular-expression.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

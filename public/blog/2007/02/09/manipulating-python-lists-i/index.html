@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>"Manipulating" Python lists I - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Now, I want to manipulate my DNA sequence, extract some nucleotides,
+check lines, etc. Simple things. We start with the same basic code to
+read the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/02/09/manipulating-python-lists-i">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">"Manipulating" Python lists I</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-09T14:01:39-05:00" pubdate data-updated="true">Feb 9<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Now, I want to manipulate my DNA sequence, extract some nucleotides,
+check lines, etc. Simple things. We start with the same basic code to
+read the file:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our nucleotides are stored in the variable
+<code>file</code>. Remember that each line is one item of the list and the lines
+still contain the carriage return present in the ASCII file. Let&#8217;s get
+the first and the last lines of the sequence. The first line is easy to
+get, as Python&#8217;s lists start at 0. To access one list item just add
+square brackets with the index number of the item you want to get (this
+is also known as slicing). Something like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will return the item 0 from the
+list, that in our case is the firs line of the sequence. If you add a
+<code>print</code> command</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>you should expect <code>GTGACTTTGTTCAACGGCC....CGTAATCACTTGTTC</code> The last line
+is a little bit trickier. Let&#8217;s assume that we don&#8217;t know the number of
+lines in the list, and here we want to make our script as general as
+possible, so it can handle some simple files later. It is also good code
+practice to think ahead and plan what you want, first to have a detailed
+project to follow, and second it allows you to be prepared to
+errors/bugs that your code might have or situations not expected in your
+original plan. In our file, we have <strong>eight</strong> lines of DNA, so it would
+be just adding this <code>print file[7]</code> and we would output the last line.
+But, the right way to do it is to check the length of the list and
+output the item which has an index equal to the list length. In Python,
+you can check the length of a list by adding the built-in function <code>len</code>
+before the list name, like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So who do we print the last
+line of our sequence? Simple. <code>len(file)</code> should return an integer of
+value 8, which is the actual number of elements in our list. We already
+know that to access any item in a list we just add its index (that has
+to be an integer) to the list name. One idea then would be to use
+<code>len(file)</code> as the index, like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">file</span><span class="p">)]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Why would that be wrong? Our list has eight
+items, but the indexes are from 0 to <strong>7</strong>. So eight would be one index
+over the list length, which is not accessible because it does not exist.
+Solution? Let&#8217;s use the list length minus one:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and there you
+are, the last line of the sequence. But as we want the last line of the
+file, which is a list there is an easier way to output just the last
+line:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which tells the interpreter to print the last item of a list. Putting
+everything together, we have</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&#39;I want the first line&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&#39;now the last line&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Two points worth mentioning:
+differently of strings, Python&#8217;s lists are mutable, items can be
+removed, deleted, changed, and strings also can be sliced by using
+indexes that access characters. Next we will see some more features of
+lists and strings, and how to manipulate them. It will probably be the
+last entry in the first section as we finish the Chapter 4 in the book.
+As you may have noticed some items in the perl book will not be covered,
+at least not immediately. We will jump back and forth sometimes.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-09T14:01:39-05:00" pubdate data-updated="true">Feb 9<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/02/09/manipulating-python-lists-i/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/02/09/manipulating-python-lists-i/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/02/07/reading-files-in-python-using-lists/" title="Previous Post: Reading files in Python: using lists">&laquo; Reading files in Python: using lists</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/02/12/manipulating-python-lists-ii/" title="next Post: "Manipulating" Python lists II">"Manipulating" Python lists II &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

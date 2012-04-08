@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Reading files in Python: using lists - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="Let&#8217;s improve our previous script and put the contents of the file in a
+variable similar to an array. Python understands different formats of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/02/07/reading-files-in-python-using-lists">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Reading files in Python: using lists</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-07T13:56:59-05:00" pubdate data-updated="true">Feb 7<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Let&#8217;s improve our previous script and put the contents of the file in a
+variable similar to an array. Python understands different formats of
+compound data types, and <code>list</code> is the most versatile. A <code>list</code> in
+Python can be assigned by a series of elements (or values) separated by
+a comma and surrounded by square brackets</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">shoplist</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;milk&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;lettuce&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;coffee&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we are going to read the same file and store the
+DNA sequence in a <code>list</code> and output this variable. The beginning of the
+script is the same, where we basically tell Python that the file name is
+AY162388.seq.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We are going to change the way we
+read the file. Instead of just opening and then reading line-by-line, we
+are going to open it a read all the lines at once, by using this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice the part in bold? In the previous
+script, we open and store the contents of the file in a <code>file object</code>.
+Now , we are opening the file and just after it is opened, we are
+reading all the lines of the file at once and storing them in
+<code>file object</code>, but is a Python&#8217;s <code>list</code> of strings. Before, if we
+wanted to manipulate our DNA sequence, we would had to read it, and then
+in the loop store in a variable of our choice. In this script, we do
+that all at once, and the result is a variable that we can change the
+way we wanted. The code without the output part is</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python </span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Try putting a <code>print</code>
+statement after the last line to print the <code>file</code> list. You will get
+something like this</p>
+
+<p><code>['GTGACTT...TTGTTC\n', 'TTTAAATA....TAATC\n', 'AGTGA...CTATG\n', 'GAGCTCA....TATAGC\n', ...]</code></p>
+
+<p>which is exactly the description of a Python&#8217;s list. You see all lines,
+separated by comma and surrounded by square brackets. Notice that each
+line has a carriage return (<code>\n</code>) symbol at the end. Let&#8217;s make
+the output a little nicer including a loop. Remember when I introduced
+loop I wrote that Python iterates over &#8220;items in a sequence of items&#8221;,
+what is a good synonym for <code>list</code>. So the loop should be as
+straightforward as</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Putting everything together gives us</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">file</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-07T13:56:59-05:00" pubdate data-updated="true">Feb 7<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/02/07/reading-files-in-python-using-lists/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/02/07/reading-files-in-python-using-lists/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/01/30/reading-files-in-python/" title="Previous Post: Reading files in Python">&laquo; Reading files in Python</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/02/09/manipulating-python-lists-i/" title="next Post: "Manipulating" Python lists I">"Manipulating" Python lists I &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Restriction enzymes: second take - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="We already have a function that reads the enzymes from a dataset in a
+flat file (with one change: return) [sourcecode language=&#8217;python&#8217;] &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-09-07-restrinction-enzymes-second-take.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Restriction enzymes: second take</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-07T16:48:50-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We already have a function that reads the enzymes from a dataset in a
+flat file (with one change: return) [sourcecode language=&#8217;python&#8217;]def
+read_enzymes(file): resenz = {} start = False for line in file: if
+line.find(&#8216;Rich Roberts&#8217;) >= 0: start = True line = file.next() if
+start == True and len(line) > 10:
+buffer = line.split() resenz[buffer[0]] = buffer[-1].replace(&#8216;\<sup>&#8217;,</sup> &#8221;)
+return resenz[/sourcecode] We now need a function to write a function
+that searches for the sites and a main function that accepts the
+parameters, coordinate the search and return the results. Looks like we
+are more than halfway there. Parameters input was shown before, starting
+on section 3. We import the <code>sys</code> module and use the array inside
+<code>sys.argv</code> to send the parameters to the script. A basic skeleton of our
+main function would look like this [sourcecode language=&#8217;python&#8217;]import
+sys import re import fasta #reading the ezyme dataset in one line and
+storing #enzyme information in enzymeset enzymeset =
+read_enzymes(open(&#8216;bionet.709&#8217;, &#8216;r&#8217;)) #storing enzyme name on a string
+enzyme = sys.argv[1] #reading a FASTA file and sotring the sequences
+sequence = fasta.get_seqs(open(sys.argv[2],
+&#8216;r&#8217;).readlines())[/sourcecode] That&#8217;s a start. Now we have to write a
+function that will check for the enzyme name entered by the user in
+order to check for the existence of such enzyme. Something like this
+would work [sourcecode language=&#8217;python&#8217;]def check_enzyme(input, set):
+if set.has_key(input): return True else: return False[/sourcecode] This
+basically tests of the dictionary contains the name entered. If yes then
+we return True, otherwise False is returned. This changes our main
+script body [sourcecode language=&#8217;python&#8217;]import sys import re import
+fasta #reading the ezyme dataset in one line and storing #enzyme
+information in enzymeset enzymeset = read_enzymes(open(&#8216;bionet.709&#8217;,
+&#8216;r&#8217;)) #storing enzyme name on a string enzyme = sys.argv[1] #check if
+the name entered is valid isname = check_enzyme(enzyme, enzymeset) #if
+it is valid, continue, otherwise abort if isname: #reading a FASTA file
+and sotring the sequences sequence = fasta.get_seqs(open(sys.argv[2],
+&#8216;r&#8217;).readlines())
+else: print &#8216;Name invalid. Please try again.&#8217;[/sourcecode] So, we have a
+good idea on what to do now. We just need a function that creates a
+regular expression and searches it on the sequence. Next time &#8230;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-07T16:48:50-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-09-07-restrinction-enzymes-second-take.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-09-07-restrinction-enzymes-second-take.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

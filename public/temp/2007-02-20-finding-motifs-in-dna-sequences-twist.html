@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Finding motifs in DNA sequences: twist - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="As promised, let&#8217;s change a bit our previous code, and make it more
+effective. If you are reading this tutorial in one-entry mode, let&#8217;s &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-02-20-finding-motifs-in-dna-sequences-twist.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Finding motifs in DNA sequences: twist</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-20T14:30:10-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>As promised, let&#8217;s change a bit our previous code, and make it more
+effective. If you are reading this tutorial in one-entry mode, let&#8217;s
+check the code [sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python
+import re dnafile = &#8220;AY162388.seq&#8221; seqlist = open(dnafile,
+&#8216;r&#8217;).readlines() temp = &#8221;.join(seqlist) sequence = temp.replace(&#8216;\n&#8217;,
+&#8221;) inputfromuser = True while inputfromuser: inmotif =
+raw_input(&#8216;Enter motif to search: &#8216;) if len(inmotif) >= 1: motif =
+re.compile(&#8216;%s&#8217; % inmotif) if re.search(motif, sequence): print &#8216;Yep, I
+found it&#8217; else: print &#8216;Sorry, try another one&#8217; else: print &#8216;Done, thanks
+for using motif_search&#8217; inputfromuser = False[/sourcecode] In order to
+make it more effective, let&#8217;s allow the input of any file, maybe asking
+for the file as soon as the script is started. To accomplish that we
+need to &#8220;protect&#8221; the script and make it error proof (almost at least).
+Yes, you thought it right: we need to check if the input file exists
+before opening it. We can use <code>try ... except</code> statements to do that.
+Pretty handy. This is called an exception handler, so basically we try
+the validity of some command/method and depending on the result we
+continue our program flow or we catch the exception and do something
+else. Under <code>try</code> we put the expression to evaluate, and under <code>excepts</code>
+what to do in case of failure. Like this [sourcecode
+language=&#8217;python&#8217;]try: opening a file except: as the file does not
+exist, print something[/sourcecode] So, let&#8217;s put in our code above. We
+remove this [sourcecode language=&#8217;python&#8217;]dnafile = &#8220;AY162388.seq&#8221;
+seqlist = open(dnafile, &#8216;r&#8217;).readlines()[/sourcecode] and include this
+lines [sourcecode language=&#8217;python&#8217;]fileinput = True while fileinput ==
+True: filename = raw_input(&#8216;Enter file name:&#8217;) if len(filename) > 0:
+try: dnafile = open(filename, &#8216;r&#8217;) fileinput = False except: print &#8216;File
+does not exist, please try again&#8217; else: sys.exit()[/sourcecode] I know,
+a lot of new code. But if you take a closer look, there is only three
+lines we have never seen: <code>try except</code> and the last line with
+<code>sys.exit()</code>. Here, the script tries to open the file provided as input,
+if it does find the file normal operation resumes, if does not, the
+script asks for another input. As in the other while loop, we control it
+with a boolean variable, and in the case of empty input we end the loop
+and the script, using a system command <code>exit</code>, in the last line of the
+new code. Our script is better now, not bulletproof, but a little bit
+more efficient. There still a &#8220;flaw&#8221;, that you can only check one file
+for each run of the script. At least we not stuck to our usual DNA
+sequence. Download the commented code on the
+<a href="http://python.genedrift.org/repository/">repository</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-20T14:30:10-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-02-20-finding-motifs-in-dna-sequences-twist.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-02-20-finding-motifs-in-dna-sequences-twist.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

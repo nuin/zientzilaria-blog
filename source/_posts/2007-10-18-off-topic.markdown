@@ -1,0 +1,61 @@
+---
+author: admin
+date: '2007-10-18 08:10:59'
+layout: post
+slug: off-topic
+status: publish
+title: Off topic
+wordpress_id: '64'
+? ''
+: - off topic
+---
+
+Mr Daniel Swan accused me of not publishing his
+[comment](http://eridanus.net/blog/?p=233#respond) or reply to his
+comments. I have never seen his reply, either in the comments or as an
+email to me, so to fulfill his desires it is published here.
+
+> I admit that some of the things you have addressed in the past, whilst
+> ‘reinventing’ the wheel, offer important insights into the general
+> problems of programming in general - this particular example was not
+> one of them. From following the course which I assume was outlined by
+> ‘Beginning Perl for Bioinformatics’ (which I do not think is a good
+> reference for beginning Perl at all) a user should already be able to
+> perform the following operations - open a file, iterate over and parse
+> the contents, open a file for writing, and apply some rules for
+> formatting the output. Thus you have already given them the tools to
+> complete the operation should they wish to do so in a Python context.
+> The problem is that you are trying to educate potentially early
+> career/transitional bioinformaticians here - and showing them how to
+> complete tasks in X lines of Python when there is a single command
+> line application to do the trick I think is disingenuous. We wouldn’t
+> dream, for instance, of educating our MRes students in this way. I
+> also would take issue that diversity is a key. You can be as diverse
+> as you like but no-one is seriously going to suggest that you write
+> your next script to parse something out of a GenBank file in
+> assembler. One of the hallmarks of any computer professional in any
+> field is the ability to use the right tool for the job. You should be
+> technology agnostic and be prepared to string together applications or
+> scripts from anywhere to reach your goal - take a look at something
+> like Taverna for instance. I notice in the other post that you mention
+> there is a high proportion of Windows users to this site and therefore
+> command line \*nix comments are of no interest. Although I know a
+> number of bioinformaticians who use Windows (generally to integrate
+> with an institutions existing Microsoft heavy infrastructure) they all
+> have logins to dozens of \*nix machines, run \*nix in a VM or at the
+> very least have a Cygwin installation with which to work with. Basing
+> the availability of technology on the OS of your page imprints is not
+> necessarily indicative. I hope you don’t mind me addressing these
+> points here rather in my blog, as my blog is personal (hence the lack
+> of bioinformatics content on there). I have actually been following
+> these tutorials for a while (as someone who came into Bioinformatics
+> some time ago - my first forays in programming were in Perl) it is
+> nice for me to see tasks that I find intuitive in one language written
+> in another. Consequently the fact that I felt need to comment, merely
+> suggests that I felt strongly on this issue, rather than having any
+> negative feelings towards what you are trying to achieve.
+
+I am sorry for the usual readers of this tutorial, for posting his
+comments as an article here. We will be back to our uneducated, simple
+and basic "tutorial for bioinformatics in X lines for the noobie in
+Windows" soon. Thanks Daniel.

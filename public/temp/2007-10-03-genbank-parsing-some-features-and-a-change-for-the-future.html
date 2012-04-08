@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>GenBank: parsing some features (and a change for the future) - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="This is the last entry based on the book. In my opinion, further topics
+in the book are a little bit redundant and can be accomplished quite
+easily &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/temp/2007-10-03-genbank-parsing-some-features-and-a-change-for-the-future.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">GenBank: parsing some features (and a change for the future)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-03T16:25:16-04:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This is the last entry based on the book. In my opinion, further topics
+in the book are a little bit redundant and can be accomplished quite
+easily if you have followed the tutorial here. If a good number of
+people have interest in checking the remainder of the book, just let me
+know and I will get back and follow the book. At the same time I am
+accepting suggestions on topics to be covered (send me an email or leave
+a comment). I already have some in mind and I am preparing a couple for
+the next phase of the website. So, here is the last entry. Last time we
+saw how to extract the sequence from a GenBank file. This time we are
+going to parse some other information from these files. Basically we
+will use the same idea of our last post to extract the Organism name,
+the Locus and the Accession number of the item. From our last entry we
+have to remember this [sourcecode language=&#8217;python&#8217;]sequence = &#8221;
+issequence = False for line in gbfile: if issequence == True and not
+line.find(&#8216;/&#8217;) == 0: sequence += line.lstrip(&#8216;0123456789 &#8216;).replace(&#8217; &#8216;,
+&#8221;) elif line.find(&#8216;ORIGIN&#8217;) >= 0: issequence = True[/sourcecode] and
+modify it to our needs. Looks simple, and it is. Let&#8217;s see [sourcecode
+language=&#8217;python&#8217;]import sys gbfile = open(sys.argv[1], &#8216;r&#8217;).readlines()
+locus = &#8221; organism = &#8221; accession = &#8221; for line in gbfile: if
+line.find(&#8216;LOCUS&#8217;) >= 0: locus = line elif line.find(&#8216;ACCESSION&#8217;) >=
+0: accession = line elif line.find(&#8216;ORGANISM&#8217;) >= 0: organism = line
+print locus.strip() print organism.strip() print
+accession.strip()[/sourcecode] Just add a flag for each entry you want
+to parse and that&#8217;s it. For longer entries, such as the sequence, we
+have to use the same approach used before, with a boolean flag and
+concatenating the lines until another flag is found. &#8212;&#8212;&#8212;&#8212;- Well,
+that&#8217;s it. After 46 entries we start a new phase. Still it will be
+beginning Python for bioinformatics.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">admin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-03T16:25:16-04:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/temp/2007-10-03-genbank-parsing-some-features-and-a-change-for-the-future.html" data-via="" data-counturl="http://zientzilaria.genedrift.org/temp/2007-10-03-genbank-parsing-some-features-and-a-change-for-the-future.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

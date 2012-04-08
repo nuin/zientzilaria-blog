@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Genetic code: part I - Zientzilaria</title>
+  <meta name="author" content="Paulo Nuin">
+
+  
+  <meta name="description" content="The Python dictionary data-type is like hash in Perl. It is a very
+similar structure, where each element in the variable is composed of two
+values, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zientzilaria.genedrift.org/blog/2007/04/19/genetic-code-part-i">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Zientzilaria" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zientzilaria</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zientzilaria.genedrift.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Genetic code: part I</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-19T16:53:29-04:00" pubdate data-updated="true">Apr 19<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>The Python dictionary data-type is like hash in Perl. It is a very
+similar structure, where each element in the variable is composed of two
+values, more specifically a key-value pair. This is the ideal data type
+to store the genetic code. As you might know the genetic code governs
+the translation of DNA into proteins, where each codon (3 bases or
+nucleotides in the DNA sequence) correspond to an amino acid in the
+protein sequence. So for every sequence of 3 nucleotides (key) will
+represent an amino acid (value). Important things: dictionaries do not
+accept duplicated key values, and every time a new value is assigned to
+a key the old value is erased. To create a new dictionary use the curly
+brackets</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">first_dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> inside the curly braces we first assign a key and
+separated by a colon (:), while multiple pairs should be separated by
+comma. Both key and value have to be between single or double quotes.
+Let&#8217;s see how we will represent the genetic code in a Python dictionary,
+assigning values to keys</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">gencode</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'><span class="s">&#39;ATA&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="c">#Isoleucine </span>
+</span><span class='line'><span class="s">&#39;ATC&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="c">#Isoleucine </span>
+</span><span class='line'><span class="s">&#39;ATT&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="c"># Isoleucine</span>
+</span><span class='line'><span class="s">&#39;ATG&#39;</span><span class="p">:</span><span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="c"># Methionine </span>
+</span><span class='line'><span class="s">&#39;ACA&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="c"># Threonine </span>
+</span><span class='line'><span class="s">&#39;ACC&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="c"># Threonine</span>
+</span><span class='line'><span class="s">&#39;ACG&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="c"># Threonine </span>
+</span><span class='line'><span class="s">&#39;ACT&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="c"># Threonine </span>
+</span><span class='line'><span class="s">&#39;AAC&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="c"># Asparagine</span>
+</span><span class='line'><span class="s">&#39;AAT&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="c"># Asparagine </span>
+</span><span class='line'><span class="s">&#39;AAA&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="c"># Lysine </span>
+</span><span class='line'><span class="s">&#39;AAG&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="c"># Lysine</span>
+</span><span class='line'><span class="s">&#39;AGC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;AGT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;AGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine</span>
+</span><span class='line'><span class="s">&#39;AGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine </span>
+</span><span class='line'><span class="s">&#39;CTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;CTC&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine</span>
+</span><span class='line'><span class="s">&#39;CTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;CTT&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;CCA&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="c"># Proline</span>
+</span><span class='line'><span class="s">&#39;CCC&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="c"># Proline </span>
+</span><span class='line'><span class="s">&#39;CCG&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="c"># Proline </span>
+</span><span class='line'><span class="s">&#39;CCT&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="c"># Proline</span>
+</span><span class='line'><span class="s">&#39;CAC&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="c"># Histidine </span>
+</span><span class='line'><span class="s">&#39;CAT&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="c"># Histidine </span>
+</span><span class='line'><span class="s">&#39;CAA&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="c"># Glutamine</span>
+</span><span class='line'><span class="s">&#39;CAG&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="c"># Glutamine </span>
+</span><span class='line'><span class="s">&#39;CGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine </span>
+</span><span class='line'><span class="s">&#39;CGC&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine</span>
+</span><span class='line'><span class="s">&#39;CGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine </span>
+</span><span class='line'><span class="s">&#39;CGT&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="c"># Arginine </span>
+</span><span class='line'><span class="s">&#39;GTA&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="c"># Valine</span>
+</span><span class='line'><span class="s">&#39;GTC&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="c"># Valine </span>
+</span><span class='line'><span class="s">&#39;GTG&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="c"># Valine </span>
+</span><span class='line'><span class="s">&#39;GTT&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="c"># Valine</span>
+</span><span class='line'><span class="s">&#39;GCA&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="c"># Alanine </span>
+</span><span class='line'><span class="s">&#39;GCC&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="c"># Alanine </span>
+</span><span class='line'><span class="s">&#39;GCG&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="c"># Alanine</span>
+</span><span class='line'><span class="s">&#39;GCT&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="c"># Alanine </span>
+</span><span class='line'><span class="s">&#39;GAC&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="c"># Aspartic Acid </span>
+</span><span class='line'><span class="s">&#39;GAT&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="c"># Aspartic Acid </span>
+</span><span class='line'><span class="s">&#39;GAA&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="c"># Glutamic Acid </span>
+</span><span class='line'><span class="s">&#39;GAG&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="c"># Glutamic Acid </span>
+</span><span class='line'><span class="s">&#39;GGA&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="c"># Glycine </span>
+</span><span class='line'><span class="s">&#39;GGC&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="c"># Glycine </span>
+</span><span class='line'><span class="s">&#39;GGG&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="c"># Glycine </span>
+</span><span class='line'><span class="s">&#39;GGT&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="c"># Glycine </span>
+</span><span class='line'><span class="s">&#39;TCA&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;TCC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;TCG&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine</span>
+</span><span class='line'><span class="s">&#39;TCT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="c"># Serine </span>
+</span><span class='line'><span class="s">&#39;TTC&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="c"># Phenylalanine </span>
+</span><span class='line'><span class="s">&#39;TTT&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="c"># Phenylalanine </span>
+</span><span class='line'><span class="s">&#39;TTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;TTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="c"># Leucine </span>
+</span><span class='line'><span class="s">&#39;TAC&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="c"># Tyrosine </span>
+</span><span class='line'><span class="s">&#39;TAT&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="c"># Tyrosine </span>
+</span><span class='line'><span class="s">&#39;TAA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="c"># Stop </span>
+</span><span class='line'><span class="s">&#39;TAG&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="c"># Stop</span>
+</span><span class='line'><span class="s">&#39;TGC&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="c"># Cysteine </span>
+</span><span class='line'><span class="s">&#39;TGT&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="c"># Cysteine </span>
+</span><span class='line'><span class="s">&#39;TGA&#39;</span><span class="p">:</span><span class="s">&#39;</span><span class="se">\&#39;</span><span class="s">, # Stop</span>
+</span><span class='line'><span class="s">&#39;TGG&#39;</span><span class="p">:</span><span class="s">&#39;W&#39;</span><span class="p">,</span> <span class="c"># Tryptophan }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple, yet efficient. But this
+is the type of functionality that would be great to have at hand
+every time you write a script to translate DNA into proteins. And it is
+not something that you would like to type (or even copy-and-paste) all
+the time. On the next post we will create the translation script and
+will also create our first Python module.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Paulo Nuin</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-19T16:53:29-04:00" pubdate data-updated="true">Apr 19<span>th</span>, 2007</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/04/19/genetic-code-part-i/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/04/19/genetic-code-part-i/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/04/10/still-simulation/" title="Previous Post: Still simulation">&laquo; Still simulation</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/05/24/translating-dna-into-proteins/" title="next Post: Translating DNA into proteins">Translating DNA into proteins &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/">Why I left Biostar, but I still like Stackoverflow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/">Preview of Django 1.1 Testing and Debugging</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/">Initial impressions about Bioinformatics Programming using Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/">Python for Bioinformatics by Sebastian Bassi: a (short) review</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/04/17/biostar-bioinformatics-community/">Biostar: bioinformatics community</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Paulo Nuin -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
