@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="A colleague came with a &#8220;problem&#8221;: what would be the most efficient way
-to merge Pfam alignments? He had FASTA
-files containing sequences &hellip;">
+  <meta name="description" content="My supervisor, Elisabeth Tillier, is part of a team on the Ride to Conquer Cancer benefiting the Princess Margaret Hospita, Toronto, Canada. The ride &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,160 +62,6 @@ files containing sequences &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/">Merging sequences from a Pfam alignment: using sets</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-28T20:58:24-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A colleague came with a &#8220;problem&#8221;: what would be the most efficient way
-to merge <a href="http://pfam.sanger.ac.uk/">Pfam</a> alignments? He had FASTA
-files containing sequences and he wanted to find identical IDs in two
-files and merge the related sequences from different domains of the same
-protein. His C++ approach was taking too long to run so I jumped in to
-help with some Python tricks.</p>
-
-<p>Fasta headers of Pfam alignments look like
-this <code>&gt;P00526.2|SRC_RSVP/147-229</code> where the first section, before the
-pipe, is the protein family, the section between the pipe and the slash
-is the protein ID and the after the slash are the start and end
-positions. Basically we want to match the protein ID, between | and /,
-which is the only section that should not change from one alignment from
-the other, if there are similar sequences in both files. His dataset
-size was around 8000 FASTA files and he wanted to compare
-all-versus-all.</p>
-
-<p>The first idea that comes to mind is to read the two
-files and basically run nested loops checking for matches between two
-sequence names. Simple and easy. But it would be good to find something
-else to do in the meantime, instead of checking for its progress.
-Another idea, to simplify the process, is to read both files, extract
-the protein IDs and check for the intersection of the two sets of IDs
-and then just extract the sequences from a list of matches.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">myset1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">myset2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="n">mylist</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
-</span><span class='line'>          <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
-</span><span class='line'>              <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]:</span>
-</span><span class='line'>                  <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-\&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
-</span><span class='line'>                  <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
-</span><span class='line'>                  <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This
-is the function that matches the sequence IDs. As we are reading the
-FASTA file with the functions/classes in the <code>fasta</code> module there is
-no* direct way to transform the list of sequence names into a set, that
-would make easier to extract the intersection between two sets of IDs
-from distinct files. In the above function, <code>data1</code> and <code>data2</code> are
-instances of the <code>fasta</code> class, and we read these lists and add the
-<code>fasta.name</code> to a couple of sets and get the intersection of them. The
-<code>intersection</code> method returns a list that we use in the nested loops to
-find the matching sequences, as we need to merge them, we add both names
-and residues. Simple and easy. All merged sequences, and their
-respective merged names, are appended to a list that is returned at the
-end of the function. *<em>if there is a more direct way, just let me know</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/28/awk-and-sed-sed-and-awk/">Awk and sed, Sed and awk</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-28T09:44:54-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I would like to thank Lee E. McMahon, Alfred Aho, Peter Weinberger and Brian Kernighan. Thanks a lot.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -899,6 +743,185 @@ divert the focus on optimizing our GenBank parsing script.</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/11/year-of-the-frog/">Year of the Frog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-11T13:18:24-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This serves as a thank you note for all frog species.</p>
+
+<p>Thanks a lot and enjoy your <a href="http://www.amphibianark.org/yearofthefrog.htm">year</a>. Hope this is only the first of many.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/11/fasta-module-generating-reverse-complement-of-dna-sequences/">Fasta module: generating reverse complement of DNA sequences</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-11T12:17:21-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As shown in the GenBank DNA parser script, it is really useful to have
+the ability to get the reverse complement of some DNA sequences. The
+reverse complement of a 5&#8217;-3&#8217; DNA sequence is on its complementary
+strand. Using our <code>fasta</code> module it is easy to implement a function to
+generate the antiparallel sequence Basically we can do this in two step,
+one - obtaining the complement and two - reversing it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">abuffer</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;G&#39;</span><span class="p">:</span>
+</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">abuffer</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s not a Pythonic approach, but it works
+reasonably well for short sequences. What would be a Pythonic approach
+to it? Using dictionaries and list comprehension. From the Python online
+documentation: <em>List comprehensions provide a concise way to create
+lists without resorting to use of map(), filter() and/or lambda. The
+resulting list definition tends often to be clearer than lists built
+using those constructs. Each list comprehension consists of an
+expression followed by a for clause, then zero or more for or if
+clauses. The result will be a list resulting from evaluating the
+expression in the context of the for and if clauses which follow it.</em></p>
+
+<p>It
+is basically a specific way to modify lists using a loop and if clauses
+when needed. In a couple of lines we can do what we accomplished in 10
+lines with the above excerpt. First we need a dictionary to set how the
+nucleotides are related</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">complement</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span>
+</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">:</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span> <span class="s">&#39;A&#39;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then a list
+comprehension to modify each nucleotide</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">complseq</span> <span class="o">=</span> <span class="p">[</span><span class="n">complement</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The list comprehension means: for each base in the
+sequence get the dictionary value for each key (a nucleotide in the
+initial sequence). The complete function would be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span> <span class="n">complement</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="s">&#39;G&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;G&#39;</span><span class="p">:</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span> <span class="s">&#39;A&#39;</span><span class="p">}</span> <span class="n">complseq</span> <span class="o">=</span> <span class="p">[</span><span class="n">complement</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">]</span> <span class="k">return</span>
+</span><span class='line'><span class="n">complseq</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One step solved. We are already able to get the
+complement, now we need to reverse it. Simple. A Python list method
+automatically reverts list elements. Basically what we need then is
+below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">reverse_complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span> <span class="n">seq</span> <span class="o">=</span>
+</span><span class='line'><span class="nb">list</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="n">seq</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="k">return</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The
+call from any script to this function would be simply be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">reverse_complement</span><span class="p">(</span><span class="s">&#39;AACCGGTTTTGGCCAA&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Batteries included, indeed.</p>
+
+<p><em>more can be found
+<a href="http://www.onlamp.com/pub/a/python/2002/10/17/biopython.html?page=4">here</a>.
+that served as an inspiration for the function</em></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/26/">&larr; Older</a>
@@ -916,14 +939,6 @@ divert the focus on optimizing our GenBank parsing script.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -933,6 +948,14 @@ divert the focus on optimizing our GenBank parsing script.</p>
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

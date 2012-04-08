@@ -9,9 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Last entry we saw how to allow the user to open a file. Now we need to
-work on this file and store its path so the script can process it later
-on. &hellip;">
+  <meta name="description" content="Last time we saw how to bind an interface element to a function. Now we
+need to make good use of it, and make the script have some actual &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,150 +63,6 @@ on. &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/11/04/creating-an-interface-for-the-motif-finding-script-part-6/"> Creating an interface for the motif finding script, part 6</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-11-04T17:39:01-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last entry we saw how to allow the user to open a file. Now we need to
-work on this file and store its path so the script can process it later
-on. After the file is selected on the file menu, the filename is printed
-on the label. Let&#8217;s think for a second &#8230; If we get only the filename
-from the dialog, the program won&#8217;t work, because the file might be
-located in another directory, partition, you name it. So we need tp get
-the file&#8217;s full path. We need to change the lines [sourcecode
-language=&#8217;python&#8217;]back_file = dialog.GetFilename()
-self.fore_label.SetLabel(dialog.GetFilename())[/sourcecode] by
-[sourcecode language=&#8217;python&#8217;]back_file = dialog.GetPath()
-self.fore_label.SetLabel(back_file)[/sourcecode] (do not forget to do
-the same to the fore_file!). Let&#8217;s run the script and check what
-happens. The frame should look like the one below (with a little
-stretching for me). <a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/11/gui4.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/11/gui4.png" title="new gui" alt="new
-gui" /></a>
-OK, so this is part is solved. As we haven&#8217;t planned our application
-from the start, we will spend sometime thinking of the basic
-functionality that we migth need. So far, we need one input box, where
-the user can enter the motif width to be searched, and a button to start
-the process. Fine, let&#8217;s add the input box. For this we also need an
-extra label to tell the user what the box is for. Always working on our
-__do_layout function we add two lines [sourcecode
-language=&#8217;python&#8217;]self.one_label = wx.StaticText(panel, -1, &#8216;Motif
-width&#8217;, (10,50)) self.motif_width = wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95,
-50), (40,18))[/sourcecode] Simple as that we have a input box. For the
-button, one line will suffice [sourcecode
-language=&#8217;python&#8217;]self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10,
-80))[/sourcecode] As we can see there is not much difference in any of
-the declarations, they follow a similar process and the parameters are
-more or less identical in some of them. Now, we need to bind the button
-to a function, that we will call <code>run_finder</code>. Remember that binding
-needs an event type, a target function and an object. This time the
-event is a button event, but the other two parameters are similar.
-[sourcecode language=&#8217;python&#8217;]self.Bind(wx.EVT_BUTTON,
-self.run_finder, self.run_button)[/sourcecode] and the function, for
-now will look like [sourcecode language=&#8217;python&#8217;]def run_finder(self,
-event): wx.MessageBox(&#8216;It should run, eh?&#8217;)[/sourcecode] That&#8217;s all for
-today. Our script is growing and the full code is below [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
-fasta import os class pymot(wx.App): def __init__(self,
-redirect=False): wx.App.__init__(self, redirect) class
-pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
-&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
-panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
-#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
-&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-#input box for motif width, and label self.one_label =
-wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
-wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #run bbutton
-self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) #binding the menus to functions
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu)
-self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetPath()
-self.fore_label.SetLabel(fore_file) def on_background(self, event):
-dialog = wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() ==
-wx.ID_OK: back_file = dialog.GetPath()
-self.back_label.SetLabel(back_file) def run_finder(self, event):
-wx.MessageBox(&#8216;It should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;:
-app = pymot() frame = pymotGUI(parent=None, id = -1)
-#frame.CentreOnScreen() frame.Show() app.MainLoop()[/sourcecode]</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/10/30/motif-interface-on-github/">Motif finding interface on github</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-10-30T14:58:46-04:00" pubdate data-updated="true">Oct 30<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There has been actual development of the GUI and most of the development
-is being added simultaneously in the blog and on the code. So, go get a
-copy of git, install it and play with the BPB repository there.
-<a href="http://github.com/nuin/beginning-python-for-bioinformatics/tree/master">http://github.com/nuin/beginning-python-for-bioinformatics/tree/master</a></p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1143,6 +998,163 @@ the last post. I will update the blog contents on OWW and commit some of the cod
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/25/mendeley-a-very-short-review/">Mendeley: a very short review</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-25T15:17:38-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/9541154@N03/2796169357/"><img src="http://farm4.static.flickr.com/3243/2796169357_806c275210_m.jpg" alt="Lost Thoughts" /></a>Image by <a href="http://www.flickr.com/photos/9541154@N03/2796169357/">! <em>S4N7Y</em> !</a> via Flickr  I promised myself that I would never use Mendeley, but I am not very good in keeping promises to myself and I decided to install it, after I got a comment from the co-founder (??) of the software/company.</p>
+
+<p>It seems that it is based on Qt, and a good point (maybe the only one) is that the program is cross-platform. I decided to give it a go and import around 700 PDFs that I have in one directory (I&#8217;m using it on Vista). It has been almost an hour already and the import hasn&#8217;t ended, and it is using one core of my AMD CPU. Process Lasso already lowered its priority 10 times, because it is taking too much cycles. For read a PDF file?</p>
+
+<p>Yep, uninstalling it soon. And not recommending it at all. I will keep using Citeulike, Zotero and the like.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/2d9ecc28-6fcd-40ba-8a3b-26203175eadc/"><img src="http://img.zemanta.com/reblog_e.png?x-id=2d9ecc28-6fcd-40ba-8a3b-26203175eadc" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/">Obtaining overrepresented motifs in DNA sequences, part 13</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T21:32:09-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that we have the best quorum determination function and the ideal
+function to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
+expansions</a>
+it is easy to program a script to calculate the <em>p</em> value of motifs in
+DNA sequences. To the script <em>below in the code there are a couple of
+errors that wordpress don&#8217;t let me fix. The > and &lt; are replaced by
+their literal html enconding. I am working on it, sorry</em></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>          <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>          <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>          <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>          
+</span><span class='line'>          <span class="c">#print ntok // ktok return ntok // ktok else: return 0 def</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id\_no to a set use explicit</span>
+</span><span class='line'><span class="s">counter to create seq\_no &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">for</span>
+</span><span class='line'><span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span>
+</span><span class='line'><span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">id</span>\<span class="n">_no</span><span class="p">)</span> <span class="k">return</span> <span class="n">quorum</span> <span class="nb">input</span>\<span class="n">_seqs</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="nb">input</span>\<span class="n">_seqs2</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">foreground</span> <span class="o">=</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">background</span> <span class="o">=</span> <span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">,</span>
+</span><span class='line'><span class="mi">10</span><span class="p">)</span> <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span>
+</span><span class='line'><span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> \<span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span>
+</span><span class='line'><span class="mf">0.0001</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We already defined choose in the last post (more information in the link
+from the Python&#8217;s cookbook) and earlier Mike sent us a series of
+quorum-determination functions and one of the best was portrayed and
+explained here.</p>
+
+<p>We also need our fasta module to read the sequences (and only the
+sequences) in order to use it in the quorum function. Basically we use
+the foreground and background files as input, determine the quorum of
+the different words (width 10) and then we iterate over the results,
+calculating the <em>p</em> value for each motif found in the foreground set.
+The tree terms of the Hypergeometric Distribution are calculated
+separately and we test for a <em>p</em> value smaller that 0.0001 (this can be
+modified) and we only print the results that fall in this category.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/19/">&larr; Older</a>
@@ -1160,14 +1172,6 @@ the last post. I will update the blog contents on OWW and commit some of the cod
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -1177,6 +1181,14 @@ the last post. I will update the blog contents on OWW and commit some of the cod
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

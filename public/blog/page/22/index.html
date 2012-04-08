@@ -9,8 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We move one on our search for overrepresented motifs in DNA sequences. I
-was preparing this entry when the comments to part 1 arrived. Because of &hellip;">
+  <meta name="description" content="Changing gears now, leaving behind Pfam alignments. I decided to start a
+new series of posts based on the conversion of some small C++ programs I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,218 +63,6 @@ was preparing this entry when the comments to part 1 arrived. Because of &hellip
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/10/obtaining-overrepresented-motifs-in-dna-sequences-part-2/">Obtaining overrepresented motifs in DNA sequences, part 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-10T21:56:51-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We move one on our search for overrepresented motifs in DNA sequences. I
-was preparing this entry when the comments to part 1 arrived. Because of
-that we will modify our previous code to include some suggestions and
-then we will change t a little bit to output the actual values we want.
-As Titus pointed out in his comment, when we merge the sequences we
-generate errors, because we artificially including motifs that are not
-supposed to be there. But in the end we will see that we are no after
-the actual number of times a motif appears in the sequence and what
-matters is the motif quorum. The main focus of the part one was to show
-the decrease in code length from C++ to Python, introduce generator
-functions and yield and also show the nice permutation function. Turns
-out by using the approach of the previous entry there is a big drawback
-in code execution, which is around 60 times slower than C++.</p>
-
-<p>So we need
-to find another approach, and Mike showed us how (with some small
-modifications)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="c">#!/usr/bin/env python</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#for a missing key, the dict entry is initialized to zero </span>
-</span><span class='line'><span class="n">counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</span><span class='line'><span class="c">#count the length-element subsequences in each sequence </span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span> <span class="o">-</span> <span class="n">length</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>  <span class="c">#counts.keys() will then return the nucleotide sequences that were actually in merged_seqs </span>
-</span><span class='line'>  <span class="c">#print out the sequences that occur more than once </span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">count</span><span class="p">),</span> <span class="n">counts</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This time the counting is
-done with a <code>defaultdict</code> initialized with integers (all zeroes), and
-instead of generating all possible combinations (which was cool and
-fast, but in the end made our script slower) a window with the input
-length is slid along the each sequence and the key of the default
-dictionary is the motif and the value is the actual count incremented as
-we determine each motif. Checking this code performance using Linux&#8217;s
-time, we get 0.2 seconds, an improvement of 5 fold on the C++ code and
-300 fold on our previous Python code (Thanks Mike and everyone else for
-the suggestions). What is different here is that the output is not
-ordered and only the seen motifs are printed in the end. We will see
-next time how to get the quorums.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/10/from-the-interwebs-forgotten-archives/">From the Interwebs &#8220;forgotten&#8221; archives &#8230; </a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-10T16:57:56-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tigerramki.jpg/202px-Tigerramki.jpg" alt="A tiger in India's Bandhavgarh reserve" /></a>Image via <a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg">Wikipedia</a>I have no source, but the creation date of the text file is August, 7th 1995. Good luck.</p>
-
-<p><strong>Final Exam</strong></p>
-
-<p>Instructions: Read each question carefully. Answer all questions. Time Limit: 4 hours. Begin immediately.</p>
-
-<p><strong>History</strong></p>
-
-<p>Describe the history of the papacy from its origins to the present day,  concentrating especially, but not exclusively, on its social, political,  economic, religious, and philosophical impact on Europe, Asia, America,  and Africa. Be brief, concise, and specific.</p>
-
-<p><strong>Medicine</strong></p>
-
-<p> You have been provided with a razor blade, a piece of gauze, and a bottle of Scotch. Remove your appendix. Do not suture until your work has been  inspected. You have 15 minutes.</p>
-
-<p><strong>Public speaking</strong></p>
-
-<p>Twenty-five hundred riot-crazed aborigines are storming the classroom.  Calm them. You may use any ancient language except Latin or Greek.</p>
-
-<p><strong>Biology</strong></p>
-
-<p>Create life. Estimate the differences in subsequent human culture if this  form of life had developed 500 million years earlier, with special attention to its probable effect on the English parliamentary system. Prove your thesis.</p>
-
-<p><strong>Music</strong></p>
-
-<p>Write a piano concerto. Orchestrate and perform it with flute and drum.  You will find a piano under your seat.</p>
-
-<p><strong>Psychology</strong></p>
-
-<p>Based on your degree of knowledge of their works, evaluate the emotional stability, degree of adjustment, and repressed frustrations of each of the following: Alexander of Aphrodisias, Rameses II, Gregory of Nicea, Hammurabi. Support your evaluations with quotations from each man&#8217;s work, making appropriate references. It is not necessary to translate.</p>
-
-<p><strong>Sociology</strong></p>
-
-<p>Estimate the sociological problems which might accompany the end of the world. Construct an experiment to test your theory.</p>
-
-<p><strong>Management science</strong></p>
-
-<p>Define management. Define science. How do they relate? Why? Create a generalized algorithm to optimize all managerial decisions. Assuming an 1130 CPU supporting 50 terminals, each terminal to activate your algorithm; design the communications interface and all necessary control programs.</p>
-
-<p><strong>Engineering</strong></p>
-
-<p>The disassembled parts of a high-powered rifle have been placed in a box on your desk. You will also find an instruction manual, printed in Swahili. In ten minutes a hungry Bengal tiger will be admitted to the room. Take whatever action you feel is appropriate. Be prepared to justify your decision.</p>
-
-<p><strong>Economics</strong></p>
-
-<p>Develop a realistic plan for refinancing the national debt. Trace the possible effects of your plan in the following areas: Cubism, the Donatist controversy, the wave theory of light. Outline a method for preventing these  effects. Criticize this method from all possible points of view. Point out the deficiencies in your point of view, as demonstrated in your answer to the  last question.</p>
-
-<p><strong>Political science</strong></p>
-
-<p>There is a red telephone on the desk beside you. Start World War III. Report at length on its socio-political effects, if any.</p>
-
-<p><strong>Epistemology</strong></p>
-
-<p>Take a position for or against truth. Prove the validity of your position.</p>
-
-<p><strong>Physics</strong></p>
-
-<p>Explain the nature of matter. Include in your answer an evaluation of the impact of the development of mathematics on science.</p>
-
-<p><strong>Philosophy</strong></p>
-
-<p>Sketch the development of human thought; estimate its significance. Compare with the development of any other kind of thought.</p>
-
-<p><strong>General knowledge</strong></p>
-
-<p> Describe in detail. Be objective and specific.</p>
-
-<p><strong>* * E X T R A C R E D I T * * </strong></p>
-
-<p> Define the universe; give three examples.</p>
-
-<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=6cd57e9f-1f39-4fc6-a85c-cc42f834c7ff" alt="" /></a></p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1089,6 +877,144 @@ tomorrow in Australia.&#8221; (Charles Schultz) <a href="http://twitter.com/nuin
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/23/twitter-updates-for-2008-04-23/">Twitter Updates for 2008-04-23</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-23T23:59:59-04:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> Thnx, because she refused to add my blog sometime ago. <a href="http://twitter.com/nuin/statuses/795496596">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> what is the requisite to have a blog added to the network? <a href="http://twitter.com/nuin/statuses/795479048">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> question: you are one of the organizers of the DNA network, right? <a href="http://twitter.com/nuin/statuses/795456865">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> I am fully engaged on the BioBarCamp. The only problem is getting there &#8230; <a href="http://twitter.com/nuin/statuses/795456346">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> I don&#8217;t even have an AppEngine account &#8230; <a href="http://twitter.com/nuin/statuses/795451794">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mza">mza</a> Damn, it beats my cassette player &#8230; <a href="http://twitter.com/nuin/statuses/795448825">#</a></p></li>
+<li><p>early leave &#8230; <a href="http://twitter.com/nuin/statuses/795408410">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mza">mza</a> I think the repository is a major issue. The release policy is also non-existent, and regarding the busy I will blog about it &#8230; <a href="http://twitter.com/nuin/statuses/795404493">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> Yes, I should have put inside quotes. My bad. <a href="http://twitter.com/nuin/statuses/795395026">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mza">mza</a> @<a href="http://twitter.com/mndoci">mndoci</a> I agree with the time (lazyness) constraints, and timing. @<a href="http://twitter.com/yokofakun">yokofakun</a> I was thinking more of the finished product &#8230; <a href="http://twitter.com/nuin/statuses/795378116">#</a></p></li>
+<li><p>why published (in sci journals) applications are not properly checked by the reviewers? Opinions &#8230; <a href="http://twitter.com/nuin/statuses/795364138">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> indeed, I hate it <a href="http://twitter.com/nuin/statuses/795187828">#</a></p></li>
+<li><p>job description = bioinformatician <a href="http://twitter.com/nuin/statuses/795154295">#</a></p></li>
+<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> better than mine, I guess <a href="http://twitter.com/nuin/statuses/795150524">#</a></p></li>
+<li><p>time to meet Morpheus <a href="http://twitter.com/nuin/statuses/794816738">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> did you read all six? <a href="http://twitter.com/nuin/statuses/794808549">#</a></p></li>
+<li><p>@<a href="http://twitter.com/Scobleizer">Scobleizer</a> to celebrate she will nuke Iran. <a href="http://twitter.com/nuin/statuses/794807411">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> I asked two: one does not like to talk about himself, the other said he would do it but only after July. <a href="http://twitter.com/nuin/statuses/794803989">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> good call too, I will add to my list (very short at the moment) <a href="http://twitter.com/nuin/statuses/794797404">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> @<a href="http://twitter.com/mndoci">mndoci</a> I had thought of her a long time ago, but decided to interview Rosie Redfield first due to the open science thingy &#8230; <a href="http://twitter.com/nuin/statuses/794793964">#</a></p></li>
+<li><p>how about Janet Thornton interviewed in SciView? What do you guys think? <a href="http://twitter.com/nuin/statuses/794791750">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> that&#8217;s why I don&#8217;t have a calendar. <a href="http://twitter.com/nuin/statuses/794790816">#</a></p></li>
+<li><p>Thanks Flyers, I will watch more than 7 meaningful playoff hockey games this year. <a href="http://twitter.com/nuin/statuses/794785793">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> a more psychological, catastrophic, biological sci-fi <a href="http://twitter.com/nuin/statuses/794785462">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> I think we are living the sci-fi of gadgets, and I think it is time to the sci-fi of Dick, Ballard, etc to revamp &#8230; <a href="http://twitter.com/nuin/statuses/794785155">#</a></p></li>
+<li><p>looking for suggestions for a new SciView interview, last couple were declined &#8230; <a href="http://blindscientist.genedrift.org/category/sciview/">http://blindscientist.genedrift.org/category/sciview/</a> <a href="http://twitter.com/nuin/statuses/794738655">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> Sunshine is a nice movie. <a href="http://twitter.com/nuin/statuses/794737794">#</a></p></li>
+<li><p>2 x 2, c&#8217;mon Flyers <a href="http://twitter.com/nuin/statuses/794723793">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/23/how-to-improve-scientific-software/">How to improve scientific software?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-23T19:45:15-04:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Do you know the answer to the above question? No? Me neither, but I can offer some suggestions. On a daily basis, a bioinformatician is exposed to hundreds of applications, computer languages, websites, you name it. Some of them are commercial, some of them free and open source. Some of the academia-developed software are open-source, some of them are not.</p>
+
+<p>A good portion of the academia-developed software are published in scientific journals, as an 2-page application note in <a href="http://bioinformatics.oxfordjournals.org/">Bioinformatics </a>, or on a longer paper on <a href="http://www.biomedcentral.com/bmcbioinformatics/">BMC Bioinformatics</a>, just to name two of the journals of the field.</p>
+
+<p>I cannot complain of non-published applications. Usually they are free, open, and were developed during someone&#8217;s spare time. I have the option of not using them, or modify them or helping the developer to improve it. I cannot complain of lack of documentation, bugs, minor errors or even the lack of an interface.</p>
+
+<p>On the other hand, I can complain about published applications. Usually they are also free, but not always open and they were developed with a publication in mind, or at least as a mean towards a publication. It should have proper documentation, be slightly portable (yes, that&#8217;s important, so if you are developing your next groundbreaking phylogenetic tool in <a href="http://caml.inria.fr/">OCaml</a>, distribute the executable, don&#8217;t ask me to &#8220;compile&#8221; or install OCaml) and be easy or moderately easy to use. I give a break for the lack of interface.</p>
+
+<p>And, why should I expect such things from a published application? Because, apart from the developers, at least one editor and two reviewers have (supposedly) tested (or glanced over) the application. Usually, scientific journals ask the authors to provide a copy of the package that is being submitted to publication. Basically one should include everything that is going to be installed, compiled, etc. So, a simple manual or readme, installation instructions, source code, executable(s), you name it, should be in the package.</p>
+
+<p>I can say, from personal experience, that the majority of the published applications will have most of the items required for a user-friendly experience. But many fail in at least one of these aspects:</p>
+
+<ul>
+<li><p>poor (or nonexistent) documentation</p></li>
+<li><p>errors and bugs, too evident to be missed by the reviewers/editor</p></li>
+<li><p>far from being user-friendly, even the command-line ones</p></li>
+<li><p>non-portable (even between <a href="http://en.wikipedia.org/wiki/Linux">Linux</a> distros)</p></li>
+</ul>
+
+
+<p>This makes me ask myself: Are the editors/reviewers testing, checking, using these applications at all, before accepting the manuscript? I guess not, or it seems that they are not. Some errors you see in some applications are easy fix, and wouldn&#8217;t harm the program&#8217;s merit, but in the end would greatly improve user satisfaction and require less email exchanges with developers/scientists regarding bugs and errors. After all, you already published it, nobody told you that you have to support it, right?</p>
+
+<p>This brings us to the original question: how to improve scientific software? Simple &#8230; no, not really.</p>
+
+<p>Far from having the ideal solution, I will add my two cents:</p>
+
+<p>1- Journals can to create a more rigorous publication process for applications, what would include more testing from the editor/reviewers. That would make the review process slower, will make editors and reviewers to spend time, that they already have in short supply, on a job that they are not  compensated for. Everybody will be unhappy and the process fails. So, if journals are willing to publish application only manuscripts, why not have an in house testing facility, at least to check for basic things that the authors claim their software should do? Too expensive for the journals? Maybe, maybe not.</p>
+
+<p>2- Publication of applications <em>per se</em> should be abolished. If you want to release an application and publish it, be sure you prove the merits of it with a publication that includes the software, its application and results that are scientifically relevant. This way we also abolish the publication-of-the-main-project, along with the paper on the application-that-was-used-to-generate-the-results and the paper about the program-that-was-used-to-display-the-results-generated-by-the-other-application. This way we would also foster collaboration between pure bioinformatics/application development groups with wet-lab groups.</p>
+
+<p>3- Create a centralized scientific software repository, something like Sourceforge, and let people contribute, collaborate, code and develop and when the application is mature enough, publish it and give credit to everyone that had some input. Depending on the quality and amount of time dedicated to a project, the person would be a co-author or cited in the acknowledgments. This would also increase collaboration, people interested can learn and teach, exchange ideas and develop good application development standards, different computer languages, etc. Maybe you might not even need to publish the software in a journal, the user input and evaluations would be enough to solidify a good developer/scientist CV.</p>
+
+<p>All options above are not mutually exclusive, they can be implemented at the same time, or they can&#8217;t be implemented at all. Would Open Science benefit from this? I bet so.</p>
+
+<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=c24ea5f5-9528-4569-ac1c-ce2cea8e07c7" alt="" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/23/">&larr; Older</a>
@@ -1106,14 +1032,6 @@ tomorrow in Australia.&#8221; (Charles Schultz) <a href="http://twitter.com/nuin
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -1123,6 +1041,14 @@ tomorrow in Australia.&#8221; (Charles Schultz) <a href="http://twitter.com/nuin
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

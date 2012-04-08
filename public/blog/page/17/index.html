@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We need to pause a bit and do some corrections on our code. First the
-code I posted on the last entry for the pymotif.py module is wrong. Ok,
-not &hellip;">
+  <meta name="description" content="It started here and I got it from here. Here are my responses: 1. What is your blog about? Anything that I wish I had done and willing to do. Also &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,177 +62,6 @@ not &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/11/18/creating-an-interface-for-the-motif-finding-script-some-corrections/">Creating an interface for the motif finding script, some corrections</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-11-18T14:45:31-05:00" pubdate data-updated="true">Nov 18<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We need to pause a bit and do some corrections on our code. First the
-code I posted on the last entry for the pymotif.py module is wrong. Ok,
-not wrong, but some of the code I use to test ended up on the blog. Ths
-first two lines of the calculate_motifs function contained a link to
-the files I use for testing and should be replaced by [sourcecode
-language=&#8217;python&#8217;]input_seqs =
-fasta.read_seqs(open(input_seqs).readlines()) input_seqs2 =
-fasta.read_seqs(open(input_seqs2).readlines())[/sourcecode] Also both
-variables that store the filenames and paths in pymoteGUI.py are
-declared in the wrong scope. The should have be declared at the pymotGUI
-class level, so it is accessible to all the functions in that class.
-This also means that every time we access the variable it should be
-preceded by the class name in order for the interpreter to know where
-the to get the value from. So both corrected files would be [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
-pymotif import fasta import os class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect)
-class pymotGUI(wx.Frame): fore_file = &#8221; back_file = &#8221; def
-__init__(self, parent, id): wx.Frame.__init__(self, parent, id,
-&#8216;Python Motif Finder&#8217;, style=wx.DEFAULT_FRAME_STYLE)
-self.__do_layout() def __do_layout(self): #adding the panel panel
-= wx.Panel(self) #defines the menubar menubar = wx.MenuBar() #file
-menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1, &#8216;Select
-foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-#input box for motif width, and label self.one_label =
-wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
-wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #result textbox
-self.results = wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100),
-wx.TE_MULTILINE | wx.TE_AUTO_SCROLL | wx.HSCROLL) #run bbutton
-self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) #binding the menus to functions
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu)
-self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: pymotGUI.fore_file =
-dialog.GetPath() self.fore_label.SetLabel(pymotGUI.fore_file) def
-on_background(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: pymotGUI.back_file =
-dialog.GetPath() self.back_label.SetLabel(pymotGUI.back_file) def
-run_finder(self, event): print pymotGUI.fore_file result =
-pymotif.calculate_motifs(pymotGUI.fore_file, pymotGUI.back_file) for
-motif in result: self.results.WriteText(motif + &#8216;n&#8217;) #wx.MessageBox(&#8216;It
-should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;: app = pymot()
-frame = pymotGUI(parent=None, id = -1) #frame.CentreOnScreen()
-frame.Show() app.MainLoop()[/sourcecode] and [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import fasta import sys from
-collections import defaultdict def choose(n, k): if 0 &lt;= k &lt;= n: ntok =
-1 ktok = 1 for t in xrange(1, min(k, n - k) + 1): ntok *= n ktok *= t
-n -= 1 return ntok // ktok else: return 0 def get_quorums(seqs, mlen):
-&#8221;&#8221;&#8221; add seq id_no to a set use explicit counter to create seq_no &#8220;&#8221;&#8221;
-quorum = defaultdict(int) for seq in seqs: for n in range(len(seq) -
-mlen): quorum[seq[n:n + mlen]] += 1 return quorum def
-calculate_motifs(input_seqs, input_seqs2): print input_seqs,
-input_seqs2 input_seqs =
-fasta.read_seqs(open(input_seqs).readlines()) input_seqs2 =
-fasta.read_seqs(open(input_seqs2).readlines()) foreground =
-get_quorums(input_seqs, 10) background = get_quorums(input_seqs2,
-10) N = len(input_seqs) + len(input_seqs2) res_motifs = [] for i in
-foreground: term1 = choose(background[i], foreground[i]) term2 =
-choose((N - background[i]), len(input_seqs) - 1) term3 = choose(N,
-len(input_seqs)) p = (float(term1) * float(term2)) / term3 if 0 &lt; p &lt;=
-0.0001: res_motifs.append(i + &#8216;t&#8217; + str(foreground[i]) + &#8216;t&#8217; +
-str(background[i]) + &#8216;t&#8217; + str(p)) res_motifs.sort() return
-res_motifs[/sourcecode] On the next post, the last in the series, we
-will just check how to get the value from the width input box and
-wrap-up everything. Technorati Tags:
-<a href="http://technorati.com/tag/wxPython">wxPython</a>,
-<a href="http://technorati.com/tag/python">python</a>,
-<a href="http://technorati.com/tag/motifs">motifs</a>,
-<a href="http://technorati.com/tag/GUI">GUI</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/11/16/the-community-comments-on-why-open-scienceresearch-wont-work/">The community comments on why Open Science/Research won&#8217;t work</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-11-16T18:49:56-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>How can you make a position on something you don’t understand?
-How can you say something won’t work when all you know if it is from a couple of Google queries?
-I understand from your blog post that you have a short attention span and are not willing to spend much time researching ideas, but just because you have reached the end of the amount of time you are willing to spend on understanding doesn’t mean that you are reached the point at which you are read to judge that concept.</p></blockquote>
-
-<p>Apparently, my writing is pretty bad, or your reading comprehension is pretty bad (but I&#8217;m betting on the first in Vegas). I know what Open Science/Research is, but the graduate student down the hall does not, and he or she has many other important things than &#8220;waste time with the hell of OS/R&#8221;. I don&#8217;t have a short attention span, but the grad student down the hall might have, who knows. eh? And I&#8217;m not judging the concept, I have a very clear idea of what the &#8220;concept&#8221; is, I just think it won&#8217;t fly, at least now.</p>
-
-<p>Egon pitches in:</p>
-
-<blockquote><p>I think you can approach Open Science from various angles. The OpenScience project (where Jmol originated!) comes from an angle that OpenSource tools is an important step in making the data analysis in science reproducibility, and people sometimes seem to forget that data analysis is science too.</p></blockquote>
-
-<p>On the other hand, data discovery can be seen as the first step where science should open up. This is closer to the Open Notebook Science things.</p>
-
-<p>I understand your confusion. Doing science involves many steps, and if you have no clue where to start doing science, it won’t work. Similarly, if you have no clue where to start making your Science Open, you won’t get it to work either. But that does not mean, it cannot work at all.</p>
-
-<p>Nice introduction, and hoping that your further analysis may trigger some thoughts on why Open Science can work.</p>
-
-<p>Yes, there is confusion, and I agree the Open Source software is an important step. I have seen many cases of closed source software hindering data analysis because you don&#8217;t know what&#8217;s going on. Many people out there don&#8217;t know, don&#8217;t want to know or don&#8217;t have time to learn about Open Science and they&#8217;ll sure get confused if they search for resources. The lack of a centralized, useful and with a nice user interface resource (website, application whatever) makes difficult to anyone to start.</p>
-
-<p>Rajarshi also wants to comment:</p>
-
-<blockquote><p>I’ve always thought of Open Science as a social process rather than a technical process (though it has technical aspects). From that point of view, the lack of a central repo of information, is certainly a bottleneck, but I doubt it’s a deal-killer. In the absence of such a repo, the ideas behind Open Science will just take longer to diffuse.</p></blockquote>
-
-<p>Indeed, it&#8217;s a social process, never technical. And no, as he pointed, is not a deal-killer, but it helps make the process slower, which is the conclusion I would like to have included in the post, or at least make the reader conclude that. If it&#8217;s social, why not take advantage of the so-called WEb2.0 (another thing that I don&#8217;t believe, just a clever name to sell books - or whatever they sell on the web these days).</p>
-
-<p>Next time, I will tell a short story of an open science blog. That was when I started thinking &#8220;If is it open, why some stuff is closed (or not shown)?&#8221;</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -738,6 +565,150 @@ ADrive</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/11/04/creating-an-interface-for-the-motif-finding-script-part-6/"> Creating an interface for the motif finding script, part 6</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-04T17:39:01-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last entry we saw how to allow the user to open a file. Now we need to
+work on this file and store its path so the script can process it later
+on. After the file is selected on the file menu, the filename is printed
+on the label. Let&#8217;s think for a second &#8230; If we get only the filename
+from the dialog, the program won&#8217;t work, because the file might be
+located in another directory, partition, you name it. So we need tp get
+the file&#8217;s full path. We need to change the lines [sourcecode
+language=&#8217;python&#8217;]back_file = dialog.GetFilename()
+self.fore_label.SetLabel(dialog.GetFilename())[/sourcecode] by
+[sourcecode language=&#8217;python&#8217;]back_file = dialog.GetPath()
+self.fore_label.SetLabel(back_file)[/sourcecode] (do not forget to do
+the same to the fore_file!). Let&#8217;s run the script and check what
+happens. The frame should look like the one below (with a little
+stretching for me). <a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/11/gui4.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/11/gui4.png" title="new gui" alt="new
+gui" /></a>
+OK, so this is part is solved. As we haven&#8217;t planned our application
+from the start, we will spend sometime thinking of the basic
+functionality that we migth need. So far, we need one input box, where
+the user can enter the motif width to be searched, and a button to start
+the process. Fine, let&#8217;s add the input box. For this we also need an
+extra label to tell the user what the box is for. Always working on our
+__do_layout function we add two lines [sourcecode
+language=&#8217;python&#8217;]self.one_label = wx.StaticText(panel, -1, &#8216;Motif
+width&#8217;, (10,50)) self.motif_width = wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95,
+50), (40,18))[/sourcecode] Simple as that we have a input box. For the
+button, one line will suffice [sourcecode
+language=&#8217;python&#8217;]self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10,
+80))[/sourcecode] As we can see there is not much difference in any of
+the declarations, they follow a similar process and the parameters are
+more or less identical in some of them. Now, we need to bind the button
+to a function, that we will call <code>run_finder</code>. Remember that binding
+needs an event type, a target function and an object. This time the
+event is a button event, but the other two parameters are similar.
+[sourcecode language=&#8217;python&#8217;]self.Bind(wx.EVT_BUTTON,
+self.run_finder, self.run_button)[/sourcecode] and the function, for
+now will look like [sourcecode language=&#8217;python&#8217;]def run_finder(self,
+event): wx.MessageBox(&#8216;It should run, eh?&#8217;)[/sourcecode] That&#8217;s all for
+today. Our script is growing and the full code is below [sourcecode
+language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
+fasta import os class pymot(wx.App): def __init__(self,
+redirect=False): wx.App.__init__(self, redirect) class
+pymotGUI(wx.Frame): def __init__(self, parent, id):
+wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
+style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
+&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
+panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
+#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
+&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
+background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
+filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
+creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
+#input box for motif width, and label self.one_label =
+wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
+wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #run bbutton
+self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
+self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
+file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
+background file&#8217;, (10, 30)) #binding the menus to functions
+self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
+self.Bind(wx.EVT_MENU, self.on_background, background_menu)
+self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
+on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
+if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetPath()
+self.fore_label.SetLabel(fore_file) def on_background(self, event):
+dialog = wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() ==
+wx.ID_OK: back_file = dialog.GetPath()
+self.back_label.SetLabel(back_file) def run_finder(self, event):
+wx.MessageBox(&#8216;It should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;:
+app = pymot() frame = pymotGUI(parent=None, id = -1)
+#frame.CentreOnScreen() frame.Show() app.MainLoop()[/sourcecode]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/10/30/motif-interface-on-github/">Motif finding interface on github</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-30T14:58:46-04:00" pubdate data-updated="true">Oct 30<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There has been actual development of the GUI and most of the development
+is being added simultaneously in the blog and on the code. So, go get a
+copy of git, install it and play with the BPB repository there.
+<a href="http://github.com/nuin/beginning-python-for-bioinformatics/tree/master">http://github.com/nuin/beginning-python-for-bioinformatics/tree/master</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/18/">&larr; Older</a>
@@ -755,14 +726,6 @@ ADrive</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -772,6 +735,14 @@ ADrive</p>
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

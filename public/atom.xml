@@ -4,7 +4,7 @@
   <title><![CDATA[Zientzilaria]]></title>
   <link href="http://zientzilaria.genedrift.org/atom.xml" rel="self"/>
   <link href="http://zientzilaria.genedrift.org/"/>
-  <updated>2012-04-08T19:08:23-04:00</updated>
+  <updated>2012-04-08T19:15:41-04:00</updated>
   <id>http://zientzilaria.genedrift.org/</id>
   <author>
     <name><![CDATA[Paulo Nuin]]></name>
@@ -12,28 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Goodbye and so long]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/09/06/goodbye-and-so-long/"/>
-    <updated>2011-09-06T15:06:02-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/09/06/goodbye-and-so-long</id>
-    <content type="html"><![CDATA[<p>After 270 posts here, I&#8217;m saying goodbye to Blind.Scientist to <a href="http://python.genedrift.org">Beginning Python for Bioinformatics</a> and the main <a href="http://genedrift.org">genedrift.org</a> page. I&#8217;m renovating anything, and soon this space will be something else.</p>
-
-<p>Thanks for reading, thanks for the support and, overall, thanks for not reading.</p>
-
-<p>So long!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Testing feed]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/03/06/testing-feed/"/>
-    <updated>2011-03-06T17:02:00-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/03/06/testing-feed</id>
-    <content type="html"><![CDATA[<p>Ignore, please.</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Scientists are human beings]]></title>
@@ -341,6 +319,32 @@
 
 
 <p>I would expect in the coming years to meet students that will fall in both categories: ones crazy for PR and with a website full of pictures showing how connected they are, others will read a paper and like Rosie Redfield will have the necessary intelligence to actually read the Science behind the PR. The latter will be the ones I will admire and will teach and learn from. The ones from Generation Mendeley will be just an empty shell, maybe with a good job.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Preview of Best and Worst of 2010]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/12/02/preview-of-best-and-worst-of-2010/"/>
+    <updated>2010-12-02T17:00:00-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/12/02/preview-of-best-and-worst-of-2010</id>
+    <content type="html"><![CDATA[<p>I have received several emails about my coveted Best and Words of 2010. So, to placate the hordes and get some email relief, here is a short list of the worst of 2010:</p>
+
+<p>Worst software: Mendeley</p>
+
+<p>More next week, or the following.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why I left Biostar]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2010/12/01/why-i-left-biostar/"/>
+    <updated>2010-12-01T10:44:44-05:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2010/12/01/why-i-left-biostar</id>
+    <content type="html"><![CDATA[<p>About eight months ago I started using Biostar as I saw it as a great opportunity to exchange some ideas, concepts, tips in biology and bioinformatics. I even mentioned the website in this space, trying to bring more people to the mix; at the time the community wasn&#8217;t big enough, and some days went by without any question being posted.</p>
+
+<p>But a couple of months ago my interest started to go down the drain. I don&#8217;t know if it was the constant next-generation sequencing barrage of questions every day, if it was the infantile blog/twitter posts from members competing for points or maybe the lack of votes for some answers that I posted (that&#8217;s selfish on my part, I admit). But at some point it seemed that the website turned into a competition of CVs or knowledge, very different from what I could see in different Stackoverflow spin-offs or in the main site. I guess the turning-point, or the moment I realized that the scientific community (at least in bioinformatics and related fields) will never the be the same as the programming and statistical ones, was the time I gave an answer that had less votes that the one saying &#8220;it&#8217;s not possible&#8221;.</p>
+
+<p>Maybe the problem is myself, I don&#8217;t like cliques, don&#8217;t mind helping people for nothing, don&#8217;t care about reputation. I didn&#8217;tt care about how many points I had, and used the down-vote to actually vote down answers that I didn&#8217;t see as pertinent (if you never used those sites, every down-vote removes one point from your score). I still think that Biostar is a great idea, and I wish it becomes a great resource for all the bio fields. Maybe if the community gets big enough, maybe if don&#8217;t see the same group of people that you see every where else it might become a better place to hang-out online. But right now, I&#8217;m over it.</p>
 ]]></content>
   </entry>
   

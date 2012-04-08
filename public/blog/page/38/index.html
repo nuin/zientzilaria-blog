@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="I am working on a Python tutorial focused on Bioinformatics development: Beginning Python for Bioinformatics, right here.
-">
+  <meta name="description" content="Wikipedia is growing daily, and becoming a a major reference for many subjects, from arts and entertainment, sports to quantum physics and population &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,78 +62,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/02/beginning-python-for-bioinformatics/">Beginning Python for Bioinformatics</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-02T17:45:44-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am working on a Python tutorial focused on Bioinformatics development: Beginning Python for Bioinformatics, right <a href="http://python.genedrift.org">here.</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/02/global-warming-no-memo-no-report/">Global warming: no memo, no report</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-02T17:44:52-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Apparently, upstate NY and southern Ontario did not get the memo or the report that the Global Warming is here.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -618,6 +545,262 @@ there that won&#8217;t make any harm.</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/22/counting-nucleotides/">Counting nucleotides</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:48:35-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We are going to jump the regular expression explanation that you can
+find in the book, and we will go directly to the section that introduces
+string/list/array manipulation and adapt it to Python. We are going to
+see two different methods: a &#8220;long&#8221; and a &#8220;short&#8221; one. In many places
+and computer languages you will see that there are different ways of
+doing the same thing, with advantages and disadvantages. It is up to you
+to define which methods are better or worse, as this is a very personal
+matter. Some people prefer the longer way because it might be clearer
+and easier to understand, or it might be necessary to use it due to code
+maintainability. Other people would rather use the shorter path because
+they want to generate code faster. It does not matter the path you
+select, as long as you get your task done. That&#8217;s the key: focus on the
+end product not on how exactly got there. If you used 10 lines of code
+more, or 10 less, that&#8217;s irrelevant as long as you did what you wanted.
+Live and learn and someday you will use the even shorter way. So we
+start with the long way. We want to count the individual number of
+nucleotides in a sequence, determining they relative frequency. Remember
+that we read the lines of a sequence file into a list, using
+<code>readlines</code>. But on the long method we will read the file and store the
+data into a string like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This way it will be easier to &#8220;explode&#8221; the sequence
+in separated items. After the &#8220;explosion&#8221; we can check each item in the
+list and get our result. The code is below, I will be back after it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#let&#39;s keep the file fixed for now</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list </span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#initialize a string to receive the data </span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>    <span class="c">#notice the strip, to remove \n</span>
+</span><span class='line'>    <span class="c">#&quot;exploding&quot; the sequence in a list </span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'><span class="c">#initializing integers to store the counts </span>
+</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="c">#checking each item in the list and updating counts </span>
+</span><span class='line'><span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalA</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalC</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;G&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalG</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="c">#printing results </span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Most of the above code was already covered before.
+Let&#8217;s look at the different stuff, like the &#8220;explosion line&#8221;</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here we basically transform our string <code>sequence</code> into a list, by putting the
+object type we want before the object we want converted, like we do here</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This construction <code>type_to_convert(to_be_converted)</code>
+tells Python to get whatever is inside the parentheses and transform
+into whatever is outside. Converting the string to a list will get</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">GTGACTTTGTTCAACGGCCGCGGTATCCTAACCGT</span>
+</span><span class='line'><span class="n">GCGAAGGTAGCGTAATCACTTGTTCTTTAAATAAGGACTAGTATG</span>
+</span><span class='line'><span class="n">AATGGCATCACGAGGGCTTTACTGTCTCCTTTTTCTAATCAGTGAA</span> <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and transform it into</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After &#8220;exploding&#8221;, we use a <code>for</code> loop to iterate
+over every item in the list and use conditional statements to do the
+counts. Regarding the counts, we use this operator</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that, in C/C++, tells the
+interpreter to get the value of <code>totalT</code> and add 1 to it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/22/commenting-in-python/">Commenting in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:46:24-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As you might have noticed from the previous posts, comments in Python
+are defined mainly by the <code>#</code> sign. This is the signal used for single
+line comment like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#this is a single line comment</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you are used to C++, this would be equivalent to
+<code>//</code>. On the other hand, multi line comments are defined by triple
+double quotes <code>"""</code>, opening and closing, similar to C++ <code>/* ... */</code>,
+like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="sd">&quot;&quot;&quot;this is a multi line</span>
+</span><span class='line'><span class="sd">comment&quot;&quot;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Just a note. Resuming bioinformatics mode.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/39/">&larr; Older</a>
@@ -635,14 +818,6 @@ there that won&#8217;t make any harm.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -652,6 +827,14 @@ there that won&#8217;t make any harm.</p>
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

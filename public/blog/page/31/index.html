@@ -9,9 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Last couple of entries we saw how to split a multiple FASTA file. And
-how can we achieve the opposite, merge single (or sometimes multiples)
-sequence &hellip;">
+  <meta name="description" content="A commenter, Dilmurat, gave me an idea about the script
+that generates random DNA sequence sets. Apparently it wasn&#8217;t clear that
+the script was &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,199 +64,6 @@ sequence &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/10/29/merging-single-or-multiple-sequence-fasta-files/">Merging single (or multiple) sequence FASTA files</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-29T15:17:02-04:00" pubdate data-updated="true">Oct 29<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last couple of entries we saw how to split a multiple FASTA file. And
-how can we achieve the opposite, merge single (or sometimes multiples)
-sequence files in on larger multiple sequence file? In Python is very
-simple, but we need to introduce a new module that would allow us to get
-the desired result. In most scripts we have seen in previous posts, we
-end up reading a single file from the input (in some cases two) and
-that&#8217;s not enough in the case of merging multiple files.</p>
-
-<p>Python has a
-module called <code>glob</code> that is very powerful for reading contents of a
-directory. We can use any type of pattern matching to find only the
-files we want, wildcards allowed. Let&#8217;s test glob and see what we can
-get. We start with a simple script</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">glob</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s">&#39;\*.txt&#39;</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">i</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If we run this
-script in a directory (Windows or Linux or Mac) we should see a list of
-the filenames that match the patter passed to glob.glob. In this case
-every file with a txt extension. This should be enough for us, for now.
-Basically we need to create a list of all FASTA files, that match a
-certain name pattern, and then take care of the sequences using our
-already known FASTA module. To make things more flexible, we should ask
-in the command line for a pattern to match, and maybe a output filename.
-Our script would look like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">glob</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="n">filepattern</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#initialize lists </span>
-</span><span class='line'><span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#glob.glob returns a list of files that match the pattern </span>
-</span><span class='line'><span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span>  <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">filepattern</span><span class="p">):</span>
-</span><span class='line'>  <span class="c">#we read the contents and an instance of the class is returned </span>
-</span><span class='line'>  <span class="n">contents</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'>  <span class="c">#a file can contain more than one sequence so we read them in a loop</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">seqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#we print the output </span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
-</span><span class='line'>  <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Except for the
-glob part, we&#8217;ve already seen the rest in previous entries. Here, the
-input <code>filepattern</code> should be enclosed in single or double quotes in
-order to be transmitted properly (for instance when you include
-wildcards). In the first <code>for</code> loop we access the list of files created
-by <code>glob.glob</code> and extract the sequence name(s) and sequence(s) from
-each file and parse them to a list which will serve to print the final
-output. An example command line would look like
-<code>python merge.py '*.fas' merged.fa</code> Of course, there are several ways of
-merging FASTA files, but not every time you have Linux&#8217;s <code>cat</code> available.
-Next time we will (try) to have fun with Python functional programming.
-Stay tuned.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/10/29/splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit/">Splitting a FASTA file using awk (no sed required), or do we care about csplit?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-29T11:37:07-04:00" pubdate data-updated="true">Oct 29<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We saw that &#8221;<a href="http://eridanus.net/">top notch bioinformaticians</a>&#8221; use
-csplit to split FASTA files, so I decided to
-<a href="http://python.genedrift.org/2007/10/10/alternative-methods-to-split-a-fasta-file/">post as many as possible alternatives</a>
-to split these files. As csplit, awk is something found with more
-frequency in Linux machines than Windows, but it can be installed on
-Windows (even Vista) and it runs fine.</p>
-
-<p>Awk is usually shown in parallel
-with sed, as both utilities have the main objective of text processing.
-I browsed the web searching for a sed/awk solution to split FASTA files
-something that I thought could be done in one line. And I found
-<a href="http://www.unix.com/shell-programming-scripting/14576-split-file-using-awk.html">it</a>.</p>
-
-<p>With a little tweak I ended up with a one-liner using awk that split the
-sequences in multiple files:</p>
-
-<p><code>awk '/^&gt;/{f="fasta."++d} {print &gt; f}'</code></p>
-
-<p>Awk breaks each line of its input into fields that can be checked,
-printed or ignored. In the command line above. awk&#8217;s commands are in
-between the single quotes. The first command is a regex that matches
-initial <code>&gt;</code>. Inside the curly braces we assign a variable <code>f</code> to store
-the output filename we want and also have an integer that is incremented
-every time we pass through it. The second curly braces are for the
-actual output, where we use awk&#8217;s <code>print</code> command and redirect output to
-a file named after the variable we created in the first commands in
-between curly braces. Finally, we assign an input file, outside the
-region delimited by single quotes. And that&#8217;s it. As output we will have
-a series of files called fasta each one containing one sequence.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -812,6 +619,128 @@ Water Delivery Man
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/10/18/off-topic/">Off topic</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-18T08:10:59-04:00" pubdate data-updated="true">Oct 18<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Mr Daniel Swan accused me of not publishing his
+<a href="http://eridanus.net/blog/?p=233#respond">comment</a> or reply to his
+comments. I have never seen his reply, either in the comments or as an
+email to me, so to fulfill his desires it is published here.</p>
+
+<blockquote><p>I admit that some of the things you have addressed in the past, whilst
+‘reinventing’ the wheel, offer important insights into the general
+problems of programming in general - this particular example was not
+one of them. From following the course which I assume was outlined by
+‘Beginning Perl for Bioinformatics’ (which I do not think is a good
+reference for beginning Perl at all) a user should already be able to
+perform the following operations - open a file, iterate over and parse
+the contents, open a file for writing, and apply some rules for
+formatting the output. Thus you have already given them the tools to
+complete the operation should they wish to do so in a Python context.
+The problem is that you are trying to educate potentially early
+career/transitional bioinformaticians here - and showing them how to
+complete tasks in X lines of Python when there is a single command
+line application to do the trick I think is disingenuous. We wouldn’t
+dream, for instance, of educating our MRes students in this way. I
+also would take issue that diversity is a key. You can be as diverse
+as you like but no-one is seriously going to suggest that you write
+your next script to parse something out of a GenBank file in
+assembler. One of the hallmarks of any computer professional in any
+field is the ability to use the right tool for the job. You should be
+technology agnostic and be prepared to string together applications or
+scripts from anywhere to reach your goal - take a look at something
+like Taverna for instance. I notice in the other post that you mention
+there is a high proportion of Windows users to this site and therefore
+command line *nix comments are of no interest. Although I know a
+number of bioinformaticians who use Windows (generally to integrate
+with an institutions existing Microsoft heavy infrastructure) they all
+have logins to dozens of *nix machines, run *nix in a VM or at the
+very least have a Cygwin installation with which to work with. Basing
+the availability of technology on the OS of your page imprints is not
+necessarily indicative. I hope you don’t mind me addressing these
+points here rather in my blog, as my blog is personal (hence the lack
+of bioinformatics content on there). I have actually been following
+these tutorials for a while (as someone who came into Bioinformatics
+some time ago - my first forays in programming were in Perl) it is
+nice for me to see tasks that I find intuitive in one language written
+in another. Consequently the fact that I felt need to comment, merely
+suggests that I felt strongly on this issue, rather than having any
+negative feelings towards what you are trying to achieve.</p></blockquote>
+
+<p>I am sorry for the usual readers of this tutorial, for posting his
+comments as an article here. We will be back to our uneducated, simple
+and basic &#8220;tutorial for bioinformatics in X lines for the noobie in
+Windows&#8221; soon. Thanks Daniel.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/10/17/splitting-a-fasta-file/">Splitting a FASTA file</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-17T20:08:17-04:00" pubdate data-updated="true">Oct 17<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have posted in my other <a href="http://python.genedrift.org">site</a> different ways to split a FASTA file. <a href="http://python.genedrift.org/2007/10/10/alternative-methods-to-split-a-fasta-file/">Take a look</a>. The Python method is <a href="http://python.genedrift.org/2007/10/10/splitting-multiple-fasta-file-or-why-shouldnt-we-reinvent-the-wheel/">here</a>.</p>
+
+<p>I am planning to include as many languages as possible.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/32/">&larr; Older</a>
@@ -829,14 +758,6 @@ Water Delivery Man
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -846,6 +767,14 @@ Water Delivery Man
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

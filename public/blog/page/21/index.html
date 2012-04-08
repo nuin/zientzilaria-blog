@@ -9,8 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We keep on introducing Mike&#8217;s functions. This time there are a couple of
-Python methods that we haven&#8217;t seen here and need some &hellip;">
+  <meta name="description" content="We will take a break on developing the statistical module to obtain
+overrepresented motifs (I will introduce mul in the next stats post),
+and take a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -63,211 +64,6 @@ Python methods that we haven&#8217;t seen here and need some &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8/">Obtaining overrerpresented motifs in DNA sequences, part 9</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-03T12:49:53-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We keep on introducing Mike&#8217;s functions. This time there are a couple of
-Python methods that we haven&#8217;t seen here and need some introduction,
-<code>izip</code> and <code>count</code>. To use these two we also need to import new modules</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">izip</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> <code>count</code> returns consecutive integers starting at a
-defined point (the method&#8217;s parameter). If empty it starts from zero.
-Basically, by starting a <code>count</code> it will give an iterable with a
-increasing integer values, in a fashion similar to a function with
-yield. Every time our loop accesses the <code>count</code> it will &#8220;remember&#8221; the
-last return value and increment it by one. <code>izip</code> also returns an
-iterator, but from a list of iterables. It is basically used to iterate
-through a list of many iterables at the same time. In the function below
-it is used twice: one to generate a tuple (with <code>count</code>) with a sequence
-number and the sequence itself. The sequence in the tuple is then used
-in another <code>izip</code> to create the windows on the sequences to count
-motifs.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_06</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'><span class="sd">&quot;&quot;&quot; add seq id\_no to a set use &#39;izip(count(),...) to create seq_no use</span>
-</span><span class='line'><span class="sd">&#39;izip(count(),range(...)) to create start/stop indices for motifs &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In the next couple of posts we still be
-checking motif quorum functions. Stay tuned.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/">Obtaining overrepresented motifs in DNA sequences, part 7</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-03T10:27:49-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuing on Mike&#8217;s functions to obtain motif quorums. We see function
-3, 4 and 5. Function get_quorums_03, uses an old friend of the blog,
-<code>sets</code>. Recall that <code>sets</code> are very similar to lists, but their are
-unordered and items are unique.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_03</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use explicit counter to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> Basically,
-the sequence numbers (an incremented counter) are added to a <code>defaultdict</code>
-which was initialized as a set. This way you don&#8217;t need to check for the
-existence of the sequence number in the <code>defaultdict</code> list and count on
-the ability of <code>set</code> of being unique. Function 4 is very similar to
-function 3 with the difference of using enumerate (as in function 02) to
-make the sequence numbers.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_04</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>          
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Function 5
-adds a twist, which is to have an enumerate to set the sequence range
-(motif/word width) start and stop. This way the window is sliding based
-on the tuple created by the enumerate method and not on the slicing that
-were used in all other functions. Again, a <code>defaultdict</code> is initialized as
-set and the sequence numbers are generated by an enumerate.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_05</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no use enumerate(range(...)) </span>
-</span><span class='line'><span class="sd"> to create start/stop indices for motif &quot;&quot;&quot;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>          
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -815,6 +611,218 @@ script output.</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/10/obtaining-overrepresented-motifs-in-dna-sequences-part-2/">Obtaining overrepresented motifs in DNA sequences, part 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-10T21:56:51-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We move one on our search for overrepresented motifs in DNA sequences. I
+was preparing this entry when the comments to part 1 arrived. Because of
+that we will modify our previous code to include some suggestions and
+then we will change t a little bit to output the actual values we want.
+As Titus pointed out in his comment, when we merge the sequences we
+generate errors, because we artificially including motifs that are not
+supposed to be there. But in the end we will see that we are no after
+the actual number of times a motif appears in the sequence and what
+matters is the motif quorum. The main focus of the part one was to show
+the decrease in code length from C++ to Python, introduce generator
+functions and yield and also show the nice permutation function. Turns
+out by using the approach of the previous entry there is a big drawback
+in code execution, which is around 60 times slower than C++.</p>
+
+<p>So we need
+to find another approach, and Mike showed us how (with some small
+modifications)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#for a missing key, the dict entry is initialized to zero </span>
+</span><span class='line'><span class="n">counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span class='line'><span class="c">#count the length-element subsequences in each sequence </span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span> <span class="o">-</span> <span class="n">length</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="c">#counts.keys() will then return the nucleotide sequences that were actually in merged_seqs </span>
+</span><span class='line'>  <span class="c">#print out the sequences that occur more than once </span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">count</span><span class="p">),</span> <span class="n">counts</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This time the counting is
+done with a <code>defaultdict</code> initialized with integers (all zeroes), and
+instead of generating all possible combinations (which was cool and
+fast, but in the end made our script slower) a window with the input
+length is slid along the each sequence and the key of the default
+dictionary is the motif and the value is the actual count incremented as
+we determine each motif. Checking this code performance using Linux&#8217;s
+time, we get 0.2 seconds, an improvement of 5 fold on the C++ code and
+300 fold on our previous Python code (Thanks Mike and everyone else for
+the suggestions). What is different here is that the output is not
+ordered and only the seen motifs are printed in the end. We will see
+next time how to get the quorums.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/10/from-the-interwebs-forgotten-archives/">From the Interwebs &#8220;forgotten&#8221; archives &#8230; </a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-10T16:57:56-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tigerramki.jpg/202px-Tigerramki.jpg" alt="A tiger in India's Bandhavgarh reserve" /></a>Image via <a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg">Wikipedia</a>I have no source, but the creation date of the text file is August, 7th 1995. Good luck.</p>
+
+<p><strong>Final Exam</strong></p>
+
+<p>Instructions: Read each question carefully. Answer all questions. Time Limit: 4 hours. Begin immediately.</p>
+
+<p><strong>History</strong></p>
+
+<p>Describe the history of the papacy from its origins to the present day,  concentrating especially, but not exclusively, on its social, political,  economic, religious, and philosophical impact on Europe, Asia, America,  and Africa. Be brief, concise, and specific.</p>
+
+<p><strong>Medicine</strong></p>
+
+<p> You have been provided with a razor blade, a piece of gauze, and a bottle of Scotch. Remove your appendix. Do not suture until your work has been  inspected. You have 15 minutes.</p>
+
+<p><strong>Public speaking</strong></p>
+
+<p>Twenty-five hundred riot-crazed aborigines are storming the classroom.  Calm them. You may use any ancient language except Latin or Greek.</p>
+
+<p><strong>Biology</strong></p>
+
+<p>Create life. Estimate the differences in subsequent human culture if this  form of life had developed 500 million years earlier, with special attention to its probable effect on the English parliamentary system. Prove your thesis.</p>
+
+<p><strong>Music</strong></p>
+
+<p>Write a piano concerto. Orchestrate and perform it with flute and drum.  You will find a piano under your seat.</p>
+
+<p><strong>Psychology</strong></p>
+
+<p>Based on your degree of knowledge of their works, evaluate the emotional stability, degree of adjustment, and repressed frustrations of each of the following: Alexander of Aphrodisias, Rameses II, Gregory of Nicea, Hammurabi. Support your evaluations with quotations from each man&#8217;s work, making appropriate references. It is not necessary to translate.</p>
+
+<p><strong>Sociology</strong></p>
+
+<p>Estimate the sociological problems which might accompany the end of the world. Construct an experiment to test your theory.</p>
+
+<p><strong>Management science</strong></p>
+
+<p>Define management. Define science. How do they relate? Why? Create a generalized algorithm to optimize all managerial decisions. Assuming an 1130 CPU supporting 50 terminals, each terminal to activate your algorithm; design the communications interface and all necessary control programs.</p>
+
+<p><strong>Engineering</strong></p>
+
+<p>The disassembled parts of a high-powered rifle have been placed in a box on your desk. You will also find an instruction manual, printed in Swahili. In ten minutes a hungry Bengal tiger will be admitted to the room. Take whatever action you feel is appropriate. Be prepared to justify your decision.</p>
+
+<p><strong>Economics</strong></p>
+
+<p>Develop a realistic plan for refinancing the national debt. Trace the possible effects of your plan in the following areas: Cubism, the Donatist controversy, the wave theory of light. Outline a method for preventing these  effects. Criticize this method from all possible points of view. Point out the deficiencies in your point of view, as demonstrated in your answer to the  last question.</p>
+
+<p><strong>Political science</strong></p>
+
+<p>There is a red telephone on the desk beside you. Start World War III. Report at length on its socio-political effects, if any.</p>
+
+<p><strong>Epistemology</strong></p>
+
+<p>Take a position for or against truth. Prove the validity of your position.</p>
+
+<p><strong>Physics</strong></p>
+
+<p>Explain the nature of matter. Include in your answer an evaluation of the impact of the development of mathematics on science.</p>
+
+<p><strong>Philosophy</strong></p>
+
+<p>Sketch the development of human thought; estimate its significance. Compare with the development of any other kind of thought.</p>
+
+<p><strong>General knowledge</strong></p>
+
+<p> Describe in detail. Be objective and specific.</p>
+
+<p><strong>* * E X T R A C R E D I T * * </strong></p>
+
+<p> Define the universe; give three examples.</p>
+
+<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=6cd57e9f-1f39-4fc6-a85c-cc42f834c7ff" alt="" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/22/">&larr; Older</a>
@@ -832,14 +840,6 @@ script output.</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/06/goodbye-and-so-long/">Goodbye and so long</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/03/06/testing-feed/">Testing feed</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -849,6 +849,14 @@ script output.</p>
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>
