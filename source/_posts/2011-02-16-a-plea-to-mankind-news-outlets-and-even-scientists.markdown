@@ -21,9 +21,8 @@ From Wikipedia:
     * The genus name is always written with an initial capital letter.
     * In current usage, the species name is never written with an initial capital.
 
-    For example, the entire tiger species is _Panthera tigris_
+    
 
 
-
-Simple, eh? So, on your next seminar, C. elegans might be correctly set to _C. elegans_
+For example, the entire tiger species is _Panthera tigris_. Simple, eh? So, on your next seminar, C. elegans might be correctly set to _C. elegans_
 

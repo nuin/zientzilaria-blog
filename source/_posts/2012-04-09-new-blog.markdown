@@ -1,0 +1,14 @@
+---
+layout: post
+title: "New blog"
+date: 2012-04-09 19:19
+comments: true
+categories: Zientzilaria
+---
+
+
+Welcome to the new home of Beginning Python for Bioinformatics and Blind.Scientist: Zientzilaria, scientist in Basque. Most posts of the old blogs are converted here, now in an Octopress installation. Slowly, I will start fixing the small mistakes of the Wordpress migration and getting everything up to speed.
+
+In this new home I will try to be more optimistic, bring more news and criticize less. Cheers to a new beginning. 
+
+PS: The new blog motto is "The most influential bioinformatician in the world", tongue-in-cheek of course.
