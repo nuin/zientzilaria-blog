@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Zientzilaria]]></title>
-  <link href="http://zientzilaria.genedrift.org/atom.xml" rel="self"/>
-  <link href="http://zientzilaria.genedrift.org/"/>
-  <updated>2012-04-09T19:27:28-04:00</updated>
-  <id>http://zientzilaria.genedrift.org/</id>
+  <link href="http://zientzilaria.heroku.com/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.heroku.com/"/>
+  <updated>2012-04-09T19:46:03-04:00</updated>
+  <id>http://zientzilaria.heroku.com/</id>
   <author>
     <name><![CDATA[Paulo Nuin]]></name>
     <email><![CDATA[nuin@genedrift.org]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[New blog]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2012/04/09/new-blog/"/>
     <updated>2012-04-09T19:19:00-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog</id>
+    <id>http://zientzilaria.heroku.com/blog/2012/04/09/new-blog</id>
     <content type="html"><![CDATA[<p>Welcome to the new home of Beginning Python for Bioinformatics and Blind.Scientist: Zientzilaria, scientist in Basque. Most posts of the old blogs are converted here, now in an Octopress installation. Slowly, I will start fixing the small mistakes of the Wordpress migration and getting everything up to speed.</p>
 
 <p>In this new home I will try to be more optimistic, bring more news and criticize less. Cheers to a new beginning.</p>
@@ -28,9 +28,9 @@
   
   <entry>
     <title type="html"><![CDATA[Scientists are human beings]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/02/23/scientists-are-human-beings/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/02/23/scientists-are-human-beings/"/>
     <updated>2011-02-23T15:31:23-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/02/23/scientists-are-human-beings</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/02/23/scientists-are-human-beings</id>
     <content type="html"><![CDATA[<p>Sometimes I wonder if non-scientists perceive us a lot that only does good things, has no ego or is only searching for the betterment of Science, with the exception of climate scientists, clearly. But sometimes, I also forget that scientists are human beings too, are one aspect of being an human is to be driven by hype. Doesn&#8217;t matter where you come from, hype is an important part of society, product development, PR departments, economy and Facebook groups.</p>
 
 <p>When that happens, I remember Zotero. A nice, nifty little application that does some wonderful things with references. It&#8217;s open source, you can modify it, make it better, report bugs, develop with them, donate if you wish. And even better, it&#8217;s developed by real scientists, not by spoon-fed intercontinental  jet-setters backed by corporations. Zotero developers are support by grants, by people like you and me, like your parents and in-laws, and it&#8217;s an application that anyone can benefit from. Did I mention that it&#8217;s free?</p>
@@ -41,9 +41,9 @@
   
   <entry>
     <title type="html"><![CDATA[A plea to mankind, news outlets and even scientists]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/"/>
     <updated>2011-02-16T16:33:49-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists</id>
     <content type="html"><![CDATA[<p>Species name notation is not rocket science, does not require one to be a brain surgeon and in some ways help communication at large. Now that science, thanks to the internet, in getting more tangled into our lives (even companies and political parties have DNA), it is important to have some standard, especially in written text in order to make information exchange easier.</p>
 
 <p>I know is easy to understand that when someone is writing homo sapiens, he or she is referring to a human of the species <em>Home sapiens</em>, or when someone writes E.Coli, it&#8217;s clear that <em>Escherichia coli</em> is the target. Most newspapers (with blogs and online presence) have writing standards and manuals; maybe including a rule that species names have to be written following the Binomial Nomenclature:</p>
@@ -61,18 +61,18 @@
   
   <entry>
     <title type="html"><![CDATA[There are idiots everywhere ...]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/02/15/there-are-idiots-everywhere/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/02/15/there-are-idiots-everywhere/"/>
     <updated>2011-02-15T17:22:35-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/02/15/there-are-idiots-everywhere</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/02/15/there-are-idiots-everywhere</id>
     <content type="html"><![CDATA[<p>&#8230; <a href="http://artsbeat.blogs.nytimes.com/2011/02/15/the-tv-watch-man-machine-and-a-trivial-pursuit/">even at the New York Times</a>. I would just call it &#8220;At large&#8221; and remove the culture part of the title.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Bioconductor]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/02/10/bioconductor/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/02/10/bioconductor/"/>
     <updated>2011-02-10T20:59:05-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/02/10/bioconductor</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/02/10/bioconductor</id>
     <content type="html"><![CDATA[<p>I love Bioconductor, I really do. It&#8217;s a great framework, nice set of tools that do anything that you want (not that I would want to do phylogeny with it, topic for another post). But as anything scientific it has its drawbacks, and I can point three of them:</p>
 
 <p>1 - Installing packages - we&#8217;re having problems running one package, what requires us to modify R&#8217;s compilation parameters from time to time, uninstall and reinstall things. And the most annoying thing is when you have a fresh R binary and framework, you do a basic install first and when you want another package installed if it has dependencies that are already in the system, they are downloaded and installed again.</p>
@@ -87,18 +87,18 @@
   
   <entry>
     <title type="html"><![CDATA[There's dumb, and there's ...]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/02/09/theres-dumb-and-theres/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/02/09/theres-dumb-and-theres/"/>
     <updated>2011-02-09T23:25:11-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/02/09/theres-dumb-and-theres</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/02/09/theres-dumb-and-theres</id>
     <content type="html"><![CDATA[<p>&#8230; <a href="http://www.vaccinationcouncil.org/2011/02/06/a-few-things-i-know/">ultra dumb</a>.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[What’s more important: the publication or the product? The publication.]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication/"/>
     <updated>2011-02-09T11:55:16-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication</id>
     <content type="html"><![CDATA[<p><a href="http://nsaunders.wordpress.com/2011/02/08/2462/">This</a> was asked by Neil, and I think I can answer it. Clearly, the publication is way more important than the actual product, sadly so.</p>
 
 <p>The paper (or letter, comment, correspondence, whatever it is) that he points out is a complete joke, the website is a complete joke, as the most complete page on it is the CV of each member in the project. It seems that in this case there&#8217;s no peer review involved, but I bet the &#8220;authors&#8221; will dutifully used the reference in their CV.</p>
@@ -113,9 +113,9 @@
   
   <entry>
     <title type="html"><![CDATA[Books 2011]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/01/24/books-2011/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/01/24/books-2011/"/>
     <updated>2011-01-24T10:24:31-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/01/24/books-2011</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/01/24/books-2011</id>
     <content type="html"><![CDATA[<p>1 - <a href="http://www.amazon.com/gp/product/0060853972?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0060853972">Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0060853972" alt="" /></p>
 
 <p>2 - <a href="http://www.amazon.com/gp/product/0399156801?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0399156801">The Cobra</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0399156801" alt="" /></p>
@@ -130,9 +130,9 @@
   
   <entry>
     <title type="html"><![CDATA[It's s$@t like this, scientists]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/01/16/its-st-like-this-scientists/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/01/16/its-st-like-this-scientists/"/>
     <updated>2011-01-16T17:03:59-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/01/16/its-st-like-this-scientists</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/01/16/its-st-like-this-scientists</id>
     <content type="html"><![CDATA[<p><a href="http://www.theregister.co.uk/2011/01/14/stolen_cancer_research_laptop_reward/">$1,000 reward offered for stolen cancer research laptop</a>:</p>
 
 <blockquote><p>Medical researchers in Oklahoma are offering a no-questions-asked $1,000 reward for the return of a stolen laptop that contains years of research on prostate cancer.</p></blockquote>
@@ -145,9 +145,9 @@
   
   <entry>
     <title type="html"><![CDATA[I've failed]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/31/ive-failed/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/31/ive-failed/"/>
     <updated>2010-12-31T17:55:32-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/31/ive-failed</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/31/ive-failed</id>
     <content type="html"><![CDATA[<p>I tried to write 365 posts, or one per day in 2010. I&#8217;ve failed, just published 100 of them. This will be my goal for 2011.</p>
 
 <p>In the meantime, Happy New Year to everyone that stops by. See you on the other side of the calendar.</p>
@@ -156,9 +156,9 @@
   
   <entry>
     <title type="html"><![CDATA[Question]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/16/question/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/16/question/"/>
     <updated>2010-12-16T15:00:31-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/16/question</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/16/question</id>
     <content type="html"><![CDATA[<p>How many times did you hear that city/government/company/university has to have an Open Source Software policy or it will end up paying Microsoft more money? At the same time, how much Microsoft profit has gone down?</p>
 
 <p>Just askin&#8217;.</p>
@@ -167,9 +167,9 @@
   
   <entry>
     <title type="html"><![CDATA[Brazil, the country of the future. Always.]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/16/brazil-the-country-of-the-future-always/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/16/brazil-the-country-of-the-future-always/"/>
     <updated>2010-12-16T13:13:21-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/16/brazil-the-country-of-the-future-always</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/16/brazil-the-country-of-the-future-always</id>
     <content type="html"><![CDATA[<p>A perfect <a href="http://news.ycombinator.com/item?id=2005685">comment</a> on Hackernews, in response to this <a href="http://www.webiphany.com/2010/12/14/is-brazil-finally-ready-to-fulfill-on-its-destiny-as-the-country-of-the-future/">article</a>:</p>
 
 <blockquote><p>No, it&#8217;s not. Most of my extended family is in Brazil so my wife and I decided to work remote from Brazil for a couple months this fall. It&#8217;s hard to really understand how crippling the culture of bureaucracy and corruption is until you experience it.</p></blockquote>
@@ -190,9 +190,9 @@
   
   <entry>
     <title type="html"><![CDATA[Books 2010]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/16/books-2010-3/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/16/books-2010-3/"/>
     <updated>2010-12-16T08:47:49-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/16/books-2010-3</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/16/books-2010-3</id>
     <content type="html"><![CDATA[<p>1 - <a href="http://www.amazon.com/gp/product/0140296468?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0140296468">The New New Thing: A Silicon Valley Story</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0140296468" alt="" /></p>
 
 <p>2 - <a href="http://www.amazon.com/gp/product/0393320928?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393320928">What Do You Care What Other People Think?: Further Adventures of a Curious Character</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0393320928" alt="" /></p>
@@ -245,9 +245,9 @@
   
   <entry>
     <title type="html"><![CDATA[Best and worst of 2010]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/13/best-and-worst-of-2010/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/13/best-and-worst-of-2010/"/>
     <updated>2010-12-13T19:32:03-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/13/best-and-worst-of-2010</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/13/best-and-worst-of-2010</id>
     <content type="html"><![CDATA[<ul>
 <li>Movie: Inception, not the best one, but highly entertaining, worst: none</li>
 <li>Book: <a href="http://www.amazon.com/gp/product/0393072231?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393072231">The Big Short: Inside the Doomsday Machine</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0393072231" alt="" />, worst <a href="http://www.amazon.com/gp/product/0743265696?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0743265696">Days Between Stations: A Novel</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0743265696" alt="" /></li>
@@ -267,27 +267,27 @@
   
   <entry>
     <title type="html"><![CDATA[Of course I agree, Cytoscape]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/08/of-course-i-agree-cytoscape/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/08/of-course-i-agree-cytoscape/"/>
     <updated>2010-12-08T09:58:28-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/08/of-course-i-agree-cytoscape</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/08/of-course-i-agree-cytoscape</id>
     <content type="html"><![CDATA[<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2010/12/Screen-shot-2010-12-08-at-9.56.44-AM.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2010/12/Screen-shot-2010-12-08-at-9.56.44-AM.png" alt="" /></a></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Interview with Rosie Redfield]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/07/interview-with-rosie-redfield/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/07/interview-with-rosie-redfield/"/>
     <updated>2010-12-07T22:02:39-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/07/interview-with-rosie-redfield</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/07/interview-with-rosie-redfield</id>
     <content type="html"><![CDATA[<p>I haven&#8217;t received so many visits on one of the interviews I run some years ago, like this time with Rosie&#8217;s. So, if you are looking to know her a bit more here&#8217;s the <a href="http://blindscientist.genedrift.org/2007/07/26/sciview-part-4-interview-with-rosie-redfield/">link</a> for the July 2007 interview.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[You're quite wrong, NASA]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/07/youre-quite-wrong-nasa/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/07/youre-quite-wrong-nasa/"/>
     <updated>2010-12-07T08:10:42-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/07/youre-quite-wrong-nasa</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/07/youre-quite-wrong-nasa</id>
     <content type="html"><![CDATA[<p>NASA <a href="http://www.cbc.ca/technology/story/2010/12/06/arsenic-microbe-dna-nasa-wolfe-simon.html?ref=rss#ixzz17P6UT100">slammed</a> Rosie Redfield&#8217;s assessment (or review) on the <em>new</em> form of life that was <em>found</em>:</p>
 
 <blockquote><p>When NASA spokesman Dwayne Brown was asked about public criticisms of the paper in the blogosphere, he noted that the article was peer-reviewed and published in one of the most prestigious scientific journals. He added that Wolfe-Simon will not be responding to individual criticisms, as the agency doesn&#8217;t feel it is appropriate to debate the science using the media and bloggers. Instead, it believes that should be done in scientific publications.</p></blockquote>
@@ -306,9 +306,9 @@
   
   <entry>
     <title type="html"><![CDATA[Secure OS]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/06/secure-os/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/06/secure-os/"/>
     <updated>2010-12-06T13:36:12-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/06/secure-os</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/06/secure-os</id>
     <content type="html"><![CDATA[<p>Tyring to download a file from Microsoft.com on Internet Explorer 8, under Windows 2008 server.</p>
 
 <p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2010/12/Screen-shot-2010-12-06-at-10.24.17-AM.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2010/12/Screen-shot-2010-12-06-at-10.24.17-AM.png" alt="" /></a></p>
@@ -317,9 +317,9 @@
   
   <entry>
     <title type="html"><![CDATA[The new "form" of life and the Generation Mendeley]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/05/the-new-form-of-life-and-the-generation-mendeley/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/05/the-new-form-of-life-and-the-generation-mendeley/"/>
     <updated>2010-12-05T10:42:13-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/05/the-new-form-of-life-and-the-generation-mendeley</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/05/the-new-form-of-life-and-the-generation-mendeley</id>
     <content type="html"><![CDATA[<p>I&#8217;m quite late jumping on the bandwagon, but after reading <a href="http://rrresearch.blogspot.com/2010/12/arsenic-associated-bacteria-nasas.html">this</a> and visiting <a href="http://www.ironlisa.com/">this site</a>, both related to the new &#8220;form&#8221; of life found recently, I can only say a couple of things:</p>
 
 <ul>
@@ -334,9 +334,9 @@
   
   <entry>
     <title type="html"><![CDATA[Preview of Best and Worst of 2010]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/02/preview-of-best-and-worst-of-2010/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/02/preview-of-best-and-worst-of-2010/"/>
     <updated>2010-12-02T17:00:00-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/02/preview-of-best-and-worst-of-2010</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/02/preview-of-best-and-worst-of-2010</id>
     <content type="html"><![CDATA[<p>I have received several emails about my coveted Best and Words of 2010. So, to placate the hordes and get some email relief, here is a short list of the worst of 2010:</p>
 
 <p>Worst software: Mendeley</p>

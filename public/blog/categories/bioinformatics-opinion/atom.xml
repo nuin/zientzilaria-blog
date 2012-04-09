@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Bioinformatics - opinion | Zientzilaria]]></title>
-  <link href="http://zientzilaria.genedrift.org/blog/categories/bioinformatics-opinion/atom.xml" rel="self"/>
-  <link href="http://zientzilaria.genedrift.org/"/>
-  <updated>2012-04-09T19:27:28-04:00</updated>
-  <id>http://zientzilaria.genedrift.org/</id>
+  <link href="http://zientzilaria.heroku.com/blog/categories/bioinformatics-opinion/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.heroku.com/"/>
+  <updated>2012-04-09T19:46:03-04:00</updated>
+  <id>http://zientzilaria.heroku.com/</id>
   <author>
     <name><![CDATA[Paulo Nuin]]></name>
     <email><![CDATA[nuin@genedrift.org]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Bioconductor]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/02/10/bioconductor/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/02/10/bioconductor/"/>
     <updated>2011-02-10T20:59:05-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/02/10/bioconductor</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/02/10/bioconductor</id>
     <content type="html"><![CDATA[<p>I love Bioconductor, I really do. It's a great framework, nice set of tools that do anything that you want (not that I would want to do phylogeny with it, topic for another post). But as anything scientific it has its drawbacks, and I can point three of them:</p>
 
 <p>1 - Installing packages - we're having problems running one package, what requires us to modify R's compilation parameters from time to time, uninstall and reinstall things. And the most annoying thing is when you have a fresh R binary and framework, you do a basic install first and when you want another package installed if it has dependencies that are already in the system, they are downloaded and installed again.</p>
@@ -32,9 +32,9 @@
   
   <entry>
     <title type="html"><![CDATA[What’s more important: the publication or the product? The publication.]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication/"/>
     <updated>2011-02-09T11:55:16-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication</id>
     <content type="html"><![CDATA[<p><a href="http://nsaunders.wordpress.com/2011/02/08/2462/">This</a> was asked by Neil, and I think I can answer it. Clearly, the publication is way more important than the actual product, sadly so.</p>
 
 <p>The paper (or letter, comment, correspondence, whatever it is) that he points out is a complete joke, the website is a complete joke, as the most complete page on it is the CV of each member in the project. It seems that in this case there's no peer review involved, but I bet the "authors" will dutifully used the reference in their CV.</p>
@@ -49,9 +49,9 @@
   
   <entry>
     <title type="html"><![CDATA[Books 2011]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/01/24/books-2011/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/01/24/books-2011/"/>
     <updated>2011-01-24T10:24:31-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/01/24/books-2011</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/01/24/books-2011</id>
     <content type="html"><![CDATA[<p>1 - <a href="http://www.amazon.com/gp/product/0060853972?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0060853972">Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0060853972" alt="" /></p>
 
 <p>2 - <a href="http://www.amazon.com/gp/product/0399156801?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0399156801">The Cobra</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0399156801" alt="" /></p>
@@ -66,9 +66,9 @@
   
   <entry>
     <title type="html"><![CDATA[It's s$@t like this, scientists]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2011/01/16/its-st-like-this-scientists/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2011/01/16/its-st-like-this-scientists/"/>
     <updated>2011-01-16T17:03:59-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2011/01/16/its-st-like-this-scientists</id>
+    <id>http://zientzilaria.heroku.com/blog/2011/01/16/its-st-like-this-scientists</id>
     <content type="html"><![CDATA[<p><a href="http://www.theregister.co.uk/2011/01/14/stolen_cancer_research_laptop_reward/">$1,000 reward offered for stolen cancer research laptop</a>:</p>
 
 <blockquote><p>Medical researchers in Oklahoma are offering a no-questions-asked $1,000 reward for the return of a stolen laptop that contains years of research on prostate cancer.</p></blockquote>
@@ -81,9 +81,9 @@
   
   <entry>
     <title type="html"><![CDATA[Books 2010]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/16/books-2010-3/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/16/books-2010-3/"/>
     <updated>2010-12-16T08:47:49-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/16/books-2010-3</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/16/books-2010-3</id>
     <content type="html"><![CDATA[<p>1 - <a href="http://www.amazon.com/gp/product/0140296468?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0140296468">The New New Thing: A Silicon Valley Story</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0140296468" alt="" /></p>
 
 <p>2 - <a href="http://www.amazon.com/gp/product/0393320928?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393320928">What Do You Care What Other People Think?: Further Adventures of a Curious Character</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0393320928" alt="" /></p>

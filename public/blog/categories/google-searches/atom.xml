@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: google searches | Zientzilaria]]></title>
-  <link href="http://zientzilaria.genedrift.org/blog/categories/google-searches/atom.xml" rel="self"/>
-  <link href="http://zientzilaria.genedrift.org/"/>
-  <updated>2012-04-09T19:27:28-04:00</updated>
-  <id>http://zientzilaria.genedrift.org/</id>
+  <link href="http://zientzilaria.heroku.com/blog/categories/google-searches/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.heroku.com/"/>
+  <updated>2012-04-09T19:46:03-04:00</updated>
+  <id>http://zientzilaria.heroku.com/</id>
   <author>
     <name><![CDATA[Paulo Nuin]]></name>
     <email><![CDATA[nuin@genedrift.org]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Splitting a FASTA file]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2007/10/17/splitting-a-fasta-file/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2007/10/17/splitting-a-fasta-file/"/>
     <updated>2007-10-17T20:08:17-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2007/10/17/splitting-a-fasta-file</id>
+    <id>http://zientzilaria.heroku.com/blog/2007/10/17/splitting-a-fasta-file</id>
     <content type="html"><![CDATA[<p>I have posted in my other <a href="http://python.genedrift.org">site</a> different ways to split a FASTA file. <a href="http://python.genedrift.org/2007/10/10/alternative-methods-to-split-a-fasta-file/">Take a look</a>. The Python method is <a href="http://python.genedrift.org/2007/10/10/splitting-multiple-fasta-file-or-why-shouldnt-we-reinvent-the-wheel/">here</a>.</p>
 
 <p>I am planning to include as many languages as possible.</p>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA["bioinformatic perl or python"]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2007/09/12/bioinformatic-perl-or-python/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2007/09/12/bioinformatic-perl-or-python/"/>
     <updated>2007-09-12T21:16:02-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2007/09/12/bioinformatic-perl-or-python</id>
+    <id>http://zientzilaria.heroku.com/blog/2007/09/12/bioinformatic-perl-or-python</id>
     <content type="html"><![CDATA[<p>I decided to create a new series of posts (a category to be more precise) that deals with some searches that reach the blog. I use a pretty nice logging <a href="http://haveamint.com">application</a> so it is easy to randomly select a Google search term to discuss about it.</p>
 
 <p>About an hour ago someone in the interwebs searched for "bioinformatic perl or python" and my other <a href="http://python.genedrift.org">blog</a> is the third returned by Google. How can answer this question without praising too much Python or not despising too much perl?</p>

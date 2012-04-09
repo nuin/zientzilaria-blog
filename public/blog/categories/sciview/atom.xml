@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: SciView | Zientzilaria]]></title>
-  <link href="http://zientzilaria.genedrift.org/blog/categories/sciview/atom.xml" rel="self"/>
-  <link href="http://zientzilaria.genedrift.org/"/>
-  <updated>2012-04-09T19:27:28-04:00</updated>
-  <id>http://zientzilaria.genedrift.org/</id>
+  <link href="http://zientzilaria.heroku.com/blog/categories/sciview/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.heroku.com/"/>
+  <updated>2012-04-09T19:46:03-04:00</updated>
+  <id>http://zientzilaria.heroku.com/</id>
   <author>
     <name><![CDATA[Paulo Nuin]]></name>
     <email><![CDATA[nuin@genedrift.org]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[SciView, part 6: interview with Dr Roderic Page]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2007/11/19/sciview-part-6-interview-with-dr-roderic-page/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2007/11/19/sciview-part-6-interview-with-dr-roderic-page/"/>
     <updated>2007-11-19T13:29:47-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2007/11/19/sciview-part-6-interview-with-dr-roderic-page</id>
+    <id>http://zientzilaria.heroku.com/blog/2007/11/19/sciview-part-6-interview-with-dr-roderic-page</id>
     <content type="html"><![CDATA[<h2>This edition of SciView features Dr Roderic Page from the University of Glasgow. Among other things, Dr Page was the editor of the Current Protocols in Bioinformatics, is the Editor in Chief of Systematic Biology, is an avid <a href="http://taxonomy.zoology.gla.ac.uk/rod/rod.html">blogger</a> and is the developer of TreeView, a phylogenetic tree visualization software. I had the opportunity to ask him about his bioinformatics work and his views on science. I would like to thank Dr Page. </h2>
 
 <p><em>In your blog (<a href="http://iphylo.blogspot.com/">iPhylo</a>) an usual topic is the management and flow of information in Biology/Phylogenetics. In your opinion what are the main  hurdles of this subject in science? With the ever increasing amount of  generated information, databases, scientific publications, do you think that we will reach a stage where it won't be possible to stay afloat in a sea of data?</em></p>
@@ -84,18 +84,18 @@ provide data (and/or links between data). I think these are the two key things t
   
   <entry>
     <title type="html"><![CDATA[New SciView interview coming.]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2007/10/30/new-sciview-interview-coming/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2007/10/30/new-sciview-interview-coming/"/>
     <updated>2007-10-30T16:01:13-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2007/10/30/new-sciview-interview-coming</id>
+    <id>http://zientzilaria.heroku.com/blog/2007/10/30/new-sciview-interview-coming</id>
     <content type="html"><![CDATA[<p>Stay tuned.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[SciView in PDF]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2007/08/16/sciview-in-pdf/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2007/08/16/sciview-in-pdf/"/>
     <updated>2007-08-16T16:52:12-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2007/08/16/sciview-in-pdf</id>
+    <id>http://zientzilaria.heroku.com/blog/2007/08/16/sciview-in-pdf</id>
     <content type="html"><![CDATA[<p>I am preparing a PDF file with all five interviews so far, in a stylish format.</p>
 
 <p>It will be ready next week and widely available for download.</p>
@@ -106,9 +106,9 @@ provide data (and/or links between data). I think these are the two key things t
   
   <entry>
     <title type="html"><![CDATA[SciView part 5: interview with Alexei Drummond]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2007/08/11/sciview-part-5-interview-with-alexei-drummond/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2007/08/11/sciview-part-5-interview-with-alexei-drummond/"/>
     <updated>2007-08-11T09:53:56-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2007/08/11/sciview-part-5-interview-with-alexei-drummond</id>
+    <id>http://zientzilaria.heroku.com/blog/2007/08/11/sciview-part-5-interview-with-alexei-drummond</id>
     <content type="html"><![CDATA[<p>We are back with more interviews. This time it is Dr Alexei Drummond's take on Science and everything that surrounds it. Apart from his academic work, Alexei is Chief Scientist of <a href="http://www.biomatters.com">Biomatters</a> the developers of <a href="http://blindscientist.genedrift.org/2007/03/02/geneious-one-year-or-almost-later/">Geneious</a> (and <a href="http://blindscientist.genedrift.org/2007/02/26/hello-world/">here</a>). Enjoy.</p>
 
 <hr />
@@ -158,9 +158,9 @@ _</p>
   
   <entry>
     <title type="html"><![CDATA[SciView: part 4, interview with Rosie Redfield]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2007/07/26/sciview-part-4-interview-with-rosie-redfield/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2007/07/26/sciview-part-4-interview-with-rosie-redfield/"/>
     <updated>2007-07-26T21:05:18-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2007/07/26/sciview-part-4-interview-with-rosie-redfield</id>
+    <id>http://zientzilaria.heroku.com/blog/2007/07/26/sciview-part-4-interview-with-rosie-redfield</id>
     <content type="html"><![CDATA[<p>Dr Redfield, from the University of British Columbia is a microbiologist and an advocate of Open Science, a rather recent movement that is trying to open the doors (and computers) of every scientific lab. I took the opportunity to ask her about her views of Open Science and why to create an scientific diary online. I would like to thank Dr Redfield for the opportunity.</p>
 
 <hr />

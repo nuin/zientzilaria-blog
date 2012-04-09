@@ -1,2855 +1,2763 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2006/12/13/3/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2006/12/13/3/</loc>
         <lastmod>2012-01-06T11:40:31-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2006/12/13/4/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2006/12/13/4/</loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2006/12/13/hands-on-code-sequences-and-strings-part-i/
+            http://zientzilaria.heroku.com/blog/2006/12/13/hands-on-code-sequences-and-strings-part-i/
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2006/12/14/sequences-and-strings-part-ii/
-        </loc>
+        <loc>http://zientzilaria.heroku.com/blog/2006/12/14/sequences-and-strings-part-ii/</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/01/15/importing-and-regular-expressions/
+            http://zientzilaria.heroku.com/blog/2007/01/15/importing-and-regular-expressions/
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/01/15/python-printing-statement/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/01/15/python-printing-statement/</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/01/16/the-regular-expression/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/01/16/the-regular-expression/</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/01/23/transcribing-the-other-way/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/01/23/transcribing-the-other-way/</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/01/30/reading-files-in-python/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/01/30/reading-files-in-python/</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/02/07/reading-files-in-python-using-lists/
+            http://zientzilaria.heroku.com/blog/2007/02/07/reading-files-in-python-using-lists/
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/02/09/manipulating-python-lists-i/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/02/09/manipulating-python-lists-i/</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/02/12/manipulating-python-lists-ii/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/02/12/manipulating-python-lists-ii/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/02/13/flow-control-in-python/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/02/13/flow-control-in-python/</loc>
+        <lastmod>2012-01-08T15:47:46-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/02/14/finding-motifs-in-dna-sequences/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/02/14/finding-motifs-in-dna-sequences/
+            http://zientzilaria.heroku.com/blog/2007/02/20/finding-motifs-in-dna-sequences-twist/
         </loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/02/20/finding-motifs-in-dna-sequences-twist/
-        </loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/02/22/commenting-in-python/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/02/22/commenting-in-python/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/02/22/counting-nucleotides/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/02/22/counting-nucleotides/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/02/22/counting-nucleotides-part-ii/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/02/22/counting-nucleotides-part-ii/</loc>
-        <lastmod>2012-01-08T15:47:46-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/02/26/hello-world/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/02/26/hello-world/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/03/02/geneious-one-year-or-almost-later/
+            http://zientzilaria.heroku.com/blog/2007/03/02/geneious-one-year-or-almost-later/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/03/02/geneious-a-reply-from-biomatters/
+            http://zientzilaria.heroku.com/blog/2007/03/02/geneious-a-reply-from-biomatters/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/02/global-warming-here-to-stay/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/02/global-warming-here-to-stay/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/02/biopen-a-review/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/02/biopen-a-review/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/02/sad-news/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/02/sad-news/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/02/wikipedia/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/02/wikipedia/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/03/02/global-warming-no-memo-no-report/
+            http://zientzilaria.heroku.com/blog/2007/03/02/global-warming-no-memo-no-report/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/03/02/beginning-python-for-bioinformatics/
+            http://zientzilaria.heroku.com/blog/2007/03/02/beginning-python-for-bioinformatics/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/02/wikipedia-ii/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/02/wikipedia-ii/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/13/manipulating-strings-again/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/13/manipulating-strings-again/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/13/writing-to-files/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/13/writing-to-files/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/03/14/section-2-a-nice-summary-script/
-        </loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/14/section-2-a-nice-summary-script/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/15/debugging-in-python/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/15/debugging-in-python/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/15/interfaces/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/03/16/on-notes-to-a-young-computational-biologist/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/16/reccommended-read/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/15/interfaces/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/03/22/python-functions-simple-example/
+            http://zientzilaria.heroku.com/blog/2007/03/16/on-notes-to-a-young-computational-biologist/
         </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/16/reccommended-read/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/22/python-functions-simple-example/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/03/26/command-line-arguments-and-a-second-take-on-functions/
+            http://zientzilaria.heroku.com/blog/2007/03/26/command-line-arguments-and-a-second-take-on-functions/
         </loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/03/30/ramdomization/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/03/30/ramdomization/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/04/02/random-sequences-in-python/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/04/02/random-sequences-in-python/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/04/04/a-script-to-simulate-dna-sequence-sets/
+            http://zientzilaria.heroku.com/blog/2007/04/04/a-script-to-simulate-dna-sequence-sets/
         </loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/04/04/the-current-state-of-bioinformatics-software/
+            http://zientzilaria.heroku.com/blog/2007/04/04/the-current-state-of-bioinformatics-software/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/04/10/still-simulation/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/04/10/still-simulation/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/04/19/sciview-scientific-interviews-part-1/
+            http://zientzilaria.heroku.com/blog/2007/04/19/sciview-scientific-interviews-part-1/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/04/19/genetic-code-part-i/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/04/19/genetic-code-part-i/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/04/30/new-review-clc-workbench-free-edition-and-more/
+            http://zientzilaria.heroku.com/blog/2007/04/30/new-review-clc-workbench-free-edition-and-more/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/05/24/translating-dna-into-proteins/</loc>
+        <lastmod>2012-01-08T15:47:46-05:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2007/05/29/sciview-scientific-interviews-part-2/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/05/24/translating-dna-into-proteins/
-        </loc>
-        <lastmod>2012-01-08T15:47:46-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/05/29/sciview-scientific-interviews-part-2/
+            http://zientzilaria.heroku.com/blog/2007/06/25/sciview-part-3-interview-with-jeremy-squire/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/06/25/sciview-part-3-interview-with-jeremy-squire/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/07/03/reading-fasta-files/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/07/03/reading-fasta-files/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/07/04/reading-fasta-files-2/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/07/04/reading-fasta-files-2/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/07/10/formatting-output-of-fasta-files/
-        </loc>
-        <lastmod>2012-01-08T15:47:46-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/07/11/translating-dna-into-proteins-second-approach-now-using-fasta-files/
+            http://zientzilaria.heroku.com/blog/2007/07/10/formatting-output-of-fasta-files/
         </loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/07/16/finding-motifs-iupac-and-regex-an-overview/
+            http://zientzilaria.heroku.com/blog/2007/07/11/translating-dna-into-proteins-second-approach-now-using-fasta-files/
         </loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/07/26/call-for-collaboration-an-open-science-first-for-me/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/07/26/sciview-part-4-interview-with-rosie-redfield/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/08/11/sciview-part-5-interview-with-alexei-drummond/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/08/11/thanks-tony/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/08/16/sciview-in-pdf/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/08/28/finding-motifs-iupac-and-regex-an-approach/
+            http://zientzilaria.heroku.com/blog/2007/07/16/finding-motifs-iupac-and-regex-an-overview/
         </loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/08/31/restriction-enzymes-first-take/
+            http://zientzilaria.heroku.com/blog/2007/07/26/call-for-collaboration-an-open-science-first-for-me/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2007/07/26/sciview-part-4-interview-with-rosie-redfield/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2007/08/11/sciview-part-5-interview-with-alexei-drummond/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/08/11/thanks-tony/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/08/16/sciview-in-pdf/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2007/08/28/finding-motifs-iupac-and-regex-an-approach/
         </loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/06/not-a-very-good-start/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/08/31/restriction-enzymes-first-take/</loc>
+        <lastmod>2012-01-08T15:47:46-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/06/not-a-very-good-start/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/06/scaring/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/06/scaring/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/07/creationism-and-third-world/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/07/creationism-and-third-world/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/07/planning/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/07/planning/</loc>
         <lastmod>2012-01-08T15:47:46-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/09/07/restrinction-enzymes-second-take/
+            http://zientzilaria.heroku.com/blog/2007/09/07/restrinction-enzymes-second-take/
         </loc>
         <lastmod>2012-01-10T09:11:47-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/12/ratings/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/12/ratings/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/09/12/clc-free-workbench-a-new-short-review/
+            http://zientzilaria.heroku.com/blog/2007/09/12/clc-free-workbench-a-new-short-review/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/12/bioinformatic-perl-or-python/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/12/bioinformatic-perl-or-python/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/09/13/restriction-enzymes-third-take/
-        </loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/13/restriction-enzymes-third-take/</loc>
         <lastmod>2012-01-11T21:31:19-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/09/13/restriction-enzymes-the-grand-finale/
+            http://zientzilaria.heroku.com/blog/2007/09/13/restriction-enzymes-the-grand-finale/
         </loc>
         <lastmod>2012-01-10T09:11:47-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/14/simplicity-sometimes-works/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/14/simplicity-sometimes-works/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/09/16/apart-from-python-and-perl-in-bioinformatics/
+            http://zientzilaria.heroku.com/blog/2007/09/16/apart-from-python-and-perl-in-bioinformatics/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/27/genbank-files/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/27/genbank-files/</loc>
         <lastmod>2012-01-11T21:31:19-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/28/genbank-files-take-two/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/28/genbank-files-take-two/</loc>
         <lastmod>2012-01-11T21:31:19-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/28/hockey/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/28/hockey/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/09/28/on-punching-the-liver-quotes/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/09/28/on-punching-the-liver-quotes/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/02/i-cringe/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/02/i-cringe/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/02/running-vista/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/02/running-vista/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/03/genbank-parsing-some-features-and-a-change-for-the-future/
+            http://zientzilaria.heroku.com/blog/2007/10/03/genbank-parsing-some-features-and-a-change-for-the-future/
         </loc>
         <lastmod>2012-01-11T21:31:19-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/05/on-computer-viruses-and-viruses/
-        </loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/05/on-computer-viruses-and-viruses/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/09/splitting-a-multiple-sequence-fasta-file/
+            http://zientzilaria.heroku.com/blog/2007/10/09/splitting-a-multiple-sequence-fasta-file/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/09/splitting-a-multiple-sequence-fasta-file-making-it-better/
+            http://zientzilaria.heroku.com/blog/2007/10/09/splitting-a-multiple-sequence-fasta-file-making-it-better/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/10/splitting-multiple-fasta-file-or-why-shouldnt-we-reinvent-the-wheel/
+            http://zientzilaria.heroku.com/blog/2007/10/10/splitting-multiple-fasta-file-or-why-shouldnt-we-reinvent-the-wheel/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/10/alternative-methods-to-split-a-fasta-file/
+            http://zientzilaria.heroku.com/blog/2007/10/10/alternative-methods-to-split-a-fasta-file/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/17/watson/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/17/watson/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/17/splitting-a-fasta-file/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/17/splitting-a-fasta-file/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/18/off-topic/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/18/off-topic/</loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/18/watson-yet-again/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/18/watson-yet-again/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/20/using-subversion-and-svn-time-lapse-to-edit-a-manuscript/
+            http://zientzilaria.heroku.com/blog/2007/10/20/using-subversion-and-svn-time-lapse-to-edit-a-manuscript/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/23/never-trust/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/23/never-trust/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/23/rowling-dumbledore-is-gay/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/23/rowling-dumbledore-is-gay/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/24/using-subversion-and-svn-time-lapse-to-edit-a-manuscript-take-2-a-short-tutorial/
+            http://zientzilaria.heroku.com/blog/2007/10/24/using-subversion-and-svn-time-lapse-to-edit-a-manuscript-take-2-a-short-tutorial/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/25/so-he-is-gone/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/25/so-he-is-gone/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/26/nobel/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/26/nobel/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/26/generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one/
-        </loc>
-        <lastmod>2012-01-17T08:40:08-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/29/splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit/
+            http://zientzilaria.heroku.com/blog/2007/10/26/generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/29/merging-single-or-multiple-sequence-fasta-files/
-        </loc>
-        <lastmod>2012-01-17T08:40:08-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/30/python-on-osx-leopard/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/10/30/new-sciview-interview-coming/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/10/31/functional-programming-in-python-using-map/
+            http://zientzilaria.heroku.com/blog/2007/10/29/splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/11/01/functional-programming-in-python-using-filter-take-one/
+            http://zientzilaria.heroku.com/blog/2007/10/29/merging-single-or-multiple-sequence-fasta-files/
+        </loc>
+        <lastmod>2012-01-17T08:40:08-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/30/python-on-osx-leopard/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/10/30/new-sciview-interview-coming/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2007/10/31/functional-programming-in-python-using-map/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/11/02/can-you-point-your-country-on-a-map/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/11/06/goodbye-john/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/11/19/sciview-part-6-interview-with-dr-roderic-page/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/11/20/cutting-chromosomes-with-python-a-fast-approach-take-one/
-        </loc>
-        <lastmod>2012-01-17T08:40:08-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/11/22/what-happened/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2007/11/26/e2809ccuttinge2809d-chromosomes-with-python-a-fast-approach-take-two-including-precision/
+            http://zientzilaria.heroku.com/blog/2007/11/01/functional-programming-in-python-using-filter-take-one/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/11/27/bioblogs-17-call-for-submissions/
+            http://zientzilaria.heroku.com/blog/2007/11/02/can-you-point-your-country-on-a-map/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/11/28/geneious-and-other-software/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/11/28/wow/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/11/30/clc-products-who-uses-them/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2007/11/06/goodbye-john/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/12/01/bioblogs-17-the-one-santa-brough-us/
+            http://zientzilaria.heroku.com/blog/2007/11/19/sciview-part-6-interview-with-dr-roderic-page/
         </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/12/05/if-you-live-in-a-cave/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2007/12/05/spam/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2007/12/19/a-bit-of-tnt-in-your-morning-coffee/
+            http://zientzilaria.heroku.com/blog/2007/11/20/cutting-chromosomes-with-python-a-fast-approach-take-one/
         </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/01/08/preaching/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/01/15/impressive-but-how-do-you-call-it/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/01/19/a-leopard-almost-ate-my-imac/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/01/28/python-sets/</loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/11/22/what-happened/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/01/29/uniquifying-lists-with-sets-and-dictionaries/
+            http://zientzilaria.heroku.com/blog/2007/11/26/e2809ccuttinge2809d-chromosomes-with-python-a-fast-approach-take-two-including-precision/
         </loc>
         <lastmod>2012-01-17T08:40:08-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/01/30/benchmarking-python-fastest-way-to-generate-unique-lists/
+            http://zientzilaria.heroku.com/blog/2007/11/27/bioblogs-17-call-for-submissions/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/11/28/geneious-and-other-software/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/11/28/wow/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/11/30/clc-products-who-uses-them/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2007/12/01/bioblogs-17-the-one-santa-brough-us/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/12/05/if-you-live-in-a-cave/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2007/12/05/spam/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2007/12/19/a-bit-of-tnt-in-your-morning-coffee/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/01/08/preaching/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/01/15/impressive-but-how-do-you-call-it/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/01/19/a-leopard-almost-ate-my-imac/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/01/28/python-sets/</loc>
+        <lastmod>2012-01-17T08:40:08-05:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/01/29/uniquifying-lists-with-sets-and-dictionaries/
+        </loc>
+        <lastmod>2012-01-17T08:40:08-05:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/01/30/benchmarking-python-fastest-way-to-generate-unique-lists/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/01/30/tnt-a-comprehensive-review/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/01/30/tnt-a-comprehensive-review/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/01/30/things-you-can-only-learn-from-science-the-journal-not-science-itself/
+            http://zientzilaria.heroku.com/blog/2008/01/30/things-you-can-only-learn-from-science-the-journal-not-science-itself/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/01/31/we-salute-you/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/01/31/we-salute-you/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/01/31/internet-explorer-7-are-you-sure/
+            http://zientzilaria.heroku.com/blog/2008/01/31/internet-explorer-7-are-you-sure/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/02/01/ummm-chocolate/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/02/01/ummm-chocolate/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/02/01/thats-why-we-pay-to-access-scientific-journals/
+            http://zientzilaria.heroku.com/blog/2008/02/01/thats-why-we-pay-to-access-scientific-journals/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/02/01/talking-about-chocolate/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/02/01/talking-about-chocolate/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/02/01/powerpoint-tips/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/02/01/powerpoint-tips/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/02/02/is-this-the-year-chelios-retires/
+            http://zientzilaria.heroku.com/blog/2008/02/02/is-this-the-year-chelios-retires/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/02/03/tnt-review-of-the-graphical-interface/
+            http://zientzilaria.heroku.com/blog/2008/02/03/tnt-review-of-the-graphical-interface/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/02/07/we-are-doomed/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/02/07/we-are-doomed/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/02/14/3-masterpieces/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/02/15/parsing-a-genbank-file-another-approach/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/02/15/for-every-problem-there-is-a-solution-thankfully/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/02/18/bosc-2008/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/02/19/empires/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/02/14/3-masterpieces/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/02/20/a-comparison-between-python-and-c-parsing-a-genbank-file/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/02/21/burst-baby-burst/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/03/best-and-worst/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/03/the-sun-will-shine-on-python/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/04/how-much-would-you-pay/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/03/06/parsing-genbank-getting-dna-from-genome-entries-part-i/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/10/are-we-there-yet-pretty-much/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/11/genbank-parsing-part-ii/</loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/03/11/fasta-module-generating-reverse-complement-of-dna-sequences/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/11/year-of-the-frog/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/03/11/fasta-module-transcribing-dna/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/14/we-salute-you-2/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/14/genbank-parsing-both-scripts/</loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/03/14/python-sets-and-intersections/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/17/how-realistic-is-10000-bc/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/03/17/python-sets-intersections-reduce-and-more/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/18/sad-sad-day/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/26/ride-to-conquer-cancer/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/28/awk-and-sed-sed-and-awk/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/03/29/earth-hour/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/03/30/merging-sequences-from-a-pfam-alignment-using-sets-part-ii/
+            http://zientzilaria.heroku.com/blog/2008/02/15/parsing-a-genbank-file-another-approach/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/13/twitter-updates-for-2008-04-13/
+            http://zientzilaria.heroku.com/blog/2008/02/15/for-every-problem-there-is-a-solution-thankfully/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/14/python-and-appengine-in-vista/
-        </loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/02/18/bosc-2008/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/04/14/twitter/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/14/twitter-updates-for-2008-04-14/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/04/15/multigui/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/02/19/empires/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/15/multigui-restricted-beta-release/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/15/twitter-updates-for-2008-04-15/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/16/twitter-updates-for-2008-04-16/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/17/twitter-updates-for-2008-04-17/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/18/twitter-updates-for-2008-04-18/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/19/twitter-updates-for-2008-04-19/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/20/twitter-updates-for-2008-04-20/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/04/21/jmodeltest/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/04/21/xkcd-got-it-wrong/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/21/twitter-updates-for-2008-04-21/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/22/twitter-updates-for-2008-04-22/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/23/how-to-improve-scientific-software/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/23/twitter-updates-for-2008-04-23/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/24/twitter-updates-for-2008-04-24/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/25/twitter-updates-for-2008-04-25/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/04/26/twitter-updates-for-2008-04-26/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/04/29/habs/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/05/02/revisiting-pfam-alignments/</loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/03/revisting-pfam-alignments-again/
+            http://zientzilaria.heroku.com/blog/2008/02/20/a-comparison-between-python-and-c-parsing-a-genbank-file/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/02/21/burst-baby-burst/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/03/best-and-worst/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/03/the-sun-will-shine-on-python/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/04/how-much-would-you-pay/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/05/still-on-merging-pfam-alignments/
+            http://zientzilaria.heroku.com/blog/2008/03/06/parsing-genbank-getting-dna-from-genome-entries-part-i/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/10/are-we-there-yet-pretty-much/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/11/genbank-parsing-part-ii/</loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/03/11/fasta-module-generating-reverse-complement-of-dna-sequences/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/11/year-of-the-frog/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/11/fasta-module-transcribing-dna/</loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/14/we-salute-you-2/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/14/genbank-parsing-both-scripts/</loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/14/python-sets-and-intersections/</loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/17/how-realistic-is-10000-bc/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/03/17/python-sets-intersections-reduce-and-more/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/18/sad-sad-day/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/26/ride-to-conquer-cancer/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/28/awk-and-sed-sed-and-awk/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/03/29/earth-hour/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/03/30/merging-sequences-from-a-pfam-alignment-using-sets-part-ii/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/13/twitter-updates-for-2008-04-13/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/14/python-and-appengine-in-vista/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/14/twitter/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/14/twitter-updates-for-2008-04-14/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/15/multigui/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/04/15/multigui-restricted-beta-release/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/15/twitter-updates-for-2008-04-15/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/16/twitter-updates-for-2008-04-16/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/17/twitter-updates-for-2008-04-17/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/18/twitter-updates-for-2008-04-18/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/19/twitter-updates-for-2008-04-19/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/20/twitter-updates-for-2008-04-20/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/21/jmodeltest/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/21/xkcd-got-it-wrong/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/21/twitter-updates-for-2008-04-21/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/22/twitter-updates-for-2008-04-22/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/04/23/how-to-improve-scientific-software/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/23/twitter-updates-for-2008-04-23/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/24/twitter-updates-for-2008-04-24/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/25/twitter-updates-for-2008-04-25/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/26/twitter-updates-for-2008-04-26/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/04/29/habs/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/05/02/revisiting-pfam-alignments/</loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/05/03/revisting-pfam-alignments-again/</loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/05/05/still-on-merging-pfam-alignments/
         </loc>
         <lastmod>2012-04-07T17:14:16-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/09/obtaining-overrepresented-motifs-in-dna-sequences-part-i/
+            http://zientzilaria.heroku.com/blog/2008/05/09/obtaining-overrepresented-motifs-in-dna-sequences-part-i/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/10/from-the-interwebs-forgotten-archives/
+            http://zientzilaria.heroku.com/blog/2008/05/10/from-the-interwebs-forgotten-archives/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/10/obtaining-overrepresented-motifs-in-dna-sequences-part-2/
+            http://zientzilaria.heroku.com/blog/2008/05/10/obtaining-overrepresented-motifs-in-dna-sequences-part-2/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/05/12/a-new-religion/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/05/12/a-new-religion/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-3/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-4/
+            http://zientzilaria.heroku.com/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-3/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/05/21/how-british/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/23/thats-not-a-good-example-kaka/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/26/processing-and-duplicons-on-human-chromosomes/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/05/30/obtaining-overrepresented-motifs-part-6/
+            http://zientzilaria.heroku.com/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-4/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/
+            http://zientzilaria.heroku.com/blog/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/05/21/how-british/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/05/23/thats-not-a-good-example-kaka/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/05/26/processing-and-duplicons-on-human-chromosomes/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/05/30/obtaining-overrepresented-motifs-part-6/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8/
+            http://zientzilaria.heroku.com/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-8/
+            http://zientzilaria.heroku.com/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/06/04/obtaining-overrepresented-motifs-in-dna-sequences-part-10/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/06/04/poor-octopi/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/06/06/a-quick-assessment-of-factorial-functions-in-python/
-        </loc>
-        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/06/11/chelsea/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/06/14/the-new-cult-is-coming-to-life/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/06/18/wordle/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/06/29/what-a-happy-day/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/07/01/bioinformatics-carrer-survey/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/07/08/plos-computational-biology-t-shirt/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/07/23/staring-at-the-clouds/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/07/29/shame/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/07/31/those-are-my-sequences/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/07/31/these-are-really-my-sequences/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/08/12/obtaining-overrepresented-motifs-in-dna-sequences-part-11/
+            http://zientzilaria.heroku.com/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-8/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/08/15/obtaining-overrepresented-motifs-in-dna-sequences-part-12/
+            http://zientzilaria.heroku.com/blog/2008/06/04/obtaining-overrepresented-motifs-in-dna-sequences-part-10/
         </loc>
         <lastmod>2012-04-06T21:42:59-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/08/19/business-opportunities/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/08/20/that-should-do-it/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/06/04/poor-octopi/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/
+            http://zientzilaria.heroku.com/blog/2008/06/06/a-quick-assessment-of-factorial-functions-in-python/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/06/11/chelsea/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/06/14/the-new-cult-is-coming-to-life/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/06/18/wordle/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/06/29/what-a-happy-day/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/07/01/bioinformatics-carrer-survey/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/07/08/plos-computational-biology-t-shirt/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/07/23/staring-at-the-clouds/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/07/29/shame/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/07/31/those-are-my-sequences/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/07/31/these-are-really-my-sequences/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/08/12/obtaining-overrepresented-motifs-in-dna-sequences-part-11/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/08/15/obtaining-overrepresented-motifs-in-dna-sequences-part-12/
+        </loc>
+        <lastmod>2012-04-06T21:42:59-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/08/19/business-opportunities/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/08/20/that-should-do-it/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/
         </loc>
         <lastmod>2012-04-07T17:20:27-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/08/25/mendeley-a-very-short-review/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/08/25/mendeley-a-very-short-review/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/09/03/obtaining-overrepresented-motifs-in-dna-sequences-final/
+            http://zientzilaria.heroku.com/blog/2008/09/03/obtaining-overrepresented-motifs-in-dna-sequences-final/
         </loc>
         <lastmod>2012-04-07T17:21:06-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/09/05/python-overepresented-motifs-the-grand-finale/
+            http://zientzilaria.heroku.com/blog/2008/09/05/python-overepresented-motifs-the-grand-finale/
         </loc>
         <lastmod>2012-04-07T17:21:36-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/09/21/i-love-spam/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/09/21/i-love-spam/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/10/20/creating-an-interface-for-the-motif-finding-script/
+            http://zientzilaria.heroku.com/blog/2008/10/20/creating-an-interface-for-the-motif-finding-script/
         </loc>
         <lastmod>2012-04-08T10:31:51-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2/
+            http://zientzilaria.heroku.com/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2/
         </loc>
         <lastmod>2012-04-08T10:39:56-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/10/22/creating-an-interface-for-the-motif-finding-script-part-3/
+            http://zientzilaria.heroku.com/blog/2008/10/22/creating-an-interface-for-the-motif-finding-script-part-3/
         </loc>
         <lastmod>2012-04-08T11:02:52-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/10/29/creating-an-interface-for-the-motif-finding-script-part-4/
+            http://zientzilaria.heroku.com/blog/2008/10/29/creating-an-interface-for-the-motif-finding-script-part-4/
         </loc>
         <lastmod>2012-04-08T11:42:30-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/10/30/creating-an-interface-for-the-motif-finding-script-part-5/
+            http://zientzilaria.heroku.com/blog/2008/10/30/creating-an-interface-for-the-motif-finding-script-part-5/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/10/30/motif-interface-on-github/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/10/30/motif-interface-on-github/</loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/04/creating-an-interface-for-the-motif-finding-script-part-6/
+            http://zientzilaria.heroku.com/blog/2008/11/04/creating-an-interface-for-the-motif-finding-script-part-6/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/05/software-that-i-would-never-buy/
-        </loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/11/05/software-that-i-would-never-buy/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/11/07/crooks/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/11/07/crooks/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/11/11/the-11th-hour/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/11/creating-an-interface-for-the-motif-finding-script-part-7/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/12/how-to-improve-science-in-easy-steps/
-        </loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/11/11/the-11th-hour/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/13/why-open-scienceresearch-wont-work-at-least-for-now-first-part-of-a-long-series/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/13/creating-an-interface-for-the-motif-finding-script-part-8/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/11/16/the-science-blog-meme/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/16/the-community-comments-on-why-open-scienceresearch-wont-work/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/18/creating-an-interface-for-the-motif-finding-script-some-corrections/
+            http://zientzilaria.heroku.com/blog/2008/11/11/creating-an-interface-for-the-motif-finding-script-part-7/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/19/creating-an-interface-for-the-motif-finding-script-final/
+            http://zientzilaria.heroku.com/blog/2008/11/12/how-to-improve-science-in-easy-steps/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/11/13/why-open-scienceresearch-wont-work-at-least-for-now-first-part-of-a-long-series/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/11/13/creating-an-interface-for-the-motif-finding-script-part-8/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/11/19/poem/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/11/20/you-may-not-know/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2008/11/16/the-science-blog-meme/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2008/11/21/why-open-scienceresearch-wont-work-at-least-for-now-a-story-from-google-reader/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/12/06/scripts-and-python-30-part-1/</loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/12/07/speechless/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/12/08/scripts-and-python-30-part-2-using-2to3/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2008/12/10/restoring-original-fonts-on-leopard-as-long-as-you-have-timemachine/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/12/19/thats-it-for-2008/</loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2008/12/20/best-and-worst-of-2008/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/01/02/cancer-research-blog-carnival-17/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/01/07/masterpieces/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/01/22/why-open-scienceresearch-wone28099t-work-at-least-for-now-a-story-from-friendfeed/
+            http://zientzilaria.heroku.com/blog/2008/11/16/the-community-comments-on-why-open-scienceresearch-wont-work/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/01/31/bpforb-is-now-pep-8-compliant/
+            http://zientzilaria.heroku.com/blog/2008/11/18/creating-an-interface-for-the-motif-finding-script-some-corrections/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/02/05/expert-python-programming-by-tarek-ziade-a-review-of-chapter-1/
+            http://zientzilaria.heroku.com/blog/2008/11/19/creating-an-interface-for-the-motif-finding-script-final/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/11/19/poem/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/11/20/you-may-not-know/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/11/21/why-open-scienceresearch-wont-work-at-least-for-now-a-story-from-google-reader/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/12/06/scripts-and-python-30-part-1/</loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/12/07/speechless/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2008/12/08/scripts-and-python-30-part-2-using-2to3/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/02/06/expert-python-programming-by-tarek-ziade-a-review-of-chapter-2/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/02/09/on-join-a-startup/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/02/09/expert-python-programming-by-tarek-ziade-a-review-of-chapter-3/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/02/10/nostradamus/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/02/20/why-do-i-blog-or-science-blogging-is-it-worth/
+            http://zientzilaria.heroku.com/blog/2008/12/10/restoring-original-fonts-on-leopard-as-long-as-you-have-timemachine/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/12/19/thats-it-for-2008/</loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2008/12/20/best-and-worst-of-2008/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/02/21/why-do-i-blog-or-science-blogging-is-it-worth/
+            http://zientzilaria.heroku.com/blog/2009/01/02/cancer-research-blog-carnival-17/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/01/07/masterpieces/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/01/22/why-open-scienceresearch-wone28099t-work-at-least-for-now-a-story-from-friendfeed/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/01/31/bpforb-is-now-pep-8-compliant/</loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/02/05/expert-python-programming-by-tarek-ziade-a-review-of-chapter-1/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/
+            http://zientzilaria.heroku.com/blog/2009/02/06/expert-python-programming-by-tarek-ziade-a-review-of-chapter-2/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/02/09/on-join-a-startup/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/02/09/expert-python-programming-by-tarek-ziade-a-review-of-chapter-3/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/
+            http://zientzilaria.heroku.com/blog/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/03/13/biopython-and-cvs/</loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/03/15/presenting-biovb6/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2009/02/10/nostradamus/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/03/18/i-havent-joined-mendeley-as-community-liaison/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/
+            http://zientzilaria.heroku.com/blog/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/03/31/phasing-out-scientific-software/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/04/03/mendeley-an-extremely-short-review-sort-of/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/04/17/this-should-not-be-here-or-notes-to-a-bioinformatician-two-years-later/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/04/19/thanks-jim/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/
+            http://zientzilaria.heroku.com/blog/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/04/22/managing-a-simple-database-with-python-sqlite-and-wxpython-8/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/04/25/its-not-just-me-victor/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/05/08/on-anti-vaccine-and-the-internet/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/05/12/the-new-americas-cult/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/05/13/doing-more-harm-than-good/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/05/21/internet-democracy/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/06/03/so-you-want-to-cover-the-next-conferece-via-social-media/
+            http://zientzilaria.heroku.com/blog/2009/02/20/why-do-i-blog-or-science-blogging-is-it-worth/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2009/07/13/its-when-i-struggle-to-stay-alive-or-another-mendeley-review/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/07/13/you-should-live-there-for-sometime/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/08/03/2009-movies-updated-regularly/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/08/03/paper-of-the-week-a-quick-guide-to-organizing-computational-biology-projects/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/08/10/paper-of-the-week-indelible-a-flexible-simulator-of-biological-sequence-evolution/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/08/10/what-we-learned-last-week-august-10th-edition/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/08/11/the-best-analogy-for-the-friendfeed-purchase/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/08/21/wave-test/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/08/30/books-2009/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/09/28/this-is-when-i-say-farewell/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/09/30/mendeleys-pr-machine-and-more/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/10/01/google-wave-invite-who-wants-one/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2009/11/26/dialign-tx-has-all-the-problems-with-scientific-software/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/11/30/open-scienceaccess-challenge/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/12/19/2009-in-review/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2009/12/30/best-of-the-decade/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/01/365-in-365/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/02/lies-lies-and-even-more-lies/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/01/03/preliminary-review-of-python-for-bioinformatics-by-sebastian-bassi/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/04/phrase-of-the-day/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/10/books-2010/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/10/memories/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/14/im-with-coco/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/01/19/why-i-wont-watch-avatar-or-at-least-pay-for/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/20/premium/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/22/stay-away/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/23/thanks-conan/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/25/never-understood/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/27/feynman-and-me/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/01/28/microsoft-is-more-detrimental-to-science-than-the-lack-of-open-science/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/01/28/ipad-is-excellent/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/01/28/something-is-not-open-at-plos-maybe/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/01/28/its-really-strange-or-why-the-ipad/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/02/06/laboratory-walkover-a-pitch-for-a-tv-show/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/02/07/palin/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/02/15/thats-basically-it/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/02/17/google-wave-and-buzz/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/02/18/london-2012-vancouver-2010/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/02/19/please-stop/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/02/19/intelligent-design/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/02/19/do-you-deny-climate-change-nee-global-warming/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/02/19/i-dont-understand-the-us/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/02/20/if-we-tell-you-to-buzz/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/02/22/preview-of-python-testing-beginners-guide/
+            http://zientzilaria.heroku.com/blog/2009/02/21/why-do-i-blog-or-science-blogging-is-it-worth/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/02/22/preview-of-python-testing-beginnere28099s-guide/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/03/03/python-testing-beginnere28099s-guide-review/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/03/26/earth-hour-2/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/03/30/i-thought-i-was-alone-but-then-i-found-another-light/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/04/01/draft-blog-posts/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/04/01/bpb-on-github/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/04/04/paid-software-vs-donating/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/04/06/open-science-and-pregnancy/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/04/07/bioinformatics-needs-investment/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/04/08/bioinformatics-needs-investment-ii/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/04/08/the-sickest-python-code-ive-ever-created-1/
-        </loc>
-        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/04/09/google-wave-part-64334533-08/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/04/10/the-real-value-of-blogging/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/04/15/repent-sinners/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/04/17/biostar-bioinformatics-community/
+            http://zientzilaria.heroku.com/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/
+            http://zientzilaria.heroku.com/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/04/28/scary/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2009/03/13/biopython-and-cvs/</loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/03/15/presenting-biovb6/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/04/30/do-you-think-bush-was-a-bad-president-think-again/
+            http://zientzilaria.heroku.com/blog/2009/03/18/i-havent-joined-mendeley-as-community-liaison/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/
+            http://zientzilaria.heroku.com/blog/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/05/02/i-live-in-the-canada/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2009/03/31/phasing-out-scientific-software/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/
+            http://zientzilaria.heroku.com/blog/2009/04/03/mendeley-an-extremely-short-review-sort-of/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/04/17/this-should-not-be-here-or-notes-to-a-bioinformatician-two-years-later/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/04/19/thanks-jim/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/06/02/the-problem-with-paid-software-part-64563-support/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/06/04/thank-the-lord-its-friday/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/06/08/publishing-on-nature/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/06/14/2010-world-cup-first-impressions/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/06/25/bad-street-cred/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/06/26/2010-world-cup-second-impressions/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/06/26/safari-5-the-worst/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/07/12/world-cup-2010-final-impression/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/07/22/i/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/07/22/more-pepsi-for-everyone/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/07/23/my-take-on-the-future-scientific-blog-community-long-post/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/07/28/gates-and-fountains-more-pepsi/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/08/09/damn-mendeley/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/08/12/note-to-self-reapi-or-who-said-mendeley-didnt-teach-me-something/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/08/20/one-round-of-applause/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/08/21/theres-till-hope/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/08/24/the-webs-future/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/08/24/mendeleys-side/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/08/25/the-rise-and-fall-of-software-sites-and-companies/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/08/27/mendeley-is-going-to-be-open-source/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/08/27/why-it-makes-sense-re-mendeley-open-source/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/08/27/campaign-were-open-mendeley/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/08/28/mendeley-open-source-possible-revenue-streams/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/09/02/plos-blogs-im-excited/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/09/17/a-short-list-of-things-i-dont-like-about-mendeley/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/09/17/a-positive-note/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/09/22/zotero-now-were-talking/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/11/11/1111-november-11th/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/11/26/milking-research-papers-or-recurrences-of-the-same-topic/
-        </loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/11/29/help-me-with-this-one/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.genedrift.org/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/
+            http://zientzilaria.heroku.com/blog/2009/04/22/managing-a-simple-database-with-python-sqlite-and-wxpython-8/
         </loc>
         <lastmod>2012-01-06T11:40:30-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/12/01/why-i-left-biostar/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2009/04/25/its-not-just-me-victor/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/12/02/preview-of-best-and-worst-of-2010/
+            http://zientzilaria.heroku.com/blog/2009/05/08/on-anti-vaccine-and-the-internet/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/05/12/the-new-americas-cult/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/05/13/doing-more-harm-than-good/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/05/21/internet-democracy/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/06/03/so-you-want-to-cover-the-next-conferece-via-social-media/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/12/05/the-new-form-of-life-and-the-generation-mendeley/
+            http://zientzilaria.heroku.com/blog/2009/07/13/its-when-i-struggle-to-stay-alive-or-another-mendeley-review/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/12/06/secure-os/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/12/07/youre-quite-wrong-nasa/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/12/07/interview-with-rosie-redfield/
+            http://zientzilaria.heroku.com/blog/2009/07/13/you-should-live-there-for-sometime/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/12/08/of-course-i-agree-cytoscape/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/12/13/best-and-worst-of-2010/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/12/16/books-2010-3/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2009/08/03/2009-movies-updated-regularly/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2010/12/16/brazil-the-country-of-the-future-always/
+            http://zientzilaria.heroku.com/blog/2009/08/03/paper-of-the-week-a-quick-guide-to-organizing-computational-biology-projects/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/12/16/question/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2010/12/31/ive-failed/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2011/01/16/its-st-like-this-scientists/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2011/01/24/books-2011/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication/
+            http://zientzilaria.heroku.com/blog/2009/08/10/paper-of-the-week-indelible-a-flexible-simulator-of-biological-sequence-evolution/
         </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2011/02/09/theres-dumb-and-theres/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2011/02/10/bioconductor/</loc>
-        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
-    </url>
-    <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2011/02/15/there-are-idiots-everywhere/</loc>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/08/10/what-we-learned-last-week-august-10th-edition/
+        </loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/
+            http://zientzilaria.heroku.com/blog/2009/08/11/the-best-analogy-for-the-friendfeed-purchase/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/08/21/wave-test/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/08/30/books-2009/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/09/28/this-is-when-i-say-farewell/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/09/30/mendeleys-pr-machine-and-more/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/10/01/google-wave-invite-who-wants-one/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2009/11/26/dialign-tx-has-all-the-problems-with-scientific-software/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/11/30/open-scienceaccess-challenge/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/12/19/2009-in-review/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2009/12/30/best-of-the-decade/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/01/365-in-365/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/02/lies-lies-and-even-more-lies/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/01/03/preliminary-review-of-python-for-bioinformatics-by-sebastian-bassi/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/04/phrase-of-the-day/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/10/books-2010/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/10/memories/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/14/im-with-coco/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/01/19/why-i-wont-watch-avatar-or-at-least-pay-for/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/20/premium/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/22/stay-away/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/23/thanks-conan/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/25/never-understood/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/27/feynman-and-me/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/01/28/microsoft-is-more-detrimental-to-science-than-the-lack-of-open-science/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/01/28/ipad-is-excellent/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/01/28/something-is-not-open-at-plos-maybe/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/01/28/its-really-strange-or-why-the-ipad/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/02/06/laboratory-walkover-a-pitch-for-a-tv-show/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/02/07/palin/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/02/15/thats-basically-it/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/02/17/google-wave-and-buzz/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/02/18/london-2012-vancouver-2010/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/02/19/please-stop/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/02/19/intelligent-design/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/02/19/do-you-deny-climate-change-nee-global-warming/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/02/19/i-dont-understand-the-us/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/02/20/if-we-tell-you-to-buzz/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/02/22/preview-of-python-testing-beginners-guide/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/02/22/preview-of-python-testing-beginnere28099s-guide/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/03/03/python-testing-beginnere28099s-guide-review/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/03/26/earth-hour-2/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/03/30/i-thought-i-was-alone-but-then-i-found-another-light/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/01/draft-blog-posts/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/01/bpb-on-github/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/04/paid-software-vs-donating/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/06/open-science-and-pregnancy/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/07/bioinformatics-needs-investment/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/04/08/bioinformatics-needs-investment-ii/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/04/08/the-sickest-python-code-ive-ever-created-1/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/09/google-wave-part-64334533-08/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/10/the-real-value-of-blogging/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/15/repent-sinners/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/04/17/biostar-bioinformatics-community/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/04/19/python-for-bioinformatics-by-sebastian-bassi-a-review/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/04/28/scary/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/04/30/do-you-think-bush-was-a-bad-president-think-again/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/05/01/initial-impressions-about-bioinformatics-programming-using-python/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/05/02/i-live-in-the-canada/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/05/20/preview-of-django-1-1-testing-and-debugging/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/06/02/the-problem-with-paid-software-part-64563-support/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/06/04/thank-the-lord-its-friday/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/06/08/publishing-on-nature/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/06/14/2010-world-cup-first-impressions/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/06/25/bad-street-cred/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/06/26/2010-world-cup-second-impressions/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/06/26/safari-5-the-worst/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/07/12/world-cup-2010-final-impression/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/07/22/i/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/07/22/more-pepsi-for-everyone/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/07/23/my-take-on-the-future-scientific-blog-community-long-post/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/07/28/gates-and-fountains-more-pepsi/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/08/09/damn-mendeley/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/08/12/note-to-self-reapi-or-who-said-mendeley-didnt-teach-me-something/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/08/20/one-round-of-applause/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/08/21/theres-till-hope/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/08/24/the-webs-future/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/08/24/mendeleys-side/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/08/25/the-rise-and-fall-of-software-sites-and-companies/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/08/27/mendeley-is-going-to-be-open-source/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/08/27/why-it-makes-sense-re-mendeley-open-source/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/08/27/campaign-were-open-mendeley/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/08/28/mendeley-open-source-possible-revenue-streams/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/09/02/plos-blogs-im-excited/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/09/17/a-short-list-of-things-i-dont-like-about-mendeley/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/09/17/a-positive-note/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/09/22/zotero-now-were-talking/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/11/11/1111-november-11th/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/11/26/milking-research-papers-or-recurrences-of-the-same-topic/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/11/29/help-me-with-this-one/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/12/01/why-i-left-biostar-but-i-still-like-stackoverflow/
+        </loc>
+        <lastmod>2012-01-06T11:40:30-05:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/01/why-i-left-biostar/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/12/02/preview-of-best-and-worst-of-2010/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/12/05/the-new-form-of-life-and-the-generation-mendeley/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/06/secure-os/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/07/youre-quite-wrong-nasa/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/07/interview-with-rosie-redfield/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/08/of-course-i-agree-cytoscape/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/13/best-and-worst-of-2010/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/16/books-2010-3/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2010/12/16/brazil-the-country-of-the-future-always/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/16/question/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2010/12/31/ive-failed/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2011/01/16/its-st-like-this-scientists/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2011/01/24/books-2011/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2011/02/09/whate28099s-more-important-the-publication-or-the-product-the-publication/
+        </loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2011/02/09/theres-dumb-and-theres/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2011/02/10/bioconductor/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://zientzilaria.heroku.com/blog/2011/02/15/there-are-idiots-everywhere/</loc>
+        <lastmod>2012-04-08T11:52:44-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zientzilaria.heroku.com/blog/2011/02/16/a-plea-to-mankind-news-outlets-and-even-scientists/
         </loc>
         <lastmod>2012-04-09T19:16:51-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2011/02/23/scientists-are-human-beings/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2011/02/23/scientists-are-human-beings/</loc>
         <lastmod>2012-04-08T11:52:44-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/2012/04/09/new-blog/</loc>
         <lastmod>2012-04-09T19:27:20-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/blog/archives/</loc>
+        <loc>http://zientzilaria.heroku.com/blog/archives/</loc>
         <lastmod>2012-04-09T19:27:20-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/</loc>
+        <loc>http://zientzilaria.heroku.com/</loc>
         <lastmod>2012-04-09T19:27:20-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2006-12-13-3.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2006-12-13-3.html</loc>
         <lastmod>2012-01-06T11:40:33-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2006-12-13-4.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2006-12-13-4.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2006-12-13-hands-on-code-sequences-and-strings-part-i.html
+            http://zientzilaria.heroku.com/temp/2006-12-13-hands-on-code-sequences-and-strings-part-i.html
         </loc>
         <lastmod>2012-01-06T11:40:34-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2006-12-14-sequences-and-strings-part-ii.html
+            http://zientzilaria.heroku.com/temp/2006-12-14-sequences-and-strings-part-ii.html
         </loc>
         <lastmod>2012-01-06T11:40:34-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-01-15-importing-and-regular-expressions.html
+            http://zientzilaria.heroku.com/temp/2007-01-15-importing-and-regular-expressions.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/temp/2007-01-15-python-printing-statement.html
-        </loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-01-15-python-printing-statement.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-01-16-the-regular-expression.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-01-16-the-regular-expression.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/temp/2007-01-23-transcribing-the-other-way.html
-        </loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-01-23-transcribing-the-other-way.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-01-30-reading-files-in-python.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-01-30-reading-files-in-python.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-02-07-reading-files-in-python-using-lists.html
+            http://zientzilaria.heroku.com/temp/2007-02-07-reading-files-in-python-using-lists.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/temp/2007-02-09-manipulating-python-lists-i.html
-        </loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-02-09-manipulating-python-lists-i.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-02-12-manipulating-python-lists-ii.html
+            http://zientzilaria.heroku.com/temp/2007-02-12-manipulating-python-lists-ii.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-02-13-flow-control-in-python.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-02-13-flow-control-in-python.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-02-14-finding-motifs-in-dna-sequences.html
+            http://zientzilaria.heroku.com/temp/2007-02-14-finding-motifs-in-dna-sequences.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-02-20-finding-motifs-in-dna-sequences-twist.html
+            http://zientzilaria.heroku.com/temp/2007-02-20-finding-motifs-in-dna-sequences-twist.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-02-22-commenting-in-python.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-02-22-commenting-in-python.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-02-22-counting-nucleotides-part-ii.html
+            http://zientzilaria.heroku.com/temp/2007-02-22-counting-nucleotides-part-ii.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-02-22-counting-nucleotides.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-02-22-counting-nucleotides.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-03-08-move-complete.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-03-08-move-complete.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/temp/2007-03-13-manipulating-strings-again.html
-        </loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-03-13-manipulating-strings-again.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-03-13-writing-to-files.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-03-13-writing-to-files.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-03-14-section-2-a-nice-summary-script.html
+            http://zientzilaria.heroku.com/temp/2007-03-14-section-2-a-nice-summary-script.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-03-15-debugging-in-python.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-03-15-debugging-in-python.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-03-22-python-functions-simple-example.html
+            http://zientzilaria.heroku.com/temp/2007-03-22-python-functions-simple-example.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-03-26-command-line-arguments-and-a-second-take-on-functions.html
+            http://zientzilaria.heroku.com/temp/2007-03-26-command-line-arguments-and-a-second-take-on-functions.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-03-26-end-of-section-3-and-comments.html
+            http://zientzilaria.heroku.com/temp/2007-03-26-end-of-section-3-and-comments.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-03-30-ramdomization.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-03-30-ramdomization.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/temp/2007-04-02-random-sequences-in-python.html
-        </loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-04-02-random-sequences-in-python.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-04-04-a-script-to-simulate-dna-sequence-sets.html
+            http://zientzilaria.heroku.com/temp/2007-04-04-a-script-to-simulate-dna-sequence-sets.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-04-10-still-simulation.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-04-10-still-simulation.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-04-19-genetic-code-part-i.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-04-19-genetic-code-part-i.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-05-11-repository.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-05-11-repository.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-05-24-translating-dna-into-proteins.html
+            http://zientzilaria.heroku.com/temp/2007-05-24-translating-dna-into-proteins.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-07-03-reading-fasta-files.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-07-03-reading-fasta-files.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-07-04-reading-fasta-files-2.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-07-04-reading-fasta-files-2.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-07-04-reading-fasta-files-conclusion.html
+            http://zientzilaria.heroku.com/temp/2007-07-04-reading-fasta-files-conclusion.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-07-10-formatting-output-of-fasta-files.html
+            http://zientzilaria.heroku.com/temp/2007-07-10-formatting-output-of-fasta-files.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-07-11-translating-dna-into-proteins-second-approach-now-using-fasta-files.html
+            http://zientzilaria.heroku.com/temp/2007-07-11-translating-dna-into-proteins-second-approach-now-using-fasta-files.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-07-16-finding-motifs-iupac-and-regex-an-overview.html
+            http://zientzilaria.heroku.com/temp/2007-07-16-finding-motifs-iupac-and-regex-an-overview.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-07-16-krugle.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-07-16-krugle.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-08-28-finding-motifs-iupac-and-regex-an-approach.html
+            http://zientzilaria.heroku.com/temp/2007-08-28-finding-motifs-iupac-and-regex-an-approach.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-08-31-restriction-enzymes-first-take.html
+            http://zientzilaria.heroku.com/temp/2007-08-31-restriction-enzymes-first-take.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-09-07-planning.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-09-07-planning.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-09-07-restrinction-enzymes-second-take.html
+            http://zientzilaria.heroku.com/temp/2007-09-07-restrinction-enzymes-second-take.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-09-12-ratings.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-09-12-ratings.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-09-13-restriction-enzymes-the-grand-finale.html
+            http://zientzilaria.heroku.com/temp/2007-09-13-restriction-enzymes-the-grand-finale.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-09-13-restriction-enzymes-third-take.html
+            http://zientzilaria.heroku.com/temp/2007-09-13-restriction-enzymes-third-take.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-09-27-genbank-files.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-09-27-genbank-files.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-09-28-genbank-files-take-two.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-09-28-genbank-files-take-two.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-03-genbank-parsing-some-features-and-a-change-for-the-future.html
+            http://zientzilaria.heroku.com/temp/2007-10-03-genbank-parsing-some-features-and-a-change-for-the-future.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-10-05-python-magazine.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-10-05-python-magazine.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-09-splitting-a-multiple-sequence-fasta-file-making-it-better.html
+            http://zientzilaria.heroku.com/temp/2007-10-09-splitting-a-multiple-sequence-fasta-file-making-it-better.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-09-splitting-a-multiple-sequence-fasta-file.html
+            http://zientzilaria.heroku.com/temp/2007-10-09-splitting-a-multiple-sequence-fasta-file.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-10-alternative-methods-to-split-a-fasta-file.html
+            http://zientzilaria.heroku.com/temp/2007-10-10-alternative-methods-to-split-a-fasta-file.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-10-splitting-multiple-fasta-file-or-why-shouldnt-we-reinvent-the-wheel.html
+            http://zientzilaria.heroku.com/temp/2007-10-10-splitting-multiple-fasta-file-or-why-shouldnt-we-reinvent-the-wheel.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-10-18-off-topic.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-10-18-off-topic.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-26-generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one.html
+            http://zientzilaria.heroku.com/temp/2007-10-26-generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-29-merging-single-or-multiple-sequence-fasta-files.html
+            http://zientzilaria.heroku.com/temp/2007-10-29-merging-single-or-multiple-sequence-fasta-files.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-29-splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit.html
+            http://zientzilaria.heroku.com/temp/2007-10-29-splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2007-10-30-biopython-144-released.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2007-10-30-biopython-144-released.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-10-31-functional-programming-in-python-using-map.html
+            http://zientzilaria.heroku.com/temp/2007-10-31-functional-programming-in-python-using-map.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-11-01-functional-programming-in-python-using-filter-take-one.html
+            http://zientzilaria.heroku.com/temp/2007-11-01-functional-programming-in-python-using-filter-take-one.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-11-20-cutting-chromosomes-with-python-a-fast-approach-take-one.html
+            http://zientzilaria.heroku.com/temp/2007-11-20-cutting-chromosomes-with-python-a-fast-approach-take-one.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2007-11-26-e2809ccuttinge2809d-chromosomes-with-python-a-fast-approach-take-two-including-precision.html
+            http://zientzilaria.heroku.com/temp/2007-11-26-e2809ccuttinge2809d-chromosomes-with-python-a-fast-approach-take-two-including-precision.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-01-28-python-sets.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-01-28-python-sets.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-01-29-uniquifying-lists-with-sets-and-dictionaries.html
+            http://zientzilaria.heroku.com/temp/2008-01-29-uniquifying-lists-with-sets-and-dictionaries.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-01-30-benchmarking-python-fastest-way-to-generate-unique-lists.html
+            http://zientzilaria.heroku.com/temp/2008-01-30-benchmarking-python-fastest-way-to-generate-unique-lists.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-02-15-parsing-a-genbank-file-another-approach.html
+            http://zientzilaria.heroku.com/temp/2008-02-15-parsing-a-genbank-file-another-approach.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-02-19-contact-form.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-02-19-contact-form.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-02-20-a-comparison-between-python-and-c-parsing-a-genbank-file.html
+            http://zientzilaria.heroku.com/temp/2008-02-20-a-comparison-between-python-and-c-parsing-a-genbank-file.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-02-22-99-problems.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-02-22-99-problems.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-02-23-test-ii.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-02-23-test-ii.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-02-25-change.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-02-25-change.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-03-06-parsing-genbank-getting-dna-from-genome-entries-part-i.html
+            http://zientzilaria.heroku.com/temp/2008-03-06-parsing-genbank-getting-dna-from-genome-entries-part-i.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-03-11-fasta-module-generating-reverse-complement-of-dna-sequences.html
+            http://zientzilaria.heroku.com/temp/2008-03-11-fasta-module-generating-reverse-complement-of-dna-sequences.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-03-11-fasta-module-transcribing-dna.html
+            http://zientzilaria.heroku.com/temp/2008-03-11-fasta-module-transcribing-dna.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-03-11-genbank-parsing-part-ii.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-03-11-genbank-parsing-part-ii.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-03-14-genbank-parsing-both-scripts.html
+            http://zientzilaria.heroku.com/temp/2008-03-14-genbank-parsing-both-scripts.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-03-14-python-sets-and-intersections.html
+            http://zientzilaria.heroku.com/temp/2008-03-14-python-sets-and-intersections.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-03-17-python-sets-intersections-reduce-and-more.html
+            http://zientzilaria.heroku.com/temp/2008-03-17-python-sets-intersections-reduce-and-more.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-03-28-merging-sequences-from-a-pfam-alignment-using-sets.html
+            http://zientzilaria.heroku.com/temp/2008-03-28-merging-sequences-from-a-pfam-alignment-using-sets.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-03-28-rss-2.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-03-28-rss-2.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-03-30-merging-sequences-from-a-pfam-alignment-using-sets-part-ii.html
+            http://zientzilaria.heroku.com/temp/2008-03-30-merging-sequences-from-a-pfam-alignment-using-sets-part-ii.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-04-14-python-and-appengine-in-vista.html
+            http://zientzilaria.heroku.com/temp/2008-04-14-python-and-appengine-in-vista.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-04-29-looking-for-topics.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-04-29-looking-for-topics.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-02-revisiting-pfam-alignments.html
-        </loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-05-02-revisiting-pfam-alignments.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-03-revisting-pfam-alignments-again.html
+            http://zientzilaria.heroku.com/temp/2008-05-03-revisting-pfam-alignments-again.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-05-still-on-merging-pfam-alignments.html
+            http://zientzilaria.heroku.com/temp/2008-05-05-still-on-merging-pfam-alignments.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-05-06-code-repository.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-05-06-code-repository.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-05-08-repository-2.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-05-08-repository-2.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-09-obtaining-overrepresented-motifs-in-dna-sequences-part-i.html
+            http://zientzilaria.heroku.com/temp/2008-05-09-obtaining-overrepresented-motifs-in-dna-sequences-part-i.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-10-obtaining-overrepresented-motifs-in-dna-sequences-part-2.html
+            http://zientzilaria.heroku.com/temp/2008-05-10-obtaining-overrepresented-motifs-in-dna-sequences-part-2.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-12-obtaining-overrepresented-motifs-in-dna-sequences-part-3.html
+            http://zientzilaria.heroku.com/temp/2008-05-12-obtaining-overrepresented-motifs-in-dna-sequences-part-3.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-12-obtaining-overrepresented-motifs-in-dna-sequences-part-4.html
+            http://zientzilaria.heroku.com/temp/2008-05-12-obtaining-overrepresented-motifs-in-dna-sequences-part-4.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-21-obtaining-overrepresented-motifs-in-dna-sequences-part-iv.html
+            http://zientzilaria.heroku.com/temp/2008-05-21-obtaining-overrepresented-motifs-in-dna-sequences-part-iv.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-05-30-obtaining-overrepresented-motifs-part-6.html
+            http://zientzilaria.heroku.com/temp/2008-05-30-obtaining-overrepresented-motifs-part-6.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-06-03-obtaining-overrepresented-motifs-in-dna-sequences-part-7.html
+            http://zientzilaria.heroku.com/temp/2008-06-03-obtaining-overrepresented-motifs-in-dna-sequences-part-7.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-06-03-obtaining-overrepresented-motifs-in-dna-sequences-part-8.html
+            http://zientzilaria.heroku.com/temp/2008-06-03-obtaining-overrepresented-motifs-in-dna-sequences-part-8.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-06-03-obtaining-overrerpresented-motifs-in-dna-sequences-part-8.html
+            http://zientzilaria.heroku.com/temp/2008-06-03-obtaining-overrerpresented-motifs-in-dna-sequences-part-8.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-06-04-obtaining-overrepresented-motifs-in-dna-sequences-part-10.html
+            http://zientzilaria.heroku.com/temp/2008-06-04-obtaining-overrepresented-motifs-in-dna-sequences-part-10.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-06-06-a-quick-assessment-of-factorial-functions-in-python.html
+            http://zientzilaria.heroku.com/temp/2008-06-06-a-quick-assessment-of-factorial-functions-in-python.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-07-02-bioinformatics-career-survey.html
+            http://zientzilaria.heroku.com/temp/2008-07-02-bioinformatics-career-survey.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-07-24-new-posts.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-07-24-new-posts.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-07-26-bpb-on-oww.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-07-26-bpb-on-oww.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-07-27-python-for-bioinformatics-a-room-on-friendfeed.html
+            http://zientzilaria.heroku.com/temp/2008-07-27-python-for-bioinformatics-a-room-on-friendfeed.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-08-05-test-from-zoundry-raven.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-08-05-test-from-zoundry-raven.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-08-12-obtaining-overrepresented-motifs-in-dna-sequences-part-11.html
+            http://zientzilaria.heroku.com/temp/2008-08-12-obtaining-overrepresented-motifs-in-dna-sequences-part-11.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-08-15-obtaining-overrepresented-motifs-in-dna-sequences-part-12.html
+            http://zientzilaria.heroku.com/temp/2008-08-15-obtaining-overrepresented-motifs-in-dna-sequences-part-12.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-08-20-obtaining-overrepresented-motifs-in-dna-sequences-part-13.html
+            http://zientzilaria.heroku.com/temp/2008-08-20-obtaining-overrepresented-motifs-in-dna-sequences-part-13.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-09-03-obtaining-overrepresented-motifs-in-dna-sequences-final.html
+            http://zientzilaria.heroku.com/temp/2008-09-03-obtaining-overrepresented-motifs-in-dna-sequences-final.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-09-05-python-overepresented-motifs-the-grand-finale.html
+            http://zientzilaria.heroku.com/temp/2008-09-05-python-overepresented-motifs-the-grand-finale.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-09-12-git-repository-updated.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-09-12-git-repository-updated.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-10-20-creating-an-interface-for-the-motif-finding-script.html
+            http://zientzilaria.heroku.com/temp/2008-10-20-creating-an-interface-for-the-motif-finding-script.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-10-21-creating-an-interface-for-the-motif-finding-script-part-2.html
+            http://zientzilaria.heroku.com/temp/2008-10-21-creating-an-interface-for-the-motif-finding-script-part-2.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-10-22-creating-an-interface-for-the-motif-finding-script-part-3.html
+            http://zientzilaria.heroku.com/temp/2008-10-22-creating-an-interface-for-the-motif-finding-script-part-3.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-10-29-creating-an-interface-for-the-motif-finding-script-part-4.html
+            http://zientzilaria.heroku.com/temp/2008-10-29-creating-an-interface-for-the-motif-finding-script-part-4.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-10-30-creating-an-interface-for-the-motif-finding-script-part-5.html
+            http://zientzilaria.heroku.com/temp/2008-10-30-creating-an-interface-for-the-motif-finding-script-part-5.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/temp/2008-10-30-motif-interface-on-github.html
-        </loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-10-30-motif-interface-on-github.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-11-04-creating-an-interface-for-the-motif-finding-script-part-6.html
+            http://zientzilaria.heroku.com/temp/2008-11-04-creating-an-interface-for-the-motif-finding-script-part-6.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-11-11-creating-an-interface-for-the-motif-finding-script-part-7.html
+            http://zientzilaria.heroku.com/temp/2008-11-11-creating-an-interface-for-the-motif-finding-script-part-7.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-11-13-creating-an-interface-for-the-motif-finding-script-part-8.html
+            http://zientzilaria.heroku.com/temp/2008-11-13-creating-an-interface-for-the-motif-finding-script-part-8.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-11-18-creating-an-interface-for-the-motif-finding-script-some-corrections.html
+            http://zientzilaria.heroku.com/temp/2008-11-18-creating-an-interface-for-the-motif-finding-script-some-corrections.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-11-19-creating-an-interface-for-the-motif-finding-script-final.html
+            http://zientzilaria.heroku.com/temp/2008-11-19-creating-an-interface-for-the-motif-finding-script-final.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-12-06-scripts-and-python-30-part-1.html
+            http://zientzilaria.heroku.com/temp/2008-12-06-scripts-and-python-30-part-1.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2008-12-08-scripts-and-python-30-part-2-using-2to3.html
+            http://zientzilaria.heroku.com/temp/2008-12-08-scripts-and-python-30-part-2-using-2to3.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-12-19-thats-it-for-2008.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-12-19-thats-it-for-2008.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2008-12-30-python-magazine-2.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2008-12-30-python-magazine-2.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2009-01-30-twitter.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2009-01-30-twitter.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-01-31-bpforb-is-now-pep-8-compliant.html
+            http://zientzilaria.heroku.com/temp/2009-01-31-bpforb-is-now-pep-8-compliant.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2009-01-31-finally-its-2009.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2009-01-31-finally-its-2009.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-02-05-expert-python-programming-by-tarek-ziade-a-review-of-chapter-1.html
+            http://zientzilaria.heroku.com/temp/2009-02-05-expert-python-programming-by-tarek-ziade-a-review-of-chapter-1.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-02-06-expert-python-programming-by-tarek-ziade-a-review-of-chapter-2.html
+            http://zientzilaria.heroku.com/temp/2009-02-06-expert-python-programming-by-tarek-ziade-a-review-of-chapter-2.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-02-09-expert-python-programming-by-tarek-ziade-a-review-of-chapter-3.html
+            http://zientzilaria.heroku.com/temp/2009-02-09-expert-python-programming-by-tarek-ziade-a-review-of-chapter-3.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-02-09-managing-a-simple-database-with-python-sqlite-and-wxpython-1.html
+            http://zientzilaria.heroku.com/temp/2009-02-09-managing-a-simple-database-with-python-sqlite-and-wxpython-1.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-02-17-managing-a-simple-database-with-python-sqlite-and-wxpython-2.html
+            http://zientzilaria.heroku.com/temp/2009-02-17-managing-a-simple-database-with-python-sqlite-and-wxpython-2.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-02-18-managing-a-simple-database-with-python-sqlite-and-wxpython-3.html
+            http://zientzilaria.heroku.com/temp/2009-02-18-managing-a-simple-database-with-python-sqlite-and-wxpython-3.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-02-21-why-do-i-blog-or-science-blogging-is-it-worth.html
+            http://zientzilaria.heroku.com/temp/2009-02-21-why-do-i-blog-or-science-blogging-is-it-worth.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-03-02-managing-a-simple-database-with-python-sqlite-and-wxpython-4.html
+            http://zientzilaria.heroku.com/temp/2009-03-02-managing-a-simple-database-with-python-sqlite-and-wxpython-4.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-03-02-managing-a-simple-database-with-python-sqlite-and-wxpython-5.html
+            http://zientzilaria.heroku.com/temp/2009-03-02-managing-a-simple-database-with-python-sqlite-and-wxpython-5.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2009-03-13-biopython-and-cvs.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2009-03-13-biopython-and-cvs.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2009-03-15-ror-commits.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2009-03-15-ror-commits.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-03-31-managing-a-simple-database-with-python-sqlite-and-wxpython-6.html
+            http://zientzilaria.heroku.com/temp/2009-03-31-managing-a-simple-database-with-python-sqlite-and-wxpython-6.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-04-20-managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question.html
+            http://zientzilaria.heroku.com/temp/2009-04-20-managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-04-22-managing-a-simple-database-with-python-sqlite-and-wxpython-8.html
+            http://zientzilaria.heroku.com/temp/2009-04-22-managing-a-simple-database-with-python-sqlite-and-wxpython-8.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2009-05-11-wiki.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2009-05-11-wiki.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2009-05-22-this-is-more-or-less-the-end.html
+            http://zientzilaria.heroku.com/temp/2009-05-22-this-is-more-or-less-the-end.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-01-03-preliminary-review-of-python-for-bioinformatics-by-sebastian-bassi.html
+            http://zientzilaria.heroku.com/temp/2010-01-03-preliminary-review-of-python-for-bioinformatics-by-sebastian-bassi.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-02-22-preview-of-python-testing-beginners-guide.html
+            http://zientzilaria.heroku.com/temp/2010-02-22-preview-of-python-testing-beginners-guide.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-03-03-python-testing-beginnere28099s-guide-review.html
+            http://zientzilaria.heroku.com/temp/2010-03-03-python-testing-beginnere28099s-guide-review.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-04-08-the-sickest-python-code-ive-ever-created-1.html
+            http://zientzilaria.heroku.com/temp/2010-04-08-the-sickest-python-code-ive-ever-created-1.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.genedrift.org/temp/2010-04-10-the-real-value-of-blogging.html
-        </loc>
+        <loc>http://zientzilaria.heroku.com/temp/2010-04-10-the-real-value-of-blogging.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-04-17-biostar-bioinformatics-community.html
+            http://zientzilaria.heroku.com/temp/2010-04-17-biostar-bioinformatics-community.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-04-19-python-for-bioinformatics-by-sebastian-bassi-a-review.html
+            http://zientzilaria.heroku.com/temp/2010-04-19-python-for-bioinformatics-by-sebastian-bassi-a-review.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-05-01-initial-impressions-about-bioinformatics-programming-using-python.html
+            http://zientzilaria.heroku.com/temp/2010-05-01-initial-impressions-about-bioinformatics-programming-using-python.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-05-20-preview-of-django-1-1-testing-and-debugging.html
+            http://zientzilaria.heroku.com/temp/2010-05-20-preview-of-django-1-1-testing-and-debugging.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
         <loc>
-            http://zientzilaria.genedrift.org/temp/2010-12-01-why-i-left-biostar-but-i-still-like-stackoverflow.html
+            http://zientzilaria.heroku.com/temp/2010-12-01-why-i-left-biostar-but-i-still-like-stackoverflow.html
         </loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2010-12-28-rebuilding.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2010-12-28-rebuilding.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2011-09-06-goodbye-and-so-long.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2011-09-06-goodbye-and-so-long.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.genedrift.org/temp/2011-10-17-test.html</loc>
+        <loc>http://zientzilaria.heroku.com/temp/2011-10-17-test.html</loc>
         <lastmod>2012-01-06T11:40:32-05:00</lastmod>
     </url>
 </urlset>

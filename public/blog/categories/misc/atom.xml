@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Misc | Zientzilaria]]></title>
-  <link href="http://zientzilaria.genedrift.org/blog/categories/misc/atom.xml" rel="self"/>
-  <link href="http://zientzilaria.genedrift.org/"/>
-  <updated>2012-04-09T19:27:28-04:00</updated>
-  <id>http://zientzilaria.genedrift.org/</id>
+  <link href="http://zientzilaria.heroku.com/blog/categories/misc/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.heroku.com/"/>
+  <updated>2012-04-09T19:46:03-04:00</updated>
+  <id>http://zientzilaria.heroku.com/</id>
   <author>
     <name><![CDATA[Paulo Nuin]]></name>
     <email><![CDATA[nuin@genedrift.org]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[I've failed]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/31/ive-failed/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/31/ive-failed/"/>
     <updated>2010-12-31T17:55:32-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/31/ive-failed</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/31/ive-failed</id>
     <content type="html"><![CDATA[<p>I tried to write 365 posts, or one per day in 2010. I've failed, just published 100 of them. This will be my goal for 2011.</p>
 
 <p>In the meantime, Happy New Year to everyone that stops by. See you on the other side of the calendar.</p>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[Best and worst of 2010]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/13/best-and-worst-of-2010/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/12/13/best-and-worst-of-2010/"/>
     <updated>2010-12-13T19:32:03-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/13/best-and-worst-of-2010</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/12/13/best-and-worst-of-2010</id>
     <content type="html"><![CDATA[<ul>
 <li>Movie: Inception, not the best one, but highly entertaining, worst: none</li>
 <li>Book: <a href="http://www.amazon.com/gp/product/0393072231?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0393072231">The Big Short: Inside the Doomsday Machine</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0393072231" alt="" />, worst <a href="http://www.amazon.com/gp/product/0743265696?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0743265696">Days Between Stations: A Novel</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0743265696" alt="" /></li>
@@ -48,18 +48,18 @@
   
   <entry>
     <title type="html"><![CDATA[Help me with this one]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/11/29/help-me-with-this-one/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/11/29/help-me-with-this-one/"/>
     <updated>2010-11-29T14:53:37-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/11/29/help-me-with-this-one</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/11/29/help-me-with-this-one</id>
     <content type="html"><![CDATA[<p>When was the The Beatles catalog added to iTunes? I forgot the date ...</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[A positive note]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/09/17/a-positive-note/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/09/17/a-positive-note/"/>
     <updated>2010-09-17T14:35:27-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/09/17/a-positive-note</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/09/17/a-positive-note</id>
     <content type="html"><![CDATA[<p>I have been condemned and lost one reader today (maybe more than one, I know I still have about 4) and I admit I have been extremely negative in my posts. But my own perspective in life is that what I can do with the lemons I get. I promised to write one post per day in 2010, and I'm still very far from reaching this goal, something I will still try to accomplish. I also started blogging in the Python Software Foundation blog, which consumes a bit more of time.</p>
 
 <p>The sad truth is that I have no will to write; rephrasing, I'm not compelled to write. I've been away from social websites - that's a good thing - and I don't know what is going on in the world. When I say social websites, I don't include Hacker News, a website I wouldn't be able to live without. I have been reading a lot, actual books, and working.</p>
@@ -70,9 +70,9 @@
   
   <entry>
     <title type="html"><![CDATA[A short list of things I don't like about Mendeley]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/09/17/a-short-list-of-things-i-dont-like-about-mendeley/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2010/09/17/a-short-list-of-things-i-dont-like-about-mendeley/"/>
     <updated>2010-09-17T07:34:09-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/09/17/a-short-list-of-things-i-dont-like-about-mendeley</id>
+    <id>http://zientzilaria.heroku.com/blog/2010/09/17/a-short-list-of-things-i-dont-like-about-mendeley</id>
     <content type="html"><![CDATA[<p>Taking the idea from <a href="http://scienceoftheinvisible.blogspot.com/2010/09/long-list-of-things-i-dont-like-about.html">this</a>, I have a short list of things I don't like about Mendeley:</p>
 
 <p><strong>Everything</strong></p>

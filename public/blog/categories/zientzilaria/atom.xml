@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Zientzilaria | Zientzilaria]]></title>
-  <link href="http://zientzilaria.genedrift.org/blog/categories/zientzilaria/atom.xml" rel="self"/>
-  <link href="http://zientzilaria.genedrift.org/"/>
-  <updated>2012-04-09T19:27:28-04:00</updated>
-  <id>http://zientzilaria.genedrift.org/</id>
+  <link href="http://zientzilaria.heroku.com/blog/categories/zientzilaria/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.heroku.com/"/>
+  <updated>2012-04-09T19:46:03-04:00</updated>
+  <id>http://zientzilaria.heroku.com/</id>
   <author>
     <name><![CDATA[Paulo Nuin]]></name>
     <email><![CDATA[nuin@genedrift.org]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[New blog]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog/"/>
+    <link href="http://zientzilaria.heroku.com/blog/2012/04/09/new-blog/"/>
     <updated>2012-04-09T19:19:00-04:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog</id>
+    <id>http://zientzilaria.heroku.com/blog/2012/04/09/new-blog</id>
     <content type="html"><![CDATA[<p>Welcome to the new home of Beginning Python for Bioinformatics and Blind.Scientist: Zientzilaria, scientist in Basque. Most posts of the old blogs are converted here, now in an Octopress installation. Slowly, I will start fixing the small mistakes of the Wordpress migration and getting everything up to speed.</p>
 
 <p>In this new home I will try to be more optimistic, bring more news and criticize less. Cheers to a new beginning.</p>
