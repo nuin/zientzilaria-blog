@@ -9,9 +9,10 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="A commenter, Dilmurat, gave me an idea about the script
-that generates random DNA sequence sets. Apparently it wasn&#8217;t clear that
-the script was &hellip;">
+  <meta name="description" content="We saw that &#8221;top notch bioinformaticians&#8221; use
+csplit to split FASTA files, so I decided to
+post as many as possible alternatives
+to split &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +79,70 @@ the script was &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/10/29/splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit/">Splitting a FASTA file using awk (no sed required), or do we care about csplit?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-29T11:37:07-04:00" pubdate data-updated="true">Oct 29<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We saw that &#8221;<a href="http://eridanus.net/">top notch bioinformaticians</a>&#8221; use
+csplit to split FASTA files, so I decided to
+<a href="http://python.genedrift.org/2007/10/10/alternative-methods-to-split-a-fasta-file/">post as many as possible alternatives</a>
+to split these files. As csplit, awk is something found with more
+frequency in Linux machines than Windows, but it can be installed on
+Windows (even Vista) and it runs fine.</p>
+
+<p>Awk is usually shown in parallel
+with sed, as both utilities have the main objective of text processing.
+I browsed the web searching for a sed/awk solution to split FASTA files
+something that I thought could be done in one line. And I found
+<a href="http://www.unix.com/shell-programming-scripting/14576-split-file-using-awk.html">it</a>.</p>
+
+<p>With a little tweak I ended up with a one-liner using awk that split the
+sequences in multiple files:</p>
+
+<p><code>awk '/^&gt;/{f="fasta."++d} {print &gt; f}'</code></p>
+
+<p>Awk breaks each line of its input into fields that can be checked,
+printed or ignored. In the command line above. awk&#8217;s commands are in
+between the single quotes. The first command is a regex that matches
+initial <code>&gt;</code>. Inside the curly braces we assign a variable <code>f</code> to store
+the output filename we want and also have an integer that is incremented
+every time we pass through it. The second curly braces are for the
+actual output, where we use awk&#8217;s <code>print</code> command and redirect output to
+a file named after the variable we created in the first commands in
+between curly braces. Finally, we assign an input file, outside the
+region delimited by single quotes. And that&#8217;s it. As output we will have
+a series of files called fasta each one containing one sequence.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -717,44 +782,6 @@ Windows&#8221; soon. Thanks Daniel.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/10/17/splitting-a-fasta-file/">Splitting a FASTA file</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-10-17T20:08:17-04:00" pubdate data-updated="true">Oct 17<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have posted in my other <a href="http://python.genedrift.org">site</a> different ways to split a FASTA file. <a href="http://python.genedrift.org/2007/10/10/alternative-methods-to-split-a-fasta-file/">Take a look</a>. The Python method is <a href="http://python.genedrift.org/2007/10/10/splitting-multiple-fasta-file-or-why-shouldnt-we-reinvent-the-wheel/">here</a>.</p>
-
-<p>I am planning to include as many languages as possible.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/32/">&larr; Older</a>
@@ -772,6 +799,10 @@ Windows&#8221; soon. Thanks Daniel.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/09/new-blog/">New blog</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -785,10 +816,6 @@ Windows&#8221; soon. Thanks Daniel.</p>
     
       <li class="post">
         <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

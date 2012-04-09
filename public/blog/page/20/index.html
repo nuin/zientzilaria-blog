@@ -9,7 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Although I was born in Brazil, my heart (football and everything else) was always Spanish. I saw and suffer with losses to Yugoslavia, France, Italy &hellip;">
+  <meta name="description" content="Via Bioinformatics Zen: Loading&#8230;
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,44 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/07/01/bioinformatics-carrer-survey/">Bioinformatics career survey</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-07-01T15:44:23-04:00" pubdate data-updated="true">Jul 1<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Via <a href="http://www.bioinformaticszen.com/2008/07/creating-a-picture-of-different-careers-in-bioinformatics/">Bioinformatics Zen</a>:</p>
+
+<p>Loading&#8230;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -646,131 +685,6 @@ checking motif quorum functions. Stay tuned.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/">Obtaining overrepresented motifs in DNA sequences, part 7</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-03T10:27:49-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuing on Mike&#8217;s functions to obtain motif quorums. We see function
-3, 4 and 5. Function get_quorums_03, uses an old friend of the blog,
-<code>sets</code>. Recall that <code>sets</code> are very similar to lists, but their are
-unordered and items are unique.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_03</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use explicit counter to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> Basically,
-the sequence numbers (an incremented counter) are added to a <code>defaultdict</code>
-which was initialized as a set. This way you don&#8217;t need to check for the
-existence of the sequence number in the <code>defaultdict</code> list and count on
-the ability of <code>set</code> of being unique. Function 4 is very similar to
-function 3 with the difference of using enumerate (as in function 02) to
-make the sequence numbers.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_04</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>          
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Function 5
-adds a twist, which is to have an enumerate to set the sequence range
-(motif/word width) start and stop. This way the window is sliding based
-on the tuple created by the enumerate method and not on the slicing that
-were used in all other functions. Again, a <code>defaultdict</code> is initialized as
-set and the sequence numbers are generated by an enumerate.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_05</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no use enumerate(range(...)) </span>
-</span><span class='line'><span class="sd"> to create start/stop indices for motif &quot;&quot;&quot;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>          
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/21/">&larr; Older</a>
@@ -788,6 +702,10 @@ set and the sequence numbers are generated by an enumerate.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/09/new-blog/">New blog</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -801,10 +719,6 @@ set and the sequence numbers are generated by an enumerate.</p>
     
       <li class="post">
         <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

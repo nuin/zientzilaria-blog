@@ -9,9 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We will take a break on developing the statistical module to obtain
-overrepresented motifs (I will introduce mul in the next stats post),
-and take a &hellip;">
+  <meta name="description" content="Continuing on Mike&#8217;s functions to obtain motif quorums. We see function
+3, 4 and 5. Function get_quorums_03, uses an old friend of the blog, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,131 @@ and take a &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/">Obtaining overrepresented motifs in DNA sequences, part 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-06-03T10:27:49-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Continuing on Mike&#8217;s functions to obtain motif quorums. We see function
+3, 4 and 5. Function get_quorums_03, uses an old friend of the blog,
+<code>sets</code>. Recall that <code>sets</code> are very similar to lists, but their are
+unordered and items are unique.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_03</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use explicit counter to create seq_no &quot;&quot;&quot;</span>
+</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> Basically,
+the sequence numbers (an incremented counter) are added to a <code>defaultdict</code>
+which was initialized as a set. This way you don&#8217;t need to check for the
+existence of the sequence number in the <code>defaultdict</code> list and count on
+the ability of <code>set</code> of being unique. Function 4 is very similar to
+function 3 with the difference of using enumerate (as in function 02) to
+make the sequence numbers.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_04</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no &quot;&quot;&quot;</span>
+</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>          
+</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Function 5
+adds a twist, which is to have an enumerate to set the sequence range
+(motif/word width) start and stop. This way the window is sliding based
+on the tuple created by the enumerate method and not on the slicing that
+were used in all other functions. Again, a <code>defaultdict</code> is initialized as
+set and the sequence numbers are generated by an enumerate.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_05</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no use enumerate(range(...)) </span>
+</span><span class='line'><span class="sd"> to create start/stop indices for motif &quot;&quot;&quot;</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
+</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>          
+</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -731,112 +855,6 @@ next time how to get the quorums.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/10/from-the-interwebs-forgotten-archives/">From the Interwebs &#8220;forgotten&#8221; archives &#8230; </a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-10T16:57:56-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tigerramki.jpg/202px-Tigerramki.jpg" alt="A tiger in India's Bandhavgarh reserve" /></a>Image via <a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg">Wikipedia</a>I have no source, but the creation date of the text file is August, 7th 1995. Good luck.</p>
-
-<p><strong>Final Exam</strong></p>
-
-<p>Instructions: Read each question carefully. Answer all questions. Time Limit: 4 hours. Begin immediately.</p>
-
-<p><strong>History</strong></p>
-
-<p>Describe the history of the papacy from its origins to the present day,  concentrating especially, but not exclusively, on its social, political,  economic, religious, and philosophical impact on Europe, Asia, America,  and Africa. Be brief, concise, and specific.</p>
-
-<p><strong>Medicine</strong></p>
-
-<p> You have been provided with a razor blade, a piece of gauze, and a bottle of Scotch. Remove your appendix. Do not suture until your work has been  inspected. You have 15 minutes.</p>
-
-<p><strong>Public speaking</strong></p>
-
-<p>Twenty-five hundred riot-crazed aborigines are storming the classroom.  Calm them. You may use any ancient language except Latin or Greek.</p>
-
-<p><strong>Biology</strong></p>
-
-<p>Create life. Estimate the differences in subsequent human culture if this  form of life had developed 500 million years earlier, with special attention to its probable effect on the English parliamentary system. Prove your thesis.</p>
-
-<p><strong>Music</strong></p>
-
-<p>Write a piano concerto. Orchestrate and perform it with flute and drum.  You will find a piano under your seat.</p>
-
-<p><strong>Psychology</strong></p>
-
-<p>Based on your degree of knowledge of their works, evaluate the emotional stability, degree of adjustment, and repressed frustrations of each of the following: Alexander of Aphrodisias, Rameses II, Gregory of Nicea, Hammurabi. Support your evaluations with quotations from each man&#8217;s work, making appropriate references. It is not necessary to translate.</p>
-
-<p><strong>Sociology</strong></p>
-
-<p>Estimate the sociological problems which might accompany the end of the world. Construct an experiment to test your theory.</p>
-
-<p><strong>Management science</strong></p>
-
-<p>Define management. Define science. How do they relate? Why? Create a generalized algorithm to optimize all managerial decisions. Assuming an 1130 CPU supporting 50 terminals, each terminal to activate your algorithm; design the communications interface and all necessary control programs.</p>
-
-<p><strong>Engineering</strong></p>
-
-<p>The disassembled parts of a high-powered rifle have been placed in a box on your desk. You will also find an instruction manual, printed in Swahili. In ten minutes a hungry Bengal tiger will be admitted to the room. Take whatever action you feel is appropriate. Be prepared to justify your decision.</p>
-
-<p><strong>Economics</strong></p>
-
-<p>Develop a realistic plan for refinancing the national debt. Trace the possible effects of your plan in the following areas: Cubism, the Donatist controversy, the wave theory of light. Outline a method for preventing these  effects. Criticize this method from all possible points of view. Point out the deficiencies in your point of view, as demonstrated in your answer to the  last question.</p>
-
-<p><strong>Political science</strong></p>
-
-<p>There is a red telephone on the desk beside you. Start World War III. Report at length on its socio-political effects, if any.</p>
-
-<p><strong>Epistemology</strong></p>
-
-<p>Take a position for or against truth. Prove the validity of your position.</p>
-
-<p><strong>Physics</strong></p>
-
-<p>Explain the nature of matter. Include in your answer an evaluation of the impact of the development of mathematics on science.</p>
-
-<p><strong>Philosophy</strong></p>
-
-<p>Sketch the development of human thought; estimate its significance. Compare with the development of any other kind of thought.</p>
-
-<p><strong>General knowledge</strong></p>
-
-<p> Describe in detail. Be objective and specific.</p>
-
-<p><strong>* * E X T R A C R E D I T * * </strong></p>
-
-<p> Define the universe; give three examples.</p>
-
-<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=6cd57e9f-1f39-4fc6-a85c-cc42f834c7ff" alt="" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/22/">&larr; Older</a>
@@ -854,6 +872,10 @@ next time how to get the quorums.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/09/new-blog/">New blog</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -867,10 +889,6 @@ next time how to get the quorums.</p>
     
       <li class="post">
         <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

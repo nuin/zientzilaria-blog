@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="The chapter 3 review that I promised for &#8220;tomorrow&#8221; (last Saturday) was
-lazily postponed until today. So, let&#8217;s get to it. Tarek in &hellip;">
+  <meta name="description" content="<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/WxPython-logo.png/202px-WxPython-logo.png" title="The official wxPython logo" alt &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,78 @@ lazily postponed until today. So, let&#8217;s get to it. Tarek in &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Managing a simple database with Python, SQLite and wxPython, 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-09T15:11:57-05:00" pubdate data-updated="true">Feb 9<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:WxPython-logo.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/WxPython-logo.png/202px-WxPython-logo.png" title="The official wxPython logo" alt="The official wxPython
+logo" /></a>
+  ~ Image via</p>
+
+<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:WxPython-logo.png)
+</code></pre>
+
+<p>A little break from reviewing the book, let&#8217;s check some database topics
+in Python. I was asked to create a simple database to organize wet-lab
+stuff. No relationships needs, no relational tables required. Just a
+simple table with determined columns, and a nice GUI to go with it so
+people can edit, search and use. My first idea was to use SQLite
+database, and I stuck with it. After the initial phase of &#8220;interviews&#8221;
+to check database requirements, I ended up with a list of tables and
+decided to start working on the table that organizes the BACs used in
+the lab. BAC is a DNA vector into which large DNA fragments can be
+inserted and cloned in a bacterial host, and are used mainly in
+cytogenetics around here. In the end the table had this structure
+[sourcecode language=&#8217;sql&#8217;]CREATE TABLE bac (idbac INTEGER PRIMARY KEY,
+clone Text, sdate Date, source Text, gene TEXT, chromosome Text,
+startpos Integer, endpos Integer, antibiotic Text, location1 Text,
+temperature Integer, tubes Integer, box Integer, cell Integer, dnaex
+Boolean, validation Boolean, pcr Boolean, projects Text, comments Text,
+genelink Text, refs Text);[/sourcecode] I won&#8217;t explain in detail each
+of the fields, but we can see that there is a mix of different types.
+SQLite doesn&#8217;t allow many different field types, so we stick to the
+basics. And why SQLite? The module to access it comes with Python 2.5,
+the whole database is stored in one file that can be moved around and it
+allows a full SQL query language, which is perfect for these simple
+cases. So we will going to use Python, SQLite and wxPython to create a
+simple application to manage our simple database. I already created a
+GitHub
+<a href="http://github.com/nuin/python_sqlite_wxpython/tree/master">repository</a>
+for the upcoming code.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/1a2359cd-d9c7-4cee-a26b-c41b281ec3d2/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=1a2359cd-d9c7-4cee-a26b-c41b281ec3d2" alt="Reblog this post [with
+Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -777,48 +848,6 @@ Heroes</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/12/19/thats-it-for-2008/">That&#8217;s it for 2008</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-12-19T12:34:15-05:00" pubdate data-updated="true">Dec 19<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The date came and is now gone, and I forgot to &#8220;celebrate&#8221; two years of
-Beginning Python for Bioinformatics on December 13th. I would like to
-thank everyone that commented, helped with posts and suggested anything
-that would make this website better. Clearly it is far from being what I
-wanted it to be, but slowly but surely we will get there. Thanks again
-and I wish an excellent holiday season and a great 2009 to everyone! See
-you in 2009.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/16/">&larr; Older</a>
@@ -836,6 +865,10 @@ you in 2009.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/09/new-blog/">New blog</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2011/02/23/scientists-are-human-beings/">Scientists are human beings</a>
       </li>
     
@@ -849,10 +882,6 @@ you in 2009.</p>
     
       <li class="post">
         <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/02/09/theres-dumb-and-theres/">There&#8217;s dumb, and there&#8217;s &#8230;</a>
       </li>
     
   </ul>

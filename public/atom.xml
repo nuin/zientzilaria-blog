@@ -4,7 +4,7 @@
   <title><![CDATA[Zientzilaria]]></title>
   <link href="http://zientzilaria.genedrift.org/atom.xml" rel="self"/>
   <link href="http://zientzilaria.genedrift.org/"/>
-  <updated>2012-04-09T18:23:09-04:00</updated>
+  <updated>2012-04-09T19:27:28-04:00</updated>
   <id>http://zientzilaria.genedrift.org/</id>
   <author>
     <name><![CDATA[Paulo Nuin]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[New blog]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog/"/>
+    <updated>2012-04-09T19:19:00-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog</id>
+    <content type="html"><![CDATA[<p>Welcome to the new home of Beginning Python for Bioinformatics and Blind.Scientist: Zientzilaria, scientist in Basque. Most posts of the old blogs are converted here, now in an Octopress installation. Slowly, I will start fixing the small mistakes of the Wordpress migration and getting everything up to speed.</p>
+
+<p>In this new home I will try to be more optimistic, bring more news and criticize less. Cheers to a new beginning.</p>
+
+<p>PS: The new blog motto is &#8220;The most influential bioinformatician in the world&#8221;, tongue-in-cheek of course.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Scientists are human beings]]></title>
@@ -42,10 +55,7 @@
 * In current usage, the species name is never written with an initial capital.
 </code></pre></blockquote>
 
-<pre><code>For example, the entire tiger species is _Panthera tigris_
-</code></pre>
-
-<p>Simple, eh? So, on your next seminar, C. elegans might be correctly set to <em>C. elegans</em></p>
+<p>For example, the entire tiger species is <em>Panthera tigris</em>. Simple, eh? So, on your next seminar, C. elegans might be correctly set to <em>C. elegans</em></p>
 ]]></content>
   </entry>
   
@@ -332,19 +342,6 @@
 <p>Worst software: Mendeley</p>
 
 <p>More next week, or the following.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Why I left Biostar]]></title>
-    <link href="http://zientzilaria.genedrift.org/blog/2010/12/01/why-i-left-biostar/"/>
-    <updated>2010-12-01T10:44:44-05:00</updated>
-    <id>http://zientzilaria.genedrift.org/blog/2010/12/01/why-i-left-biostar</id>
-    <content type="html"><![CDATA[<p>About eight months ago I started using Biostar as I saw it as a great opportunity to exchange some ideas, concepts, tips in biology and bioinformatics. I even mentioned the website in this space, trying to bring more people to the mix; at the time the community wasn&#8217;t big enough, and some days went by without any question being posted.</p>
-
-<p>But a couple of months ago my interest started to go down the drain. I don&#8217;t know if it was the constant next-generation sequencing barrage of questions every day, if it was the infantile blog/twitter posts from members competing for points or maybe the lack of votes for some answers that I posted (that&#8217;s selfish on my part, I admit). But at some point it seemed that the website turned into a competition of CVs or knowledge, very different from what I could see in different Stackoverflow spin-offs or in the main site. I guess the turning-point, or the moment I realized that the scientific community (at least in bioinformatics and related fields) will never the be the same as the programming and statistical ones, was the time I gave an answer that had less votes that the one saying &#8220;it&#8217;s not possible&#8221;.</p>
-
-<p>Maybe the problem is myself, I don&#8217;t like cliques, don&#8217;t mind helping people for nothing, don&#8217;t care about reputation. I didn&#8217;tt care about how many points I had, and used the down-vote to actually vote down answers that I didn&#8217;t see as pertinent (if you never used those sites, every down-vote removes one point from your score). I still think that Biostar is a great idea, and I wish it becomes a great resource for all the bio fields. Maybe if the community gets big enough, maybe if don&#8217;t see the same group of people that you see every where else it might become a better place to hang-out online. But right now, I&#8217;m over it.</p>
 ]]></content>
   </entry>
   
