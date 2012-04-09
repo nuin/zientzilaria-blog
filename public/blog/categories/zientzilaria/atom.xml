@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Zientzilaria | Zientzilaria]]></title>
+  <link href="http://zientzilaria.genedrift.org/blog/categories/zientzilaria/atom.xml" rel="self"/>
+  <link href="http://zientzilaria.genedrift.org/"/>
+  <updated>2012-04-09T19:27:28-04:00</updated>
+  <id>http://zientzilaria.genedrift.org/</id>
+  <author>
+    <name><![CDATA[Paulo Nuin]]></name>
+    <email><![CDATA[nuin@genedrift.org]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New blog]]></title>
+    <link href="http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog/"/>
+    <updated>2012-04-09T19:19:00-04:00</updated>
+    <id>http://zientzilaria.genedrift.org/blog/2012/04/09/new-blog</id>
+    <content type="html"><![CDATA[<p>Welcome to the new home of Beginning Python for Bioinformatics and Blind.Scientist: Zientzilaria, scientist in Basque. Most posts of the old blogs are converted here, now in an Octopress installation. Slowly, I will start fixing the small mistakes of the Wordpress migration and getting everything up to speed.</p>
+
+<p>In this new home I will try to be more optimistic, bring more news and criticize less. Cheers to a new beginning.</p>
+
+<p>PS: The new blog motto is "The most influential bioinformatician in the world", tongue-in-cheek of course.</p>
+]]></content>
+  </entry>
+  
+</feed>
