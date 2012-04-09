@@ -4,7 +4,7 @@
 
 url: http://zientzilaria.genedrift.org
 title: Zientzilaria
-subtitle: 
+subtitle: The most influential bioinformatician in the world (TM)
 author: Paulo Nuin
 simple_search: http://google.com/search
 
@@ -12,7 +12,7 @@ simple_search: http://google.com/search
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: nuin@genedrift.org
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -49,13 +49,13 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.ht
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: nuin
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
+twitter_user: nuin
 twitter_tweet_count: 4
 twitter_show_replies: false
 twitter_follow_button: true
@@ -71,7 +71,7 @@ pinboard_user:
 pinboard_count: 3
 
 # Delicious
-delicious_user:
+delicious_user: nuin
 delicious_count: 3
 
 # Disqus Comments

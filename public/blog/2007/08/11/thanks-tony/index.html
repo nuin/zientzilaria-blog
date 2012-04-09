@@ -38,6 +38,8 @@
   <header role="banner"><hgroup>
   <h1><a href="/">Zientzilaria</a></h1>
   
+    <h2>The most influential bioinformatician in the world (TM)</h2>
+  
 </hgroup>
 
 </header>
@@ -128,7 +130,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/08/11/thanks-tony/" data-via="" data-counturl="http://zientzilaria.genedrift.org/blog/2007/08/11/thanks-tony/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zientzilaria.genedrift.org/blog/2007/08/11/thanks-tony/" data-via="nuin" data-counturl="http://zientzilaria.genedrift.org/blog/2007/08/11/thanks-tony/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -179,7 +181,59 @@
   </ul>
 </section>
 
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/nuin">@nuin</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
 
+        github.showRepos({
+            user: 'nuin',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("nuin", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/nuin" class="twitter-follow-button" data-show-count="false">Follow @nuin</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/nuin?count=3&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
+  <p><a href="http://delicious.com/nuin">My Delicious Bookmarks &raquo;</a></p>
+</section>
 
 
   
