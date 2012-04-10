@@ -17,7 +17,8 @@ From Wikipedia:
 
 
 > 
-    * Species names are usually typeset in italics; for example, _Homo sapiens_. Generally the binomial should be printed in a font different from that used in the normal text; for example, "Several more _Homo sapiens_ were discovered." 
+    * Species names are usually typeset in italics; for example, _Homo sapiens_. Generally the binomial should be printed in a font different from that used in the 
+	normal text; for example, "Several more _Homo sapiens_ were discovered." 
     * The genus name is always written with an initial capital letter.
     * In current usage, the species name is never written with an initial capital.
 
