@@ -9,9 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="There has been actual development of the GUI and most of the development
-is being added simultaneously in the blog and on the code. So, go get a
-copy &hellip;">
+  <meta name="description" content="Last time we checked how to add a menu to our simple frame.
+Unfortunately, just adding it won&#8217;t make the menu useful. In order to do
+that we &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,167 +78,6 @@ copy &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/10/30/motif-interface-on-github/">Motif finding interface on github</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-10-30T14:58:46-04:00" pubdate data-updated="true">Oct 30<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There has been actual development of the GUI and most of the development
-is being added simultaneously in the blog and on the code. So, go get a
-copy of git, install it and play with the BPB repository there.
-<a href="http://github.com/nuin/beginning-python-for-bioinformatics/tree/master">http://github.com/nuin/beginning-python-for-bioinformatics/tree/master</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/10/30/creating-an-interface-for-the-motif-finding-script-part-5/"> Creating an interface for the motif finding script, part 5</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-10-30T14:45:19-04:00" pubdate data-updated="true">Oct 30<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last time we saw how to bind an interface element to a function. Now we
-need to make good use of it, and make the script have some actual
-functionality. First thing we are going to do is to include a label (or
-static text) on the interface. Remember that initially we added a panel
-to the frame, so the label should go on the panel. For a label we use a
-<a href="http://wxpython.org/docs/api/wx.StaticText-class.htm">wx.StaticText</a>
-and has these parameters <a href="self,%20parent,%0Aid=-1,%20label=EmptyString,%20pos=DefaultPosition,%20size=DefaultSize,%0Astyle=0,%20name=StaticTextNameStr">sourcecode language=&#8217;python&#8217;</a>[/sourcecode] We don&#8217;t need all of them,
-just a couple would be enough. Basically, parent, id, label and pos will
-do it, as the size would be default and based on the text length we
-input. We are going to work on our __do_layout function and add two
-labels to the panel on the frame, one for each the fore and background
-files [sourcecode language=&#8217;python&#8217;]self.fore_label =
-wx.StaticText(panel, -1, &#8216;Select the foreground file&#8217;, (10, 10))
-self.back_label = wx.StaticText(panel, -1, &#8216;Select the background
-file&#8217;, (10, 30))[/sourcecode] These two lines are very similar, only the
-label, position and name change. panel is the name of the panel we
-created previously, -1 is the ID, the string is the actual text that
-will appear on the label and the values between parentheses are the X, Y
-coordinates to display them on the frame. In the beginning (or when a
-size needs to be set) we can add <code>pos=</code> to the label declaration in
-order to make clearer what the values are setting [sourcecode
-language=&#8217;python&#8217;]self.fore_label = wx.StaticText(panel, -1, &#8216;Select
-the foreground file&#8217;, pos=(10, 10))[/sourcecode] If we add these two
-lines and run our script, both labels will be there on the frame, as can
-be seen in the screencap below. <a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui3.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui3-300x187.png" title="GUI with labels" alt="GUI with
-labels" /></a>
-Now, we need to add some functionality to the menus. The menu items set
-previously, basically should work by presenting a file open dialog to
-the user, where he/she can select a file that will be processed later
-(or immediately). wxPython provides an option of automatically creating
-a file dialog, by using the <a href="http://wxpython.org/docs/api/wx.FileDialog-class.html">wx.FileDialog
-method</a>. This
-method requires only one parameter, which is the style of the dialog.
-The dialog can be of many types, i.e. for opening (single and multiple
-files) and saving. the dialog call would look like [sourcecode
-language=&#8217;python&#8217;]dialog = wx.FileDialog(self,
-style=wx.OPEN)[/sourcecode] very simple and objective. But just
-declaring won&#8217;t make it show up on the screen. We need to actually call
-the dialog&#8217;s show method. Usually, most dialogs are
-<a href="http://en.wikipedia.org/wiki/Modal_window">modal</a>, requiring some kind
-of interaction between the user and the dialog before returning to the
-application that called the dialog. Because of this behaviour we need to
-use an if clause when showing the dialog, to check what type of result
-returns from the user/dialog interaction. [sourcecode
-language=&#8217;python&#8217;]if dialog.ShowModal() == wx.ID_OK:[/sourcecode]
-wx.ID_OK is a internal method of wxPython that checks if the user
-pressed the OK button on the file open dialog. If so, the program will
-process the code, otherwise it will destroy the dialog and return to the
-main application (or do something else if we set an elif clause). So,
-all we need is set, we just need to put things together and add some
-code when the user selects a file [sourcecode language=&#8217;python&#8217;]def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetFilename()
-self.fore_label.SetLabel(forefile)[/sourcecode] After the if clause,
-the script will get the name of the selected file from the dialog and
-then set the label of our StaticText (label!) with it. Straightforward.
-We do the same thing for the background file and we have some code
-going. One last thing, the objects <code>fore_file</code> and <code>back_file</code> are
-declared on the __init__ function of the frame class, so they are
-available to the whole frame scope. Our script will look like
-[sourcecode language=&#8217;python&#8217;]#!/usr/bin/env python import wx import
-pymot import fasta import os class pymot(wx.App): def __init__(self,
-redirect=False): wx.App.__init__(self, redirect) class
-pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
-&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
-panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
-#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
-&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) self.Bind(wx.EVT_MENU, self.on_foreground,
-foreground_menu) self.Bind(wx.EVT_MENU, self.on_background,
-background_menu) def on_foreground(self, event): dialog =
-wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() == wx.ID_OK:
-fore_file = dialog.GetFilename()
-self.fore_label.SetLabel(dialog.GetFilename()) def on_background(self,
-event): dialog = wx.FileDialog(self, style=wx.OPEN) if
-dialog.ShowModal() == wx.ID_OK: back_file = dialog.GetFilename()
-self.back_label.SetLabel(dialog.GetFilename()) #if __name__ ==
-&#8217;__main__&#8217;: app = pymot() frame = pymotGUI(parent=None, id = -1)
-#frame.CentreOnScreen() frame.Show() app.MainLoop()[/sourcecode] Next
-we will keep adding elements on the screen and functionality.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1094,6 +933,168 @@ the last post. I will update the blog contents on OWW and commit some of the cod
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/">Obtaining overrepresented motifs in DNA sequences, part 13</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T21:32:09-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that we have the best quorum determination function and the ideal
+function to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
+expansions</a>
+it is easy to program a script to calculate the <em>p</em> value of motifs in
+DNA sequences. To the script <em>below in the code there are a couple of
+errors that wordpress don&#8217;t let me fix. The > and &lt; are replaced by
+their literal html enconding. I am working on it, sorry</em></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>          <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>          <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>          <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>          
+</span><span class='line'>          <span class="c">#print ntok // ktok return ntok // ktok else: return 0 def</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id\_no to a set use explicit</span>
+</span><span class='line'><span class="s">counter to create seq\_no &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">for</span>
+</span><span class='line'><span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span>
+</span><span class='line'><span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">id</span>\<span class="n">_no</span><span class="p">)</span> <span class="k">return</span> <span class="n">quorum</span> <span class="nb">input</span>\<span class="n">_seqs</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="nb">input</span>\<span class="n">_seqs2</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">foreground</span> <span class="o">=</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">background</span> <span class="o">=</span> <span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">,</span>
+</span><span class='line'><span class="mi">10</span><span class="p">)</span> <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span>
+</span><span class='line'><span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> \<span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span>
+</span><span class='line'><span class="mf">0.0001</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We already defined choose in the last post (more information in the link
+from the Python&#8217;s cookbook) and earlier Mike sent us a series of
+quorum-determination functions and one of the best was portrayed and
+explained here.</p>
+
+<p>We also need our fasta module to read the sequences (and only the
+sequences) in order to use it in the quorum function. Basically we use
+the foreground and background files as input, determine the quorum of
+the different words (width 10) and then we iterate over the results,
+calculating the <em>p</em> value for each motif found in the foreground set.
+The tree terms of the Hypergeometric Distribution are calculated
+separately and we test for a <em>p</em> value smaller that 0.0001 (this can be
+modified) and we only print the results that fall in this category.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/20/that-should-do-it/">That should do it!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T20:17:44-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:Guitarhero-screen.jpg"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/6/6c/Guitarhero-screen.jpg/202px-Guitarhero-screen.jpg" alt="To play a note, the fret button and strum bar ..." /></a>Image via <a href="http://en.wikipedia.org/wiki/Image:Guitarhero-screen.jpg">Wikipedia</a> Now that <a href="http://en.wikipedia.org/wiki/BMX">BMX</a> and trampoline are in the Olympics (OK, all right, trampoline got in a couple of editions ago) I can say that the Olympics are a <a href="http://en.wikipedia.org/wiki/Good_faith">bona fide</a> international competition. I would like to thank to the enlightened people that include those wonderful &#8220;sports&#8221; in the competition. I can&#8217;t wait to see <a href="http://en.wikipedia.org/wiki/Rock-paper-scissors">rock-paper-scissors</a> and <a href="http://en.wikipedia.org/wiki/Guitar_Hero">Guitar Hero</a> in 2012.</p>
+
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://abcnews.go.com/International/China/wireStory?id=5608227">Counter-Culture BMX Makes Debut in Beijing</a></li>
+<li><a href="http://kotaku.com/5037975/parents-let-kid-drop-out-of-high-school-to-focus-on-guitar-hero">Parents Let Kid Drop Out of High School to Focus on Guitar Hero [Guitar Hero]</a></li>
+<li><a href="http://www.russellbeattie.com/blog/holy-shit-look-at-the-size-of-that-ramp">Holy SHIT, look at the size of that ramp!</a></li>
+</ul>
+
+
+<p><a href="http://reblog.zemanta.com/zemified/44c6dd6e-2c47-48cd-bbfe-20f4bf6025a7/"><img src="http://img.zemanta.com/reblog_e.png?x-id=44c6dd6e-2c47-48cd-bbfe-20f4bf6025a7" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/19/">&larr; Older</a>
@@ -1111,6 +1112,10 @@ the last post. I will update the blog contents on OWW and commit some of the cod
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/03/installing-circos-on-os-x/">Installing Circos on OS X</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/09/new-blog/">New blog</a>
       </li>
     
@@ -1124,10 +1129,6 @@ the last post. I will update the blog contents on OWW and commit some of the cod
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
       </li>
     
   </ul>

@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Continuing on Mike&#8217;s functions to obtain motif quorums. We see function
-3, 4 and 5. Function get_quorums_03, uses an old friend of the blog, &hellip;">
+  <meta name="description" content="Thanks to Pawel, I got introduced to the world of Processing and I must say I am impressed. It is a nice tool to create nice data displays. In the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,259 +76,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/">Obtaining overrepresented motifs in DNA sequences, part 7</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-03T10:27:49-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuing on Mike&#8217;s functions to obtain motif quorums. We see function
-3, 4 and 5. Function get_quorums_03, uses an old friend of the blog,
-<code>sets</code>. Recall that <code>sets</code> are very similar to lists, but their are
-unordered and items are unique.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_03</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use explicit counter to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> Basically,
-the sequence numbers (an incremented counter) are added to a <code>defaultdict</code>
-which was initialized as a set. This way you don&#8217;t need to check for the
-existence of the sequence number in the <code>defaultdict</code> list and count on
-the ability of <code>set</code> of being unique. Function 4 is very similar to
-function 3 with the difference of using enumerate (as in function 02) to
-make the sequence numbers.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_04</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>          
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Function 5
-adds a twist, which is to have an enumerate to set the sequence range
-(motif/word width) start and stop. This way the window is sliding based
-on the tuple created by the enumerate method and not on the slicing that
-were used in all other functions. Again, a <code>defaultdict</code> is initialized as
-set and the sequence numbers are generated by an enumerate.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_05</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; add seq id_no to a set use &#39;enumerate&#39; to create seq_no use enumerate(range(...)) </span>
-</span><span class='line'><span class="sd"> to create start/stop indices for motif &quot;&quot;&quot;</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>          
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/30/obtaining-overrepresented-motifs-part-6/">Obtaining overrepresented motifs in DNA sequences, part 6</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-30T21:30:44-04:00" pubdate data-updated="true">May 30<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We will take a break on developing the statistical module to obtain
-overrepresented motifs (I will introduce mul in the next stats post),
-and take a deeper look at the possibilities on obtaining the motif
-quorums. Mike DeHaemer, a regular commenter and contributor to the blog,
-sent me a <a href="http://python.org/" title="Python (programming language)">Python</a>
-script with 8 different ways distributed in 13 distinct functions for
-obtaining the motif quorums.</p>
-
-<p>I will take advantage of his contribution
-and post all of them, with some quick comments on each one of them (his
-code comments were kept in each function). After, a small benchmarking
-will be posted. Most of the functions need to import a couple of module</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">deque</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">izip</span><span class="p">,</span> <span class="n">tee</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and they have two
-parameters, a sequence list and the length of the motifs. The first
-function uses again the <code>defaultdict</code> and it is very similar to the one
-used in the final version of the quorum script. The <code>defaultdict</code> is
-initialized as a list and the ids are added to a the list, keys are
-motifs, only if they are not already present in it. The sequence id is
-generated in a variable incremented each time the loop iterates.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_01</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot;append seq id_no to list after checking to see if already present use explicit counter to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]:</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The second function is very similar to the
-first one, with the caveat that sequence id numbers are generated with
-<code>enumerate</code>.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_02</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>  <span class="sd">&quot;&quot;&quot; append seq id_no to list after checking to see if already present use &#39;enumerate&#39; to create seq_no &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">id_no</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]:</span>
-</span><span class='line'>              <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>              
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>enumerate</code> is a object based on another iterable object. When called
-<code>enumerate</code> always returns a tuple of an indexed series. For instance,
-in our case above, enumerate will return a series of tuples
-<code>(0, sequence1), (1, sequence2) ... (n, sequenceN)</code>. That&#8217;s the reason
-the enumerate loop uses a tuple as its index</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Next couple of posts will cover the other functions sent by Mike. Then we
-will go back to the statistical module.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -855,6 +601,348 @@ next time how to get the quorums.</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/10/from-the-interwebs-forgotten-archives/">From the Interwebs &#8220;forgotten&#8221; archives &#8230; </a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-10T16:57:56-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tigerramki.jpg/202px-Tigerramki.jpg" alt="A tiger in India's Bandhavgarh reserve" /></a>Image via <a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg">Wikipedia</a>I have no source, but the creation date of the text file is August, 7th 1995. Good luck.</p>
+
+<p><strong>Final Exam</strong></p>
+
+<p>Instructions: Read each question carefully. Answer all questions. Time Limit: 4 hours. Begin immediately.</p>
+
+<p><strong>History</strong></p>
+
+<p>Describe the history of the papacy from its origins to the present day,  concentrating especially, but not exclusively, on its social, political,  economic, religious, and philosophical impact on Europe, Asia, America,  and Africa. Be brief, concise, and specific.</p>
+
+<p><strong>Medicine</strong></p>
+
+<p> You have been provided with a razor blade, a piece of gauze, and a bottle of Scotch. Remove your appendix. Do not suture until your work has been  inspected. You have 15 minutes.</p>
+
+<p><strong>Public speaking</strong></p>
+
+<p>Twenty-five hundred riot-crazed aborigines are storming the classroom.  Calm them. You may use any ancient language except Latin or Greek.</p>
+
+<p><strong>Biology</strong></p>
+
+<p>Create life. Estimate the differences in subsequent human culture if this  form of life had developed 500 million years earlier, with special attention to its probable effect on the English parliamentary system. Prove your thesis.</p>
+
+<p><strong>Music</strong></p>
+
+<p>Write a piano concerto. Orchestrate and perform it with flute and drum.  You will find a piano under your seat.</p>
+
+<p><strong>Psychology</strong></p>
+
+<p>Based on your degree of knowledge of their works, evaluate the emotional stability, degree of adjustment, and repressed frustrations of each of the following: Alexander of Aphrodisias, Rameses II, Gregory of Nicea, Hammurabi. Support your evaluations with quotations from each man&#8217;s work, making appropriate references. It is not necessary to translate.</p>
+
+<p><strong>Sociology</strong></p>
+
+<p>Estimate the sociological problems which might accompany the end of the world. Construct an experiment to test your theory.</p>
+
+<p><strong>Management science</strong></p>
+
+<p>Define management. Define science. How do they relate? Why? Create a generalized algorithm to optimize all managerial decisions. Assuming an 1130 CPU supporting 50 terminals, each terminal to activate your algorithm; design the communications interface and all necessary control programs.</p>
+
+<p><strong>Engineering</strong></p>
+
+<p>The disassembled parts of a high-powered rifle have been placed in a box on your desk. You will also find an instruction manual, printed in Swahili. In ten minutes a hungry Bengal tiger will be admitted to the room. Take whatever action you feel is appropriate. Be prepared to justify your decision.</p>
+
+<p><strong>Economics</strong></p>
+
+<p>Develop a realistic plan for refinancing the national debt. Trace the possible effects of your plan in the following areas: Cubism, the Donatist controversy, the wave theory of light. Outline a method for preventing these  effects. Criticize this method from all possible points of view. Point out the deficiencies in your point of view, as demonstrated in your answer to the  last question.</p>
+
+<p><strong>Political science</strong></p>
+
+<p>There is a red telephone on the desk beside you. Start World War III. Report at length on its socio-political effects, if any.</p>
+
+<p><strong>Epistemology</strong></p>
+
+<p>Take a position for or against truth. Prove the validity of your position.</p>
+
+<p><strong>Physics</strong></p>
+
+<p>Explain the nature of matter. Include in your answer an evaluation of the impact of the development of mathematics on science.</p>
+
+<p><strong>Philosophy</strong></p>
+
+<p>Sketch the development of human thought; estimate its significance. Compare with the development of any other kind of thought.</p>
+
+<p><strong>General knowledge</strong></p>
+
+<p> Describe in detail. Be objective and specific.</p>
+
+<p><strong>* * E X T R A C R E D I T * * </strong></p>
+
+<p> Define the universe; give three examples.</p>
+
+<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=6cd57e9f-1f39-4fc6-a85c-cc42f834c7ff" alt="" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/09/obtaining-overrepresented-motifs-in-dna-sequences-part-i/">Obtaining overrepresented motifs in DNA sequences, part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-09T21:46:50-04:00" pubdate data-updated="true">May 9<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Changing gears now, leaving behind Pfam alignments. I decided to start a
+new series of posts based on the conversion of some small C++ programs I
+developed in the past. These small programs (I call them modules because
+they were part of a larger application) were used to count motifs, short
+nucleotide <em>words</em> up to 10-12 base pairs, and then calculate
+statistical overrepresentation of these words by comparing a foreground
+set of DNA sequences against a background set.</p>
+
+<p>We will start comparing
+the different approaches of the C++ and the
+<a href="http://python.org/" title="Python (programming language)">Python</a> codes and
+point out advantages and disadvantages of doing it in one language or
+the other.</p>
+
+<p>First thing we need to do is to count the motifs in all
+sequences from our foreground and background sets. For the project I was
+working on, the ideal word length was 10 nucleotides. Basically our C++
+approach to increase speed was to transform the character DNA sequences
+into numbers and then, while sliding a window with the desired word
+length,
+<a href="http://en.wikipedia.org/wiki/Hash_function" title="Hash function">hash</a> the
+base-four numbers into base 10 and increment a vector position,
+previously initialized with 0. For four nucleotides and a word size of
+10 there are 1,048,576 permutations possible, from <code>AAAAAAAAAA</code> to
+<code>TTTTTTTTTT</code>. Initially the C++ program would do</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">seqsize</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">seqfile</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">base</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">base</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">switch</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;A&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;C&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;G&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;T&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> reading all
+sequences and pushing an figure for each nucleotide in a vector, and
+then sliding a window on this vector and hashing the base-four number</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">hashSeq</span><span class="p">(</span><span class="n">vector</span> <span class="n">subseq</span><span class="p">)</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span>
+</span><span class='line'><span class="n">hashvalue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">power</span><span class="p">;</span> <span class="n">w</span> <span class="o">=</span> <span class="n">subseq</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span>
+</span><span class='line'><span class="n">subseq</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">power</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">hashvalue</span> <span class="o">+=</span> <span class="n">subseq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="err">\</span><span class="o">*</span>
+</span><span class='line'><span class="n">pow</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="mi">4</span><span class="p">,(</span><span class="kt">double</span><span class="p">)</span><span class="n">w</span><span class="p">);</span> <span class="n">w</span><span class="o">--</span><span class="p">;</span> <span class="p">}</span> <span class="k">return</span> <span class="n">hashvalue</span><span class="p">;</span> <span class="p">}</span> <span class="k">if</span><span class="p">(</span><span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span>
+</span><span class='line'><span class="err">\</span><span class="o">&gt;</span> <span class="n">motifwidth</span><span class="p">)</span> <span class="p">{</span> <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="n">motifwidth</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="n">sub</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">j</span><span class="o">+</span><span class="n">motifwidth</span><span class="p">);</span>
+</span><span class='line'><span class="n">hashed</span> <span class="o">=</span> <span class="n">hashSeq</span><span class="p">(</span><span class="n">sub</span><span class="p">);</span> <span class="n">nmercount</span><span class="p">[</span><span class="n">hashed</span><span class="p">]</span><span class="o">++</span><span class="p">;</span> <span class="n">sub</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span> <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The whole C++ code has about 400 lines, including all the
+possible output formatting and printing. Timing with <code>time</code> the C++
+executable takes a little bit less than 2 seconds to read, count and
+output different files. For Python, we will use a different approach and
+gain a lot in code simplicity. As we want to count the number of times
+size-10 words appear in all sequences, we first need to generate all
+possible permutations (with replacement) of four nucleotides. This can
+be easily accomplished by using generator functions. Regular functions
+run until completion and the return a value. For instance, a function
+that calculates the factorial of 10 will return the last value only,
+after multiplying 10.9.8.7.6.5.4.3.2.</p>
+
+<p>A generator function runs until a
+value is available to return, <code>yielding</code> it and then suspending its
+operation until called again. The yielding part was emphasized because
+<code>yield</code> is the command used by Python to return the value and suspend
+the function until further notice. In the <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a>, a
+generator would return the intermediary factorial values up to 10. To
+generate all 1 million plus permutations of 4 nucleotides we need a
+function similar to the one below (modified from
+<a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/190465">here</a>)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">yield</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+</span><span class='line'>          <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>              <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically, what this generator function does is to combine all four
+nucleotides in words of size 10. This is a <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science">recursive
+function</a> &#8220;Recursion (computer science)&#8221;),
+where the result of the function is dependent on the n-1 value
+calculated by the function until n equals 0. The first <code>for</code> loop over
+the items that we want to permute (the nucleotides) and the second <code>for</code>
+recursively calls <code>permutations starting with the initial n</code> passed (10)
+until we reach 0. Debugging this function we will see that <code>i</code> is
+constant for each iteration of the second loop and only <code>n</code> changes from
+10 to 0, while one by one nucleotides are joined to form a motif. It
+starts with <code>AAAAAAAAAA</code>, then <code>AAAAAAAAAC</code>, then <code>AAAAAAAAAG</code>, until it gets
+to a poly-T. Our final code would look like the one below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">yield</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+</span><span class='line'>          <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>              <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">merged_seqs</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>  <span class="n">merged_seqs</span> <span class="o">+=</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">nucleotides</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)):</span>
+</span><span class='line'>      <span class="k">print</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">merged_seqs</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where
+we read the input sequence(s), merge them in one long string and as we
+generate all possible combinations we count the number of times they
+appear. This code running on the same input file used on the C++
+executable is 60 times slower, taking in average one full minute to
+count motifs in 8 500 bp DNA sequences. The slowest section is the
+count, as the generation of all possible combinations is
+straightforward. We lose some speed, but gain a lot on code simplicity
+and clarity. Next we will modify this code to output different counts
+needed for the statistical analysis.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/22/">&larr; Older</a>
@@ -872,6 +960,10 @@ next time how to get the quorums.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/03/installing-circos-on-os-x/">Installing Circos on OS X</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/09/new-blog/">New blog</a>
       </li>
     
@@ -885,10 +977,6 @@ next time how to get the quorums.</p>
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
       </li>
     
   </ul>

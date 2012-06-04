@@ -9,9 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Just an apart from the bioinformatics aspect of programming: Python&#8217;s
-print statement. As in most computer languages Python allows an easy
-way &hellip;">
+  <meta name="description" content="Another important task for many biologists is to merge/concatenate
+different strings of DNA in one unique sequence. We can modify the
+previous script &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,200 +78,6 @@ way &hellip;">
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/01/15/python-printing-statement/">Python printing statement</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-15T18:40:41-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Just an apart from the bioinformatics aspect of programming: Python&#8217;s
-<code>print</code> statement. As in most computer languages Python allows an easy
-way to write to the standard output. Python&#8217;s <code>print</code> only accepts
-output of strings, and if the variable sent to it is not a string it is
-first converted and then output. The <code>print</code> always put a linebreak
-(<code>'\n'</code> or <code>"\n"</code>) at the end of the expression to be output, except
-when the <code>print</code> statement ends with a comma. For example:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&quot;This is a&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;test&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will print</p>
-
-<p><strong>This is a</strong>
-<strong>test</strong></p>
-
-<p>while</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&quot;This is a&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;test&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will print</p>
-
-<p><strong>This is a test</strong></p>
-
-<p>Of course Python&#8217;s <code>print</code> statement allows any programming escape character, such
-as <code>'\n'</code> and <code>'\t'</code>.</p>
-
-<p><strong>Concatenating strings on output</strong></p>
-
-<p>To concatenate two strings on output there are two possible ways in Python. You can
-either separate the strings with a comma, like we did here</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA</span><span class="p">,</span> <span class="n">myDNA2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> or you can use the &#8220;+&#8221; sign in roder to obtain almost the same result. This is similar to
-what was used here</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA3</span> <span class="o">=</span> <span class="n">myDNA</span> <span class="o">+</span> <span class="n">myDNA2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>but instead we would use the <code>print</code> command as</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA3</span> <span class="o">+</span> <span class="n">myDNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In the latter case, both strings will not be separated by a space and will be
-merged. To get the same result you would have to concatenate an extra
-space between the strings like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA3</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">myDNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/01/15/importing-and-regular-expressions/">Importing and regular expressions</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-15T13:47:54-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Tisdall&#8217;s book on Perl introduces next the ability to transcripts DNA
-sequences into RNA. In order to do that we need to check a different
-aspect of programming: regular expressions (or regex). Regular
-expressions is a pattern/string expression that works
-matching/describing/filtering other strings. Let&#8217;s say you want to
-examine or extract all vowels contained in one phrase, one page, one
-word. Another example would be to remove all html tags from a downloaded
-webpage. As HTML tags are encapsulated between <code>&lt;</code> and <code>&gt;</code> signs we can
-create a regex that will search for any characters in between the signs
-and remove (parse) them from our page. We will deal very briefly with
-regex, and if you are interested in learning more about it you can
-search for countless references on the internet (such as <a href="http://www.regular-expressions.info/">this one</a>).</p>
-
-<p>In order to use regular
-expression in Python we need to check another concept present in the
-language: importing modules. Python core functionality provides most of
-the usual operations and also comes with a built-in library of functions
-that &#8220;access to operations that are not part of the core of the language
-but are nevertheless built in&#8221;. One of this operations is the ability to
-interpret regular expression that in Python is located in the <code>re</code>
-module. Apart from the language core, built in modules, Python can be
-further extended by using third-party modules imported into the
-language. Anyone can create a module and distribute to every Python user
-and programmer. So, in order to have regex capabilities we literally
-have to <code>import</code> the regex module. We do that by entering the line:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Python&#8217;s code style
-guide suggests that <code>import</code> statements should be on separate lines</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span> <span class="nn">import</span> <span class="nn">re</span> <span class="o">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and
-to be put on the top of the file (usually below the line that tells your
-OS to use Python&#8217;s interpreter on the script). So the first two lines of
-our new script would be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env</span>
-</span><span class='line'><span class="n">python</span> <span class="kn">import</span> <span class="nn">re</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now that we have the ability to use regex,we need to create one expression that will transcribe our DNA sequences
-into RNA.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -612,6 +418,10 @@ Python (and not Perl)?</strong></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/03/installing-circos-on-os-x/">Installing Circos on OS X</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/09/new-blog/">New blog</a>
       </li>
     
@@ -625,10 +435,6 @@ Python (and not Perl)?</strong></p>
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
       </li>
     
   </ul>

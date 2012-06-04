@@ -9,7 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Welcome to the new home of Beginning Python for Bioinformatics and Blind.Scientist: Zientzilaria, scientist in Basque. Most posts of the old blogs &hellip;">
+  <meta name="description" content="I think one the main topics in the Circos discussion group is how to install it, especially as it requires some specific Perl and C libraries to be &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,364 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/06/03/installing-circos-on-os-x/">Installing Circos on OS X</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-03T19:40:00-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I think one the main topics in the Circos discussion group is how to install it, especially as it requires some specific Perl and C libraries to be in place. This short tutorial gives a step-by-step overview on how to make Circos work on OS X, but it should be similar to other *nix flavours. I just installed on my Mountain Lion box, but, again, it should be identical to previous versions of OS X.</p>
+
+<p>My Circos is installed on</p>
+
+<figure class='code'><figcaption><span>Circos location</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Applications/circos-0.55/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and if we try running it</p>
+
+<figure class='code'><figcaption><span>Circos trial run</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>perl /Applications/circos-0.55/bin/circos
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I get this error, initially</p>
+
+<figure class='code'><figcaption><span>Circos runtime error</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Can<span class="err">&#39;</span>t locate Config/General.pm in @INC <span class="o">(</span>@INC contains: /Applications/circos-0.55/bin/lib /Applications/circos-0.55/bin/../lib
+</span><span class='line'> /Applications/circos-0.55/bin /Library/Perl/5.12/darwin-thread-multi-2level /Library/Perl/5.12
+</span><span class='line'> /Network/Library/Perl/5.12/darwin-thread-multi-2level /Network/Library/Perl/5.12
+</span><span class='line'> /Library/Perl/Updates/5.12.4/darwin-thread-multi-2level /Library/Perl/Updates/5.12.4
+</span><span class='line'> /System/Library/Perl/5.12/darwin-thread-multi-2level /System/Library/Perl/5.12
+</span><span class='line'> /System/Library/Perl/Extras/5.12/darwin-thread-multi-2level /System/Library/Perl/Extras/5.12 .<span class="o">)</span> at
+</span><span class='line'> /Applications/circos-0.55/bin/../lib/Circos.pm line 53.
+</span><span class='line'>BEGIN failed--compilation aborted at /Applications/circos-0.55/bin/../lib/Circos.pm line 53.
+</span><span class='line'>Compilation failed in require at /Applications/circos-0.55/bin/circos line 184.
+</span><span class='line'>BEGIN failed--compilation aborted at /Applications/circos-0.55/bin/circos line 184.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, a lot of things going wrong, we need to check what is missing and install. Circos has a couple of commands bundled in its package that help us working through the errors. Best way to run them is to cd into Circos bin directory</p>
+
+<figure class='code'><figcaption><span>Circos: checking modules</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> /Applications/circos-0.55/bin/
+</span><span class='line'>/Applications/circos-0.55/bin<span class="nv">$ </span>./list.modules
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In my case, running this script gave me a list of the required modules for Circos</p>
+
+<figure class='code'><figcaption><span>Circos requirements</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>Carp
+</span><span class='line'>Config::General
+</span><span class='line'>Data::Dumper
+</span><span class='line'>Digest::MD5
+</span><span class='line'>File::Basename
+</span><span class='line'>File::Spec::Functions
+</span><span class='line'>FindBin
+</span><span class='line'>GD
+</span><span class='line'>GD::Polyline
+</span><span class='line'>Getopt::Long
+</span><span class='line'>Graphics::ColorObject
+</span><span class='line'>IO::File
+</span><span class='line'>List::MoreUtils
+</span><span class='line'>List::Util
+</span><span class='line'>Math::Bezier
+</span><span class='line'>Math::BigFloat
+</span><span class='line'>Math::Round
+</span><span class='line'>Math::VecStat
+</span><span class='line'>Memoize
+</span><span class='line'>POSIX
+</span><span class='line'>Params::Validate
+</span><span class='line'>Pod::Usage
+</span><span class='line'>Readonly
+</span><span class='line'>Regexp::Common
+</span><span class='line'>Set::IntSpan
+</span><span class='line'>Storable
+</span><span class='line'>Time::HiRes
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Another script checks for the current status of each module (still from the same dir)</p>
+
+<figure class='code'><figcaption><span>Circos checking modules</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/Applications/circos-0.55/bin<span class="nv">$ </span>./test.modules
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and this finally gives me a list of the current status of each one of the required modules</p>
+
+<figure class='code'><figcaption><span>Circos: requirements</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ok   Carp
+</span><span class='line'>fail Config::General is not usable <span class="o">(</span>it or a sub-module is missing<span class="o">)</span>
+</span><span class='line'>ok   Data::Dumper
+</span><span class='line'>ok   Digest::MD5
+</span><span class='line'>ok   File::Basename
+</span><span class='line'>ok   File::Spec::Functions
+</span><span class='line'>ok   FindBin
+</span><span class='line'>fail GD is not usable <span class="o">(</span>it or a sub-module is missing<span class="o">)</span>
+</span><span class='line'>fail GD::Polyline is not usable <span class="o">(</span>it or a sub-module is missing<span class="o">)</span>
+</span><span class='line'>ok   Getopt::Long
+</span><span class='line'>fail Graphics::ColorObject is not usable <span class="o">(</span>it or a sub-module is missing<span class="o">)</span>
+</span><span class='line'>ok   IO::File
+</span><span class='line'>ok   List::MoreUtils
+</span><span class='line'>ok   List::Util
+</span><span class='line'>fail Math::Bezier is not usable <span class="o">(</span>it or a sub-module is missing<span class="o">)</span>
+</span><span class='line'>ok   Math::BigFloat
+</span><span class='line'>ok   Math::Round
+</span><span class='line'>fail Math::VecStat is not usable <span class="o">(</span>it or a sub-module is missing<span class="o">)</span>
+</span><span class='line'>ok   Memoize
+</span><span class='line'>ok   POSIX
+</span><span class='line'>ok   Params::Validate
+</span><span class='line'>ok   Pod::Usage
+</span><span class='line'>fail Readonly is not usable <span class="o">(</span>it or a sub-module is missing<span class="o">)</span>
+</span><span class='line'>ok   Regexp::Common
+</span><span class='line'>fail Set::IntSpan is not usable <span class="o">(</span>it or a sub-module is missing<span class="o">)</span>
+</span><span class='line'>ok   Storable
+</span><span class='line'>ok   Time::HiRes
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We have to address everything that failed in the test. In this case, <em>GD</em>, <em>Graphics::ColorObjects</em>, <em>Math::VecStat</em>, <em>Readonly</em> and <em>Set::IntSpan</em>. We leave GD behind for a moment and focus on the other modules (this list might vary for each Perl installation, so you might need to install more or less modules, but the commands are similar).</p>
+
+<p>The easiest way to install module in Perl is to use <em>cpan</em>, the repository of Perl modules. It has an interactive shell that we can use, and we will see how to do that. In order to make sure our installation works we use <em>sudo</em> and call <em>cpan</em> (from any directory)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo cpan
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If this is the first time you are running it, just answer <strong>yes</strong> to all config questions and you are good to go. Now we have to install the five modules required. By using the command <em>install</em>, that can be achieved</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cpan<span class="nv">$ </span>install Config::General
+</span><span class='line'>-output omitted-
+</span><span class='line'>
+</span><span class='line'>cpan<span class="nv">$ </span>install Graphics::ColorObject
+</span><span class='line'>-output omitted-
+</span><span class='line'>
+</span><span class='line'>cpan<span class="nv">$ </span>install Math::Bezier
+</span><span class='line'>-output omitted-
+</span><span class='line'>
+</span><span class='line'>cpan<span class="nv">$ </span>install Math::VecStat
+</span><span class='line'>-output omitted-
+</span><span class='line'>
+</span><span class='line'>cpan<span class="nv">$ </span>install Readonly
+</span><span class='line'>-output omitted-
+</span><span class='line'>
+</span><span class='line'>cpan<span class="nv">$ </span>install Set::IntSpan
+</span><span class='line'>-output omitted-
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we deal with the last module and usually the most labourious to install, <em>GD</em>. Ideally you should have all possible library support for <em>GD</em> and for this you have to install additional libraries. We are going to start with two of the most common and see if we need anything else. Usually <strong>libjpeg</strong> and <strong>libpng</strong> are required by <em>GD</em>. So, let&#8217;s download both of them</p>
+
+<figure class='code'><figcaption><span>Downloading and install libjpeg and libpng</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>mkdir srctemp
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>srctemp
+</span><span class='line'>srctemp<span class="nv">$ </span>curl -O http://www.ijg.org/files/jpegsrc.v8d.tar.gz
+</span><span class='line'>srctemp<span class="nv">$ </span>tar -xzvf jpegsrc.v8d.tar.gz
+</span><span class='line'>srctemp<span class="nv">$ </span><span class="nb">cd </span>jpeg-8d
+</span><span class='line'>srctemp/jpeg-8d<span class="nv">$ </span>./configure
+</span><span class='line'>srctemp/jpeg-8d<span class="nv">$ </span>make
+</span><span class='line'>srctemp/jpeg-8d<span class="nv">$ </span>sudo make install
+</span><span class='line'>
+</span><span class='line'>srctemp/jpeg-8d<span class="nv">$ </span><span class="nb">cd</span> ..
+</span><span class='line'>srctemp<span class="nv">$ </span>curl -O ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng-1.5.10.tar.gz
+</span><span class='line'>srctemp<span class="nv">$ </span>tar -xzvf libpng-1.5.10.tar.gz
+</span><span class='line'>srctemp<span class="nv">$ </span><span class="nb">cd </span>libpng-1.5.10
+</span><span class='line'>srctemp/libpng-1.5.10<span class="nv">$ </span>./configure
+</span><span class='line'>srctemp/libpng-1.5.10<span class="nv">$ </span>make
+</span><span class='line'>srctemp/libpng-1.5.10<span class="nv">$ </span>sudo make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That should do it for now. We will download <em>GD</em> and check if the configuration we have so far is enough. <em>GD</em>&#8217;s website is still down, but we can get the source from Bitbucket and use identical commands to install is</p>
+
+<figure class='code'><figcaption><span>Installing GD</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>srctemp<span class="nv">$ </span>curl -O https://bitbucket.org/pierrejoye/gd-libgd/get/GD_2_0_33.tar.gz
+</span><span class='line'>srctemp<span class="nv">$ </span>tar -xzvf GD_2_0_33.tar.gz
+</span><span class='line'>srctemp<span class="nv">$ </span><span class="nb">cd </span>pierrejoye-gd-libgd-5551f61978e3/src
+</span><span class='line'>srctemp/pierrejoye-gd-libgd-5551f61978e3/src<span class="nv">$ </span>./configure
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>At the end of the configuration run, you should see something like this</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>** Configuration summary <span class="k">for </span>gd 2.0.33:
+</span><span class='line'>
+</span><span class='line'>   Support <span class="k">for </span>PNG library:          yes
+</span><span class='line'>   Support <span class="k">for </span>JPEG library:         yes
+</span><span class='line'>   Support <span class="k">for </span>Freetype 2.x library: yes
+</span><span class='line'>   Support <span class="k">for </span>Fontconfig library:   yes
+</span><span class='line'>   Support <span class="k">for </span>Xpm library:          no
+</span><span class='line'>   Support <span class="k">for </span>pthreads:             yes
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In my case, I&#8217;m good to go. But if in your case <em>Freetype</em> and <em>Fontconfig</em> are missing, you would have to download, configure, make and install them, just like <em>libpng</em> and <em>libjpeg</em>. So now</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>srctemp/pierrejoye-gd-libgd-5551f61978e3/src<span class="nv">$ </span>make
+</span><span class='line'>srctemp/pierrejoye-gd-libgd-5551f61978e3/src<span class="nv">$ </span>sudo make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We are almost there. The last step is to install <em>GD</em> in Perl. Normally, if we use <em>cpan</em> to install it on OS X, it fails. So, we will have to do it by hand. We go to CPAN website and download the latest Perl&#8217;s <em>GD</em> implementation and with similar commands to above we install it.</p>
+
+<figure class='code'><figcaption><span>Installing GD on perl</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>srctemp<span class="nv">$ </span>curl -O http://search.cpan.org/CPAN/authors/id/L/LD/LDS/GD-2.46.tar.gz <span class="o">(</span><span class="k">if </span>curl fails copy and past on your browser<span class="o">)</span>
+</span><span class='line'>srctemp<span class="nv">$ </span>tar -xzvf GD-2.46.tar.gz
+</span><span class='line'>srctemp<span class="nv">$ </span><span class="nb">cd </span>GD-2.46
+</span><span class='line'>srctemp/GD-2.46<span class="nv">$ </span>perl Makefile.PL
+</span><span class='line'>srctemp/GD-2.46<span class="nv">$ </span>make
+</span><span class='line'>srctemp/GD-2.46<span class="nv">$ </span>sudo make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>you should see some output, maybe some warnings, but if you followed all the steps above the installation worked. You can run the <em>test.modules</em> script in order to check.</p>
+
+<p>Leave a comment, if you get any errors, or send me an email.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -370,50 +728,6 @@ normal text; for example, "Several more _Homo sapiens_ were discovered."
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/01/24/books-2011/">Books 2011</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-24T10:24:31-05:00" pubdate data-updated="true">Jan 24<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1 - <a href="http://www.amazon.com/gp/product/0060853972?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0060853972">Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0060853972" alt="" /></p>
-
-<p>2 - <a href="http://www.amazon.com/gp/product/0399156801?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0399156801">The Cobra</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=0399156801" alt="" /></p>
-
-<p>3 - Redbreast</p>
-
-<p>4 - Play Dead</p>
-
-<p>5 - I drink for a reason</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2011/01/16/its-st-like-this-scientists/">It&#8217;s s$@t like this, scientists</a></h1>
     
     
@@ -504,6 +818,10 @@ normal text; for example, "Several more _Homo sapiens_ were discovered."
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/06/03/installing-circos-on-os-x/">Installing Circos on OS X</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/09/new-blog/">New blog</a>
       </li>
     
@@ -517,10 +835,6 @@ normal text; for example, "Several more _Homo sapiens_ were discovered."
     
       <li class="post">
         <a href="/blog/2011/02/15/there-are-idiots-everywhere/">There are idiots everywhere &#8230;</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/02/10/bioconductor/">Bioconductor</a>
       </li>
     
   </ul>
