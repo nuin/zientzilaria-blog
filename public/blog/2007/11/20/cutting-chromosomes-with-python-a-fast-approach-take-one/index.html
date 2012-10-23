@@ -150,22 +150,26 @@ rest. Our script should look like this</p>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python </span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
 </span><span class='line'>
 </span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </span><span class='line'><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </span><span class='line'><span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">segment</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">segment</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 </span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">name</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>          
+</span><span class='line'>    <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">):</span>
+</span><span class='line'>       <span class="n">size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">name</span> <span class="o">=</span> <span class="n">line</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">segment</span> <span class="o">+=</span> <span class="n">line</span>
+</span><span class='line'>
 </span><span class='line'><span class="k">print</span> <span class="n">name</span><span class="p">,</span> <span class="n">segment</span>
 </span></code></pre></td></tr></table></div></figure>
 

@@ -37,8 +37,7 @@ would look like
 	dict = {} 
 	for word in mylist: 
 		dict[word] = 1
-
-return dict.keys(){% endcodeblock %}
+	return dict.keys(){% endcodeblock %}
 
 In this function we declare the object
 and in the loop, iterating over every list's item we assign a value

@@ -29,7 +29,8 @@ the Locus and the Accession number of the item. From our last entry we
 have to remember this 
 
 
-{% codeblock lang:python %}sequence = ''
+{% codeblock lang:python %}
+sequence = ''
 issequence = False
 for line in gbfile: 
 	if issequence == True and not line.find('/') == 0: 
@@ -39,7 +40,8 @@ for line in gbfile:
 		
 and modify it to our needs. Looks simple, and it is. Let's see 
 
-{% codeblock lang:python %}import sys gbfile = open(sys.argv[1], 'r').readlines()
+{% codeblock lang:python %}
+import sys gbfile = open(sys.argv[1], 'r').readlines()
 locus = '' 
 organism = ''
  accession = '' 
@@ -51,9 +53,11 @@ for line in gbfile:
 		accession = line 
 	elif line.find('ORGANISM') >= 0: 
 		organism = line
+
 print locus.strip() 
 print organism.strip() 
-print accession.strip(){% endcodeblock %} 
+print accession.strip()
+{% endcodeblock %} 
 
 
 Just add a flag for each entry you want

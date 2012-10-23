@@ -118,17 +118,20 @@ seen before we just need to read the file, the a boolean variable that
 checks for **ORIGIN** and concatenate everything after that. Something
 like this 
 
-{% codeblock lang:python %}import sys 
-gbfile = open(sys.argv[1], 'r').readlines() 
-sequence = '' 
-issequence = False 
-for line in gbfile: 
-	if issequence == True: 
-		sequence += line 
-	elif:
-		line.find('ORIGIN') >= 0: 
-		issequence = True 
-		print sequence{% endcodeblock %}
+{% codeblock lang:python %}import sys
+ 
+gbfile = open(sys.argv[1], 'r').readlines()
+ 
+sequence = ''
+issequence = False
+for line in gbfile:
+    if issequence == True:
+        sequence += line
+    elif line.find('ORIGIN') >= 0:
+        issequence = True
+ 
+print sequence
+		{% endcodeblock %}
 
 
 Quick and easy. When we find **ORIGIN**, `issequence` has its state

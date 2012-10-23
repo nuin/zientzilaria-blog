@@ -76,15 +76,20 @@ characters from the left part of the string, and set it to remove
 numbers from 0 to 9 and the extra space before the nucleotides. And our
 script will like this: 
 
-{% codeblock lang:python %}import sys 
-gbfile = open(sys.argv[1], 'r').readlines() 
-sequence = '' issequence = False 
-for line in gbfile: 
-	if issequence == True and not line.find('/') == 0:
-		sequence += line.lstrip('0123456789 ') 
-	elif line.find('ORIGIN') >= 0:
-		issequence = True 
-		print sequence{% endcodeblock %} 
+{% codeblock lang:python %}
+import sys
+
+gbfile = open(sys.argv[1], 'r').readlines()
+
+sequence = ''
+issequence = False
+for line in gbfile:
+    if issequence == True and not line.find('/') == 0:
+        sequence += line.lstrip('0123456789 ')
+    elif line.find('ORIGIN') >= 0:
+        issequence = True
+
+print sequence{% endcodeblock %} 
 		
 		
 Notice that the first `if`
@@ -99,18 +104,21 @@ the replace method and we can use it here too. We only need to modify
 the line that concatenates the sequence, and our final script will be
 
 
-{% codeblock lang:python %}import sys 
-gbfile = open(sys.argv[1], 'r').readlines() 
-sequence = '' 
-issequence = False 
+{% codeblock lang:python %}import sys
+ 
+gbfile = open(sys.argv[1], 'r').readlines()
+ 
+sequence = ''
+issequence = False
 for line in gbfile:
-	if issequence == True and not line.find('/') == 0: 
-		sequence += line.lstrip('0123456789 ').replace(' ', '') 
-	elif line.find('ORIGIN') >= 0: 
-		issequence = True 
-		print sequence{% endcodeblock %} 
+    if issequence == True and not line.find('/') == 0:
+        sequence += line.lstrip('0123456789 ').replace(' ', '')
+    elif line.find('ORIGIN') >= 0:
+        issequence = True
+ 
+print sequence
+{% endcodeblock %} 
 
 
-Notice that we add the
-`replace` method after the `lstrip`, but it can either way. The output
+Notice that we add the `replace` method after the `lstrip`, but it can either way. The output
 should be only the nucleotides, with no space or numbers.

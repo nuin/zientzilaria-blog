@@ -27,7 +27,8 @@ the string to the actual name and tag.
 
 But we can use `split`
 
-{% codeblock lang:python %}file = sys.argv[1] 
+{% codeblock lang:python %}
+file = sys.argv[1] 
 temp = file.split('.')
 filename = temp[0]
 tag = temp[1]{% endcodeblock %} 

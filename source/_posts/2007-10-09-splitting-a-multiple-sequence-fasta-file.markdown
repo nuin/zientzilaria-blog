@@ -21,27 +21,30 @@ defined previously in `fasta.py`.
 
 To refresh our memories here is the code 
 
-{% codeblock lang:python %}class Fasta:
-	def __init__(self, name, sequence): 
-		self.name = name 
-		self.sequence = sequence 
-
-def read_fasta(file): 
-	items = [] 
-	index = 0 
-	for line in file: 
-		if line.startswith("\>"): 
-			if index >= 1: 
-				items.append(aninstance) 
-				index+=1
-			name = line[:-1] 
-			seq = '' 
-			aninstance = Fasta(name, seq) 
-		else: 
-			seq += line[:-1] 
-			aninstance = Fasta(name, seq) 
-	items.append(aninstance) 
-	return items{% endcodeblock %}
+{% codeblock lang:python %}
+class Fasta:
+    def __init__(self, name, sequence):
+        self.name = name
+        self.sequence = sequence
+ 
+def read_fasta(file):
+    items = []
+    index = 0
+    for line in file:
+        if line.startswith(">"):
+           if index >= 1:
+               items.append(aninstance)
+           index+=1
+           name = line[:-1]
+           seq = ''
+           aninstance = Fasta(name, seq)
+        else:
+           seq += line[:-1]
+           aninstance = Fasta(name, seq)
+ 
+    items.append(aninstance)
+    return items
+{% endcodeblock %}
 
 
 
@@ -50,7 +53,8 @@ the file and then in a loop saves every sequence in a separate file. For
 the sake of simplicity all saved files will be in the same directory. To
 the script 
 
-{% codeblock lang:python %}\#!/usr/bin/env python 
+{% codeblock lang:python %}
+#!/usr/bin/env python 
 import sys 
 import fasta 
 
@@ -67,7 +71,8 @@ for i in sequences:
 	output.write(i.name+'\n') 
 	output.write(i.sequence) 
 	#increment the counter 
-	count += 1{% endcodeblock %}
+	count += 1
+{% endcodeblock %}
 
 Very simple, but nice script. In the end
 we will have a list of files with only one sequence in it, with

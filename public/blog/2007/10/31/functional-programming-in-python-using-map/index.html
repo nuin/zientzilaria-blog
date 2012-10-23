@@ -148,17 +148,25 @@ returns a list containing them. This function is very similar to the
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_seqs</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
-</span><span class='line'>          <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>          <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>              <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>          <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">return</span> <span class="n">items</span>
+</span><span class='line'>    <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">items</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

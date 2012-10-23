@@ -17,29 +17,34 @@ that generates random DNA sequence sets. Apparently it wasn't clear that
 the script was intended to generate only one sequence set, and not
 multiple sets. Dilmurat also offered his solution: 
 
-{% codeblock lang:python %}#!/usr/bin/env python 
-import random 
-import sys 
-def simulate_sequence(length): 
-	dna = ['A', 'C', 'G', 'T'] 
-	sequence = '' 
-	for i in range(length): 
-		sequence += random.choice(dna) 
-return sequence
+{% codeblock lang:python %}
+#!/usr/bin/env python
 
-setsize = int(sys.argv[1]) 
-minlength = int(sys.argv[2]) 
-maxlength = int(sys.argv[3]) 
-rlength = [] 
-sequenceset = [] 
+import random
+import sys
 
+def simulate_sequence(length):
+    dna = ['A', 'C', 'G', 'T']
+    sequence = ''
+    for i in range(length):
+        sequence += random.choice(dna)
+    return sequence
+
+setsize = int(sys.argv[1])
+minlength = int(sys.argv[2])
+maxlength = int(sys.argv[3])
+
+rlength = []
+sequenceset = []
 for i in range(setsize):
-	rlength.append(random.randint(minlength, maxlength)) 
-for length in rlength: 
-	sequenceset.append(simulate_sequence(length)) 
-		
-for sequence in sequenceset: 
-	print sequence{% endcodeblock %} 
+    rlength.append(random.randint(minlength, maxlength))
+
+for length in rlength:
+    sequenceset.append(simulate_sequence(length))
+
+for sequence in sequenceset:
+    print sequence
+{% endcodeblock %} 
 
 I don't know if the lack of
 formatting in the comments might have generated a different result to
@@ -47,57 +52,66 @@ me, but let's see how we can generate multiple sets of random DNA
 sequence. Getting back to section 4, we can start with the original
 script that creates only one set 
 
-{% codeblock lang:python %}#!/usr/bin/env python 
-import random 
-import sys 
-
-def simulate_sequence(length): 
-	dna = ['A', 'C', 'G', 'T'] 
-	sequence = '' 
-	for i in range(length): 
-		sequence += random.choice(dna) 
-	return sequence
-
-setsize = int(sys.argv[1]) 
-minlength = int(sys.argv[2]) 
-maxlength = int(sys.argv[3]) 
-sequenceset = [] 
-
-for i in range(setsize): 
-	rlength = random.randint(minlength, maxlength)
-	sequenceset.append(simulate_sequence(rlength)) 
-	
-for sequence in sequenceset: 
-	print sequence{% endcodeblock %} 
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+import random
+import sys
+ 
+def simulate_sequence(length):
+    dna = ['A', 'C', 'G', 'T']
+    sequence = ''
+    for i in range(length):
+        sequence += random.choice(dna)
+    return sequence
+ 
+setsize = int(sys.argv[1])
+minlength = int(sys.argv[2])
+maxlength = int(sys.argv[3])
+ 
+sequenceset = []
+for i in range(setsize):
+    rlength = random.randint(minlength, maxlength)
+    sequenceset.append(simulate_sequence(rlength))
+ 
+for sequence in sequenceset:
+    print sequence
+{% endcodeblock %} 
 
 There is a very easy way of
 changing this code to make it output a definite number of sets. WE add a
 new input parameter and also a loop to it, and that should take care of
 everything. 
 
-{% codeblock lang:python %}#!/usr/bin/env python 
-import random 
-import sys 
-
-def simulate_sequence(length): 
-	dna = ['A', 'C', 'G', 'T'] 
-	sequence = '' 
-	for i in range(length): 
-		sequence += random.choice(dna) 
-	return sequence 
-	
-setsize = int(sys.argv[1]) 
-minlength = int(sys.argv[2]) 
-maxlength = int(sys.argv[3]) 
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+import random
+import sys
+ 
+def simulate_sequence(length):
+    dna = ['A', 'C', 'G', 'T']
+    sequence = ''
+    for i in range(length):
+        sequence += random.choice(dna)
+    return sequence
+ 
+setsize = int(sys.argv[1])
+minlength = int(sys.argv[2])
+maxlength = int(sys.argv[3])
 nsets = int(sys.argv[4])
-for i in range(nsets): 
-	sequenceset = [] 
-	for i in range(setsize): 
-	rlength = random.randint(minlength, maxlength)
-	sequenceset.append(simulate_sequence(rlength)) 
-	
-	for sequence in sequenceset: 
-		print sequence print{% endcodeblock %} 
+ 
+for i in range(nsets):
+    sequenceset = []
+    for i in range(setsize):
+        rlength = random.randint(minlength, maxlength)
+        sequenceset.append(simulate_sequence(rlength))
+ 
+    for sequence in sequenceset:
+        print sequence
+ 
+    print
+{% endcodeblock %} 
 
 A test with 10 as the
 number of sequences, 20 as minimum and 30 as maximum length and 2 sets

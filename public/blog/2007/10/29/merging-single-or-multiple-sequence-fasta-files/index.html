@@ -160,28 +160,32 @@ Our script would look like</p>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">glob</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">filepattern</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="c">#initialize lists </span>
+</span><span class='line'><span class="c">#initialize lists</span>
 </span><span class='line'><span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span class='line'>
-</span><span class='line'><span class="c">#glob.glob returns a list of files that match the pattern </span>
-</span><span class='line'><span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span>  <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">filepattern</span><span class="p">):</span>
-</span><span class='line'>  <span class="c">#we read the contents and an instance of the class is returned </span>
-</span><span class='line'>  <span class="n">contents</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'>  <span class="c">#a file can contain more than one sequence so we read them in a loop</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">seqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'><span class="c">#glob.glob returns a list of files that match the pattern</span>
+</span><span class='line'><span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">filepattern</span><span class="p">):</span>
+</span><span class='line'>    <span class="c">#we read the contents and an instance of the class is returned</span>
+</span><span class='line'>    <span class="n">contents</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>    <span class="c">#a file can contain more than one sequence so we read them in a loop</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">seqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="c">#we print the output </span>
+</span><span class='line'><span class="c">#we print the output</span>
 </span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
-</span><span class='line'>  <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
 

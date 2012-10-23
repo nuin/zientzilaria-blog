@@ -44,17 +44,22 @@ their output. We will add a function that reads only the sequences and
 returns a list containing them. This function is very similar to the
 `read_fasta` function 
 
-{% codeblock lang:python %}def read_seqs(file): 
-	items = [] seq = '' 
-	index = 0 
-	for line in file: if line.startswith(">"): 
-		if index >= 1:
-			items.append(seq) 
-			seq = '' 
-			index += 1 else: 
-				seq += line[:-1] 
-			items.append(seq) 
-		return items{% endcodeblock %}
+{% codeblock lang:python %}
+def read_seqs(file):
+    items = []
+    seq = ''
+    index = 0
+    for line in file:
+        if line.startswith(">"):
+            if index >= 1:
+                items.append(seq)
+                seq = ''
+            index += 1
+        else:
+            seq += line[:-1]
+ 
+    items.append(seq)
+    return items{% endcodeblock %}
 
 
 and it uses an identical approach. Instead of creating an instance of

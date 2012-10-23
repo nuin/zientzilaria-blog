@@ -39,22 +39,25 @@ post). Basically we need a start and an end point and a FASTA file. All
 three would be used as parameters and a loop should take care of the
 rest. Our script should look like this 
 
-{% codeblock lang:python %}#! /usr/bin/env python 
+{% codeblock lang:python %}
+#! /usr/bin/env python
+ 
 import sys
-
+ 
 file = sys.argv[1]
-start = int(sys.argv[2]) 
+start = int(sys.argv[2])
 end = int(sys.argv[3])
-
-size = 0 segment = '' 
-for line in open(file, 'r'): 
-	if not line.startswith('\>'): 
-		size += len(line)
-	else: 
-		name = line 
-		if size >= start and size <= end: 
-			segment += line
-			
+ 
+size = 0
+segment = ''
+for line in open(file, 'r'):
+    if not line.startswith('>'):
+       size += len(line)
+    else:
+        name = line
+    if size >= start and size <= end:
+        segment += line
+ 
 print name, segment{% endcodeblock %} 
 
 We start getting the parameters from
