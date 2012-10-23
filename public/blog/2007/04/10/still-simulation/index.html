@@ -153,9 +153,15 @@ nucleotides. Let&#8217;s see the code, discussion just after it.</p>
 <span class='line-number'>41</span>
 <span class='line-number'>42</span>
 <span class='line-number'>43</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
 </span><span class='line'>    <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
 </span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
@@ -164,7 +170,7 @@ nucleotides. Let&#8217;s see the code, discussion just after it.</p>
 </span><span class='line'>    <span class="k">return</span> <span class="n">sequence</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">nucleotide_percentage</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; As&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; As &#39;</span><span class="p">,</span>
 </span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Cs &#39;</span><span class="p">,</span>
 </span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Gs &#39;</span><span class="p">,</span>
 </span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; Ts&#39;</span>
@@ -173,29 +179,31 @@ nucleotides. Let&#8217;s see the code, discussion just after it.</p>
 </span><span class='line'>    <span class="n">iden</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
 </span><span class='line'>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 </span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">])):</span>
 </span><span class='line'>            <span class="k">if</span> <span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">]:</span>
-</span><span class='line'>                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span> <span class="n">iden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
-</span><span class='line'>                <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span><span class='line'>                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">iden</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
+</span><span class='line'>        <span class="n">count</span> <span class="o">=</span> <span class="mf">0.0</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">iden</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span class='line'>
+</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
 </span><span class='line'>    <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
 </span><span class='line'>    <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
-</span><span class='line'>    <span class="n">identity</span> <span class="o">=</span> <span class="n">sequence_identity</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">identity</span> <span class="o">=</span> <span class="n">sequence_identity</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)):</span>
 </span><span class='line'>    <span class="k">print</span> <span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </span><span class='line'>    <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
 </span><span class='line'>        <span class="k">print</span> <span class="s">&#39;sequence identity to next sequence : &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">identity</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">nucleotide_percentage</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">print</span>
+</span><span class='line'>    <span class="n">nucleotide_percentage</span><span class="p">(</span><span class="n">sequenceset</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>    <span class="k">print</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

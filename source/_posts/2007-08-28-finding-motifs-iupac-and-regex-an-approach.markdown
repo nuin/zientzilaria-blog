@@ -56,13 +56,16 @@ we just add to the dictionary the "regular" nucleotide codes
 This would solve our "problem" without adding
 a line of code to the final script. Fastforwarding to creating the regex
 
-{% codeblock lang:python %}mregex = '' 
+{% codeblock lang:python %}
+mregex = '' 
 for n in motif: 
-	mregex += iupacdict.get(n) 
-	print mregex 
-#just to check 
+	mregex += iupacdict.get(n)
+	 
+print mregex #just to check 
+
 tosearch = re.compile(str(mregex)) 
 for i in tosearch.findall(sequencefile): 
-	print i{% endcodeblock %} 
+	print i
+{% endcodeblock %} 
 	
 Simple and quick. The final output is not really elaborated, but we can improve it. Next time.

@@ -14,18 +14,20 @@ We already have a function that reads the enzymes from a dataset in a
 flat file (with one change: return) 
 
 
-{% codeblock lang:python %}def read_enzymes(file): 
-	resenz = {} 
-	start = False 
-	for line in file: 
-		if line.find('Rich Roberts') >= 0: 
-			start = True 
-			line = file.next() 
-			if start == True and len(line) > 10:
-				buffer = line.split() 
-				resenz[buffer[0]] = buffer[-1].replace('\^', '')
-				
-	return resenz{% endcodeblock %} 
+{% codeblock lang:python %}
+def read_enzymes(file):
+    resenz = {}
+    start = False
+    for line in file:
+        if line.find('Rich Roberts') >= 0:
+            start = True
+            line = file.next()
+        if start == True and len(line) > 10:</pre>
+            buffer = line.split()
+            resenz[buffer[0]] = buffer[-1].replace('^', '')
+ 
+    return resenz
+	{% endcodeblock %} 
 	
 We now need a function to write a function
 that searches for the sites and a main function that accepts the
@@ -50,7 +52,8 @@ function that will check for the enzyme name entered by the user in
 order to check for the existence of such enzyme. Something like this
 would work 
 
-{% codeblock lang:python %}def check_enzyme(input, set):
+{% codeblock lang:python %}
+def check_enzyme(input, set):
 	if set.has_key(input):
 		return True 
 	else: 

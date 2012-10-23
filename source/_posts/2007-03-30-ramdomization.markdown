@@ -49,7 +49,8 @@ if mine > his:
 elif mine < his: 
     print "Computer won" 
 else: 
-    print "Tie. Try again"{% endcodeblock %}
+    print "Tie. Try again"
+{% endcodeblock %}
 
 `random.randint` is a function that generates an integer random number
 between a range specified by the number between parentheses. In the

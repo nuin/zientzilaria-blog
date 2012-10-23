@@ -180,11 +180,13 @@ a line of code to the final script. Fastforwarding to creating the regex</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mregex</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 </span><span class='line'><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">motif</span><span class="p">:</span>
 </span><span class='line'>  <span class="n">mregex</span> <span class="o">+=</span> <span class="n">iupacdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">mregex</span>
-</span><span class='line'><span class="c">#just to check </span>
+</span><span class='line'>  
+</span><span class='line'><span class="k">print</span> <span class="n">mregex</span> <span class="c">#just to check </span>
+</span><span class='line'>
 </span><span class='line'><span class="n">tosearch</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mregex</span><span class="p">))</span>
 </span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tosearch</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequencefile</span><span class="p">):</span>
 </span><span class='line'>  <span class="k">print</span> <span class="n">i</span>

@@ -9,7 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Yes, I never blogged, never liked to. I always been a tad recluse when posting opinions, comments and other things on websites. But recently I have &hellip;">
+  <meta name="description" content="We have seen, briefly, how to define and use a function in Python. Now
+we are going to jump forward a bit and create a new function and at the
+same &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +78,305 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/26/command-line-arguments-and-a-second-take-on-functions/">Command line arguments and a second take on functions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-26T13:18:48-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We have seen, briefly, how to define and use a function in Python. Now
+we are going to jump forward a bit and create a new function and at the
+same time take a look on command line parameters that can be passed to
+the script. If you have used command line applications before, you might
+have encountered programs that asks for a file name, a calculation
+parameter, etc to be passed in the command line. Python scripts are no
+different, they accept such parameters. For this we have the <code>sys</code>
+module that has system specific parameters and functions. We have used
+before the <code>sys.exit</code>, imported as an extra module function.</p>
+
+<p>Every operating system (even Windows) has arguments in its command line, and
+programming languages usually call such arguments <code>argv</code> (in the C/C++
+you have argv in the parameters of the main function). Lists in Python
+start at 0 (zero), and for the argument list the first item is the
+script/program name. Basically if we have this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$&gt;</span> python myscript.py DNA.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>myscript.py</code> is the argument 0 in the
+list and <code>DNA.txt</code> is the argument 1. So whenever we create a script that
+receives arguments in the command line, we have to start (in most cases,
+be aware) from 1.</p>
+
+<p>In Python using system arguments in the CLI will look
+like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="n">valueone</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We will a variation of our
+previous script that counts the bases, now with command line arguments
+and a function (with no &#8220;error&#8221; checking at first)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python import sys </span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">count_nucleotide_types</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">totalA</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">totalC</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">totalG</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">totalT</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sequencefile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sequencefile</span><span class="p">)</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">values</span> <span class="o">=</span> <span class="n">count_nucleotide_types</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;As&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Cs&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Gs&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Ts&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Few new things here. We created a function <code>count_nucleotide_types</code> that should receive a string
+containing the sequence. The &#8220;real&#8221; first line of the program flow is
+the one that gets the name of the file from the command line argument,
+open and read it. We then convert the list to a string, modify it a but
+and throw it to the function. Get the result back, and done. With
+functions we actually don&#8217;t save coding time/length (at least here), we
+make out code more organized, easier to read and somewhat easier to
+someone else read and understand it. It is not a good coding practice to
+have long programs/scripts with no functions, no subdivision, no
+structure. Functions are sometimes good program nuggets that can be
+reused in the same application or even ported/copied to other
+applications and reused indefinitely. Soon we will see a function and
+class that reads a FASTA file in Python that can be used anywhere in any
+program that needs such feature. Try the code and come back later for more.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/22/python-functions-simple-example/">Python functions: simple example</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-22T09:04:10-04:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Python subroutines do not exist. <a href="http://www.diveintopython.org/getting_to_know_python/declaring_functions.html">Everything is a function, all
+functions return a value (even if it&#8217;s None), and all functions start
+with <code>def</code></a>.
+This statement is from Dive into Python, a book on Python programming
+available for free. As mentioned Python functions start with the word
+<code>def</code>, which is followed by the function name that is followed by the
+arguments the function receives in between parentheses. Something like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">my_first_function</span><span class="p">(</span><span class="n">somevalue</span><span class="p">):</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Usually Python coders
+(sometime called Pythonistas, among others), following the Python coding
+style (that states: <em>Function names should be lowercase, with words
+separated by underscores as necessary to improve readability</em>) name
+their functions with words separated by underscores. And we are going to
+use this style here, whenever a function becomes handy. The parameters
+passed to the function (above <code>somevalue</code>) do not have a datatype,
+Python should handle it whatever is being passed. It is also attribute
+of your code to handle the parameter/value passed inside the function
+and avoid errors. Functions also follow the same indentation of normal
+programming and the line after the declaration should be indented with
+four spaces</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">my_first_function</span><span class="p">(</span><span class="n">somevalue</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">do_something</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, let&#8217;s
+warmup with functions. The following script is just the start: it adds a
+poly-T tail to a DNA sequence. We are going to use our old friend
+AY162388.seq. I will be back after the script</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">add_tail</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="n">seq</span> <span class="o">+</span> <span class="s">&#39;TTTTTTTTTTTTTTTTTTTTT&#39;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&#39;AY162388.seq&#39;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">print</span> <span class="n">sequence</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">add_tail</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Not very useful, at first sight, but gives us an
+impression of what a function looks like. Basically we define a function
+<code>add_tail</code> that receives <code>seq</code> as a parameter. Don&#8217;t worry about
+variable scope now, we will see it later. The rest of the script is just
+like things we saw before, except for the line
+<code>sequence = add_tail(sequence)</code>. Here we are saving memory (yep, not
+that much and not even impressive) by assigning the return value of the
+function to the same string where we have the sequence stored. Run the
+scritp and get ready for the command line arguments.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/16/reccommended-read/">Recommended read</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-16T13:20:13-04:00" pubdate data-updated="true">Mar 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>On the latest post I forgot to mention a book that is wonderful for those with no programming habits and for those who have (in this case more like vices).</p>
+
+<p><a href="http://www.amazon.com/gp/product/1593271190?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593271190">Code Craft: The Practice of Writing Excellent Code</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1593271190" alt="" /></p>
+
+<p>It is a very good read, with several insights on how to write programs.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -321,37 +622,41 @@ amino acids sequences. We start with the code, comments coming after it.</p>
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">fileentered</span> <span class="o">=</span> <span class="bp">True</span>
 </span><span class='line'><span class="k">while</span> <span class="n">fileentered</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
 </span><span class='line'>    <span class="n">filename</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Please enter a file to check: &#39;</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
 </span><span class='line'>        <span class="k">try</span><span class="p">:</span>
 </span><span class='line'>            <span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
 </span><span class='line'>            <span class="n">totalA</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
 </span><span class='line'>            <span class="n">totalC</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
 </span><span class='line'>            <span class="n">totalG</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
 </span><span class='line'>            <span class="n">totalT</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
 </span><span class='line'>            <span class="n">otherletter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;[BDEFHIJKLMNOPQRSUVXZ]&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">extra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">otherletter</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s">&#39;.count&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Count report for file &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;A = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;C = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;G = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;T = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>                <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Also were found &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; errors</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">extra</span><span class="p">:</span>
-</span><span class='line'>                    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39; &#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">else</span><span class="p">:</span> <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;No error found&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">extra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">otherletter</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s">&#39;.count&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Count report for file &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;A = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;C = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;G = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;T = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Also were found &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; errors</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">extra</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39; &#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;No error found&#39;</span><span class="p">)</span>
 </span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Result file saved on &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.count&#39;</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Result file saved on &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.count&#39;</span>
 </span><span class='line'>        <span class="k">except</span><span class="p">:</span>
 </span><span class='line'>            <span class="k">print</span> <span class="s">&#39;File not found. Please try again.&#39;</span>
 </span><span class='line'>    <span class="k">else</span><span class="p">:</span>
@@ -484,23 +789,23 @@ previous script that counts nucleotides and modify it to save a
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
 </span><span class='line'><span class="c">#let&#39;s keep the file fixed for now</span>
 </span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
-</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list </span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
 </span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c">#initialize a string to receive the data </span>
+</span><span class='line'><span class="c">#initialize a string to receive the data</span>
 </span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 </span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'>    <span class="c">#notice the strip, to remove n </span>
-</span><span class='line'>    <span class="c">#&quot;exploding&quot; the sequence in a list </span>
-</span><span class='line'>    <span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'><span class="c">#initializing integers to store the counts </span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c">#notice the strip, to remove n</span>
+</span><span class='line'><span class="c">#&quot;exploding&quot; the sequence in a list</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'><span class="c">#initializing integers to store the counts</span>
 </span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="c">#checking each item in the list and updating counts </span>
+</span><span class='line'><span class="c">#checking each item in the list and updating counts</span>
 </span><span class='line'><span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
 </span><span class='line'>    <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
 </span><span class='line'>        <span class="n">totalA</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -638,124 +943,6 @@ application that actually performs some useful function.</p>
   <div class="entry-content"><p>Quite &#8220;old&#8221; (for the new standards) but very relevant.</p>
 
 <p>Here - <a href="http://www.wired.com/news/culture/0,70670-0.html">The Wikipedia FAQK</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/02/beginning-python-for-bioinformatics/">Beginning Python for Bioinformatics</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-02T17:45:44-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am working on a Python tutorial focused on Bioinformatics development: Beginning Python for Bioinformatics, right <a href="http://python.genedrift.org">here.</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/02/global-warming-no-memo-no-report/">Global warming: no memo, no report</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-02T17:44:52-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Apparently, upstate NY and southern Ontario did not get the memo or the report that the Global Warming is here.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/02/wikipedia/">Wikipedia</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-02T17:43:45-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Wikipedia is growing daily, and becoming a a major reference for many subjects, from arts and entertainment, sports to quantum physics and population genetics. Myself, I have been following its growth through websites like <a href="http://reddit.com">reddit.com</a> and by the increase of Google top hits directing to Wikipedia entries.</p>
-
-<p>In December 2005, a small study compared the freely available encyclopedia to Britannica (summarized <a href="http://www.wired.com/news/culture/0,1284,69844,00.html">here</a>) and found errors on both, almost leveling them. I cannot say about the quality of the content of Wikipedia in English, I only use it to quick scientific searches on topics that I do not have great knowledge or to mundane topics, like writers&#8217; and bands&#8217; biographies.</p>
-
-<p>Lately, I have focused on checking the content of Wikipedia in Portuguese, especially entries that relate to biology, bioinformatics and genetics, with an anonymous profile. I was appalled with the poor quality of the entries, and I decided to edit some articles, in some places correcting minor grammar mistakes and in other replacing entire sections that were completely off the mark. I can say that a gave a minor contribution, I could and can give more if I had more time to edit things and I also have some articles marked for revision.</p>
-
-<p>But that is not my concern. Several entries in the Portuguese version were poor translated material from the English website. So poor that in places the content makes no sense in Portuguese. Checking the profile of &#8220;editors&#8221; that have translated such entries, you invariably see that they claim to have an advanced level (sometimes even native-like) of English, and sometimes advanced levels in other languages. Still you see very poor translations. This, coupled with the poor knowledge of the subject of the entry, is a recipe for disaster. I know by personal experience that is very difficult to master a language that is not your native one (I have good domain of English, but not advertised anywhere); even more difficult is to do a technical translation of a topic that you don&#8217;t master completely.</p>
-
-<p>It has been discussed elsewhere (ie <a href="http://ascii.textfiles.com/archives/000276.html">here</a>) about the potential problems of Wikipedia and the prepotency of some editors (who are volunteers) in protecting the articles from the so-called vandalism. Maybe I should register myself and edit with an username, and be prepared to the criticism and sometimes the bullying in the lengthy discussions that can be found on Wikipedia. It will be a double work: edit the entry and then explain why is was edited.</p>
-
-<p>I don&#8217;t think I have stomach and patience to do that again. I just fear for the high-school kid that will learn from there, thinking it is a great reference, and in the end will have to relearn it, due to poor content. Just my two cents.</p>
 </div>
   
   

@@ -146,28 +146,22 @@ explain it afterwards.</p>
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
 </span><span class='line'><span class="c">#finding motifs in DNA sequences</span>
 </span><span class='line'><span class="c"># we use the RegEx module</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
 </span><span class='line'><span class="c">#still keep the file fixed</span>
 </span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
-</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list </span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
 </span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'>
 </span><span class='line'><span class="c">#let&#39;s join the the lines in a temporary string</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
 </span><span class='line'><span class="c">#assigning our sequence, with no carriage returns to our</span>
 </span><span class='line'><span class="c">#final variable/object</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c">#we start to deal with user input </span>
-</span><span class='line'><span class="c">#first we use a boolean variable to check for valid input </span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#we start to deal with user input</span>
+</span><span class='line'><span class="c">#first we use a boolean variable to check for valid input</span>
 </span><span class='line'><span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>
 </span><span class='line'><span class="c">#while loop: while there is an motif larger than 0</span>
 </span><span class='line'><span class="c">#the loop continues</span>
 </span><span class='line'><span class="k">while</span> <span class="n">inputfromuser</span><span class="p">:</span>
@@ -177,13 +171,13 @@ explain it afterwards.</p>
 </span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inmotif</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
 </span><span class='line'>        <span class="c">#we compile a regex with the input given</span>
 </span><span class='line'>        <span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
-</span><span class='line'>        <span class="c">#looking to see if the entered motif is in the sequence </span>
+</span><span class='line'>        <span class="c">#looking to see if the entered motif is in the sequence</span>
 </span><span class='line'>        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">motif</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
 </span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Yep, I found it&#39;</span>
 </span><span class='line'>        <span class="k">else</span><span class="p">:</span>
 </span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
 </span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif\_search&#39;</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
 </span><span class='line'>        <span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
 </span></code></pre></td></tr></table></div></figure>
 

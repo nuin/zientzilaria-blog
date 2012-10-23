@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="make flags during the Olympics
-ultra fast boat repair during the Olympics (in the case we are unable to repair your boat in time, a boat from some &hellip;">
+  <meta name="description" content="Image by ! S4N7Y ! via Flickr I promised myself that I would never use Mendeley, but I am not very good in keeping promises to myself and I decided &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,210 @@ ultra fast boat repair during the Olympics (in the case we are unable to repair 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/25/mendeley-a-very-short-review/">Mendeley: a very short review</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-25T15:17:38-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/9541154@N03/2796169357/"><img src="http://farm4.static.flickr.com/3243/2796169357_806c275210_m.jpg" alt="Lost Thoughts" /></a>Image by <a href="http://www.flickr.com/photos/9541154@N03/2796169357/">! <em>S4N7Y</em> !</a> via Flickr  I promised myself that I would never use Mendeley, but I am not very good in keeping promises to myself and I decided to install it, after I got a comment from the co-founder (??) of the software/company.</p>
+
+<p>It seems that it is based on Qt, and a good point (maybe the only one) is that the program is cross-platform. I decided to give it a go and import around 700 PDFs that I have in one directory (I&#8217;m using it on Vista). It has been almost an hour already and the import hasn&#8217;t ended, and it is using one core of my AMD CPU. Process Lasso already lowered its priority 10 times, because it is taking too much cycles. For read a PDF file?</p>
+
+<p>Yep, uninstalling it soon. And not recommending it at all. I will keep using Citeulike, Zotero and the like.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/2d9ecc28-6fcd-40ba-8a3b-26203175eadc/"><img src="http://img.zemanta.com/reblog_e.png?x-id=2d9ecc28-6fcd-40ba-8a3b-26203175eadc" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/">Obtaining overrepresented motifs in DNA sequences, part 13</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T21:32:09-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that we have the best quorum determination function and the ideal
+function to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
+expansions</a>
+it is easy to program a script to calculate the <em>p</em> value of motifs in
+DNA sequences. To the script <em>below in the code there are a couple of
+errors that wordpress don&#8217;t let me fix. The > and &lt; are replaced by
+their literal html enconding. I am working on it, sorry</em></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>          <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>          <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>          <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>          
+</span><span class='line'>          <span class="c">#print ntok // ktok return ntok // ktok else: return 0 def</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id\_no to a set use explicit</span>
+</span><span class='line'><span class="s">counter to create seq\_no &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">for</span>
+</span><span class='line'><span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span>
+</span><span class='line'><span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">id</span>\<span class="n">_no</span><span class="p">)</span> <span class="k">return</span> <span class="n">quorum</span> <span class="nb">input</span>\<span class="n">_seqs</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="nb">input</span>\<span class="n">_seqs2</span> <span class="o">=</span>
+</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">foreground</span> <span class="o">=</span>
+</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">background</span> <span class="o">=</span> <span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">,</span>
+</span><span class='line'><span class="mi">10</span><span class="p">)</span> <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span>
+</span><span class='line'><span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
+</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> \<span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span>
+</span><span class='line'><span class="mf">0.0001</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We already defined choose in the last post (more information in the link
+from the Python&#8217;s cookbook) and earlier Mike sent us a series of
+quorum-determination functions and one of the best was portrayed and
+explained here.</p>
+
+<p>We also need our fasta module to read the sequences (and only the
+sequences) in order to use it in the quorum function. Basically we use
+the foreground and background files as input, determine the quorum of
+the different words (width 10) and then we iterate over the results,
+calculating the <em>p</em> value for each motif found in the foreground set.
+The tree terms of the Hypergeometric Distribution are calculated
+separately and we test for a <em>p</em> value smaller that 0.0001 (this can be
+modified) and we only print the results that fall in this category.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/08/20/that-should-do-it/">That should do it!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-08-20T20:17:44-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:Guitarhero-screen.jpg"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/6/6c/Guitarhero-screen.jpg/202px-Guitarhero-screen.jpg" alt="To play a note, the fret button and strum bar ..." /></a>Image via <a href="http://en.wikipedia.org/wiki/Image:Guitarhero-screen.jpg">Wikipedia</a> Now that <a href="http://en.wikipedia.org/wiki/BMX">BMX</a> and trampoline are in the Olympics (OK, all right, trampoline got in a couple of editions ago) I can say that the Olympics are a <a href="http://en.wikipedia.org/wiki/Good_faith">bona fide</a> international competition. I would like to thank to the enlightened people that include those wonderful &#8220;sports&#8221; in the competition. I can&#8217;t wait to see <a href="http://en.wikipedia.org/wiki/Rock-paper-scissors">rock-paper-scissors</a> and <a href="http://en.wikipedia.org/wiki/Guitar_Hero">Guitar Hero</a> in 2012.</p>
+
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://abcnews.go.com/International/China/wireStory?id=5608227">Counter-Culture BMX Makes Debut in Beijing</a></li>
+<li><a href="http://kotaku.com/5037975/parents-let-kid-drop-out-of-high-school-to-focus-on-guitar-hero">Parents Let Kid Drop Out of High School to Focus on Guitar Hero [Guitar Hero]</a></li>
+<li><a href="http://www.russellbeattie.com/blog/holy-shit-look-at-the-size-of-that-ramp">Holy SHIT, look at the size of that ramp!</a></li>
+</ul>
+
+
+<p><a href="http://reblog.zemanta.com/zemified/44c6dd6e-2c47-48cd-bbfe-20f4bf6025a7/"><img src="http://img.zemanta.com/reblog_e.png?x-id=44c6dd6e-2c47-48cd-bbfe-20f4bf6025a7" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -537,127 +740,6 @@ in order to calculate one of the binomials</p>
 
 
 <p><a href="http://reblog.zemanta.com/zemified/a6329016-177e-4379-a14d-591db006964d/"><img src="http://img.zemanta.com/reblog_e.png?x-id=a6329016-177e-4379-a14d-591db006964d" alt="Zemanta Pixie" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/07/08/plos-computational-biology-t-shirt/">PLoS Computational Biology t-shirt</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-08T16:19:45-04:00" pubdate data-updated="true">Jul 8<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/13172875@N08/2650908386/"><img src="http://farm4.static.flickr.com/3024/2650908386_c180e7d745_m.jpg" alt="The Island" /></a>Image by <a href="http://www.flickr.com/photos/13172875@N08/2650908386/">Aaronyx</a> via FlickrI was at gym, proudly wearing my <a href="http://compbiol.plosjournals.org/">PLoS Computational Biology</a> t-shirt when a person tripped in one of the corrifors me and started shouting that I was &#8220;supporting a failed model of scientific publication&#8221; and that I should start &#8220;supporting the <a href="http://www.nature.com/npg">Nature Publishing Group</a> model of publication&#8221;. I didn&#8217;t know what to say. I just know that it was the last time I wore this t-shirt in public.</p>
-
-<h6>Related articles by Zemanta</h6>
-
-<ul>
-<li><a href="http://scholarlykitchen.sspnet.org/2008/07/07/bulk-publishing-keeps-plos-afloat/">Bulk Publishing Keeps PLoS Afloat</a></li>
-</ul>
-
-
-<p><a href="http://reblog.zemanta.com/zemified/a02f51b3-aef1-4540-bbbb-8971861a2fa3/"><img src="http://img.zemanta.com/reblog_e.png?x-id=a02f51b3-aef1-4540-bbbb-8971861a2fa3" alt="Zemanta Pixie" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/07/01/bioinformatics-carrer-survey/">Bioinformatics career survey</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-01T15:44:23-04:00" pubdate data-updated="true">Jul 1<span>st</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Via <a href="http://www.bioinformaticszen.com/2008/07/creating-a-picture-of-different-careers-in-bioinformatics/">Bioinformatics Zen</a>:</p>
-
-<p>Loading&#8230;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/29/what-a-happy-day/">What a happy day!!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-29T16:14:56-04:00" pubdate data-updated="true">Jun 29<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Although I was born in Brazil, my heart (football and everything else) was always Spanish. I saw and suffer with losses to Yugoslavia, France, Italy, Belgium, Korea (what a robbery!!), etc, but today was a day of enjoyment and “good” suffering in the final minutes. Thanks to the Niño and to a wonderful 11 we leave the underachievers banner behind and hope to even better days ahead. See you in South Africa.</p>
-
-<p>Aupa España!</p>
 </div>
   
   

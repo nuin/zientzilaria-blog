@@ -34,7 +34,8 @@ programming and the line after the declaration should be indented with
 four spaces 
 
 {% codeblock lang:python %}def my_first_function(somevalue):
-    do_something{% endcodeblock %}
+    do_something
+{% endcodeblock %}
 
 So, let's
 warmup with functions. The following script is just the start: it adds a
@@ -43,18 +44,23 @@ AY162388.seq. I will be back after the script
 
 
 {% codeblock lang:python %}#! /usr/bin/env python
+#! /usr/bin/env python
+ 
 def add_tail(seq):
-    result = seq + 'TTTTTTTTTTTTTTTTTTTTT' 
+    result = seq + 'TTTTTTTTTTTTTTTTTTTTT'
     return result
-
+ 
 dnafile = 'AY162388.seq'
 file = open(dnafile, 'r')
+ 
 sequence = ''
 for line in file:
-    sequence += line.strip() 
-    print sequence 
-    sequence = add\_tail(sequence)
-    print sequence{% endcodeblock %}
+    sequence += line.strip()
+ 
+print sequence
+sequence = add_tail(sequence)
+print sequence
+{% endcodeblock %}
 
 Not very useful, at first sight, but gives us an
 impression of what a function looks like. Basically we define a function

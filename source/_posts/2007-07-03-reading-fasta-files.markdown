@@ -65,7 +65,8 @@ stored in the human resources file system. Let's call the main class
 `favourite_colour`. This defines a class. Let's see how to do that in
 Python: 
 
-{% codeblock lang:python %}class Employee: 
+{% codeblock lang:python %}
+class Employee: 
     def __init__(self, name, room, colour): 
         self.name = name 
         self.room = room 
@@ -94,7 +95,8 @@ use of `self` while from the outside (another part of the script) it is
 seen by the name given to the instance of the class. It is a little bit
 confusing, so let's see an example below. 
 
-{% codeblock lang:python %}class Employee: 
+{% codeblock lang:python %}
+class Employee: 
     def __init__(self, name, room, colour): 
         self.name = name 
         self.room = room 
@@ -105,7 +107,8 @@ employeename = "Paulo"
 roomnumber = "21" 
 colour = "blue" 
 newemployee = Employee(employeename, roomnumber, colour) 
-print newemployee{% endcodeblock %} 
+print newemployee
+{% endcodeblock %} 
 
 
 If we run this simple code we will get

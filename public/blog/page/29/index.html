@@ -9,7 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Getting spam/phishing is annoying, but getting spam/phishing with typos or poor grammar is even worse. IF you are not competent to write correctly, &hellip;">
+  <meta name="description" content="Very impressive, thin, light, powerful.. But do they need to called MacBook Air? What a lame-name.
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,118 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/15/impressive-but-how-do-you-call-it/">Impressive, but how do you call it?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-15T14:02:05-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.theglobeandmail.com/servlet/story/RTGAM.20080115.wgtmacworld0115/BNStory/Technology/home?cid=al_gam_mostemail">Very impressive, thin, light, powerful.</a>. But do they need to called MacBook Air? What a lame-name.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/08/preaching/">Preaching</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-08T12:59:07-05:00" pubdate data-updated="true">Jan 8<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When someone &#8220;preaches&#8221; atheism, what is the difference of preaching some kind of religion?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/19/a-bit-of-tnt-in-your-morning-coffee/">A bit of TNT in your morning coffee</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-19T11:24:20-05:00" pubdate data-updated="true">Dec 19<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.zmuc.dk/public/phylogeny/tnt/">TNT</a> is free!!! Long live TNT.</p>
+
+<p>TNT stands for Tree analysis using New Technology. First published in 1999 by Nixon and Goloboff on Cladistics (where else?) it gives you the possibility doing phylogenetic analysis using parsimony and &#8230; No, that&#8217;s it. Only parsimony. But there is a bright side: you can actually run it on Linux and Mac, albeit without a user interface. That&#8217;s a major step for a program that when first released had an icon depicting an apple with the forbidden sign around it.</p>
+
+<p>I am planning to test it and post a review soon.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -403,301 +516,6 @@ http://xkcd.com/353/</a></p>
 
 
   <div class="entry-content"><p>The next Bio::Blogs, currently at number 17, will be proudly hosted here. There is plenty of time for submissions, which should be sent directly to me, at nuin at genedrift dot org, or to the usual Bio::Blogs email address, at bioblogs at gmail dot com. Deadline is December 1st.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/11/26/e2809ccuttinge2809d-chromosomes-with-python-a-fast-approach-take-two-including-precision/">“Cutting” chromosomes with Python: a fast approach, take two, including precision</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-11-26T16:41:57-05:00" pubdate data-updated="true">Nov 26<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>On the last post we saw how to &#8220;cut&#8221;/extract a segment of a chromosome
-quickly in Python. But our last code had no precision in the
-cutting/extracting, because it didn&#8217;t take in account the line size so
-it would extract more information than actually requested. We need to
-address precision them. First take into account the size of each line,
-the number of nucleotides on each line. Then use this this information
-to remove unwanted bases. Most of the changes we need to make on our
-script is outside the main loop that cuts/extracts information. We need
-to modify the post-processing of the sequence we nust read from the
-chromosome. Also, instead of storing the sequence in a <code>string</code> it is
-easier to use a <code>list</code> (in fact it is just a matter of personal taste,
-and maybe a little be of being Pythonic). In the end our script would
-look like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">linesize</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">segment</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">name</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="n">end</span> <span class="o">+</span> <span class="n">linesize</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</span><span class='line'>          <span class="n">linesize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</span><span class='line'>          <span class="n">startline</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span><span class="o">/</span><span class="n">linesize</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>          <span class="n">endline</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">/</span><span class="n">linesize</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="k">if</span> <span class="ow">not</span> <span class="n">start</span> <span class="o">%</span> <span class="n">linesize</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">end</span> <span class="o">%</span> <span class="n">linesize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">startline</span> <span class="o">*</span> <span class="n">linesize</span><span class="o">-</span><span class="n">start</span><span class="p">:]</span>
-</span><span class='line'>          <span class="n">segment</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">endline</span> <span class="o">*</span><span class="n">linesize</span><span class="o">-</span><span class="n">end</span><span class="p">:]</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="ow">not</span> <span class="n">start</span> <span class="o">%</span> <span class="n">linesize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">startline</span><span class="o">*</span><span class="n">linesize</span><span class="o">-</span><span class="n">start</span><span class="p">:]</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="ow">not</span> <span class="n">end</span> <span class="o">%</span> <span class="n">linesize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">segment</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">endline</span> <span class="o">*</span><span class="n">linesize</span><span class="o">-</span><span class="n">end</span><span class="p">:]</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="n">name</span><span class="p">,</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice that we added a new
-variable <code>linesize</code>, to store the size of the sequence line. The loop is
-almost identical to the one before. The only changes are the line that
-checks for each line size (can be optimized somewhere else and removed)
-and instead of a segment string, it is a list.</p>
-
-<p>The bulk of
-changes/additions are after the loop. We first need to calculate the
-initial and final lines of our cut/extracted segment. We just divide the
-value of the start and end positions entered by the size of the line and
-add 1 to them in order to get a correct line in case we the entered
-values are not multiple of the line size. Dividing integers in Python
-will return us an integer. After this checking we need to add some
-processing conditionals to make sure we are returning the exact segment
-requested. The <code>%</code> operator in Python return the remainder of a
-division, even if the two values are integers. We need to check that the
-entered starting and ending positions are or aren&#8217;t multiple of the line
-size. If one or both are multiples we don&#8217;t need to process the segment.
-On the other hand some processing is needed. Clearly we only need to cut
-extra nucleotides from the first and last returned lines. That&#8217;s why the
-three clauses: one for both values not being multiple of line size, one
-for just the start and another for the end position. And to remove
-unwanted nucleotides we basically multiply the number of the
-starting/ending line by the size of each line and subtract the actual
-start/end position.</p>
-
-<p>This should give us the number of unwanted
-nucleotides in those two lines. And the fact that we stored the segment
-as a <code>list</code> makes our life easier as we access position 0 and -1 in our
-list. On the final output, we print the name and join the list elements
-by adding a new line between them.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/11/22/what-happened/">What happened?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-11-22T10:10:42-05:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I thought that <a href="http://www.soccerlounge.tv/2007/05/epl_best_in_the_world.html">EPL</a> <a href="http://www.youtube.com/watch?v=BqWQSOee_LQ&amp;feature=related">was</a> <a href="http://www.tv.com/english-premier-league/show/70376/reviews.html?review_id=423803&amp;flag=">the</a> <a href="http://www.sportsfilter.com/comments.cfm/4413">best</a> <a href="http://goliath.ecnext.com/coms2/gi_0199-4986247/Americans-Vote-Barclays-English-Premier.html">league in the world</a>. Being the best, England should have the best players, thus the best national team. I was wrong. They will always have 2012 to try.</p>
-
-<p>I think everything can be summarized with this article: &#8221; Americans Vote Barclays English Premier League Best Soccer League in the World&#8221;. Oh, irony.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/11/20/cutting-chromosomes-with-python-a-fast-approach-take-one/">&#8220;Cutting&#8221; chromosomes with Python: a fast approach, take one</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-11-20T16:24:11-05:00" pubdate data-updated="true">Nov 20<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last couple of posts we started with some functional programming aspects
-of Python. I was away last week and couldn&#8217;t create anything related to
-FP in the meantime, so I decided to post about a quick way to &#8220;cut&#8221;, or
-extract segments, from chromosomes stored as FASTA files. This is a
-subject that I have been investigating for some time, as I needed a tool
-that would get some segment from a chromosome for further analysis. I
-have a short C++ code that does the trick and is really fast, but I
-wanted to find a Pythonic way of doing it, and quick. I have been trying
-different methods but no one were fast. Chromosomes are usually large,
-and stored in large files, so reading line by line and using <code>readlines</code>
-were extremely slow.</p>
-
-<p>Inspired by a
-<a href="http://www.goldb.org/goldblog/2007/11/07/PythonProcessingLargeTextFilesOneLineAtATime.aspx">post</a>
-from Corey Goldberg, I decide to test the method explained there, with
-wonderful results. Basically what we need to do is to use an iterator
-protocol on the file object</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;foo.txt&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">):</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This processes the human chromosome 1
-(the largest) in less than 2 seconds. Our first take will be how to
-extract a segment, but not precisely (that we will see in a future
-post). Basically we need a start and an end point and a FASTA file. All
-three would be used as parameters and a loop should take care of the
-rest. Our script should look like this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'><span class="n">end</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">segment</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span><span class="p">):</span>
-</span><span class='line'>      <span class="n">size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">name</span> <span class="o">=</span> <span class="n">line</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">segment</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>          
-</span><span class='line'><span class="k">print</span> <span class="n">name</span><span class="p">,</span> <span class="n">segment</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We start getting the parameters from
-the command line, assigning a couple of variables and we start the loop.
-We open the file and use the file object iterator to check each line. We
-check each line for a FASTA sequence title. If found we store tht title
-in the variable <code>name</code>, and if not we check the size of the line and
-increment the variable that will guide us on the file position. We use
-<code>size</code> as a line by line increment and if it is between <code>start</code> and
-<code>end</code> we store the read line into the <code>segment</code> variable. That&#8217;s it. A
-few drawbacks with this script: it will fail on FASTA files where the
-sequence is stored in one line, there is no precision to get the actual
-start and end points and it can only run on unique sequence files. On
-the next post we will address some of these concerns.</p>
 </div>
   
   

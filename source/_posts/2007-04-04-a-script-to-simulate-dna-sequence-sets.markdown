@@ -21,29 +21,31 @@ length instead of one sequence with fixed length that our script does.
 So, the script that generates a user defined simulated DNA sequence set
 is 
 
-{% codeblock lang:python %}#!/usr/bin/env python 
+{% codeblock lang:python %} 
+#!/usr/bin/env python
+ 
 import random
-import sys 
-
-def simulate_sequence(length): 
+import sys
+ 
+def simulate_sequence(length):
     dna = ['A', 'C', 'G', 'T']
-    sequence = '' 
-    for i in range(length): 
+    sequence = ''
+    for i in range(length):
         sequence += random.choice(dna)
-    return sequence 
-
-setsize = int(sys.argv[1]) 
+    return sequence
+ 
+setsize = int(sys.argv[1])
 minlength = int(sys.argv[2])
-maxlength = int(sys.argv[3]) 
-
-sequenceset = [] 
-
+maxlength = int(sys.argv[3])
+ 
+sequenceset = []
 for i in range(setsize):
     rlength = random.randint(minlength, maxlength)
-    sequenceset.append(simulate_sequence(rlength)) 
-
-for sequence in sequenceset: 
-    print sequence{% endcodeblock %} 
+    sequenceset.append(simulate_sequence(rlength))
+ 
+for sequence in sequenceset:
+    print sequence
+{% endcodeblock %} 
 
 Simple and efficient. First we
 define a function that generates a simulated DNA sequence from the four

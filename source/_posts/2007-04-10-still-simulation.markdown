@@ -16,49 +16,55 @@ the same: functions to do all the work for us and a very simple main
 code. We also reuse some code with applied before to count the
 nucleotides. Let's see the code, discussion just after it. 
 
-{% codeblock lang:python %}#!/usr/bin/env python 
-import random 
-import sys 
-def simulate_sequence(length): 
-    dna = ['A', 'C', 'G', 'T'] 
-    sequence = '' 
-    for i in range(length): 
-        sequence += random.choice(dna) 
-    return sequence 
-
-def nucleotide_percentage(sequence): 
-    print str(sequence.count('A')) + ' As', 
-    print str(sequence.count('C')) + ' Cs ', 
-    print str(sequence.count('G')) + ' Gs ', 
-    print str(sequence.count('T')) + ' Ts' 
-
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+import random
+import sys
+ 
+def simulate_sequence(length):
+    dna = ['A', 'C', 'G', 'T']
+    sequence = ''
+    for i in range(length):
+        sequence += random.choice(dna)
+    return sequence
+ 
+def nucleotide_percentage(sequence):
+    print str(sequence.count('A')) + ' As ',
+    print str(sequence.count('C')) + ' Cs ',
+    print str(sequence.count('G')) + ' Gs ',
+    print str(sequence.count('T')) + ' Ts'
+ 
 def sequence_identity(set):
-    iden = [] 
-    count = 0.0 
-    for x in range(len(set)-1): 
-        print str(x), str(x+1) 
+    iden = []
+    count = 0.0
+    for x in range(len(set)-1):
+    print str(x), str(x+1)
         for n in range(len(set[x])):
-            if set[x][n] == set[x+1][n]: 
-                count += 1 iden.append(count/len(set[x]))
-                count = 0.0 
+            if set[x][n] == set[x+1][n]:
+                count += 1
+        iden.append(count/len(set[x]))
+        count = 0.0
     return iden
-
+ 
 setsize = int(sys.argv[1])
-minlength = int(sys.argv[2]) 
-maxlength = int(sys.argv[3]) 
-sequenceset = [] 
-
-for i in range(setsize): 
+minlength = int(sys.argv[2])
+maxlength = int(sys.argv[3])
+ 
+sequenceset = []
+for i in range(setsize):
     rlength = random.randint(minlength, maxlength)
-    sequenceset.append(simulate_sequence(rlength)) 
-    identity = sequence_identity(sequenceset) 
-
-for i in range(len(sequenceset)): 
-    print sequenceset[i] 
-    if i < len(sequenceset)-1: 
+    sequenceset.append(simulate_sequence(rlength))
+ 
+identity = sequence_identity(sequenceset)
+ 
+for i in range(len(sequenceset)):
+    print sequenceset[i]
+    if i < len(sequenceset)-1:
         print 'sequence identity to next sequence : ' + str(identity[i])
-
-nucleotide_percentage(sequenceset[i]) print{% endcodeblock %} 
+    nucleotide_percentage(sequenceset[i])
+    print
+{% endcodeblock %} 
 
 
 Well, not many

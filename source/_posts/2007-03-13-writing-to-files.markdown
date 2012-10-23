@@ -41,39 +41,41 @@ the file is open and ready to receive data. Let's cheat and use the
 previous script that counts nucleotides and modify it to save a
 `count.txt` file wit the results: 
 
-{% codeblock lang:python %}#!/usr/bin/env python
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
 #let's keep the file fixed for now
-dnafile = "AY162388.seq" 
-#opening the file, reading the sequence and storing in a list 
-file = open(dnafile, 'r') 
-#initialize a string to receive the data 
+dnafile = "AY162388.seq"
+#opening the file, reading the sequence and storing in a list
+file = open(dnafile, 'r')
+#initialize a string to receive the data
 sequence = ''
-for line in file: 
-    sequence += line.strip() 
-    #notice the strip, to remove n 
-    #"exploding" the sequence in a list 
-    seqlist = list(sequence)
-#initializing integers to store the counts 
-totalA = 0 
-totalC = 0 
-totalG = 0 
+for line in file:
+    sequence += line.strip() #notice the strip, to remove n
+#"exploding" the sequence in a list
+seqlist = list(sequence)
+#initializing integers to store the counts
+totalA = 0
+totalC = 0
+totalG = 0
 totalT = 0
-#checking each item in the list and updating counts 
+#checking each item in the list and updating counts
 for base in seqlist:
     if base == 'A':
         totalA += 1
-    elif base == 'C': 
-        totalC += 1 
+    elif base == 'C':
+        totalC += 1
     elif base == 'G':
         totalG += 1
-    elif base == 'T': 
-        totalT += 1 
+    elif base == 'T':
+        totalT += 1
 #printing results
-resultfile = open('counts.txt', 'w') 
+resultfile = open('counts.txt', 'w')
 resultfile.write(str(totalA) + ' As found \n')
 resultfile.write(str(totalC) + ' Cs found \n')
 resultfile.write(str(totalG) + ' Gs found \n')
-resultfile.write(str(totalT) + ' Ts found \n'){% endcodeblock %}
+resultfile.write(str(totalT) + ' Ts found \n')
+{% endcodeblock %}
 
 The only difference is at the end of the script. Here instead of `print` we use
 `write`. Notice that `write` is a method of the opened file.(in our case

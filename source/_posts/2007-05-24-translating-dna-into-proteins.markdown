@@ -62,20 +62,25 @@ are smaller than three nucleotides. If the key exists it is returned and
 addes to our protein string. The code that will use this function is
 this: 
 
-{% codeblock lang:python %}#!/usr/bin/env python 
-import dnatranslate 
-dnafile = open("AY162388.seq", 'r').readlines() 
-sequence = '' 
-for line in dnafile: 
-    sequence += line.strip() 
-
-protein = dnatranslate.translate_dna(sequence) 
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+import dnatranslate
+ 
+dnafile = open("AY162388.seq", 'r').readlines()
+ 
+sequence = ''
+for line in dnafile:
+    sequence += line.strip()
+ 
+protein = dnatranslate.translate_dna(sequence)
+ 
 print sequence, len(sequence)
-print 
-print protein, len(protein){% endcodeblock %}
+print
+print protein, len(protein)
+{% endcodeblock %}
 
-No secrets or new things
-here. Just notice that we import a module which is not part of the
+No secrets or new things here. Just notice that we import a module which is not part of the
 common Python modules, but was created by us. In this case the
 identification in the import will be the name of the `.py` file that
 contains the function(s) we are going to use. This file also needs to be

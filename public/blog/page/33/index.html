@@ -9,9 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Last time we saw how to extract the sequence from our GenBank file, but
-the final result might not be as nice as we wanted it to be. So, we need
-to &hellip;">
+  <meta name="description" content="I cringe every time I hear a company PR (or similar product) or advertisement saying that X or Y is &#8220;in the company&#8217;s DNA&#8221;.
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,118 @@ to &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/10/02/i-cringe/">I cringe</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-10-02T12:34:39-04:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I cringe every time I hear a company PR (or similar product) or advertisement saying that X or Y is &#8220;in the company&#8217;s DNA&#8221;.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/28/on-punching-the-liver-quotes/">On &#8220;punching the liver&#8221; quotes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-28T10:13:55-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When asked how he would fight the largest news broadcast channel in Brazil, the owner (and self acclaimed <em>bishop</em> of the Church of the Universal Kingdom of God and of a newly released new channel replied:</p>
+
+<blockquote><p>We punch them in the liver until they fall</p></blockquote>
+
+<p>So long for the religion that asks they followers to &#8220;pray for peace&#8221;.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/28/hockey/">Hockey</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-28T10:08:39-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The most hardcore hockey team in Canada, instead of having blue vs white practices, had shirts vs skins.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -696,6 +807,8 @@ regex patterns. We called it <code>find_sites</code></p>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">find</span>\<span class="n">_sites</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
 </span><span class='line'>  <span class="n">iupacdict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span><span class="s">&#39;[A]&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span><span class="s">&#39;[C]&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">:</span><span class="s">&#39;[G]&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span><span class="s">&#39;[T]&#39;</span><span class="p">,</span> <span class="s">&#39;M&#39;</span><span class="p">:</span><span class="s">&#39;[AC]&#39;</span><span class="p">,</span> <span class="s">&#39;R&#39;</span><span class="p">:</span><span class="s">&#39;[AG]&#39;</span><span class="p">,</span>
 </span><span class='line'>  <span class="s">&#39;W&#39;</span><span class="p">:</span><span class="s">&#39;[AT]&#39;</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">:</span><span class="s">&#39;[CG]&#39;</span><span class="p">,</span> <span class="s">&#39;Y&#39;</span><span class="p">:</span><span class="s">&#39;[CT]&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">:</span><span class="s">&#39;[GT]&#39;</span><span class="p">,</span> <span class="s">&#39;V&#39;</span><span class="p">:</span><span class="s">&#39;[ACG]&#39;</span><span class="p">,</span>
@@ -705,12 +818,14 @@ regex patterns. We called it <code>find_sites</code></p>
 </span><span class='line'>  <span class="n">positions</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">site</span><span class="p">:</span>
 </span><span class='line'>      <span class="n">pattern</span> <span class="o">+=</span>
-</span><span class='line'>      <span class="n">iupacdict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">searchpattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">sites</span> <span class="o">=</span> <span class="n">searchpattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">temppos</span> <span class="o">=</span> <span class="n">searchpattern</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temppos</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">iupacdict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>  <span class="n">searchpattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">sites</span> <span class="o">=</span> <span class="n">searchpattern</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">temppos</span> <span class="o">=</span> <span class="n">searchpattern</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temppos</span><span class="p">:</span>
 </span><span class='line'>      <span class="n">begin</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">span</span><span class="p">()</span>
 </span><span class='line'>      <span class="n">positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">begin</span><span class="p">)</span>
+</span><span class='line'>  
 </span><span class='line'>  <span class="k">return</span> <span class="n">sites</span><span class="p">,</span> <span class="n">positions</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -820,234 +935,6 @@ Advantage Perl: Python 7, Perl 7</p>
 <p>It is just a matter of taste. Both languages are well balanced and powerful. Depending on your needs one will be more suited than the other, but in the end both can give you the desired result. Python has a slight advantage of being easier to learn, with a more English-like syntax, while Perl has the slight advantage of a slightly bigger community. You will be happy with both, and in the end it would be fun to know both. There are many ways of doing things, either in Perl or Python.</p>
 
 <p>And remember, this is a perspective of a biologist/bioinformatician.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/09/12/clc-free-workbench-a-new-short-review/">CLC free workbench, a new (short) review</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-12T19:16:12-04:00" pubdate data-updated="true">Sep 12<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I decided to give CLC free workbench a new look, just after the last update. Apart from the change in size, at least on Windows, there is not a lot of changes on the interface, which still looks a little bit more clumsier than Geneious.</p>
-
-<p>But there was some nice changes behind the scene. I have tried version 3 again just to make sure I wasn&#8217;t doing anything wrong when aligning two sequences, and I wasn&#8217;t. So I decided to test aligning the same sequences on the new version 4 and I was pleasantly surprised to see that the alignment procedure runs fast and smoothly.</p>
-
-<p>I will probably post a larger review and maybe a comparison with Geneious in the near future. Stay tuned.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/09/12/ratings/">Ratings</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-12T11:48:50-04:00" pubdate data-updated="true">Sep 12<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A new feature has been add to the blog: ratings. As I don&#8217;t receive many comments on the posts but there is a steady stream of viewers of the website, I decided to add the possibility of rating a post. So, if you feel the post was useful for you, well or badly written, just click the rate you feel the post deserves. It is an Ajax-like feature so there is no reloads or any other intrusion on your normal browsing.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/09/07/restrinction-enzymes-second-take/">Restriction enzymes: second take</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-07T16:48:50-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We already have a function that reads the enzymes from a dataset in a
-flat file (with one change: return)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_enzymes</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>  <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>          <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
-</span><span class='line'>              <span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>              <span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;\^&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>              
-</span><span class='line'>  <span class="k">return</span> <span class="n">resenz</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We now need a function to write a function
-that searches for the sites and a main function that accepts the
-parameters, coordinate the search and return the results. Looks like we
-are more than halfway there. Parameters input was shown before, starting
-on section 3. We import the <code>sys</code> module and use the array inside
-<code>sys.argv</code> to send the parameters to the script. A basic skeleton of our
-main function would look like this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="c">#reading the ezyme dataset in one line and storing enzyme information in enzymeset </span>
-</span><span class='line'><span class="n">enzymeset</span> <span class="o">=</span> <span class="n">read_enzymes</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;bionet.709&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
-</span><span class='line'><span class="c">#storing enzyme name on a string</span>
-</span><span class='line'><span class="n">enzyme</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="c">#reading a FASTA file and storing the sequences</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&#8217;s a start. Now we have to write a
-function that will check for the enzyme name entered by the user in
-order to check for the existence of such enzyme. Something like this
-would work</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">check_enzyme</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="nb">set</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">return</span> <span class="bp">True</span>
-</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">return</span> <span class="bp">False</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This
-basically tests of the dictionary contains the name entered. If yes then
-we return True, otherwise False is returned. This changes our main
-script body</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="c">#reading the ezyme dataset in one line and storing enzyme information in enzymeset </span>
-</span><span class='line'><span class="n">enzymeset</span> <span class="o">=</span> <span class="n">read</span>\<span class="n">_enzymes</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;bionet.709&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">))</span>
-</span><span class='line'><span class="c">#storing enzyme name on a string </span>
-</span><span class='line'><span class="n">enzyme</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="c">#check if the name entered is valid </span>
-</span><span class='line'><span class="n">isname</span> <span class="o">=</span> <span class="n">check_enzyme</span><span class="p">(</span><span class="n">enzyme</span><span class="p">,</span> <span class="n">enzymeset</span><span class="p">)</span>
-</span><span class='line'><span class="c">#if it is valid, continue, otherwise abort </span>
-</span><span class='line'><span class="k">if</span> <span class="n">isname</span><span class="p">:</span>
-</span><span class='line'>  <span class="c">#reading a FASTA file and storing the sequences </span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="k">else</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;Name invalid. Please try again.&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So, we have a good idea on what to do now. We just need a function that creates a
-regular expression and searches it on the sequence. Next time &#8230;</p>
 </div>
   
   

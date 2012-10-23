@@ -22,7 +22,8 @@ flat file (with one change: return) 1
 10
 11
 12
-def read_enzymes &hellip;">
+13
+def &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -130,18 +131,20 @@ flat file (with one change: return)</p>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
+<span class='line-number'>13</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_enzymes</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>  <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>          <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
-</span><span class='line'>              <span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>              <span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;\^&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>              
-</span><span class='line'>  <span class="k">return</span> <span class="n">resenz</span>
+</span><span class='line'>    <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>            <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>            <span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;^&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">resenz</span>
+</span><span class='line'>  
 </span></code></pre></td></tr></table></div></figure>
 
 

@@ -17,22 +17,24 @@ check the code
 
 {% codeblock lang:python %}
 #!/usr/bin/env python
-import re 
+import re
 dnafile = "AY162388.seq"
 seqlist = open(dnafile, 'r').readlines()
-temp = ''.join(seqlist) 
-sequence = temp.replace('\\n', '') 
-inputfromuser = True 
-while inputfromuser: 
-    inmotif = raw_input('Enter motif to search: ') 
+temp = ''.join(seqlist)
+sequence = temp.replace('\n', '')
+inputfromuser = True
+while inputfromuser:
+    inmotif = raw_input('Enter motif to search: ')
     if len(inmotif) >= 1:
-        motif = re.compile('%s' % inmotif) 
+        motif = re.compile('%s' % inmotif)
         if re.search(motif, sequence):
             print 'Yep, I found it'
-        else: print 'Sorry, try another one'
-   else: 
-       print 'Done, thanks for using motif_search'
-       inputfromuser = False{% endcodeblock %}
+        else:
+            print 'Sorry, try another one'
+    else:
+        print 'Done, thanks for using motif_search'
+        inputfromuser = False
+{% endcodeblock %}
 
 In order to
 make it more effective, let's allow the input of any file, maybe asking
@@ -62,14 +64,18 @@ seqlist = open(dnafile, 'r').readlines(){% endcodeblock %}
 and include these lines 
 
 {% codeblock lang:python %}fileinput = True
+fileinput = True
 while fileinput == True:
     filename = raw_input('Enter file name:')
     if len(filename) > 0:
-        try: dnafile = open(filename, 'r')
-        fileinput = False
-    except: 
-        print 'File does not exist, please try again'
-    else: sys.exit(){% endcodeblock %}
+        try:
+            dnafile = open(filename, 'r')
+            fileinput = False
+        except:
+            print 'File does not exist, please try again'
+    else:
+        sys.exit()
+{% endcodeblock %}
 
 I know, a lot of new code. But if you take a closer look, there is only three
 lines we have never seen: `try except` and the last line with

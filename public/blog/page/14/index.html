@@ -9,7 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content=".svg/125px-Bazaar_logo_(software_product).svg.png &#8220;Bazaar&#8221;).svg) ~ Image via [Wikipedia](http://en.wikipedia.org/wiki/Image:Bazaar_logo_( &hellip;">
+  <meta name="description" content="<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/19/SQLite_Logo_4.png/202px-SQLite_Logo_4.png" title="The :en:SQLite logo as of 2007- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,247 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/">Managing a simple database with Python, SQLite and wxPython, 6</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-31T12:06:08-04:00" pubdate data-updated="true">Mar 31<span>st</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:SQLite_Logo_4.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/19/SQLite_Logo_4.png/202px-SQLite_Logo_4.png" title="The :en:SQLite logo as of 2007-12-15" alt="The :en:SQLite logo as of
+2007-12-15" /></a>
+  ~ Image via</p>
+
+<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:SQLite_Logo_4.png)
+</code></pre>
+
+<p>Let&#8217;s get back to our SQLite and wxPython project. We haven&#8217;t seen
+anything on wxPython yet, and we will check the interface only on the
+next post. For now, let&#8217;s see some extra code added to the SQLite access
+class. Remember that we have a generic class and one class derived from
+it that would work on accessing specific tables in our database file.
+When we last covered the db access routines, there was no search for an
+entry (the function returned everything in the table no matter what),
+there was no update function in case someone would want to modify an
+entry and there was no delete method if you wanted to delete something.
+In the meantime, I added all of this functionality (and some other) to
+the generic class and extended it to the class derived from it. Let&#8217;s
+check how the generic class is now (you will notice that there is an
+issue in one of the methods, if someone can help me I&#8217;d appreciate. More
+details later.) [sourcecode language=&#8217;python&#8217;]class DB_Generic():
+&#8221;&#8217;generic class to add DB functionality&#8221;&#8217; def __init__(self,
+table_name, db_path = &#8221;): #par= name of the table to be used
+self.table_name = table_name if len(db_path) > 0: self.db_path =
+db_path print db_path def get_data_generic(self, range = 1,
+bac_to_get = 0): &#8221;&#8217;gets the data from the database&#8221;&#8217; if sys.platform
+== &#8216;darwin&#8217;: (cursor, database) = link_db(self.db_path) else: (cursor,
+database) = link_db() if range == 1: cursor.execute(&#8220;&#8221;&#8220;SELECT * FROM
+%s&#8221;&#8220;&#8221; % self.table_name) elif range == 2: cursor.execute(&#8220;&#8221;&#8220;SELECT *
+FROM %s where idbac = %d&#8221;&#8220;&#8221; % (self.table_name, bac_to_get))
+table_data = cursor.fetchall() raw_data = [] for i in table_data:
+raw_data.append(list(i)) self.table_data = raw_data database.close()
+def insert_data(self, values_list, insert_string): &#8221;&#8217;inserts data in
+the database&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor, database) =
+link_db(self.db_path) else: (cursor, database) = link_db()
+cursor.execute(insert_string % self.table_name, values_list)
+database.commit() database.close() def update_data(self, values_list):
+&#8221;&#8217;edits and updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
+database) = link_db(self.db_path) else: (cursor, database) =
+link_db() #change this to generic!!!!!!!!!!!! cursor.execute(&#8220;UPDATE
+bac SET projects = ?, comments = ?, temperature = ?, cell = ?, box = ?,
+tubes = ?, chromosome = ?, sdate = ?, clone = ?, source = ?, location1 =
+?, startpos = ?, endpos = ?, gene = ?, genelink = ?, dnaex = ?,
+validation = ?, pcr = ?, refs = ?, antibiotic = ? WHERE idbac = ?&#8221;,
+(values_list[&#8216;projects&#8217;], values_list[&#8216;comments&#8217;],
+values_list[&#8216;temperature&#8217;], values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;],
+values_list[&#8216;tubes&#8217;], values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;],
+values_list[&#8216;clone&#8217;], values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;],
+values_list[&#8216;start&#8217;], values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;],
+values_list[&#8216;genelink&#8217;], values_list[&#8216;dna&#8217;],
+values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;], values_list[&#8216;refs&#8217;],
+values_list[&#8216;antibiotic&#8217;], values_list[&#8216;idbac&#8217;])) database.commit()
+database.close() def delete_data(self, delete_string): &#8221;&#8217;deletes one
+field&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor, database) =
+link_db(self.db_path) else: (cursor, database) = link_db()
+cursor.execute(delete_string) database.commit()
+database.close()[/sourcecode] In the next couple of posts we&#8217;ll dissect
+each function and see what&#8217;s going on. The class definition wasn&#8217;t
+changed, so we start with <code>get_data_generic</code> [sourcecode
+language=&#8217;python&#8217;]def get_data_generic(self, range = 1, bac_to_get =
+0): &#8221;&#8217;gets the data from the database&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;:
+(cursor, database) = link_db(self.db_path) else: (cursor, database) =
+link_db() if range == 1: cursor.execute(&#8220;&#8221;&#8220;SELECT * FROM %s&#8221;&#8220;&#8221; %
+self.table_name) elif range == 2: cursor.execute(&#8220;&#8221;&#8220;SELECT * FROM %s
+where idbac = %d&#8221;&#8220;&#8221; % (self.table_name, bac_to_get)) table_data =
+cursor.fetchall() raw_data = [] for i in table_data:
+raw_data.append(list(i)) self.table_data = raw_data
+database.close()[/sourcecode] The first difference we notice here is the
+<code>sys.platform</code> usage. This is required if we intend to package our
+application as an OS X app, using py2app. When a Python/wxPython
+application is packaged in OS X, the actual application executable is
+inside the a directory named after the application (or whatever you set
+up). In our case here we don&#8217;t provide a way for the Python script to
+receive the path and name for the database on a command line, as we
+expect it to be in the executable&#8217;s current directory. Because of that
+we need to provide a &#8220;config&#8221; file (in our case here a one-line text
+file with the database path) inside the application wrapper, something
+we will see in the end of the series. Another modification here is the
+<code>range</code> parameter and the addition of the <code>bac_to_get</code> parameter. Notice
+that both parameters have a value assigned to it. This means that they
+are optional, the function&#8217;s call can pass them or not. If it doesn&#8217;t
+pass, their value will be the one assigned on the function declaration.
+So, here if we are interested in getting all bacs, <code>range</code> will have the
+value of 1 and we don&#8217;t need to worry about it. If we want an specific
+bac we will pass <code>range</code> as 2 and then pass the <code>bac_to_get</code> ID to be
+returned. A final change/addition is that we added a new select
+statement for the cases when <code>range</code> equals 2. This time we are adding
+the bac ID to be returned. Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
+1</a>
+<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
+2</a>
+<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
+3</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
+4</a>
+<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
+5</a></p>
+
+<p><a href="http://reblog.zemanta.com/zemified/ea53b728-33c6-47db-aabf-0c695dcfabd8/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_a.png?x-id=ea53b728-33c6-47db-aabf-0c695dcfabd8" alt="Reblog this post [with
+Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/18/i-havent-joined-mendeley-as-community-liaison/">I haven&#8217;t joined Mendeley as community liaison</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-18T09:31:24-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Despite rumors floating in the upper echelons on the interwebs, I must admit that I haven&#8217;t been approached, contacted, persuaded or forced to join <a href="http://en.wikipedia.org/wiki/Mendeley">Mendeley</a> as a Community Liaison. I understand the rumours were founded on the statement from one of the company&#8217;s staff member that my role in the software development is &#8220;crucial&#8221; (not his exact words, but in the ballpark).</p>
+
+<p>I wish <a href="http://synthesis.williamgunn.org/2009/03/18/ive-joined-mendeley-as-community-liaison/">Gunn</a> and <a href="http://my.biotechlife.net/2009/03/04/community-liaison-mendeley/">Vidal</a> all the luck.</p>
+
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://uk.techcrunch.com/2009/03/12/plugg-wraps-with-two-very-capable-winnners/">European Startups Put To The Plugg Test</a> (uk.techcrunch.com)</li>
+</ul>
+
+
+<p><a href="http://reblog.zemanta.com/zemified/89e7ea92-5320-4f20-b528-257a4d183309/"><img src="http://img.zemanta.com/reblog_e.png?x-id=89e7ea92-5320-4f20-b528-257a4d183309" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/15/presenting-biovb6/">Presenting BioVB6</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-15T10:02:24-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:VB_cover.png"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/9/92/VB_cover.png/202px-VB_cover.png" alt="The four colored boxes is the logo of VBA, and..." /></a></p>
+
+<pre><code>Image via [Wikipedia](http://en.wikipedia.org/wiki/Image:VB_cover.png)
+</code></pre>
+
+<p>I&#8217;m proud to present this initiative to keep old-school programmers in the cusp of Bio* development. After long <a href="http://python.genedrift.org/2009/03/13/biopython-and-cvs/">discussions and controversy</a>, I decided that it would be extremely important to stop neglecting a <a href="http://www.itjobswatch.co.uk/jobs/uk/vb6%20developer.do">good portion of developers around the world</a> that are still trying to catch-up with new, but yet completely unreliable, software and technology.</p>
+
+<p>So far, I haven&#8217;t contacted anyone regarding this project, but I guess people will be thrilled to learn about it and I expect massive signup to become a developer (first come, first served basis). The main goals and &#8220;project culture&#8221; (similar to a company culture, but in project, got it?) are:</p>
+
+<ul>
+<li>develop a number of <a href="http://en.wikipedia.org/wiki/Object_Linking_and_Embedding">OCX</a> and <a href="http://www.microsoft.com/windows/directx/">DirectX</a> and VB classes and VB modules that can be used by anyone in the bio community. Extreme focus on being backward compatible with VB 3 and 4 (both 8-bit and 16-bit versions)</li>
+<li>We will not care about VB .NET</li>
+<li>Goto is considered harmful elsewhere not here</li>
+<li>improve ADO and <a href="http://en.wikipedia.org/wiki/Open_Database_Connectivity">ODBC</a> connection between VB6 and Access and <a href="http://en.wikipedia.org/wiki/FoxPro_2">FoxPro</a> in order to mirror biodatabases such as NCBI and UniProt</li>
+<li>Sourcesafe is our King (or Queen? I always get confused with the lack of gender in English words)</li>
+<li>Development will be focused solely on technology available to VB6 by MSFT, we don&#8217;t care about third-party modules</li>
+</ul>
+
+
+<p>These are the initial goals. As I mentioned before, with massive synergy between the expected hundreds of co-developers, I guess release will be in the second quarter of 2009. Early second quarter.</p>
+
+<p>I keep you posted.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/cb7502c2-35fc-47b9-b8e6-195c2b69c630/"><img src="http://img.zemanta.com/reblog_a.png?x-id=cb7502c2-35fc-47b9-b8e6-195c2b69c630" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -737,201 +978,6 @@ class works. Previously in the series: <a href="http://python.genedrift.org/2009
 1</a>
 <a href="http://reblog.zemanta.com/zemified/cbbab23e-338a-4756-8f4c-25cc0a5239dc/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=cbbab23e-338a-4756-8f4c-25cc0a5239dc" alt="Reblog this post [with
 Zemanta]" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/02/10/nostradamus/">Nostradamus?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-10T22:12:37-05:00" pubdate data-updated="true">Feb 10<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Smartcard2.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Smartcard2.png/202px-Smartcard2.png" alt="Basic creditcard / debitcard / smartcard graph..." /></a></p>
-
-<pre><code>Image via [Wikipedia](http://commons.wikipedia.org/wiki/Image:Smartcard2.png)
-</code></pre>
-
-<p>&#8220;Owners of capital will stimulate working class to buy more and more of expensive goods, houses and technology, pushing them to take more and more expensive credits, until their debt becomes unbearable.
-The unpaid debt will lead to bankruptcy of banks, which will have to be nationalized, and State will have to take the road which will eventually lead to communism.&#8221;</p>
-
-<p>Nope. Karl. Marx,</p>
-
-<p><a href="http://reblog.zemanta.com/zemified/0cca205d-2122-4b58-ab1c-8931386d8d2b/"><img src="http://img.zemanta.com/reblog_a.png?x-id=0cca205d-2122-4b58-ab1c-8931386d8d2b" alt="Reblog this post [with Zemanta]" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Managing a simple database with Python, SQLite and wxPython, 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-09T15:11:57-05:00" pubdate data-updated="true">Feb 9<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:WxPython-logo.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/WxPython-logo.png/202px-WxPython-logo.png" title="The official wxPython logo" alt="The official wxPython
-logo" /></a>
-  ~ Image via</p>
-
-<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:WxPython-logo.png)
-</code></pre>
-
-<p>A little break from reviewing the book, let&#8217;s check some database topics
-in Python. I was asked to create a simple database to organize wet-lab
-stuff. No relationships needs, no relational tables required. Just a
-simple table with determined columns, and a nice GUI to go with it so
-people can edit, search and use. My first idea was to use SQLite
-database, and I stuck with it. After the initial phase of &#8220;interviews&#8221;
-to check database requirements, I ended up with a list of tables and
-decided to start working on the table that organizes the BACs used in
-the lab. BAC is a DNA vector into which large DNA fragments can be
-inserted and cloned in a bacterial host, and are used mainly in
-cytogenetics around here. In the end the table had this structure
-[sourcecode language=&#8217;sql&#8217;]CREATE TABLE bac (idbac INTEGER PRIMARY KEY,
-clone Text, sdate Date, source Text, gene TEXT, chromosome Text,
-startpos Integer, endpos Integer, antibiotic Text, location1 Text,
-temperature Integer, tubes Integer, box Integer, cell Integer, dnaex
-Boolean, validation Boolean, pcr Boolean, projects Text, comments Text,
-genelink Text, refs Text);[/sourcecode] I won&#8217;t explain in detail each
-of the fields, but we can see that there is a mix of different types.
-SQLite doesn&#8217;t allow many different field types, so we stick to the
-basics. And why SQLite? The module to access it comes with Python 2.5,
-the whole database is stored in one file that can be moved around and it
-allows a full SQL query language, which is perfect for these simple
-cases. So we will going to use Python, SQLite and wxPython to create a
-simple application to manage our simple database. I already created a
-GitHub
-<a href="http://github.com/nuin/python_sqlite_wxpython/tree/master">repository</a>
-for the upcoming code.</p>
-
-<p><a href="http://reblog.zemanta.com/zemified/1a2359cd-d9c7-4cee-a26b-c41b281ec3d2/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=1a2359cd-d9c7-4cee-a26b-c41b281ec3d2" alt="Reblog this post [with
-Zemanta]" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/02/09/expert-python-programming-by-tarek-ziade-a-review-of-chapter-3/">Expert Python Programming by Tarek Ziadé - a review of Chapter 3</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-09T13:29:24-05:00" pubdate data-updated="true">Feb 9<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The chapter 3 review that I promised for &#8220;tomorrow&#8221; (last Saturday) was
-lazily postponed until today. So, let&#8217;s get to it. Tarek in this chapter
-continues with syntax best practices, but at this time at class level.
-As expected the chapter requires that you have a minimal knowledge of
-Python classes, so I can say it&#8217;s geared to somewhat experienced
-programmers, and not to newcomers. There is a short explanation on
-sub-classing that warms up things for the next sections. Next is the
-built-in method (type?) <code>super</code>, which was new to me. Basically <code>super</code>
-gives you access a method or attribute of a class by calling its parent
-directly. This is a segue into understanding the Method Resolution Order
-in Python, which is understanding which class has precedence over the
-others. For me, I haven&#8217;t dealt with such structures before it was a
-good and straight explanation, especially when he explains about
-possible pitfalls of using <code>super</code>. A short list of best practices
-helps:</p>
-
-<ul>
-<li><ul>
-<li>Multiple inheritance should be avoided:</li>
-</ul>
-</li>
-<li>super usage has to be consistent: Mixing super and classic calls is
-a confusing practice.</li>
-<li>Don&#8217;t mix old-style and new-style classes</li>
-<li>Class hierarchy has to be looked over when a parent class is called</li>
-</ul>
-
-
-<p>After dealing with MRO, comes what I think is one of the best sections
-of the book so far, where Tarek explains about object descriptors and
-gives a little bit of the Python&#8217;s approach to introspection. This short
-section is basically all code, but it&#8217;s good to have a good best
-practices reference, including here properties and slots. The last part
-of the chapter covers meta programming, and as Chris pointed in the
-comments, that&#8217;s a difficult area of Python (maybe for the ones like me
-that don&#8217;t have a CS formation). I would have to try the examples by
-hand and maybe define areas in my code where I can use it, so to take
-fully advantage and fully understand it. Overall, the chapter gives a
-good series of topics about Python classes and I enjoyed learning a
-little bit more things that I couldn&#8217;t understand previously. Next we
-will see a review of chapter 4, that deals with PEP 8 and naming best
-practices.</p>
 </div>
   
   

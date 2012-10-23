@@ -53,14 +53,16 @@ confidence of the format being constant in every release. So, first we
 get rid of the header lines 
 
 
-{% codeblock lang:python %}def read_enzymes(file): 
-	resenz = {} 
-	start = False 
-	for line in file: 
-		if line.find('Rich Roberts') >= 0: 
-			start = True 
-			line = file.next() 
-		if start == True and len(line) > 10:{% endcodeblock %}
+{% codeblock lang:python %}
+def read_enzymes(file):
+    resenz = {}
+    start = False
+    for line in file:
+        if line.find('Rich Roberts') >= 0:
+            start = True
+            line = file.next()
+        if start == True and len(line) > 10:
+		{% endcodeblock %}
 
 
  where we already
@@ -91,13 +93,15 @@ Done. We have the dictionary ready. And using Python's
 included batteries we use the last line in the function to remove the
 circumflex characters. Putting everything together we have 
 
-{% codeblock lang:python %}def read_enzymes(file): 
-	resenz = {} 
-	start = False 
-	for line in file: 
-		if line.find('Rich Roberts') >= 0: 
-			start = True 
-		line = file.next() 
-		if start == True and len(line) > 10: 
-			buffer = line.split()
-			resenz[buffer[0]] = buffer[-1].replace('\^', ''){% endcodeblock %}
+{% codeblock lang:python %}
+def read_enzymes(file):
+    resenz = {}
+    start = False
+    for line in file:
+        if line.find('Rich Roberts') >= 0:
+            start = True
+            line = file.next()
+        if start == True and len(line) > 10:
+            buffer = line.split()
+            resenz[buffer[0]] = buffer[-1].replace('^', '')
+			{% endcodeblock %}

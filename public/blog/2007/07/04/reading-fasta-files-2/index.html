@@ -180,52 +180,66 @@ simple script:</p>
 <span class='line-number'>48</span>
 <span class='line-number'>49</span>
 <span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="c">#class declaration with both attributes we need </span>
+</span><span class='line'><span class="c">#class declaration with both attributes we need</span>
 </span><span class='line'><span class="k">class</span> <span class="nc">Fasta</span><span class="p">:</span>
 </span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
 </span><span class='line'>        <span class="c">#this will store the sequence name</span>
 </span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-</span><span class='line'>        <span class="c">#this will store the sequence itself </span>
+</span><span class='line'>        <span class="c">#this  will store the sequence itself</span>
 </span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
 </span><span class='line'>
-</span><span class='line'><span class="c">#this function will receive the list with the file contents,</span>
-</span><span class='line'><span class="c">#create instances of the Fasta class as it scans the list, putting the</span>
-</span><span class='line'><span class="c">#sequence name on the first attribute and the sequence itself on the</span>
-</span><span class='line'><span class="c">#second attribute </span>
-</span><span class='line'>
+</span><span class='line'><span class="c">#this function will receive the list with the file</span>
+</span><span class='line'><span class="c">#contents, create instances of the Fasta class as</span>
+</span><span class='line'><span class="c">#it scans the list, putting the sequence name on the</span>
+</span><span class='line'><span class="c">#first attribute and the sequence itself on the second</span>
+</span><span class='line'><span class="c">#attribute</span>
 </span><span class='line'><span class="k">def</span> <span class="nf">read_fasta</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>    <span class="c">#we declare an empty list that will store all Fasta class instances generated </span>
+</span><span class='line'>    <span class="c">#we declare an empty list that will store all</span>
+</span><span class='line'>    <span class="c">#Fasta class instances generated</span>
 </span><span class='line'>    <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span class='line'>    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>        <span class="c">#we check to see if the line starts with a &gt; sign</span>
+</span><span class='line'>    <span class="c">#we check to see if the line starts with a &gt; sign</span>
 </span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">):</span>
-</span><span class='line'>            <span class="c">#if so and our counter is large than 1 we add the created class instance to our list </span>
-</span><span class='line'>            <span class="c">#a counter larger than 1 means we are reading from sequences 2 and above </span>
-</span><span class='line'>            <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>                 <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aninstance</span><span class="p">)</span>
-</span><span class='line'>                 <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
-</span><span class='line'>            <span class="c">#we add the line contents to a string</span>
-</span><span class='line'>            <span class="n">name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>            <span class="c">#and initialize the string to store the sequence </span>
-</span><span class='line'>            <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>            <span class="c">#this creates a class instance and we add the attributes </span>
-</span><span class='line'>            <span class="c">#which are the strings name and seq </span>
-</span><span class='line'>            <span class="n">aninstance</span> <span class="o">=</span> <span class="n">Fasta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
-</span><span class='line'>       <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>            <span class="c">#the line does not start with &gt; so it has to be #a sequence line, so we</span>
-</span><span class='line'>            <span class="c">#increment the string and \#add it to the created instance </span>
+</span><span class='line'>           <span class="c">#if so and our counter is large than 1</span>
+</span><span class='line'>           <span class="c">#we add the created class instance to our list</span>
+</span><span class='line'>           <span class="c">#a counter larger than 1 means we are reading</span>
+</span><span class='line'>           <span class="c">#from sequences 2 and above</span>
+</span><span class='line'>           <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>               <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aninstance</span><span class="p">)</span>
+</span><span class='line'>           <span class="n">index</span><span class="o">+=</span><span class="mi">1</span>
+</span><span class='line'>           <span class="c">#we add the line contents to a string</span>
+</span><span class='line'>           <span class="n">name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>           <span class="c">#and initialize the string to store the sequence</span>
+</span><span class='line'>           <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>           <span class="c">#this creates a class instance and we add the attributes</span>
+</span><span class='line'>           <span class="c">#which are the strings name and seq</span>
+</span><span class='line'>           <span class="n">aninstance</span> <span class="o">=</span> <span class="n">Fasta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>           <span class="c">#the line does not start with &gt; so it has to be</span>
+</span><span class='line'>           <span class="c">#a sequence line, so we increment the string and</span>
+</span><span class='line'>           <span class="c">#add it to the created instance</span>
 </span><span class='line'>            <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </span><span class='line'>            <span class="n">aninstance</span> <span class="o">=</span> <span class="n">Fasta</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">seq</span><span class="p">)</span>
-</span><span class='line'>            <span class="c">#the loop reads everything but the penultimate</span>
-</span><span class='line'>            <span class="c">#sequence is added at the end, so we need to add it after the loop ends </span>
-</span><span class='line'>       <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aninstance</span><span class="p">)</span>
-</span><span class='line'>       <span class="c">#a list with all read sequences is returned </span>
-</span><span class='line'>       <span class="k">return</span> <span class="n">items</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c">#the loop before reads everything but the penultimate</span>
+</span><span class='line'>    <span class="c">#sequence is added at the end, so we need to add it</span>
+</span><span class='line'>    <span class="c">#after the loop ends</span>
+</span><span class='line'>    <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aninstance</span><span class="p">)</span>
+</span><span class='line'>    <span class="c">#a list with all read sequences is returned</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">items</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">fastafile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 </span><span class='line'><span class="n">mysequences</span> <span class="o">=</span> <span class="n">read_fasta</span><span class="p">(</span><span class="n">fastafile</span><span class="p">)</span>
+</span><span class='line'>
 </span><span class='line'><span class="k">print</span> <span class="n">mysequences</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mysequences</span><span class="p">:</span>
@@ -233,8 +247,7 @@ simple script:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>At
-first, it looks scary. But is not. There are many ways to create this
+<p>At first, it looks scary. But is not. There are many ways to create this
 loop and to read the sequences, and many ways to make this loop shorter.
 We will get there, eventually, but for starters this is OK. Basically,
 in the above script we have a <code>Fasta</code> class, a <code>read_fasta</code> function and

@@ -9,8 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="The guy who took me to Jupiter has died. No more monoliths.
-">
+  <meta name="description" content="A colleague came with a &#8220;problem&#8221;: what would be the most efficient way
+to merge Pfam alignments? He had FASTA
+files containing sequences &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +78,198 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/">Merging sequences from a Pfam alignment: using sets</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-28T20:58:24-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A colleague came with a &#8220;problem&#8221;: what would be the most efficient way
+to merge <a href="http://pfam.sanger.ac.uk/">Pfam</a> alignments? He had FASTA
+files containing sequences and he wanted to find identical IDs in two
+files and merge the related sequences from different domains of the same
+protein. His C++ approach was taking too long to run so I jumped in to
+help with some Python tricks.</p>
+
+<p>Fasta headers of Pfam alignments look like
+this <code>&gt;P00526.2|SRC_RSVP/147-229</code> where the first section, before the
+pipe, is the protein family, the section between the pipe and the slash
+is the protein ID and the after the slash are the start and end
+positions. Basically we want to match the protein ID, between | and /,
+which is the only section that should not change from one alignment from
+the other, if there are similar sequences in both files. His dataset
+size was around 8000 FASTA files and he wanted to compare
+all-versus-all.</p>
+
+<p>The first idea that comes to mind is to read the two
+files and basically run nested loops checking for matches between two
+sequence names. Simple and easy. But it would be good to find something
+else to do in the meantime, instead of checking for its progress.
+Another idea, to simplify the process, is to read both files, extract
+the protein IDs and check for the intersection of the two sets of IDs
+and then just extract the sequences from a list of matches.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">myset1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>      <span class="n">myset2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="n">mylist</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">if</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+</span><span class='line'>          <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>              <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]:</span>
+</span><span class='line'>                  <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-\&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>                  <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>                  <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This
+is the function that matches the sequence IDs. As we are reading the
+FASTA file with the functions/classes in the <code>fasta</code> module there is
+no* direct way to transform the list of sequence names into a set, that
+would make easier to extract the intersection between two sets of IDs
+from distinct files. In the above function, <code>data1</code> and <code>data2</code> are
+instances of the <code>fasta</code> class, and we read these lists and add the
+<code>fasta.name</code> to a couple of sets and get the intersection of them. The
+<code>intersection</code> method returns a list that we use in the nested loops to
+find the matching sequences, as we need to merge them, we add both names
+and residues. Simple and easy. All merged sequences, and their
+respective merged names, are appended to a list that is returned at the
+end of the function. *<em>if there is a more direct way, just let me know</em></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/28/awk-and-sed-sed-and-awk/">Awk and sed, Sed and awk</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-28T09:44:54-04:00" pubdate data-updated="true">Mar 28<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I would like to thank Lee E. McMahon, Alfred Aho, Peter Weinberger and Brian Kernighan. Thanks a lot.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/26/ride-to-conquer-cancer/">Ride to Conquer Cancer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-26T18:53:00-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My supervisor, Elisabeth Tillier, is part of a team on the Ride to Conquer Cancer benefiting the Princess Margaret Hospita, Toronto, Canada. The ride is a beautiful event where people ride their bikes from Toronto to Niagara Falls, during two days in June.</p>
+
+<p>If you want to donate there is an easy way by going to <a href="http://www.conquercancer.ca/site/TR/Events/Toronto2008?px=1548939&amp;pg=personal&amp;fr_id=1201&amp;et=E-PMVS5Y4td-3Bf4EqAgug..&amp;s_tafId=96521">Elisabeth&#8217;s page on the ride website</a>. She is riding for her sister in law Carine, which was diagnosed an year ago with breast cancer, just after giving birth to her second son. Every little counts.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -713,323 +906,6 @@ like</p>
 <p>Some other functions will
 be added to the module in the next couple of weeks. After that we will
 divert the focus on optimizing our GenBank parsing script.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/11/year-of-the-frog/">Year of the Frog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-11T13:18:24-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This serves as a thank you note for all frog species.</p>
-
-<p>Thanks a lot and enjoy your <a href="http://www.amphibianark.org/yearofthefrog.htm">year</a>. Hope this is only the first of many.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/11/fasta-module-generating-reverse-complement-of-dna-sequences/">Fasta module: generating reverse complement of DNA sequences</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-11T12:17:21-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As shown in the GenBank DNA parser script, it is really useful to have
-the ability to get the reverse complement of some DNA sequences. The
-reverse complement of a 5&#8217;-3&#8217; DNA sequence is on its complementary
-strand. Using our <code>fasta</code> module it is easy to implement a function to
-generate the antiparallel sequence Basically we can do this in two step,
-one - obtaining the complement and two - reversing it.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">abuffer</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;G&#39;</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">abuffer</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&#8217;s not a Pythonic approach, but it works
-reasonably well for short sequences. What would be a Pythonic approach
-to it? Using dictionaries and list comprehension. From the Python online
-documentation: <em>List comprehensions provide a concise way to create
-lists without resorting to use of map(), filter() and/or lambda. The
-resulting list definition tends often to be clearer than lists built
-using those constructs. Each list comprehension consists of an
-expression followed by a for clause, then zero or more for or if
-clauses. The result will be a list resulting from evaluating the
-expression in the context of the for and if clauses which follow it.</em></p>
-
-<p>It
-is basically a specific way to modify lists using a loop and if clauses
-when needed. In a couple of lines we can do what we accomplished in 10
-lines with the above excerpt. First we need a dictionary to set how the
-nucleotides are related</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">complement</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span>
-</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">:</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span> <span class="s">&#39;A&#39;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and then a list
-comprehension to modify each nucleotide</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">complseq</span> <span class="o">=</span> <span class="p">[</span><span class="n">complement</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The list comprehension means: for each base in the
-sequence get the dictionary value for each key (a nucleotide in the
-initial sequence). The complete function would be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span> <span class="n">complement</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="s">&#39;G&#39;</span><span class="p">,</span>
-</span><span class='line'><span class="s">&#39;G&#39;</span><span class="p">:</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span> <span class="s">&#39;A&#39;</span><span class="p">}</span> <span class="n">complseq</span> <span class="o">=</span> <span class="p">[</span><span class="n">complement</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">]</span> <span class="k">return</span>
-</span><span class='line'><span class="n">complseq</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>One step solved. We are already able to get the
-complement, now we need to reverse it. Simple. A Python list method
-automatically reverts list elements. Basically what we need then is
-below</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">reverse_complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span> <span class="n">seq</span> <span class="o">=</span>
-</span><span class='line'><span class="nb">list</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="n">seq</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="k">return</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The
-call from any script to this function would be simply be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">reverse_complement</span><span class="p">(</span><span class="s">&#39;AACCGGTTTTGGCCAA&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Batteries included, indeed.</p>
-
-<p><em>more can be found
-<a href="http://www.onlamp.com/pub/a/python/2002/10/17/biopython.html?page=4">here</a>.
-that served as an inspiration for the function</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/11/genbank-parsing-part-ii/">GenBank parsing: part II</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-11T08:49:47-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last thing we saw in the previous entry was the function to parse a
-GenBank file in order to get the DNA sequences of an annotated gene.
-This time we will dissect the function.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span>
-</span><span class='line'>  <span class="c">#changes a string to list, splitting at line ends </span>
-</span><span class='line'>  <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="nb">id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="n">complement</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39; CDS &#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">temp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;complement&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>              <span class="n">complement</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>              <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;complement(&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>              <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>              <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;..&#39;</span><span class="p">)</span>
-</span><span class='line'>              <span class="n">start</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>              <span class="n">end</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="nb">id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="nb">id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">CDSinfo</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">complement</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>First things first. As in the CDS/protein parsing example, the function
-receives a string and it is easier for us to operate with lists, so we
-split the string at the carriage returns. This time we also need to
-check for the start and end positions of the gene in the long string
-that is the DNA sequence of a GenBank file, so we just declare a couple
-of integers <code>start</code> and <code>end</code>. We also have a couple of strings to
-receive the gi ID and the gene product (<code>id</code>). And finally a boolean,
-that will tell us if the sequence in question is on the DNA complement
-strand, meaning it is a reverse complement of the DNA that is stored in
-the file. So we start our loop checking for the elements of each line.
-If we find a <code>'  CDS  '</code> we know that we can extract the start and end
-positions of the gene</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39; CDS&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">temp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;complement&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">complement</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>  <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;complement(&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;..&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">start</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>  <span class="n">end</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We use temporary list and split the line at
-the spaces and then move to get the information from it. If the line is
-a reverse complement we remove the word from the entry and the
-parentheses. Whenever the gene annotation relates to the complement
-strand the entry is as such <code>complement(10728..11330)</code>. We then use
-another temp object and split the second element in the split line and
-separate it at the double dots. From this latter split, we end up with
-two elements, the first is the start position and the second the end
-position of the gene. To extract the other information everything works
-as the previous script, basically checking for the presence of certain
-words in the each line. In the end we return an instance of the class
-<code>CDSinfo</code> which will be used to extract the DNA sequence.</p>
 </div>
   
   

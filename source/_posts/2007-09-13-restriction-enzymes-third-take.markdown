@@ -24,12 +24,14 @@ regex patterns. We called it `find_sites`
 	positions = []
 	for i in site: 
 		pattern +=
-		iupacdict[i] searchpattern = re.compile(pattern) 
-		sites = searchpattern.findall(sequence) 
-		temppos = searchpattern.finditer(sequence) 
-		for i in temppos:
+		iupacdict[i] 
+	searchpattern = re.compile(pattern) 
+	sites = searchpattern.findall(sequence) 
+	temppos = searchpattern.finditer(sequence) 
+	for i in temppos:
 		begin, end = i.span()
 		positions.append(begin) 
+	
 	return sites, positions{% endcodeblock %} 
 
 

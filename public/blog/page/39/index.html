@@ -9,8 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="As you might have noticed, BPB generally uses protein sequences. I am a
-&#8220;DNA guy&#8221;, and basically in our simple examples either type of &hellip;">
+  <meta name="description" content="We are going to jump the regular expression explanation that you can
+find in the book, and we will go directly to the section that introduces
+string/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +84,411 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2007/02/22/counting-nucleotides/">Counting nucleotides</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:48:35-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We are going to jump the regular expression explanation that you can
+find in the book, and we will go directly to the section that introduces
+string/list/array manipulation and adapt it to Python. We are going to
+see two different methods: a &#8220;long&#8221; and a &#8220;short&#8221; one. In many places
+and computer languages you will see that there are different ways of
+doing the same thing, with advantages and disadvantages. It is up to you
+to define which methods are better or worse, as this is a very personal
+matter. Some people prefer the longer way because it might be clearer
+and easier to understand, or it might be necessary to use it due to code
+maintainability. Other people would rather use the shorter path because
+they want to generate code faster. It does not matter the path you
+select, as long as you get your task done. That&#8217;s the key: focus on the
+end product not on how exactly got there. If you used 10 lines of code
+more, or 10 less, that&#8217;s irrelevant as long as you did what you wanted.
+Live and learn and someday you will use the even shorter way. So we
+start with the long way. We want to count the individual number of
+nucleotides in a sequence, determining they relative frequency. Remember
+that we read the lines of a sequence file into a list, using
+<code>readlines</code>. But on the long method we will read the file and store the
+data into a string like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This way it will be easier to &#8220;explode&#8221; the sequence
+in separated items. After the &#8220;explosion&#8221; we can check each item in the
+list and get our result. The code is below, I will be back after it.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#let&#39;s keep the file fixed for now</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#initialize a string to receive the data</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c">#notice the strip, to remove \n</span>
+</span><span class='line'><span class="c">#&quot;exploding&quot; the sequence in a list</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'><span class="c">#initializing integers to store the counts</span>
+</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="c">#checking each item in the list and updating counts</span>
+</span><span class='line'><span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalA</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalC</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;G&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalG</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="c">#printing results</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Most of the above code was already covered before.
+Let&#8217;s look at the different stuff, like the &#8220;explosion line&#8221;</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here we basically transform our string <code>sequence</code> into a list, by putting the
+object type we want before the object we want converted, like we do here</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This construction <code>type_to_convert(to_be_converted)</code>
+tells Python to get whatever is inside the parentheses and transform
+into whatever is outside. Converting the string to a list will get</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">GTGACTTTGTTCAACGGCCGCGGTATCCTAACCGT</span>
+</span><span class='line'><span class="n">GCGAAGGTAGCGTAATCACTTGTTCTTTAAATAAGGACTAGTATG</span>
+</span><span class='line'><span class="n">AATGGCATCACGAGGGCTTTACTGTCTCCTTTTTCTAATCAGTGAA</span> <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and transform it into</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After &#8220;exploding&#8221;, we use a <code>for</code> loop to iterate
+over every item in the list and use conditional statements to do the
+counts. Regarding the counts, we use this operator</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that, in C/C++, tells the
+interpreter to get the value of <code>totalT</code> and add 1 to it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/22/commenting-in-python/">Commenting in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:46:24-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As you might have noticed from the previous posts, comments in Python
+are defined mainly by the <code>#</code> sign. This is the signal used for single
+line comment like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#this is a single line comment</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If you are used to C++, this would be equivalent to
+<code>//</code>. On the other hand, multi line comments are defined by triple
+double quotes <code>"""</code>, opening and closing, similar to C++ <code>/* ... */</code>,
+like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="sd">&quot;&quot;&quot;this is a multi line</span>
+</span><span class='line'><span class="sd">comment&quot;&quot;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Just a note. Resuming bioinformatics mode.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/20/finding-motifs-in-dna-sequences-twist/">Finding motifs in DNA sequences: twist</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-20T14:30:10-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As promised, let&#8217;s change a bit our previous code, and make it more
+effective. If you are reading this tutorial in one-entry mode, let&#8217;s
+check the code</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="k">while</span> <span class="n">inputfromuser</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">inmotif</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter motif to search: &#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inmotif</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">motif</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Yep, I found it&#39;</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
+</span><span class='line'>        <span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In order to
+make it more effective, let&#8217;s allow the input of any file, maybe asking
+for the file as soon as the script is started. To accomplish that we
+need to &#8220;protect&#8221; the script and make it error proof (almost at least).
+Yes, you thought it right: we need to check if the input file exists
+before opening it. We can use <code>try ... except</code> statements to do that.
+Pretty handy. This is called an exception handler, so basically we try
+the validity of some command/method and depending on the result we
+continue our program flow or we catch the exception and do something
+else. Under <code>try</code> we put the expression to evaluate, and under <code>excepts</code>
+what to do in case of failure. Like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">try</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">opening</span> <span class="n">a</span> <span class="nb">file</span>
+</span><span class='line'><span class="k">except</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">as</span> <span class="n">the</span> <span class="nb">file</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">exist</span><span class="p">,</span> <span class="k">print</span> <span class="n">something</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, let&#8217;s put in our code above. We
+remove this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and include these lines</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">fileinput</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="n">fileinput</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="k">while</span> <span class="n">fileinput</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">filename</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter file name:&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">dnafile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">fileinput</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;File does not exist, please try again&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I know, a lot of new code. But if you take a closer look, there is only three
+lines we have never seen: <code>try except</code> and the last line with
+<code>sys.exit()</code>. Here, the script tries to open the file provided as input,
+if it does find the file normal operation resumes, if does not, the
+script asks for another input. As in the other while loop, we control it
+with a boolean variable, and in the case of empty input we end the loop
+and the script, using a system command <code>exit</code>, in the last line of the
+new code. Our script is better now, not bulletproof, but a little bit
+more efficient. There still a &#8220;flaw&#8221;, that you can only check one file
+for each run of the script. At least we not stuck to our usual DNA
+sequence.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2007/02/14/finding-motifs-in-dna-sequences/">Finding motifs in DNA sequences</a></h1>
     
     
@@ -149,28 +555,22 @@ explain it afterwards.</p>
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
 </span><span class='line'><span class="c">#finding motifs in DNA sequences</span>
 </span><span class='line'><span class="c"># we use the RegEx module</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
 </span><span class='line'><span class="c">#still keep the file fixed</span>
 </span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
-</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list </span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
 </span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'>
 </span><span class='line'><span class="c">#let&#39;s join the the lines in a temporary string</span>
-</span><span class='line'>
 </span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
 </span><span class='line'><span class="c">#assigning our sequence, with no carriage returns to our</span>
 </span><span class='line'><span class="c">#final variable/object</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c">#we start to deal with user input </span>
-</span><span class='line'><span class="c">#first we use a boolean variable to check for valid input </span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#we start to deal with user input</span>
+</span><span class='line'><span class="c">#first we use a boolean variable to check for valid input</span>
 </span><span class='line'><span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>
 </span><span class='line'><span class="c">#while loop: while there is an motif larger than 0</span>
 </span><span class='line'><span class="c">#the loop continues</span>
 </span><span class='line'><span class="k">while</span> <span class="n">inputfromuser</span><span class="p">:</span>
@@ -180,13 +580,13 @@ explain it afterwards.</p>
 </span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inmotif</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
 </span><span class='line'>        <span class="c">#we compile a regex with the input given</span>
 </span><span class='line'>        <span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
-</span><span class='line'>        <span class="c">#looking to see if the entered motif is in the sequence </span>
+</span><span class='line'>        <span class="c">#looking to see if the entered motif is in the sequence</span>
 </span><span class='line'>        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">motif</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
 </span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Yep, I found it&#39;</span>
 </span><span class='line'>        <span class="k">else</span><span class="p">:</span>
 </span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
 </span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif\_search&#39;</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
 </span><span class='line'>        <span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1098,299 +1498,6 @@ would like this</p>
 
 <p>Simple and efficient. Next we will use the same approach on generating the reverse complement of a DNA sequence, with no
 regex pattern.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/01/16/the-regular-expression/">The Regular Expression</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-16T13:49:07-05:00" pubdate data-updated="true">Jan 16<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As mentioned above, regex in Python are provided by the <code>re</code> module,
-which provides an interface for the regular expression engine. First
-thing we have to do is to tell the interpreter what to do and what
-expression to use. Let&#8217;s start with a DNA sequence.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>How to
-transcribe it to RNA? Transcription creates a single-strand RNA molecule
-from the double-strand DNA; basically the final result is a similar
-sequence, with all <code>T</code>&#8217;s changed to <code>U</code>&#8217;s. So our regular expression has
-to find all <code>T</code> nucleotides in the above sequence and then replace them.
-Regular expressions in Python need to be compiled into a RegexObject,
-that contains all possible regular expression operations. In our case we
-need to search and replace, what can be done by using the <code>sub()</code>
-method. According to the Python&#8217;s <a href="http://www.amk.ca/python/howto/regex/regex.html">Regular Expression HOWTO</a> <code>sub()</code> returns
-the string obtained by replacing the leftmost non-overlapping
-occurrences of the RE in string by the replacement replacement. If the
-pattern isn&#8217;t found, string is returned unchanged. Let&#8217;s put everything
-above in real code. First we need to compile a new RegexObject that will
-search for all thymines in our sequence. It can be achieved by using
-this:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Simple as that. This line of code tells the
-Python interpreter that our &#8220;regular expression&#8221; is every T in our
-string. Now, we have to make replace those Ts with Us. In order to do
-that we just tell the interpreter:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="n">myDNA</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Let&#8217;s look at the last two lines of
-code. On the first line we created a new RegexObject, <code>regexp</code> (that
-could have any name, as any variable) and compiled it, making our
-regular expression to be every T in our string. On the second line, we
-assigned our soon to be created RNA sequence to a new string (remember
-that strings in Python are immutable) and used the command <code>sub</code> to
-replace in the Ts by Us present in our original DNA string. Putting all
-together our transcription code will be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python </span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
-</span><span class='line'><span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="n">myDNA</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="n">myRNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/01/15/python-printing-statement/">Python printing statement</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-15T18:40:41-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Just an apart from the bioinformatics aspect of programming: Python&#8217;s
-<code>print</code> statement. As in most computer languages Python allows an easy
-way to write to the standard output. Python&#8217;s <code>print</code> only accepts
-output of strings, and if the variable sent to it is not a string it is
-first converted and then output. The <code>print</code> always put a linebreak
-(<code>'\n'</code> or <code>"\n"</code>) at the end of the expression to be output, except
-when the <code>print</code> statement ends with a comma. For example:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&quot;This is a&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;test&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will print</p>
-
-<p><strong>This is a</strong>
-<strong>test</strong></p>
-
-<p>while</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&quot;This is a&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;test&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will print</p>
-
-<p><strong>This is a test</strong></p>
-
-<p>Of course Python&#8217;s <code>print</code> statement allows any programming escape character, such
-as <code>'\n'</code> and <code>'\t'</code>.</p>
-
-<p><strong>Concatenating strings on output</strong></p>
-
-<p>To concatenate two strings on output there are two possible ways in Python. You can
-either separate the strings with a comma, like we did here</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA</span><span class="p">,</span> <span class="n">myDNA2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> or you can use the &#8220;+&#8221; sign in roder to obtain almost the same result. This is similar to
-what was used here</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA3</span> <span class="o">=</span> <span class="n">myDNA</span> <span class="o">+</span> <span class="n">myDNA2</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>but instead we would use the <code>print</code> command as</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA3</span> <span class="o">+</span> <span class="n">myDNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In the latter case, both strings will not be separated by a space and will be
-merged. To get the same result you would have to concatenate an extra
-space between the strings like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA3</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">myDNA</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/01/15/importing-and-regular-expressions/">Importing and regular expressions</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-15T13:47:54-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Tisdall&#8217;s book on Perl introduces next the ability to transcripts DNA
-sequences into RNA. In order to do that we need to check a different
-aspect of programming: regular expressions (or regex). Regular
-expressions is a pattern/string expression that works
-matching/describing/filtering other strings. Let&#8217;s say you want to
-examine or extract all vowels contained in one phrase, one page, one
-word. Another example would be to remove all html tags from a downloaded
-webpage. As HTML tags are encapsulated between <code>&lt;</code> and <code>&gt;</code> signs we can
-create a regex that will search for any characters in between the signs
-and remove (parse) them from our page. We will deal very briefly with
-regex, and if you are interested in learning more about it you can
-search for countless references on the internet (such as <a href="http://www.regular-expressions.info/">this one</a>).</p>
-
-<p>In order to use regular
-expression in Python we need to check another concept present in the
-language: importing modules. Python core functionality provides most of
-the usual operations and also comes with a built-in library of functions
-that &#8220;access to operations that are not part of the core of the language
-but are nevertheless built in&#8221;. One of this operations is the ability to
-interpret regular expression that in Python is located in the <code>re</code>
-module. Apart from the language core, built in modules, Python can be
-further extended by using third-party modules imported into the
-language. Anyone can create a module and distribute to every Python user
-and programmer. So, in order to have regex capabilities we literally
-have to <code>import</code> the regex module. We do that by entering the line:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Python&#8217;s code style
-guide suggests that <code>import</code> statements should be on separate lines</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span> <span class="nn">import</span> <span class="nn">re</span> <span class="o">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and
-to be put on the top of the file (usually below the line that tells your
-OS to use Python&#8217;s interpreter on the script). So the first two lines of
-our new script would be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env</span>
-</span><span class='line'><span class="n">python</span> <span class="kn">import</span> <span class="nn">re</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now that we have the ability to use regex,we need to create one expression that will transcribe our DNA sequences
-into RNA.</p>
 </div>
   
   

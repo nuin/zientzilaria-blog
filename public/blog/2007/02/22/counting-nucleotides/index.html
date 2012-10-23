@@ -171,25 +171,23 @@ list and get our result. The code is below, I will be back after it.</p>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-<span class='line-number'>32</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
 </span><span class='line'><span class="c">#let&#39;s keep the file fixed for now</span>
 </span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
-</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list </span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
 </span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c">#initialize a string to receive the data </span>
+</span><span class='line'><span class="c">#initialize a string to receive the data</span>
 </span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 </span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'>    <span class="c">#notice the strip, to remove \n</span>
-</span><span class='line'>    <span class="c">#&quot;exploding&quot; the sequence in a list </span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c">#notice the strip, to remove \n</span>
+</span><span class='line'><span class="c">#&quot;exploding&quot; the sequence in a list</span>
 </span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'><span class="c">#initializing integers to store the counts </span>
+</span><span class='line'><span class="c">#initializing integers to store the counts</span>
 </span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="c">#checking each item in the list and updating counts </span>
+</span><span class='line'><span class="c">#checking each item in the list and updating counts</span>
 </span><span class='line'><span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seqlist</span><span class="p">:</span>
 </span><span class='line'>    <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
 </span><span class='line'>        <span class="n">totalA</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -199,7 +197,7 @@ list and get our result. The code is below, I will be back after it.</p>
 </span><span class='line'>        <span class="n">totalG</span> <span class="o">+=</span> <span class="mi">1</span>
 </span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
 </span><span class='line'>        <span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'><span class="c">#printing results </span>
+</span><span class='line'><span class="c">#printing results</span>
 </span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
 </span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
 </span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>

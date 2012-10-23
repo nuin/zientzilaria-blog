@@ -124,12 +124,13 @@ check the code</p>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
+<span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
 </span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
 </span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
 </span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
 </span><span class='line'><span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">True</span>
 </span><span class='line'><span class="k">while</span> <span class="n">inputfromuser</span><span class="p">:</span>
 </span><span class='line'>    <span class="n">inmotif</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter motif to search: &#39;</span><span class="p">)</span>
@@ -137,10 +138,11 @@ check the code</p>
 </span><span class='line'>        <span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
 </span><span class='line'>        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">motif</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
 </span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Yep, I found it&#39;</span>
-</span><span class='line'>        <span class="k">else</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
-</span><span class='line'>   <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>       <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
-</span><span class='line'>       <span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
+</span><span class='line'>        <span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -188,15 +190,21 @@ remove this</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">fileinput</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="n">fileinput</span> <span class="o">=</span> <span class="bp">True</span>
 </span><span class='line'><span class="k">while</span> <span class="n">fileinput</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
 </span><span class='line'>    <span class="n">filename</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter file name:&#39;</span><span class="p">)</span>
 </span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">try</span><span class="p">:</span> <span class="n">dnafile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">fileinput</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>    <span class="k">except</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;File does not exist, please try again&#39;</span>
-</span><span class='line'>    <span class="k">else</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">dnafile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">fileinput</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;File does not exist, please try again&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

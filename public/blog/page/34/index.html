@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Another aspect covered in the book that we haven&#8217;t seen yet is how to
-plan, design out script or software. Usual ways to design a program &hellip;">
+  <meta name="description" content="I decided to give CLC free workbench a new look, just after the last update. Apart from the change in size, at least on Windows, there is not a lot &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,236 @@ plan, design out script or software. Usual ways to design a program &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/12/clc-free-workbench-a-new-short-review/">CLC free workbench, a new (short) review</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-12T19:16:12-04:00" pubdate data-updated="true">Sep 12<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I decided to give CLC free workbench a new look, just after the last update. Apart from the change in size, at least on Windows, there is not a lot of changes on the interface, which still looks a little bit more clumsier than Geneious.</p>
+
+<p>But there was some nice changes behind the scene. I have tried version 3 again just to make sure I wasn&#8217;t doing anything wrong when aligning two sequences, and I wasn&#8217;t. So I decided to test aligning the same sequences on the new version 4 and I was pleasantly surprised to see that the alignment procedure runs fast and smoothly.</p>
+
+<p>I will probably post a larger review and maybe a comparison with Geneious in the near future. Stay tuned.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/12/ratings/">Ratings</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-12T11:48:50-04:00" pubdate data-updated="true">Sep 12<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A new feature has been add to the blog: ratings. As I don&#8217;t receive many comments on the posts but there is a steady stream of viewers of the website, I decided to add the possibility of rating a post. So, if you feel the post was useful for you, well or badly written, just click the rate you feel the post deserves. It is an Ajax-like feature so there is no reloads or any other intrusion on your normal browsing.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/07/restrinction-enzymes-second-take/">Restriction enzymes: second take</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-07T16:48:50-04:00" pubdate data-updated="true">Sep 7<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We already have a function that reads the enzymes from a dataset in a
+flat file (with one change: return)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_enzymes</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>            <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>            <span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;^&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">resenz</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We now need a function to write a function
+that searches for the sites and a main function that accepts the
+parameters, coordinate the search and return the results. Looks like we
+are more than halfway there. Parameters input was shown before, starting
+on section 3. We import the <code>sys</code> module and use the array inside
+<code>sys.argv</code> to send the parameters to the script. A basic skeleton of our
+main function would look like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="c">#reading the ezyme dataset in one line and storing enzyme information in enzymeset </span>
+</span><span class='line'><span class="n">enzymeset</span> <span class="o">=</span> <span class="n">read_enzymes</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;bionet.709&#39;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="c">#storing enzyme name on a string</span>
+</span><span class='line'><span class="n">enzyme</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="c">#reading a FASTA file and storing the sequences</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s a start. Now we have to write a
+function that will check for the enzyme name entered by the user in
+order to check for the existence of such enzyme. Something like this
+would work</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">check_enzyme</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nb">set</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+</span><span class='line'>      <span class="k">return</span> <span class="bp">True</span>
+</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>      <span class="k">return</span> <span class="bp">False</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This
+basically tests of the dictionary contains the name entered. If yes then
+we return True, otherwise False is returned. This changes our main
+script body</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="c">#reading the ezyme dataset in one line and storing enzyme information in enzymeset </span>
+</span><span class='line'><span class="n">enzymeset</span> <span class="o">=</span> <span class="n">read</span>\<span class="n">_enzymes</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;bionet.709&#39;</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="c">#storing enzyme name on a string </span>
+</span><span class='line'><span class="n">enzyme</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="c">#check if the name entered is valid </span>
+</span><span class='line'><span class="n">isname</span> <span class="o">=</span> <span class="n">check_enzyme</span><span class="p">(</span><span class="n">enzyme</span><span class="p">,</span> <span class="n">enzymeset</span><span class="p">)</span>
+</span><span class='line'><span class="c">#if it is valid, continue, otherwise abort </span>
+</span><span class='line'><span class="k">if</span> <span class="n">isname</span><span class="p">:</span>
+</span><span class='line'>  <span class="c">#reading a FASTA file and storing the sequences </span>
+</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="s">&#39;Name invalid. Please try again.&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, we have a good idea on what to do now. We just need a function that creates a
+regular expression and searches it on the sequence. Next time &#8230;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -371,14 +600,16 @@ get rid of the header lines</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_enzymes</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>  <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>          <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>            <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span class='line'>      
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -424,16 +655,18 @@ circumflex characters. Putting everything together we have</p>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
+<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_enzymes</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'>  <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>      <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
-</span><span class='line'>          <span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>          <span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;\^&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">resenz</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;Rich Roberts&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>            <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">True</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span class='line'>            <span class="nb">buffer</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">resenz</span><span class="p">[</span><span class="nb">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">buffer</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;^&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>          
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -549,11 +782,13 @@ a line of code to the final script. Fastforwarding to creating the regex</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
+<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mregex</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 </span><span class='line'><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">motif</span><span class="p">:</span>
 </span><span class='line'>  <span class="n">mregex</span> <span class="o">+=</span> <span class="n">iupacdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">print</span> <span class="n">mregex</span>
-</span><span class='line'><span class="c">#just to check </span>
+</span><span class='line'>  
+</span><span class='line'><span class="k">print</span> <span class="n">mregex</span> <span class="c">#just to check </span>
+</span><span class='line'>
 </span><span class='line'><span class="n">tosearch</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mregex</span><span class="p">))</span>
 </span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tosearch</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">sequencefile</span><span class="p">):</span>
 </span><span class='line'>  <span class="k">print</span> <span class="n">i</span>
@@ -601,213 +836,6 @@ a line of code to the final script. Fastforwarding to creating the regex</p>
 <p>It will be ready next week and widely available for download.</p>
 
 <p><em>Clearly it has been LONG delayed a bit. I will try soon.</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/08/11/thanks-tony/">Thanks Tony!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-08-11T10:08:13-04:00" pubdate data-updated="true">Aug 11<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Without you some days wouldn&#8217;t be as nice, and some nights wouldn&#8217;t be as depressive.</p>
-
-<p><a href="http://news.bbc.co.uk/2/hi/uk_news/england/manchester/6941716.stm">Cheers!</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/08/11/sciview-part-5-interview-with-alexei-drummond/">SciView part 5: interview with Alexei Drummond</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-08-11T09:53:56-04:00" pubdate data-updated="true">Aug 11<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We are back with more interviews. This time it is Dr Alexei Drummond&#8217;s take on Science and everything that surrounds it. Apart from his academic work, Alexei is Chief Scientist of <a href="http://www.biomatters.com">Biomatters</a> the developers of <a href="http://blindscientist.genedrift.org/2007/03/02/geneious-one-year-or-almost-later/">Geneious</a> (and <a href="http://blindscientist.genedrift.org/2007/02/26/hello-world/">here</a>). Enjoy.</p>
-
-<hr />
-
-<p><em>You are Biomatters&#8217; Chief-Scientist, one of the founders of the company and the mastermind behind Geneious. What was your motivation to start the company and develop the program? How to balance these activities with your regular job as a university professor?</em></p>
-
-<p>I would say that my main motivations for wanting to build Geneious were frustration and hope. I was frustrated at the number of molecular biologists who didn&#8217;t seem to have the software tools they needed to do their job. I was hopeful I could provide the framework for those tools, if only I had a few great programmers.</p>
-
-<p>Since I was one of the only people in the department who could program, I was often asked to write scripts, or teach people how to program enough so they could do it themselves. When biologists start asking about where they can learn to program a computer, just so they can do their job you know something is wrong! Most of the things they wanted to do were reasonably straightforward. It seemed to me that these kind of basic productivity problems had been solved in other workplaces like the office &#8211; so why had they not been solved in the research laboratory? I initially wanted to build the system as an academic research project &#8211; but then realized that would fail at a number of levels. Firstly, software development isn&#8217;t science &#8211; but science now crucially relies on software development and support. Secondly, most academic programmers are not interested in (or good at) designing user interfaces, and certainly developing software is not a scientific outcome that gets recognized like publishing papers does. Thirdly, academics are quite bad at supporting software and documenting it. So it seemed to me, that for a lot of reasons, a professional software company was the best avenue to realize a software system that would dramatically improve the productivity of molecular biologists by putting bioinformatics at their fingertips. Really I just wanted to make science go faster &#8211; and with less hassle.</p>
-
-<p>_ Geneious is a Java application? Why Java? Any special feature in the language or previous experience? Is there anything that you wish Java was capable of so you can include in Geneious?_</p>
-
-<p>Java is a general-purpose programming language &#8211; so you can do in Java pretty much anything you can do in software. The main reason for choosing Java is that it is very easy to write sophisticated user interfaces that run on Windows, Linux and Mac OS X. This is really important in the field of molecular biology where about 20% of the users have Mac OS X. Earlier versions of Java didn&#8217;t integrate with some aspects of different operating systems as well as they could, but with Java 5 most of this integration is quite good. Also, more and more academic developers are using Java (because it is easy, cross-platform and OO) so that also works in our favor. Every language has its pros and cons, but  for our purposes Java was one of the best choices.</p>
-
-<p><em>You are the first scientist outside North America that is interviewed here. You have worked for some years in Oxford, UK. What are the main differences of working in New Zealand in comparison to Europe? How your return to New Zealand has influenced your decision to start the company?</em></p>
-
-<p>New Zealand is a very small country with just 4 million people. But we are a proud nation. But we have a long history of world firsts, like being the first country to give woman the right to vote (1893). A New Zealander was the first to &#8220;split the atom&#8221; (Ernest Rutherford), and a New Zealander was the first to the top of Mt Everest (Sir Edmund Hillary). We are also one of the first countries to declare ourselves a Nuclear-Free Zone (1985). So I would say that New Zealand is a place the is not afraid to try to lead the way, despite our small size. Our Prime Minister, Helen Clark, recently declared our Government&#8217;s aspiration to make New Zealand a carbon-neutral country. It is these kinds of radical ideas that we strive to make reality. So it is quite natural to try to build a unique software package in New Zealand &#8211; although we are still far from where we are aiming to be.</p>
-
-<p>_In your opinion what are the main differences of developing applications in academia and in the private sector?
-_</p>
-
-<p>Academics develop software for the love of it &#8211; and their first aim is to make the software work for themselves, and secondarily to work for their colleagues, as long as that doesn&#8217;t take too much effort. There are a few academics that try very hard to produce easy-to-use well-supported software, but they tend not to have the resources to do what the private sector can - for example PAUP<em> still doesn&#8217;t have a manual after many many years. The challenge for the private sector developing </em>scientific* software, is how to keep abreast of the science, which is changing so rapidly. At Biomatters we really try to have the idea that we are part of the scientific community. We have invited a number of scientist to work with us on various projects and we find that in this way we learn a lot more about what is needed, and how best we can fit into the academic ecology. Our goal is a happy marriage where academic programmers can get on with developing great new algorithms, and Geneious can provide the interoperability, the user interface and the support.</p>
-
-<p><em>What would you teach to an &#8220;academic developer&#8221;? What developers in academia lack when compared to developers working in companies?</em></p>
-
-<p>I don&#8217;t think it is a question of what academic developers lack in terms of skills &#8211; I think it is more a question of motivation. Aside from Geneious I produce academic software (like BEAST). What motivates me to answer 100 technical email queries every month about the BEAST software? My main passion is science, not supporting software. So by creating a successful software package, I have created a heavy burden of support. I would rather that somebody else supported all the simple questions about user interface, file conversion, installation, et cetera&#8230; So in some sense, what I am hoping to &#8220;teach&#8221; academic developers is that maybe there is another way to do things. It we had one framework that made interoperability and user interface more seamless and standard, each academic could focus on the science, the new algorithms and the part of their job that they find really exciting &#8211; the discovery.</p>
-
-<p><em>Another question that is already favourite of this interview series is about computer graphic interfaces. Geneious has a very nice GUI, but in my opinion still lacks some simple features. Can you tell us how the program&#8217;s GUI was first designed and what kind of user input is considered in the development? Which is more important: &#8220;what the user want&#8221; or &#8220;what we want&#8221;?</em></p>
-
-<p>Most users didn&#8217;t say they wanted the mouse, or the iPod before the visionary told them they wanted it. So I do think there is room for a lot of innovation in software development. But of course, there are definitely things that users know that they need right now. Balancing these two things is the real trick. Biomatters is very serious about listening to our users and we have an active forum and a small group of power users that have been quite helpful in the past. Of course there is always more to do. We also think that we have introduced a few nice new ideas in our software and there are more on the way. Specifically we are interested in developing the concept of &#8220;live&#8221; research publications, where arrival of relevant new data automatically updates the published research in that area. As you can imagine, this is a long term goal. But I think you need these visions to aim for, if you are going to make real progress.</p>
-
-<p><em>For the young bioinformatician: should s/he focus on publications, skills, languages? Or a balance of all? What is your advice?</em></p>
-
-<p>A young bioinformatician should focus on the science. What are the outstanding questions that your skills enable you to take a step towards answering? Once you focus on the science the publications, skills and languages will come.</p>
-
-<p>I used to program ten different languages very well. But 95% of my programming these days is done in Java (because I am usually building on stuff I have done previously). PERL is still quite important in bioinformatics &#8211; but I think that is because there is still a lot of need to write one-off scripts. Will we get to a point where there is more sophistication? I think that bioinformatics has to become a field where people without programming skills can contribute substantially. I would argue that all of the programmers in bioinformatics should be working very hard to program themselves out of their jobs (and into more satisfying jobs). Lets build software systems that take this field to the next level. That is what we am trying to do (slowly but surely) with Geneious. We want to create a system that ultimately makes the programmers redundant &#8211; at least for the menial tasks &#8211; so that any molecular biologist can construct complicated queries and analyses in an intuitive graphical manner. Then the programmers can focus on the hard questions like new algorithms and methods of analysis.</p>
-
-<p><em>What in your opinion is your most important software?</em></p>
-
-<p>I don&#8217;t really compare my software projects, because they are so different. I guess this is for other people to decide. But judging from you line of questioning, Geneious is currently winning ;-)</p>
-
-<hr />
-
-<p>I would like to thank Alexei for answering my questions.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/07/26/sciview-part-4-interview-with-rosie-redfield/">SciView: part 4, interview with Rosie Redfield</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-07-26T21:05:18-04:00" pubdate data-updated="true">Jul 26<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Dr Redfield, from the University of British Columbia is a microbiologist and an advocate of Open Science, a rather recent movement that is trying to open the doors (and computers) of every scientific lab. I took the opportunity to ask her about her views of Open Science and why to create an scientific diary online. I would like to thank Dr Redfield for the opportunity.</p>
-
-<hr />
-
-<p><em>My initial questions are about Open Science. What are the main benefits of opening your whole scientific life to the public? And the drawbacks of doing this? How is the best way to manage a lab under Open Science?</em></p>
-
-<p>RR: There are practical consequences and philosophical consequences to doing open science the way we are.  So far the practical consequences have been good - I get helpful suggestions from people I&#8217;ve never met. And I can tell people who wonder what we&#8217;re doing to take a look at the stuff on our web pages.  I&#8217;d love to also be able to say that our open approach has attracted collaborators and new lab members, but that hasn&#8217;t happened yet.  Another big practical consequence is that writing blog posts about the research I&#8217;m working on helps me think clearly about it. So whenever I&#8217;m feeling muddled I post the problem on my blog.</p>
-
-<p>Philosophically it just feels right. Science is fundamentally a collaborative endeavour; we all build on what others have done.  Just as the web gives us new and better ways to publish our findings in peer-reviewed journals, it lets us find out communicate about our work in progress.  Furthermore, the taxpayer pays for our work, and deserves to be able to see what&#8217;s going on.  So I like to think of random people stumbling onto my blog and thinking &#8220;Hmm, so that&#8217;s what a scientist really does.&#8221;.</p>
-
-<p>Also, openness is much easier and more comfortable than secrecy. In my teaching (mostly first-year biology) I give only open-book exams, and it&#8217;s much easier for me than worrying about cheaters.</p>
-
-<p><em>I can see on your webpage that you have grant applications, results and even future plans listed. Do you fear having your ideas and plans &#8220;stolen&#8221;? You might have some data and results that end up on the webpage/blog only after the publication or everything is uploaded as soon as it out of the oven?</em></p>
-
-<p>RR: I blog about the day-to-day research we&#8217;re doing, and I post our grant proposals as soon as they&#8217;re submitted.  So everything is open from the start.</p>
-
-<p>I don&#8217;t worry much about people stealing our ideas, but it&#8217;s not a big risk because nobody else is working on what we&#8217;re working on. And most of the people doing related work seem to think I&#8217;m more-or-less misguided in my interests and approaches. I try not to post exactly the same figures I&#8217;m putting into a manuscript (only because I fear the journal editors might get cranky), but otherwise my goal is to give anyone who&#8217;s interested an accurate picture of what we&#8217;re doing.</p>
-
-<p><em>The visibility of scientific blogs has increased considerably in the past years. Yours is up for almost an year now (at least your archives go back to August 2006) and it seems that you support that your whole group of students and post-docs do the same. What have influenced you to start recording your daily routine on a website? Does it help the interaction in the lab since everyone has its own personal page?</em></p>
-
-<p>RR: I started blogging about research in response to a post by Pedro Beltrao (http://pbeltrao.blogspot.com/2006/07/opening-up-scientific-process-during.html) about the desirability of opening up the scientific process (I found it through Tangled Bank #59). As soon as I read it I realized that I wanted to have a blog about my lab&#8217;s research.</p>
-
-<p>After a couple of weeks I told everyone in my lab that I wanted them to have blogs too.  I love reading their blogs - they have such thoughtful things to say about their research.  They don&#8217;t always post as often as I&#8217;d like them to; they say it&#8217;s because they feel there&#8217;s a high standard that they can only sometimes reach. But I&#8217;d like them to at least scribble a few lines every day.</p>
-
-<p><em>From your blog it is easy to see some frustration with bioinformatics. How important is bioinformatics in your research and what the major problems that you have with it?</em></p>
-
-<p>RR: It&#8217;s a collection of important tools and resources, and I love what I can do. And I enjoy learning new things, like babytalk Perl and standalone BLAST. But Unix has always driven me crazy - I keep hoping to attract a Unix/Perl geek to the lab, but no luck so far.</p>
-
-<p>My bioinformatics frustrations arise in two ways.  First, it&#8217;s only part of what we do, so I&#8217;m not doing it nearly enough to get really good at it.  If bioinformatics was the main focus of our work I would invest more of my brain in improving my skills.  But we&#8217;re primarily an experimental lab (we get our hands wet). And each time I go back to it,  NCBI or TIGR has changed their interfaces.</p>
-
-<p>The other source of frustration is that we&#8217;re always trying to do new things, that nobody has ever done before,  Sometimes we can find existing tools that can do these things, but sometimes we have to write our own and we don&#8217;t really know what we&#8217;re doing.  For a while we were lucky enough to have Mario Pineda-Krch working with us, but he&#8217;s gone on to better things (see http://pineda-krch.com/).</p>
-
-<p><em>Another question that is already favourite of this interview series is about computer graphic interfaces. From what I could see your lab generates most of its scripts in Perl, but some work is done with graphical interfaces. What do you and your group look for in a program and its graphic interface? What are the main drawbacks of the command line interface that could be easily mitigated by a GUI?</em></p>
-
-<p>RR: By graphic interfaces do you mean things like the web interfaces for BLAST? Basically we&#8217;ll take whatever we can get. If the resource has a nice point-and-click interface, great. If we have to submit a string of instructions to get what we need, we can cope. If we&#8217;d need to write some software ourselves, we usually move on to a different problem unless we&#8217;re highly motivated and the problem looks simple. I hate the frustration of not getting line commands exactly right, so much prefer menu-driven interfaces.</p>
-
-<p>The only good interface we&#8217;ve generated was done by Mario, working on the fabulous hotspot paradox.</p>
-
-<p><em>How do you see the &#8220;publish or perish&#8221; in science, with the increasing number of retracted papers, fake results, rushed publications and sometimes publication of extremely similar results in different papers and journals? Being an advocate of Open Science, do you think this new movement can help alleviate some of the known problems of the &#8220;publish or perish&#8221; culture?</em></p>
-
-<p>RR: There&#8217;s always been a lot of bad science mixed in with the good; I&#8217;m not convinced that the proportion has gotten higher as the total number  of papers has increased.</p>
-
-<p><em>Do you have an advice for the young scientist? And, as you are the first woman interviewed here, any special advice for the girls that are considering a scientific career?</em></p>
-
-<p>RR: Work by women is unconsciously but systematically undervalued by everyone (including the women who do it), so don&#8217;t go into science for the glory.  But if you love doing research it&#8217;s wonderful.  I&#8217;m still delighted that I can get paid to do this.</p>
-
-<p><em>What in your opinion is your most important publication?</em></p>
-
-<p>RR: That&#8217;s a hard one.  I don&#8217;t get much recognition for what I think is important, mostly because my conclusions don&#8217;t fit what others want to hear.</p>
-
-<hr />
-
-<p>I would like to thank again for Dr Redfield&#8217;s answers. I am planning some changes to SciView soon.</p>
-
-<p>If you want to follow the RRResearch blog, here is the <a href="http://rrresearch.blogspot.com/">link</a>.</p>
 </div>
   
   

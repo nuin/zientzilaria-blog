@@ -10,9 +10,9 @@ group :development do
   gem 'haml', '>= 3.1'
   gem 'compass', '>= 0.11'
   gem 'rubypants'
-  gem 'rb-fsevent'
   gem 'stringex'
   gem 'liquid', '2.2.2'
+  gem "rb-fsevent", "~> 0.9.1"
 end
 
 gem 'sinatra', '1.2.6'

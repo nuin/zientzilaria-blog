@@ -194,22 +194,29 @@ this:</p>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">dnatranslate</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;AY162388.seq&quot;</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'>
 </span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 </span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">dnafile</span><span class="p">:</span>
 </span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">protein</span> <span class="o">=</span> <span class="n">dnatranslate</span><span class="o">.</span><span class="n">translate_dna</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>
 </span><span class='line'><span class="k">print</span> <span class="n">sequence</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
 </span><span class='line'><span class="k">print</span>
 </span><span class='line'><span class="k">print</span> <span class="n">protein</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>No secrets or new things
-here. Just notice that we import a module which is not part of the
+<p>No secrets or new things here. Just notice that we import a module which is not part of the
 common Python modules, but was created by us. In this case the
 identification in the import will be the name of the <code>.py</code> file that
 contains the function(s) we are going to use. This file also needs to be
