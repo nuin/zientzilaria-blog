@@ -9,8 +9,8 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We keep on introducing Mike&#8217;s functions. This time there are a couple of
-Python methods that we haven&#8217;t seen here and need some &hellip;">
+  <meta name="description" content="I haven&#8217;t posted in a while, so let&#8217;s get back to the last topic covered
+here, merging sequences from Pfam alignments. Two comments to my &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,7 +83,7 @@ Python methods that we haven&#8217;t seen here and need some &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8/">Obtaining overrerpresented motifs in DNA sequences, part 9</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/02/revisiting-pfam-alignments/">Revisiting Pfam alignments: using defaultdicts, chains &#8230;</a></h1>
     
     
       <p class="meta">
@@ -99,587 +99,21 @@ Python methods that we haven&#8217;t seen here and need some &hellip;">
   
 
 
-<time datetime="2008-06-03T12:49:53-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
+<time datetime="2008-05-02T10:11:47-04:00" pubdate data-updated="true">May 2<span>nd</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We keep on introducing Mike&#8217;s functions. This time there are a couple of
-Python methods that we haven&#8217;t seen here and need some introduction,
-<code>izip</code> and <code>count</code>. To use these two we also need to import new modules</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">izip</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> <code>count</code> returns consecutive integers starting at a
-defined point (the method&#8217;s parameter). If empty it starts from zero.
-Basically, by starting a <code>count</code> it will give an iterable with a
-increasing integer values, in a fashion similar to a function with
-yield. Every time our loop accesses the <code>count</code> it will &#8220;remember&#8221; the
-last return value and increment it by one. <code>izip</code> also returns an
-iterator, but from a list of iterables. It is basically used to iterate
-through a list of many iterables at the same time. In the function below
-it is used twice: one to generate a tuple (with <code>count</code>) with a sequence
-number and the sequence itself. The sequence in the tuple is then used
-in another <code>izip</code> to create the windows on the sequences to count
-motifs.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_06</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">    add seq id_no to a set</span>
-</span><span class='line'><span class="sd">    use &#39;izip(count(),...) to create seq_no</span>
-</span><span class='line'><span class="sd">    use &#39;izip(count(),range(...)) to create start/stop indices for motifs</span>
-</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
-</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In the next couple of posts we still be
-checking motif quorum functions. Stay tuned.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/">Obtaining overrepresented motifs in DNA sequences, part 7</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-03T10:27:49-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuing on Mike&#8217;s functions to obtain motif quorums. We see function
-3, 4 and 5. Function get_quorums_03, uses an old friend of the blog,
-<code>sets</code>. Recall that <code>sets</code> are very similar to lists, but their are
-unordered and items are unique.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_03</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">    add seq id_no to a set</span>
-</span><span class='line'><span class="sd">    use explicit counter to create seq_no</span>
-</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
-</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> Basically,
-the sequence numbers (an incremented counter) are added to a <code>defaultdict</code>
-which was initialized as a set. This way you don&#8217;t need to check for the
-existence of the sequence number in the <code>defaultdict</code> list and count on
-the ability of <code>set</code> of being unique. Function 4 is very similar to
-function 3 with the difference of using enumerate (as in function 02) to
-make the sequence numbers.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_04</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">    add seq id_no to a set</span>
-</span><span class='line'><span class="sd">    use &#39;enumerate&#39; to create seq_no</span>
-</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
-</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Function 5
-adds a twist, which is to have an enumerate to set the sequence range
-(motif/word width) start and stop. This way the window is sliding based
-on the tuple created by the enumerate method and not on the slicing that
-were used in all other functions. Again, a <code>defaultdict</code> is initialized as
-set and the sequence numbers are generated by an enumerate.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_05</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">    add seq id_no to a set</span>
-</span><span class='line'><span class="sd">    use &#39;enumerate&#39; to create seq_no</span>
-</span><span class='line'><span class="sd">    use enumerate(range(...)) to create start/stop indices for motif</span>
-</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
-</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/30/obtaining-overrepresented-motifs-part-6/">Obtaining overrepresented motifs in DNA sequences, part 6</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-30T21:30:44-04:00" pubdate data-updated="true">May 30<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We will take a break on developing the statistical module to obtain
-overrepresented motifs (I will introduce mul in the next stats post),
-and take a deeper look at the possibilities on obtaining the motif
-quorums. Mike DeHaemer, a regular commenter and contributor to the blog,
-sent me a <a href="http://python.org/" title="Python (programming language)">Python</a>
-script with 8 different ways distributed in 13 distinct functions for
-obtaining the motif quorums.</p>
-
-<p>I will take advantage of his contribution
-and post all of them, with some quick comments on each one of them (his
-code comments were kept in each function). After, a small benchmarking
-will be posted. Most of the functions need to import a couple of module</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">deque</span>
-</span><span class='line'><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">count</span><span class="p">,</span> <span class="n">izip</span><span class="p">,</span> <span class="n">tee</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and they have two
-parameters, a sequence list and the length of the motifs. The first
-function uses again the <code>defaultdict</code> and it is very similar to the one
-used in the final version of the quorum script. The <code>defaultdict</code> is
-initialized as a list and the ids are added to a the list, keys are
-motifs, only if they are not already present in it. The sequence id is
-generated in a variable incremented each time the loop iterates.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_01</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">    append seq id_no to list after checking to see if already present</span>
-</span><span class='line'><span class="sd">    use explicit counter to create seq_no</span>
-</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
-</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]:</span>
-</span><span class='line'>                <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The second function is very similar to the
-first one, with the caveat that sequence id numbers are generated with
-<code>enumerate</code>.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_02</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">    append seq id_no to list after checking to see if already present</span>
-</span><span class='line'><span class="sd">    use &#39;enumerate&#39; to create seq_no</span>
-</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
-</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">if</span> <span class="n">id_no</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]:</span>
-</span><span class='line'>                <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>enumerate</code> is a object based on another iterable object. When called
-<code>enumerate</code> always returns a tuple of an indexed series. For instance,
-in our case above, enumerate will return a series of tuples
-<code>(0, sequence1), (1, sequence2) ... (n, sequenceN)</code>. That&#8217;s the reason
-the enumerate loop uses a tuple as its index</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Next couple of posts will cover the other functions sent by Mike. Then we
-will go back to the statistical module.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/26/processing-and-duplicons-on-human-chromosomes/">Processing and duplicons on human chromosomes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-26T12:38:24-04:00" pubdate data-updated="true">May 26<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Thanks to <a href="http://freelancingscience.com/">Pawel</a>, I got introduced to the world of <a href="http://processing.org">Processing</a> and I must say I am impressed. It is a nice tool to create nice data displays. In the picture below I used a source code that Pawel sent me modified to display duplicons (larger than 30 kilobases) blast hits (larger than 5 kilobases) on a small arm of an <a href="http://en.wikipedia.org/wiki/Chromosome">human chromosome</a>. Of course due to the number of blast hits, different duplicons involved and the chromosome arm&#8217;s length (60 Mb) the arcs and the colours are not easy to format. But still there is a good amount of information regarding hit identity and similar duplicons in different chromosomal regions.</p>
-
-<p><img src="http://www.genedrift.org/6p5k_arc_colorido.png" alt="Processing and duplicons on human chromosome" /></p>
-
-<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=f5bdfda8-7286-4eba-a860-36bedb89f754" alt="" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/23/thats-not-a-good-example-kaka/">That&#8217;s not a good example Kaká &#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-23T08:04:54-04:00" pubdate data-updated="true">May 23<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>AC Milan&#8217;s player is <a href="http://msn.foxsports.com/soccer/story/8169594/AC-Milan%27s-Kaka-to-have-arthroscopic-knee-surgery">going to have arthroscopic knee surgery</a>. That&#8217;s really strange, because he is a member of the <a href="http://en.wikipedia.org/wiki/Igreja_Renascer_em_Cristo">Reborn in Christ Church</a> (Renascer in Portuguese), and usually they perform &#8221;<a href="http://www.youtube.com/watch?v=4NGpQE3bdso">cure sessions</a>&#8221; on TV to whoever send them money. C&#8217;mon Kaká you don&#8217;t need those bloody doctors to cure you, just ask around.</p>
-
-<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=0d532e18-175f-4049-ac59-013767c0d246" alt="" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/21/how-british/">How British &#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-21T16:20:22-04:00" pubdate data-updated="true">May 21<span>st</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Champions League final gets to penalty shots. If the old <a href="http://en.wikipedia.org/wiki/Corinthian_F.C.">Corinthian</a> was part of this match the result would be already defined.</p>
-
-<p>From the ESPN live commentary:</p>
-
-<blockquote><p>How fitting perhaps that the Champions League final between two English sides should end in a pathetic bout of chest-bumping and disrespect. It&#8217;s been a big issue all year in England and now it&#8217;s two best sides have betrayed the Premier League with their self-indulgent griping and petulance. Crazy.</p></blockquote>
-
-<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=dea35fa3-0f50-43aa-a52c-c8c5ad84b672" alt="" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/">Obtaining overrepresented motifs in DNA sequences, part 5</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-21T13:50:00-04:00" pubdate data-updated="true">May 21<span>st</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Now that we have the script to generate the word quorums working (and
-working fast!) we need then to calculate the a <em>p</em> value for each motif
-based on the fore and background quorums. A <em>p</em> value cut-off will
-determine the statistically significant words, or overrepresented. These
-overrepresented words then can be analysed in more details (that we
-won&#8217;t see here) and for instance determine new or already known
-transcription factor binding sites. A well established statistical
-method to determine such overrepresented words is the <a href="http://www.mnlottery.com/hypergeo.html">Hypergeometric Distribution</a> (HD for short).</p>
-
-<p>HD measures &#8220;success&#8221; and &#8220;failures&#8221; for values that do not fit in the
-<a href="http://en.wikipedia.org/wiki/Binomial_distribution" title="Binomial distribution">binomial distribution</a>,
-and depend on the measurements without replacement. Basically, HD&#8217;s
-equation has a a series of binomial coefficients/combinations <img src="http://www.genedrift.org/hd.gif" alt="HD equation" /> where <em>N</em> is the population
-size, <em>m</em> is foreground cluster size, <em>k</em> is the motif quorum in the
-background gene set and <em>x</em> is the word quorum in the foreground set.
-Note that the above equation is for the cumulative HD, where a sum of
-probabilities is calculated. All the combinations in the above equation
-have to be expanded to factorials that depending on the value to be
-calculated are very computer intensive and sometimes don&#8217;t fit in the
-memory (either a float or integer).</p>
-
-<p>But <a href="http://python.org/" title="Python (programming language)">Python</a> is able to
-handle very large numbers and the calculation of large factorials is
-relatively fast. In C++, I had to use a couple of tricks to achieve a
-good speed in the factorial determination, and specially in the HD
-calculation that requires multiple factorials and multiplication,
-division and subtraction of large numbers. I didn&#8217;t want to use any
-mathematical trick such as <a href="http://en.wikipedia.org/wiki/Stirling's_approximation" title="Stirling's approximation">Stirling&#8217;s approximation</a>.</p>
-
-<p>13! in C++ already blows the size of long, so I had to use the <a href="http://www.tc.umn.edu/~ringx004/mapm-main.html">MAPM, A Portable Arbitrary Precision Math Library in C</a>. This library is
-quite fast to calculate the factorial values but when one needs to
-calculate more than 200,000 factorials the speed is unbearable. So, I
-decided to pre-calculate a series of factorial values, keeping 10
-decimal places as precision and saving in another column their
-exponential. Then using this table as an input I was able to multiply,
-divide and subtract the factorials and by employing the first law of
-exponents do the same operations with their exponential.</p>
-
-<p>This speeds up
-the process tremendously. In Python, we don&#8217;t need any extra third-party
-library, we just use Python itself, without importing an extra module. A
-factorial function in Python can be written in one line, but for clarity
-is better to define it separately. We can try throwing any number at it
-and see the result.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> \<span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">value</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We already saw <code>reduce</code> and <code>lambda</code> and using these two methods make
-the factorial function clear and simple. And why are we not using a
-recursive function? Because Python has a limit recursion depth (1000).
-Next time we will implement the code that calculates the HD <em>p</em> values.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-4/">Obtaining overrepresented motifs in DNA sequences, part 4</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-12T14:35:13-04:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We found a way to make the Python script as good as or better than the
-C++ executable. But for the analysis we need to do, motif counts are not
-the value we want. We need the quorum: the number of sequences the motif
-is present at least once. For instance, if the desired motifs was
-<code>AAACCCTTTG</code> we will check in which sequences this word was present. Let&#8217;s
-say in a cluster of 10 sequences, we would find it in sequences 1, 2, 3,
-4 and 5, giving us a quorum of 5 out of 10, or 50%. The quorum will be
-used in the future in the statistical calculation in order to determine
-the overrepresented motifs. With only a couple of modifications, we can
-adapt the script used to get the motif counts to get the quorum.</p>
+  <div class="entry-content"><p>I haven&#8217;t posted in a while, so let&#8217;s get back to the last topic covered
+here, merging sequences from Pfam alignments. Two comments to my last
+post suggested some changes to the original code, and both comments made
+a considerable improvement to script. But following our line of thought
+here, there were many things in both posts that we haven&#8217;t covered in
+the series. In order to make it clear to anyone that is chronologically
+following the entries, we will see what new things were suggested in the
+comments. We will start with Mike&#8217;s comment. The code is below.</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -699,40 +133,71 @@ adapt the script used to get the motif counts to get the quorum.</p>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'>    <span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">ident</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span>
+</span><span class='line'>        <span class="n">data</span><span class="p">[</span><span class="n">ident</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">seq_number</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">seq_number</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)):</span>
-</span><span class='line'>        <span class="k">if</span> <span class="ow">not</span> <span class="n">seq_number</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]:</span>
-</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_number</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">-&gt;</span><span class="si">%d</span><span class="se">\n</span><span class="si">%s%s</span><span class="s">&quot;</span>
+</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">jname</span><span class="p">,</span> <span class="n">jseq</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>            <span class="n">kname</span><span class="p">,</span> <span class="n">kseq</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>            <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format</span> <span class="o">%</span> <span class="p">(</span><span class="n">jname</span><span class="p">,</span> <span class="n">kname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">jseq</span><span class="p">),</span> <span class="n">jseq</span><span class="p">,</span> <span class="n">kseq</span><span class="p">)</span> <span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p> Basically, we change the way the
-<code>defaultdict</code> is initialized, this time as a list instead of int and we
-also change the procedure that used to get the counts. The loop does
-identical work, iterating along the sequences, with a window (of the
-input length) sliding on them and checking each word. This time instead
-of incrementing the value of the <code>defaultdict</code>, we append to the list
-the sequence number, obtained from a index integer variable (incremented
-in each iteration of the loop), if this number is not already in the
-list value. In the end each value of <code>quorum</code> will be a list os numbers
-and by printing the list length we obtain the quorum. Testing the above
-script there is no performance loss when comparing to the previous count
-script. Next we will see which statistical method to use and start to
-devising an script to calculate it.</p>
+<p>Mike&#8217;s code would only run on Python 2.5, due to the
+import of <code>collections</code>. He imports only <code>defaultdict</code> from collections,
+which is similar to a regular dictionary except for the fact that is
+takes an extra argument, a <code>factory function</code> (that we will examine
+soon), and this <code>factory function</code> is called every time a <code>dict</code> key is
+found for the the first time, initializing the object. The line</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>creates and intializes a <code>defaultdict</code> from an empty list. This
+defaultdict is used to store data from a <code>chain</code> formed by both input
+files being compared. A <code>chain</code> makes an iterator that &#8220;returns elements
+from the first iterable until it is exhausted, the proceeds to the next
+iterable&#8221; (from Python docs). Basically a <code>chain</code> in our case will make
+the loop iterate first through <code>data1</code> until its last item then will
+start the iteration through <code>data2</code>. In the loop it will use the region
+in the FASTA sequence name as a defaultdict key, and store the fasta
+name and sequence as the value. Notice that the defaultdict, as it has
+been initialized as a list, allows appending more than one value to each
+key, so every time that it finds a sequence with a name identical to
+some key already present in the defaultdict, it will append the
+information to the value of that key in a list.</p>
+
+<p>So, all the matching is
+done with this short loop, we only need then to iterate through the keys
+and print the result. For the results, Mike set up a format string (we
+will see in a future post) that receives the merged sequences and their
+names in a formatted way. The iteration along the defaultdict checks for
+both keys and values and every time it finds a value with a length of 2
+(meaning two sequences shared identical names) it puts the items of the
+defaultdict&#8217;s value list into two tuples. These tuples, containing
+sequence and name, are then formatted for output and appended to a list
+of merged sequences.</p>
+
+<p>There are a lot of new concepts, objects and
+methods but Mike&#8217;s suggestion shows how powerful Python is. For a set of
+25 alignments, there is little performance improvement, but our coding
+ability improves exponentially with clever suggestions. I will comment
+and explain Luke&#8217;s comments later.</p>
 </div>
   
   
@@ -745,7 +210,7 @@ devising an script to calculate it.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-3/">Obtaining overrepresented motifs in DNA sequences, part 3</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/04/29/habs/">Habs</a></h1>
     
     
       <p class="meta">
@@ -761,45 +226,16 @@ devising an script to calculate it.</p>
   
 
 
-<time datetime="2008-05-12T13:16:29-04:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
+<time datetime="2008-04-29T15:29:14-04:00" pubdate data-updated="true">Apr 29<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We take a break of developing code and check for performance (non-scientific testing!).</p>
+  <div class="entry-content"><p><a href="http://www.thehockeynews.com/articles/15664-New-poll-finds-Montreal-Canadiens-considered-Canadas-hockey-team.html">New poll finds Montreal Canadiens as Canada&#8217;s team</a>, more than Toronto Maple Leafs. Ok, next Saturday when the bandwagon suddenly stops, please try not to fall and hurt yourself.</p>
 
-<p>In the previous entry a simple file was used
-as input: 8 DNA sequences of 500 bases each. That&#8217;s not enough to test
-the performance of the Python script against the C++ compiled
-executable. So, we use a larger file; two larger files to be more exact.</p>
-
-<p>First, we use a 555 sequence file with the sequences averaging 19371
-nucleotides and another with 3854 sequences averaging 20000 nucleotides
-in length.</p>
-
-<p>Those files were the largest foreground and background
-clusters used in analysis. Let&#8217;s see how the Pyhton and C++ fared
-(Linux&#8217;s time was used in the comparison, for simplicity).</p>
-
-<p><strong>Foreground cluster</strong> Average of 10 runs <br/>
-C++: 45.66 seconds<br/>
-Python: 36.4 seconds</p>
-
-<p><strong>Background cluster</strong> Average of 10 runs <br/>
-C++: 5 minutes and 4 seconds<br/>
-Python: 2 minutes and 44 seconds</p>
-
-<p>The C++ analysis of the background
-cluster was done on a cluster&#8217;s node, and not on my desktop computer,
-due to the fact that my desktop could not handle it. C++ defense: the
-code was developed by me and I am not a computer scientist. Clearly
-there is room for improvement and performance gain. But, definitely we
-can see that by using some advanced techniques in Python we are able to
-outperform C++ (at least C++ code developed by me) and still have a
-short and easy to read script. Next time we will change the Python&#8217;s
-script output.</p>
+<p>Flyers in five.</p>
 </div>
   
   
@@ -812,7 +248,7 @@ script output.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/12/a-new-religion/">A new religion?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/04/26/twitter-updates-for-2008-04-26/">Twitter Updates for 2008-04-26</a></h1>
     
     
       <p class="meta">
@@ -828,14 +264,430 @@ script output.</p>
   
 
 
-<time datetime="2008-05-12T07:43:05-04:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
+<time datetime="2008-04-26T23:59:59-04:00" pubdate data-updated="true">Apr 26<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/43167867@N00/2486421088/"><img src="http://farm4.static.flickr.com/3154/2486421088_6a66097776_m.jpg" alt="After rainy day" /></a>Image from <a href="http://www.flickr.com/photos/43167867@N00/2486421088/">Flickr</a>I bet that in five years, a new <a href="http://scienceblogs.com/pharyngula/">religion will be formed</a>, albeit unintentionally (I am not 100% sure about the &#8220;unintentionally&#8221;).</p>
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> here in Toronto, there is a good place to find some different fruits. Supermarket bananas have a bland taste. <a href="http://twitter.com/nuin/statuses/797568309">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I discuss anything, anything at all. I have an incommensurable amount of useless knowledge <a href="http://twitter.com/nuin/statuses/797567694">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I discuss anything, anything at all. I have an incommensurable amount of useless knowledge <a href="http://twitter.com/nuin/statuses/797567695">#</a></p></li>
+<li><p>going to eat some traditional japanese sushi and buy some gohan to stock <a href="http://twitter.com/nuin/statuses/797475856">#</a></p></li>
+<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> I am not fan of bananas sold in NA. Stay away from the supermarket bananas and get some apple-banana. Better taste <a href="http://twitter.com/nuin/statuses/797475446">#</a></p></li>
+<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> Magnolias are one of my favourite plants. <a href="http://twitter.com/nuin/statuses/797464033">#</a></p></li>
+<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> Magnolias are from a very old family of plants, Magnoliaceae, one the basal families of angiosperms. <a href="http://twitter.com/nuin/statuses/797450365">#</a></p></li>
+<li><p>I&#8217;m never buying anything from Netgear again. <a href="http://twitter.com/nuin/statuses/797215074">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a>  @<a href="http://twitter.com/neilfwa">neilfwa</a> @<a href="http://twitter.com/rvidal">rvidal</a> I installed this one in a VMWare and wasn&#8217;t good at all. <a href="http://twitter.com/nuin/statuses/797191876">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/25/twitter-updates-for-2008-04-25/">Twitter Updates for 2008-04-25</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-25T23:59:59-04:00" pubdate data-updated="true">Apr 25<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/ChristianBurns">ChristianBurns</a> what program are you using? <a href="http://twitter.com/nuin/statuses/797027006">#</a></p></li>
+<li><p>why are Planet Nature and Postgenomic feeds &#8220;seasonal&#8221;? All of a sudden hundreds of entries appear &#8230; <a href="http://twitter.com/nuin/statuses/797007562">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> Nada como conhecer os patricios. <a href="http://twitter.com/nuin/statuses/796969162">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> indeed, and the anniversary of the Cravos. <a href="http://twitter.com/nuin/statuses/796941967">#</a></p></li>
+<li><p>@<a href="http://twitter.com/michaelbarton">michaelbarton</a> OK, thanks a lot. <a href="http://twitter.com/nuin/statuses/796899983">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> thanks, will see what I can do &#8230; <a href="http://twitter.com/nuin/statuses/796899556">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> email me too, I&#8217;d take a look if you want &#8230; <a href="http://twitter.com/nuin/statuses/796816320">#</a></p></li>
+<li><p>@<a href="http://twitter.com/michaelbarton">michaelbarton</a> sorry to ask, but what is ONS? <a href="http://twitter.com/nuin/statuses/796815735">#</a></p></li>
+<li><p>@<a href="http://twitter.com/SciPhu">SciPhu</a> man, that&#8217;s sad &#8230; <a href="http://twitter.com/nuin/statuses/796789556">#</a></p></li>
+<li><p>Sometimes I lose faith in the humanbeing: <a href="http://www.thestar.com/article/418415">http://www.thestar.com/article/418415</a> <a href="http://twitter.com/nuin/statuses/796785572">#</a></p></li>
+<li><p>isn&#8217;t Neil awake today/tonight? <a href="http://twitter.com/nuin/statuses/796780529">#</a></p></li>
+<li><p>@<a href="http://twitter.com/pierreyves">pierreyves</a> nice tune <a href="http://twitter.com/nuin/statuses/796772793">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a>  get the server already, more tools, more stuff to play around <a href="http://twitter.com/nuin/statuses/796753895">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> I think in Ubuntu adding is easier than removing. For something like Gentoo I&#8217;d say yes <a href="http://twitter.com/nuin/statuses/796737548">#</a></p></li>
+<li><p>@<a href="http://twitter.com/hooande">hooande</a> the Raptors won? No wonder it is snowing in TO <a href="http://twitter.com/nuin/statuses/796428633">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> cheers mate, keep on going &#8230; <a href="http://twitter.com/nuin/statuses/796374052">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/24/twitter-updates-for-2008-04-24/">Twitter Updates for 2008-04-24</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-24T23:59:59-04:00" pubdate data-updated="true">Apr 24<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> Thanks a lot &#8230; <a href="http://twitter.com/nuin/statuses/796298220">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> can you add some tag to the email subject? Something like [BioCamp] or similar &#8230; <a href="http://twitter.com/nuin/statuses/796292302">#</a></p></li>
+<li><p>gas will be 2.25 $CDN in 2012. Predicted by the same bank  that lost 5 blln with the house bubble. <a href="http://twitter.com/nuin/statuses/796259498">#</a></p></li>
+<li><p>konqueror does not like FriendFeed &#8230; <a href="http://twitter.com/nuin/statuses/796221166">#</a></p></li>
+<li><p>&#8220;molecular data from extinct organisms may have the potential for resolving relationships at critical areas of the vert. evolutionary tree&#8221; <a href="http://twitter.com/nuin/statuses/796137883">#</a></p></li>
+<li><p>@<a href="http://twitter.com/pierreyves">pierreyves</a> thx, added to Google Reader &#8230; <a href="http://twitter.com/nuin/statuses/796106201">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> @<a href="http://twitter.com/freesci">freesci</a> I would say API too. <a href="http://twitter.com/nuin/statuses/796099470">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> 2:30 am madness, for sure <a href="http://twitter.com/nuin/statuses/796064280">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> @<a href="http://twitter.com/covert">covert</a> basically you can merge all your &#8220;social web life&#8221; in one place. I find it useful to see what are being shared in GooRead <a href="http://twitter.com/nuin/statuses/796063240">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> @<a href="http://twitter.com/covert">covert</a> like and see what everyone else is sharing &#8230; You can link a feed from your blog, twitter account, Flickr, etc <a href="http://twitter.com/nuin/statuses/796060765">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> @<a href="http://twitter.com/covert">covert</a> It is a service that merges all the feeds that you generate  and allows interaction between friends, so you can comment <a href="http://twitter.com/nuin/statuses/796060188">#</a></p></li>
+<li><p>@<a href="http://twitter.com/covert">covert</a> FriendFeed enables you to keep up-to-date on the web pages, photos, videos and music that your friends and family are sharing. <a href="http://twitter.com/nuin/statuses/796056053">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> twhirl, but not liking it. <a href="http://twitter.com/nuin/statuses/795976501">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I unistalled on windows, my iMac is my social-hub. <a href="http://twitter.com/nuin/statuses/795970139">#</a></p></li>
+<li><p>The Greenland ice cap&#8217;s apparently melting quickly that it&#8217;s triggering earthquakes, as pieces of ice several cubic kilometers break off. <a href="http://twitter.com/nuin/statuses/795952114">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I had issues with Twhirl on Mac. It does not update sometimes, it hangs and sometimes does not display the entries <a href="http://twitter.com/nuin/statuses/795946181">#</a></p></li>
+<li><p>@<a href="http://twitter.com/amberf">amberf</a> com esses links do demo &#8230; <a href="http://twitter.com/nuin/statuses/795945534">#</a></p></li>
+<li><p>@<a href="http://twitter.com/amberf">amberf</a> pára com isso &#8230; <a href="http://twitter.com/nuin/statuses/795912461">#</a></p></li>
+<li><p>Morpheus&#8217; calling <a href="http://twitter.com/nuin/statuses/795633525">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> I also have that feeling that every time I use R I have to relearn it. Maybe the syntax is not clear enough &#8230; <a href="http://twitter.com/nuin/statuses/795627772">#</a></p></li>
+<li><p>shameless plug <a href="http://tinyurl.com/6557oy">http://tinyurl.com/6557oy</a> <a href="http://twitter.com/nuin/statuses/795557662">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> &#8220;Don&#8217;t worry about the world coming to an end today. It&#8217;s already
+tomorrow in Australia.&#8221; (Charles Schultz) <a href="http://twitter.com/nuin/statuses/795550172">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/23/twitter-updates-for-2008-04-23/">Twitter Updates for 2008-04-23</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-23T23:59:59-04:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> Thnx, because she refused to add my blog sometime ago. <a href="http://twitter.com/nuin/statuses/795496596">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> what is the requisite to have a blog added to the network? <a href="http://twitter.com/nuin/statuses/795479048">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> question: you are one of the organizers of the DNA network, right? <a href="http://twitter.com/nuin/statuses/795456865">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> I am fully engaged on the BioBarCamp. The only problem is getting there &#8230; <a href="http://twitter.com/nuin/statuses/795456346">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> I don&#8217;t even have an AppEngine account &#8230; <a href="http://twitter.com/nuin/statuses/795451794">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mza">mza</a> Damn, it beats my cassette player &#8230; <a href="http://twitter.com/nuin/statuses/795448825">#</a></p></li>
+<li><p>early leave &#8230; <a href="http://twitter.com/nuin/statuses/795408410">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mza">mza</a> I think the repository is a major issue. The release policy is also non-existent, and regarding the busy I will blog about it &#8230; <a href="http://twitter.com/nuin/statuses/795404493">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> Yes, I should have put inside quotes. My bad. <a href="http://twitter.com/nuin/statuses/795395026">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mza">mza</a> @<a href="http://twitter.com/mndoci">mndoci</a> I agree with the time (lazyness) constraints, and timing. @<a href="http://twitter.com/yokofakun">yokofakun</a> I was thinking more of the finished product &#8230; <a href="http://twitter.com/nuin/statuses/795378116">#</a></p></li>
+<li><p>why published (in sci journals) applications are not properly checked by the reviewers? Opinions &#8230; <a href="http://twitter.com/nuin/statuses/795364138">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> indeed, I hate it <a href="http://twitter.com/nuin/statuses/795187828">#</a></p></li>
+<li><p>job description = bioinformatician <a href="http://twitter.com/nuin/statuses/795154295">#</a></p></li>
+<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> better than mine, I guess <a href="http://twitter.com/nuin/statuses/795150524">#</a></p></li>
+<li><p>time to meet Morpheus <a href="http://twitter.com/nuin/statuses/794816738">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> did you read all six? <a href="http://twitter.com/nuin/statuses/794808549">#</a></p></li>
+<li><p>@<a href="http://twitter.com/Scobleizer">Scobleizer</a> to celebrate she will nuke Iran. <a href="http://twitter.com/nuin/statuses/794807411">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> I asked two: one does not like to talk about himself, the other said he would do it but only after July. <a href="http://twitter.com/nuin/statuses/794803989">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> good call too, I will add to my list (very short at the moment) <a href="http://twitter.com/nuin/statuses/794797404">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> @<a href="http://twitter.com/mndoci">mndoci</a> I had thought of her a long time ago, but decided to interview Rosie Redfield first due to the open science thingy &#8230; <a href="http://twitter.com/nuin/statuses/794793964">#</a></p></li>
+<li><p>how about Janet Thornton interviewed in SciView? What do you guys think? <a href="http://twitter.com/nuin/statuses/794791750">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> that&#8217;s why I don&#8217;t have a calendar. <a href="http://twitter.com/nuin/statuses/794790816">#</a></p></li>
+<li><p>Thanks Flyers, I will watch more than 7 meaningful playoff hockey games this year. <a href="http://twitter.com/nuin/statuses/794785793">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> a more psychological, catastrophic, biological sci-fi <a href="http://twitter.com/nuin/statuses/794785462">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> I think we are living the sci-fi of gadgets, and I think it is time to the sci-fi of Dick, Ballard, etc to revamp &#8230; <a href="http://twitter.com/nuin/statuses/794785155">#</a></p></li>
+<li><p>looking for suggestions for a new SciView interview, last couple were declined &#8230; <a href="http://blindscientist.genedrift.org/category/sciview/">http://blindscientist.genedrift.org/category/sciview/</a> <a href="http://twitter.com/nuin/statuses/794738655">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> Sunshine is a nice movie. <a href="http://twitter.com/nuin/statuses/794737794">#</a></p></li>
+<li><p>2 x 2, c&#8217;mon Flyers <a href="http://twitter.com/nuin/statuses/794723793">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/23/how-to-improve-scientific-software/">How to improve scientific software?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-23T19:45:15-04:00" pubdate data-updated="true">Apr 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Do you know the answer to the above question? No? Me neither, but I can offer some suggestions. On a daily basis, a bioinformatician is exposed to hundreds of applications, computer languages, websites, you name it. Some of them are commercial, some of them free and open source. Some of the academia-developed software are open-source, some of them are not.</p>
+
+<p>A good portion of the academia-developed software are published in scientific journals, as an 2-page application note in <a href="http://bioinformatics.oxfordjournals.org/">Bioinformatics </a>, or on a longer paper on <a href="http://www.biomedcentral.com/bmcbioinformatics/">BMC Bioinformatics</a>, just to name two of the journals of the field.</p>
+
+<p>I cannot complain of non-published applications. Usually they are free, open, and were developed during someone&#8217;s spare time. I have the option of not using them, or modify them or helping the developer to improve it. I cannot complain of lack of documentation, bugs, minor errors or even the lack of an interface.</p>
+
+<p>On the other hand, I can complain about published applications. Usually they are also free, but not always open and they were developed with a publication in mind, or at least as a mean towards a publication. It should have proper documentation, be slightly portable (yes, that&#8217;s important, so if you are developing your next groundbreaking phylogenetic tool in <a href="http://caml.inria.fr/">OCaml</a>, distribute the executable, don&#8217;t ask me to &#8220;compile&#8221; or install OCaml) and be easy or moderately easy to use. I give a break for the lack of interface.</p>
+
+<p>And, why should I expect such things from a published application? Because, apart from the developers, at least one editor and two reviewers have (supposedly) tested (or glanced over) the application. Usually, scientific journals ask the authors to provide a copy of the package that is being submitted to publication. Basically one should include everything that is going to be installed, compiled, etc. So, a simple manual or readme, installation instructions, source code, executable(s), you name it, should be in the package.</p>
+
+<p>I can say, from personal experience, that the majority of the published applications will have most of the items required for a user-friendly experience. But many fail in at least one of these aspects:</p>
+
+<ul>
+<li><p>poor (or nonexistent) documentation</p></li>
+<li><p>errors and bugs, too evident to be missed by the reviewers/editor</p></li>
+<li><p>far from being user-friendly, even the command-line ones</p></li>
+<li><p>non-portable (even between <a href="http://en.wikipedia.org/wiki/Linux">Linux</a> distros)</p></li>
+</ul>
+
+
+<p>This makes me ask myself: Are the editors/reviewers testing, checking, using these applications at all, before accepting the manuscript? I guess not, or it seems that they are not. Some errors you see in some applications are easy fix, and wouldn&#8217;t harm the program&#8217;s merit, but in the end would greatly improve user satisfaction and require less email exchanges with developers/scientists regarding bugs and errors. After all, you already published it, nobody told you that you have to support it, right?</p>
+
+<p>This brings us to the original question: how to improve scientific software? Simple &#8230; no, not really.</p>
+
+<p>Far from having the ideal solution, I will add my two cents:</p>
+
+<p>1- Journals can to create a more rigorous publication process for applications, what would include more testing from the editor/reviewers. That would make the review process slower, will make editors and reviewers to spend time, that they already have in short supply, on a job that they are not  compensated for. Everybody will be unhappy and the process fails. So, if journals are willing to publish application only manuscripts, why not have an in house testing facility, at least to check for basic things that the authors claim their software should do? Too expensive for the journals? Maybe, maybe not.</p>
+
+<p>2- Publication of applications <em>per se</em> should be abolished. If you want to release an application and publish it, be sure you prove the merits of it with a publication that includes the software, its application and results that are scientifically relevant. This way we also abolish the publication-of-the-main-project, along with the paper on the application-that-was-used-to-generate-the-results and the paper about the program-that-was-used-to-display-the-results-generated-by-the-other-application. This way we would also foster collaboration between pure bioinformatics/application development groups with wet-lab groups.</p>
+
+<p>3- Create a centralized scientific software repository, something like Sourceforge, and let people contribute, collaborate, code and develop and when the application is mature enough, publish it and give credit to everyone that had some input. Depending on the quality and amount of time dedicated to a project, the person would be a co-author or cited in the acknowledgments. This would also increase collaboration, people interested can learn and teach, exchange ideas and develop good application development standards, different computer languages, etc. Maybe you might not even need to publish the software in a journal, the user input and evaluations would be enough to solidify a good developer/scientist CV.</p>
+
+<p>All options above are not mutually exclusive, they can be implemented at the same time, or they can&#8217;t be implemented at all. Would Open Science benefit from this? I bet so.</p>
+
+<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=c24ea5f5-9528-4569-ac1c-ce2cea8e07c7" alt="" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/22/twitter-updates-for-2008-04-22/">Twitter Updates for 2008-04-22</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-22T23:59:59-04:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>time to go home &#8230; <a href="http://twitter.com/nuin/statuses/794644385">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mza">mza</a> I wish I could go in August, but whoever is coming to ISMB drop me a note and we can organize something &#8230; <a href="http://twitter.com/nuin/statuses/794630118">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> further proof that I am out of the loop, need to catch up &#8230; <a href="http://twitter.com/nuin/statuses/794613003">#</a></p></li>
+<li><p>looking for suggestions for a new SciView interview, last couple were declined &#8230; <a href="http://blindscientist.genedrift.org/category/sciview/">http://blindscientist.genedrift.org/category/sciview/</a> <a href="http://twitter.com/nuin/statuses/794607671">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> I remember reading your blog at the time. It was when I started to get into the &#8220;community&#8221; <a href="http://twitter.com/nuin/statuses/794607214">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> @<a href="http://twitter.com/mndoci">mndoci</a> why not something around ISMB too? Are you guys coming to TO? <a href="http://twitter.com/nuin/statuses/794603134">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> thanks, I am a little bit out of the loop regarding these things &#8230; <a href="http://twitter.com/nuin/statuses/794600930">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> how to get a SciFoo invite? <a href="http://twitter.com/nuin/statuses/794577635">#</a></p></li>
+<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> <a href="http://www.clcbio.com/index.php?id=616">http://www.clcbio.com/index.php?id=616</a> <a href="http://twitter.com/nuin/statuses/794575685">#</a></p></li>
+<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> that is CLC implementation? <a href="http://twitter.com/nuin/statuses/794568476">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> works fine in Konqueror, regarding the longest comment on that post, it also got the shortest one. I&#8217;m blogging about the &#8216;No&#8217; <a href="http://twitter.com/nuin/statuses/794555709">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> It might be it then. Flash 9 for Linux is quite buggy &#8230; let me try konqueror &#8230; <a href="http://twitter.com/nuin/statuses/794553988">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> any page, I tried multiple times. Linux here, do you have any Flash content? It might be it, sometimes &#8230; <a href="http://twitter.com/nuin/statuses/794551632">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> officially my Firefox does not like your website. Crashes every time I access it. <a href="http://twitter.com/nuin/statuses/794548184">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> is it the unnofficial planet python? <a href="http://twitter.com/nuin/statuses/794539316">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> Paulo Coelho, noooooooooooooooooooooooooooo, anything, anyone but &#8230; <a href="http://twitter.com/nuin/statuses/794513178">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> that&#8217;s where I found your twitter account. <a href="http://twitter.com/nuin/statuses/794509949">#</a></p></li>
+<li><p>70 k/s download speed is <em>great</em> <a href="http://twitter.com/nuin/statuses/794464252">#</a></p></li>
+<li><p>my Firefox does not like Deepak&#8217;s webpage &#8230; <a href="http://twitter.com/nuin/statuses/794367453">#</a></p></li>
+<li><p>late start, lots of fasta editing ahead &#8230; <a href="http://twitter.com/nuin/statuses/794326235">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/21/twitter-updates-for-2008-04-21/">Twitter Updates for 2008-04-21</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-21T23:59:59-04:00" pubdate data-updated="true">Apr 21<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/hyphaltip">hyphaltip</a> 700 ISMB registration fee for ISCB members is also pretty high <a href="http://twitter.com/nuin/statuses/793799648">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> the Dude is the dude. <a href="http://twitter.com/nuin/statuses/793794276">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a>  @<a href="http://twitter.com/neilfws">neilfws</a> I am averaging 80-85 Gb a month. I saw people in a discussion group that averages 300 a month. <a href="http://twitter.com/nuin/statuses/793614203">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> 20Gb combined is &#8220;nothing&#8221;. People around here complain that we have a so far non-enforced 100 Gb cap. <a href="http://twitter.com/nuin/statuses/793607458">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> why is your internet being shaped? how much cap do you have? <a href="http://twitter.com/nuin/statuses/793604288">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> coming from Australia, 1000 US is quite reasonable to ask. <a href="http://twitter.com/nuin/statuses/793325999">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> Registration this year is quite expensive. 700 dollars for members <a href="http://twitter.com/nuin/statuses/793323160">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> I got an ECCB travel fellowship in 2005. They gave me 600 euros. <a href="http://twitter.com/nuin/statuses/793322785">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/21/xkcd-got-it-wrong/">XKCD got it wrong</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-21T21:05:26-04:00" pubdate data-updated="true">Apr 21<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img src="http://imgs.xkcd.com/comics/duty_calls.png" alt="" /></p>
+
+<p>He got it <a href="http://xkcd.com/386/">wrong</a>. Nobody is &#8220;wrong&#8221; on the internets, everyone is right. Always.</p>
 </div>
   
   

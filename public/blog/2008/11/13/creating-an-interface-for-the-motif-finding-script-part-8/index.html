@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Let&#8217;s see now how do we connect our GUI to the the pymotif file (I
-changed the name because of some conflicts with the app name [my bad!],
-the &hellip;">
+  <meta name="description" content="Let’s see now how do we connect our GUI to the the pymotif file (I changed the name because of some conflicts with the app name [my bad!], the git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,97 +102,335 @@ the &hellip;">
   </header>
 
 
-<div class="entry-content"><p>Let&#8217;s see now how do we connect our GUI to the the pymotif file (I
-changed the name because of some conflicts with the app name [my bad!],
-the git repo was updated accordingly). And also how to display the
-results, in a simpler manner. Ok, first to connecting the script to the
-function file, pymotif.py. The file is already imported in our script
-and we have used it before. We need to find the exact point and which
-parameters to pass. pytmotif.py is a slightly modified version of your
-command line script, and the code is below. [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import fasta import sys from
-collections import defaultdict def choose(n, k): if 0 &lt;= k &lt;= n: ntok =
-1 ktok = 1 for t in xrange(1, min(k, n - k) + 1): ntok *= n ktok *= t
-n -= 1 return ntok // ktok else: return 0 def get_quorums(seqs, mlen):
-&#8221;&#8221;&#8221; add seq id_no to a set use explicit counter to create seq_no &#8220;&#8221;&#8221;
-quorum = defaultdict(int) for seq in seqs: for n in range(len(seq) -
-mlen): quorum[seq[n:n + mlen]] += 1 return quorum def
-calculate_motifs(input_seqs, input_seqs2): input_seqs =
-fasta.read_seqs(open(&#8216;celladhesion1000.fa&#8217;).readlines()) input_seqs2 =
-fasta.read_seqs(open(&#8216;celladhesion1000C.fa&#8217;).readlines()) foreground =
-get_quorums(input_seqs, 10) background = get_quorums(input_seqs2,
-10) N = len(input_seqs) + len(input_seqs2) res_motifs = [] for i in
-foreground: term1 = choose(background[i], foreground[i]) term2 =
-choose((N - background[i]), len(input_seqs) - 1) term3 = choose(N,
-len(input_seqs)) p = (float(term1) * float(term2)) / term3 if 0 &lt; p &lt;=
-0.0001: res_motifs.append(i + &#8216;t&#8217; + str(foreground[i]) + &#8216;t&#8217; +
-str(background[i]) + &#8216;t&#8217; + str(p)) res_motifs.sort() return
-res_motifs[/sourcecode] So, basically the line we are interested is
-this one [sourcecode language=&#8217;python&#8217;]def
-calculate_motifs(input_seqs, input_seqs2):[/sourcecode] We replace
-the wx.MessageBox line in our run_finder function and use the input
+<div class="entry-content"><p>Let’s see now how do we connect our GUI to the the pymotif file (I changed the name because of some conflicts with the app name [my bad!], the git repo was updated accordingly). And also how to display the results, in a simpler manner.</p>
+
+<p>Ok, first to connecting the script to the function file, pymotif.py. The file is already imported in our script and we have used it before. We need to find the exact point and which parameters to pass. pytmotif.py is a slightly modified version of your command line script, and the code is below.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>            <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ntok</span> <span class="o">//</span> <span class="n">ktok</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">    add seq id_no to a set</span>
+</span><span class='line'><span class="sd">    use explicit counter to create seq_no</span>
+</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">calculate_motifs</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="n">input_seqs2</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">input_seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;celladhesion1000.fa&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>    <span class="n">input_seqs2</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;celladhesion1000C.fa&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">foreground</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">background</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">res_motifs</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">term1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>        <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span>
+</span><span class='line'>        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.0001</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">res_motifs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39;t&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;t&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;t&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">res_motifs</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">res_motifs</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, basically the line we are interested is this one</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">calculate_motifs</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="n">input_seqs2</span><span class="p">):</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We replace the wx.MessageBox line in our run_finder function and use the input
 files selected by the user as parameters for calculate_motifs, and we
-are done [sourcecode language=&#8217;python&#8217;]def run_finder(self, event):
-result = pymotif.calculate_motifs(self.fore_file,
-self.back_file)[/sourcecode] Very simple and direct. This should take
+are done</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">run_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="n">pymotif</span><span class="o">.</span><span class="n">calculate_motifs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fore_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">back_file</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Very simple and direct. This should take
 care of everything except the motif width, what we will see in the next
 post. We still need a place to write the overrepresented motifs. We can
 add a text box to the frame, and we do that by adding an extra
 declaration in our __do_layout function. This time we need to add
 some extra style to the box, so it can show multiple lines and has a
-scroll bar. [sourcecode language=&#8217;python&#8217;]self.results =
-wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100), wx.TE_MULTILINE |
-wx.TE_AUTO_SCROLL | wx.HSCROLL)[/sourcecode] Notice the wx. flags
-added. MULTILINE allows the box to have multiple lines and the other two
-turn on the auto scroll and horizontal scroll. Great. And how do we
-write the results. Notice above that the function that calculates the
+scroll bar.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">TextCtrl</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">wx</span><span class="o">.</span><span class="n">TE_MULTILINE</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">TE_AUTO_SCROLL</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">HSCROLL</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice the wx. flags added. MULTILINE allows the box to have multiple lines and the other two
+turn on the auto scroll and horizontal scroll. Great. And how do we write the results. Notice above that the function that calculates the
 motifs, returns a list where each item has the motif sequence and the p
 value, sorted. So the only thing we need to do is to iterate over the
 list and print each line to the result box. That simple, and we
 accomplish it by using the WriteText method, that receives as a
 parameter a string, either literal or a string object. Our run_finder
-function will have a couple of extra lines [sourcecode
-language=&#8217;python&#8217;]def run_finder(self, event): result =
-pymotif.calculate_motifs(self.fore_file, self.back_file) for motif in
-result: self.results.WriteText(motif + &#8216;n&#8217;)[/sourcecode] That will
-present in a very simplistic way the resulting overrepresented motifs,
-but it&#8217;s enough for now. Our GUI script will be [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
-pymotif import fasta import os class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect)
-class pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
-&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
-panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
-#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
-&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-#input box for motif width, and label self.one_label =
-wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
-wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #result textbox
-self.results = wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100),
-wx.TE_MULTILINE | wx.TE_AUTO_SCROLL | wx.HSCROLL) #run bbutton
-self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) #binding the menus to functions
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu)
-self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetPath()
-self.fore_label.SetLabel(fore_file) def on_background(self, event):
-dialog = wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() ==
-wx.ID_OK: back_file = dialog.GetPath()
-self.back_label.SetLabel(back_file) def run_finder(self, event):
-result = pymotif.calculate_motifs(self.fore_file, self.back_file) for
-motif in result: self.results.WriteText(motif + &#8216;n&#8217;) #wx.MessageBox(&#8216;It
-should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;: app = pymot()
-frame = pymotGUI(parent=None, id = -1) #frame.CentreOnScreen()
-frame.Show() app.MainLoop()[/sourcecode]</p>
+function will have a couple of extra lines</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">run_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="n">pymotif</span><span class="o">.</span><span class="n">calculate_motifs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fore_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">back_file</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">WriteText</span><span class="p">(</span><span class="n">motif</span> <span class="o">+</span> <span class="s">&#39;n&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That will present in a very simplistic way the resulting overrepresented motifs,
+but it&#8217;s enough for now. Our GUI script will be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">wx</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pymot</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pymotif</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span>  <span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">fore_file</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">back_file</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#adding the panel</span>
+</span><span class='line'>        <span class="n">panel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#defines the menubar</span>
+</span><span class='line'>        <span class="n">menubar</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuBar</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#file menu</span>
+</span><span class='line'>        <span class="n">filemenu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">foreground_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select foreground file&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">background_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select background file&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">sep</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">AppendSeparator</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">quitmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Quit&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#appends the menu to the menubar and creates it</span>
+</span><span class='line'>        <span class="n">menubar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">filemenu</span><span class="p">,</span> <span class="s">&#39;File&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">SetMenuBar</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#input box for motif width, and label</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">one_label</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Motif width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">motif_width</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">TextCtrl</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;10&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span>
+</span><span class='line'>        <span class="c">#result textbox</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">TextCtrl</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">wx</span><span class="o">.</span><span class="n">TE_MULTILINE</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">TE_AUTO_SCROLL</span> <span class="o">|</span> <span class="n">wx</span><span class="o">.</span><span class="n">HSCROLL</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#run bbutton</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Run&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#labels</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">fore_label</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select the foreground file&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">back_label</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select the background file&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#binding the menus to functions</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_foreground</span><span class="p">,</span> <span class="n">foreground_menu</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_background</span><span class="p">,</span> <span class="n">background_menu</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_finder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">on_foreground</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">dialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">FileDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_OK</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">fore_file</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">GetPath</span><span class="p">()</span>
+</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">fore_label</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="n">fore_file</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">on_background</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">dialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">FileDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_OK</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">back_file</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">GetPath</span><span class="p">()</span>
+</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">back_label</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="n">back_file</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">run_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">result</span> <span class="o">=</span> <span class="n">pymotif</span><span class="o">.</span><span class="n">calculate_motifs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fore_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">back_file</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">WriteText</span><span class="p">(</span><span class="n">motif</span> <span class="o">+</span> <span class="s">&#39;n&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="c">#wx.MessageBox(&#39;It should run, eh?&#39;)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#if __name__ == &#39;__main__&#39;:</span>
+</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span>
+</span><span class='line'><span class="n">frame</span> <span class="o">=</span> <span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="c">#frame.CentreOnScreen()</span>
+</span><span class='line'><span class="n">frame</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
+</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 

@@ -9,7 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Image by Aaronyx via FlickrI was at gym, proudly wearing my PLoS Computational Biology t-shirt when a person tripped in one of the corrifors me and &hellip;">
+  <meta name="description" content="Champions League final gets to penalty shots. If the old Corinthian was part of this match the result would be already defined. From the ESPN live &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/07/08/plos-computational-biology-t-shirt/">PLoS Computational Biology t-shirt</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/21/how-british/">How British &#8230;</a></h1>
     
     
       <p class="meta">
@@ -98,23 +98,20 @@
   
 
 
-<time datetime="2008-07-08T16:19:45-04:00" pubdate data-updated="true">Jul 8<span>th</span>, 2008</time>
+<time datetime="2008-05-21T16:20:22-04:00" pubdate data-updated="true">May 21<span>st</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.flickr.com/photos/13172875@N08/2650908386/"><img src="http://farm4.static.flickr.com/3024/2650908386_c180e7d745_m.jpg" alt="The Island" /></a>Image by <a href="http://www.flickr.com/photos/13172875@N08/2650908386/">Aaronyx</a> via FlickrI was at gym, proudly wearing my <a href="http://compbiol.plosjournals.org/">PLoS Computational Biology</a> t-shirt when a person tripped in one of the corrifors me and started shouting that I was &#8220;supporting a failed model of scientific publication&#8221; and that I should start &#8220;supporting the <a href="http://www.nature.com/npg">Nature Publishing Group</a> model of publication&#8221;. I didn&#8217;t know what to say. I just know that it was the last time I wore this t-shirt in public.</p>
+  <div class="entry-content"><p>Champions League final gets to penalty shots. If the old <a href="http://en.wikipedia.org/wiki/Corinthian_F.C.">Corinthian</a> was part of this match the result would be already defined.</p>
 
-<h6>Related articles by Zemanta</h6>
+<p>From the ESPN live commentary:</p>
 
-<ul>
-<li><a href="http://scholarlykitchen.sspnet.org/2008/07/07/bulk-publishing-keeps-plos-afloat/">Bulk Publishing Keeps PLoS Afloat</a></li>
-</ul>
+<blockquote><p>How fitting perhaps that the Champions League final between two English sides should end in a pathetic bout of chest-bumping and disrespect. It&#8217;s been a big issue all year in England and now it&#8217;s two best sides have betrayed the Premier League with their self-indulgent griping and petulance. Crazy.</p></blockquote>
 
-
-<p><a href="http://reblog.zemanta.com/zemified/a02f51b3-aef1-4540-bbbb-8971861a2fa3/"><img src="http://img.zemanta.com/reblog_e.png?x-id=a02f51b3-aef1-4540-bbbb-8971861a2fa3" alt="Zemanta Pixie" /></a></p>
+<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=dea35fa3-0f50-43aa-a52c-c8c5ad84b672" alt="" /></a></p>
 </div>
   
   
@@ -127,7 +124,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/07/01/bioinformatics-carrer-survey/">Bioinformatics career survey</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/">Obtaining overrepresented motifs in DNA sequences, part 5</a></h1>
     
     
       <p class="meta">
@@ -143,16 +140,71 @@
   
 
 
-<time datetime="2008-07-01T15:44:23-04:00" pubdate data-updated="true">Jul 1<span>st</span>, 2008</time>
+<time datetime="2008-05-21T13:50:00-04:00" pubdate data-updated="true">May 21<span>st</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Via <a href="http://www.bioinformaticszen.com/2008/07/creating-a-picture-of-different-careers-in-bioinformatics/">Bioinformatics Zen</a>:</p>
+  <div class="entry-content"><p>Now that we have the script to generate the word quorums working (and
+working fast!) we need then to calculate the a <em>p</em> value for each motif
+based on the fore and background quorums. A <em>p</em> value cut-off will
+determine the statistically significant words, or overrepresented. These
+overrepresented words then can be analysed in more details (that we
+won&#8217;t see here) and for instance determine new or already known
+transcription factor binding sites. A well established statistical
+method to determine such overrepresented words is the <a href="http://www.mnlottery.com/hypergeo.html">Hypergeometric Distribution</a> (HD for short).</p>
 
-<p>Loading&#8230;</p>
+<p>HD measures &#8220;success&#8221; and &#8220;failures&#8221; for values that do not fit in the
+<a href="http://en.wikipedia.org/wiki/Binomial_distribution" title="Binomial distribution">binomial distribution</a>,
+and depend on the measurements without replacement. Basically, HD&#8217;s
+equation has a a series of binomial coefficients/combinations <img src="http://www.genedrift.org/hd.gif" alt="HD equation" /> where <em>N</em> is the population
+size, <em>m</em> is foreground cluster size, <em>k</em> is the motif quorum in the
+background gene set and <em>x</em> is the word quorum in the foreground set.
+Note that the above equation is for the cumulative HD, where a sum of
+probabilities is calculated. All the combinations in the above equation
+have to be expanded to factorials that depending on the value to be
+calculated are very computer intensive and sometimes don&#8217;t fit in the
+memory (either a float or integer).</p>
+
+<p>But <a href="http://python.org/" title="Python (programming language)">Python</a> is able to
+handle very large numbers and the calculation of large factorials is
+relatively fast. In C++, I had to use a couple of tricks to achieve a
+good speed in the factorial determination, and specially in the HD
+calculation that requires multiple factorials and multiplication,
+division and subtraction of large numbers. I didn&#8217;t want to use any
+mathematical trick such as <a href="http://en.wikipedia.org/wiki/Stirling's_approximation" title="Stirling's approximation">Stirling&#8217;s approximation</a>.</p>
+
+<p>13! in C++ already blows the size of long, so I had to use the <a href="http://www.tc.umn.edu/~ringx004/mapm-main.html">MAPM, A Portable Arbitrary Precision Math Library in C</a>. This library is
+quite fast to calculate the factorial values but when one needs to
+calculate more than 200,000 factorials the speed is unbearable. So, I
+decided to pre-calculate a series of factorial values, keeping 10
+decimal places as precision and saving in another column their
+exponential. Then using this table as an input I was able to multiply,
+divide and subtract the factorials and by employing the first law of
+exponents do the same operations with their exponential.</p>
+
+<p>This speeds up
+the process tremendously. In Python, we don&#8217;t need any extra third-party
+library, we just use Python itself, without importing an extra module. A
+factorial function in Python can be written in one line, but for clarity
+is better to define it separately. We can try throwing any number at it
+and see the result.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> \<span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">value</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We already saw <code>reduce</code> and <code>lambda</code> and using these two methods make
+the factorial function clear and simple. And why are we not using a
+recursive function? Because Python has a limit recursion depth (1000).
+Next time we will implement the code that calculates the HD <em>p</em> values.</p>
 </div>
   
   
@@ -165,7 +217,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/29/what-a-happy-day/">What a happy day!!</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-4/">Obtaining overrepresented motifs in DNA sequences, part 4</a></h1>
     
     
       <p class="meta">
@@ -181,16 +233,76 @@
   
 
 
-<time datetime="2008-06-29T16:14:56-04:00" pubdate data-updated="true">Jun 29<span>th</span>, 2008</time>
+<time datetime="2008-05-12T14:35:13-04:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Although I was born in Brazil, my heart (football and everything else) was always Spanish. I saw and suffer with losses to Yugoslavia, France, Italy, Belgium, Korea (what a robbery!!), etc, but today was a day of enjoyment and “good” suffering in the final minutes. Thanks to the Niño and to a wonderful 11 we leave the underachievers banner behind and hope to even better days ahead. See you in South Africa.</p>
+  <div class="entry-content"><p>We found a way to make the Python script as good as or better than the
+C++ executable. But for the analysis we need to do, motif counts are not
+the value we want. We need the quorum: the number of sequences the motif
+is present at least once. For instance, if the desired motifs was
+<code>AAACCCTTTG</code> we will check in which sequences this word was present. Let&#8217;s
+say in a cluster of 10 sequences, we would find it in sequences 1, 2, 3,
+4 and 5, giving us a quorum of 5 out of 10, or 50%. The quorum will be
+used in the future in the statistical calculation in order to determine
+the overrepresented motifs. With only a couple of modifications, we can
+adapt the script used to get the motif counts to get the quorum.</p>
 
-<p>Aupa España!</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seq_number</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">seq_number</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)):</span>
+</span><span class='line'>        <span class="k">if</span> <span class="ow">not</span> <span class="n">seq_number</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]:</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_number</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">quorum</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="nb">len</span><span class="p">(</span><span class="n">quorum</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> Basically, we change the way the
+<code>defaultdict</code> is initialized, this time as a list instead of int and we
+also change the procedure that used to get the counts. The loop does
+identical work, iterating along the sequences, with a window (of the
+input length) sliding on them and checking each word. This time instead
+of incrementing the value of the <code>defaultdict</code>, we append to the list
+the sequence number, obtained from a index integer variable (incremented
+in each iteration of the loop), if this number is not already in the
+list value. In the end each value of <code>quorum</code> will be a list os numbers
+and by printing the list length we obtain the quorum. Testing the above
+script there is no performance loss when comparing to the previous count
+script. Next we will see which statistical method to use and start to
+devising an script to calculate it.</p>
 </div>
   
   
@@ -203,7 +315,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/18/wordle/">Wordle</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-3/">Obtaining overrepresented motifs in DNA sequences, part 3</a></h1>
     
     
       <p class="meta">
@@ -219,16 +331,45 @@
   
 
 
-<time datetime="2008-06-18T12:36:04-04:00" pubdate data-updated="true">Jun 18<span>th</span>, 2008</time>
+<time datetime="2008-05-12T13:16:29-04:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://wordle.net/gallery/nuinondelicious"><img src="http://wordle.net/thumb/nuinondelicious" alt="" /></a></p>
+  <div class="entry-content"><p>We take a break of developing code and check for performance (non-scientific testing!).</p>
 
-<p>As <a href="http://nsaunders.wordpress.com/2008/06/19/well-everyone-else-was-doing-it/">Neil</a> said about his, it is difficult to guess that I am (was?) a biologist.</p>
+<p>In the previous entry a simple file was used
+as input: 8 DNA sequences of 500 bases each. That&#8217;s not enough to test
+the performance of the Python script against the C++ compiled
+executable. So, we use a larger file; two larger files to be more exact.</p>
+
+<p>First, we use a 555 sequence file with the sequences averaging 19371
+nucleotides and another with 3854 sequences averaging 20000 nucleotides
+in length.</p>
+
+<p>Those files were the largest foreground and background
+clusters used in analysis. Let&#8217;s see how the Pyhton and C++ fared
+(Linux&#8217;s time was used in the comparison, for simplicity).</p>
+
+<p><strong>Foreground cluster</strong> Average of 10 runs <br/>
+C++: 45.66 seconds<br/>
+Python: 36.4 seconds</p>
+
+<p><strong>Background cluster</strong> Average of 10 runs <br/>
+C++: 5 minutes and 4 seconds<br/>
+Python: 2 minutes and 44 seconds</p>
+
+<p>The C++ analysis of the background
+cluster was done on a cluster&#8217;s node, and not on my desktop computer,
+due to the fact that my desktop could not handle it. C++ defense: the
+code was developed by me and I am not a computer scientist. Clearly
+there is room for improvement and performance gain. But, definitely we
+can see that by using some advanced techniques in Python we are able to
+outperform C++ (at least C++ code developed by me) and still have a
+short and easy to read script. Next time we will change the Python&#8217;s
+script output.</p>
 </div>
   
   
@@ -241,7 +382,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/14/the-new-cult-is-coming-to-life/">The &#8220;new&#8221; cult is coming to life</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/12/a-new-religion/">A new religion?</a></h1>
     
     
       <p class="meta">
@@ -257,24 +398,14 @@
   
 
 
-<time datetime="2008-06-14T21:00:03-04:00" pubdate data-updated="true">Jun 14<span>th</span>, 2008</time>
+<time datetime="2008-05-12T07:43:05-04:00" pubdate data-updated="true">May 12<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Repent sinners, beware of the <a href="http://scienceblogs.com/pharyngula/2008/06/not_even_tempted.php">knights of the cult</a>. The &#8220;new <a href="http://en.wikipedia.org/wiki/Scientist">scientists</a>&#8221;.</p>
-
-<p>It&#8217;s getting really boring to read all the posts and the ever growing ignorance in them. I bet you will get much better science from the related articles in this post. Or not, who knows.Related articles</p>
-
-<ul>
-<li><a href="http://kotaku.com/391451/blow-135000-on-this-bogus-crystal-ps3">Blow $135,000 On This Bogus, Crystal PS3 [Playstation 3]</a> [via Zemanta]</li>
-<li><a href="http://mndoci.com/blog/2008/05/29/programming-and-science-education/">Programming and science education</a> [via Zemanta]</li>
-</ul>
-
-
-<p><a href="http://reblog.zemanta.com/zemified/d515eb08-2be7-4f9e-8a59-c5bf010a9c71/"><img src="http://img.zemanta.com/reblog_a.png?x-id=d515eb08-2be7-4f9e-8a59-c5bf010a9c71" alt="Zemanta Pixie" /></a></p>
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/43167867@N00/2486421088/"><img src="http://farm4.static.flickr.com/3154/2486421088_6a66097776_m.jpg" alt="After rainy day" /></a>Image from <a href="http://www.flickr.com/photos/43167867@N00/2486421088/">Flickr</a>I bet that in five years, a new <a href="http://scienceblogs.com/pharyngula/">religion will be formed</a>, albeit unintentionally (I am not 100% sure about the &#8220;unintentionally&#8221;).</p>
 </div>
   
   
@@ -287,7 +418,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/11/chelsea/">Chelsea</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/10/obtaining-overrepresented-motifs-in-dna-sequences-part-2/">Obtaining overrepresented motifs in DNA sequences, part 2</a></h1>
     
     
       <p class="meta">
@@ -303,71 +434,30 @@
   
 
 
-<time datetime="2008-06-11T17:27:29-04:00" pubdate data-updated="true">Jun 11<span>th</span>, 2008</time>
+<time datetime="2008-05-10T21:56:51-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Now I have at least <a href="http://news.bbc.co.uk/sport2/hi/football/teams/c/chelsea/7449627.stm">one reason</a> to root for any other team in England but Chelsea.Related articles</p>
+  <div class="entry-content"><p>We move one on our search for overrepresented motifs in DNA sequences. I
+was preparing this entry when the comments to part 1 arrived. Because of
+that we will modify our previous code to include some suggestions and
+then we will change t a little bit to output the actual values we want.
+As Titus pointed out in his comment, when we merge the sequences we
+generate errors, because we artificially including motifs that are not
+supposed to be there. But in the end we will see that we are no after
+the actual number of times a motif appears in the sequence and what
+matters is the motif quorum. The main focus of the part one was to show
+the decrease in code length from C++ to Python, introduce generator
+functions and yield and also show the nice permutation function. Turns
+out by using the approach of the previous entry there is a big drawback
+in code execution, which is around 60 times slower than C++.</p>
 
-<ul>
-<li><a href="http://www.telegraph.co.uk/sport/main.jhtml?xml=/sport/2008/06/10/sfnche110.xml">Bayern Munich&#8217;s Franck Ribery rejects Chelsea</a> [via Zemanta]</li>
-<li><a href="http://footballfanatix.blogspot.com/2008/06/ancelotti-not-going-to-chelsea.html">Ancelotti not going to Chelsea</a> [via Zemanta]</li>
-</ul>
-
-
-<p><a href="http://reblog.zemanta.com/zemified/d32e4325-0c64-4626-81e2-8b39d2f19ed7/"><img src="http://img.zemanta.com/reblog_a.png?x-id=d32e4325-0c64-4626-81e2-8b39d2f19ed7" alt="Zemanta Pixie" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/06/a-quick-assessment-of-factorial-functions-in-python/">A quick assessment of factorial functions in Python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-06T11:52:35-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A short pause on the motifs subject. As mentioned on comments there is a
-lot of different ways of calculating
-<a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorials</a> in
-Python (the same &#8220;problem&#8221; can be found in some other languages too).
-<a href="http://python.genedrift.org/2008/06/04/obtaining-overrepresented-motifs-in-dna-sequences-part-10/#comment-14054">Cariaso</a>
-suggested to time the execution of different factorial functions,
-including the ones found on <a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/67668">Python&#8217;s cookbook</a>
-(which I should have included in the beginning of last post).</p>
-
-<p>Anyway all
-functions from the webpage were included, as the one mentioned on a
-comment and both functions seen here. Using timeit (thanks Mike!) the
-execution time of all of them were measured by calculating the factorial
-of 800 and 4000. First, the functions:</p>
+<p>So we need
+to find another approach, and Mike showed us how (with some small
+modifications)</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -392,113 +482,43 @@ of 800 and 4000. First, the functions:</p>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac_01</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_02</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">value</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_03</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="kn">import</span> <span class="nn">operator</span>
-</span><span class='line'>    <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">value</span>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_04</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">long</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'><span class="c">#for a missing key, the dict entry is initialized to zero</span>
+</span><span class='line'><span class="n">counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_05</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'><span class="c">#count the length-element subsequences in each sequence</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span> <span class="o">-</span> <span class="n">length</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_06</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'><span class="c">#counts.keys() will then return the nucleotide sequences</span>
+</span><span class='line'><span class="c">#that were actually in merged_seqs</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_07</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">fac</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="n">n</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_08</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_09</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[[[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="n">i</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac_10</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="n">j</span> <span class="o">*</span> <span class="n">i</span><span class="p">]]</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'><span class="c">#print out the sequences that occur more than once</span>
+</span><span class='line'><span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">count</span><span class="p">),</span> <span class="n">counts</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>fac_01</code> was suggested by bearophile on a comment (no psyco import here),
-<code>fac_02</code> was the first one we have seen
-in the blog, <code>fac_03</code> was the one &#8220;selected as the fastest&#8221; (mentioned
-on comments too) and functions 4 to 10 were gathered from the cookbook,
-all of them using <code>lambda</code>. Now, to the results (no fancy graphs, yet),
-average over 1000 repeats, time in seconds:</p>
-
-<p><em>800!</em>
-fac_01: <strong>0.0010</strong>
-fac_02: 0.0012
-fac_03: <strong>0.0010</strong>
-fac_04: 0.0022
-fac_05: 0.0020
-fac_06: 0.0015
-fac_07: 0.0013
-fac_08: 0.0013
-fac_09: 0.0017
-fac_10: 0.0015</p>
-
-<p><em>4000!</em>
-fac_01: <strong>0.0226</strong>
-fac_02: 0.0242
-fac_03: <strong>0.0230</strong>
-fac_04: N/A
-fac_05: N/A
-fac_06: 0.0244
-fac_07: 0.0239
-fac_08: 0.0241
-fac_09: 0.0380
-fac_10: 0.0362</p>
-
-<p>In both cases the &#8220;best&#8221; functions were 1 and 3. For the smallest factorial (800!) 1 and 3 didn&#8217;t
-have a lot of advantage for 2, 6-10, while 4 and 5 were 2 times slower.
-For the largest factorial (4000!) 1 was 4% better than 3, and the third
-best (6) was also 4% slower than 3. Why do 4 and 5 have no computed
-time? Because they are recursive and it blows the recursion limit in
-Python. So I guess it is a safe bet to use either function 1 or 3, with
-a slightly advantage for 3 in the case of large factorials. But at the
-same time a believe for our case of overrepresented motifs, it would be
-better to pre-calculate the factorials, store them and access the value
-when needed. Andrew&#8217;s idea of using binomials is also interesting, and I
-am planning to test it here. He also gave a couple of other suggestions
-that would need extra imports, scipy and gmpy.</p>
+<p>This time the counting is done with a <code>defaultdict</code> initialized with integers (all zeroes), and
+instead of generating all possible combinations (which was cool and
+fast, but in the end made our script slower) a window with the input
+length is slid along the each sequence and the key of the default
+dictionary is the motif and the value is the actual count incremented as
+we determine each motif. Checking this code performance using Linux&#8217;s
+time, we get 0.2 seconds, an improvement of 5 fold on the C++ code and
+300 fold on our previous Python code (Thanks Mike and everyone else for
+the suggestions). What is different here is that the output is not
+ordered and only the seen motifs are printed in the end. We will see
+next time how to get the quorums.</p>
 </div>
   
   
@@ -511,7 +531,7 @@ that would need extra imports, scipy and gmpy.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/04/poor-octopi/">Poor octopi &#8230;</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/10/from-the-interwebs-forgotten-archives/">From the Interwebs &#8220;forgotten&#8221; archives &#8230; </a></h1>
     
     
       <p class="meta">
@@ -527,16 +547,84 @@ that would need extra imports, scipy and gmpy.</p>
   
 
 
-<time datetime="2008-06-04T15:08:59-04:00" pubdate data-updated="true">Jun 4<span>th</span>, 2008</time>
+<time datetime="2008-05-10T16:57:56-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.daylife.com/image/02tu1RtgMbbc2"><img src="http://cache.daylife.com/imageserve/02tu1RtgMbbc2/102x150.jpg" alt="DETROIT - MAY 26:  Building manager, Al Sobotka flings an octopus around during a break from game two of the 2008 NHL Stanley Cup Finals between the Detroit Red Wings and the Pittsburgh Penguins at Joe Louis Arena on May 26, 2008 in Detroit, Michigan. The Red Wings defeated the Penguins 3-0 to set the series at 2-0 Red Wings." /></a>Image by <a href="http://www.daylife.com/source/Getty_Images">Getty Images</a> via <a href="http://www.daylife.com">Daylife</a>Detroit&#8217;s <a href="http://en.wikipedia.org/wiki/Detroit_Red_Wings">Red Wings</a> tradition says someone needs to turn/throw an octopus on the ice before the game in order to get the crowd fired-up. I&#8217;ve never seen any organized group, such as <a href="http://www.peta.org">PETA</a>, to fight against this horrendous tradition. What!, nobody care for the poor <a href="http://en.wikipedia.org/wiki/Cephalopod">cephalopods</a>? Imagine what would happen if the Pittsburgh Penguins decided to throw a dead penguin on the ice to get the crowd fired-up? Why a cephalopod doesn&#8217;t have the same status of a bird?</p>
+  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tigerramki.jpg/202px-Tigerramki.jpg" alt="A tiger in India's Bandhavgarh reserve" /></a>Image via <a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg">Wikipedia</a>I have no source, but the creation date of the text file is August, 7th 1995. Good luck.</p>
 
-<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=25c9f76b-39e2-4965-b2da-597e174543ef" alt="Zemanta Pixie" /></a></p>
+<p><strong>Final Exam</strong></p>
+
+<p>Instructions: Read each question carefully. Answer all questions. Time Limit: 4 hours. Begin immediately.</p>
+
+<p><strong>History</strong></p>
+
+<p>Describe the history of the papacy from its origins to the present day,  concentrating especially, but not exclusively, on its social, political,  economic, religious, and philosophical impact on Europe, Asia, America,  and Africa. Be brief, concise, and specific.</p>
+
+<p><strong>Medicine</strong></p>
+
+<p> You have been provided with a razor blade, a piece of gauze, and a bottle of Scotch. Remove your appendix. Do not suture until your work has been  inspected. You have 15 minutes.</p>
+
+<p><strong>Public speaking</strong></p>
+
+<p>Twenty-five hundred riot-crazed aborigines are storming the classroom.  Calm them. You may use any ancient language except Latin or Greek.</p>
+
+<p><strong>Biology</strong></p>
+
+<p>Create life. Estimate the differences in subsequent human culture if this  form of life had developed 500 million years earlier, with special attention to its probable effect on the English parliamentary system. Prove your thesis.</p>
+
+<p><strong>Music</strong></p>
+
+<p>Write a piano concerto. Orchestrate and perform it with flute and drum.  You will find a piano under your seat.</p>
+
+<p><strong>Psychology</strong></p>
+
+<p>Based on your degree of knowledge of their works, evaluate the emotional stability, degree of adjustment, and repressed frustrations of each of the following: Alexander of Aphrodisias, Rameses II, Gregory of Nicea, Hammurabi. Support your evaluations with quotations from each man&#8217;s work, making appropriate references. It is not necessary to translate.</p>
+
+<p><strong>Sociology</strong></p>
+
+<p>Estimate the sociological problems which might accompany the end of the world. Construct an experiment to test your theory.</p>
+
+<p><strong>Management science</strong></p>
+
+<p>Define management. Define science. How do they relate? Why? Create a generalized algorithm to optimize all managerial decisions. Assuming an 1130 CPU supporting 50 terminals, each terminal to activate your algorithm; design the communications interface and all necessary control programs.</p>
+
+<p><strong>Engineering</strong></p>
+
+<p>The disassembled parts of a high-powered rifle have been placed in a box on your desk. You will also find an instruction manual, printed in Swahili. In ten minutes a hungry Bengal tiger will be admitted to the room. Take whatever action you feel is appropriate. Be prepared to justify your decision.</p>
+
+<p><strong>Economics</strong></p>
+
+<p>Develop a realistic plan for refinancing the national debt. Trace the possible effects of your plan in the following areas: Cubism, the Donatist controversy, the wave theory of light. Outline a method for preventing these  effects. Criticize this method from all possible points of view. Point out the deficiencies in your point of view, as demonstrated in your answer to the  last question.</p>
+
+<p><strong>Political science</strong></p>
+
+<p>There is a red telephone on the desk beside you. Start World War III. Report at length on its socio-political effects, if any.</p>
+
+<p><strong>Epistemology</strong></p>
+
+<p>Take a position for or against truth. Prove the validity of your position.</p>
+
+<p><strong>Physics</strong></p>
+
+<p>Explain the nature of matter. Include in your answer an evaluation of the impact of the development of mathematics on science.</p>
+
+<p><strong>Philosophy</strong></p>
+
+<p>Sketch the development of human thought; estimate its significance. Compare with the development of any other kind of thought.</p>
+
+<p><strong>General knowledge</strong></p>
+
+<p> Describe in detail. Be objective and specific.</p>
+
+<p><strong>* * E X T R A C R E D I T * * </strong></p>
+
+<p> Define the universe; give three examples.</p>
+
+<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=6cd57e9f-1f39-4fc6-a85c-cc42f834c7ff" alt="" /></a></p>
 </div>
   
   
@@ -549,7 +637,7 @@ that would need extra imports, scipy and gmpy.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/06/04/obtaining-overrepresented-motifs-in-dna-sequences-part-10/">Obtaining overrepresented motifs in DNA sequences, part 10</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/05/09/obtaining-overrepresented-motifs-in-dna-sequences-part-i/">Obtaining overrepresented motifs in DNA sequences, part 1</a></h1>
     
     
       <p class="meta">
@@ -565,104 +653,38 @@ that would need extra imports, scipy and gmpy.</p>
   
 
 
-<time datetime="2008-06-04T11:33:51-04:00" pubdate data-updated="true">Jun 4<span>th</span>, 2008</time>
+<time datetime="2008-05-09T21:46:50-04:00" pubdate data-updated="true">May 9<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Let&#8217;s get back to the statistical module, that will calculate an
-Hypergeometric Distribution (HD) <em>p</em> value so we can define the
-overrepresented motifs. Last time we saw it, we just had defined the
-<a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a>, which is
-immensely helpful in this case due to the number of factorial
-calculations needed in the HD. The factorial function was the one below</p>
+  <div class="entry-content"><p>Changing gears now, leaving behind Pfam alignments. I decided to start a
+new series of posts based on the conversion of some small C++ programs I
+developed in the past. These small programs (I call them modules because
+they were part of a larger application) were used to count motifs, short
+nucleotide <em>words</em> up to 10-12 base pairs, and then calculate
+statistical overrepresentation of these words by comparing a foreground
+set of DNA sequences against a background set.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">value</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>We will start comparing
+the different approaches of the C++ and the
+<a href="http://python.org/" title="Python (programming language)">Python</a> codes and
+point out advantages and disadvantages of doing it in one language or
+the other.</p>
 
-
-<p>but as mentioned in the comments by
-<a href="http://python.genedrift.org/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/#comment-13532">Dave</a>
-and by Mike via email the method used is not the best method to
-calculate factorial in
-<a href="http://python.org/" title="Python (programming language)">Python</a>. The best
-approach in this case is to use <code>operator.mul</code>. All functions in the
-operator modules are in implemented in pure C and they mimic the same
-operators in Python. So in this module we can find <code>mul</code> for
-multiplication, <code>sub</code> for subtraction, <code>add</code> for additions, etc. The
-<code>operator.mul</code> needs two arguments to multiply, and in our case we still
-need to use <code>reduce</code> to sum all the results from a series of
-multiplications. As parameters we should use a <code>range</code>, that can start
-with 2, that should go up to the number we want the factorial plus one.
-Finally our function would be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">operator</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="n">value</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The time gain, quickly measured in a non-scientific
-fashion in my system, is around 5 to 15%, depending on the factorial
-being calculated. It may seem a small gain, but when you need to
-calculate almost a million factorials for all possible motifs the amount
-of time saved is crucial. Next time we will be back with more
-statistics, expanding the module.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-8/">Obtaining overrepresented motifs in DNA sequences, part 9</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-06-03T13:59:28-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Back on new functions for motif quorums. We jump function 7 in order to
-explain &#8220;simpler&#8221; ones, 8 and 9. Both functions use <code>generators</code>. We&#8217;ve
-already seen here <code>generators</code>, which are functions that use the <code>yield</code>
-statement to generate iterators. The generator is very similar to a
-function but instead of returning a value, it yields one and waits for
-another call to resume. In function 8, a generator is used to return the
-motif sequence that is used as a key in the <code>defaultdict</code>. Notice the
-scope of the generator that is coded inside a function.</p>
+<p>First thing we need to do is to count the motifs in all
+sequences from our foreground and background sets. For the project I was
+working on, the ideal word length was 10 nucleotides. Basically our C++
+approach to increase speed was to transform the character DNA sequences
+into numbers and then, while sliding a window with the desired word
+length,
+<a href="http://en.wikipedia.org/wiki/Hash_function" title="Hash function">hash</a> the
+base-four numbers into base 10 and increment a vector position,
+previously initialized with 0. For four nucleotides and a word size of
+10 there are 1,048,576 permutations possible, from <code>AAAAAAAAAA</code> to
+<code>TTTTTTTTTT</code>. Initially the C++ program would do</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -680,34 +702,40 @@ scope of the generator that is coded inside a function.</p>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_08</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">    add seq id_no to a set</span>
-</span><span class='line'><span class="sd">    use enumerate to create seq_no</span>
-</span><span class='line'><span class="sd">    use an explicit generator to create the motifs</span>
-</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">motif_gen</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>            <span class="k">yield</span> <span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="n">motif_gen</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">seqsize</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">seqfile</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">base</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">base</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">switch</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;A&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;C&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;G&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;T&#39;</span>:
+</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>In function 9 a
-very similar structure is used but in this cases instead of a &#8220;pure&#8221;
-<code>generator</code> it uses <code>generator expressions</code> which a very similar to
-<a href="http://python.genedrift.org/2008/03/11/fasta-module-generating-reverse-complement-of-dna-sequences/">list comprehensions</a>
-but with parentheses instead of square brackets. <code>Generator expressions</code>
-are generators that can be written in one line and have identical
-behaviour as generators coded in the &#8220;regular&#8221; inception. In the
-function below the <code>generator expressions</code> provide the iterator for the
-loop with <code>motif</code> as index. Very simple and elegant.</p>
+<p> reading all
+sequences and pushing an figure for each nucleotide in a vector, and
+then sliding a window on this vector and hashing the base-four number</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -721,23 +749,390 @@ loop with <code>motif</code> as index. Very simple and elegant.</p>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_09</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
-</span><span class='line'><span class="sd">    add seq id_no to a set</span>
-</span><span class='line'><span class="sd">    use enumerate to create seq_no</span>
-</span><span class='line'><span class="sd">    use a generator expression to create the motifs</span>
-</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
-</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">)):</span>
-</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">hashSeq</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">short</span><span class="o">&gt;</span> <span class="n">subseq</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hashvalue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">power</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">w</span> <span class="o">=</span> <span class="n">subseq</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">subseq</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>            <span class="n">power</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>            <span class="n">hashvalue</span> <span class="o">+=</span> <span class="n">subseq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">pow</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="mi">4</span><span class="p">,(</span><span class="kt">double</span><span class="p">)</span><span class="n">w</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">w</span><span class="o">--</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">hashvalue</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
+</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">motifwidth</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="n">motifwidth</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">sub</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">j</span><span class="o">+</span><span class="n">motifwidth</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">hashed</span> <span class="o">=</span> <span class="n">hashSeq</span><span class="p">(</span><span class="n">sub</span><span class="p">);</span>
+</span><span class='line'>        <span class="n">nmercount</span><span class="p">[</span><span class="n">hashed</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">sub</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>In the next post we will go back to the statistical
-module and soon we will see the remainder 5 functions sent by Mike.</p>
+<p>The whole C++ code has about 400 lines, including all the
+possible output formatting and printing. Timing with <code>time</code> the C++
+executable takes a little bit less than 2 seconds to read, count and
+output different files. For Python, we will use a different approach and
+gain a lot in code simplicity. As we want to count the number of times
+size-10 words appear in all sequences, we first need to generate all
+possible permutations (with replacement) of four nucleotides. This can
+be easily accomplished by using generator functions. Regular functions
+run until completion and the return a value. For instance, a function
+that calculates the factorial of 10 will return the last value only,
+after multiplying 10.9.8.7.6.5.4.3.2.</p>
+
+<p>A generator function runs until a
+value is available to return, <code>yielding</code> it and then suspending its
+operation until called again. The yielding part was emphasized because
+<code>yield</code> is the command used by Python to return the value and suspend
+the function until further notice. In the <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a>, a
+generator would return the intermediary factorial values up to 10. To
+generate all 1 million plus permutations of 4 nucleotides we need a
+function similar to the one below (modified from
+<a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/190465">here</a>)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">yield</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+</span><span class='line'>            <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>                <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically, what this generator function does is to combine all four
+nucleotides in words of size 10. This is a <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science">recursive
+function</a> &#8220;Recursion (computer science)&#8221;),
+where the result of the function is dependent on the n-1 value
+calculated by the function until n equals 0. The first <code>for</code> loop over
+the items that we want to permute (the nucleotides) and the second <code>for</code>
+recursively calls <code>permutations starting with the initial n</code> passed (10)
+until we reach 0. Debugging this function we will see that <code>i</code> is
+constant for each iteration of the second loop and only <code>n</code> changes from
+10 to 0, while one by one nucleotides are joined to form a motif. It
+starts with <code>AAAAAAAAAA</code>, then <code>AAAAAAAAAC</code>, then <code>AAAAAAAAAG</code>, until it gets
+to a poly-T. Our final code would look like the one below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">yield</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
+</span><span class='line'>            <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>                <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">merged_seqs</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">merged_seqs</span> <span class="o">+=</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">nucleotides</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">merged_seqs</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where we read the input sequence(s), merge them in one long string and as we
+generate all possible combinations we count the number of times they
+appear. This code running on the same input file used on the C++
+executable is 60 times slower, taking in average one full minute to
+count motifs in 8 500 bp DNA sequences. The slowest section is the
+count, as the generation of all possible combinations is
+straightforward. We lose some speed, but gain a lot on code simplicity
+and clarity. Next we will modify this code to output different counts
+needed for the statistical analysis.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/05/still-on-merging-pfam-alignments/">Still on merging Pfam alignments &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-05T15:54:10-04:00" pubdate data-updated="true">May 5<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One of the things I like about Python and the Python community is the
+search for the making code simple and clear. Tal left a comment in the
+last post about merging Pfam alignment sequences suggesting another
+approach to our problem. The code is below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span><span class="p">,</span> <span class="n">groupby</span>
+</span><span class='line'>    <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">-&gt;</span><span class="si">%d</span><span class="se">\n</span><span class="si">%s%s</span><span class="s">&quot;</span>
+</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">keyfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">it</span><span class="p">:</span> <span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">it</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">keyfunc</span><span class="p">),</span> <span class="n">keyfunc</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">jname</span><span class="p">,</span> <span class="n">jseq</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>            <span class="n">kname</span><span class="p">,</span> <span class="n">kseq</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>            <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format</span> <span class="o">%</span> <span class="p">(</span><span class="n">jname</span><span class="p">,</span> <span class="n">kname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">jseq</span><span class="p">),</span> <span class="n">jseq</span><span class="p">,</span> <span class="n">kseq</span><span class="p">)</span> <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The code also uses the <code>itertools</code> module, importing
+<code>chains</code> and <code>groupby</code>. We already saw chains in the previous post, but
+<code>groupby</code> is new to us here. <code>groupby</code> was introduced in the 2.4 version
+of Python and is a method returns keys and groups from an <code>iterable</code>. An
+Python <code>iterable</code> is any object that can return its elements at given
+time, for instance in a <code>for</code> loop, while the index of this loop is the
+<code>iterator</code>. So, in our case <code>groupby</code> will return the sequence names
+based on the <code>lambda</code> function defined before the <code>groupby</code> and the
+<code>chain</code> method. Usually <code>groupby</code> has this syntax</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">groupby</span><span class="p">(</span><span class="n">iterable</span><span class="p">[,</span> <span class="n">key</span><span class="p">])</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The key is
+optional, and in our case it is the lambda function. Another method new
+to use that uses the same lambda function is <code>sorted</code>. As its name
+hints, <code>sorted</code> returns a sorted list of iterables. The key in this case
+is the sorting algorithm, that actually creates the comparison between
+items. Basically in the code above, a lambda function extracts the
+desired regions from the sequence names, which are them iterated in a
+<code>groupby</code> method that returns they key values, one value when the sequence
+is unique, two values when there are two sequences, of a sorted iterable
+generated by a chain that read both input lists in one pass. After this
+we just need to check the number of returned values and we have our list
+of matching sequences.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/03/revisting-pfam-alignments-again/">Revisting Pfam alignments, again &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-03T08:39:31-04:00" pubdate data-updated="true">May 3<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Continuing on the <a href="http://en.wikipedia.org/wiki/Pfam" title="Pfam">Pfam</a>
+alignment sequence merge, Luke provided two solutions, one for case
+where we have duplicates in the file (that happens) and another one
+where duplicates are not tested. First for the case with no duplicates:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">i</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">i</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">shared_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shared_ids</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">j</span> <span class="o">=</span> <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>        <span class="n">k</span> <span class="o">=</span> <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>        <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&amp;gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>        <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically, his approach is to create two dictionaries, <code>first</code> and
+<code>second</code> to store the data from our lists of
+<a href="http://fasta.bioch.virginia.edu/" title="FASTA">FASTA</a> objects. The
+dictionaries keys are the sections for each sequence name, and the values
+are the FASTA object created when we read the file. After that, a <code>set</code>
+of both dictionaries is created, and this represents everything we need
+in order to find shared sequences between both files. The output is
+trivial, basically iterating the set and getting the values from both
+dictionaries. But, in some cases there are some duplicates in each Pfam
+alignment, and this would make the above approach to miss some
+sequences. Luke also provided a solution for this case</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">shared_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shared_ids</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">cross</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="n">cross</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&amp;gt;&#39;</span><span class="err">’</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>            <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>            <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which is similar to what Mike suggested. In his approach <code>defaultdict</code> is used
+instead of a regular dict, initialized as a list. Again we can take
+advantage of the fact that we that the value of <code>defaultdict</code> has the
+same features as the object that was used to initialized it. The same
+<code>set</code> approach is used and we have a nice set of merged sequences from
+two Pfam alignments. Remember that <code>defaultdict</code> were introduced in Python
+2.5, it won&#8217;t work on older versions.</p>
 </div>
   
   

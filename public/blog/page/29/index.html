@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Very impressive, thin, light, powerful.. But do they need to called MacBook Air? What a lame-name.
-">
+  <meta name="description" content="This week the largest Brazilian magazine (Newsweek-, Time-style) has a report (closed source, in Portuguese) about the percentage of Brazilians that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/01/15/impressive-but-how-do-you-call-it/">Impressive, but how do you call it?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/11/02/can-you-point-your-country-on-a-map/">Can you point your country on a map?</a></h1>
     
     
       <p class="meta">
@@ -99,14 +98,14 @@
   
 
 
-<time datetime="2008-01-15T14:02:05-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2008</time>
+<time datetime="2007-11-02T16:07:26-04:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.theglobeandmail.com/servlet/story/RTGAM.20080115.wgtmacworld0115/BNStory/Technology/home?cid=al_gam_mostemail">Very impressive, thin, light, powerful.</a>. But do they need to called MacBook Air? What a lame-name.</p>
+  <div class="entry-content"><p>This week the largest Brazilian magazine (Newsweek-, Time-style) has a <a href="http://veja.abril.uol.com.br/071107/p_108.shtml">report</a> (closed source, in Portuguese) about the percentage of Brazilians that can find Brazil on a World Map. The report&#8217;s title can be freely translated to &#8220;And we mock the Americans &#8230;&#8221;, referencing the usual stories of the ignorance of the Americans and other nationalities on geographical knowledge. At least 1000 people were interviewed in different Brazilian state capitals and 50% were not able to point the country on a map and, not surprisingly, only 18% can find US.</p>
 </div>
   
   
@@ -119,7 +118,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/01/08/preaching/">Preaching</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/11/01/functional-programming-in-python-using-filter-take-one/">Functional programming in Python: using filter, take one</a></h1>
     
     
       <p class="meta">
@@ -135,14 +134,57 @@
   
 
 
-<time datetime="2008-01-08T12:59:07-05:00" pubdate data-updated="true">Jan 8<span>th</span>, 2008</time>
+<time datetime="2007-11-01T16:08:24-04:00" pubdate data-updated="true">Nov 1<span>st</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>When someone &#8220;preaches&#8221; atheism, what is the difference of preaching some kind of religion?</p>
+  <div class="entry-content"><p>This time we check another functional programming function from Python:
+<code>filter</code>. As the name implies, <code>filter</code> returns items from a sequence
+(list, string, etc) that are true to a certain condition defined by the
+function. The syntax is very similar to <code>map</code></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">filter</span> <span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and as <code>map</code> it returns a list (except when the sequence is a string or tuple). In
+the example here we will use <code>lambda</code> to define a one-line function.
+Let&#8217;s say we want to quickly find the sequences that contain a motif,
+sequences that are stored in a FASTA file (again, this is a very simple
+example, just a primer). Of course we can use another
+<a href="http://python.genedrift.org/2007/08/28/finding-motifs-iupac-and-regex-an-approach/">method</a>,
+but this time we want to use a functional programming approach. <code>filter</code>
+suits us best here. Again we will reuse the newly created function that
+returns only the sequences from a FASTA file and we end up with a script
+that looks like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sequences</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">motif</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">motif</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sequences</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We skip the part we already seen and check the last line. Basically each
+item from the list (sequences) is a string and we are applying the
+<code>find</code> method in order to find a motif on a position larger or equal to
+0. Notice again, the syntax similar to <code>map</code>. Of course this is not very
+useful as it is, so next time we will change this script to make it more
+meaningful.</p>
 </div>
   
   
@@ -155,7 +197,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/12/19/a-bit-of-tnt-in-your-morning-coffee/">A bit of TNT in your morning coffee</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/10/31/functional-programming-in-python-using-map/">Functional programming in Python: using map</a></h1>
     
     
       <p class="meta">
@@ -171,18 +213,176 @@
   
 
 
-<time datetime="2007-12-19T11:24:20-05:00" pubdate data-updated="true">Dec 19<span>th</span>, 2007</time>
+<time datetime="2007-10-31T13:33:59-04:00" pubdate data-updated="true">Oct 31<span>st</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.zmuc.dk/public/phylogeny/tnt/">TNT</a> is free!!! Long live TNT.</p>
+  <div class="entry-content"><p>Functional programming in Python. First we need to define what is
+functional programming. Quoting
+<a href="http://en.wikipedia.org/wiki/Functional_programming">Wikipedia</a>: &#8220;is a
+programming paradigm that treats computation as the evaluation of
+mathematical functions and avoids state and mutable data. It emphasizes
+the application of functions, in contrast with the imperative
+programming style that emphasizes changes in state.&#8221; Rather complex, eh?</p>
 
-<p>TNT stands for Tree analysis using New Technology. First published in 1999 by Nixon and Goloboff on Cladistics (where else?) it gives you the possibility doing phylogenetic analysis using parsimony and &#8230; No, that&#8217;s it. Only parsimony. But there is a bright side: you can actually run it on Linux and Mac, albeit without a user interface. That&#8217;s a major step for a program that when first released had an icon depicting an apple with the forbidden sign around it.</p>
+<p>Another explanation can be found
+<a href="http://www.cs.nott.ac.uk/~gmh/faq.html#general-topics">here</a>:
+&#8220;Functional programming is a style of programming that emphasizes the
+evaluation of expressions, rather than execution of commands. The
+expressions in these language are formed by using functions to combine
+basic values. A functional language is a language that supports and
+encourages programming in a functional style.&#8221; Basically any functional
+programming language tries to minimize the code, reducing it, avoiding
+the use of variables and relying on the use of functions and
+expressions. Python, clearly, is a not a functional programming language
+<em>per se</em>, but it has some functions that allow a functional approach. We
+will see a couple of them in this entry. If you are interested in
+learning more about functional programming and Python, check Alan
+Gauld&#8217;s
+<a href="http://www.freenetpages.co.uk/hp/alan.gauld/tutfctnl.htm">tutorial</a>.</p>
 
-<p>I am planning to test it and post a review soon.</p>
+<p>There are many ways to use functional programming in bioinformatics. We
+will start with a very simple example, but first we need to modify the
+FASTA module we created before. Currently, this module only has two
+functions, one that reads sequences and their names and one that formats
+their output. We will add a function that reads only the sequences and
+returns a list containing them. This function is very similar to the
+<code>read_fasta</code> function</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">read_seqs</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">seq</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">items</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and it uses an identical approach. Instead of creating an instance of
+<code>Fasta</code> class we only create a simple list, and ignore the sequence
+title. This will also be useful for a future code reuse, as sometimes we
+are only interested in the sequence itself and not the name. Might save
+us some typing and decrease code size depending on the situation. In
+this entry we will see one Python&#8217;s functional programming function:
+<code>map</code>. But we will need to use another one too, which is called
+<code>lambda</code>. <code>lambda</code> is the function that defines what is called an
+anonymous function, or a nameless function that can fit in one line. We
+have seen that functional programming is all about functions, so
+<code>lambda</code> is the aid to implement the small and short functions we use in
+this type of approach. One example of <code>lambda</code> use would be on the
+calculation of number exponentials, which normally can be achieved like
+this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">exp</span><span class="p">(</span><span class="n">value</span><span class="p">):</span> <span class="k">return</span>
+</span><span class='line'><span class="n">value</span>\<span class="o">*</span>\<span class="o">*</span><span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(exponentials in Python are defined by **)</p>
+
+<p>Using <code>lambda</code> we can rewrite the above function like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">exp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">value</span><span class="p">:</span><span class="n">value</span>\<span class="o">*</span>\<span class="o">*</span><span class="mi">2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with the
+following syntax:</p>
+
+<p><code>lambda [parameters] : [expression to be used on the parameters]</code></p>
+
+<p>In
+both cases you can use the functions the same way, by calling <code>exp(10)</code>
+for example. Ok, let&#8217;s move to <code>map</code> then. <code>map</code> applies a function,
+usually a <code>lambda</code>, to every item in a list of items. This list can be
+of any sequence type, but <code>map</code> always returns a list. Using the above
+exponential example, let&#8217;s say we want to calculate the cube of a series
+of values. Using <code>map</code> and <code>lambda</code> we would have something like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span><span class="n">value</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">56</span><span class="p">])</span>
+</span><span class='line'><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">1156</span><span class="p">,</span> <span class="mi">3136</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that&#8217;s it.
+Dissecting this line of code, we have a <code>lambda</code> function that due to
+the use of the <code>map</code> function is applied on every item of the list that
+follows. This list can be anything, previously set or not. So, applying
+this to a bioinformatics example would be simple (this might not be the
+most useful or real-world example ever, but it should give us a primer
+to endeavour in more advanced stuff). Let&#8217;s say we want to check
+sequence size for all sequences in a FASTA file. Emphasizing code reuse,
+we created a new function that returns a list of the actual sequences
+only. Without functional programming a loop to read the sequence lengths
+would be very simple</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With a functional programming approach,
+we can do it in one line (not a large advantage here)</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yep, not
+a lot of gain with this example, as mentioned. The full script would
+look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">seq</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">),</span> <span class="n">data</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>data</code> is our list of sequences, and inside the <code>map</code> function we have a
+<code>lambda</code> that checks for the size of each sequence in that list. Quite
+simple.</p>
 </div>
   
   
@@ -195,7 +395,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/12/05/spam/">Spam</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/10/30/new-sciview-interview-coming/">New SciView interview coming.</a></h1>
     
     
       <p class="meta">
@@ -211,14 +411,14 @@
   
 
 
-<time datetime="2007-12-05T21:24:51-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+<time datetime="2007-10-30T16:01:13-04:00" pubdate data-updated="true">Oct 30<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Getting spam/phishing is annoying, but getting spam/phishing with typos or poor grammar is even worse. IF you are not competent to write correctly, you shouldn&#8217;t be trying to scam someone.</p>
+  <div class="entry-content"><p>Stay tuned.</p>
 </div>
   
   
@@ -231,7 +431,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/12/05/if-you-live-in-a-cave/">If you live in a cave</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/10/30/python-on-osx-leopard/">Python on OSX Leopard</a></h1>
     
     
       <p class="meta">
@@ -247,19 +447,14 @@
   
 
 
-<time datetime="2007-12-05T14:47:11-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+<time datetime="2007-10-30T09:46:30-04:00" pubdate data-updated="true">Oct 30<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>and haven&#8217;t seen this</p>
-
-<p><a href="http://xkcd.com/353/">
-http://xkcd.com/353/</a></p>
-
-<p><a href="http://blindscientist.genedrift.org/2007/12/05/if-you-live-in-a-cave/pythonpng/"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/12/python.png" alt="python.png" /></a></p>
+  <div class="entry-content"><p>Rumors that Python wouldn&#8217;t be included in the new Mac OSX Leopard (10.5) were unfounded. Anyway, Apple decided not to include less important languages.</p>
 </div>
   
   
@@ -272,7 +467,7 @@ http://xkcd.com/353/</a></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/12/01/bioblogs-17-the-one-santa-brough-us/">Bio::Blogs #17 - The one Santa brought us</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/10/29/merging-single-or-multiple-sequence-fasta-files/">Merging single (or multiple) sequence FASTA files</a></h1>
     
     
       <p class="meta">
@@ -288,76 +483,111 @@ http://xkcd.com/353/</a></p>
   
 
 
-<time datetime="2007-12-01T22:24:48-05:00" pubdate data-updated="true">Dec 1<span>st</span>, 2007</time>
+<time datetime="2007-10-29T15:17:02-04:00" pubdate data-updated="true">Oct 29<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/12/santa.png" alt="santa.png" /></p>
+  <div class="entry-content"><p>Last couple of entries we saw how to split a multiple FASTA file. And
+how can we achieve the opposite, merge single (or sometimes multiples)
+sequence files in on larger multiple sequence file? In Python is very
+simple, but we need to introduce a new module that would allow us to get
+the desired result. In most scripts we have seen in previous posts, we
+end up reading a single file from the input (in some cases two) and
+that&#8217;s not enough in the case of merging multiple files.</p>
 
-<p>Yep, Santa dropped by before the busy Holiday Season to help with the 17th edition of the Bio::Blogs digest. Welcome and enjoy!</p>
+<p>Python has a
+module called <code>glob</code> that is very powerful for reading contents of a
+directory. We can use any type of pattern matching to find only the
+files we want, wildcards allowed. Let&#8217;s test glob and see what we can
+get. We start with a simple script</p>
 
-<p><strong>New blogs</strong></p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">glob</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s">&#39;\*.txt&#39;</span><span class="p">):</span>
+</span><span class='line'>  <span class="k">print</span> <span class="n">i</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>This last month we welcomed one interesting blog that will have a lot to add to the community. Alexei Drummond is showing us his bag of goods at the <a href="http://bioinf.cs.auckland.ac.nz/">Computational Biology and Evolution</a>, self described as &#8220;a heady mix of computational science, evolutionary biology and other things that matter&#8221;.</p>
 
-<p>Also Pedro suggested a good look at <a href="http://wrightfisher.wordpress.com/">Thirst for Science</a>, a blog that is surely &#8220;drinking the koolaid&#8221; and has opinions on a myriad of scientific subjects, from RNAs to population genetics.</p>
+<p>If we run this
+script in a directory (Windows or Linux or Mac) we should see a list of
+the filenames that match the patter passed to glob.glob. In this case
+every file with a txt extension. This should be enough for us, for now.
+Basically we need to create a list of all FASTA files, that match a
+certain name pattern, and then take care of the sequences using our
+already known FASTA module. To make things more flexible, we should ask
+in the command line for a pattern to match, and maybe a output filename.
+Our script would look like</p>
 
-<p><strong>Not camera shy</strong></p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">glob</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">filepattern</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'><span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#initialize lists</span>
+</span><span class='line'><span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#glob.glob returns a list of files that match the pattern</span>
+</span><span class='line'><span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">filepattern</span><span class="p">):</span>
+</span><span class='line'>    <span class="c">#we read the contents and an instance of the class is returned</span>
+</span><span class='line'>    <span class="n">contents</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_fasta</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>    <span class="c">#a file can contain more than one sequence so we read them in a loop</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">seqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#we print the output</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)):</span>
+</span><span class='line'>    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Deepak, from bbgm is definitely not camera shy, and he pitches his opinions on <a href="http://mndoci.com/blog/2007/11/04/scientific-intelligence-is-business-intelligence/">business and scientific intelligence</a>.</p>
 
-<blockquote><p>I believe there will be a time when life science companies will begin looking at biological, chemical, etc information as a core enterprise asset, rather than something for the research crowd</p></blockquote>
-
-<p>Watch the videocast too.</p>
-
-<p><strong>Just rambling</strong></p>
-
-<p>Publicly, Pedro rambles this month about the possibilities of predicting <a href="http://pbeltrao.blogspot.com/2007/11/predicting-functional-association-using.html">functional association by mRNA localization</a></p>
-
-<blockquote><p>As expected, more specific mRNA localization terms (localizations 30) are more informative for prediction of functional association since fewer terms are required to obtain the same or higher likelihood of interaction.</p></blockquote>
-
-<p>And he also rambles about the hot hyped topic of <a href="http://pbeltrao.blogspot.com/2007/11/linking-out-personalized-medicine.html">personalized medicine</a>. And he is concerned</p>
-
-<blockquote><p>that all the attention the genomics side of personalized medicine will distort the relative importance of nature versus nurture.</p></blockquote>
-
-<p>And he is not <a href="http://thegenesherpa.blogspot.com/2007/11/cottage-industry-cottage-cheese-is-more.html">the</a> <a href="http://www.palidwor.com/blog/?p=63">only</a> <a href="http://scienceroll.com/2007/11/10/navigenics-23andme-and-helix-health-the-review/">one</a> <a href="http://scienceroll.com/2007/11/18/23andme-the-re-review/">posting</a> <a href="http://pimm.wordpress.com/2007/11/18/23andmes-global-similarity-map-as-mission-connecting-all-people-on-the-dna-level/">about</a> <a href="http://mndoci.com/blog/2007/11/19/your-personal-health-social-networking-x0-revisited-and-some-killer-video/">it</a>.</p>
-
-<p><strong>Frilas</strong></p>
-
-<p>Frilas is the way freelancers are known in Brazilian newspapers, and Pavel, from Freelancing Science, blogs about the possibility of using <a href="http://freesci.wordpress.com/2007/11/27/software-portability-and-virtual-appliances/">Virtual Machines to distribute software</a>.</p>
-
-<blockquote><p>So creating a virtual appliance for, let’s say, BLAST, would mean installing a fresh copy of our favourite linux under VMWare Server with nothing more than necessary libraries, copy of BLAST executables and possibly a web interface. Voilla. Virtual appliance for BLAST, anybody?</p></blockquote>
-
-<p><strong>Say wha?</strong></p>
-
-<p><a href="http://www.cs.man.ac.uk/~hulld/">Duncan</a> is still worried about the <a href="http://www.nodalpoint.org/2007/11/30/burn_semantic_web_burn">Semantic Web</a>. Nuf said.</p>
-
-<p><strong>Is there a new Omic?</strong></p>
-
-<p>Keith Robinson, from Omics! Omics!, wants <a href="http://omicsomics.blogspot.com/2007/11/incredible-shrinking-human-genome.html">to shrink us all</a>. Maybe it would be good to meet the aunts during Xmas. HE wonders about who or how they are shrinking our (mine, yours, theirs) genomes.</p>
-
-<blockquote><p>The genome is finished &#8211; but not so finished. Bits and pieces are still getting polished up, and while they are generally dull and monotonous a gene or two might still hide there</p></blockquote>
-
-<p><strong>Already tomorrow</strong></p>
-
-<p>Yep, it is already tomorrow there (no matter what day is here!) and after posting about his perl variables  and the election, Neil, who is always doing something rather desperate, tells us about interesting <a href="http://nsaunders.wordpress.com/2007/11/21/stem-cells-and-science-blogs/">blogs that cover some stem cell subjects</a>. Check it out.</p>
-
-<p><strong>My sardine</strong></p>
-
-<p>This month I posted the last SciView interview in 2007, you might want to take a look. Dr Roderic Page was interviewed and he just said</p>
-
-<blockquote><p>My sense is that large projects don’t always scale well. You don’t get 10x more out of a project simply because it has 10x as much money. You get administrative layers, and a lot of politics. If the big project is really lots of little ones, then it may well succeed. Barcoding is really lots of little projects — everybody grabs their favourite beastie and sequences it.</p></blockquote>
-
-<p>among other things. <a href="http://blindscientist.genedrift.org/2007/11/19/sciview-part-6-interview-with-dr-roderic-page/">Take a look</a>.</p>
-
-<p><strong>Happy Holidays</strong></p>
-
-<p>Bio::Blogs #17 is very short. Everybody is busy finishing their papers and the shopping list. It will be back next month, maybe here, maybe somewhere else if you want to host it. On the meantime, please to not give <a href="http://blindscientist.genedrift.org/2007/11/19/sciview-part-6-interview-with-dr-roderic-page/">this </a>to any of your good friends.</p>
-
-<p>Happy Holidays!!!!</p>
+<p>Except for the
+glob part, we&#8217;ve already seen the rest in previous entries. Here, the
+input <code>filepattern</code> should be enclosed in single or double quotes in
+order to be transmitted properly (for instance when you include
+wildcards). In the first <code>for</code> loop we access the list of files created
+by <code>glob.glob</code> and extract the sequence name(s) and sequence(s) from
+each file and parse them to a list which will serve to print the final
+output. An example command line would look like
+<code>python merge.py '*.fas' merged.fa</code> Of course, there are several ways of
+merging FASTA files, but not every time you have Linux&#8217;s <code>cat</code> available.
+Next time we will (try) to have fun with Python functional programming.
+Stay tuned.</p>
 </div>
   
   
@@ -370,7 +600,7 @@ http://xkcd.com/353/</a></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/11/30/clc-products-who-uses-them/">CLC products: who uses them?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/10/29/splitting-a-fasta-file-using-awk-no-sed-required-or-do-we-care-about-csplit/">Splitting a FASTA file using awk (no sed required), or do we care about csplit?</a></h1>
     
     
       <p class="meta">
@@ -386,18 +616,42 @@ http://xkcd.com/353/</a></p>
   
 
 
-<time datetime="2007-11-30T13:41:10-05:00" pubdate data-updated="true">Nov 30<span>th</span>, 2007</time>
+<time datetime="2007-10-29T11:37:07-04:00" pubdate data-updated="true">Oct 29<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>I have a Google alerts with bioinformatics as its key word and this morning I received an email that points to <a href="http://www.medicalnewstoday.com/articles/90228.php">this</a> article on Medical News today. I know it has a huge amount to PR in the article, but the first phrase is symbolic:</p>
+  <div class="entry-content"><p>We saw that &#8221;<a href="http://eridanus.net/">top notch bioinformaticians</a>&#8221; use
+csplit to split FASTA files, so I decided to
+<a href="http://python.genedrift.org/2007/10/10/alternative-methods-to-split-a-fasta-file/">post as many as possible alternatives</a>
+to split these files. As csplit, awk is something found with more
+frequency in Linux machines than Windows, but it can be installed on
+Windows (even Vista) and it runs fine.</p>
 
-<p><em>&#8220;CLC bio, the world&#8217;s leading bioinformatics solution provider, announced the release of CLC Bioinformatics Database.&#8221;</em></p>
+<p>Awk is usually shown in parallel
+with sed, as both utilities have the main objective of text processing.
+I browsed the web searching for a sed/awk solution to split FASTA files
+something that I thought could be done in one line. And I found
+<a href="http://www.unix.com/shell-programming-scripting/14576-split-file-using-awk.html">it</a>.</p>
 
-<p>So, I need to ask: have you ever used a CLC product or know someone that uses it? Leave a comment if so, because I never met someone that uses their products, and they are still the &#8220;world&#8217;s leading bioinformatics solution provider&#8221;.</p>
+<p>With a little tweak I ended up with a one-liner using awk that split the
+sequences in multiple files:</p>
+
+<p><code>awk '/^&gt;/{f="fasta."++d} {print &gt; f}'</code></p>
+
+<p>Awk breaks each line of its input into fields that can be checked,
+printed or ignored. In the command line above. awk&#8217;s commands are in
+between the single quotes. The first command is a regex that matches
+initial <code>&gt;</code>. Inside the curly braces we assign a variable <code>f</code> to store
+the output filename we want and also have an integer that is incremented
+every time we pass through it. The second curly braces are for the
+actual output, where we use awk&#8217;s <code>print</code> command and redirect output to
+a file named after the variable we created in the first commands in
+between curly braces. Finally, we assign an input file, outside the
+region delimited by single quotes. And that&#8217;s it. As output we will have
+a series of files called fasta each one containing one sequence.</p>
 </div>
   
   
@@ -410,7 +664,7 @@ http://xkcd.com/353/</a></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/11/28/wow/">Wow!</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/10/26/generating-multiple-sets-of-random-dna-sequences-with-one-script-and-a-bash-one/">Generating multiple sets of random DNA sequences with one script (and a bash example) [updated]</a></h1>
     
     
       <p class="meta">
@@ -426,16 +680,249 @@ http://xkcd.com/353/</a></p>
   
 
 
-<time datetime="2007-11-28T19:03:12-05:00" pubdate data-updated="true">Nov 28<span>th</span>, 2007</time>
+<time datetime="2007-10-26T12:15:47-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>I have been using <a href="http://www.repeatmasker.org/">RepeatMasker</a> to mask common repeats of my sequences. I have just upgraded it to the version open-3.1.8 from open-3.1.6 and the speed gain was incredible. The same 10 Mb sequence that was taking more than a day to run in 3.1.6 took a couple of minutes on the newest. Nice!</p>
+  <div class="entry-content"><p>A commenter, Dilmurat, gave me an idea about the <a href="http://python.genedrift.org/2007/04/04/a-script-to-simulate-dna-sequence-sets/">script</a>
+that generates random DNA sequence sets. Apparently it wasn&#8217;t clear that
+the script was intended to generate only one sequence set, and not
+multiple sets. Dilmurat also offered his solution:</p>
 
-<p><em>I need to correct myself: I was using version open-3.1.6, not 7</em></p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rlength</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">rlength</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">rlength</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I don&#8217;t know if the lack of
+formatting in the comments might have generated a different result to
+me, but let&#8217;s see how we can generate multiple sets of random DNA
+sequence. Getting back to section 4, we can start with the original
+script that creates only one set</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">sequence</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There is a very easy way of
+changing this code to make it output a definite number of sets. WE add a
+new input parameter and also a loop to it, and that should take care of
+everything.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">random</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">simulate_sequence</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">dna</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">sequence</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">setsize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'><span class="n">minlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span><span class='line'><span class="n">maxlength</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</span><span class='line'><span class="n">nsets</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsets</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">sequenceset</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">setsize</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">rlength</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">minlength</span><span class="p">,</span> <span class="n">maxlength</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">sequenceset</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simulate_sequence</span><span class="p">(</span><span class="n">rlength</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequenceset</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">print</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A test with 10 as the
+number of sequences, 20 as minimum and 30 as maximum length and 2 sets
+output something like this</p>
+
+<p><code>GAGGACGACGTGTCGGATTAGAT GCAGATAAACGGGTAAGATGA
+ATTAGGAAGGGTCTAAGAGATCCCGGTAA ATCAGCCTCCGCACGCCTCGTGTA
+AGTTTAGCTAGCCGTAGTACTTTC TTTGAAGCTCGGGGCTAAACTCCGACCAC
+GACAGGGTAAGGTGACCTTCTCAG TGGTTGACTCTGTTCTCTGGT
+CGCAATACGTCGTGGTGCCGCTCCACT TCCTGCAGGGAGGCAGCAGC
+TTCGGAGGTATTGAGTACTGTTGCATCG CCCTTATAATACCTAGTGTAACATTC
+TAGTCATGTCATATAACCTGTGTCG AGCGCGAACCCTCCAGTTTTTTT
+AGGGCGTGTAAGCGACGTTGAACAAG CCATGCGTCTTTTTGGCGATCCGT
+ACTCAGATCGGCTAGTATCCTTCGCACG CTATCGTCGTTCCCAGCAACGGCAGCAGA
+CGTGCGATGGGGCGAGATTTTT ACGCTTTGGCTAGTGGGGAGTTTCGCCACT</code></p>
+
+<p>what is basically
+what we need. Quick &#8216;n&#8217; easy. Of course a <a href="eridanus.net/blog/">top notch bioinformatician</a> that uses Linux 100% of the time
+would be able to create a simple bash script and use the initial script
+to generate multiple random sets. bash is not a primary scope of the
+blog, but let&#8217;s see how to do that. Saying the our initial script was
+saved as <code>randomset.py</code> we would have a very short script in bash to
+generate multiple sets. We want to generate 10 sets of sequences of
+length between 20 and 30 nucleotides, and each set would need to have 10
+different sequences (remember that our initial script only accepts 3
+parameters).</p>
+
+<p><strong>Off topic</strong></p>
+
+<p><code>for ((i=0;i&lt;10;i++))
+  do     
+  min=20     
+  max=30     
+  nseqs=10
+  python randomset.py $nseqs $min $max     
+echo  done</code></p>
+
+<p>That should do the trick. You can even type it from the command line.
+The <code>for</code> syntax in bash is very similar to C/C++ but it does not accept
+spaces, as all the variable assignments. When you assigning a variable
+value in bash you omit the dollar sign and when you are reading the
+variable value you access it with the dollar sign, like in the line that
+runs the script. A <code>for</code> loop in bash starts with a <code>do</code> command and
+ends in a <code>done</code> command, not brackets or parenthesis involved. The
+<code>echo</code> at the end helps adding a separating blank line after each random
+set. <strong>off topic</strong></p>
+
+<p>Of course we could use &#8220;makenucseq from the EMBOSS
+package&#8221;, we can even use <a href="http://http://scit.us/projects/dawg">Dawg</a>
+from my friend Reed Cartwright, which I believe has a shorter learning
+curve (and faster compilation) than EMBOSS, but that will be away from
+the scope of this blog, which is to show how to use <strong>Python</strong> in
+<strong>simple</strong> bioinformatics scripts. I allowed myself to post off topic
+subjects (including this last paragraph) because a (very) small
+percentage of the commenter(s) seems to misunderstand the real focus of
+this tutorial. We don&#8217;t need fancy words or complex topics to show how
+simple things can achieve good results in almost no time. My focus is
+not give the reader the fish and chips ready to eat. My focus is to show
+how to fish and peel, cut and fry the potato in order to cook the dish.
+This way, next time he or she might be cooking better things to eat.</p>
 </div>
   
   
@@ -448,7 +935,7 @@ http://xkcd.com/353/</a></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/11/28/geneious-and-other-software/">Geneious and &#8220;specialized&#8221; software, featuring Dendroscope</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/10/26/nobel/">Nobel</a></h1>
     
     
       <p class="meta">
@@ -464,22 +951,15 @@ http://xkcd.com/353/</a></p>
   
 
 
-<time datetime="2007-11-28T13:59:36-05:00" pubdate data-updated="true">Nov 28<span>th</span>, 2007</time>
+<time datetime="2007-10-26T08:48:51-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Last week a new phylogenetic tree viewing program was released/published. Called <a href="http://www-ab.informatik.uni-tuebingen.de/software/dendroscope/welcome.html">Dendroscope</a> it is a very nice piece of software that has lots of useful features to view, edit and manipulate phylogenetic trees.</p>
-
-<p>Its release/publication coincided  with a period in the lab when two of the graduate students were obtaining new results, especially in the form of phylogenetic trees. There was some debate whether TreeView should be used, but we couldn&#8217;t compile for all Linux boxes we have, due to differences in their distro version. So, at first we checked Geneious, which has been reviewed here, and it is a do-it-all phyloegenetic/molecular biology/name-it software. Geneious has some very nice features, but I cannot call its tree viewing option excellent. Let&#8217;s say good defines it more than enough.</p>
-
-<p>One particular nagging thing included in Geneious&#8217; latest releases were some extra features to expand/collapse branches, which are circles drawn over the tree&#8217;s nodes. One cannot turn off these circle, they are always there and sometimes with different diameters. When I first saw them I though it was showing some kind of support for the node but I was wrong. After some fidgeting we discovered that circles can be turned off, but only when you are exporting/printing the tree.</p>
-
-<p>Bringing back Dendroscope. Intuititve interface, it delivers what you want and more than you expect for a tree viewing program. After one hour of playing one of the graduate students was already a pro-user of the software, showing everyone what can be accomplished with Dendroscope. And yes, there are no deceiving circles on the nodes. As Geneious, it is a Java based application, so easy to port to different systems. But differently it does one thing and does it better than the &#8220;competition&#8221;. That makes me question myself: why should you leave your &#8220;specialized&#8221; applications in favour of Geneious when the end product is below your expectation?</p>
-
-<p>Maybe because of the competition Geneious got away of its almost sure path to be the &#8220;holy grail&#8221; of phylogenetics/molecular biology software. Trying to embrace every aspect of research at once might take its toll on the simpler details that are still not fixed/changed in the program. When Geneious was released it had the right amount of features and, as any other software, a little bit buggy but it delivered what you wanted. The program grew considerably since its first inception and it can do mostly of the common tasks of a small-medium biology lab requires in a day. Still, why would you want to trade your reliable do-one-thing-do-it-better application in favour of a do-it-all-do-it-so-so program that might have tons of features you will never use? Yep, I find a lot of things in MS Word that I don&#8217;t need, that&#8217;s why I use e, TextMate, Notepad++. And for tree viewing I will dump my always-loved TreeView and adopt the new kid on the block, Dendroscope.</p>
+  <div class="entry-content"><p>I would kill for a Nobel peace prize.
+<em>Steven Wright</em></p>
 </div>
   
   
@@ -492,7 +972,7 @@ http://xkcd.com/353/</a></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/11/27/bioblogs-17-call-for-submissions/">Bio::Blogs #17 - call for submissions</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/10/25/so-he-is-gone/">So, he is gone</a></h1>
     
     
       <p class="meta">
@@ -508,14 +988,14 @@ http://xkcd.com/353/</a></p>
   
 
 
-<time datetime="2007-11-27T13:37:22-05:00" pubdate data-updated="true">Nov 27<span>th</span>, 2007</time>
+<time datetime="2007-10-25T17:03:06-04:00" pubdate data-updated="true">Oct 25<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>The next Bio::Blogs, currently at number 17, will be proudly hosted here. There is plenty of time for submissions, which should be sent directly to me, at nuin at genedrift dot org, or to the usual Bio::Blogs email address, at bioblogs at gmail dot com. Deadline is December 1st.</p>
+  <div class="entry-content"><p>Yep, he is <a href="http://www.sciam.com/article.cfm?chanID=sa003&amp;articleID=D898BFCA-E7F2-99DF-39F1E89CA728AD43&amp;ref=rss">gone</a>. Until the day he comes back. And he will.</p>
 </div>
   
   

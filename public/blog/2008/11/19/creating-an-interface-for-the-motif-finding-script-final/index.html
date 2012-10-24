@@ -107,27 +107,48 @@ called &hellip;">
 <div class="entry-content"><p>We can say that this would be our final version of the script. There are
 many nice wxPython programming resources, and one is a very good book
 called <a href="http://manning.com/rappin/">wxPython in Action</a>, which is
-co-written by Robin Dunn, the wxPython maintainer. Go check it out. So
-for the last entry in this series, we just need to add a couple of
+co-written by Robin Dunn, the wxPython maintainer. Go check it out.</p>
+
+<p>So for the last entry in this series, we just need to add a couple of
 changes to our interface and motif finding scripts. Basically on the
 interface script we need to add a line that gets the value entered (or
 the default one, if not changed) in the motif width input box. And we
-can do that by including the line below in the <code>run_finder</code> function.
-[sourcecode language=&#8217;python&#8217;]width =
-self.motif_width.GetValue()[/sourcecode] This line tells the script to
+can do that by including the line below in the <code>run_finder</code> function.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motif</span>\<span class="n">_width</span><span class="o">.</span><span class="n">GetValue</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This line tells the script to
 get the value of the box and assign to the variable width. This method
 will get whatever is inside the input box and save as a string to the
 variable assigned. Now, we need to create the structure to actually send
 this value to the motif finder functions. Last version of our function
 <code>calculate_motifs</code> received two parameters, we need to add an extra one,
 and also change the lines that call the function that get the quorums.
-Basically the first lines of the function will be [sourcecode
-language=&#8217;python&#8217;]def calculate_motifs(input_seqs, input_seqs2,
-width): print input_seqs, input_seqs2 input_seqs =
-fasta.read_seqs(open(input_seqs).readlines()) input_seqs2 =
-fasta.read_seqs(open(input_seqs2).readlines()) foreground =
-get_quorums(input_seqs, width) background = get_quorums(input_seqs2,
-width)[/sourcecode] And that&#8217;s it. Our simple interface is ready to
+Basically the first lines of the function will be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">calculate_motifs</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="n">input_seqs2</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">print</span> <span class="n">input_seqs</span><span class="p">,</span> <span class="n">input_seqs2</span>
+</span><span class='line'>    <span class="n">input_seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>    <span class="n">input_seqs2</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">foreground</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">background</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And that&#8217;s it. Our simple interface is ready to
 primetime. OK, not prime primetime, we didn&#8217;t add a series of features
 that will make it useful by everyone. For instance, there is no error
 control, so someone could enter &#8216;ABC&#8217; in the width input box and that
@@ -135,12 +156,7 @@ value would be sent and an error will occur. Also you can click the run
 button without any file selected. And we could go on and on. But this is
 just a primer, and we can build from it. The code is on
 <a href="http://github.com/nuin/beginning-python-for-bioinformatics/tree/master/scripts/motifs">Github</a>,
-so get it there and have fun. Next time we will see &#8230; no plans yet.
-We&#8217;ll see &#8230; Technorati Tags:
-<a href="http://technorati.com/tag/wxPython">wxPython</a>,
-<a href="http://technorati.com/tag/motifs">motifs</a>,
-<a href="http://technorati.com/tag/Python">Python</a>,
-<a href="http://technorati.com/tag/bioinformatics">bioinformatics</a></p>
+so get it there and have fun. Next time we will see &#8230; no plans yet. We&#8217;ll see &#8230;</p>
 </div>
 
 

@@ -1076,7 +1076,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/10/30/creating-an-interface-for-the-motif-finding-script-part-5/
         </loc>
-        <lastmod>2012-10-23T20:02:25-04:00</lastmod>
+        <lastmod>2012-10-23T20:14:04-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/10/30/motif-interface-on-github/</loc>
@@ -1086,7 +1086,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/11/04/creating-an-interface-for-the-motif-finding-script-part-6/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T20:23:34-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/11/05/software-that-i-would-never-buy/</loc>
@@ -1104,7 +1104,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/11/11/creating-an-interface-for-the-motif-finding-script-part-7/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T20:26:42-04:00</lastmod>
     </url>
     <url>
         <loc>
@@ -1122,7 +1122,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/11/13/creating-an-interface-for-the-motif-finding-script-part-8/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T20:33:58-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/11/16/the-science-blog-meme/</loc>
@@ -1138,13 +1138,13 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/11/18/creating-an-interface-for-the-motif-finding-script-some-corrections/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T20:37:07-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/11/19/creating-an-interface-for-the-motif-finding-script-final/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T20:42:17-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/11/19/poem/</loc>
@@ -1161,17 +1161,7 @@
         <lastmod>2012-10-23T11:34:09-04:00</lastmod>
     </url>
     <url>
-        <loc>http://zientzilaria.heroku.com/blog/2008/12/06/scripts-and-python-30-part-1/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/12/07/speechless/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2008/12/08/scripts-and-python-30-part-2-using-2to3/
-        </loc>
         <lastmod>2012-10-23T11:34:09-04:00</lastmod>
     </url>
     <url>
@@ -1209,31 +1199,7 @@
         <lastmod>2012-10-23T11:34:09-04:00</lastmod>
     </url>
     <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/02/05/expert-python-programming-by-tarek-ziade-a-review-of-chapter-1/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/02/06/expert-python-programming-by-tarek-ziade-a-review-of-chapter-2/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
         <loc>http://zientzilaria.heroku.com/blog/2009/02/09/on-join-a-startup/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/02/09/expert-python-programming-by-tarek-ziade-a-review-of-chapter-3/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/
-        </loc>
         <lastmod>2012-10-23T11:34:09-04:00</lastmod>
     </url>
     <url>
@@ -1242,37 +1208,7 @@
     </url>
     <url>
         <loc>
-            http://zientzilaria.heroku.com/blog/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
             http://zientzilaria.heroku.com/blog/2009/02/20/why-do-i-blog-or-science-blogging-is-it-worth/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/02/21/why-do-i-blog-or-science-blogging-is-it-worth/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/
         </loc>
         <lastmod>2012-10-23T11:34:09-04:00</lastmod>
     </url>
@@ -1287,12 +1223,6 @@
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2009/03/18/i-havent-joined-mendeley-as-community-liaison/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/
         </loc>
         <lastmod>2012-10-23T11:34:09-04:00</lastmod>
     </url>
@@ -1314,18 +1244,6 @@
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2009/04/19/thanks-jim/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2009/04/22/managing-a-simple-database-with-python-sqlite-and-wxpython-8/
-        </loc>
         <lastmod>2012-10-23T11:34:09-04:00</lastmod>
     </url>
     <url>
@@ -1609,12 +1527,6 @@
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2010/04/08/bioinformatics-needs-investment-ii/
-        </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://zientzilaria.heroku.com/blog/2010/04/08/the-sickest-python-code-ive-ever-created-1/
         </loc>
         <lastmod>2012-10-23T11:34:09-04:00</lastmod>
     </url>
@@ -1916,11 +1828,11 @@
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/archives/</loc>
-        <lastmod>2012-10-23T20:02:25-04:00</lastmod>
+        <lastmod>2012-10-23T20:42:17-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/</loc>
-        <lastmod>2012-10-23T20:02:25-04:00</lastmod>
+        <lastmod>2012-10-23T20:42:17-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/temp/2006-12-13-3.html</loc>

@@ -9,7 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="While we are on the Scienceblogs-doing-more-harm-than-good and scientific communication topic, let&#8217;s keep going (I have nothing against Seed &hellip;">
+  <meta name="description" content="He has been &#8220;portrayed&#8221; here a a cult leader, and that&#8217;s maybe only my opinion. And in he latest diatribes he continues to attack &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,50 +76,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/05/13/doing-more-harm-than-good/">Doing more harm than good</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-13T12:21:56-04:00" pubdate data-updated="true">May 13<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>While we are on the <a href="http://scienceblogs.com/">Scienceblogs</a>-doing-more-harm-than-good and scientific communication topic, let&#8217;s keep going (I have nothing against Seed magazine and some nice people that blog <a href="http://scienceblogs.com/"> there </a>, just to be clear)</p>
-
-<p>Recently, the Brazilian branch of the blog &#8220;community&#8221; was launched. I don&#8217;t know if I&#8217;m fortunate or not of being able to read  Portuguese, but a respected online organization has to support some type of editorial/post quality. The amount of grammatical errors that appear on the blog posts there is astounding. One of the bloggers even discuss with commenters that he spelled a word wrong because it makes more sense to him. This followed by some subject-verb concordance errors.</p>
-
-<p>I understand, you will find identical mistakes here, in English of all languages. But I&#8217;m not a native English speaker. And my audience is much more restrict than any of the Brazilian Scienceblogs.</p>
-
-<p>Communicating science is important. Communicating science correctly is primordial. Using the right spelling and grammar is key. We don&#8217;t have to think or assume that lay (scientifically) people would accept such mistakes, and you would expect that a scientist or a to-be-scientist would try to avoid making writing mistakes.</p>
-
-<p>And to whoever is managing the Scienceblogs (Brazil at least), maybe investing a little bit of money on proof-reading the entries to avoid some embarassing things.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -277,224 +233,6 @@
 
 
 <p><a href="http://reblog.zemanta.com/zemified/7352cb9c-7ac1-4a61-800e-55eec6897904/"><img src="http://img.zemanta.com/reblog_a.png?x-id=7352cb9c-7ac1-4a61-800e-55eec6897904" alt="Reblog this post [with Zemanta]" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/04/22/managing-a-simple-database-with-python-sqlite-and-wxpython-8/">Managing a simple database with Python, SQLite and wxPython, 8</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-22T10:04:17-04:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Gene.png"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Gene.png/200px-Gene.png" title="Diagram of the location of introns and exons w..." alt="Diagram of the location of introns and exons
-w..." /></a>
-  ~ Image via</p>
-
-<pre><code>[Wikipedia](http://commons.wikipedia.org/wiki/Image:Gene.png)
-</code></pre>
-
-<p>Thanks to the comments and suggestions to the last post, it&#8217;s possible
-to make now a more pythonic and clearly generic database update class.
-Let&#8217;s check how the &#8220;generic&#8221; update/edit entry function is currently:
-[sourcecode language=&#8217;python&#8217;]def update_data(self, values_list):
-&#8221;&#8217;edits and updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
-database) = link_db(self.db_path) else: (cursor, database) =
-link_db() cursor.execute(&#8220;UPDATE bac SET projects = ?, comments = ?,
-temperature = ?, cell = ?, box = ?, tubes = ?, chromosome = ?, sdate =
-?, clone = ?, source = ?, location1 = ?, startpos = ?, endpos = ?, gene
-= ?, genelink = ?, dnaex = ?, validation = ?, pcr = ?, refs = ?,
-antibiotic = ? WHERE idbac = ?&#8221;, values_list[&#8216;projects&#8217;],
-values_list[&#8216;comments&#8217;], values_list[&#8216;temperature&#8217;],
-values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;], values_list[&#8216;tubes&#8217;],
-values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;], values_list[&#8216;clone&#8217;],
-values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;], values_list[&#8216;start&#8217;]
-values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;], values_list[&#8216;genelink&#8217;],
-values_list[&#8216;dna&#8217;], values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;],
-values_list[&#8216;refs&#8217;], values_list[&#8216;antibiotic&#8217;],
-values_list[&#8216;idbac&#8217;])) database.commit() database.close()[/sourcecode]
-which is really ugly and, although it works, is not really useful
-outside this small project. Based on the comments the best option was to
-use placeholders and a dictionary, similar to the approach used on the
-insert data function. Pre-formatting a string to have both the field
-name to be updated and a placeholder (for instance <code>:idbac</code>) that will
-receive the values [sourcecode language=&#8217;python&#8217;]update =
-&#8217;,&#8217;.join([&#8216;%s=:%s&#8217; % (y, y) for y in values_list])[/sourcecode] where
-update is the string we want and values_list is the dictionary with all
-the key-value pairs. I tried this approach, using this structure in the
-generic function, but then I decided that the best alternative was to
-put this <code>join</code> in the derived class function and pre-populate the
-string with the values and then send this string directly to the update
-function. In the end I opted to use this [sourcecode
-language=&#8217;python&#8217;]update = &#8216;,&#8217;.join([&#8216;%s=&#34;%s&#34;&#8217; % (y,
-values_list[y]) for y in values_list])[/sourcecode] The latter is
-slightly different to what was suggested. The original one would create
-a tuple with the keys from the dictionary, making for instance
-<code>sdate:sdate</code>. With all these place holders just pass the dictionary and
-you have all the values inserted. This would be handy if the insert
-string was being created on the &#8220;generic&#8221; function. If we move this to
-the derived class, we can use the the alternative, keeping in mind that
-the values parsed should be surrounded by quotes, otherwise the SQL
-UPDATE statement will have problems with spaces and other foreign
-characters that should not be there. So instead of placeholders we will
-have <code>gene:"PTEN"</code> and we can attache this joined string to the actual
-commands. We then can move all the machinery from the &#8220;generic&#8221; function
-that can be written as [sourcecode language=&#8217;python&#8217;]def
-update_data(self, update_string): &#8221;&#8217;edits and updates fields&#8221;&#8217; if
-sys.platform == &#8216;darwin&#8217;: (cursor, database) = link_db(self.db_path)
-else: (cursor, database) = link_db() cursor.execute(update_string)
-database.commit() database.close()[/sourcecode] That&#8217;s it, very elegant
-(we will see the derived class in the next post). And finishing our
-generic class, we would need a delete function, so the user can
-eliminate entries that he/she doesn&#8217;t want anymore. It&#8217;s also a very
-simple function [sourcecode language=&#8217;python&#8217;]def delete_data(self,
-delete_string): &#8221;&#8217;deletes one field&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;:
-(cursor, database) = link_db(self.db_path) else: (cursor, database) =
-link_db() cursor.execute(delete_string) database.commit()
-database.close()[/sourcecode] We will check the delete string next time.
-Again, I would like to thank for all the comments, it has been really
-helpful for me. Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
-1</a>
-<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
-2</a>
-<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
-3</a>
-<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
-4</a>
-<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
-5</a>
-<a href="http://python.genedrift.org/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/">Part
-6</a>
-<a href="http://python.genedrift.org/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/">Part
-7</a></p>
-
-<p><a href="http://reblog.zemanta.com/zemified/e8dc77f5-e3de-4d4f-8ec1-8c0006225743/" title="Reblog this post [with Zemanta]"><img src="http://img.zemanta.com/reblog_a.png?x-id=e8dc77f5-e3de-4d4f-8ec1-8c0006225743" alt="Reblog this post [with
-Zemanta]" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/04/20/managing-a-simple-database-with-python-sqlite-and-wxpython-7-includes-a-question/">Managing a simple database with Python, SQLite and wxPython, 7 (includes a question)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-04-20T12:21:59-04:00" pubdate data-updated="true">Apr 20<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>And we&#8217;re back. After a couple of weeks of inactivity we will get back
-to our small soap-opera pf Python, wxPython and SQLite. Continuing in
-our database management code let&#8217;s check two other functions that
-changed since our first inception of the code. The first one is the
-<code>insert_data</code> function that looks like this now [sourcecode
-language=&#8217;python&#8217;]def insert_data(self, values_list, insert_string):
-&#8221;&#8217;inserts data in the database&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor,
-database) = link_db(self.db_path) else: (cursor, database) =
-link_db() cursor.execute(insert_string % self.table_name,
-values_list) database.commit() database.close()[/sourcecode] Basically
-no changes, apart from the obvious check for the current running
-operating system, which was explained in the last post. The other
-function to check is the <code>update_data</code>. This function is new and it
-wasn&#8217;t in the first version, but as it can be seen it has a problem
-being a &#8220;generic&#8221; function, because it contains information pertained to
-the table and database being used in the interface. This function
-basically received information that needs to be updated in the table&#8217;s
-fields and by using the SQL <code>UPDATE ... SET</code> edits and updates data in
-the changed fields. I have tried several different syntaxes to make the
-execute generic, mainly trying to pre-format the string without success.
-IF anyone reading this can help, I&#8217;d appreciate. [sourcecode
-language=&#8217;python&#8217;]def update_data(self, values_list): &#8221;&#8217;edits and
-updates fields&#8221;&#8217; if sys.platform == &#8216;darwin&#8217;: (cursor, database) =
-link_db(self.db_path) else: (cursor, database) = link_db()
-cursor.execute(&#8220;UPDATE bac SET projects = ?, comments = ?, temperature =
-?, cell = ?, box = ?, tubes = ?, chromosome = ?, sdate = ?, clone = ?,
-source = ?, location1 = ?, startpos = ?, endpos = ?, gene = ?, genelink
-= ?, dnaex = ?, validation = ?, pcr = ?, refs = ?, antibiotic = ? WHERE
-idbac = ?&#8221;, values_list[&#8216;projects&#8217;], values_list[&#8216;comments&#8217;],
-values_list[&#8216;temperature&#8217;], values_list[&#8216;cell&#8217;], values_list[&#8216;box&#8217;],
-values_list[&#8216;tubes&#8217;], values_list[&#8216;chromo&#8217;], values_list[&#8216;date&#8217;],
-values_list[&#8216;clone&#8217;], values_list[&#8216;source&#8217;], values_list[&#8216;location&#8217;],
-values_list[&#8216;start&#8217;], values_list[&#8216;end&#8217;], values_list[&#8216;gene&#8217;],
-values_list[&#8216;genelink&#8217;], values_list[&#8216;dna&#8217;],
-values_list[&#8216;validation&#8217;], values_list[&#8216;pcr&#8217;], values_list[&#8216;refs&#8217;],
-values_list[&#8216;antibiotic&#8217;], values_list[&#8216;idbac&#8217;])) database.commit()
-database.close()[/sourcecode] Anyway, I will explain the logic of the
-command (OK for a stop gap, but not as a definite solution).
-<code>values_list</code> is a dictionary that is passed to the function and
-contains the field names as keys and the new/changed information as
-values. The execute method simply parses the values from each key in the
-update string which is then sent to the database and table to be
-changed. Everything is committed and the database is closed. As this is
-a &#8220;generic&#8221; function from a &#8220;generic&#8221; class the ideal scenario would be
-to the function to receive a pre-formatted string with all the
-information, as in the insert data function, and update the information
-in the database. I would like to thank in advance anyone that can
-comment on this. Next time we will continue checking the generic class
-and finalize this part in order to start with the interface build
-process.\
-\
- Previously in the series: <a href="http://python.genedrift.org/2009/02/09/managing-a-simple-database-with-python-sqlite-and-wxpython-1/">Part
-1</a>
-<a href="http://python.genedrift.org/2009/02/17/managing-a-simple-database-with-python-sqlite-and-wxpython-2/">Part
-2</a>
-<a href="http://python.genedrift.org/2009/02/18/managing-a-simple-database-with-python-sqlite-and-wxpython-3/">Part
-3</a>
-<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-4/">Part
-4</a>
-<a href="http://python.genedrift.org/2009/03/02/managing-a-simple-database-with-python-sqlite-and-wxpython-5/">Part
-5</a>
-<a href="http://python.genedrift.org/2009/03/31/managing-a-simple-database-with-python-sqlite-and-wxpython-6/">Part
-6</a>
-<a href="http://reblog.zemanta.com/zemified/d0bb5d11-6f9d-8521-9a2f-6cd30868e375/" title="Reblog this post [with Zemanta]"><img src="http://img.zemanta.com/reblog_a.png?x-id=d0bb5d11-6f9d-8521-9a2f-6cd30868e375" alt="Reblog this post [with
-Zemanta]" /></a></p>
 </div>
   
   
@@ -668,6 +406,183 @@ Zemanta]" /></a></p>
 <p>A quick search on Google Scholar shows about 45000 results for ClustalW, but I&#8217;m sorry, it has to go. You have to stop using it, please. If you&#8217;re a bioinformatician, stop supporting it, don&#8217;t create a ClustalW(X) wrapper on any tool, forget about it. Every time someone mentions the word Clustal in front of you, pretend that he/she is a creationist. If you are not a bioinformatician, ask your local bioinformatician what is the best tool to use (Muscle, <a href="http://align.bmr.kyushu-u.ac.jp/mafft/software/">MAFFT</a> and <a href="http://probcons.stanford.edu/">ProbCons</a> are my favourite), delete the ClustalW on your HD (save one for posterity) and start living the high-alignment-life.</p>
 
 <p><a href="http://reblog.zemanta.com/zemified/825ffe3c-3961-4bb4-9dfe-a5332cf658cb/"><img src="http://img.zemanta.com/reblog_a.png?x-id=825ffe3c-3961-4bb4-9dfe-a5332cf658cb" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/18/i-havent-joined-mendeley-as-community-liaison/">I haven&#8217;t joined Mendeley as community liaison</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-18T09:31:24-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Despite rumors floating in the upper echelons on the interwebs, I must admit that I haven&#8217;t been approached, contacted, persuaded or forced to join <a href="http://en.wikipedia.org/wiki/Mendeley">Mendeley</a> as a Community Liaison. I understand the rumours were founded on the statement from one of the company&#8217;s staff member that my role in the software development is &#8220;crucial&#8221; (not his exact words, but in the ballpark).</p>
+
+<p>I wish <a href="http://synthesis.williamgunn.org/2009/03/18/ive-joined-mendeley-as-community-liaison/">Gunn</a> and <a href="http://my.biotechlife.net/2009/03/04/community-liaison-mendeley/">Vidal</a> all the luck.</p>
+
+<h6>Related articles by Zemanta</h6>
+
+<ul>
+<li><a href="http://uk.techcrunch.com/2009/03/12/plugg-wraps-with-two-very-capable-winnners/">European Startups Put To The Plugg Test</a> (uk.techcrunch.com)</li>
+</ul>
+
+
+<p><a href="http://reblog.zemanta.com/zemified/89e7ea92-5320-4f20-b528-257a4d183309/"><img src="http://img.zemanta.com/reblog_e.png?x-id=89e7ea92-5320-4f20-b528-257a4d183309" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/15/presenting-biovb6/">Presenting BioVB6</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-15T10:02:24-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:VB_cover.png"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/9/92/VB_cover.png/202px-VB_cover.png" alt="The four colored boxes is the logo of VBA, and..." /></a></p>
+
+<pre><code>Image via [Wikipedia](http://en.wikipedia.org/wiki/Image:VB_cover.png)
+</code></pre>
+
+<p>I&#8217;m proud to present this initiative to keep old-school programmers in the cusp of Bio* development. After long <a href="http://python.genedrift.org/2009/03/13/biopython-and-cvs/">discussions and controversy</a>, I decided that it would be extremely important to stop neglecting a <a href="http://www.itjobswatch.co.uk/jobs/uk/vb6%20developer.do">good portion of developers around the world</a> that are still trying to catch-up with new, but yet completely unreliable, software and technology.</p>
+
+<p>So far, I haven&#8217;t contacted anyone regarding this project, but I guess people will be thrilled to learn about it and I expect massive signup to become a developer (first come, first served basis). The main goals and &#8220;project culture&#8221; (similar to a company culture, but in project, got it?) are:</p>
+
+<ul>
+<li>develop a number of <a href="http://en.wikipedia.org/wiki/Object_Linking_and_Embedding">OCX</a> and <a href="http://www.microsoft.com/windows/directx/">DirectX</a> and VB classes and VB modules that can be used by anyone in the bio community. Extreme focus on being backward compatible with VB 3 and 4 (both 8-bit and 16-bit versions)</li>
+<li>We will not care about VB .NET</li>
+<li>Goto is considered harmful elsewhere not here</li>
+<li>improve ADO and <a href="http://en.wikipedia.org/wiki/Open_Database_Connectivity">ODBC</a> connection between VB6 and Access and <a href="http://en.wikipedia.org/wiki/FoxPro_2">FoxPro</a> in order to mirror biodatabases such as NCBI and UniProt</li>
+<li>Sourcesafe is our King (or Queen? I always get confused with the lack of gender in English words)</li>
+<li>Development will be focused solely on technology available to VB6 by MSFT, we don&#8217;t care about third-party modules</li>
+</ul>
+
+
+<p>These are the initial goals. As I mentioned before, with massive synergy between the expected hundreds of co-developers, I guess release will be in the second quarter of 2009. Early second quarter.</p>
+
+<p>I keep you posted.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/cb7502c2-35fc-47b9-b8e6-195c2b69c630/"><img src="http://img.zemanta.com/reblog_a.png?x-id=cb7502c2-35fc-47b9-b8e6-195c2b69c630" alt="Reblog this post [with Zemanta]" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/13/biopython-and-cvs/">BioPython and CVS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-13T14:25:38-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:Bazaar_logo_(software_product"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/c/c1/Bazaar_logo_(software_product" alt="Bazaar" />.svg/125px-Bazaar_logo_(software_product).svg.png &#8220;Bazaar&#8221;)</a>.svg)
+  ~ Image via</p>
+
+<pre><code>[Wikipedia](http://en.wikipedia.org/wiki/Image:Bazaar_logo_(software_product).svg)
+</code></pre>
+
+<p>I start this post with an apology. I usually don&#8217;t rant or vent here,
+which are feelings that I usually reserve to my personal blog. I don&#8217;t
+use BioPython, never used it. I have it installed in my systems, but I
+never wrote a piece of code importing BioPython routines. But I
+subscribe to their mailing lists, both user and developer. I maybe have
+written once to the list, and I just follow the discussions there. Since
+last year one of the main topics has been the possibility of moving
+BioPython from CVS to another version control system. Yes, you read it
+right. It&#8217;s 2009 and BioPython uses CVS and their version control
+system. Soon, CVS will be like typewriters and LPs to young developers.
+Last stable release of CVS was sometime in 2005, what in interwebs time
+is equivalent to something like 1972. Since 2005, Subversion has taken
+the world of version control by storm, and Git is getting also very
+strong, not to mention Bazaar, Darcs, Mercurial and some others that I
+might not be aware of. This is a discussion that have been dragging for
+sometime in the list. And it&#8217;s a shame, a clear lack of leadership from
+whoever is (not) leading the project. BioRuby is Git, BioPerl SVN and
+BioPython is CVS, because they &#8220;need to care for the legacy developers&#8221;.
+It&#8217;s like MSFT keeping two copies of the Notepad executable because they
+needed to cater to legacy applications, but with a different scale of
+course. With the current Python steam in the non-bioinformatics and
+bioinformatics community is very sad to see BioPython not evolving
+(before you ask me, no, I&#8217;m not interested in helping, not the way
+things are now). Perl which is language forever-in-waiting for its holy
+grail (Perl 6) has a strong community behind it, and more important an
+excellent leadership, that&#8217;s not scare of making decisions. So, if
+you&#8217;re still using CVS, it&#8217;s 2009!</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/06117f0a-6d25-497d-b686-1a96e8a7d81c/" title="Zemified by Zemanta"><img src="http://img.zemanta.com/reblog_e.png?x-id=06117f0a-6d25-497d-b686-1a96e8a7d81c" alt="Reblog this post [with
+Zemanta]" /></a></p>
 </div>
   
   

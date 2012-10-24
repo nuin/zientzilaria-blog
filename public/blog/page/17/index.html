@@ -9,9 +9,11 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We need to pause a bit and do some corrections on our code. First the
-code I posted on the last entry for the pymotif.py module is wrong. Ok,
-not &hellip;">
+  <meta name="description" content="Let&#8217;s take a deeper look on the code we started yesterday, piece by
+piece 1
+2
+3
+class pymot(wx.App): def __init__(self, redirect=False): wx.App &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,7 +86,7 @@ not &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/18/creating-an-interface-for-the-motif-finding-script-some-corrections/">Creating an interface for the motif finding script, some corrections</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2/">Creating an interface for the motif finding script, part 2</a></h1>
     
     
       <p class="meta">
@@ -100,89 +102,90 @@ not &hellip;">
   
 
 
-<time datetime="2008-11-18T14:45:31-05:00" pubdate data-updated="true">Nov 18<span>th</span>, 2008</time>
+<time datetime="2008-10-21T11:40:33-04:00" pubdate data-updated="true">Oct 21<span>st</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We need to pause a bit and do some corrections on our code. First the
-code I posted on the last entry for the pymotif.py module is wrong. Ok,
-not wrong, but some of the code I use to test ended up on the blog. Ths
-first two lines of the calculate_motifs function contained a link to
-the files I use for testing and should be replaced by [sourcecode
-language=&#8217;python&#8217;]input_seqs =
-fasta.read_seqs(open(input_seqs).readlines()) input_seqs2 =
-fasta.read_seqs(open(input_seqs2).readlines())[/sourcecode] Also both
-variables that store the filenames and paths in pymoteGUI.py are
-declared in the wrong scope. The should have be declared at the pymotGUI
-class level, so it is accessible to all the functions in that class.
-This also means that every time we access the variable it should be
-preceded by the class name in order for the interpreter to know where
-the to get the value from. So both corrected files would be [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
-pymotif import fasta import os class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect)
-class pymotGUI(wx.Frame): fore_file = &#8221; back_file = &#8221; def
-__init__(self, parent, id): wx.Frame.__init__(self, parent, id,
-&#8216;Python Motif Finder&#8217;, style=wx.DEFAULT_FRAME_STYLE)
-self.__do_layout() def __do_layout(self): #adding the panel panel
-= wx.Panel(self) #defines the menubar menubar = wx.MenuBar() #file
-menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1, &#8216;Select
-foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-#input box for motif width, and label self.one_label =
-wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
-wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #result textbox
-self.results = wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100),
-wx.TE_MULTILINE | wx.TE_AUTO_SCROLL | wx.HSCROLL) #run bbutton
-self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) #binding the menus to functions
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu)
-self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: pymotGUI.fore_file =
-dialog.GetPath() self.fore_label.SetLabel(pymotGUI.fore_file) def
-on_background(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: pymotGUI.back_file =
-dialog.GetPath() self.back_label.SetLabel(pymotGUI.back_file) def
-run_finder(self, event): print pymotGUI.fore_file result =
-pymotif.calculate_motifs(pymotGUI.fore_file, pymotGUI.back_file) for
-motif in result: self.results.WriteText(motif + &#8216;n&#8217;) #wx.MessageBox(&#8216;It
-should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;: app = pymot()
-frame = pymotGUI(parent=None, id = -1) #frame.CentreOnScreen()
-frame.Show() app.MainLoop()[/sourcecode] and [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import fasta import sys from
-collections import defaultdict def choose(n, k): if 0 &lt;= k &lt;= n: ntok =
-1 ktok = 1 for t in xrange(1, min(k, n - k) + 1): ntok *= n ktok *= t
-n -= 1 return ntok // ktok else: return 0 def get_quorums(seqs, mlen):
-&#8221;&#8221;&#8221; add seq id_no to a set use explicit counter to create seq_no &#8220;&#8221;&#8221;
-quorum = defaultdict(int) for seq in seqs: for n in range(len(seq) -
-mlen): quorum[seq[n:n + mlen]] += 1 return quorum def
-calculate_motifs(input_seqs, input_seqs2): print input_seqs,
-input_seqs2 input_seqs =
-fasta.read_seqs(open(input_seqs).readlines()) input_seqs2 =
-fasta.read_seqs(open(input_seqs2).readlines()) foreground =
-get_quorums(input_seqs, 10) background = get_quorums(input_seqs2,
-10) N = len(input_seqs) + len(input_seqs2) res_motifs = [] for i in
-foreground: term1 = choose(background[i], foreground[i]) term2 =
-choose((N - background[i]), len(input_seqs) - 1) term3 = choose(N,
-len(input_seqs)) p = (float(term1) * float(term2)) / term3 if 0 &lt; p &lt;=
-0.0001: res_motifs.append(i + &#8216;t&#8217; + str(foreground[i]) + &#8216;t&#8217; +
-str(background[i]) + &#8216;t&#8217; + str(p)) res_motifs.sort() return
-res_motifs[/sourcecode] On the next post, the last in the series, we
-will just check how to get the value from the width input box and
-wrap-up everything. Technorati Tags:
-<a href="http://technorati.com/tag/wxPython">wxPython</a>,
-<a href="http://technorati.com/tag/python">python</a>,
-<a href="http://technorati.com/tag/motifs">motifs</a>,
-<a href="http://technorati.com/tag/GUI">GUI</a></p>
+  <div class="entry-content"><p>Let&#8217;s take a deeper look on the code we started yesterday, piece by
+piece</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is the class <code>pymot</code> we derived from wx.App,
+and this will be the main class for your application. As any other class
+derived it needs a OnInit or a <strong>init</strong> function that will take care
+of initializing things. As usual, we pass <code>self</code> and a <code>redirect</code>
+parameter, that will tell the application to redirect some output to the
+command line. We actually don&#8217;t need a <code>redirect</code>, but it can be useful
+in the future to track errors. It&#8217;s set to false as we don&#8217;t need it
+now.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span>  <span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">pass</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is the pymotGUI class derived, in this case, from wx.Frame. a wx.Frame
+is the common window you see in most OS. As above, it needs a OnInit or
+<strong>init</strong> function, and here it initializes the window (but does not show it). In the first line of <strong>init</strong> we have a call to format the
+window we want to display. The frame method would need these
+<a href="http://www.wxpython.org/docs/api/wx.Frame-class.html">paramaters</a> to
+customize the window</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">style</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both title and
+style are set by default (not that they cannot be changed) in the frame
+definition, and whe this is called and properly initialized, other
+parameters can be passed and/or changed. There is a second defined
+function in the <code>pymotGUI</code> class, <code>__do_layout</code>. This is a personal
+preference of having all the layout methods for the window grouped in
+one function. It helps organizing a bit the code and easier to browse
+and correct it if needed. Most of the main part of the script could be
+moved to the wx.App class derivation, but for now, we can keep it there.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span>
+</span><span class='line'><span class="n">frame</span> <span class="o">=</span> <span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="n">frame</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
+</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line initializes the application, the second calls and
+initializes the frame. The method Show makes the window to be displayed.
+MainLoop we saw last time. The skeleton of a wxPython script and
+application is very simple. Now we need to populate our window, create
+menus, buttons, and specially events. Next time we will include a menu
+on the form and check how events are linked to elements.</p>
 </div>
   
   
@@ -195,7 +198,7 @@ wrap-up everything. Technorati Tags:
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/16/the-community-comments-on-why-open-scienceresearch-wont-work/">The community comments on why Open Science/Research won&#8217;t work</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/10/20/creating-an-interface-for-the-motif-finding-script/">Creating an interface for the motif finding script, part 1</a></h1>
     
     
       <p class="meta">
@@ -211,38 +214,123 @@ wrap-up everything. Technorati Tags:
   
 
 
-<time datetime="2008-11-16T18:49:56-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+<time datetime="2008-10-20T16:31:50-04:00" pubdate data-updated="true">Oct 20<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><blockquote><p>How can you make a position on something you don’t understand?
-How can you say something won’t work when all you know if it is from a couple of Google queries?
-I understand from your blog post that you have a short attention span and are not willing to spend much time researching ideas, but just because you have reached the end of the amount of time you are willing to spend on understanding doesn’t mean that you are reached the point at which you are read to judge that concept.</p></blockquote>
+  <div class="entry-content"><p>And we are back. After much ado about real life, I am able to &#8220;restart&#8221;
+this blog and probably with a good frequency of posts. Last time we saw
+the final product of our motif finding series. We ended up creating a
+very elegant script in Python that efficiently counts words in FASTA
+sequences and then using a basic statistical method, calculates the
+significance of each word and output the overrepresented ones. Our
+script used a little bit less than 50 lines, and if you include the
+imported fasta module, it won&#8217;t top 100. But the number of lines is not
+important. The efficiency, clarity and speed are key here. At the same
+time, running a script from the command line is not something everyone
+is used to do. In order to add more visibility to our simple script, why
+not including a GUI? With a visual interface, more people can use our
+script, in different systems. Sounds great. Python has many options of
+GUI frameworks, some more cross-platform that others. In the end finding
+the right framework is more a matter of taste, or availability. My
+personal experience with <a href="http://www.wxwidgets.org">wxWidgets</a> lead me
+to start developing in <a href="http://www.wxpython.org">wxPython</a>, and for me
+this was a natural choice. But there are many other GUI frameworks for
+Python, each one providing more or less integration and portability (you
+can &#8220;choose&#8221; you own <a href="http://www.awaretek.com/toolkits.html">here</a>). So,
+let&#8217;s create a skeleton for our GUI. First step is to install wxPython.
+Packages for Windows are available from their website, RPMs for Linux
+and DMG for Macs (I&#8217;m quite sure OS X Leopard comes with wxPython by
+default, just test importing it). After installing it, start Python and
+check if everything is in place</p>
 
-<p>Apparently, my writing is pretty bad, or your reading comprehension is pretty bad (but I&#8217;m betting on the first in Vegas). I know what Open Science/Research is, but the graduate student down the hall does not, and he or she has many other important things than &#8220;waste time with the hell of OS/R&#8221;. I don&#8217;t have a short attention span, but the grad student down the hall might have, who knows. eh? And I&#8217;m not judging the concept, I have a very clear idea of what the &#8220;concept&#8221; is, I just think it won&#8217;t fly, at least now.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">wx</span>
+</span><span class='line'><span class="n">wx</span><span class="o">.</span><span class="n">__version__</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Egon pitches in:</p>
 
-<blockquote><p>I think you can approach Open Science from various angles. The OpenScience project (where Jmol originated!) comes from an angle that OpenSource tools is an important step in making the data analysis in science reproducibility, and people sometimes seem to forget that data analysis is science too.</p></blockquote>
+<p>On my machine, I get no errors and the
+version is 2.8.9.1 (you don&#8217;t need the latest version to create the
+GUI). Everything seems to be fine. A wxPython script has the same format
+as any Python script, the only difference is that its output is not
+directed to the prompt or a file. The script&#8217;s product will be the
+screen, so in most cases the output and program usage will depend on the
+user&#8217;s interaction with objects on the screen. Like any other graphical
+interface. A very simple script would look like</p>
 
-<p>On the other hand, data discovery can be seen as the first step where science should open up. This is closer to the Open Notebook Science things.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">wx</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span>  <span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">pass</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span>
+</span><span class='line'><span class="n">frame</span> <span class="o">=</span> <span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="n">frame</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
+</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>I understand your confusion. Doing science involves many steps, and if you have no clue where to start doing science, it won’t work. Similarly, if you have no clue where to start making your Science Open, you won’t get it to work either. But that does not mean, it cannot work at all.</p>
 
-<p>Nice introduction, and hoping that your further analysis may trigger some thoughts on why Open Science can work.</p>
-
-<p>Yes, there is confusion, and I agree the Open Source software is an important step. I have seen many cases of closed source software hindering data analysis because you don&#8217;t know what&#8217;s going on. Many people out there don&#8217;t know, don&#8217;t want to know or don&#8217;t have time to learn about Open Science and they&#8217;ll sure get confused if they search for resources. The lack of a centralized, useful and with a nice user interface resource (website, application whatever) makes difficult to anyone to start.</p>
-
-<p>Rajarshi also wants to comment:</p>
-
-<blockquote><p>I’ve always thought of Open Science as a social process rather than a technical process (though it has technical aspects). From that point of view, the lack of a central repo of information, is certainly a bottleneck, but I doubt it’s a deal-killer. In the absence of such a repo, the ideas behind Open Science will just take longer to diffuse.</p></blockquote>
-
-<p>Indeed, it&#8217;s a social process, never technical. And no, as he pointed, is not a deal-killer, but it helps make the process slower, which is the conclusion I would like to have included in the post, or at least make the reader conclude that. If it&#8217;s social, why not take advantage of the so-called WEb2.0 (another thing that I don&#8217;t believe, just a clever name to sell books - or whatever they sell on the web these days).</p>
-
-<p>Next time, I will tell a short story of an open science blog. That was when I started thinking &#8220;If is it open, why some stuff is closed (or not shown)?&#8221;</p>
+<p>Usually a wxPython
+interface has three parts in its script: a class for the
+window/frame/dialog, a class for the application and a initialization
+routine. All wxPython applications, and scripts, need to derive an
+wx.App class and initialize it (on OnInit or on <code>__init__</code> functions),
+i.e. create the window, begin the program, etc. Another class, derived
+from wx.Frame in this case, will build the window/frame/dialog <em>per se</em>
+and will also contain initialization for the window, objects, events,
+etc. The last part is the main script where the application is started,
+by calling the derived class, the window is also called and shown. The
+last line is the <code>MainLoop</code>, present in every wxPython script, and it is
+the main line of the script, the heart of the application. MainLoop
+processes all the events and manages how the objects interact by
+receiving and dispatching such events. The script above could have been
+created differently, some lines of it omitted and there is also no need
+to derive an specific class for the frame. But this way it is easier to
+get a grasp of the script as it will need to be enlarged so accommodates
+the objects and maybe a couple of extra windows and dialogs. Running the
+above script will generate the window
+very simple and barebones. Next will explore the script above, include
+some extra elements and learn a little bit more of wxPython.</p>
 </div>
   
   
@@ -255,7 +343,7 @@ I understand from your blog post that you have a short attention span and are no
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/16/the-science-blog-meme/">The Science Blog Meme</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/09/21/i-love-spam/">I love spam!!!</a></h1>
     
     
       <p class="meta">
@@ -271,54 +359,18 @@ I understand from your blog post that you have a short attention span and are no
   
 
 
-<time datetime="2008-11-16T12:21:48-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2008</time>
+<time datetime="2008-09-21T12:18:00-04:00" pubdate data-updated="true">Sep 21<span>st</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>It started <a href="http://network.nature.com/groups/nnbloggername/forum/topics/3392">here</a> and I got it from <a href="http://scienceblogs.com/clock/2008/11/the_science_blog_meme.php">here</a>. Here are my responses:</p>
+  <div class="entry-content"><p>Just got a very interesting spam message: &#8220;Ex-hairdresser finds baldness cure among indians (native americans)&#8221;.</p>
 
-<p><strong>1. What is your blog about?</strong></p>
+<p>I bet he is a molecular biologist now and found some genes related to baldness.</p>
 
-<p>Anything that I wish I had done and willing to do. Also there are interviews (I want to do more!).</p>
-
-<p><strong>2. What will you never write about?</strong></p>
-
-<p>Confidential stuff, anything that is very personal or people do not want to publicize. Send me a message if you want to know the latest gossip in Bioinformatics.</p>
-
-<p><strong>3. Have you ever considered leaving science?</strong></p>
-
-<p>Nope, but sometimes I have the feeling that I would like to be a airplane pilot.</p>
-
-<p><strong>4. What would you do instead?</strong></p>
-
-<p>Airplane pilot? F1 mechanic?</p>
-
-<p><strong>5. What do you think will science blogging be like in 5 years?</strong></p>
-
-<p>Oh boy, I dunno. Ask me in five years, if I&#8217;m still around.</p>
-
-<p><strong>6. What is the most extraordinary thing that happened to you because of blogging?</strong></p>
-
-<p>Extraordinary? Nothing. If you call extraordinary befriending someone, than I can say that is. Being able to feel part of a community, that&#8217;s a good one.</p>
-
-<p><strong>7. Did you write a blog post or comment you later regretted?</strong></p>
-
-<p>Nope.</p>
-
-<p><strong>8. When did you first learn about science blogging?</strong></p>
-
-<p>Nodalpoint was the catalyst. I knew about blogging for quite sometime, but Maddox influenced me not to, until I found out Nodalpoint.</p>
-
-<p><strong>9. What do your colleagues at work say about your blogging?</strong></p>
-
-<p>&#8220;What blog?&#8221;</p>
-
-<p><strong>10. Extra credit: are you able to write an entry to your blog that takes the form of a poem about your research?</strong></p>
-
-<p>Yes. If you want to read it, leave a comment. If I get 20 comments, I will post it.</p>
+<p>It&#8217;s only downhill from here</p>
 </div>
   
   
@@ -331,7 +383,7 @@ I understand from your blog post that you have a short attention span and are no
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/13/creating-an-interface-for-the-motif-finding-script-part-8/">Creating an interface for the motif finding script, part 8</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/09/05/python-overepresented-motifs-the-grand-finale/">Python, overepresented motifs, the Grand Finale</a></h1>
     
     
       <p class="meta">
@@ -347,104 +399,209 @@ I understand from your blog post that you have a short attention span and are no
   
 
 
-<time datetime="2008-11-13T17:28:35-05:00" pubdate data-updated="true">Nov 13<span>th</span>, 2008</time>
+<time datetime="2008-09-05T21:27:56-04:00" pubdate data-updated="true">Sep 5<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Let&#8217;s see now how do we connect our GUI to the the pymotif file (I
-changed the name because of some conflicts with the app name [my bad!],
-the git repo was updated accordingly). And also how to display the
-results, in a simpler manner. Ok, first to connecting the script to the
-function file, pymotif.py. The file is already imported in our script
-and we have used it before. We need to find the exact point and which
-parameters to pass. pytmotif.py is a slightly modified version of your
-command line script, and the code is below. [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import fasta import sys from
-collections import defaultdict def choose(n, k): if 0 &lt;= k &lt;= n: ntok =
-1 ktok = 1 for t in xrange(1, min(k, n - k) + 1): ntok *= n ktok *= t
-n -= 1 return ntok // ktok else: return 0 def get_quorums(seqs, mlen):
-&#8221;&#8221;&#8221; add seq id_no to a set use explicit counter to create seq_no &#8220;&#8221;&#8221;
-quorum = defaultdict(int) for seq in seqs: for n in range(len(seq) -
-mlen): quorum[seq[n:n + mlen]] += 1 return quorum def
-calculate_motifs(input_seqs, input_seqs2): input_seqs =
-fasta.read_seqs(open(&#8216;celladhesion1000.fa&#8217;).readlines()) input_seqs2 =
-fasta.read_seqs(open(&#8216;celladhesion1000C.fa&#8217;).readlines()) foreground =
-get_quorums(input_seqs, 10) background = get_quorums(input_seqs2,
-10) N = len(input_seqs) + len(input_seqs2) res_motifs = [] for i in
-foreground: term1 = choose(background[i], foreground[i]) term2 =
-choose((N - background[i]), len(input_seqs) - 1) term3 = choose(N,
-len(input_seqs)) p = (float(term1) * float(term2)) / term3 if 0 &lt; p &lt;=
-0.0001: res_motifs.append(i + &#8216;t&#8217; + str(foreground[i]) + &#8216;t&#8217; +
-str(background[i]) + &#8216;t&#8217; + str(p)) res_motifs.sort() return
-res_motifs[/sourcecode] So, basically the line we are interested is
-this one [sourcecode language=&#8217;python&#8217;]def
-calculate_motifs(input_seqs, input_seqs2):[/sourcecode] We replace
-the wx.MessageBox line in our run_finder function and use the input
-files selected by the user as parameters for calculate_motifs, and we
-are done [sourcecode language=&#8217;python&#8217;]def run_finder(self, event):
-result = pymotif.calculate_motifs(self.fore_file,
-self.back_file)[/sourcecode] Very simple and direct. This should take
-care of everything except the motif width, what we will see in the next
-post. We still need a place to write the overrepresented motifs. We can
-add a text box to the frame, and we do that by adding an extra
-declaration in our __do_layout function. This time we need to add
-some extra style to the box, so it can show multiple lines and has a
-scroll bar. [sourcecode language=&#8217;python&#8217;]self.results =
-wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100), wx.TE_MULTILINE |
-wx.TE_AUTO_SCROLL | wx.HSCROLL)[/sourcecode] Notice the wx. flags
-added. MULTILINE allows the box to have multiple lines and the other two
-turn on the auto scroll and horizontal scroll. Great. And how do we
-write the results. Notice above that the function that calculates the
-motifs, returns a list where each item has the motif sequence and the p
-value, sorted. So the only thing we need to do is to iterate over the
-list and print each line to the result box. That simple, and we
-accomplish it by using the WriteText method, that receives as a
-parameter a string, either literal or a string object. Our run_finder
-function will have a couple of extra lines [sourcecode
-language=&#8217;python&#8217;]def run_finder(self, event): result =
-pymotif.calculate_motifs(self.fore_file, self.back_file) for motif in
-result: self.results.WriteText(motif + &#8216;n&#8217;)[/sourcecode] That will
-present in a very simplistic way the resulting overrepresented motifs,
-but it&#8217;s enough for now. Our GUI script will be [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
-pymotif import fasta import os class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect)
-class pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
-&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
-panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
-#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
-&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-#input box for motif width, and label self.one_label =
-wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
-wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #result textbox
-self.results = wx.TextCtrl(panel, -1, &#8221;, (150, 50), (200, 100),
-wx.TE_MULTILINE | wx.TE_AUTO_SCROLL | wx.HSCROLL) #run bbutton
-self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) #binding the menus to functions
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu)
-self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetPath()
-self.fore_label.SetLabel(fore_file) def on_background(self, event):
-dialog = wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() ==
-wx.ID_OK: back_file = dialog.GetPath()
-self.back_label.SetLabel(back_file) def run_finder(self, event):
-result = pymotif.calculate_motifs(self.fore_file, self.back_file) for
-motif in result: self.results.WriteText(motif + &#8216;n&#8217;) #wx.MessageBox(&#8216;It
-should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;: app = pymot()
-frame = pymotGUI(parent=None, id = -1) #frame.CentreOnScreen()
-frame.Show() app.MainLoop()[/sourcecode]</p>
+  <div class="entry-content"><p>In this final part, let&#8217;s do some very simple refactoring and modify the
+output section to make the result a little bit better. There are not
+many options about the functions to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
+expansion</a>.
+But Andrew posted some opinions on how to slight change the quorum
+function.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">    add seq id_no to a set</span>
+</span><span class='line'><span class="sd">    use explicit counter to create seq_no</span>
+</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>His modifications were small but improved the code a bit, as you remove one
+variable/object from the function. At the same time there is need to
+change a bit our output section of the code, as we don&#8217;t use a
+<code>defaultdict</code> initialized with a set, but with an integer.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">term1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>    <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.0001</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">p</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice that in the <code>term1</code> line we don&#8217;t check for the
+set length anymore and just use the integer stored in <code>foreground</code> and
+<code>background</code>. Again a small change, that can make the code a little bit
+more clear. But we need to modify this section so the output is a little
+bit more clear, maybe ordered by motif sequence. But as we are reading
+the sequences as they are our results are not ordered. It would be great
+to have a final list starting with <code>AAAAAAAA</code> and ending with <code>TTTTTTTTT</code>.
+There is an easy way to do that, and very inexpensive regarding code and
+final performance. Basically we append each one of the motifs (and their
+extra information) to a list and use the <code>sort</code> method for lists. So our
+output section of the code will be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">res_motifs</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">term1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>    <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.0001</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">res_motifs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">res_motifs</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">res_motifs</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">i</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Putting everything together our final
+motif determination script is (batteries included):</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>            <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ntok</span> <span class="o">//</span> <span class="n">ktok</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">    add seq id_no to a set</span>
+</span><span class='line'><span class="sd">    use explicit counter to create seq_no</span>
+</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">input_seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">input_seqs2</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">foreground</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'><span class="n">background</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">res_motifs</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">term1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span class='line'>    <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.0001</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">res_motifs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">res_motifs</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">res_motifs</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">i</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next we will see some basic Python methods. And maybe start a new series and phase.</p>
 </div>
   
   
@@ -457,7 +614,7 @@ frame.Show() app.MainLoop()[/sourcecode]</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/13/why-open-scienceresearch-wont-work-at-least-for-now-first-part-of-a-long-series/">Why Open Science/Research won&#8217;t work (at least for now), first part of a long series</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/09/03/obtaining-overrepresented-motifs-in-dna-sequences-final/">Obtaining overrepresented motifs in DNA sequences, final</a></h1>
     
     
       <p class="meta">
@@ -473,36 +630,15 @@ frame.Show() app.MainLoop()[/sourcecode]</p>
   
 
 
-<time datetime="2008-11-13T13:14:33-05:00" pubdate data-updated="true">Nov 13<span>th</span>, 2008</time>
+<time datetime="2008-09-03T20:21:38-04:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>First what is Open Science/Research? Have you ever heard of it (no, that&#8217;s not for the <a href="http://friendfeed.com/rooms/the-life-scientists">Life Scientists room on FriendFeed</a>)? Haven&#8217;t you? I thought of it.</p>
-
-<p>As a &#8220;lay open scientist/researcher&#8221;, I decided to enter the belly of the beast, and the easiest way to do that was googling. Nice. Open and science returned me 98,500,000 links. Looks good. &#8220;Open science&#8221; returned a &#8220;mere&#8221; 200,000. What is the first search result? This <a href="http://www.openscience.org/blog/">one</a>. Looks exactly what I needed. Let&#8217;s check the about page &#8230;</p>
-
-<blockquote><p>The OpenScience project is dedicated to writing and releasing free and <strong>Open Source scientific software</strong>. We are a group of scientists, mathematicians and engineers who want to encourage a collaborative environment in which science can be pursued by anyone who is inspired to discover something new about the natural world.</p></blockquote>
-
-<p>Ah, open source software. Nope, not what I wanted (yes, I want open source software especially in science, but it&#8217;s not what I want right now).</p>
-
-<p>Let&#8217;s check the second search result: <a href="http://en.wikipedia.org/wiki/Open_research">http://en.wikipedia.org/wiki/Open_research</a>. Wikipedia, nice, good (second) place to start. OK, some definitions</p>
-
-<blockquote><p>the central theme of open research is to make clear accounts of the methodology, along with data and results extracted therefrom, freely available via the internet. This permits a massively distributed collaboration.</p></blockquote>
-
-<p>Great. But, even though the Wikipedia entry is open and anyone can edit it and add information, it&#8217;s not enough to feed my will to learn about open science. Knowing a bit about Wikipedia (remember I am a lay open scientist here and computers are not my forte), I go to the external links section and get the first one: <a href="http://openresearch.org/wiki/Main_Page">OpenResearch.org</a>. Yes! that&#8217;s what I was looking for.</p>
-
-<p>OpenResearch.org is a &#8220;a semantic Wiki aiming to collect scientific meta-data such as about calls for papers, tools, journals etc.&#8221; Great &#8230; wait what? A semantic what to collect what? I don&#8217;t know nothing (yes, double negative, my native language is no English, but I guess you guessed that, right?) about wikis, there&#8217;s Wikipedia, but wiki?</p>
-
-<p>I go to the page and I don&#8217;t know where to start. There are so many links, so many pages, and I don&#8217;t know how to navigate this messy webpage and I don&#8217;t have time to learn. Let&#8217;s get the second link on Open Research entry on Wikipedia: <a href="http://www.philoptima.org/">Philoptima</a>, Open Research Marketplace &amp; Community. Just a sec, isn&#8217;t Open Research to be open to anyone interested, why do we need a market place for it? Ok, maybe I try some other time, because now I have to get back to do some research so I can get it in the open &#8230;</p>
-
-<p>&#8211;</p>
-
-<p>I think you guessed what is the moral of the story: there is no central repository of information about open research. I have to dig deeper, waste time, and if I already have a constrained schedule, I won&#8217;t do that. If I didn&#8217;t know the open science advocates, I will never have heard of some of their sites. Don&#8217;t expect a large group of people to make a huge effort to learn about it, what do they have to do to join the &#8220;next revolution&#8221;, how to navigate an horrible wiki user interface (much less learn how to edit it). And don&#8217;t let me started on collaborating online, sharing files, connecting to other computers, etc, etc (that&#8217;s another post).</p>
-
-<p>I&#8217;m not here to suggest anything to the open scientists, just point out what is wrong and why it will be a failure for some time to come. I may be wrong, but that&#8217;s easier than being right.Technorati Tags: <a href="http://technorati.com/tag/open%20science">open science</a>, <a href="http://technorati.com/tag/open%20research">open research</a>, <a href="http://technorati.com/tag/failure">failure</a>, <a href="http://technorati.com/tag/series">series</a>, <a href="http://technorati.com/tag/long">long</a>, <a href="http://technorati.com/tag/wiki?">wiki?</a></p>
+  <div class="entry-content"><p>The part 13 of the motifs series is the last one. In a couple of weeks I will post a refactored code, including the suggestions from Andrew in
+the last post. I will update the blog contents on OWW and commit some of the code to the GitHub <a href="http://en.wikipedia.org/wiki/Repository" title="Repository">repository</a>.</p>
 </div>
   
   
@@ -515,7 +651,7 @@ frame.Show() app.MainLoop()[/sourcecode]</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/12/how-to-improve-science-in-easy-steps/">How to improve Science, in easy steps</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/08/25/mendeley-a-very-short-review/">Mendeley: a very short review</a></h1>
     
     
       <p class="meta">
@@ -531,26 +667,20 @@ frame.Show() app.MainLoop()[/sourcecode]</p>
   
 
 
-<time datetime="2008-11-12T15:16:00-05:00" pubdate data-updated="true">Nov 12<span>th</span>, 2008</time>
+<time datetime="2008-08-25T15:17:38-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>In my spare time I like to tackle simple problems, like how to improve science. Here I present a straightforward proposition on how to at least multiply by a large fold productivity in labs, institutes, universities and academia in general. Productivity in this case is not only on number papers published, but also on resources consumption, time management, research achievements, etc. As you can see a small, trivial problem (I will use bullet point format, so it&#8217;s even clearer).</p>
+  <div class="entry-content"><p><a href="http://www.flickr.com/photos/9541154@N03/2796169357/"><img src="http://farm4.static.flickr.com/3243/2796169357_806c275210_m.jpg" alt="Lost Thoughts" /></a>Image by <a href="http://www.flickr.com/photos/9541154@N03/2796169357/">! <em>S4N7Y</em> !</a> via Flickr  I promised myself that I would never use Mendeley, but I am not very good in keeping promises to myself and I decided to install it, after I got a comment from the co-founder (??) of the software/company.</p>
 
-<ol>
-<li><p>create an efficient informatics support for the institution - yes, that&#8217;s true. At McMaster we had in the lab a informatics guy, that not only was able to administrate our small cluster but to advise on a number of things we needed. Problem: they were understaffed. So, let&#8217;s create an IT department, not only to administrate things, but to educate people and have bioinformaticians, chemoinformaticians, whatever-science-field-ician. I don&#8217;t want these guys doing science or competing for grants, I want this as a service and a competent one.</p></li>
-<li><p>As an addition to our recently suggested IT-do-it-all department, let&#8217;s have a group of artists working on creating figures for papers, either hand drawing for those guys in morphology, or creating the latest visualization of nanotubes to those guys in nanoscience. OF course this should be a specialized group, with people from different areas working on streamlining graphical production for faculty and staff.</p></li>
-<li><p>A science related marketing department, with PR people that actually know that molecular biology, quantum physics, paleontology is. MB is more than using micropipettes (yes, news reporters have a fetish with micropipettes, so everytime I see one talking about &#8220;genetics engineering&#8221; on TV, I tend to check the pipette brand the guys are using). After all science is done with mostly public money, and I bet there a bunch of geek kids interested in learning more and more. NBA is not for everyone (below 6&#8221;).</p></li>
-<li><p>There are not enough positions? Let&#8217;s create new ranks. There are people out there that don&#8217;t want to be a PI, but don&#8217;t want to be post-docs for 10 years. There are people out there that don&#8217;t care if they are first in a publication or third, as long as he or she knows the contribution they gave to the research. Creating the above departments/services, it will be simple to create these new positions.</p></li>
-</ol>
+<p>It seems that it is based on Qt, and a good point (maybe the only one) is that the program is cross-platform. I decided to give it a go and import around 700 PDFs that I have in one directory (I&#8217;m using it on Vista). It has been almost an hour already and the import hasn&#8217;t ended, and it is using one core of my AMD CPU. Process Lasso already lowered its priority 10 times, because it is taking too much cycles. For read a PDF file?</p>
 
+<p>Yep, uninstalling it soon. And not recommending it at all. I will keep using Citeulike, Zotero and the like.</p>
 
-<p>I might have more steps, but my spare time is short today. Maybe there is no money, or political will to do these kind of things, but I didn&#8217;t promise anything.</p>
-
-<p>Next time, I will pitch in the oil crisis and Middle-East peace process. Prepare yourselves.</p>
+<p><a href="http://reblog.zemanta.com/zemified/2d9ecc28-6fcd-40ba-8a3b-26203175eadc/"><img src="http://img.zemanta.com/reblog_e.png?x-id=2d9ecc28-6fcd-40ba-8a3b-26203175eadc" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -563,7 +693,7 @@ frame.Show() app.MainLoop()[/sourcecode]</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/11/creating-an-interface-for-the-motif-finding-script-part-7/">Creating an interface for the motif finding script, part 7</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/">Obtaining overrepresented motifs in DNA sequences, part 13</a></h1>
     
     
       <p class="meta">
@@ -579,36 +709,131 @@ frame.Show() app.MainLoop()[/sourcecode]</p>
   
 
 
-<time datetime="2008-11-11T13:53:09-05:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+<time datetime="2008-08-20T21:32:09-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Let&#8217;s get back to the last post and check one line we entered\
-\
-[sourcecode language=&#8217;python&#8217;]self.motif_width = wx.TextCtrl(panel, -1,
-&#8216;10&#8217;, (95, 50), (40,18))[/sourcecode]\
-\
-There is something in this line that I did not explain. The third
-parameter in the test box declaration is <code>'10'</code>. How does this affect
-our box? That&#8217;s the default text that will be displayed inside the box
-as soon as it is created. In our case, 10 is the motif width, and it&#8217;s
-the value we consider to be the most common search width.\
-\
-Another aspect not explained is the <code>run_finder</code>. We added a line \
-\
-[sourcecode language=&#8217;python&#8217;]wx.MessageBox(&#8216;It should run,
-eh?&#8217;)[/sourcecode]\
-\
-where we declare a wx.MessageBox. What is it? A message box is the usual
-error/information dialog that you see in most programs. In our case it
-is very simple, just a warning/reminder that we need to include some
-code there.\
-\
-Next time we will connect some Python source files and make our script
-find some motifs.</p>
+  <div class="entry-content"><p>Now that we have the best quorum determination function and the ideal
+function to calculate the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial
+expansions</a>
+it is easy to program a script to calculate the <em>p</em> value of motifs in
+DNA sequences. To the script <em>below in the code there are a couple of
+errors that wordpress don&#8217;t let me fix. The > and &lt; are replaced by
+their literal html enconding. I am working on it, sorry</em></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>            <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="c">#print ntok // ktok</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ntok</span> <span class="o">//</span> <span class="n">ktok</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">    add seq id_no to a set</span>
+</span><span class='line'><span class="sd">    use explicit counter to create seq_no</span>
+</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">input_seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">input_seqs2</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">foreground</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'><span class="n">background</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">term1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</span><span class='line'>    <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.0001</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We already defined choose in the last post (more information in the link
+from the Python&#8217;s cookbook) and earlier Mike sent us a series of
+quorum-determination functions and one of the best was portrayed and
+explained here.</p>
+
+<p>We also need our fasta module to read the sequences (and only the
+sequences) in order to use it in the quorum function. Basically we use
+the foreground and background files as input, determine the quorum of
+the different words (width 10) and then we iterate over the results,
+calculating the <em>p</em> value for each motif found in the foreground set.
+The tree terms of the Hypergeometric Distribution are calculated
+separately and we test for a <em>p</em> value smaller that 0.0001 (this can be
+modified) and we only print the results that fall in this category.</p>
 </div>
   
   
@@ -621,7 +846,7 @@ find some motifs.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/11/the-11th-hour/">the 11th hour</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/08/20/that-should-do-it/">That should do it!</a></h1>
     
     
       <p class="meta">
@@ -637,33 +862,25 @@ find some motifs.</p>
   
 
 
-<time datetime="2008-11-11T06:43:00-05:00" pubdate data-updated="true">Nov 11<span>th</span>, 2008</time>
+<time datetime="2008-08-20T20:17:44-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>In Flanders Fields
-By John McCrae</p>
+  <div class="entry-content"><p><a href="http://en.wikipedia.org/wiki/Image:Guitarhero-screen.jpg"><img src="http://upload.wikimedia.org/wikipedia/en/thumb/6/6c/Guitarhero-screen.jpg/202px-Guitarhero-screen.jpg" alt="To play a note, the fret button and strum bar ..." /></a>Image via <a href="http://en.wikipedia.org/wiki/Image:Guitarhero-screen.jpg">Wikipedia</a> Now that <a href="http://en.wikipedia.org/wiki/BMX">BMX</a> and trampoline are in the Olympics (OK, all right, trampoline got in a couple of editions ago) I can say that the Olympics are a <a href="http://en.wikipedia.org/wiki/Good_faith">bona fide</a> international competition. I would like to thank to the enlightened people that include those wonderful &#8220;sports&#8221; in the competition. I can&#8217;t wait to see <a href="http://en.wikipedia.org/wiki/Rock-paper-scissors">rock-paper-scissors</a> and <a href="http://en.wikipedia.org/wiki/Guitar_Hero">Guitar Hero</a> in 2012.</p>
 
-<p>In Flanders fields the poppies blow
-Between the crosses, row on row,
-That mark our place; and in the sky
-The larks, still bravely singing, fly.
-Scarce heard amid the guns below.</p>
+<h6>Related articles by Zemanta</h6>
 
-<p>We are the dead. Short days ago
-We lived, felt dawn, saw sunset glow
-Loved, and were loved, and now we lie
-In Flanders fields.</p>
+<ul>
+<li><a href="http://abcnews.go.com/International/China/wireStory?id=5608227">Counter-Culture BMX Makes Debut in Beijing</a></li>
+<li><a href="http://kotaku.com/5037975/parents-let-kid-drop-out-of-high-school-to-focus-on-guitar-hero">Parents Let Kid Drop Out of High School to Focus on Guitar Hero [Guitar Hero]</a></li>
+<li><a href="http://www.russellbeattie.com/blog/holy-shit-look-at-the-size-of-that-ramp">Holy SHIT, look at the size of that ramp!</a></li>
+</ul>
 
-<p>Take up our quarrel with the foe:
-To you from failing hands we throw
-The torch; be yours to hold it high.
-If ye break faith with us who die
-We shall not sleep, though poppies grow
-In Flanders fields.</p>
+
+<p><a href="http://reblog.zemanta.com/zemified/44c6dd6e-2c47-48cd-bbfe-20f4bf6025a7/"><img src="http://img.zemanta.com/reblog_e.png?x-id=44c6dd6e-2c47-48cd-bbfe-20f4bf6025a7" alt="Reblog this post [with Zemanta]" /></a></p>
 </div>
   
   
@@ -676,7 +893,7 @@ In Flanders fields.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/07/crooks/">Crooks</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/08/19/business-opportunities/">Business opportunities</a></h1>
     
     
       <p class="meta">
@@ -692,18 +909,20 @@ In Flanders fields.</p>
   
 
 
-<time datetime="2008-11-07T11:26:15-05:00" pubdate data-updated="true">Nov 7<span>th</span>, 2008</time>
+<time datetime="2008-08-19T10:27:41-04:00" pubdate data-updated="true">Aug 19<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>There&#8217;s a limit to everything, and when a friend is involved, things get serious. <a href="http://sciphu.com/">Nils Reinton</a> posted a link on FriendFeed of a company (?!?) in Singapore using a logo that looks very similar to <a href="http://my.biotechlife.net/">Ricardo Vidal&#8217;s</a> logo for the DNA Network.</p>
+  <div class="entry-content"><ul>
+<li>make flags during the Olympics</li>
+<li><a href="http://www.foxsports.com.au/beijing_olympics/story/0,27313,24207254-5016791,00.html">ultra fast boat repair during the Olympics (in the case we are unable to repair your boat in time, a boat from some other country will be provided and you can sail incognito</a></li>
+</ul>
 
-<p>The original is <a href="http://www.flickr.com/photos/rvidal/498699238/">here</a> and the crooks are <a href="http://www.dna.jspiondetox.com/">here</a>.</p>
 
-<p>Compare.</p>
+<p><em>this post is continuously updated as soon as new opportunities arise</em></p>
 </div>
   
   
@@ -716,7 +935,7 @@ In Flanders fields.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/11/05/software-that-i-would-never-buy/">Software that I would never buy or use (even free)</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/08/15/obtaining-overrepresented-motifs-in-dna-sequences-part-12/">Obtaining overrepresented motifs in DNA sequences, part 12.5</a></h1>
     
     
       <p class="meta">
@@ -732,19 +951,169 @@ In Flanders fields.</p>
   
 
 
-<time datetime="2008-11-05T10:56:05-05:00" pubdate data-updated="true">Nov 5<span>th</span>, 2008</time>
+<time datetime="2008-08-15T17:15:21-04:00" pubdate data-updated="true">Aug 15<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.fortinet.com/products/forticlient.html">FortiClient</a>
-<a href="http://www.mendeley.com/">Mendeley</a>
-Internet Explorer (yes, I know, I used it before)
-ADrive</p>
+  <div class="entry-content"><p>So let&#8217;s modify a little bit the <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a> and then
+benchmark both by using <code>timeit</code>. Ideally our factorial function would
+need to calculate a value similar to the <a href="http://en.wikipedia.org/wiki/Binomial_theorem" title="Binomial theorem">binomial expansion</a>,
+as we have three factorials to calculate in for each binomial in the
+Hypergeometric Distribution. So we can add two extra factorial
+calculations to our function and perform the multiplication and division
+to return the equivalent to the binomial calculation. So the function
+would be</p>
 
-<p><em>list updated daily/weekly/monthly/yearly</em></p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">value1</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">value1</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>    <span class="n">value2</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">value2</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>    <span class="n">value3</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">value3</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span>  <span class="n">value1</span> <span class="o">/</span> <span class="p">(</span><span class="n">value2</span> <span class="o">*</span> <span class="n">value3</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> <code>m</code> and <code>n</code> are both values of the binomial and <code>n - m</code> is the subtraction of one by the
+other that forms the last factorial to be calculated. This way it makes
+easier to time the performance of both functions. In the end the
+complete script would look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">timeit</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">result1</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">result1</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>    <span class="n">result2</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">result2</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>    <span class="n">result3</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">result3</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span>  <span class="n">result1</span> <span class="o">/</span> <span class="p">(</span><span class="n">result2</span> <span class="o">*</span> <span class="n">result3</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">while</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>            <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="c">#print ntok // ktok</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ntok</span> <span class="o">//</span> <span class="n">ktok</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">stmt</span> <span class="o">=</span> <span class="s">&quot;fac(3000, 7)&quot;</span>
+</span><span class='line'>    <span class="n">t</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt</span><span class="p">,</span> <span class="n">setup</span><span class="o">=</span><span class="s">&#39;from __main__ import fac&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">stmt2</span> <span class="o">=</span> <span class="s">&quot;binom(3000, 7)&quot;</span>
+</span><span class='line'>    <span class="n">t2</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt2</span><span class="p">,</span> <span class="n">setup</span> <span class="o">=</span> <span class="s">&#39;from __main__ import binom&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">stmt3</span> <span class="o">=</span> <span class="s">&quot;choose(3000, 7)&quot;</span>
+</span><span class='line'>    <span class="n">t3</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="n">stmt</span> <span class="o">=</span> <span class="n">stmt3</span><span class="p">,</span> <span class="n">setup</span> <span class="o">=</span> <span class="s">&#39;from __main__ import choose&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;fac: </span><span class="si">%.9f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;binom: </span><span class="si">%.2f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t2</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;choose </span><span class="si">%.9f</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">t3</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The final result of the average for
+ten repetitions is as follow fac = 0.10 s binom = 43.24 s choose =
+0.000005 s <del>Clearly, the factorial function gets a huge advantage over
+the binomial one. So we will modify it a little bit and use it for our
+HD script.</del> Clearly the <code>choose</code> function is the fastest one, so we
+will incorporate it on out HD script.</p>
 </div>
   
   

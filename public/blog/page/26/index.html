@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="This serves as a thank you note for all frog species. Thanks a lot and enjoy your year. Hope this is only the first of many.
-">
+  <meta name="description" content="Tornadoes? No. Earthquakes? No. Zombies? No. They want to control our minds and lower the standards globally. Enough of Beckhams, Rooneys and alikes &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/03/11/year-of-the-frog/">Year of the Frog</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/02/07/we-are-doomed/">We are doomed!</a></h1>
     
     
       <p class="meta">
@@ -99,16 +98,14 @@
   
 
 
-<time datetime="2008-03-11T13:18:24-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
+<time datetime="2008-02-07T10:37:32-05:00" pubdate data-updated="true">Feb 7<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>This serves as a thank you note for all frog species.</p>
-
-<p>Thanks a lot and enjoy your <a href="http://www.amphibianark.org/yearofthefrog.htm">year</a>. Hope this is only the first of many.</p>
+  <div class="entry-content"><p>Tornadoes? No. Earthquakes? No. Zombies? No. <a href="http://news.yahoo.com/s/afp/20080207/ts_afp/fblengproverseas">They want to control our minds and lower the standards globally</a>. Enough of Beckhams, Rooneys and alikes. I want to see real football (soccer for the football-played-with-the-hand people).</p>
 </div>
   
   
@@ -121,7 +118,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/03/11/fasta-module-generating-reverse-complement-of-dna-sequences/">Fasta module: generating reverse complement of DNA sequences</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/02/03/tnt-review-of-the-graphical-interface/">TNT: review of the graphical interface</a></h1>
     
     
       <p class="meta">
@@ -137,119 +134,46 @@
   
 
 
-<time datetime="2008-03-11T12:17:21-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
+<time datetime="2008-02-03T12:27:27-05:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>As shown in the GenBank DNA parser script, it is really useful to have
-the ability to get the reverse complement of some DNA sequences. The
-reverse complement of a 5&#8217;-3&#8217; DNA sequence is on its complementary
-strand. Using our <code>fasta</code> module it is easy to implement a function to
-generate the antiparallel sequence Basically we can do this in two step,
-one - obtaining the complement and two - reversing it.</p>
+  <div class="entry-content"><p>This time I am writing about the Windows version of TNT which is somewhat graphical. I am currently using Windows Vista Home Premium.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">abuffer</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s">&#39;G&#39;</span><span class="p">:</span>
-</span><span class='line'>          <span class="n">abuffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">abuffer</span>
-</span></code></pre></td></tr></table></div></figure>
+<p><strong>Interface</strong></p>
 
+<p>TNT&#8217;s interface is far from being stylish, and it is quite simple and intuitive. Most of the options you would need to calculate trees and modify your analysis are on a toolbar and on menus at the top.</p>
 
-<p>That&#8217;s not a Pythonic approach, but it works
-reasonably well for short sequences. What would be a Pythonic approach
-to it? Using dictionaries and list comprehension. From the Python online
-documentation: <em>List comprehensions provide a concise way to create
-lists without resorting to use of map(), filter() and/or lambda. The
-resulting list definition tends often to be clearer than lists built
-using those constructs. Each list comprehension consists of an
-expression followed by a for clause, then zero or more for or if
-clauses. The result will be a list resulting from evaluating the
-expression in the context of the for and if clauses which follow it.</em></p>
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/01/tnt1.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/01/tnt1.png" alt="Toolbar" /></a></p>
 
-<p>It
-is basically a specific way to modify lists using a loop and if clauses
-when needed. In a couple of lines we can do what we accomplished in 10
-lines with the above excerpt. First we need a dictionary to set how the
-nucleotides are related</p>
+<p>The main area is occupied by a log/text area where the current actions/selections are displayed from time to time. The default font is clear and large and there are ways to format it as you wish. You also have buttons that allow you to increase or decrease the font size.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">complement</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span>
-</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">:</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span> <span class="s">&#39;A&#39;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<p><strong>Running TNT</strong></p>
 
+<p>Running the program with the interface was clearly more pleasant than using the cryptic command line version. TNT starts with an blank area, toolbar and menu, as an usual Windows application. I decided to open one of the three example files that come with it, zilla.tnt.</p>
 
-<p>and then a list
-comprehension to modify each nucleotide</p>
+<p>First thing would be to obtain the tree, and intuitively I ended up pressing the button the toolbar with the man running. Bingo, that&#8217;s what I needed. TNT, then, showed me a options dialog.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">complseq</span> <span class="o">=</span> <span class="p">[</span><span class="n">complement</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/01/tnt2.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/01/tnt2.thumbnail.png" alt="tnt2.png" /></a></p>
 
+<p>This makes life much easier. All options for tree calculation were right in front of me, and I even had access to specific settings for each method. Then I could see the full range of features that TNT offers. I set to run with default parameters adding the ability to use the ratchet. The run went smoothly, quite fast and an informative progrss dialog displayed the status. (One thing though: TNT developers have created some of the dialogs without a frame or border, what makes impossible to move then around. Sometimes they got in the way of information displayed on the log that might have been important to set the runs).</p>
 
-<p>The list comprehension means: for each base in the
-sequence get the dictionary value for each key (a nucleotide in the
-initial sequence). The complete function would be</p>
+<p>After the calculation ended, TNT told me that 4 trees were retained from my run. So I wanted to check the trees, not that I was worried if my analysis was right or wrong. One fault was evident: tool bar buttons don&#8217;t have a tooltip and this made a little bit difficult to understand some of the buttons&#8217; pictures. The one to create a consensus is pretty clear, as the one to trash all trees obtained. So I decided to check the menu.</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span> <span class="n">complement</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;A&#39;</span><span class="p">:</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">:</span> <span class="s">&#39;G&#39;</span><span class="p">,</span>
-</span><span class='line'><span class="s">&#39;G&#39;</span><span class="p">:</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">:</span> <span class="s">&#39;A&#39;</span><span class="p">}</span> <span class="n">complseq</span> <span class="o">=</span> <span class="p">[</span><span class="n">complement</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">]</span> <span class="k">return</span>
-</span><span class='line'><span class="n">complseq</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>As in any normal Windows program TNT&#8217;s menu is richer in options than the tool bar for obvious reasons. I went to the Trees menu and selected View. All four trees were then displayed on the screen with a scrollbar on the side, much better than the command line version. There is an option that allows the user to collapse the branches, but in my opinion it still a little bit awkward. You have first to unlock the tree and then the program allows you to &#8220;shrink&#8221; nodes. One click at a node adds a red spot to it, another puts a green spot, and a double-click &#8220;shrinks&#8221; the node.</p>
 
+<p>There are some errors on some tree display options. For instance, when the consensus button is clicked it brings up a dialog to change the calculation and after you click OK, TNT generates the consensus and automatically displays a tree. But the window containing the tree is larger than my desktop, has no scrollbar and cannot be dragged. I don&#8217;t know if this an error, a bug or an incompatibility of TNT with Vista. The only way to exit is by using ESC. I will try on XP and update the review.</p>
 
-<p>One step solved. We are already able to get the
-complement, now we need to reverse it. Simple. A Python list method
-automatically reverts list elements. Basically what we need then is
-below</p>
+<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/02/tnt3.png">TNT displaying a consensus tree (full screen capture)</a></p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">reverse_complement</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span> <span class="n">seq</span> <span class="o">=</span>
-</span><span class='line'><span class="nb">list</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="n">seq</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="k">return</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">complement</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
+<p><strong>Conclusions</strong></p>
 
+<p>TNT seems to be a powerful software for phylogenetic analysis if you are looking mainly for parsimony. Also, its algorithms seems to have inherited the best of Hennig86. The graphic interface, even though not groundbreaking by any means, makes its use very easy. The program is fast, has many different options for parsimony tree calculation and it is an excellent option for determination of trees to be used as input for slower methods, as pointed out in one of the comments of the CLI review. There are still some errors and bugs and some features I would change in its GUI, but that&#8217;s true for most of the software available in any field.</p>
 
-<p>The
-call from any script to this function would be simply be</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">reverse_complement</span><span class="p">(</span><span class="s">&#39;AACCGGTTTTGGCCAA&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Batteries included, indeed.</p>
-
-<p><em>more can be found
-<a href="http://www.onlamp.com/pub/a/python/2002/10/17/biopython.html?page=4">here</a>.
-that served as an inspiration for the function</em></p>
+<p><em><strong>Update: another review is available <a href="http://blindscientist.genedrift.org/2008/01/30/tnt-a-comprehensive-review/">here</a>.</strong></em></p>
 </div>
   
   
@@ -262,7 +186,7 @@ that served as an inspiration for the function</em></p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/03/11/genbank-parsing-part-ii/">GenBank parsing: part II</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/02/02/is-this-the-year-chelios-retires/">Is this the year Chelios retires?</a></h1>
     
     
       <p class="meta">
@@ -278,541 +202,7 @@ that served as an inspiration for the function</em></p>
   
 
 
-<time datetime="2008-03-11T08:49:47-04:00" pubdate data-updated="true">Mar 11<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last thing we saw in the previous entry was the function to parse a
-GenBank file in order to get the DNA sequences of an annotated gene.
-This time we will dissect the function.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span>
-</span><span class='line'>    <span class="c">#changes a string to list, splitting at line ends</span>
-</span><span class='line'>    <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="nb">id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="n">complement</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  CDS  &#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">temp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>            <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;complement&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>                <span class="n">complement</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>                <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;complement(&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;..&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">start</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>            <span class="n">end</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="nb">id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="nb">id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">CDSinfo</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">complement</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>First things first. As in the CDS/protein parsing example, the function
-receives a string and it is easier for us to operate with lists, so we
-split the string at the carriage returns. This time we also need to
-check for the start and end positions of the gene in the long string
-that is the DNA sequence of a GenBank file, so we just declare a couple
-of integers <code>start</code> and <code>end</code>. We also have a couple of strings to
-receive the gi ID and the gene product (<code>id</code>). And finally a boolean,
-that will tell us if the sequence in question is on the DNA complement
-strand, meaning it is a reverse complement of the DNA that is stored in
-the file. So we start our loop checking for the elements of each line.
-If we find a <code>'  CDS  '</code> we know that we can extract the start and end
-positions of the gene</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  CDS  &#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">temp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;complement&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">complement</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>        <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;complement(&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;..&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">start</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>    <span class="n">end</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We use temporary list and split the line at
-the spaces and then move to get the information from it. If the line is
-a reverse complement we remove the word from the entry and the
-parentheses. Whenever the gene annotation relates to the complement
-strand the entry is as such <code>complement(10728..11330)</code>. We then use
-another temp object and split the second element in the split line and
-separate it at the double dots. From this latter split, we end up with
-two elements, the first is the start position and the second the end
-position of the gene. To extract the other information everything works
-as the previous script, basically checking for the presence of certain
-words in the each line. In the end we return an instance of the class
-<code>CDSinfo</code> which will be used to extract the DNA sequence.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/10/are-we-there-yet-pretty-much/">Are we there yet? Pretty much.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-10T15:22:56-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.researchblogging.org"><img src="http://www.researchblogging.org/images/rbicons/ResearchBlogging-Medium-White.png" alt="ResearchBlogging.org" /></a></p>
-
-<p>Are We There Yet it is a simple web application to explore graphically convergence in Markov Chain Monte Carlo in Bayesian phylogenetic inference. The website name comes from one of the most important factors in Bayesian phylogenetic inference, that is the convergence of branch lengths and splits. Usually a linear plot of likelihood scores is used to define convergence (a plateau in the graph) where supposedly the variables in the estimation reached a &#8220;convergent&#8221; status. But as pointed in AWTY original article this method can incur in assessment errors of such convergence and because of this they developed the web application.</p>
-
-<p>AWTY is pretty simple interface, the simple here being a compliment. No frills and easy to use. Basically the whole process can be summarized by:</p>
-
-<p>upload tree file(s) -> select analysis type -> click Plot -> check result</p>
-
-<p>The application is nothing more than a wrapper to <a href="http://www.gnuplot.info/">GnuPlot</a> and in some cases <a href="http://paup.csit.fsu.edu">PAUP</a>. A nice touch is that everything created in the site is logged and all commands used on the background GnuPlot are also output and linked, so if you don&#8217;t like the graph created by AWTY you can run your own. No complete help is available but the simplicity of the interface makes it very user friendly. Each of the nine methods have short explanatory texts in order to guide the user on parameter selection and/or the number of required file(s) for the analysis.</p>
-
-<p>One change that I would make is to include the possibility of uploading more than one file at once. But apart of that AWTY is a very nice application and should be very useful for exploratory Bayesian phylogenetic inference.</p>
-
-<p><em>Tested on Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.12) Gecko/20080201 Firefox/2.0.0.12</em></p>
-
-<p>Nylander, J.A., Wilgenbusch, J.C., Warren, D.L., Swofford, D.L. (2007). AWTY (are we there yet?): a system for graphical exploration of MCMC convergence in Bayesian phylogenetics. Bioinformatics, 24(4), 581-583. DOI: <a href="http://dx.doi.org/10.1093/bioinformatics/btm388">10.1093/bioinformatics/btm388</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/06/parsing-genbank-getting-dna-from-genome-entries-part-i/">Parsing GenBank: getting DNA from genome entries, part I</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-06T17:17:03-05:00" pubdate data-updated="true">Mar 6<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Before we see how to improve the speed in our Python code (would it be
-possible?), let&#8217;s go back to our GenBank parsing algorithm. Last time we
-saw how to extract the proteins from the CDS entries along the file.
-This time we will see how to get the DNA from the file. Usually DNA
-sequence is stored at the bottom of the GenBank file, in a long sequence
-(if the file is a genome, for instance). Basically, what we need to do
-is to get the start and end position of each gene (or any annotated
-piece) and cut the long sequence at the bottom. This will require a
-couple of changes in our previous script, basically to get the DNA and
-to cut it. Previously, we had this to read the file</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">proteins</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  gene &#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>            <span class="c">#parses the CDS and appends to a list</span>
-</span><span class='line'>            <span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
-</span><span class='line'>            <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>    <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="c">#found the DNA sequence, we can stop now</span>
-</span><span class='line'>        <span class="k">break</span>
-</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>      
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Notice
-that we stop when we reach the bottom DNA sequence. We need to go
-further, but there is another issue: DNA sequence stored in a GenBank
-file are stored in blocks of nucleotides and the initial position in
-each line is also there. So we need to join these blocks and remove the
-number from the beginning of the line. In the end we would have this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">is_seq</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'><span class="n">genes</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  gene &#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">genes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
-</span><span class='line'>            <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>    <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">is_seq</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>        <span class="n">genes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
-</span><span class='line'>    <span class="k">elif</span> <span class="n">is_seq</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>        <span class="n">sequence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">str_seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">str_seq</span> <span class="o">+=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-</span><span class='line'>  
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We added
-a couple of things. Mainly a flag boolean variable (<code>is_seq</code>) that tells
-the program that we have reached &#8220;DNA level&#8221; and a routine to join the
-blocks from the second one to the end. <code>sequence</code> is list at first,
-appending blocks of actual DNA sequence and numbers obtained from the
-<code>split</code> method. We use a &#8220;blank&#8221; <code>split</code>, what means it will break the
-string in the spaces. Our <code>join</code> method above joining list elements from
-the element 1 and forward. Element 0 in this case would be the numbers
-indicating sequence position. The function to parse the entries and the
-class to store the information also need to be changed. Previously, our
-class was simpler, with less objects. This time we need to extract more
-information.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">CDSinfo</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gi_id</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">complement</span><span class="p">):</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">gi_id</span> <span class="o">=</span> <span class="n">gi_id</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">complement</span> <span class="o">=</span> <span class="n">complement</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We removed the sequence object, but added a
-start, end and a complement, for the cases where the gene is on the
-reverse complement. The function to extract the info looks like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span>
-</span><span class='line'>    <span class="c">#changes a string to list, splitting at line ends</span>
-</span><span class='line'>    <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="nb">id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="n">complement</span> <span class="o">=</span> <span class="bp">False</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  CDS  &#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">temp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-</span><span class='line'>            <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;complement&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>                <span class="n">complement</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'>                <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;complement(&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;..&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">start</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>            <span class="n">end</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="nb">id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="nb">id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">CDSinfo</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">complement</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We will discuss the parsing function in the next entry and wrap up both codes, and add them to the repository.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/04/how-much-would-you-pay/">How much would you pay? </a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-04T12:15:35-05:00" pubdate data-updated="true">Mar 4<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;d pay nothing, would never pay a dime to get my genome sequenced. But, <a href="http://www.nytimes.com/2008/03/04/health/research/04geno.html?ex=1362286800&amp;en=1a8fb705f5970ec0&amp;ei=5090&amp;partner=rssuserland&amp;emc=rss&amp;pagewanted=all">Dan Stoicescu</a> is paying US$ 350,000 to get his. He is also retired at the age of 56, and apparently owned <a href="http://www.actavis.com.ro/ro/default.htm">Actavis</a>.</p>
-
-<blockquote><p>“I’d rather spend my money on my genome than a Bentley or an airplane,”</p></blockquote>
-
-<p>(&#8230;)</p>
-
-<blockquote><p>Mr. Stoicescu said he worried about being seen as self-indulgent (though he donates much more each year to philanthropic causes), egotistical (for obvious reasons) or stupid (the cost of the technology, he knows, is dropping so fast that he would have certainly paid much less by waiting a few months).</p></blockquote>
-
-<p>In my opinion he shouldn&#8217;t worry about being seen as a self-indulgent egotistical stupid person. He already is. Whoever drops the philanthropy excuse is a sure winner for the self-indulgent prize, anytime.</p>
-
-<p>Maybe the airplane or the Bentley would be more fulfilling.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/03/the-sun-will-shine-on-python/">The Sun will shine on Python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-03T15:21:39-05:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Sun hired some good Python programmers/advocates/developers/thinkers, <a href="http://www.sauria.com/blog/2008/03/03/the-sun-is-going-to-shine-on-python/">Ted Leung</a> and <a href="http://fwierzbicki.blogspot.com/">Frank Wierzbicki</a>, of Jython fame. I hope it does no end as Solaris, the movie.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/03/best-and-worst/">Best and worst</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-03T10:27:28-05:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If I had a vote in these polls that decide for the best and (maybe) worst inventions I think these would be mine:</p>
-
-<p><strong>Best</strong>: Wheel
-<strong>Worst</strong>: Cellphone</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/21/burst-baby-burst/">Burst, baby burst</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-21T18:23:07-05:00" pubdate data-updated="true">Feb 21<span>st</span>, 2008</time>
+<time datetime="2008-02-02T10:32:28-05:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2008</time>
         
       </p>
     
@@ -832,7 +222,7 @@ reverse complement. The function to extract the info looks like</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/02/20/a-comparison-between-python-and-c-parsing-a-genbank-file/">A comparison between Python and C(++): parsing a GenBank file</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/02/01/powerpoint-tips/">Powerpoint tips</a></h1>
     
     
       <p class="meta">
@@ -848,32 +238,264 @@ reverse complement. The function to extract the info looks like</p>
   
 
 
-<time datetime="2008-02-20T14:07:11-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2008</time>
+<time datetime="2008-02-01T22:59:56-05:00" pubdate data-updated="true">Feb 1<span>st</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Last time we saw how to extract all the protein sequences from a GenBank
-genome file. A program is available in the
-<a href="http://blast.wustl.edu/">WU-Blast</a> package that does exactly the same
-thing, called gt2fasta. Let&#8217;s compare the performance of our Python
-script and this compiled C++ (I believe it is C++, the source is not
-available). I am using Python 2.5 on the same machine I am running the
-already compiled gt2fasta, so don&#8217;t worry about specs. The input file is
-the <em>E. coli</em> genome which was linked in the previous post, and I am
-timing with the <code>time</code> in Linux. Let&#8217;s see how Python does (less time,
-the better):</p>
+  <div class="entry-content"><p>In the same BMJ issue that came out with a <em>ridiculous</em> article about testes, a scientist tries to give some Powerpoint tips. I couldn&#8217;t find the link so I am pasting it below:</p>
 
-<p>gt2fasta     0m0.123s<br/>
-Python  0m5.466s</p>
+<blockquote><p>The main purpose of a PowerPoint presentation is entertainment. Intellectual content is an unwarranted distraction. In preparing a PowerPoint presentation, aesthetics should transcend substance. The background colour scheme and logo for your slides should be selected for maximum emetogenic potential. The first inverse ridicule rule of PowerPoint presentation states: “The more lines of writing that can be coerced onto a slide and the smaller the font, the lower the risk of anyone criticising any data which has accidentally been included.” The second rule states: “The number of slides you can show in your allotted time is inversely proportional to the number of awkward questions which can be asked at the end.” PowerPoint has superseded the carousel era, when presentations were severely limited by the number of slots in the slide carousel and the risk of dropping the lot seconds before your talk. Plagiarism laws do not apply to PowerPoint, so cartoons of marginal relevance but high entertainment value can be downloaded and shown at suitable intervals to maintain audience mirth while minimising critical capacity. Research has shown that the ideal cartoon: data ratio is 5:1.</p></blockquote>
 
-<p>Yep, that&#8217;s 44 times
-slower for Python. It is widely known that compiled languages are faster
-than interpreted ones, but maybe 44 times it is an exaggeration, what
-makes me think that there are ways to improve out Python script to make
-it a little bit faster. After next post we will see if this is possible.</p>
+<p>The seasoned PowerPoint artist or PowerPointilliste has refined the presentation into a son-et-lumiere extravaganza, in which scattered dots and luminescent clumps of meaningless datasets hurtle on to the screen from all points of the compass, to the strident strains of Handel’s Fireworks Music, building inexorably to a Fantasia-style Sorcerer’s Apprentice climax. This fulfils an important subsidiary purpose of the PowerPoint presentation—to act as a bioassay of the epileptic threshold of the audience, a form of PowerPoint EEG. PowerPoint has spawned a number of hitherto unrecognised diseases. These include PowerPoint phobia (PPP), PowerPoint stress disorder (PPSD), and a form of depression called PowerPointlessness. Yet another purpose of the PowerPoint presentation is to test the capacity of the regional electricity grid. In case this should be found wanting, and your presentation succeeds in fusing the power supply to the surrounding region, it is advisable to have a back-up presentation, a box of matches and a Chinese lantern.</p>
+
+<p>David Isaacs (davidi@chw.edu.au) is a senior staff specialist in the department of immunology and infectious diseases and Dominic Fitzgerald is a senior staff specialist in the department of respiratory medicine, at the Children’s Hospital at Westmead, Sydney. Stephen Isaacs is a consultant at Waltham Forest Child and Family Consultation Service, London. at Children’s Hospital at Westmead.</p>
+
+<p>I will try to follow that in the next ISMB.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/01/talking-about-chocolate/">Talking about chocolate &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-01T18:17:35-05:00" pubdate data-updated="true">Feb 1<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Don&#8217;t forget your hot cocoa when reading the last edition of the Bio::Blogs, at the <a href="http://www.bioinformaticszen.com/2008/02/february-2008-edition-of-bioblogs/">Bioinformatics Zen</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/01/thats-why-we-pay-to-access-scientific-journals/">That&#8217;s why we pay to access scientific journals?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-01T18:14:25-05:00" pubdate data-updated="true">Feb 1<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Alerted by a message sent to the EvolDir mailing list I went to check the <a href="http://scientific.thomson.com/products/scientificdirect/">Scientific Direct Customized Mailing Lists</a>. Very entertaining product.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/01/ummm-chocolate/">Ummm, chocolate</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-01T11:50:58-05:00" pubdate data-updated="true">Feb 1<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Apparently is not only in bioinformatics that you can publish Greasemonkey scripts, Excel macros and 40* errors on PubMed entries.</p>
+
+<p>BMJ also has some <a href="http://www.bmj.com/cgi/content/full/335/7633/1287?fmr">very useful science</a> and with its impact factor higher than 9, I can see a lot of opportunity to publish there. I guess just this short article alone would be able to &#8220;provide a rare opportunity for the chocolate industry to become <strong>palpably</strong> involved in public health promotion&#8221;.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/31/internet-explorer-7-are-you-sure/">Internet Explorer 7? Are you sure?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-31T16:50:12-05:00" pubdate data-updated="true">Jan 31<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last week I registered to use a large online database of biological data. So far, so good, I started checking out what I was able to do, how to get data, the whole nine yards. Until I got to the main page, listing most of the database entries. I noticed that Firefox wasn&#8217;t showing the vertical  scrollbar, so, evidently, I wasn&#8217;t able to scroll down and up the page to see the data.</p>
+
+<p>Problems like this happen when the scrollbar is attached to a <code>div</code> instead of being set for the whole page. As a diligent user I dug for the web admin email address and sent a short message with the possible error, including a couple of screenshots, one from &#8220;buggy&#8221; Firefox and another from Konqueror (which displayed the page with no &#8220;errors&#8221;). I also mentioned that Firefox under Linux and Windows had problems showing the page.</p>
+
+<p>A couple of days later I receive a polite reply explaining that Firefox isn&#8217;t supported to display their pages. Sorry!? I cleared my eyes and then I found a link to the requirements page where I saw a second time that they suggest you to use Internet Explorer 6 or 7. Next thing I did was to check a GPS just to make sure I wasn&#8217;t in Punxsutawney.</p>
+
+<p>My humble internet &#8220;portal&#8221; served by the good guys at <a href="http://geekisp.com">GeekISP</a> are accessed by the following browsers
+Firefox     49%
+Internet Explorer   32%
+Safari  10%
+Opera   3%</p>
+
+<p>I heard a rumor that it is 2008.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/31/we-salute-you/">We salute you &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-31T10:29:09-05:00" pubdate data-updated="true">Jan 31<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>That&#8217;s for all the bioinformatics developers that distribute executables with spaces in their names. Thanks.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/30/things-you-can-only-learn-from-science-the-journal-not-science-itself/">Things you can only learn from Science (the journal, not science itself)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-30T15:28:55-05:00" pubdate data-updated="true">Jan 30<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>From this <a href="http://wrightfisher.wordpress.com/2008/01/25/20/">post</a> I became aware of the paper &#8220;Alignment Uncertainty and Genomic Analysis&#8221; by Wong <em>et al.</em>.</p>
+
+<p>We learn valuable lessons, some evident and some implied. I am covering only the evident here, the implied I leave for the imagination of who&#8217;s reading the paper. To the evident lessons (conclusions):</p>
+
+<ul>
+<li><p>Alignments are important for genomics studies</p></li>
+<li><p>Some genes are more difficult to align than others</p></li>
+<li><p>Some alignment programs align some genes better than others, while other alignment programs align other genes better than some</p></li>
+<li><p>Most genes in an organism are under the same DNA model of substitution, hence they all have identical selective pressure, drift, migration, recombination and mutation rates</p></li>
+</ul>
+
+
+<p>There are things you can only learn from Science.</p>
 </div>
   
   

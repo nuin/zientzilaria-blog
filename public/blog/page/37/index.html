@@ -9,9 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We have seen, briefly, how to define and use a function in Python. Now
-we are going to jump forward a bit and create a new function and at the
-same &hellip;">
+  <meta name="description" content="You know that global warming is here top stay when &#8230; invariably everyday when you take the elevator, people only travel one floor. Call it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,7 +82,7 @@ same &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/26/command-line-arguments-and-a-second-take-on-functions/">Command line arguments and a second take on functions</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/03/02/global-warming-here-to-stay/">Global warming: here to stay</a></h1>
     
     
       <p class="meta">
@@ -100,118 +98,16 @@ same &hellip;">
   
 
 
-<time datetime="2007-03-26T13:18:48-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2007</time>
+<time datetime="2007-03-02T17:39:58-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We have seen, briefly, how to define and use a function in Python. Now
-we are going to jump forward a bit and create a new function and at the
-same time take a look on command line parameters that can be passed to
-the script. If you have used command line applications before, you might
-have encountered programs that asks for a file name, a calculation
-parameter, etc to be passed in the command line. Python scripts are no
-different, they accept such parameters. For this we have the <code>sys</code>
-module that has system specific parameters and functions. We have used
-before the <code>sys.exit</code>, imported as an extra module function.</p>
+  <div class="entry-content"><p>You know that global warming is here top stay when &#8230;</p>
 
-<p>Every operating system (even Windows) has arguments in its command line, and
-programming languages usually call such arguments <code>argv</code> (in the C/C++
-you have argv in the parameters of the main function). Lists in Python
-start at 0 (zero), and for the argument list the first item is the
-script/program name. Basically if we have this</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$&gt;</span> python myscript.py DNA.txt
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>myscript.py</code> is the argument 0 in the
-list and <code>DNA.txt</code> is the argument 1. So whenever we create a script that
-receives arguments in the command line, we have to start (in most cases,
-be aware) from 1.</p>
-
-<p>In Python using system arguments in the CLI will look
-like</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="n">valueone</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We will a variation of our
-previous script that counts the bases, now with command line arguments
-and a function (with no &#8220;error&#8221; checking at first)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python import sys </span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">count_nucleotide_types</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="n">totalA</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">totalC</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">totalG</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">totalT</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">sequencefile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sequencefile</span><span class="p">)</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">values</span> <span class="o">=</span> <span class="n">count_nucleotide_types</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;As&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Cs&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Gs&quot;</span>
-</span><span class='line'><span class="k">print</span> <span class="s">&quot;Found &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;Ts&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Few new things here. We created a function <code>count_nucleotide_types</code> that should receive a string
-containing the sequence. The &#8220;real&#8221; first line of the program flow is
-the one that gets the name of the file from the command line argument,
-open and read it. We then convert the list to a string, modify it a but
-and throw it to the function. Get the result back, and done. With
-functions we actually don&#8217;t save coding time/length (at least here), we
-make out code more organized, easier to read and somewhat easier to
-someone else read and understand it. It is not a good coding practice to
-have long programs/scripts with no functions, no subdivision, no
-structure. Functions are sometimes good program nuggets that can be
-reused in the same application or even ported/copied to other
-applications and reused indefinitely. Soon we will see a function and
-class that reads a FASTA file in Python that can be used anywhere in any
-program that needs such feature. Try the code and come back later for more.</p>
+<p>invariably everyday when you take the elevator, people only travel one floor. Call it waste of energy.</p>
 </div>
   
   
@@ -224,7 +120,7 @@ program that needs such feature. Try the code and come back later for more.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/22/python-functions-simple-example/">Python functions: simple example</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/03/02/geneious-a-reply-from-biomatters/">Geneious: a reply from Biomatters</a></h1>
     
     
       <p class="meta">
@@ -240,50 +136,249 @@ program that needs such feature. Try the code and come back later for more.</p>
   
 
 
-<time datetime="2007-03-22T09:04:10-04:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2007</time>
+<time datetime="2007-03-02T17:27:54-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Python subroutines do not exist. <a href="http://www.diveintopython.org/getting_to_know_python/declaring_functions.html">Everything is a function, all
-functions return a value (even if it&#8217;s None), and all functions start
-with <code>def</code></a>.
-This statement is from Dive into Python, a book on Python programming
-available for free. As mentioned Python functions start with the word
-<code>def</code>, which is followed by the function name that is followed by the
-arguments the function receives in between parentheses. Something like</p>
+  <div class="entry-content"><p>On the Geneious discussion forum, Tobias, has replied to my review(s) with very interesting points that I think need some further argumentation. I start dissecting his post:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">my_first_function</span><span class="p">(</span><span class="n">somevalue</span><span class="p">):</span>
-</span></code></pre></td></tr></table></div></figure>
+<blockquote><p>I remember your old post from a year ago and just read your new review, and I thought I&#8217;d address a few of the points you raised.</p></blockquote>
+
+<p>Although, I &#8220;raised more points&#8221; on my second review, which is based on a more mature version of the software, I had posted some interesting points on my initial assessment which haven&#8217;t been touched by Tobias on his reply. Maybe because my first review was less critical, less &#8220;negative&#8221; than the second one. Regardless, I still think (and I will have this opinion until I see some software better than) that Geneious is a great piece of software and deserve a very high praise.</p>
+
+<blockquote><p>Of course I am 100% biased because I work at Biomatters, but I would like to give my personal view on some points that you raised. You may of course take my affiliation bias into account when reading those</p></blockquote>
+
+<p>Bias acknowledged.</p>
+
+<blockquote><ol>
+<li>I agree that the free version gives you &#8220;limited resources&#8221; as you point out. But please do also consider that software is always limited, and in fact Geneious today gives you a lot more than the free version which you have positively reviewed a year ago. So the question here is whether you should compare today&#8217;s free version with Geneious Pro, or with last year&#8217;s free version and the other free software that is available. I lean towards the latter, and I think Geneious 2.5.3 scores very well in this comparison.</li>
+</ol>
+</blockquote>
+
+<p>My first &#8220;positive&#8221; review praised the first version of Geneious. My second &#8220;negative&#8221; one &#8220;slammed&#8221; it, or maybe just gave a little bit of balance to the initial review. I agree that the number of free features in Geneious is good and software is always limiting. But with no bias, compare the pro and free versions.</p>
+
+<blockquote><ol>
+<li>The point of Geneious having &#8220;no groundbreaking or innovative feature that wasn&#8217;t seen in other molecular biology/phylogenetics package&#8221; is probably more true than others you raise, however it is also true that Geneious does offer some unique and innovative functionality that I don&#8217;t know from other bioinformatics software:</li>
+<li>collaboration (obviously there is a chicken and egg problem,
+and it will only become really useful once many people start
+using it). The new version of collaboration for Geneious 3.0 has
+much improved collaboration features such as one on one chat
+and will hopefully greatly accelerate this development.</li>
+<li>agents
+Also, Geneious Pro offers many features otherwise found only in much more expensive software packages.</li>
+</ol>
+</blockquote>
+
+<p>As I said, I could not test collaboration. I tried testing it with Daniel Batten, but we never found a right time to meet online. Regarding the interface, you can find similar or even better features in <a href="http://www.mbio.ncsu.edu/BioEdit/bioedit.html">BioEdit</a>, which is also free. But it has major disadvantages, as being Windows-only and being focused only on sequence alignment. Other software that can be comparable to Geneious is <a href="http://www.aborygen.com/downloads/biOpen/">bioOpen</a>, but falls in the same category as BioEdit: Mac-only and not even free. I don&#8217;t know the price of bioOpen but its ordering form gives you the option to select which functionalities you want.</p>
+
+<blockquote><ol>
+<li>You ask what incentive someone has to write a plugin for Geneious. If I was a bioinformatics student today and wrote software e.g. for my MSc project, I don&#8217;t see what reasons there are <em>not</em> to write it as a plugin for Geneious.</li>
+</ol>
+</blockquote>
+
+<p>I was never a bioinformatics student, maybe because during my time there were not many bioinformatics courses available, even more where I did my graduate studies. So I cannot give you a personal view as a &#8220;bioinformatics student&#8221;. But first, we have to separate bioinformatics students in two classes (too few maybe): the computer scientist that understands biology and the biologist that programs computers. You can even include here a third class which is the computer-savvy biologist: he/she cannot program but have a high knowledge of computers.</p>
+
+<p>With our categories defined I ask you again: what are the benefits of writing a plug-in for Geneious for each one of these classes of users?</p>
+
+<blockquote><p>This is much easier than writing the functionality from scratch, because I don&#8217;t have to worry about the graphical user interface - which is one of the biggest workloads in writing software.</p></blockquote>
+
+<p>I agree that writing plugins using a <strong>proprietary</strong> API is much easier than doing for scratch. I also agree that the interface is one of the biggest workloads in writing software. Being a interface programmer like myself, I understand how underrated the interface development is. But how many bioinformatics applications have interfaces? How many are cross-platform? And if I only need some functionality that Geneious does not give me but it would take a couple of hours to write in Perl/Python/Ruby (<a href="http://www.biomatters.com/userforum/comments.php?DiscussionID=87">like this</a>)? If I am a bench biologist with zero knowledge of programming do I have to wait for someone write me a plug-in or wait for Biomatters to include in Geneious?</p>
+
+<blockquote><p>Also, it makes my program a lot more usable for a lot more people. Peer respect and publicity are among the strongest incentives - when people write free software, as many other people as possible using it is their <em>main</em> goal.</p></blockquote>
+
+<p>Of course it makes a program more usable for a lot more people. People that are using Geneious, right? How do you measure peer respect? By doing a wonderful program from scratch or by adding to a <strong>proprietary</strong> software a plug-in? Or, wouldn&#8217;t be better to create a open source project (or join one) that works in bioinformatics development?</p>
+
+<blockquote><p>I spent a considerable amount of time during my studies writing software, and I wish Geneious had been around back then - it would have made my software much easier to write and use, and it would have become known to a lot more people&lt;</p></blockquote>
+
+<p>I did my Masters writing software and my PhD working on phylogenetics. Would Geneious help me in the first case? No (maybe with ideas). Would it help me in the latter? Definitely, yes. Would I spend time during my PhD to write plug-ins to Geneious? No. See the difference?</p>
+
+<blockquote><ol>
+<li>You suggest that we concentrate on writing plugins and sell licenses for using those. Really this isn&#8217;t very far from what we are already doing - the main difference between Geneious and Geneious Pro is that Geneious Pro has more features, and most of these are provided plugins. So really there are already <em>lots</em>of plugins - it&#8217;s just that most of them already come shipped with Geneious, instead of you having to download them in a separate file from our website. In fact, if other people were to write free plugins which provide all of the Geneious Pro functionality for free, the incentive for Geneious Pro would basically disappear. This is the only concern I personally have about our Public API - and it&#8217;s about the opposite from yours.</li>
+</ol>
+</blockquote>
+
+<p>This is not the first time I suggested this. I had discussions with Daniel Batten about this subject, and even point him some licensing possibilities, such as <a href="http://www.mathworks.com/">MatLab</a>. I saw the list of add-ons when customizing Geneious. Regarding your concern, I don&#8217;t think it will be fulfilled.</p>
+
+<blockquote><ol>
+<li>The import feature hasn&#8217;t always worked correctly for you. We would like to keep Geneious as bug free as possible, so if you could please email any files upon which Geneious fails to e.g. tobias@biomatters.com, then that would be much appreciated and we will fix these problems as soon as possible.</li>
+</ol>
+</blockquote>
+
+<p>I have sent samples, even add to other topics guidance to some biological file formats. I personally don&#8217;t have any file that I am working at the moment, but as everyone that releases a new bioinformatics application, releases a new filetype at the same time, the amount of filters and errors will be huge.</p>
+
+<blockquote><p>We are typically quite responsive, even though we live in a different time zone to most other people.</p></blockquote>
+
+<p>When I say that is a disadvantage to be in New Zealand, is that sometimes users (especially the ones that pay) tend to be quite demanding. As I am not a Geneious user <em>per se</em>, this does not affect me.</p>
+
+<blockquote><ol>
+<li>There are now 4 plugins available for download, and a fifth will possibly follow soon. Only three of the currently available ones work for Geneious 2.5.x, but this will probably be fixed at some point. As our API stabilises and more plugins become available, we hope to introduce a more comfortable way of installing them and keeping them up to date.</li>
+</ol>
+</blockquote>
+
+<p>There were only two at the time of my review. It is good that it is increasing, 100% in a couple of days. And going back to the &#8220;peer respect&#8221;, I downloaded <a href="http://mrbayes.csit.fsu.edu/">MrBayes</a> plug-in and I couldn&#8217;t find the names of the developers. Also could not find any reference to MrBayes authors, papers, etc.</p>
+
+<blockquote><ol>
+<li>Scripting language support is already being developed. Update: It probably won&#8217;t make it into Geneious 3.0, but nevertheless Geneious will have scripting support at some point.</li>
+</ol>
+</blockquote>
+
+<p>Great. That was another thing that Daniel and I discussed last year. I think this is nice for people trying to create molecular biology, phylogenetics, etc courses for a large audience or for some university program. I couldn&#8217;t find the Educational plug-in in Geneious.</p>
+
+<p>Still, in my opinion Geneious is a great software.</p>
+</div>
+  
+  
 
 
-<p>Usually Python coders
-(sometime called Pythonistas, among others), following the Python coding
-style (that states: <em>Function names should be lowercase, with words
-separated by underscores as necessary to improve readability</em>) name
-their functions with words separated by underscores. And we are going to
-use this style here, whenever a function becomes handy. The parameters
-passed to the function (above <code>somevalue</code>) do not have a datatype,
-Python should handle it whatever is being passed. It is also attribute
-of your code to handle the parameter/value passed inside the function
-and avoid errors. Functions also follow the same indentation of normal
-programming and the line after the declaration should be indented with
-four spaces</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">my_first_function</span><span class="p">(</span><span class="n">somevalue</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">do_something</span>
-</span></code></pre></td></tr></table></div></figure>
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/03/02/geneious-one-year-or-almost-later/">Geneious: one year (or almost) later</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-<p>So, let&#8217;s
-warmup with functions. The following script is just the start: it adds a
-poly-T tail to a DNA sequence. We are going to use our old friend
-AY162388.seq. I will be back after the script</p>
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-02T17:27:24-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I intend to cover bioinformatics things in this space. At least mainly. I will try to post here and there stuff about science in general, more specifically biology and genetics. On my first post I reused an old overview of Geneious, and now I will take a fresher look at the program.</p>
+
+<p>Geneious, at the time of this post, is on its version 2.5.3. Since the first release the program has evolved a lot: new functions were added, a cleaner and leaner interface and major bug killing. My first review claimed that Geneious is the Holy Grail of bioinformatics application, and I still think it is. But &#8230;</p>
+
+<p>Well, all stories have a &#8220;but&#8221;, and Geneious&#8217; could not be different. Indeed, its new interface is cleaner, buttons were redesigned, some menus received illustrative icons. But there is (or was) no groundbreaking  or innovative feature that wasn&#8217;t seen in other molecular biology/phylogenetics packages. The strength is still having all features and functions in one cross-platform application. Also the power of having database-like capabilities is another plus: all your sequences, protein structures, references, etc is there in one place, easily accessible and at hand. Sometimes the search is a little bit slow, sometimes the import feature does not work correctly and even sometimes the program indexes entries in a strange fashion.</p>
+
+<p>About new functions, one that calls attention is the collaboration possibilities. Using the free <a href="http://www.jabber.org">Jabber</a> network it is quite easy to register a new user and connect in the wild. But the niceties stop there. In my lab I am the only using Geneious at the moment, so my options of collaboration are minimal. I have tried setting up a virtual meeting with the developers in order to try the feature, but the fact that Biomatters is on the other side of the world makes a little bit difficult to set up a decent time to connect. And this is another small disadvantage of Geneious: the soft-house is located in New Zealand so any hope of fast support for people in North America are at least thin.</p>
+
+<p>The last releases were followed by an introduction of several small (but very useful) features. More types of files are now supported, small bells and whistles were also added. But (always the but) one of the most promising features seems to be underused. Last time I checked Geneious API does not have the same success as the main program. I have tried creating a plugin to share with its userbase, but not being a Java developer I found more obstacles than solutions and gave up on trying. Geneious website gives links to two (yes two) plugins, and this is the result of almost six months of the API in the wild (if you know any other Geneious plugin please let me know).</p>
+
+<p>And here I have to draw a line. Geneious is &#8220;free&#8221;, but this version gives you limited resources. A pro version will make you at least $166 poorer and will give you a lot of power. So my question is: why would you spend time and effort to learn the API and create a plugin to a mostly paid software? I understand people developing Firefox extensions, Linux open-source packages, Python libraries, etc (they are free as in freedom), but I can&#8217;t see scientists creating add-ons to Geneious. I might be wrong and would like to be proven wrong, but at least until now I can say that the plug-in feature hasn&#8217;t taken off.</p>
+
+<p>Maybe the whole plug-in thing wasn&#8217;t a good move for Geneious and Biomatters. Maybe they should invest more time making Geneious even better and dedicate its programming resources to create the plug-ins themselves and charge for them. Something that MatLab does very well, staying in the scientific software realm only. You might argue that MatLab is also a programming language, has a compiler and it light-years more powerful than Geneious. I agree. But MatLab tries to cover many different fields, while Geneious is &#8220;just&#8221; a molecular biology/phylogenetics package.  Most of bench biologists are not interested in understanding how computer programs work, they want a black-box-like application that uses an easy and user friendly input and spits out a pre-formatted result, simply and efficiently. Maybe a macro tool or similar script/automating programming in Geneious would be more than enough for most people.</p>
+
+<p>Overall, I still think that Geneious is the Holy Grail of bioinformatics applications, as mentioned above. But like the quest for the Holy Grail, we still have to wait sometime to finally find it completely. Geneious is great and a little bit of fine tuning would certainly improve it. I think Biomatters should focus on some points:</p>
+
+<ul>
+<li>improving its coverage of biological formats, maybe even making the bold move of standardize the myriad of different file types out there</li>
+<li>improving a little bit more the interface of Geneious, adding some minor features like right-click in some areas</li>
+<li>add a simple and effective scripting/automating feature to the program, instead of relying on the API and the &#8220;heavy&#8221; Java to create plugins</li>
+<li>add some database-like search and access to the data stored, something like a grep for finding motifs on sequences, or even sequences itself when the data stored is massive</li>
+</ul>
+
+
+<p>Although excellent, Geneious has room for improvement. We will keep searching for the Holy Grail.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/26/hello-world/">First post: a take on Geneious</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-26T21:34:28-05:00" pubdate data-updated="true">Feb 26<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.geneious.com">Geneious</a> is an excellent bioinformatics software created by Biomatters, a wonderful company from New Zealand. When they released the first version of the software I was delighted to write a review of it. So here is my first take on Geneious from 2006. I will be back with more comments on the program on the other side of this post.</p>
+
+<p><a href="http://www.genedrift.org/geneious.php">Geneious review</a></p>
+
+<p>After installing Geneious and running it from the command line (double clicking if you are a Windows user) you don&#8217;t see anything special about the software. Apart from the nice looking interface there are no fancy buttons, no pop-up messages, no hints (maybe just the tutorial tab on the right side) and no clutter.</p>
+
+<p>After the first minute staring at its interface you wouldn&#8217;t say that this is one of the most innovative software to appear for molecular biology, phylogenetics, bioinformatics and other fields of science. You wouldn&#8217;t say, but after playing for an extra five minutes the only sound in your mind would be &#8220;Wow!!&#8221;. Geneious is wonderful work of a group of bioinformaticians that decided to make science easier to do, at least when doing computer work.</p>
+
+<p>Geneious is really genial. Basically you don’t have to do anything, the program does for you. OK, maybe you have to do something but the program seems to know what you want to do. Import a sequence into it: Geneious knows if it is nucleotides or amino acids. Do you have an annotation for your sequence? Nice, Geneious will display it for you. Structure of your protein? There it is, just select the tab. You don’t have to save anything: it is already there automatically saved for you, just like your personal GenBank, PDB, Swissprot.</p>
+
+<p>And the software can do more, much more. Have internet? (Who doesn’t?) There is a direct connection to NCBI and no worries about formatting searches, remembering parameters, Geneious does it all for you. PubMed? Check, same thing: filter your references, search by first author, date of publication, anything. If you are Linux geek, your BibTex entry is there, if you are Windows person just export it to EndNote.</p>
+
+<p>Another nice addition to the program is the possibility to create agents. These agents are like your free personal search expert who is there 24/7/365. Set up an agent to a specific search pattern and it will get for you when it appears, keeping your records up-to-date even before you have breakfast.</p>
+
+<p>Nothing bad can be said about Geneious, and with endless possibilities of improvement (with a looming API release soon) this is the Holy Grail of molecular biology, phylogenetics and bioinformatics software. Kudos to Geneious</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/22/counting-nucleotides-part-ii/">Counting nucleotides: part II</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:51:58-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&#8217;s check the &#8220;short&#8221; way, that is basically a method that avoid the
+&#8220;explosion&#8221; of the string. Instead of transforming the sequence from the
+file from a string to a list, we go and use the string directly,
+applying one of the methods available to manipulate strings. This time
+we read the file at once and convert the list to a string using <code>join</code>.
+To count we simply use the method <code>count</code> on our string. Pretty nice.</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -302,290 +397,103 @@ AY162388.seq. I will be back after the script</p>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="c">#! /usr/bin/env python</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">add_tail</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="n">seq</span> <span class="o">+</span> <span class="s">&#39;TTTTTTTTTTTTTTTTTTTTT&#39;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&#39;AY162388.seq&#39;</span>
-</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span><span class='line'>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+</span><span class='line'><span class="c">#still keep the file fixed </span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="c">#let&#39;s join the the lines in a temporary string </span>
+</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
+</span><span class='line'><span class="c">#counting </span>
+</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#printing results </span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s the short way: using <code>count</code>. This is a method that when applied
+on a string counts the number of times the substring appears in our
+string. We can even set a start and ending point to count. Notice one
+difference in this script to the previous examples: after we join the
+items of the list into a string we do not remove the carriage returns.
+Because in this case we don&#8217;t need it, as it will be an extra character
+there that won&#8217;t make any harm.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/22/counting-nucleotides/">Counting nucleotides</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-22T14:48:35-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We are going to jump the regular expression explanation that you can
+find in the book, and we will go directly to the section that introduces
+string/list/array manipulation and adapt it to Python. We are going to
+see two different methods: a &#8220;long&#8221; and a &#8220;short&#8221; one. In many places
+and computer languages you will see that there are different ways of
+doing the same thing, with advantages and disadvantages. It is up to you
+to define which methods are better or worse, as this is a very personal
+matter. Some people prefer the longer way because it might be clearer
+and easier to understand, or it might be necessary to use it due to code
+maintainability. Other people would rather use the shorter path because
+they want to generate code faster. It does not matter the path you
+select, as long as you get your task done. That&#8217;s the key: focus on the
+end product not on how exactly got there. If you used 10 lines of code
+more, or 10 less, that&#8217;s irrelevant as long as you did what you wanted.
+Live and learn and someday you will use the even shorter way. So we
+start with the long way. We want to count the individual number of
+nucleotides in a sequence, determining they relative frequency. Remember
+that we read the lines of a sequence file into a list, using
+<code>readlines</code>. But on the long method we will read the file and store the
+data into a string like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
 </span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 </span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">print</span> <span class="n">sequence</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">add_tail</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'><span class="k">print</span> <span class="n">sequence</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Not very useful, at first sight, but gives us an
-impression of what a function looks like. Basically we define a function
-<code>add_tail</code> that receives <code>seq</code> as a parameter. Don&#8217;t worry about
-variable scope now, we will see it later. The rest of the script is just
-like things we saw before, except for the line
-<code>sequence = add_tail(sequence)</code>. Here we are saving memory (yep, not
-that much and not even impressive) by assigning the return value of the
-function to the same string where we have the sequence stored. Run the
-scritp and get ready for the command line arguments.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/16/reccommended-read/">Recommended read</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-16T13:20:13-04:00" pubdate data-updated="true">Mar 16<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>On the latest post I forgot to mention a book that is wonderful for those with no programming habits and for those who have (in this case more like vices).</p>
-
-<p><a href="http://www.amazon.com/gp/product/1593271190?ie=UTF8&amp;tag=genedrift-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593271190">Code Craft: The Practice of Writing Excellent Code</a><img src="http://www.assoc-amazon.com/e/ir?t=genedrift-20&amp;l=as2&amp;o=1&amp;a=1593271190" alt="" /></p>
-
-<p>It is a very good read, with several insights on how to write programs.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/16/on-notes-to-a-young-computational-biologist/">On notes to a young computational biologist</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-16T11:14:15-04:00" pubdate data-updated="true">Mar 16<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Yes, I never blogged, never liked to. I always been a tad recluse when posting opinions, comments and other things on websites. But recently I have found many nice blogs and personal pages that have insightful posts, interesting information and tips-and-tricks for your daily routine. Pages that are really a good read. I have the feed to <a href="http://www.nodalpoint.org">nodalpoint</a> which is more a community than a personal page, and the latest feed brought me to this <a href="http://boscoh.com/protein/notes-to-a-young-computational-biologist">post</a> written by Bosco in his blog. The post gives a list of advices for young computational biologists.</p>
-
-<p>I cannot agree more with his post, and I wish that I had the same information in 1995 when I started my internship in the lab where I would come to do my <a href="http://www.genedrift.org/winpop.php">masters</a>. Back then we did not have the internet the way it is today, with the amount of information, the large number of open-source software available, no easy Linux installation, among other things that make anyone&#8217;s life easier (sometimes) today. As for any kind of list, one cannot be satisfied until s/he gives her/his own opinion about it. All his eleven entries are great, and here I take the liberty to expand each one of them giving my humble opinion (as pointed <a href="http://www.craigslist.org/about/best/sfo/279126743.html">elsewhere</a>, 97% of all advice is worthless, use whatever is good for you and throw away the rest):</p>
-
-<p>1- On scripting language: definitely a must, either one of them. But I would stress some knowledge of shell script as a key point too. You don&#8217;t have to be an expert on bash scripting, for instance, but some basic stuff might come handy when nothing else is available (such as a Solaris machine with no Python, Perl or Ruby). Use this <a href="http://tldp.org/LDP/abs/html/">link</a> as a reference guide (or have any published book at arm&#8217;s distance).</p>
-
-<p>2- On programmable statistics package: just one addition R, free, open source and a great user base.</p>
-
-<p>5 - On delete data that you don&#8217;t need: I would do that, but be careful. Backup, compress, move to obscure partitions, directories, whatever is easier before deleting data. You might think that the data is useless today, until tomorrow proves you wrong. The Gb price is going down every day, we are not in the age of <a href="http://www.findarticles.com/p/articles/mi_m0SMG/is_n9_v13/ai_13926185">doubledisk</a> anymore. But annotation of everything you have is crucial.</p>
-
-<p>8- On command line plotting program: very nice advice, just pick one that fits you better. This is also a must if you don&#8217;t want to publish lame graphs in your papers.</p>
-
-<p>9- On programming editor: I personally use <a href="http://kate-editor.org/">Kate</a> , but any other option is great. Be sure to find something you are comfortable with.</p>
-
-<p>I cannot find further advices on the other points, but I would again take the liberty to add some points of my own (always follow the 97% rule):</p>
-
-<p>1- As one of the comments in his post pointed out: subversion. Maybe not the greatest invention after sliced bread, but it really gives you a great deal of help when working in different places/machines. Say you have a great idea at home and want to update your scripts but forgot to copy everything to your usb disk. Yep, subversion is there.</p>
-
-<p>2- Be a generalist: learn as many languages as you can. You don&#8217;t have to be an expert in any of them [after all you are a biologist, right?(??)], but sometimes one feature that will save your day is available in a language that you never noticed.</p>
-
-<p>3- System administration skills: yep, you will need then. Not the crazy things as knowing where every log file is in your system, but at least some handy commands help you check your system or maybe give you more ability to use such system. One extra advice here: don&#8217;t buy any books on Windows system administration.</p>
-
-<p>4- Three words: Linux, Linux and Mac OSX. That&#8217;s what you really need. Yep, you need to know your way on Windows, but when you master the power of the command line, new worlds will open for your. Always remember: you can type faster than you click.</p>
-
-<p>Thanks for Bosco to post his insightful advices. I just added my two cents of worth(less) advice.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/15/interfaces/">Bioinformatics and interfaces</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-15T14:39:15-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>On the reply to my second Geneious review, an interesting point was raised: building interfaces, &#8220;which is one of the biggest workloads in writing software&#8221;.</p>
-
-<p>My first programming language was the old <a href="http://www.webdevelopersjournal.com/archive/vbasic.html">Visual Basic 3.0</a> which has a visual driven user interface and programming approach. To create windows and dialogs in VB is an extremely easy process, dragging and dropping objects in a window, easily setting properties, menus and features. The interface design is straightforward, and the burden of a user-friendly program lies on the programmer and his/her ability to set the objects on the screen, manipulate their function and add programming elements to operate them.</p>
-
-<p>But Visual Basic has it drawbacks, first by not being a powerful language and restrictions of only running resulting programs on Windows machines, etc. In Bioinformatics, Visual Basic is great for simple applications where the processing speed, heavy number crunching, portability, intense I/O operations and other high-performance issues are not a requirement. Applications like <a href="http://www.genedrift.org/winpop.php">WinPop</a> (I will focus on my personal experience), that had version 1.0 released late 1998 (&#8220;compiled&#8221; with VB3.0) and version 2.5 which was released in 2004 and was &#8220;compiled&#8221; with the more advanced VB 6.0. WinPop is the perfect example of a good project for VB: simulates and represents simple Population Genetics phenomena with limited input and outputs nice looking graphs to help the user understands what is going on in each one of the models. WinPop is also geared to undergrad and grad students that need to learn Population Genetics, and can be used in any Windows machine (Windows 95 and up) and does not require a state-of-the-art box to run nor it will allow you to discover a major breakthrough in science.</p>
-
-<p>VB programming is focused on the visual part. Your whole approach to develop the software has to consider the objects you see (and sometimes not) on the screen, how to link them if needed, which event will trigger what and so on. It is different than writing your script in Python, or your number crunching application in C++ or Java. In VB, there is the possibility of generating command line applications, but this is more difficult than creating one with a window. In Java you can opt to make a command line application or to create a GUI for it with Swing. In C++, everything is command line, unless you use one the GUI frameworks available, like <a href="http://www.trolltech.com">Qt</a> or <a href="http://www.wxwidgets.org">wxWidgets</a>, which in some case is like learning a new language by itself. Some of these frameworks were ported to other languages too, like wxPython, wxPerl, PyQt.</p>
-
-<p>Until recently, advanced Bioinformatics applications were command-line only. Examples can be found everywhere: alignment packages (Clustal has), Blast (web-interface, not very powerful), TFBS determination, HMM, phylogenetics (PAUP for Mac and Mega are most recognizable exceptions), etc, etc. Nowadays it is becoming easier to find good programs with nice interfaces, like <a href="http://www.genedrift.org/sugg.php">Geneious</a>, which are portable and powerful. But still, in my opinion researchers don&#8217;t give much attention to the interface development.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/15/debugging-in-python/">Debugging in Python</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-15T09:43:10-04:00" pubdate data-updated="true">Mar 15<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Beginning the third section in our tutorial/guide, we are going to see
-the chapter six of BPB. This chapter discusses the topics of creating
-subroutines (in Python&#8217;s case functions) and debugging the code. We are
-going to start by the end.</p>
-
-<p>In Python, code debugging can be done as in
-any other programming language: Perl has pdb, C/C++ has gdb, etc. Python
-also has a pdb module that can be imported and run to check for errors
-in your code. Using this command line:</p>
-
-<p><code>python -m pdb myscript</code></p>
-
-<p>will
-start the debug module and this will run your script. If you are an
-experienced programmer, who is just starting Python, pdb usage might
-look simple and straightforward. On the other hand, if you don&#8217;t have a
-lot of experience in programming I would suggest a different approach,
-as you become more comfortable with the language. Python has a great
-advantage over some other interpreted languages, allowing you to
-interactively code using the interpreter. So if your code is not working
-properly, maybe a wrong output or a value that is not being correctly
-calculated you have the options of coding the part of your script that
-is not working using the interpreter or use the first rule of debugging:
-include <code>print</code> statements that output the value of variables/objects.
-Another option is to use a Python code editor, what will also help you
-with highlight your code. I have little experience with Python code
-editors, as I normally code in Linux and use
-<a href="http://kate-editor.org/">Kate</a>. Lately I have been trying <a href="http://www.activestate.com/products/komodo_edit/">Komodo edit</a> which is a
-cross-platform freeware from Active State. It looks pretty good but I
-never tried debugging my code with it. So, these are my advices if you
-are just starting to program. Maybe because of the age of Beginning Perl
-for Bioinformatics (published in 2001), Perl&#8217;s pdb was the only option
-back then. Thanks to major advances on open-source and free software
-there are many other options nowadays to debug your code.
-<code>python -m pdb myscript</code></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/14/section-2-a-nice-summary-script/">Section 2: a nice summary script</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-14T15:32:24-04:00" pubdate data-updated="true">Mar 14<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Closing section two, let&#8217;s use everything we saw before and write a nice
-script that will read a sequence file (DNA) and report us of any
-&#8220;errors&#8221; and the number of different nucleotides. It is very simple, but
-a good exercise. Depending on your needs you can easily modify it to
-check for other characteristics of sequences, even change it to read
-amino acids sequences. We start with the code, comments coming after it.</p>
+<p>This way it will be easier to &#8220;explode&#8221; the sequence
+in separated items. After the &#8220;explosion&#8221; we can check each item in the
+list and get our result. The code is below, I will be back after it.</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -618,178 +526,7 @@ amino acids sequences. We start with the code, comments coming after it.</p>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">fileentered</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'><span class="k">while</span> <span class="n">fileentered</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">filename</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Please enter a file to check: &#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'>        <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">totalA</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">totalC</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">totalG</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">totalT</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">otherletter</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;[BDEFHIJKLMNOPQRSUVXZ]&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">extra</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">otherletter</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s">&#39;.count&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Count report for file &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;A = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;C = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;G = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;T = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;Also were found &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39; errors</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">extra</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#39; &#39;</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;No error found&#39;</span><span class="p">)</span>
-</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Result file saved on &#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s">&#39;.count&#39;</span>
-</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
-</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;File not found. Please try again.&#39;</span>
-</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The main change here is that we use a <code>while</code>
-loop to control de program flow. Notice that we import <code>sys</code> and <code>re</code>.
-Basically we ask for an user input, the filename, and depending on the
-input given we process the file or exit the program. The early exit is
-done with the <code>sys.exit</code> method which is a shortcut to get out of the
-script processing. Very handy. If the input is valid we <code>try</code> to open
-it. If the operation is successful, great, we read the file, count the
-nucleotides and use a quite scary regular expression to search all the
-&#8220;errors&#8221; in our sequence. The regex is compiled with the pattern
-<code>'[BDEFHIJKLMNOPQRSUVXZ]'</code> which means &#8220;match any character in this
-range&#8221;. Take a closer look at the pattern and you will see that is every
-letter in the alphabet, except for ACGT. And when searching for these
-&#8220;errors&#8221; instead of using <code>re.search</code> we use <code>re.findall</code>, which
-conveniently returns a list with all the substrings found. That&#8217;s even
-more handy. On the final part of the script we take care of the output,
-opening a file called <code>.count</code> where we print the counts and the errors,
-if they actually exist. One thing I left from the previous post, is that
-we need to close the file opened to write. In some cases if the file is
-not properly closed, errors might occur. So always remember to close the
-files used for writing/appending, using <code>.close()</code>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/03/13/writing-to-files/">Writing to files</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-13T14:58:58-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We already know how to read from files, now we are going to see how to
-write to them. We will start with a simple example, writing some content
-to a &#8220;fresh&#8221; file that does not exist in the system. Sometime ago, we
-have seen the <code>print</code> statement in Python, that prints to the system
-standard output (usually the screen). This output can be redirected
-using <code>&gt;</code> to a stream/file. But if we are going to create really
-professional applications (even to our own use), usually stream
-redirection is not really the nicest approach. In some cases the best
-alternative is to save a file. Also, some posts ago, we covered the
-methodology to <code>open</code> a file. We are going to use here the same command,
-<code>open</code> to (in our case) create the file. Remember that to read the file
-we used</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>where the <code>'r'</code> is the mode we are using to open the
-file. In that case we used the <em>read</em> mode, now we are going to use the
-<em>write</em> mode. When we open a file with this command in <em>write</em> mode if
-the file (with the name with pass) does not exist it is created. If it
-does exist, all the contents of the current file will be erased, so be
-careful when opening a file from your script. Check for the location,
-file name, etc before opening the file. So, basically we have</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and
-the file is open and ready to receive data. Let&#8217;s cheat and use the
-previous script that counts nucleotides and modify it to save a
-<code>count.txt</code> file wit the results:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'>
 </span><span class='line'><span class="c">#let&#39;s keep the file fixed for now</span>
 </span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
 </span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
@@ -797,7 +534,7 @@ previous script that counts nucleotides and modify it to save a
 </span><span class='line'><span class="c">#initialize a string to receive the data</span>
 </span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 </span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c">#notice the strip, to remove n</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="c">#notice the strip, to remove \n</span>
 </span><span class='line'><span class="c">#&quot;exploding&quot; the sequence in a list</span>
 </span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
 </span><span class='line'><span class="c">#initializing integers to store the counts</span>
@@ -816,21 +553,74 @@ previous script that counts nucleotides and modify it to save a
 </span><span class='line'>    <span class="k">elif</span> <span class="n">base</span> <span class="o">==</span> <span class="s">&#39;T&#39;</span><span class="p">:</span>
 </span><span class='line'>        <span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
 </span><span class='line'><span class="c">#printing results</span>
-</span><span class='line'><span class="n">resultfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;counts.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">resultfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found </span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The only difference is at the end of the script. Here instead of <code>print</code> we use
-<code>write</code>. Notice that <code>write</code> is a method of the opened file.(in our case
-called <code>resultfile</code>. This method only accepts strings, so we need to
-convert everything to string before writing in the file. Notice also
-that we need to add a carriage return/newline at the end of the string
-to be written. Differently of <code>print</code>, <code>write</code> does not automatically
-puts a new line at the end of the output.</p>
+<p>Most of the above code was already covered before.
+Let&#8217;s look at the different stuff, like the &#8220;explosion line&#8221;</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here we basically transform our string <code>sequence</code> into a list, by putting the
+object type we want before the object we want converted, like we do here</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This construction <code>type_to_convert(to_be_converted)</code>
+tells Python to get whatever is inside the parentheses and transform
+into whatever is outside. Converting the string to a list will get</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">GTGACTTTGTTCAACGGCCGCGGTATCCTAACCGT</span>
+</span><span class='line'><span class="n">GCGAAGGTAGCGTAATCACTTGTTCTTTAAATAAGGACTAGTATG</span>
+</span><span class='line'><span class="n">AATGGCATCACGAGGGCTTTACTGTCTCCTTTTTCTAATCAGTGAA</span> <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and transform it into</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span>
+</span><span class='line'><span class="s">&#39;T&#39;</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After &#8220;exploding&#8221;, we use a <code>for</code> loop to iterate
+over every item in the list and use conditional statements to do the
+counts. Regarding the counts, we use this operator</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">totalT</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that, in C/C++, tells the
+interpreter to get the value of <code>totalT</code> and add 1 to it.</p>
 </div>
   
   
@@ -843,7 +633,7 @@ puts a new line at the end of the output.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/13/manipulating-strings-again/">Manipulating strings: again</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/02/22/commenting-in-python/">Commenting in Python</a></h1>
     
     
       <p class="meta">
@@ -859,52 +649,35 @@ puts a new line at the end of the output.</p>
   
 
 
-<time datetime="2007-03-13T14:30:54-04:00" pubdate data-updated="true">Mar 13<span>th</span>, 2007</time>
+<time datetime="2007-02-22T14:46:24-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>As I have not updated the website in a couple of weeks, I will try to
-catch up with the book instead of revisiting (for the time being) our
-past scripts. I am going to finish the book&#8217;s chapter 5 (our section 2)
-in the next post, where I will give a small introduction on how to
-output data to a file in Python. On this post we will check some of the
-methods that can be used to manipulate strings. The book gives only a
-couple of methods to be used in perl on string, but here I will show a
-longer list of Python methods that can be used on its immutable strings.</p>
+  <div class="entry-content"><p>As you might have noticed from the previous posts, comments in Python
+are defined mainly by the <code>#</code> sign. This is the signal used for single
+line comment like</p>
 
-<p>A full list of the methods can be found
-<a href="http://docs.python.org/lib/string-methods.html">here</a> and I will will
-give brief explanations on the ones I think are key for bioinformatics.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#this is a single line comment</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Remember that string cannot be changed in Python, so we will always
-going to use a buffer/temp variable to store our changed string when
-needed. - <strong>count</strong> this method returns the number of times you see a
-substring (a letter/number, a word, etc) in another string. You can also
-specify a start and an end positions to look for. This is handy if you
-are counting nucleotides/aaminoacids in a sequence. This method returns
-an integer - <strong>endswith</strong> this method checks the end of your string for
-a determined substring. Very handy of you need to check the tail end of
-your sequence right away. - <strong>find</strong> returns the position of the
-substring being searched, and -1 if it is not found. It is similar to
-the re.search we used before. This is very useful if you are looking for
-a determined motif/subsequence in a hurry. - <strong>islower</strong> returns a true
-bool (true or false) if all characters in the string are lowercase.
-False if at least one of the characters is uppercase. Very handy if you
-need to convert lowercase to UPPERCASE files for input in some
-application. Works in conjunction with the <strong>isupper</strong> which is
-basically the opposite. - <strong>join</strong>. We have seen this before: it
-concatenates strings using a determined separator. - <strong>lower</strong> and
-<strong>upper</strong>, that as their name might indicate return the string converted
-to lowercase/uppercase.This is also good for the conversion of sequence
-format in input files.</p>
 
-<p>I will stop here. There are many other methods
-that can be used. Some of the above were already covered here and in the
-next posts we will take a look at the other ones, creating an
-application that actually performs some useful function.</p>
+<p>If you are used to C++, this would be equivalent to
+<code>//</code>. On the other hand, multi line comments are defined by triple
+double quotes <code>"""</code>, opening and closing, similar to C++ <code>/* ... */</code>,
+like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="sd">&quot;&quot;&quot;this is a multi line</span>
+</span><span class='line'><span class="sd">comment&quot;&quot;&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Just a note. Resuming bioinformatics mode.</p>
 </div>
   
   
@@ -917,7 +690,7 @@ application that actually performs some useful function.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/wikipedia-ii/">Wikipedia II</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/02/20/finding-motifs-in-dna-sequences-twist/">Finding motifs in DNA sequences: twist</a></h1>
     
     
       <p class="meta">
@@ -933,16 +706,517 @@ application that actually performs some useful function.</p>
   
 
 
-<time datetime="2007-03-02T17:46:10-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-02-20T14:30:10-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Quite &#8220;old&#8221; (for the new standards) but very relevant.</p>
+  <div class="entry-content"><p>As promised, let&#8217;s change a bit our previous code, and make it more
+effective. If you are reading this tutorial in one-entry mode, let&#8217;s
+check the code</p>
 
-<p>Here - <a href="http://www.wired.com/news/culture/0,70670-0.html">The Wikipedia FAQK</a></p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="k">while</span> <span class="n">inputfromuser</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">inmotif</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter motif to search: &#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inmotif</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">motif</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Yep, I found it&#39;</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
+</span><span class='line'>        <span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In order to
+make it more effective, let&#8217;s allow the input of any file, maybe asking
+for the file as soon as the script is started. To accomplish that we
+need to &#8220;protect&#8221; the script and make it error proof (almost at least).
+Yes, you thought it right: we need to check if the input file exists
+before opening it. We can use <code>try ... except</code> statements to do that.
+Pretty handy. This is called an exception handler, so basically we try
+the validity of some command/method and depending on the result we
+continue our program flow or we catch the exception and do something
+else. Under <code>try</code> we put the expression to evaluate, and under <code>excepts</code>
+what to do in case of failure. Like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">try</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">opening</span> <span class="n">a</span> <span class="nb">file</span>
+</span><span class='line'><span class="k">except</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">as</span> <span class="n">the</span> <span class="nb">file</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">exist</span><span class="p">,</span> <span class="k">print</span> <span class="n">something</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So, let&#8217;s put in our code above. We
+remove this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and include these lines</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">fileinput</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="n">fileinput</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="k">while</span> <span class="n">fileinput</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">filename</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter file name:&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">dnafile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">fileinput</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;File does not exist, please try again&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I know, a lot of new code. But if you take a closer look, there is only three
+lines we have never seen: <code>try except</code> and the last line with
+<code>sys.exit()</code>. Here, the script tries to open the file provided as input,
+if it does find the file normal operation resumes, if does not, the
+script asks for another input. As in the other while loop, we control it
+with a boolean variable, and in the case of empty input we end the loop
+and the script, using a system command <code>exit</code>, in the last line of the
+new code. Our script is better now, not bulletproof, but a little bit
+more efficient. There still a &#8220;flaw&#8221;, that you can only check one file
+for each run of the script. At least we not stuck to our usual DNA
+sequence.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/14/finding-motifs-in-dna-sequences/">Finding motifs in DNA sequences</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-14T14:26:26-05:00" pubdate data-updated="true">Feb 14<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As you might have noticed, BPB generally uses protein sequences. I am a
+&#8220;DNA guy&#8221;, and basically in our simple examples either type of sequence
+(except the example on transcribing) could have been used. I will stick
+with this molecule for a while, or until I can. We are going to use our
+good old AY162388.seq file, still assigning the file name inside the
+script there will be a twist in the end. Also, remember the Regular
+Expression module? We are going to use it too. I am going to do just as
+the book: I will paste the code below with comments in the middle and
+explain it afterwards.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'><span class="c">#finding motifs in DNA sequences</span>
+</span><span class='line'><span class="c"># we use the RegEx module</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="c">#still keep the file fixed</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
+</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="c">#let&#39;s join the the lines in a temporary string</span>
+</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
+</span><span class='line'><span class="c">#assigning our sequence, with no carriage returns to our</span>
+</span><span class='line'><span class="c">#final variable/object</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c">#we start to deal with user input</span>
+</span><span class='line'><span class="c">#first we use a boolean variable to check for valid input</span>
+</span><span class='line'><span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'><span class="c">#while loop: while there is an motif larger than 0</span>
+</span><span class='line'><span class="c">#the loop continues</span>
+</span><span class='line'><span class="k">while</span> <span class="n">inputfromuser</span><span class="p">:</span>
+</span><span class='line'>    <span class="c">#raw_input received the user input as string</span>
+</span><span class='line'>    <span class="n">inmotif</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter motif to search: &#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="c">#now we check for the size of the input</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inmotif</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="c">#we compile a regex with the input given</span>
+</span><span class='line'>        <span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
+</span><span class='line'>        <span class="c">#looking to see if the entered motif is in the sequence</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">motif</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Yep, I found it&#39;</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
+</span><span class='line'>        <span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now let&#8217;s dissect the code, in a biological way. We&#8217;ve
+already seen everything up to the part the list&#8217;s lines are joined.
+First new lines for us is this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Most of the methods in Python have very intuitive names (ok, most languages do), so it is easy to deduce
+that <code>replace</code> actually replaces something. And why do we need to use
+this method? First, we joined the lines in one temporary string (yep, strings are immutable), but the lines come with everything, including carriage returns that we need to get rid of. So our &#8220;final&#8221; string
+<code>sequence</code> receives the value in <code>temp</code> and we apply the method
+<code>replace</code> to modify it. <code>replace</code> has two arguments, the first is the
+string we want to change from, while the second is the string we want to
+replace with (in fact <code>replace</code> accepts three arguments, the last being
+the number of times we want to do the change). In our case, we are
+telling the interpreter to get every substring <code>'\n'</code> and put an empty
+one in their places. The next line is a simple value assignment:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">True</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and the variable will manage the <code>while</code> that checks input from the user.
+Basically we will run the loop until a certain type of input is given,
+that will make the variable value become <code>False</code>. That&#8217;s why we have the
+line</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">while</span> <span class="n">inputfromuser</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with no check. Yep, notice that we don&#8217;t need to check for the variable&#8217;s
+value, Python assumes that it is True. To understand better, imagine
+that <code>inputfromuser</code> is a flag that appears when True and disappears
+when False. Python can only &#8220;see&#8221; it when it appears, and when it does
+disappear it needs to check for it. We will elaborate more later.
+Another different line awaits us</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">inmotif</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Enter motif to search: &#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>raw_input</code> is a function that takes a line input by the user and returns a string. In
+our case, we assign the value returned by the function to a new string
+called <code>inmotif</code>. Also, <code>raw_input</code> has one <em>prompt</em> argument which is
+written to the screen with no trailing line, waiting for the user to
+input something. This takes us to the <code>while</code> loop</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inmotif</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>    <span class="c">#we compile a regex with the input given </span>
+</span><span class='line'>    <span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
+</span><span class='line'>    <span class="c">#looking to see if the entered motif is in the sequence</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">motif</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;Yep, I found it&#39;</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>       <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
+</span><span class='line'>    <span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After getting the input from the user, we need to
+check the size of such input: if it is greater or equal to one, we will
+search it in our sequence, otherwise we will finish the loop. So if we
+get a valid input (valid in the sense of size, for now) we will compile
+the regex and search for it. There is a difference in regex compilation.
+In the DNA transcribing we assigned a string to the regex directly, now
+we have a string coming from a variable/object</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">motif</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">r&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">inmotif</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice the difference in the argument that is passed to the <code>compile</code>
+function. In this case the regex to be compiled is coming from the
+string entered by the user, and we have to pass it by using Python&#8217;s
+string formatting operator, noted as a <code>%</code>. This formatting operator
+uses two parameters: a string with formatting characters and the data to
+be formatted, separated by the percent sign. In our case the formatting
+character will receive a string, hence the <code>%s</code> (s for string), and the
+data to be formatted that is the input. Previously, we used the regex
+function to replace characters/substrings in a sequence. This time, we
+are interested to know if the motif entered by the user is in our
+sequence. So we use the search method instead</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">motif</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice that we do the search in at the same time we are testing for its result.
+The same case as the checking we do at the while loop. If there is a
+positive result from the regex search a True flag will be raised and the
+interpreter will execute the code of the initial branch, not testing for
+the <code>elif</code> and <code>else</code></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&#39;Yep, I found it&#39;</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span> <span class="k">print</span> <span class="s">&#39;Sorry, try another one&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This condition is nested inside another condition, the one that tests for the size of the
+input entered. So, if our search returns a regex object, we print
+<code>Yep, I found it</code>, otherwise the user will receive
+<code>Sorry, try another one</code>. Now back to our upper <code>if</code>, if the user input
+length is equal to zero (just pressing the Enter key) the interpreter
+will process the line</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&#39;Done, thanks for using motif_search&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and then</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">inputfromuser</span> <span class="o">=</span> <span class="bp">False</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> that will tell the
+while loop that there is no True variable anymore, ending the loop and
+consequently our script. Let&#8217;s review the script and its flow:</p>
+
+<pre><code>1) assign a filename to be opened 
+2) read the file 
+3) join the lines 
+4) remove carriage returns 
+5) ask for user input, while is valid 
+6) if input length is greater or equal to 1, process it 
+ 6a) compile regex with input 
+ 6b) search for it 
+   6b1) if it is found print yes 
+   6b2) if it is not found print no 
+7) if input length is equal to zero, end while loop, end strings
+</code></pre>
+
+<p>I know it is a lot of information, take your time.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/02/13/flow-control-in-python/">Flow control in Python</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-13T14:24:35-05:00" pubdate data-updated="true">Feb 13<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We start following the fifth chapter of BPB. The first item is about
+flow control and code layout, which are very relevant for our tutorial.
+We already introduced briefly both aspects in past entries on the site,
+but it is always good to check. As the book, I will start with flow
+control. <strong>Flow control</strong> is the way your instructions are executed by
+the program. Most languages have a linear flow control, meaning every
+line is executed from top to bottom. This linear flow control can be
+disrupted by two types of statements: looping and branching. Looping
+statements tell the computer to execute a determined set of commands
+until certain condition is met. This can be a numeric value (ie from 1
+to 100) or the number of items in a list (like our shop list from
+before). Branching statements are also known as conditional statements,
+tell the computer to execute/or not determined lines depending on
+certain conditions. The <code>for</code> loop was shown before. In its for loop
+Python iterates over the elements in a list like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">text</span><span class="p">:</span> <span class="o">*</span><span class="n">do</span> <span class="n">something</span><span class="o">*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice
+that the first line of the loop ends in a colon. This and the word <code>for</code>
+in the line tell the interpreter that this a for loop and the
+<strong>indented</strong> block below is the code to be executed repeatedly until the
+last element in the list is reached. How Python knows where the loop
+ends? Indentation. Many languages use curly braces, parentheses, etc. In
+Python the loop ends by checking the indentation level of lines (this
+will help us a lot when discussing code layout). We&#8217;ve already seen one
+example of loop in Python, <code>for</code>, but Python accepts other types of loop
+structures, such as <code>while</code>, that uses the same indented properties to
+execute the commands.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mycounter</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="k">while</span> <span class="n">mycounter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">do</span> <span class="n">something</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Take a closer look at the <code>while</code> line. See
+something different? Maybe not, if you are used to programming. In
+Python equality is tested with a double equal sign (<code>==</code>), while a sole
+equal sign (<code>=</code>) assigns a value to a variable. You can also test for
+inequality, greater and less than, with <code>!=</code>, <code>&lt;</code> and <code>&gt;</code> respectively.</p>
+
+<blockquote><p>Attention: is quite common to generate errors by substituting <code>==</code> by
+<code>=</code>, so pay attention when coding.</p></blockquote>
+
+<p>Branching statements are the conditional commands in a computer
+language, usually governed by <code>if ... then ... else</code>. In Python a
+branching statement would look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">do</span> <span class="n">something</span>
+</span><span class='line'><span class="k">elif</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">do</span> <span class="n">something</span> <span class="k">else</span>
+</span><span class='line'><span class="k">else</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">do</span> <span class="n">even</span> <span class="n">more</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice the colon ending each line of the
+conditions and again the indented code, telling the interpreter where
+the corresponding code for each condition ends. We are going to use a
+lot of conditions and loops, but as you might have noticed Python has
+some tricks that make us avoid these statements. About <strong>code layout</strong>
+just one word: indentation. No brackets, parentheses, curly braces, etc.
+Yes, we have seen brackets and parentheses, but not to tell the
+interpreter where loops and conditions start and end. This is taken care
+by indentation, making our life easier and the code more beautiful. Next
+we will see Python&#8217;s ability to find motifs in words, mainly on DNA
+sequences.</p>
 </div>
   
   

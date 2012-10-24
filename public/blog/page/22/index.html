@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="We move one on our search for overrepresented motifs in DNA sequences. I
-was preparing this entry when the comments to part 1 arrived. Because of &hellip;">
+  <meta name="description" content="tested on a Pentium 4, 3 Ghz running Fedora Core 8 David Posada released sometime ago jModelTest, a program that tries to be the ultimate maximum &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,7 +82,7 @@ was preparing this entry when the comments to part 1 arrived. Because of &hellip
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/10/obtaining-overrepresented-motifs-in-dna-sequences-part-2/">Obtaining overrepresented motifs in DNA sequences, part 2</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/04/21/jmodeltest/">jModelTest</a></h1>
     
     
       <p class="meta">
@@ -99,91 +98,49 @@ was preparing this entry when the comments to part 1 arrived. Because of &hellip
   
 
 
-<time datetime="2008-05-10T21:56:51-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
+<time datetime="2008-04-21T14:26:03-04:00" pubdate data-updated="true">Apr 21<span>st</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We move one on our search for overrepresented motifs in DNA sequences. I
-was preparing this entry when the comments to part 1 arrived. Because of
-that we will modify our previous code to include some suggestions and
-then we will change t a little bit to output the actual values we want.
-As Titus pointed out in his comment, when we merge the sequences we
-generate errors, because we artificially including motifs that are not
-supposed to be there. But in the end we will see that we are no after
-the actual number of times a motif appears in the sequence and what
-matters is the motif quorum. The main focus of the part one was to show
-the decrease in code length from C++ to Python, introduce generator
-functions and yield and also show the nice permutation function. Turns
-out by using the approach of the previous entry there is a big drawback
-in code execution, which is around 60 times slower than C++.</p>
+  <div class="entry-content"><p><a href="http://www.researchblogging.org"><img src="http://www.researchblogging.org/images/rbicons/ResearchBlogging-Medium-White.png" alt="ResearchBlogging.org" /></a></p>
 
-<p>So we need
-to find another approach, and Mike showed us how (with some small
-modifications)</p>
+<p><em>tested on a Pentium 4, 3 Ghz running Fedora Core 8</em></p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
-</span><span class='line'>
-</span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#for a missing key, the dict entry is initialized to zero</span>
-</span><span class='line'><span class="n">counts</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#count the length-element subsequences in each sequence</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span> <span class="o">-</span> <span class="n">length</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">n</span> <span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">length</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#counts.keys() will then return the nucleotide sequences</span>
-</span><span class='line'><span class="c">#that were actually in merged_seqs</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#print out the sequences that occur more than once</span>
-</span><span class='line'><span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">print</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">count</span><span class="p">),</span> <span class="n">counts</span><span class="p">[</span><span class="n">count</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>David Posada released sometime ago <a href="http://darwin.uvigo.es">jModelTest</a>, a program that tries to be the ultimate maximum likelihood model selector for phylogenies. Written in Java, jModelTest is cross-platform, but differently from the latest available Java-based programs that are executables, the program is distributed as a jar file. Other programs like <a href="http://tree.bio.ed.ac.uk/software/treestat/">TreeStat</a> have &#8220;compiled&#8221; versions for Macs and Windows, so why not jModelTest?</p>
+
+<p>The manual mentions that it was created using Xcode under OS X and even though Xcode provides a great environment for interface design, jModelTest interface is very simple, poor. It is basically a non-shrinkable window with a text editor/log occupying its entirety. All actions are provided with menus, no buttons or other widgets at first. Some example files are bundled with the package, and they show the versatility of jModelTest that allows input of different file types, phylip, nexus among others. This is an excellent aspect of the application that should be followed by other packages and programs.</p>
+
+<p>After firing up jModelTest, I decided to load one of the files, example.phy, composed of 10 sequences of 1000 nucleotides. After using the File menu, it was easy to notice a major problem with the menu items. All of them have menu accelerators, simple key combinations to easy access menu items from the keyboard, but they are noted as Meta + <em>letter</em> (I am having trouble uploading images on Wordpress, I will find a solution later). OK, the Meta (option) key on a Mac is easy to get, and Windows and Linux? The file loaded fine but so my next guess (yes, I don&#8217;t read manuals upfront) was to use the Analysis menu. Luckily only one item was enabled, the one to calculate the likelihood scores.</p>
+
+<p>ModelTest, that can be called a predecessor of jModelTest, used PAUP externally to calculate the likelihood scores for different methods. Now, <a href="http://atgc.lirmm.fr/phyml/">Phyml</a> is used on the background, hence the average to good speed of jModelTest calculations. After selecting <em>Analysis->Compute likelihood scores</em> the program presented a simple dialog with some options to set the likelihood calculation parameters. I tested the ML optimized topology with 11 substitution schemes (default). It took roughly 4 minutes to calculate the 88 available models for the example.phy file, with a good amount of log information output to the main screen. After that, there were three other items enabled in the <em>Analysis</em> menu, allowing for different statistical calculations of the best ML model. It was possible to generate AIC (Akaike Information Criterion), BIC (Bayesian Information Criterion) and DT (Decision Theory) to determine the best (or ideal) ML evolutionary model while hLRT calculation was not enabled. All three were performed with default parameters, with AIC and BIC being very fast and DT very slow and memory hungry.</p>
+
+<p>The results from the statistical analysis were displayed in the same log text box and in some places very confusing</p>
+
+<blockquote><p>There are 88 models in the 100% confidence interval: [ HKY+G TPM2uf+G TrN+G TIM2+G TPM1uf+G TIM1+G TIM3+G TPM3uf+G GTR+G TVM+G TVM+I+G GTR+I+G TPM3uf+I+G TIM3+I+G TPM2uf+I+G TIM2+I+G HKY+I+G TrN+I+G TPM1uf+I+G TIM1+I+G TPM1+I+G K80+I+G TPM2+I+G TPM3+I+G TrNef+I+G TIM1ef+I+G TVMef+I+G TIM3ef+I+G TIM2ef+I+G SYM+I+G K80+G TPM1+G TrNef+G TIM1ef+G TPM3+G TPM2+G TIM3ef+G TPM1uf+I TPM2uf+I TVMef+G TIM2ef+G HKY+I TIM2+I TPM3uf+I TrN+I TVM+I TIM1+I SYM+G GTR+I TIM3+I K80+I TPM1+I TPM3+I TrNef+I TPM2+I TIM1ef+I TIM3ef+I TVMef+I TIM2ef+I SYM+I F81+I+G F81+G JC+I+G JC+G F81+I JC+I TIM1 TIM3 TrN TPM3uf TPM1uf TVM TIM2 HKY GTR TPM2uf TIM1ef TrNef TPM1 K80 TIM3ef TPM3 F81 TIM2ef TPM2 SYM TVMef JC ]</p></blockquote>
+
+<p>and in other places misleading</p>
+
+<blockquote><p>Model selection results also available at the &#8220;Model > Show model table&#8221; menu</p></blockquote>
+
+<p>as there is no such menu entry. Maybe the developer was referring to <em>Results->Show Results table</em> menu, but you never know. This results table presented all the values calculated for all test models, pointing out the suggested model in red. It was clearer to check the values in a grid than the main log window/text interface. There were some other tools in jModelTest to calculate the likelihood ratio test and model-averaged phylogeny. Also most calculations allowed the generation of a PAUP block, which in still widely used.</p>
+
+<p>As a package, jModelTest is somewhat solid, even though the interface is bland and buggy (menu accelerators, wrong information in logs, it does not access help in Linux), computation of certain tasks is time consuming (Java?) and the manual contains some wrong terms (Operative (sic) Systems). It is easy to use and should be a good replacement for ModelTest (and PAUP).</p>
+
+<p>Apart from the ease of use and the analytical capabilities, there are some issues with the jModelTest:</p>
+
+<ul>
+<li><p>the program is distributed under the GPL, but there is no source code in the package and no information on how to get the source in the manual or the webpage. Should I write the author?</p></li>
+<li><p>indeed is great the jModelTest makes possible to break free from the PAUP relationship, but at the same time is a double standard to use other applications under-the-hood and not allowing ModelTest to be distributed the same way in the past. As an excuse to control all possible copies and downloads of ModelTest, Posada didn&#8217;t allow me to distribute the ModelTest executable with <a href="http://genedrift.org/mtgui.php">MrMTgui</a>. So much for GPL&#8217;ing your programs</p></li>
+<li><p>the download process is very &#8216;95ish, where you have to enter name, email and institution in order to get the link. Someone should invent access logs &#8230;</p></li>
+</ul>
 
 
-<p>This time the counting is done with a <code>defaultdict</code> initialized with integers (all zeroes), and
-instead of generating all possible combinations (which was cool and
-fast, but in the end made our script slower) a window with the input
-length is slid along the each sequence and the key of the default
-dictionary is the motif and the value is the actual count incremented as
-we determine each motif. Checking this code performance using Linux&#8217;s
-time, we get 0.2 seconds, an improvement of 5 fold on the C++ code and
-300 fold on our previous Python code (Thanks Mike and everyone else for
-the suggestions). What is different here is that the output is not
-ordered and only the seen motifs are printed in the end. We will see
-next time how to get the quorums.</p>
+<p>Posada, D. (2008). jModelTest: Phylogenetic Model Averaging. Molecular Biology and Evolution DOI: <a href="http://dx.doi.org/10.1093/molbev/msn083">10.1093/molbev/msn083</a></p>
+
+<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=abf013e6-fd32-47a5-ae50-afad381cbdfb" alt="" /></a></p>
 </div>
   
   
@@ -196,7 +153,7 @@ next time how to get the quorums.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/05/10/from-the-interwebs-forgotten-archives/">From the Interwebs &#8220;forgotten&#8221; archives &#8230; </a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/04/20/twitter-updates-for-2008-04-20/">Twitter Updates for 2008-04-20</a></h1>
     
     
       <p class="meta">
@@ -212,786 +169,7 @@ next time how to get the quorums.</p>
   
 
 
-<time datetime="2008-05-10T16:57:56-04:00" pubdate data-updated="true">May 10<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tigerramki.jpg/202px-Tigerramki.jpg" alt="A tiger in India's Bandhavgarh reserve" /></a>Image via <a href="http://commons.wikipedia.org/wiki/Image:Tigerramki.jpg">Wikipedia</a>I have no source, but the creation date of the text file is August, 7th 1995. Good luck.</p>
-
-<p><strong>Final Exam</strong></p>
-
-<p>Instructions: Read each question carefully. Answer all questions. Time Limit: 4 hours. Begin immediately.</p>
-
-<p><strong>History</strong></p>
-
-<p>Describe the history of the papacy from its origins to the present day,  concentrating especially, but not exclusively, on its social, political,  economic, religious, and philosophical impact on Europe, Asia, America,  and Africa. Be brief, concise, and specific.</p>
-
-<p><strong>Medicine</strong></p>
-
-<p> You have been provided with a razor blade, a piece of gauze, and a bottle of Scotch. Remove your appendix. Do not suture until your work has been  inspected. You have 15 minutes.</p>
-
-<p><strong>Public speaking</strong></p>
-
-<p>Twenty-five hundred riot-crazed aborigines are storming the classroom.  Calm them. You may use any ancient language except Latin or Greek.</p>
-
-<p><strong>Biology</strong></p>
-
-<p>Create life. Estimate the differences in subsequent human culture if this  form of life had developed 500 million years earlier, with special attention to its probable effect on the English parliamentary system. Prove your thesis.</p>
-
-<p><strong>Music</strong></p>
-
-<p>Write a piano concerto. Orchestrate and perform it with flute and drum.  You will find a piano under your seat.</p>
-
-<p><strong>Psychology</strong></p>
-
-<p>Based on your degree of knowledge of their works, evaluate the emotional stability, degree of adjustment, and repressed frustrations of each of the following: Alexander of Aphrodisias, Rameses II, Gregory of Nicea, Hammurabi. Support your evaluations with quotations from each man&#8217;s work, making appropriate references. It is not necessary to translate.</p>
-
-<p><strong>Sociology</strong></p>
-
-<p>Estimate the sociological problems which might accompany the end of the world. Construct an experiment to test your theory.</p>
-
-<p><strong>Management science</strong></p>
-
-<p>Define management. Define science. How do they relate? Why? Create a generalized algorithm to optimize all managerial decisions. Assuming an 1130 CPU supporting 50 terminals, each terminal to activate your algorithm; design the communications interface and all necessary control programs.</p>
-
-<p><strong>Engineering</strong></p>
-
-<p>The disassembled parts of a high-powered rifle have been placed in a box on your desk. You will also find an instruction manual, printed in Swahili. In ten minutes a hungry Bengal tiger will be admitted to the room. Take whatever action you feel is appropriate. Be prepared to justify your decision.</p>
-
-<p><strong>Economics</strong></p>
-
-<p>Develop a realistic plan for refinancing the national debt. Trace the possible effects of your plan in the following areas: Cubism, the Donatist controversy, the wave theory of light. Outline a method for preventing these  effects. Criticize this method from all possible points of view. Point out the deficiencies in your point of view, as demonstrated in your answer to the  last question.</p>
-
-<p><strong>Political science</strong></p>
-
-<p>There is a red telephone on the desk beside you. Start World War III. Report at length on its socio-political effects, if any.</p>
-
-<p><strong>Epistemology</strong></p>
-
-<p>Take a position for or against truth. Prove the validity of your position.</p>
-
-<p><strong>Physics</strong></p>
-
-<p>Explain the nature of matter. Include in your answer an evaluation of the impact of the development of mathematics on science.</p>
-
-<p><strong>Philosophy</strong></p>
-
-<p>Sketch the development of human thought; estimate its significance. Compare with the development of any other kind of thought.</p>
-
-<p><strong>General knowledge</strong></p>
-
-<p> Describe in detail. Be objective and specific.</p>
-
-<p><strong>* * E X T R A C R E D I T * * </strong></p>
-
-<p> Define the universe; give three examples.</p>
-
-<p><a href="http://www.zemanta.com/"><img src="http://img.zemanta.com/pixie.png?x-id=6cd57e9f-1f39-4fc6-a85c-cc42f834c7ff" alt="" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/09/obtaining-overrepresented-motifs-in-dna-sequences-part-i/">Obtaining overrepresented motifs in DNA sequences, part 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-09T21:46:50-04:00" pubdate data-updated="true">May 9<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Changing gears now, leaving behind Pfam alignments. I decided to start a
-new series of posts based on the conversion of some small C++ programs I
-developed in the past. These small programs (I call them modules because
-they were part of a larger application) were used to count motifs, short
-nucleotide <em>words</em> up to 10-12 base pairs, and then calculate
-statistical overrepresentation of these words by comparing a foreground
-set of DNA sequences against a background set.</p>
-
-<p>We will start comparing
-the different approaches of the C++ and the
-<a href="http://python.org/" title="Python (programming language)">Python</a> codes and
-point out advantages and disadvantages of doing it in one language or
-the other.</p>
-
-<p>First thing we need to do is to count the motifs in all
-sequences from our foreground and background sets. For the project I was
-working on, the ideal word length was 10 nucleotides. Basically our C++
-approach to increase speed was to transform the character DNA sequences
-into numbers and then, while sliding a window with the desired word
-length,
-<a href="http://en.wikipedia.org/wiki/Hash_function" title="Hash function">hash</a> the
-base-four numbers into base 10 and increment a vector position,
-previously initialized with 0. For four nucleotides and a word size of
-10 there are 1,048,576 permutations possible, from <code>AAAAAAAAAA</code> to
-<code>TTTTTTTTTT</code>. Initially the C++ program would do</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">seqsize</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">seqfile</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">base</span><span class="p">);</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">base</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>      <span class="k">switch</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">{</span>
-</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;A&#39;</span>:
-</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;C&#39;</span>:
-</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;G&#39;</span>:
-</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;T&#39;</span>:
-</span><span class='line'>          <span class="n">bseq</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-</span><span class='line'>          <span class="k">break</span><span class="p">;</span>
-</span><span class='line'>      <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> reading all
-sequences and pushing an figure for each nucleotide in a vector, and
-then sliding a window on this vector and hashing the base-four number</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">hashSeq</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">short</span><span class="o">&gt;</span> <span class="n">subseq</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">hashvalue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">power</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">w</span> <span class="o">=</span> <span class="n">subseq</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">subseq</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>            <span class="n">power</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'>            <span class="n">hashvalue</span> <span class="o">+=</span> <span class="n">subseq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">pow</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="mi">4</span><span class="p">,(</span><span class="kt">double</span><span class="p">)</span><span class="n">w</span><span class="p">);</span>
-</span><span class='line'>            <span class="n">w</span><span class="o">--</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">hashvalue</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span><span class="p">(</span><span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">motifwidth</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">for</span><span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="n">motifwidth</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">sub</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="n">binseq</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">j</span><span class="o">+</span><span class="n">motifwidth</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">hashed</span> <span class="o">=</span> <span class="n">hashSeq</span><span class="p">(</span><span class="n">sub</span><span class="p">);</span>
-</span><span class='line'>        <span class="n">nmercount</span><span class="p">[</span><span class="n">hashed</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">sub</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The whole C++ code has about 400 lines, including all the
-possible output formatting and printing. Timing with <code>time</code> the C++
-executable takes a little bit less than 2 seconds to read, count and
-output different files. For Python, we will use a different approach and
-gain a lot in code simplicity. As we want to count the number of times
-size-10 words appear in all sequences, we first need to generate all
-possible permutations (with replacement) of four nucleotides. This can
-be easily accomplished by using generator functions. Regular functions
-run until completion and the return a value. For instance, a function
-that calculates the factorial of 10 will return the last value only,
-after multiplying 10.9.8.7.6.5.4.3.2.</p>
-
-<p>A generator function runs until a
-value is available to return, <code>yielding</code> it and then suspending its
-operation until called again. The yielding part was emphasized because
-<code>yield</code> is the command used by Python to return the value and suspend
-the function until further notice. In the <a href="http://en.wikipedia.org/wiki/Factorial" title="Factorial">factorial function</a>, a
-generator would return the intermediary factorial values up to 10. To
-generate all 1 million plus permutations of 4 nucleotides we need a
-function similar to the one below (modified from
-<a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/190465">here</a>)</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">yield</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
-</span><span class='line'>            <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>                <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Basically, what this generator function does is to combine all four
-nucleotides in words of size 10. This is a <a href="http://en.wikipedia.org/wiki/Recursion_(computer_science">recursive
-function</a> &#8220;Recursion (computer science)&#8221;),
-where the result of the function is dependent on the n-1 value
-calculated by the function until n equals 0. The first <code>for</code> loop over
-the items that we want to permute (the nucleotides) and the second <code>for</code>
-recursively calls <code>permutations starting with the initial n</code> passed (10)
-until we reach 0. Debugging this function we will see that <code>i</code> is
-constant for each iteration of the second loop and only <code>n</code> changes from
-10 to 0, while one by one nucleotides are joined to form a motif. It
-starts with <code>AAAAAAAAAA</code>, then <code>AAAAAAAAAC</code>, then <code>AAAAAAAAAG</code>, until it gets
-to a poly-T. Our final code would look like the one below</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">yield</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="p">)):</span>
-</span><span class='line'>            <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>                <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">get_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
-</span><span class='line'><span class="n">length</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">merged_seqs</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">merged_seqs</span> <span class="o">+=</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">permutations</span><span class="p">(</span><span class="n">nucleotides</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="p">)):</span>
-</span><span class='line'>    <span class="k">print</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">merged_seqs</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>where we read the input sequence(s), merge them in one long string and as we
-generate all possible combinations we count the number of times they
-appear. This code running on the same input file used on the C++
-executable is 60 times slower, taking in average one full minute to
-count motifs in 8 500 bp DNA sequences. The slowest section is the
-count, as the generation of all possible combinations is
-straightforward. We lose some speed, but gain a lot on code simplicity
-and clarity. Next we will modify this code to output different counts
-needed for the statistical analysis.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/05/still-on-merging-pfam-alignments/">Still on merging Pfam alignments &#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-05T15:54:10-04:00" pubdate data-updated="true">May 5<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>One of the things I like about Python and the Python community is the
-search for the making code simple and clear. Tal left a comment in the
-last post about merging Pfam alignment sequences suggesting another
-approach to our problem. The code is below</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span><span class="p">,</span> <span class="n">groupby</span>
-</span><span class='line'>    <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">-&gt;</span><span class="si">%d</span><span class="se">\n</span><span class="si">%s%s</span><span class="s">&quot;</span>
-</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="n">keyfunc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">it</span><span class="p">:</span> <span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">it</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">it</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">chain</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="n">keyfunc</span><span class="p">),</span> <span class="n">keyfunc</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">jname</span><span class="p">,</span> <span class="n">jseq</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sequence</span>
-</span><span class='line'>            <span class="n">kname</span><span class="p">,</span> <span class="n">kseq</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sequence</span>
-</span><span class='line'>            <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format</span> <span class="o">%</span> <span class="p">(</span><span class="n">jname</span><span class="p">,</span> <span class="n">kname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">jseq</span><span class="p">),</span> <span class="n">jseq</span><span class="p">,</span> <span class="n">kseq</span><span class="p">)</span> <span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The code also uses the <code>itertools</code> module, importing
-<code>chains</code> and <code>groupby</code>. We already saw chains in the previous post, but
-<code>groupby</code> is new to us here. <code>groupby</code> was introduced in the 2.4 version
-of Python and is a method returns keys and groups from an <code>iterable</code>. An
-Python <code>iterable</code> is any object that can return its elements at given
-time, for instance in a <code>for</code> loop, while the index of this loop is the
-<code>iterator</code>. So, in our case <code>groupby</code> will return the sequence names
-based on the <code>lambda</code> function defined before the <code>groupby</code> and the
-<code>chain</code> method. Usually <code>groupby</code> has this syntax</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">groupby</span><span class="p">(</span><span class="n">iterable</span><span class="p">[,</span> <span class="n">key</span><span class="p">])</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The key is
-optional, and in our case it is the lambda function. Another method new
-to use that uses the same lambda function is <code>sorted</code>. As its name
-hints, <code>sorted</code> returns a sorted list of iterables. The key in this case
-is the sorting algorithm, that actually creates the comparison between
-items. Basically in the code above, a lambda function extracts the
-desired regions from the sequence names, which are them iterated in a
-<code>groupby</code> method that returns they key values, one value when the sequence
-is unique, two values when there are two sequences, of a sorted iterable
-generated by a chain that read both input lists in one pass. After this
-we just need to check the number of returned values and we have our list
-of matching sequences.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/03/revisting-pfam-alignments-again/">Revisting Pfam alignments, again &#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-03T08:39:31-04:00" pubdate data-updated="true">May 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Continuing on the <a href="http://en.wikipedia.org/wiki/Pfam" title="Pfam">Pfam</a>
-alignment sequence merge, Luke provided two solutions, one for case
-where we have duplicates in the file (that happens) and another one
-where duplicates are not tested. First for the case with no duplicates:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(),</span> <span class="nb">dict</span><span class="p">()</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">i</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span> <span class="o">=</span> <span class="n">i</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">shared_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shared_ids</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">j</span> <span class="o">=</span> <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'>        <span class="n">k</span> <span class="o">=</span> <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span><span class='line'>        <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&amp;gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
-</span><span class='line'>        <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
-</span><span class='line'>        <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Basically, his approach is to create two dictionaries, <code>first</code> and
-<code>second</code> to store the data from our lists of
-<a href="http://fasta.bioch.virginia.edu/" title="FASTA">FASTA</a> objects. The
-dictionaries keys are the sections for each sequence name, and the values
-are the FASTA object created when we read the file. After that, a <code>set</code>
-of both dictionaries is created, and this represents everything we need
-in order to find shared sequences between both files. The output is
-trivial, basically iterating the set and getting the values from both
-dictionaries. But, in some cases there are some duplicates in each Pfam
-alignment, and this would make the above approach to miss some
-sequences. Luke also provided a solution for this case</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">first</span><span class="p">,</span> <span class="n">second</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">),</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">shared_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">first</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shared_ids</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">cross</span> <span class="o">=</span> <span class="p">[(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">first</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">second</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
-</span><span class='line'>        <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="n">cross</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&amp;gt;&#39;</span><span class="err">’</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
-</span><span class='line'>            <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
-</span><span class='line'>            <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>which is similar to what Mike suggested. In his approach <code>defaultdict</code> is used
-instead of a regular dict, initialized as a list. Again we can take
-advantage of the fact that we that the value of <code>defaultdict</code> has the
-same features as the object that was used to initialized it. The same
-<code>set</code> approach is used and we have a nice set of merged sequences from
-two Pfam alignments. Remember that <code>defaultdict</code> were introduced in Python
-2.5, it won&#8217;t work on older versions.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/02/revisiting-pfam-alignments/">Revisiting Pfam alignments: using defaultdicts, chains &#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-02T10:11:47-04:00" pubdate data-updated="true">May 2<span>nd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I haven&#8217;t posted in a while, so let&#8217;s get back to the last topic covered
-here, merging sequences from Pfam alignments. Two comments to my last
-post suggested some changes to the original code, and both comments made
-a considerable improvement to script. But following our line of thought
-here, there were many things in both posts that we haven&#8217;t covered in
-the series. In order to make it clear to anyone that is chronologically
-following the entries, we will see what new things were suggested in the
-comments. We will start with Mike&#8217;s comment. The code is below.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-</span><span class='line'>    <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
-</span><span class='line'>        <span class="n">ident</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span>
-</span><span class='line'>        <span class="n">data</span><span class="p">[</span><span class="n">ident</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">format</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">-</span><span class="si">%s</span><span class="s">-&gt;</span><span class="si">%d</span><span class="se">\n</span><span class="si">%s%s</span><span class="s">&quot;</span>
-</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-</span><span class='line'>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">jname</span><span class="p">,</span> <span class="n">jseq</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'>            <span class="n">kname</span><span class="p">,</span> <span class="n">kseq</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>            <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">format</span> <span class="o">%</span> <span class="p">(</span><span class="n">jname</span><span class="p">,</span> <span class="n">kname</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">jseq</span><span class="p">),</span> <span class="n">jseq</span><span class="p">,</span> <span class="n">kseq</span><span class="p">)</span> <span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Mike&#8217;s code would only run on Python 2.5, due to the
-import of <code>collections</code>. He imports only <code>defaultdict</code> from collections,
-which is similar to a regular dictionary except for the fact that is
-takes an extra argument, a <code>factory function</code> (that we will examine
-soon), and this <code>factory function</code> is called every time a <code>dict</code> key is
-found for the the first time, initializing the object. The line</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>creates and intializes a <code>defaultdict</code> from an empty list. This
-defaultdict is used to store data from a <code>chain</code> formed by both input
-files being compared. A <code>chain</code> makes an iterator that &#8220;returns elements
-from the first iterable until it is exhausted, the proceeds to the next
-iterable&#8221; (from Python docs). Basically a <code>chain</code> in our case will make
-the loop iterate first through <code>data1</code> until its last item then will
-start the iteration through <code>data2</code>. In the loop it will use the region
-in the FASTA sequence name as a defaultdict key, and store the fasta
-name and sequence as the value. Notice that the defaultdict, as it has
-been initialized as a list, allows appending more than one value to each
-key, so every time that it finds a sequence with a name identical to
-some key already present in the defaultdict, it will append the
-information to the value of that key in a list.</p>
-
-<p>So, all the matching is
-done with this short loop, we only need then to iterate through the keys
-and print the result. For the results, Mike set up a format string (we
-will see in a future post) that receives the merged sequences and their
-names in a formatted way. The iteration along the defaultdict checks for
-both keys and values and every time it finds a value with a length of 2
-(meaning two sequences shared identical names) it puts the items of the
-defaultdict&#8217;s value list into two tuples. These tuples, containing
-sequence and name, are then formatted for output and appended to a list
-of merged sequences.</p>
-
-<p>There are a lot of new concepts, objects and
-methods but Mike&#8217;s suggestion shows how powerful Python is. For a set of
-25 alignments, there is little performance improvement, but our coding
-ability improves exponentially with clever suggestions. I will comment
-and explain Luke&#8217;s comments later.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/04/29/habs/">Habs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-29T15:29:14-04:00" pubdate data-updated="true">Apr 29<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.thehockeynews.com/articles/15664-New-poll-finds-Montreal-Canadiens-considered-Canadas-hockey-team.html">New poll finds Montreal Canadiens as Canada&#8217;s team</a>, more than Toronto Maple Leafs. Ok, next Saturday when the bandwagon suddenly stops, please try not to fall and hurt yourself.</p>
-
-<p>Flyers in five.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/04/26/twitter-updates-for-2008-04-26/">Twitter Updates for 2008-04-26</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-26T23:59:59-04:00" pubdate data-updated="true">Apr 26<span>th</span>, 2008</time>
+<time datetime="2008-04-20T23:59:59-04:00" pubdate data-updated="true">Apr 20<span>th</span>, 2008</time>
         
       </p>
     
@@ -999,15 +177,8 @@ and explain Luke&#8217;s comments later.</p>
 
 
   <div class="entry-content"><ul>
-<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> here in Toronto, there is a good place to find some different fruits. Supermarket bananas have a bland taste. <a href="http://twitter.com/nuin/statuses/797568309">#</a></p></li>
-<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I discuss anything, anything at all. I have an incommensurable amount of useless knowledge <a href="http://twitter.com/nuin/statuses/797567694">#</a></p></li>
-<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I discuss anything, anything at all. I have an incommensurable amount of useless knowledge <a href="http://twitter.com/nuin/statuses/797567695">#</a></p></li>
-<li><p>going to eat some traditional japanese sushi and buy some gohan to stock <a href="http://twitter.com/nuin/statuses/797475856">#</a></p></li>
-<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> I am not fan of bananas sold in NA. Stay away from the supermarket bananas and get some apple-banana. Better taste <a href="http://twitter.com/nuin/statuses/797475446">#</a></p></li>
-<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> Magnolias are one of my favourite plants. <a href="http://twitter.com/nuin/statuses/797464033">#</a></p></li>
-<li><p>@<a href="http://twitter.com/roguepuppet">roguepuppet</a> Magnolias are from a very old family of plants, Magnoliaceae, one the basal families of angiosperms. <a href="http://twitter.com/nuin/statuses/797450365">#</a></p></li>
-<li><p>I&#8217;m never buying anything from Netgear again. <a href="http://twitter.com/nuin/statuses/797215074">#</a></p></li>
-<li><p>@<a href="http://twitter.com/mndoci">mndoci</a>  @<a href="http://twitter.com/neilfwa">neilfwa</a> @<a href="http://twitter.com/rvidal">rvidal</a> I installed this one in a VMWare and wasn&#8217;t good at all. <a href="http://twitter.com/nuin/statuses/797191876">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> Amen for the drobo, that&#8217;s #2 on my purchase list. <a href="http://twitter.com/nuin/statuses/793222169">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> I saw Matsuzaka&#8217;s first game in North America. Not in Fenway, but in TO. <a href="http://twitter.com/nuin/statuses/793180741">#</a></p></li>
 </ul>
 
 
@@ -1024,7 +195,7 @@ and explain Luke&#8217;s comments later.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/04/25/twitter-updates-for-2008-04-25/">Twitter Updates for 2008-04-25</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/04/19/twitter-updates-for-2008-04-19/">Twitter Updates for 2008-04-19</a></h1>
     
     
       <p class="meta">
@@ -1040,7 +211,7 @@ and explain Luke&#8217;s comments later.</p>
   
 
 
-<time datetime="2008-04-25T23:59:59-04:00" pubdate data-updated="true">Apr 25<span>th</span>, 2008</time>
+<time datetime="2008-04-19T23:59:59-04:00" pubdate data-updated="true">Apr 19<span>th</span>, 2008</time>
         
       </p>
     
@@ -1048,22 +219,11 @@ and explain Luke&#8217;s comments later.</p>
 
 
   <div class="entry-content"><ul>
-<li><p>@<a href="http://twitter.com/ChristianBurns">ChristianBurns</a> what program are you using? <a href="http://twitter.com/nuin/statuses/797027006">#</a></p></li>
-<li><p>why are Planet Nature and Postgenomic feeds &#8220;seasonal&#8221;? All of a sudden hundreds of entries appear &#8230; <a href="http://twitter.com/nuin/statuses/797007562">#</a></p></li>
-<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> Nada como conhecer os patricios. <a href="http://twitter.com/nuin/statuses/796969162">#</a></p></li>
-<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> indeed, and the anniversary of the Cravos. <a href="http://twitter.com/nuin/statuses/796941967">#</a></p></li>
-<li><p>@<a href="http://twitter.com/michaelbarton">michaelbarton</a> OK, thanks a lot. <a href="http://twitter.com/nuin/statuses/796899983">#</a></p></li>
-<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> thanks, will see what I can do &#8230; <a href="http://twitter.com/nuin/statuses/796899556">#</a></p></li>
-<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> email me too, I&#8217;d take a look if you want &#8230; <a href="http://twitter.com/nuin/statuses/796816320">#</a></p></li>
-<li><p>@<a href="http://twitter.com/michaelbarton">michaelbarton</a> sorry to ask, but what is ONS? <a href="http://twitter.com/nuin/statuses/796815735">#</a></p></li>
-<li><p>@<a href="http://twitter.com/SciPhu">SciPhu</a> man, that&#8217;s sad &#8230; <a href="http://twitter.com/nuin/statuses/796789556">#</a></p></li>
-<li><p>Sometimes I lose faith in the humanbeing: <a href="http://www.thestar.com/article/418415">http://www.thestar.com/article/418415</a> <a href="http://twitter.com/nuin/statuses/796785572">#</a></p></li>
-<li><p>isn&#8217;t Neil awake today/tonight? <a href="http://twitter.com/nuin/statuses/796780529">#</a></p></li>
-<li><p>@<a href="http://twitter.com/pierreyves">pierreyves</a> nice tune <a href="http://twitter.com/nuin/statuses/796772793">#</a></p></li>
-<li><p>@<a href="http://twitter.com/mndoci">mndoci</a>  get the server already, more tools, more stuff to play around <a href="http://twitter.com/nuin/statuses/796753895">#</a></p></li>
-<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> I think in Ubuntu adding is easier than removing. For something like Gentoo I&#8217;d say yes <a href="http://twitter.com/nuin/statuses/796737548">#</a></p></li>
-<li><p>@<a href="http://twitter.com/hooande">hooande</a> the Raptors won? No wonder it is snowing in TO <a href="http://twitter.com/nuin/statuses/796428633">#</a></p></li>
-<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> cheers mate, keep on going &#8230; <a href="http://twitter.com/nuin/statuses/796374052">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> yep, but I am seeing you twitter updates on friendfeed but not on twitter <a href="http://twitter.com/nuin/statuses/792601975">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I getting more of you twitter entries on friend feed than on twitter, strange <a href="http://twitter.com/nuin/statuses/792591982">#</a></p></li>
+<li><p>Which serious country would allow a known ex-terrorist to become a state minister? <a href="http://twitter.com/nuin/statuses/792491149">#</a></p></li>
+<li><p>my &#8220;second birthday&#8221; is today. Still not old enough to drink. Cheers. <a href="http://twitter.com/nuin/statuses/792477865">#</a></p></li>
+<li><p>@<a href="http://twitter.com/covert">covert</a> still waiting for mine <a href="http://twitter.com/nuin/statuses/792447557">#</a></p></li>
 </ul>
 
 
@@ -1080,7 +240,7 @@ and explain Luke&#8217;s comments later.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/04/24/twitter-updates-for-2008-04-24/">Twitter Updates for 2008-04-24</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/04/18/twitter-updates-for-2008-04-18/">Twitter Updates for 2008-04-18</a></h1>
     
     
       <p class="meta">
@@ -1096,7 +256,7 @@ and explain Luke&#8217;s comments later.</p>
   
 
 
-<time datetime="2008-04-24T23:59:59-04:00" pubdate data-updated="true">Apr 24<span>th</span>, 2008</time>
+<time datetime="2008-04-18T23:59:59-04:00" pubdate data-updated="true">Apr 18<span>th</span>, 2008</time>
         
       </p>
     
@@ -1104,29 +264,324 @@ and explain Luke&#8217;s comments later.</p>
 
 
   <div class="entry-content"><ul>
-<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> Thanks a lot &#8230; <a href="http://twitter.com/nuin/statuses/796298220">#</a></p></li>
-<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> can you add some tag to the email subject? Something like [BioCamp] or similar &#8230; <a href="http://twitter.com/nuin/statuses/796292302">#</a></p></li>
-<li><p>gas will be 2.25 $CDN in 2012. Predicted by the same bank  that lost 5 blln with the house bubble. <a href="http://twitter.com/nuin/statuses/796259498">#</a></p></li>
-<li><p>konqueror does not like FriendFeed &#8230; <a href="http://twitter.com/nuin/statuses/796221166">#</a></p></li>
-<li><p>&#8220;molecular data from extinct organisms may have the potential for resolving relationships at critical areas of the vert. evolutionary tree&#8221; <a href="http://twitter.com/nuin/statuses/796137883">#</a></p></li>
-<li><p>@<a href="http://twitter.com/pierreyves">pierreyves</a> thx, added to Google Reader &#8230; <a href="http://twitter.com/nuin/statuses/796106201">#</a></p></li>
-<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> @<a href="http://twitter.com/freesci">freesci</a> I would say API too. <a href="http://twitter.com/nuin/statuses/796099470">#</a></p></li>
-<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> 2:30 am madness, for sure <a href="http://twitter.com/nuin/statuses/796064280">#</a></p></li>
-<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> @<a href="http://twitter.com/covert">covert</a> basically you can merge all your &#8220;social web life&#8221; in one place. I find it useful to see what are being shared in GooRead <a href="http://twitter.com/nuin/statuses/796063240">#</a></p></li>
-<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> @<a href="http://twitter.com/covert">covert</a> like and see what everyone else is sharing &#8230; You can link a feed from your blog, twitter account, Flickr, etc <a href="http://twitter.com/nuin/statuses/796060765">#</a></p></li>
-<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> @<a href="http://twitter.com/covert">covert</a> It is a service that merges all the feeds that you generate  and allows interaction between friends, so you can comment <a href="http://twitter.com/nuin/statuses/796060188">#</a></p></li>
-<li><p>@<a href="http://twitter.com/covert">covert</a> FriendFeed enables you to keep up-to-date on the web pages, photos, videos and music that your friends and family are sharing. <a href="http://twitter.com/nuin/statuses/796056053">#</a></p></li>
-<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> twhirl, but not liking it. <a href="http://twitter.com/nuin/statuses/795976501">#</a></p></li>
-<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I unistalled on windows, my iMac is my social-hub. <a href="http://twitter.com/nuin/statuses/795970139">#</a></p></li>
-<li><p>The Greenland ice cap&#8217;s apparently melting quickly that it&#8217;s triggering earthquakes, as pieces of ice several cubic kilometers break off. <a href="http://twitter.com/nuin/statuses/795952114">#</a></p></li>
-<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I had issues with Twhirl on Mac. It does not update sometimes, it hangs and sometimes does not display the entries <a href="http://twitter.com/nuin/statuses/795946181">#</a></p></li>
-<li><p>@<a href="http://twitter.com/amberf">amberf</a> com esses links do demo &#8230; <a href="http://twitter.com/nuin/statuses/795945534">#</a></p></li>
-<li><p>@<a href="http://twitter.com/amberf">amberf</a> pára com isso &#8230; <a href="http://twitter.com/nuin/statuses/795912461">#</a></p></li>
-<li><p>Morpheus&#8217; calling <a href="http://twitter.com/nuin/statuses/795633525">#</a></p></li>
-<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> I also have that feeling that every time I use R I have to relearn it. Maybe the syntax is not clear enough &#8230; <a href="http://twitter.com/nuin/statuses/795627772">#</a></p></li>
-<li><p>shameless plug <a href="http://tinyurl.com/6557oy">http://tinyurl.com/6557oy</a> <a href="http://twitter.com/nuin/statuses/795557662">#</a></p></li>
-<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> &#8220;Don&#8217;t worry about the world coming to an end today. It&#8217;s already
-tomorrow in Australia.&#8221; (Charles Schultz) <a href="http://twitter.com/nuin/statuses/795550172">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> The Bends &#8230; great song <a href="http://twitter.com/nuin/statuses/792153588">#</a></p></li>
+<li><p>considering if I should shave or not my playoff beard &#8230; <a href="http://twitter.com/nuin/statuses/792144949">#</a></p></li>
+<li><p>Latest mid-West earthquake blamed on Global Climate Change (source coming &#8230;) <a href="http://twitter.com/nuin/statuses/792107012">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> planning a marriage in the Bahamas, decorating the private jet <a href="http://twitter.com/nuin/statuses/792081042">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> but usually these problems are memory related, as far as my experience with Macs goes. <a href="http://twitter.com/nuin/statuses/791968907">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> sorry that I cannot help more. I had problems installing Leopard in my wife&#8217;s computer, and on my iMac was painful too. <a href="http://twitter.com/nuin/statuses/791968434">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> those days are not gone, unfortunately. <a href="http://twitter.com/nuin/statuses/791964158">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> I find Leopard way more unstable than Tiger. It is getting more stable now, but the transition was painful. <a href="http://twitter.com/nuin/statuses/791959421">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> I had problems with my iMac when it was waking up. Have you reset your NVRAM? Command, Option, P and R when booting. <a href="http://twitter.com/nuin/statuses/791958868">#</a></p></li>
+<li><p>@<a href="http://twitter.com/davidbro">davidbro</a> Leopard? <a href="http://twitter.com/nuin/statuses/791952101">#</a></p></li>
+<li><p>missed the &#8216;d after I on the rather <a href="http://twitter.com/nuin/statuses/791888963">#</a></p></li>
+<li><p>22 innings, what&#8217;s that? I rather watch quintuple overtime in a hockey game. <a href="http://twitter.com/nuin/statuses/791883821">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> agreed, Wordpress is the way to go. <a href="http://twitter.com/nuin/statuses/791764112">#</a></p></li>
+<li><p>Time to rest in Toronto. After another win by the Orange and Black. Thanks Knuble!! <a href="http://twitter.com/nuin/statuses/791586620">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> Memory Hole, it is kind of a radio show <a href="http://twitter.com/nuin/statuses/791580502">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> yep, just like the perfect sequence alignment. <a href="http://twitter.com/nuin/statuses/791578914">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> I have one Kevin Moore solo that I am trying to understand. Can&#8217;t remember the name. <a href="http://twitter.com/nuin/statuses/791578521">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> I gave up on that quest &#8230; <a href="http://twitter.com/nuin/statuses/791575549">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> pretty nice, you dug that Space-Dye Vest <a href="http://twitter.com/nuin/statuses/791575274">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> ai ai ai, very trippy <a href="http://twitter.com/nuin/statuses/791550602">#</a></p></li>
+<li><p>Orange and black night going to double overtime. <a href="http://twitter.com/nuin/statuses/791545263">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> @<a href="http://twitter.com/mndoci">mndoci</a> yep and yep. <a href="http://twitter.com/nuin/statuses/791545051">#</a></p></li>
+<li><p>Best protetction against flu/cold: live your childhood in a under development country. <a href="http://twitter.com/nuin/statuses/791527284">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> Waqshington DC has that too. <a href="http://twitter.com/nuin/statuses/791519694">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/17/twitter-updates-for-2008-04-17/">Twitter Updates for 2008-04-17</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-17T23:59:59-04:00" pubdate data-updated="true">Apr 17<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> kudos <a href="http://twitter.com/nuin/statuses/791433830">#</a></p></li>
+<li><p>@<a href="http://twitter.com/NCurse">NCurse</a> which one is that? <a href="http://twitter.com/nuin/statuses/791399648">#</a></p></li>
+<li><p>Black and Orange night rapidly approaching. Let&#8217;s sink the Crapitals. <a href="http://twitter.com/nuin/statuses/791381733">#</a></p></li>
+<li><p>I wonder why the best song in Devin Townsend&#8217;s Terria is called Canada? <a href="http://twitter.com/nuin/statuses/791276371">#</a></p></li>
+<li><p>who&#8217;s up to the iPlant challenge? <a href="http://tinyurl.com/43qs4v">http://tinyurl.com/43qs4v</a> <a href="http://twitter.com/nuin/statuses/791240671">#</a></p></li>
+<li><p>mewithoutYou, <a href="http://www.mewithoutyou.com/">http://www.mewithoutyou.com/</a>, highly recommended <a href="http://twitter.com/nuin/statuses/791228576">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> I don&#8217;t think I understand the questions, except for number 7. I will get full mark on that one. <a href="http://twitter.com/nuin/statuses/791210445">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> And you live in the Nouveau Orleans? <a href="http://twitter.com/nuin/statuses/791170014">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> the webhosting of academic institutions (at least the ones I know) is very poor <a href="http://twitter.com/nuin/statuses/791147841">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> FotC is great!! <a href="http://twitter.com/nuin/statuses/791120231">#</a></p></li>
+<li><p>@<a href="http://twitter.com/freesci">freesci</a> SVN is a &#8220;difficult&#8221; concept, imagine Open Notebook? <a href="http://twitter.com/nuin/statuses/791119980">#</a></p></li>
+<li><p>@<a href="http://twitter.com/freesci">freesci</a> Probably. I don&#8217;t think I&#8217;d be able to tell my division about those things. They will never listen. They&#8217;re looking to cure cancer <a href="http://twitter.com/nuin/statuses/791104657">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> thanks for pointing that out. Will check. <a href="http://twitter.com/nuin/statuses/791103275">#</a></p></li>
+<li><p>@<a href="http://twitter.com/freesci">freesci</a> and they are still not using it. <a href="http://twitter.com/nuin/statuses/791038658">#</a></p></li>
+<li><p>@<a href="http://twitter.com/freesci">freesci</a> You should consider yourself lucky that you can talk about these things. I&#8217;ve spent years trying to convince that SVN is useful. <a href="http://twitter.com/nuin/statuses/791038434">#</a></p></li>
+<li><p>@<a href="http://twitter.com/dullhunk">dullhunk</a> just don&#8217;t ask what Twitter is &#8230; <a href="http://twitter.com/nuin/statuses/791037794">#</a></p></li>
+<li><p>@<a href="http://twitter.com/Stew">Stew</a> Radio Futura, Spain, and GNR from Portugal, but I don&#8217;t think they exist anymore. Heroes del Silencio from Spain, is not that bad. <a href="http://twitter.com/nuin/statuses/790812375">#</a></p></li>
+<li><p>@<a href="http://twitter.com/amberf">amberf</a> Quero ver como eles vão ganhar dinheiro com isso &#8230; <a href="http://twitter.com/nuin/statuses/790807388">#</a></p></li>
+<li><p>So what the new Joel Spolsky company will build? A new Excel? <a href="http://twitter.com/nuin/statuses/790789594">#</a></p></li>
+<li><p>@<a href="http://twitter.com/amberf">amberf</a> creio que nao. É meio besta mas serve pra trocar idéias. <a href="http://twitter.com/nuin/statuses/790787498">#</a></p></li>
+<li><p>@<a href="http://twitter.com/amberf">amberf</a> bem besta realmente. <a href="http://twitter.com/nuin/statuses/790785472">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/16/twitter-updates-for-2008-04-16/">Twitter Updates for 2008-04-16</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-16T23:59:59-04:00" pubdate data-updated="true">Apr 16<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/jzawodn">jzawodn</a> I use VMWare and never had major problems with it. It does not like some Linux distros. <a href="http://twitter.com/nuin/statuses/790666849">#</a></p></li>
+<li><p>Brazilian &#8220;social organizations&#8221; are against biofuels. <a href="http://twitter.com/nuin/statuses/790666173">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> <a href="http://mapnik.org/">http://mapnik.org/</a> <a href="http://twitter.com/nuin/statuses/790593732">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> @<a href="http://twitter.com/rvidal">rvidal</a> fine here too, using imap <a href="http://twitter.com/nuin/statuses/790592052">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> what happened to gmail? <a href="http://twitter.com/nuin/statuses/790584203">#</a></p></li>
+<li><p>I want dict comprehension. <a href="http://twitter.com/nuin/statuses/790535316">#</a></p></li>
+<li><p>If Cory Doctorow said &#8220;Jump&#8221;, would you? <a href="http://twitter.com/nuin/statuses/790409271">#</a></p></li>
+<li><p>playing with sets. I love sets uniqueness! Thanks Guido. <a href="http://twitter.com/nuin/statuses/790358097">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> some days are more different than others <a href="http://twitter.com/nuin/statuses/790299294">#</a></p></li>
+<li><p>Orange and black night complete. 6 x 3. <a href="http://twitter.com/nuin/statuses/789966847">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/15/twitter-updates-for-2008-04-15/">Twitter Updates for 2008-04-15</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-15T23:59:59-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>Orange and Black night &#8230; <a href="http://twitter.com/nuin/statuses/789900445">#</a></p></li>
+<li><p>@<a href="http://twitter.com/hooande">hooande</a> thanks <a href="http://twitter.com/nuin/statuses/789869636">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> ics2626 is also nice <a href="http://twitter.com/nuin/statuses/789859966">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> phil.franks46 and soiduflksd <a href="http://twitter.com/nuin/statuses/789766854">#</a></p></li>
+<li><p>Looking for someone to interview on SciView. <a href="http://twitter.com/nuin/statuses/789694875">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> The only solution I see in the near future is to have an unique name. <a href="http://twitter.com/nuin/statuses/789674033">#</a></p></li>
+<li><p>I am a spyware or a virus  &#8220;.. but your query looks similar to automated requests from a computer virus or spyware application&#8221; <a href="http://twitter.com/nuin/statuses/789607944">#</a></p></li>
+<li><p>I guess multiGUI is out in the open (almost) &#8230; <a href="http://blindscientist.genedrift.org/2008/04/15/multigui/">http://blindscientist.genedrift.org/2008/04/15/multigui/</a> <a href="http://twitter.com/nuin/statuses/789600311">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> indeed &#8230; <a href="http://twitter.com/nuin/statuses/789577515">#</a></p></li>
+<li><p>@<a href="http://twitter.com/ChristianBurns">ChristianBurns</a> CRA deadline is the 30th, so I have an extra two weeks to (not) prepare my taxes. <a href="http://twitter.com/nuin/statuses/789577338">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> Dream Theater on the headphones &#8230; <a href="http://twitter.com/nuin/statuses/789566891">#</a></p></li>
+<li><p>time to meet Morpheus. <a href="http://twitter.com/nuin/statuses/789303313">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> that&#8217;s why I don&#8217;t read Phrayngula &#8230; <a href="http://twitter.com/nuin/statuses/789285281">#</a></p></li>
+<li><p>@<a href="http://twitter.com/mndoci">mndoci</a> maybe first we should define what bioinformatics is. <a href="http://twitter.com/nuin/statuses/789279694">#</a></p></li>
+<li><p>@<a href="http://twitter.com/neilfws">neilfws</a> Amen. <a href="http://twitter.com/nuin/statuses/789269180">#</a></p></li>
+</ul>
+
+
+<p>Powered by <a href="http://alexking.org/projects/wordpress">Twitter Tools</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/15/multigui-restricted-beta-release/">multiGUI (restricted) beta release</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-15T16:10:07-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We are releasing multiGUI (Windows Vista and XP) as a limited beta. If you are interested in trying the software send an email to multigui at genedrift dot org. We are intending to provide a group of 20-30 users the opportunity to try the program, what would allow us to work on future improvements, kill some bugs that weren&#8217;t found in the development/test phase and check for the level of interest of our application in the scientific community.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/15/multigui/">multiGUI</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-15T14:00:11-04:00" pubdate data-updated="true">Apr 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Myself, <a href="http://biokubuntu.com">Federico Hoffmann</a> and <a href="http://biokubuntu.com">Juan Opazo</a> are developing a nice cross-platform interface for <a href="http://statgen.ncsu.edu/thorne/multidivtime.html">multidivtime</a>, a program (or a series of programs) used to estimate molecular evolution rates and divergence times. We are expecting to have a version released soon. I will post links whenever they are available.</p>
+
+<p>A initial page for <a href="http://genedrift.org/multigui.php">multiGUI </a>is already on GeneDrift.</p>
+
+<p>Update: some <a href="http://genedrift.org/multiguiscreen.php">screenshots were added</a>. As the application is fully cross-platform, Mac, Windows and Linux versions will be available.</p>
+
+<p><strong>Update 2: We are releasing multiGUI (Windows Vista and XP) as a limited beta. If you are interested in trying the software send an email to multigui at genedrift dot org. We are intending to provide a group of 20-30 users the opportunity to try the program, what would allow us to work on future improvements, kill some bugs that weren&#8217;t found in the development/test phase and check for the level of interest of our application in the scientific community.</strong></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/14/twitter-updates-for-2008-04-14/">Twitter Updates for 2008-04-14</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-14T23:59:59-04:00" pubdate data-updated="true">Apr 14<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> I have almost 300 feeds, and keep adding more. <a href="http://twitter.com/nuin/statuses/789169427">#</a></p></li>
+<li><p>Gone swimming &#8230; <a href="http://twitter.com/nuin/statuses/789124547">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> it is pretty good. Usually I find a new feed every week &#8230; <a href="http://twitter.com/nuin/statuses/789124132">#</a></p></li>
+<li><p>@<a href="http://twitter.com/yokofakun">yokofakun</a> Me too &#8230; <a href="http://snurl.com/24f2p">http://snurl.com/24f2p</a> <a href="http://twitter.com/nuin/statuses/789118291">#</a></p></li>
+<li><p>@<a href="http://twitter.com/rvidal">rvidal</a> I am using the same as yours. <a href="http://twitter.com/nuin/statuses/789094962">#</a></p></li>
+<li><p>Twitter Tools installed &#8230; <a href="http://twitter.com/nuin/statuses/789040783">#</a></p></li>
+<li><p>Great, I can buy American Idol on the Canadian iTunes Store!!! But I can&#8217;t buy anything else from any country &#8230; <a href="http://twitter.com/nuin/statuses/788937864">#</a></p></li>
+<li><p>@<a href="http://twitter.com/attilacsordas">attilacsordas</a> it&#8217;s an OK movie. Interesting to say the least. <a href="http://twitter.com/nuin/statuses/788546091">#</a></p></li>
+<li><p>msiexec /i GoogleAppEngine.msi /qb <a href="http://twitter.com/nuin/statuses/788534643">#</a></p></li>
+<li><p>finally installed AppEngine on Vista <a href="http://twitter.com/nuin/statuses/788534451">#</a></p></li>
 </ul>
 
 

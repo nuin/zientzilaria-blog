@@ -25,10 +25,9 @@ and has these parameters
 
 
 
-[sourcecode language='python'](self, parent,
-id=-1, label=EmptyString, pos=DefaultPosition, size=DefaultSize,
-style=0, name=StaticTextNameStr)[/sourcecode] 
-
+{% codeblock lang:python %}
+(self, parent, id=-1, label=EmptyString, pos=DefaultPosition, size=DefaultSize, style=0, name=StaticTextNameStr)
+{% endcodeblock %}
 
 
 We don't need all of them, just a couple would be enough. Basically, parent, id, label and pos will
@@ -38,10 +37,10 @@ labels to the panel on the frame, one for each the fore and background
 files 
 
 
-[sourcecode language='python']self.fore\_label =
-wx.StaticText(panel, -1, 'Select the foreground file', (10, 10))
-self.back\_label = wx.StaticText(panel, -1, 'Select the background
-file', (10, 30))[/sourcecode] 
+{% codeblock lang:python %}
+self.fore_label = wx.StaticText(panel, -1, 'Select the foreground file', (10, 10))
+self.back_label = wx.StaticText(panel, -1, 'Select the background file', (10, 30))
+{% endcodeblock %}
 
 
 These two lines are very similar, only the
@@ -52,8 +51,9 @@ coordinates to display them on the frame. In the beginning (or when a
 size needs to be set) we can add `pos=` to the label declaration in
 order to make clearer what the values are setting 
 
-[sourcecode language='python']self.fore_label = wx.StaticText(panel, -1, 'Select
-the foreground file', pos=(10, 10))[/sourcecode]
+{% codeblock lang:python %}
+self.fore_label = wx.StaticText(panel, -1, 'Select the foreground file', pos=(10, 10))
+{% endcodeblock %}
 
 If we add these two
 lines and run our script, both labels will be there on the frame, as can
@@ -67,56 +67,113 @@ a file dialog, by using the [wx.FileDialog
 method](http://wxpython.org/docs/api/wx.FileDialog-class.html). This
 method requires only one parameter, which is the style of the dialog.
 The dialog can be of many types, i.e. for opening (single and multiple
-files) and saving. the dialog call would look like [sourcecode
-language='python']dialog = wx.FileDialog(self,
-style=wx.OPEN)[/sourcecode] very simple and objective. But just
+files) and saving. the dialog call would look like 
+
+{% codeblock lang:python %}
+dialog = wx.FileDialog(self, style=wx.OPEN)
+{% endcodeblock %}
+
+very simple and objective. But just
 declaring won't make it show up on the screen. We need to actually call
 the dialog's show method. Usually, most dialogs are
 [modal](http://en.wikipedia.org/wiki/Modal_window), requiring some kind
 of interaction between the user and the dialog before returning to the
 application that called the dialog. Because of this behaviour we need to
 use an if clause when showing the dialog, to check what type of result
-returns from the user/dialog interaction. [sourcecode
-language='python']if dialog.ShowModal() == wx.ID\_OK:[/sourcecode]
-wx.ID\_OK is a internal method of wxPython that checks if the user
+returns from the user/dialog interaction. 
+
+{% codeblock lang:python %}
+if dialog.ShowModal() == wx.ID_OK:
+{% endcodeblock %}
+
+wx.ID_OK is a internal method of wxPython that checks if the user
 pressed the OK button on the file open dialog. If so, the program will
 process the code, otherwise it will destroy the dialog and return to the
 main application (or do something else if we set an elif clause). So,
 all we need is set, we just need to put things together and add some
-code when the user selects a file [sourcecode language='python']def
-on\_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID\_OK: fore\_file = dialog.GetFilename()
-self.fore\_label.SetLabel(forefile)[/sourcecode] After the if clause,
-the script will get the name of the selected file from the dialog and
+code when the user selects a file 
+
+{% codeblock lang:python %}
+def on_foreground(self, event):
+    dialog = wx.FileDialog(self, style=wx.OPEN)
+    if dialog.ShowModal() == wx.ID_OK:
+        fore_file = dialog.GetFilename()
+        self.fore_label.SetLabel(forefile)
+{% endcodeblock %}
+
+After the if clause, the script will get the name of the selected file from the dialog and
 then set the label of our StaticText (label!) with it. Straightforward.
 We do the same thing for the background file and we have some code
 going. One last thing, the objects `fore_file` and `back_file` are
-declared on the \_\_init\_\_ function of the frame class, so they are
+declared on the __init__ function of the frame class, so they are
 available to the whole frame scope. Our script will look like
-[sourcecode language='python']\#!/usr/bin/env python import wx import
-pymot import fasta import os class pymot(wx.App): def \_\_init\_\_(self,
-redirect=False): wx.App.\_\_init\_\_(self, redirect) class
-pymotGUI(wx.Frame): def \_\_init\_\_(self, parent, id):
-wx.Frame.\_\_init\_\_(self, parent, id, 'Python Motif Finder',
-style=wx.DEFAULT\_FRAME\_STYLE) self.\_\_do\_layout() self.fore\_file =
-'' self.back\_file = '' def \_\_do\_layout(self): \#adding the panel
-panel = wx.Panel(self) \#defines the menubar menubar = wx.MenuBar()
-\#file menu filemenu = wx.Menu() foreground\_menu = filemenu.Append(-1,
-'Select foreground file') background\_menu = filemenu.Append(-1, 'Select
-background file') sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, 'Quit') \#appends the menu to the menubar and
-creates it menubar.Append(filemenu, 'File') self.SetMenuBar(menubar)
-self.fore\_label = wx.StaticText(panel, -1, 'Select the foreground
-file', (10, 10)) self.back\_label = wx.StaticText(panel, -1, 'Select the
-background file', (10, 30)) self.Bind(wx.EVT\_MENU, self.on\_foreground,
-foreground\_menu) self.Bind(wx.EVT\_MENU, self.on\_background,
-background\_menu) def on\_foreground(self, event): dialog =
-wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() == wx.ID\_OK:
-fore\_file = dialog.GetFilename()
-self.fore\_label.SetLabel(dialog.GetFilename()) def on\_background(self,
-event): dialog = wx.FileDialog(self, style=wx.OPEN) if
-dialog.ShowModal() == wx.ID\_OK: back\_file = dialog.GetFilename()
-self.back\_label.SetLabel(dialog.GetFilename()) \#if \_\_name\_\_ ==
-'\_\_main\_\_': app = pymot() frame = pymotGUI(parent=None, id = -1)
-\#frame.CentreOnScreen() frame.Show() app.MainLoop()[/sourcecode] Next
-we will keep adding elements on the screen and functionality.
+
+
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+import wx
+import pymot
+import fasta
+import os
+ 
+class pymot(wx.App):
+ 
+    def __init__(self, redirect=False):
+        wx.App.__init__(self, redirect)
+ 
+class pymotGUI(wx.Frame):
+ 
+    def __init__(self, parent, id):
+        wx.Frame.__init__(self, parent, id,  'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE)
+        self.__do_layout()
+        self.fore_file = ''
+        self.back_file = ''
+ 
+    def __do_layout(self):
+ 
+        #adding the panel
+        panel = wx.Panel(self)
+ 
+        #defines the menubar
+        menubar = wx.MenuBar()
+ 
+        #file menu
+        filemenu = wx.Menu()
+        foreground_menu = filemenu.Append(-1, 'Select foreground file')
+        background_menu = filemenu.Append(-1, 'Select background file')
+        sep = filemenu.AppendSeparator()
+        quitmenu = filemenu.Append(-1, 'Quit')
+ 
+        #appends the menu to the menubar and creates it
+        menubar.Append(filemenu, 'File')
+        self.SetMenuBar(menubar)
+ 
+        self.fore_label = wx.StaticText(panel, -1, 'Select the foreground file', (10, 10))
+        self.back_label = wx.StaticText(panel, -1, 'Select the background file', (10, 30))
+ 
+        self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
+        self.Bind(wx.EVT_MENU, self.on_background, background_menu)
+ 
+    def on_foreground(self, event):
+        dialog = wx.FileDialog(self, style=wx.OPEN)
+        if dialog.ShowModal() == wx.ID_OK:
+            fore_file = dialog.GetFilename()
+            self.fore_label.SetLabel(dialog.GetFilename())
+ 
+    def on_background(self, event):
+        dialog = wx.FileDialog(self, style=wx.OPEN)
+        if dialog.ShowModal() == wx.ID_OK:
+            back_file = dialog.GetFilename()
+            self.back_label.SetLabel(dialog.GetFilename())
+ 
+#if __name__ == '__main__':
+app = pymot()
+frame = pymotGUI(parent=None, id = -1)
+#frame.CentreOnScreen()
+frame.Show()
+app.MainLoop()
+
+{% endcodeblock %} 
+
+Next we will keep adding elements on the screen and functionality.

@@ -9,8 +9,7 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="Most of those that are fighting against an empire, are trying to create one of their own.
-">
+  <meta name="description" content="As promised I&#8217;m writing about the free version of TNT. So far I was able to test the Linux version which does not have a graphical interface. I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/02/19/empires/">Empires</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/01/30/tnt-a-comprehensive-review/">TNT: a(n) (almost) comprehensive review</a></h1>
     
     
       <p class="meta">
@@ -99,470 +98,81 @@
   
 
 
-<time datetime="2008-02-19T16:03:01-05:00" pubdate data-updated="true">Feb 19<span>th</span>, 2008</time>
+<time datetime="2008-01-30T14:41:52-05:00" pubdate data-updated="true">Jan 30<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Most of those that are fighting against an empire, are trying to create one of their own.</p>
-</div>
-  
-  
+  <div class="entry-content"><p>As promised I&#8217;m writing about the free version of TNT. So far I was able to test the Linux version which does not have a graphical interface. I am planning to download a Windows version and test it, but not until next week. So far here are my impressions.</p>
 
+<p>When you start TNT you are greeted by its own prompt, in identical fashion to PAUP and MrBayes. As a regular user (or most of the regular users) I fired up TNT without reading the manual, so my first attempt was to write help at the prompt and the prompt answered by changing itself from &#8220;>tnt*&#8221; to &#8220;>help&#8221;. One point against TNT, as either PAUP of MrBayes at least display a list of possible commands. Feeling helpless I decided to access the manual.</p>
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/18/bosc-2008/">BOSC 2008</a></h1>
-    
-    
-      <p class="meta">
-        
+<p><strong>The Manual</strong></p>
 
+<p>Oh, my eyes!!! Whoever chose the background colour for the html manual might have an agreement with some optometrist. I cannot read a paragraph without averting my eyes for a &#8220;refresh&#8221; (if you are interested search for bgcolor=aqua). Anyway, the introductory part of the manual tells you to do exactly what I did, by entering &#8220;help&#8221; at the prompt. Second thing it tells you is that if you don&#8217;t have a Windows version it is not possible to convert your files (i.e. fasta, phylip, nexus) to TNT&#8217;s own format. Usual, it follows the rule, <em>one application</em> - <em>one format</em>, they just forgot to include <em>one converter</em>. Just adding insult to injure they suggest that you use a text editor, anyone, and check their example files. Yeah, right. Basically TNT read Hennig86 matrices. Just get them from your 5 1/4&#8221; floppies.</p>
 
+<blockquote><p>update: there is a way to display the commands at the prompt. &#8220;help&#8221; alone does not work, it has to be followed by a &#8220;;&#8221;, but the manual says &#8220;help &#8221;</p>
 
+<p>update II: according to the manual TNT is able to read NEXUS files and can even include TNT commands in a block. Good.</p></blockquote>
 
+<p><strong>Using TNT</strong></p>
 
+<p>Apparently TNT has a good selection of commands, from what can be seen from its help. It covers most of the things you want to study by using parsimony. It is mentioned in the manual that TNT does not do maximum likelihood (don&#8217;t say!) or bayesian analysis (geez!), but they will incorporate some ML algorithms, even though rudimentary (I bet!).</p>
 
+<p>So, from my shell I started TNT and as I would do in the PAUP CLI version just put the filename as a parameter</p>
 
+<p>./tnt primate-mtDNA.nex (if you really noticed I was using one of PAUP&#8217;s example files)</p>
 
-  
+<p>No dice. So I dig deeper in the manual and find a section dedicated to us poor Linux and OS X users</p>
 
+<blockquote><p>Linux and Mac OS X versions of TNT have a couple differences with the standard versions.  First, those versions can take a comma ( , ) instead of a semicolon ( ; ).  This is because the shells there use semicolons to separate commands, and giving arguments to TNT from the command line becomes difficult. Second difference is that those versions can run in the background.  If you want to start TNT in the background, use bground as first argument, then give the normal arguments you would give the program (do not activate reports and do not change the silent status, but you can set report+ to report every certain number of trees, replications, or seconds, so that you can monitor progress by inspecting the output file; make sure you do have output files, otherwise the program would run and exit without doing anything!), and end with the usual &#8216;&amp;&#8217;.  TNT will not write to the console, or expect console input (at least if no errors occur). It will write its results to a file and exit smoothly (exit code is 0; if the program runs out of commands while in the background it exits with code 1). Should some error occur during the search, the program writes a message to the ouptut file, and exits with code 255.  Try</p></blockquote>
 
-<time datetime="2008-02-18T13:33:47-05:00" pubdate data-updated="true">Feb 18<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
+<pre><code> ./tnt bground p zilla.tnt, echo=, log peep, rep+1, mu10=ho3, le, ne, quit, &amp;
+</code></pre>
 
+<p>and do &#8220;tail –f peep&#8221; to monitor search progress.</p>
 
-  <div class="entry-content"><p>I have tried to attend BOSC 2005 in Detroit but run out funds at the time and could only be at ISMB. I missed 06 and 07 meetings, no papers, posters ready. But 2008 ISMB and <a href="http://news.open-bio.org/archives/2008_02.html#000093">BOSC</a> will be in my &#8220;hometown&#8221;, Toronto. If you are coming let me know we can definitely hang out.</p>
-</div>
-  
-  
+<p>Very simple and straightforward. But at least I got a clue on how to open a file or use it as a parameter. So I repeat my first command line with the parameter p and then the filename</p>
 
+<p>./tnt p primate-mtDNA.nex</p>
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/15/for-every-problem-there-is-a-solution-thankfully/">For every &#8220;problem&#8221; there is a &#8220;solution&#8221;. Thankfully.</a></h1>
-    
-    
-      <p class="meta">
-        
+<p>Success &#8230; no not so fast. An error is reported:</p>
 
+<p>PISH (Phylogenetic Inference SHell)</p>
 
+<p>Reading from primate-mtDNA.nex
+Reading file primate-mtDNA.nex as NEXUS</p>
 
+<blockquote><p>Data from:</p>
 
+<pre><code>    Hayasaka, K., T. Gojobori, and S. Horai. 1988. Molecular phylogeny
+            and evolution of primate mitochondrial DNA. Mol. Biol. Evol.
+            5:626-644.
+</code></pre></blockquote>
 
+<p>  &#8230; Skipping taxa block &#8230;
+  &#8230; Skipping characters block &#8230;
+Error reading NEXUS file: expected cost
+Error reading primate-mtDNA.nex
+g = coding;    usertype 2_1 = 4  [weights transversions 2 times transitions</p>
 
+<p>OK, fine. But what&#8217;s PISH? No clue. I edited the file and removed the assumptions block, as TNT seems buggy to read square-bracket enclosed comments on PAUP blocks. I tried again and it worked but skipped both the characters and taxa blocks. Time to use one TNT&#8217;s example files. So I chose the more evident <em>example.tnt</em>. I repeated the above command now using the tnt file as input. Everything works fine, data is read, stored and ready to go. Basically you have a number of commands that you can use to obtain your trees.  I used only <strong>mult</strong> which does multiple random addition sequences plus TBR (RAS+TBR) to find the most parsimonious tree(s). The program is fast for a morphology matrix of 84 characters and 112 taxa. In less than a second the tree is calculated.</p>
 
+<p>But there is a major problem visualizing the tree(s): the so called PISH (Phylogenetic Inference SHell) does not allow scroll. So after obtaining the tree and using the <strong>ne</strong> command to visualize it you are left with a &#8220;tail&#8221; of the tree only. After some fidgeting I found a way to export trees to NEXUS format and could check the trees obtained. By using the command <strong>export</strong> with a dash and filenames as parameters.</p>
 
-  
-
-
-<time datetime="2008-02-15T14:07:48-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you don&#8217;t like Snap preview tooltips (oh, they are <em>so useful</em>) you came to the right place. No, in fact it wasn&#8217;t me that invented it, the company that created Snap did it. You don&#8217;t need to thank me.</p>
-
-<blockquote><p>How can I turn Snap Shots on or off?</p></blockquote>
-
-<p>Click here (on their <a href="http://www.snap.com/snapshots_faq.php#2">website</a> FAQ) to disable Snap Shots. Please note you must reload the page or clear your cache for the change to take effect. Deactivation uses cookies, so if you delete your cookies, Snap Shots will be re-activated for all sites.</p>
-
-<p>The JavaScript will save a cookie on your browser and you are free to surf without any further annoyance. Thankfully.</p>
-
-<p><em>from <a href="http://www.ofzenandcomputing.com/zanswers/304">1</a> (Of Zen and Computing) and <a href="http://www.lifehacker.com/software/annoyances/disable-snap-previews-on-web-sites-232846.php">2</a> (Lifehacker)</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/15/parsing-a-genbank-file-another-approach/">Parsing a GenBank file, another approach</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-15T11:35:13-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last couple of entries we learnt a little bit about <code>sets</code> and that
-newer Python versions make its use a lost faster than <code>dictionaries</code> to
-uniquify <code>lists</code>. And soon we will see good examples of <code>sets</code> usage.
-And now for some completely different &#8230; we go back to parsing GenBank
-files. We saw sometime ago how to extract some simple information
-contained in this type of files. I am working on a project that requires
-a lot of work in GenBank files, and instead of learning how to use an
-available parser I decided to write a simple one on my own. The
-requirements were simple: extract all protein sequences from a whole
-genome GenBank file and also the DNA from the sequence available in it
-(this time we will see how to get the proteins and next time the
-latter). We all know that GenBank files have an annotation section, with
-IDs, references, organism and some other information at the top. The DNA
-sequence at the bottom, after ORIGIN, and the protein sequences are in
-annotated regions of CDSs. An example is below:</p>
-
-<p><code>     gene            8330..9475                      /gene="COS1"                      /locus_tag="YNL336W"                      /db_xref="GeneID:855380"      CDS             8330..9475                      /gene="COS1"                      /locus_tag="YNL336W"                      /experiment="experimental evidence, no additional details                      recorded"                      /note="Protein of unknown function, member of the DUP380                      subfamily of conserved, often subtelomerically-encoded                      proteins"                      /codon_start=1                      /product="Cos1p"                      /protein_id="NP_014063.1"                      /db_xref="GI:6323993"                      /db_xref="SGD:S000005280"                      /db_xref="GeneID:855380"                      /translation="MKENELKNEKSVDVLSFKQLESQKIVLPQDLFRSSFTWFCYEIY                      KSLAFRIWMLLWLPLSVWWKLSNNCIYPLIVSLLVLFLGPIFVLVICGLSRKRSLSKQ                      LIQFCKEVTENTPSSDPHDWEVVAANLNSYLYENKAWNTKYFFFNAMVCQEAFRTTLL                      EPFSLKKDEAAKVKSFKDSVPYIEEALGVYFREVEKQWKLFNSEKSWSPVGLEDAKLP                      KEAYRFKLTWFLKRISNIFMLIPFLNFLCCIYVSRGMCLLLRTFYLGWILFMLVQGFQ                      NMRMIVLSVKMEHKMQFLSTIINEQESGANGWDEIAKKMNRYLFEKKVWKNEEFFFDG
-IDCEWFFSHFFYRVLSAKKSMRALSLNVELWPYIKEAQLSCSEESLA"</code></p>
-
-<p>In a GenBank file each coding gene corresponds to at least one protein.
-The first line, gene, contains the nucleotide region, as the CDS line.
-The other lines, starting with a slash provide information about the
-gene and the last piece of information is the DNA translation with the
-whole protein sequence. In my case, the first objective was to obtain
-the protein sequence, get the protein ID and the gi ID from each entry
-in a genome file. An initial assessment, tell us that creating a class
-for each protein in the file is a good start.</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Protein</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">gi</span> <span class="o">=</span> <span class="n">gi</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So we declare the class and have elements for the
-IDs and the amino acid sequence. The next problem is how do get each
-gene/CDS information, extract what we need and store in a list of class
-instances? This is much like we do with our FASTA entries, reading line
-by line and looking for FASTA sequence names, which start with <code>&gt;</code>. For
-GenBank files we will look for lines containing the word gene. Of course
-this would mean that every gene that has this word in its name will be a
-problem, so we match against <code>'  gene  '</code> (the word gene flanked by two
-spaces).</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">proteins</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  gene &#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>            <span class="c">#parses the CDS and appends to a list</span>
-</span><span class='line'>            <span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
-</span><span class='line'>            <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>    <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>        <span class="c">#found the DNA sequence, we can stop now</span>
-</span><span class='line'>        <span class="k">break</span>
-</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> In the above excerpt we read
-the file line by line, having an index just to keep the code aware of
-which entry we are at. Every time we find a line with <code>'  gene  '</code>, we
-check for the index and if it is larger than one we parse the entry that
-has been compiled already and start a new one. If we find &#8216;ORIGIN&#8217; we
-bail out, breaking the loop, and in every other case we add a line to
-our current entry. When this is sent to the parsing function we clear
-the string and start compiling the information again. Using a string for
-an entry might be a second choice, as lists are easier to manipulate
-after (and eventually we will transform our string in a list by
-splitting it). Notice that we have a call to a function <code>parse_entry</code>,
-let&#8217;s see how this function is</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">prot_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>    <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span>
-</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">prot_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">prot_id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/translation&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span>
-</span><span class='line'>            <span class="n">temp</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_data</span><span class="p">)):</span>
-</span><span class='line'>                    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">Protein</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="n">prot_id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> As mentioned
-above, we split the string in a list (we will check if there is any
-improvement in speed if we use a list from the beginning) and then
-analyse each one of the lines. In this case, we only need the protein,
-the gene name and, evidently, the protein sequence. Dissecting the
-excerpt above we have</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">prot_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">prot_id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This will get us the protein ID from
-<code>/protein_id="NP_014063.1"</code> and also the gene name/info from
-<code>/product="Cos1p"</code>, which them can be stored in the <code>prot_id</code> string
-that will be passed to the class instance. The gi ID can be extracted in
-similar fashion. In order to get the sequence we have to do a small
-trick, that can be seen on the excerpt below</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/translation&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span>
-</span><span class='line'>  <span class="n">temp</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_data</span><span class="p">)):</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">+=</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p> We find the beginning of the translation information by checking the line that contains
-<code>/translation</code> and we extract the initial part of the sequence my
-finding the equal sign and getting everything after it. Then the trick.
-We know that the end of the translation information will be the last
-line of the whole gene/CDS entry. So we check for the index of the first
-sequence line and store it in a temp variable. Using this variable as
-the first value of a range we are able to get every other line of the
-sequence. That simple. To do the output, we can just iterate the list of
-class objects and print all the information in FASTA format or any other
-that we wish. Put everything together and we have a simple but effective
-GenBank parser. Please notice that this script wouldn&#8217;t work in every
-possible scenario, but with minor tweaks it should be applicable in most
-cases. Next time, we will see how we can get the DNA sequence in an
-effective way. <em>An example of GenBank file can be found
-<a href="http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=nuccore&amp;id=117937805">here</a></em></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/14/3-masterpieces/">3 masterpieces</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-14T15:04:10-05:00" pubdate data-updated="true">Feb 14<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Leaving the Science behind, and thanks to the &#8220;beauty&#8221; of open office spaces fro bioinformatics development, I am able to enjoy three great music masterpieces (AKA the records I would take to an isolated island)</p>
-
-<p>1- <a href="http://www.amazon.com/Black-Love-Afghan-Whigs/dp/B000002HLG/ref=pd_bbs_1?ie=UTF8&amp;s=music&amp;qid=1203019110&amp;sr=8-1">Black Love - Afghan Whighs</a></p>
-
-<p>2- <a href="http://www.amazon.com/Heaven-Up-Here-Echo-Bunnymen/dp/B0000E2Y8Z/ref=sr_1_2?ie=UTF8&amp;s=music&amp;qid=1203019254&amp;sr=1-2">Heaven up Here - Echo and the Bunnymen</a></p>
-
-<p>3- <a href="http://www.amazon.com/Starfish-Church/dp/B0009NR7VI/ref=sr_1_1?ie=UTF8&amp;s=music&amp;qid=1203019320&amp;sr=1-1">Starfish - The Church</a></p>
-
-<p><em>Disclaimer: none of the links above are connected to the Amazon Associates program. I searched Amazon for the title and copied the url that appeared on my address bar.</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/07/we-are-doomed/">We are doomed!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-07T10:37:32-05:00" pubdate data-updated="true">Feb 7<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Tornadoes? No. Earthquakes? No. Zombies? No. <a href="http://news.yahoo.com/s/afp/20080207/ts_afp/fblengproverseas">They want to control our minds and lower the standards globally</a>. Enough of Beckhams, Rooneys and alikes. I want to see real football (soccer for the football-played-with-the-hand people).</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/03/tnt-review-of-the-graphical-interface/">TNT: review of the graphical interface</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-03T12:27:27-05:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This time I am writing about the Windows version of TNT which is somewhat graphical. I am currently using Windows Vista Home Premium.</p>
-
-<p><strong>Interface</strong></p>
-
-<p>TNT&#8217;s interface is far from being stylish, and it is quite simple and intuitive. Most of the options you would need to calculate trees and modify your analysis are on a toolbar and on menus at the top.</p>
-
-<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/01/tnt1.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/01/tnt1.png" alt="Toolbar" /></a></p>
-
-<p>The main area is occupied by a log/text area where the current actions/selections are displayed from time to time. The default font is clear and large and there are ways to format it as you wish. You also have buttons that allow you to increase or decrease the font size.</p>
-
-<p><strong>Running TNT</strong></p>
-
-<p>Running the program with the interface was clearly more pleasant than using the cryptic command line version. TNT starts with an blank area, toolbar and menu, as an usual Windows application. I decided to open one of the three example files that come with it, zilla.tnt.</p>
-
-<p>First thing would be to obtain the tree, and intuitively I ended up pressing the button the toolbar with the man running. Bingo, that&#8217;s what I needed. TNT, then, showed me a options dialog.</p>
-
-<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/01/tnt2.png"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/01/tnt2.thumbnail.png" alt="tnt2.png" /></a></p>
-
-<p>This makes life much easier. All options for tree calculation were right in front of me, and I even had access to specific settings for each method. Then I could see the full range of features that TNT offers. I set to run with default parameters adding the ability to use the ratchet. The run went smoothly, quite fast and an informative progrss dialog displayed the status. (One thing though: TNT developers have created some of the dialogs without a frame or border, what makes impossible to move then around. Sometimes they got in the way of information displayed on the log that might have been important to set the runs).</p>
-
-<p>After the calculation ended, TNT told me that 4 trees were retained from my run. So I wanted to check the trees, not that I was worried if my analysis was right or wrong. One fault was evident: tool bar buttons don&#8217;t have a tooltip and this made a little bit difficult to understand some of the buttons&#8217; pictures. The one to create a consensus is pretty clear, as the one to trash all trees obtained. So I decided to check the menu.</p>
-
-<p>As in any normal Windows program TNT&#8217;s menu is richer in options than the tool bar for obvious reasons. I went to the Trees menu and selected View. All four trees were then displayed on the screen with a scrollbar on the side, much better than the command line version. There is an option that allows the user to collapse the branches, but in my opinion it still a little bit awkward. You have first to unlock the tree and then the program allows you to &#8220;shrink&#8221; nodes. One click at a node adds a red spot to it, another puts a green spot, and a double-click &#8220;shrinks&#8221; the node.</p>
-
-<p>There are some errors on some tree display options. For instance, when the consensus button is clicked it brings up a dialog to change the calculation and after you click OK, TNT generates the consensus and automatically displays a tree. But the window containing the tree is larger than my desktop, has no scrollbar and cannot be dragged. I don&#8217;t know if this an error, a bug or an incompatibility of TNT with Vista. The only way to exit is by using ESC. I will try on XP and update the review.</p>
-
-<p><a href="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2008/02/tnt3.png">TNT displaying a consensus tree (full screen capture)</a></p>
+<p>tnt*>export -</p>
 
 <p><strong>Conclusions</strong></p>
 
-<p>TNT seems to be a powerful software for phylogenetic analysis if you are looking mainly for parsimony. Also, its algorithms seems to have inherited the best of Hennig86. The graphic interface, even though not groundbreaking by any means, makes its use very easy. The program is fast, has many different options for parsimony tree calculation and it is an excellent option for determination of trees to be used as input for slower methods, as pointed out in one of the comments of the CLI review. There are still some errors and bugs and some features I would change in its GUI, but that&#8217;s true for most of the software available in any field.</p>
+<p>TNT seems to be a powerful software and should be able to please anyone intending to employ parsimony as their phylogenetic method of choice. It is fast and, according to the documentation, is loaded.</p>
 
-<p><em><strong>Update: another review is available <a href="http://blindscientist.genedrift.org/2008/01/30/tnt-a-comprehensive-review/">here</a>.</strong></em></p>
+<p>On the other hand it is still (and probably will be for some time) limited and the CLI version for Linux is not the poster version of a user friendly application. There are many drawbacks and it is very difficult to learn the program without a deep study of the manual. Also the documentation is more focused to the GUI Windows version and the commands that can be used in Linux/OS X are not clear at first. In my opinion the worst feature of PISH is the lack of scroll (if there is scroll I wasn&#8217;t able to turn it on) especially when the tree visualization is selected.</p>
+
+<p>Overall is TNT is a fair application, geared to its already known audience. Even being free, I don&#8217;t see it occupying the place of PAUP, Phylip and MrBayes in the phyloege. Not without major changes.</p>
+
+<p><strong>_Update: another review, of the GUI version is available <a href="http://blindscientist.genedrift.org/2008/02/03/tnt-review-of-the-graphical-interface/">here</a>.</strong>_</p>
 </div>
   
   
@@ -575,7 +185,7 @@ effective way. <em>An example of GenBank file can be found
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/02/02/is-this-the-year-chelios-retires/">Is this the year Chelios retires?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/01/30/benchmarking-python-fastest-way-to-generate-unique-lists/">Benchmarking Python: fastest way to generate unique lists</a></h1>
     
     
       <p class="meta">
@@ -591,14 +201,34 @@ effective way. <em>An example of GenBank file can be found
   
 
 
-<time datetime="2008-02-02T10:32:28-05:00" pubdate data-updated="true">Feb 2<span>nd</span>, 2008</time>
+<time datetime="2008-01-30T13:13:29-05:00" pubdate data-updated="true">Jan 30<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p>Just for fun, let&#8217;s see if there is any advantage (apart from generating
+a smaller code) in using either of the approaches to create an unique
+list. A list of 741 gene IDs and another one with 1322 (that contained
+all the 741 IDs from the first) were used. Instead of hard coding the
+lists in the script, normal I/O was used and the files were read
+automatically. Using a for loop the scripts were run 10 times and the
+final time averaged. Here are the results Using dictionaries 0.08540
+Using sets 0.15890 Almost twice as fast for the dictionaries. Why? One
+thing, and one thing only: Python version.</p>
+
+<p>My system&#8217;s box default
+Python is 2.3.4, which has one of the first implementations of <code>set</code>. I
+have a &#8220;personal&#8221; Python version 2.5 so the test was redone with the
+newer Python Using dictionaries 0.04520 Using sets 0.03770 Ok. That
+shows a little bit of advantage for <code>sets</code> what is expected. But it
+shows us that different versions of Python have a huge difference
+between them. This is a rather crude and simple test, with a small list
+of entries, but there is a huge gain from version 2.3 to version 2.5,
+either in <code>dicts</code> or <code>sets</code>. For a more comprehensive test and more
+functions with a similar objective check this
+<a href="http://www.peterbe.com/plog/uniqifiers-benchmark">page</a>.</p>
 </div>
   
   
@@ -611,7 +241,7 @@ effective way. <em>An example of GenBank file can be found
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/02/01/powerpoint-tips/">Powerpoint tips</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/01/29/uniquifying-lists-with-sets-and-dictionaries/">Uniquifying lists with sets and dictionaries</a></h1>
     
     
       <p class="meta">
@@ -627,22 +257,94 @@ effective way. <em>An example of GenBank file can be found
   
 
 
-<time datetime="2008-02-01T22:59:56-05:00" pubdate data-updated="true">Feb 1<span>st</span>, 2008</time>
+<time datetime="2008-01-29T22:34:21-05:00" pubdate data-updated="true">Jan 29<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>In the same BMJ issue that came out with a <em>ridiculous</em> article about testes, a scientist tries to give some Powerpoint tips. I couldn&#8217;t find the link so I am pasting it below:</p>
+  <div class="entry-content"><p>We are going to use our previous example to compare the use of <code>sets</code>
+and <code>dictionaries</code> to create unique lists. We&#8217;ve already seen that when
+<code>sets</code> are used it is very simple to transform a <code>list</code> with repeated
+items in a unique <code>list</code>. The only hassle is to create the <code>set</code> and
+then transform it back into a <code>list</code>. Like last time (with one small
+addition)</p>
 
-<blockquote><p>The main purpose of a PowerPoint presentation is entertainment. Intellectual content is an unwarranted distraction. In preparing a PowerPoint presentation, aesthetics should transcend substance. The background colour scheme and logo for your slides should be selected for maximum emetogenic potential. The first inverse ridicule rule of PowerPoint presentation states: “The more lines of writing that can be coerced onto a slide and the smaller the font, the lower the risk of anyone criticising any data which has accidentally been included.” The second rule states: “The number of slides you can show in your allotted time is inversely proportional to the number of awkward questions which can be asked at the end.” PowerPoint has superseded the carousel era, when presentations were severely limited by the number of slots in the slide carousel and the risk of dropping the lot seconds before your talk. Plagiarism laws do not apply to PowerPoint, so cartoons of marginal relevance but high entertainment value can be downloaded and shown at suitable intervals to maintain audience mirth while minimising critical capacity. Research has shown that the ideal cartoon: data ratio is 5:1.</p></blockquote>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span><span class='line'><span class="n">cluster1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">cluster2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">allgenes</span> <span class="o">=</span> <span class="n">cluster1</span> <span class="o">+</span> <span class="n">cluster2</span>
+</span><span class='line'><span class="n">uniqueset</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">allgenes</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">finalist</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uniqueset</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>The seasoned PowerPoint artist or PowerPointilliste has refined the presentation into a son-et-lumiere extravaganza, in which scattered dots and luminescent clumps of meaningless datasets hurtle on to the screen from all points of the compass, to the strident strains of Handel’s Fireworks Music, building inexorably to a Fantasia-style Sorcerer’s Apprentice climax. This fulfils an important subsidiary purpose of the PowerPoint presentation—to act as a bioassay of the epileptic threshold of the audience, a form of PowerPoint EEG. PowerPoint has spawned a number of hitherto unrecognised diseases. These include PowerPoint phobia (PPP), PowerPoint stress disorder (PPSD), and a form of depression called PowerPointlessness. Yet another purpose of the PowerPoint presentation is to test the capacity of the regional electricity grid. In case this should be found wanting, and your presentation succeeds in fusing the power supply to the surrounding region, it is advisable to have a back-up presentation, a box of matches and a Chinese lantern.</p>
 
-<p>David Isaacs (davidi@chw.edu.au) is a senior staff specialist in the department of immunology and infectious diseases and Dominic Fitzgerald is a senior staff specialist in the department of respiratory medicine, at the Children’s Hospital at Westmead, Sydney. Stephen Isaacs is a consultant at Waltham Forest Child and Family Consultation Service, London. at Children’s Hospital at Westmead.</p>
+<p>We can accomplish identical result by using
+a <code>dictionary</code>. We create a small function to make our code clearer and
+pass a list to it and we return the <code>dictionary</code> keys. Rmember that
+Python <code>dictionaries</code> have values and keys and the latter cannot be
+repeated, so it is basically a list of unique entries. Our function
+would look like</p>
 
-<p>I will try to follow that in the next ISMB.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'> <span class="k">def</span> <span class="nf">make_unique_list</span><span class="p">(</span><span class="n">mylist</span><span class="p">):</span>
+</span><span class='line'>  <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
+</span><span class='line'>      <span class="nb">dict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this function we declare the object
+and in the loop, iterating over every list&#8217;s item we assign a value
+(arbitrary) to the dictionary key. As pointed above, no repeated keys
+are allowed, so every time a already checked item is seen by the
+assignment it is not included in the dictionary. Finally we return only
+the dictionary keys which is our final unique list. Our small script
+would be:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">cluster1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">cluster2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">allgenes</span> <span class="o">=</span> <span class="n">cluster1</span> <span class="o">+</span> <span class="n">cluster2</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">allgenes</span> <span class="o">=</span> <span class="n">make_unique_list</span><span class="p">(</span><span class="n">allgenes</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Both methods are very
+effective and usually fast. I will post some comparisons and benchmarks,
+just for fun. Nathan posted in the comments another approach using
+dictionaries. It is below with syntax highlighting</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Basically in one line you pass a list of elements to dictionary and return all the
+keys that are in the dic. Very Pythonic.</p>
 </div>
   
   
@@ -655,7 +357,7 @@ effective way. <em>An example of GenBank file can be found
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2008/02/01/talking-about-chocolate/">Talking about chocolate &#8230;</a></h1>
+      <h1 class="entry-title"><a href="/blog/2008/01/28/python-sets/">Python sets</a></h1>
     
     
       <p class="meta">
@@ -671,14 +373,293 @@ effective way. <em>An example of GenBank file can be found
   
 
 
-<time datetime="2008-02-01T18:17:35-05:00" pubdate data-updated="true">Feb 1<span>st</span>, 2008</time>
+<time datetime="2008-01-28T16:55:35-05:00" pubdate data-updated="true">Jan 28<span>th</span>, 2008</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Don&#8217;t forget your hot cocoa when reading the last edition of the Bio::Blogs, at the <a href="http://www.bioinformaticszen.com/2008/02/february-2008-edition-of-bioblogs/">Bioinformatics Zen</a>.</p>
+  <div class="entry-content"><p>After a long hiatus we are back with more Python tips, tricks, codes and
+snippets. This time we will check how <code>set</code> works in Python. <code>set</code> is
+another object type available in Python (version 2.3 and up) that brings
+a lot of features to the language. From the Python Library Reference: &#8220;A
+set object is an unordered collection of immutable values. Common uses
+include membership testing, removing duplicates from a sequence, and
+computing mathematical operations such as intersection, union,
+difference, and symmetric difference.&#8221;</p>
+
+<p>Yep, all these are possible with
+<code>set</code>, and let me stress that it is not duplicated. So, a <code>set</code> is
+basically a collection of item, but its unordered and not indexed,
+because it does not record element position or insertion order. Methods
+available for a <code>set</code> include <code>union()</code>, <code>intersection()</code>,
+<code>difference()</code> that we will check next time.</p>
+
+<p>First let&#8217;s see some basic
+set functionality. Differently from other commonly available Python
+object types, we need to import a library in order to use <code>set</code></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>should
+work. A first use for <code>set</code> would be to uniquify a list. Let&#8217;s say that
+you have the gene IDs of two different clusters and you want to merge
+these lists and keep only the unique ones, eliminating possible
+duplicates IDs. We could do that with a <code>dictionary</code> and a simple
+function (we will also check this later on) but a <code>set</code> makes our life
+easier.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">cluster1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">cluster2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="n">allgenes</span> <span class="o">=</span> <span class="n">cluster1</span> <span class="o">+</span> <span class="n">cluster2</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">uniqueset</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">allgenes</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and that&#8217;s all. Of course we won&#8217;t have a flexibility of a <code>list</code>, but
+we can easily convert the <code>set</code> to a list and manipulate as before. Next
+time we will see what else we can do with <code>sets</code> and gene lists.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/19/a-leopard-almost-ate-my-imac/">A leopard almost ate my iMac</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-19T22:01:53-05:00" pubdate data-updated="true">Jan 19<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Painful installation process for the latest Apple OS. Multiple failures during install, DVD trapped inside the drive, old system wiped out without warning, computer unusable for hours and hours. Installing Leopard reminded me when I first installed Windows 95 on my 40 Gb disk. I had the original 95 that couldn&#8217;t handle disks larger than 4 Gb (I think)  so it was a painful process to install, install SP1, repartition the drive and then finish. Hours and hours, just like Leopard yesterday.</p>
+
+<p>And it is 2008, not 1996. Worse than that only OS/2. Thanks Apple: you blasted the last atoms of apple-fanboy in me.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/15/impressive-but-how-do-you-call-it/">Impressive, but how do you call it?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-15T14:02:05-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.theglobeandmail.com/servlet/story/RTGAM.20080115.wgtmacworld0115/BNStory/Technology/home?cid=al_gam_mostemail">Very impressive, thin, light, powerful.</a>. But do they need to called MacBook Air? What a lame-name.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/08/preaching/">Preaching</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-08T12:59:07-05:00" pubdate data-updated="true">Jan 8<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When someone &#8220;preaches&#8221; atheism, what is the difference of preaching some kind of religion?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/19/a-bit-of-tnt-in-your-morning-coffee/">A bit of TNT in your morning coffee</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-19T11:24:20-05:00" pubdate data-updated="true">Dec 19<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.zmuc.dk/public/phylogeny/tnt/">TNT</a> is free!!! Long live TNT.</p>
+
+<p>TNT stands for Tree analysis using New Technology. First published in 1999 by Nixon and Goloboff on Cladistics (where else?) it gives you the possibility doing phylogenetic analysis using parsimony and &#8230; No, that&#8217;s it. Only parsimony. But there is a bright side: you can actually run it on Linux and Mac, albeit without a user interface. That&#8217;s a major step for a program that when first released had an icon depicting an apple with the forbidden sign around it.</p>
+
+<p>I am planning to test it and post a review soon.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/05/spam/">Spam</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-05T21:24:51-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Getting spam/phishing is annoying, but getting spam/phishing with typos or poor grammar is even worse. IF you are not competent to write correctly, you shouldn&#8217;t be trying to scam someone.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/12/05/if-you-live-in-a-cave/">If you live in a cave</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-05T14:47:11-05:00" pubdate data-updated="true">Dec 5<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>and haven&#8217;t seen this</p>
+
+<p><a href="http://xkcd.com/353/">
+http://xkcd.com/353/</a></p>
+
+<p><a href="http://blindscientist.genedrift.org/2007/12/05/if-you-live-in-a-cave/pythonpng/"><img src="http://blindscientist.genedrift.org/wordpress/wp-content/uploads/2007/12/python.png" alt="python.png" /></a></p>
 </div>
   
   

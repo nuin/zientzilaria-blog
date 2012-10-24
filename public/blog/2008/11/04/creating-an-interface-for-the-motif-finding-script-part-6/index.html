@@ -110,12 +110,25 @@ on. After the file is selected on the file menu, the filename is printed
 on the label. Let&#8217;s think for a second &#8230; If we get only the filename
 from the dialog, the program won&#8217;t work, because the file might be
 located in another directory, partition, you name it. So we need tp get
-the file&#8217;s full path. We need to change the lines [sourcecode
-language=&#8217;python&#8217;]back_file = dialog.GetFilename()
-self.fore_label.SetLabel(dialog.GetFilename())[/sourcecode] by
-[sourcecode language=&#8217;python&#8217;]back_file = dialog.GetPath()
-self.fore_label.SetLabel(back_file)[/sourcecode] (do not forget to do
-the same to the fore_file!). Let&#8217;s run the script and check what
+the file&#8217;s full path. We need to change the lines</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">back_file</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">GetFilename</span><span class="p">()</span>
+</span><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">fore_label</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="n">dialog</span><span class="o">.</span><span class="n">GetFilename</span><span class="p">())</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>by</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">back_file</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">GetPath</span><span class="p">()</span>
+</span><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">fore_label</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="n">back_file</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(do not forget to do the same to the fore_file!). Let&#8217;s run the script and check what
 happens. The frame should look like the one below (with a little
 stretching for me). <a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/11/gui4.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/11/gui4.png" title="new gui" alt="new
 gui" /></a>
@@ -125,55 +138,200 @@ functionality that we migth need. So far, we need one input box, where
 the user can enter the motif width to be searched, and a button to start
 the process. Fine, let&#8217;s add the input box. For this we also need an
 extra label to tell the user what the box is for. Always working on our
-__do_layout function we add two lines [sourcecode
-language=&#8217;python&#8217;]self.one_label = wx.StaticText(panel, -1, &#8216;Motif
+__do_layout function we add two lines</p>
+
+<p>[sourcecode language=&#8217;python&#8217;]self.one_label = wx.StaticText(panel, -1, &#8216;Motif
 width&#8217;, (10,50)) self.motif_width = wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95,
-50), (40,18))[/sourcecode] Simple as that we have a input box. For the
-button, one line will suffice [sourcecode
-language=&#8217;python&#8217;]self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10,
-80))[/sourcecode] As we can see there is not much difference in any of
+50), (40,18))[/sourcecode]</p>
+
+<p>Simple as that we have a input box. For the button, one line will suffice</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">one_label</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Motif width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</span><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">motif_width</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">TextCtrl</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;10&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As we can see there is not much difference in any of
 the declarations, they follow a similar process and the parameters are
 more or less identical in some of them. Now, we need to bind the button
 to a function, that we will call <code>run_finder</code>. Remember that binding
 needs an event type, a target function and an object. This time the
-event is a button event, but the other two parameters are similar.
-[sourcecode language=&#8217;python&#8217;]self.Bind(wx.EVT_BUTTON,
-self.run_finder, self.run_button)[/sourcecode] and the function, for
-now will look like [sourcecode language=&#8217;python&#8217;]def run_finder(self,
-event): wx.MessageBox(&#8216;It should run, eh?&#8217;)[/sourcecode] That&#8217;s all for
-today. Our script is growing and the full code is below [sourcecode
-language=&#8217;python&#8217;]#!/usr/bin/env python import wx import pymot import
-fasta import os class pymot(wx.App): def __init__(self,
-redirect=False): wx.App.__init__(self, redirect) class
-pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, &#8216;Python Motif Finder&#8217;,
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() self.fore_file =
-&#8221; self.back_file = &#8221; def __do_layout(self): #adding the panel
-panel = wx.Panel(self) #defines the menubar menubar = wx.MenuBar()
-#file menu filemenu = wx.Menu() foreground_menu = filemenu.Append(-1,
-&#8216;Select foreground file&#8217;) background_menu = filemenu.Append(-1, &#8216;Select
-background file&#8217;) sep = filemenu.AppendSeparator() quitmenu =
-filemenu.Append(-1, &#8216;Quit&#8217;) #appends the menu to the menubar and
-creates it menubar.Append(filemenu, &#8216;File&#8217;) self.SetMenuBar(menubar)
-#input box for motif width, and label self.one_label =
-wx.StaticText(panel, -1, &#8216;Motif width&#8217;, (10,50)) self.motif_width =
-wx.TextCtrl(panel, -1, &#8216;10&#8217;, (95, 50), (40,18)) #run bbutton
-self.run_button = wx.Button(panel, -1, &#8216;Run&#8217;, (10, 80)) #labels
-self.fore_label = wx.StaticText(panel, -1, &#8216;Select the foreground
-file&#8217;, (10, 10)) self.back_label = wx.StaticText(panel, -1, &#8216;Select the
-background file&#8217;, (10, 30)) #binding the menus to functions
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu)
-self.Bind(wx.EVT_BUTTON, self.run_finder, self.run_button) def
-on_foreground(self, event): dialog = wx.FileDialog(self, style=wx.OPEN)
-if dialog.ShowModal() == wx.ID_OK: fore_file = dialog.GetPath()
-self.fore_label.SetLabel(fore_file) def on_background(self, event):
-dialog = wx.FileDialog(self, style=wx.OPEN) if dialog.ShowModal() ==
-wx.ID_OK: back_file = dialog.GetPath()
-self.back_label.SetLabel(back_file) def run_finder(self, event):
-wx.MessageBox(&#8216;It should run, eh?&#8217;) #if __name__ == &#8216;__main__&#8217;:
-app = pymot() frame = pymotGUI(parent=None, id = -1)
-#frame.CentreOnScreen() frame.Show() app.MainLoop()[/sourcecode]</p>
+event is a button event, but the other two parameters are similar.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_finder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and the function, for now will look like</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">run_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="s">&#39;It should run, eh?&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&#8217;s all for today. Our script is growing and the full code is below</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">wx</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">pymot</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">os</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">pymot</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">App</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">pymotGUI</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">Frame</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span>  <span class="s">&#39;Python Motif Finder&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">DEFAULT_FRAME_STYLE</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">__do_layout</span><span class="p">()</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">fore_file</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">back_file</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__do_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#adding the panel</span>
+</span><span class='line'>        <span class="n">panel</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Panel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#defines the menubar</span>
+</span><span class='line'>        <span class="n">menubar</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">MenuBar</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#file menu</span>
+</span><span class='line'>        <span class="n">filemenu</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Menu</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">foreground_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select foreground file&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">background_menu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select background file&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">sep</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">AppendSeparator</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">quitmenu</span> <span class="o">=</span> <span class="n">filemenu</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Quit&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#appends the menu to the menubar and creates it</span>
+</span><span class='line'>        <span class="n">menubar</span><span class="o">.</span><span class="n">Append</span><span class="p">(</span><span class="n">filemenu</span><span class="p">,</span> <span class="s">&#39;File&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">SetMenuBar</span><span class="p">(</span><span class="n">menubar</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#input box for motif width, and label</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">one_label</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Motif width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">motif_width</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">TextCtrl</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;10&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">95</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#run bbutton</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Run&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#labels</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">fore_label</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select the foreground file&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">back_label</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">StaticText</span><span class="p">(</span><span class="n">panel</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;Select the background file&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c">#binding the menus to functions</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_foreground</span><span class="p">,</span> <span class="n">foreground_menu</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_MENU</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_background</span><span class="p">,</span> <span class="n">background_menu</span><span class="p">)</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">Bind</span><span class="p">(</span><span class="n">wx</span><span class="o">.</span><span class="n">EVT_BUTTON</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_finder</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_button</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">on_foreground</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">dialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">FileDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_OK</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">fore_file</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">GetPath</span><span class="p">()</span>
+</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">fore_label</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="n">fore_file</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">on_background</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">dialog</span> <span class="o">=</span> <span class="n">wx</span><span class="o">.</span><span class="n">FileDialog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">wx</span><span class="o">.</span><span class="n">OPEN</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">ShowModal</span><span class="p">()</span> <span class="o">==</span> <span class="n">wx</span><span class="o">.</span><span class="n">ID_OK</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">back_file</span> <span class="o">=</span> <span class="n">dialog</span><span class="o">.</span><span class="n">GetPath</span><span class="p">()</span>
+</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">back_label</span><span class="o">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="n">back_file</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">run_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">wx</span><span class="o">.</span><span class="n">MessageBox</span><span class="p">(</span><span class="s">&#39;It should run, eh?&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#if __name__ == &#39;__main__&#39;:</span>
+</span><span class='line'><span class="n">app</span> <span class="o">=</span> <span class="n">pymot</span><span class="p">()</span>
+</span><span class='line'><span class="n">frame</span> <span class="o">=</span> <span class="n">pymotGUI</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="c">#frame.CentreOnScreen()</span>
+</span><span class='line'><span class="n">frame</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
+</span><span class='line'><span class="n">app</span><span class="o">.</span><span class="n">MainLoop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
 
 

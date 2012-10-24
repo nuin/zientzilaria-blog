@@ -9,8 +9,9 @@
   <meta name="author" content="Paulo Nuin">
 
   
-  <meta name="description" content="I am working on a Python tutorial focused on Bioinformatics development: Beginning Python for Bioinformatics, right here.
-">
+  <meta name="description" content="As mentioned we will see in this entry some other features of Python
+lists. We will start with a similar example to the one in the book and
+then use &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,7 +84,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/beginning-python-for-bioinformatics/">Beginning Python for Bioinformatics</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/02/12/manipulating-python-lists-ii/">&#8220;Manipulating&#8221; Python lists II</a></h1>
     
     
       <p class="meta">
@@ -99,14 +100,146 @@
   
 
 
-<time datetime="2007-03-02T17:45:44-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-02-12T14:18:03-05:00" pubdate data-updated="true">Feb 12<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>I am working on a Python tutorial focused on Bioinformatics development: Beginning Python for Bioinformatics, right <a href="http://python.genedrift.org">here.</a></p>
+  <div class="entry-content"><p>As mentioned we will see in this entry some other features of Python
+lists. We will start with a similar example to the one in the book and
+then use our DNA file. So let&#8217;s assume we have this simple list</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we print it directly we would get something like
+this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which is fine for now, as we are not worried (yet) with the output (what
+we will do further below). Let&#8217;s remove the last nucleotide. To
+accomplish that, we use <code>pop</code> with no specific index</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">nucleotides</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which gives us this when printed</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Remember that lists are mutable, so the removed item is lost. We can
+also remove any other in the list, let&#8217;s say &#8216;C&#8217;. First, we reassign the
+original list items and then remove the second item</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="o">.</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">nucleotides</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The list when printed will return this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> <code>pop</code> accepts any valid index of the list. Any index larger that the length of the
+list will return an error. For future reference, remember that when any
+item is removed (and inserted) the indexes change and the length also.
+It may seems obvious but mistakes are common. Shifting from our
+&#8216;destructive&#8217; mode, we cal also add elements to the list. Adding to the
+end of the list is trivial, by using <code>append</code></p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="o">.</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">nucleotides</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that returns</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="o">.</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Adding to any position is also very straightforward with <code>insert</code>, like
+this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="o">.</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">nucleotides</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where <code>insert</code> takes two
+arguments: first is the index of the element before which to insert and
+second the element to be inserted. So our line above will insert an &#8216;A&#8217;
+just before the &#8216;A&#8217; at position zero. We can try this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="o">.</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="n">nucleotides</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;A1&#39;</span><span class="p">)</span> <span class="n">nucleotides</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&#39;C1&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">nucleotides</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s">&#39;G1&#39;</span><span class="p">)</span> <span class="n">nucleotides</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&#39;T1&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that will result in</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">[</span><span class="s">&#39;A1&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C1&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;T1&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G1&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice that we add every new item at
+an even position, due to the fact that for every insertion the list&#8217;s
+length and indexes change. And for last, we will take care of the
+output. Of course if are creating a script that requires a nicer output,
+printing a list is not the best way. We could create a loop and merge
+all entries in the list, but that would be a couple of lines and we
+ought to have an easier way (otherwise we could be using C++ instead).
+There is a way, by using the method <code>join</code>. This method will join all
+the elements in a list into a single string, with a selected delimiter.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">nucleotides</span> <span class="o">=</span> <span class="p">[</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="o">.</span> <span class="s">&#39;T&#39;</span><span class="p">]</span>
+</span><span class='line'><span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nucleotides</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will generate this output</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">ACGT</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>join</code> is a method that applies to
+strings. The first &#8220;item&#8221; is a string, that could be anything (in our
+case is an empty one). The code line tells Python to get the empty
+string an join it to the list of strings that we call nucleotides. With
+this we finish the first section of the site and we are moving to
+chapter 5 in the book.</p>
 </div>
   
   
@@ -119,7 +252,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/global-warming-no-memo-no-report/">Global warming: no memo, no report</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/02/09/manipulating-python-lists-i/">&#8220;Manipulating&#8221; Python lists I</a></h1>
     
     
       <p class="meta">
@@ -135,14 +268,127 @@
   
 
 
-<time datetime="2007-03-02T17:44:52-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-02-09T14:01:39-05:00" pubdate data-updated="true">Feb 9<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Apparently, upstate NY and southern Ontario did not get the memo or the report that the Global Warming is here.</p>
+  <div class="entry-content"><p>Now, I want to manipulate my DNA sequence, extract some nucleotides,
+check lines, etc. Simple things. We start with the same basic code to
+read the file:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our nucleotides are stored in the variable
+<code>file</code>. Remember that each line is one item of the list and the lines
+still contain the carriage return present in the ASCII file. Let&#8217;s get
+the first and the last lines of the sequence. The first line is easy to
+get, as Python&#8217;s lists start at 0. To access one list item just add
+square brackets with the index number of the item you want to get (this
+is also known as slicing). Something like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will return the item 0 from the
+list, that in our case is the firs line of the sequence. If you add a
+<code>print</code> command</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>you should expect <code>GTGACTTTGTTCAACGGCC....CGTAATCACTTGTTC</code> The last line
+is a little bit trickier. Let&#8217;s assume that we don&#8217;t know the number of
+lines in the list, and here we want to make our script as general as
+possible, so it can handle some simple files later. It is also good code
+practice to think ahead and plan what you want, first to have a detailed
+project to follow, and second it allows you to be prepared to
+errors/bugs that your code might have or situations not expected in your
+original plan. In our file, we have <strong>eight</strong> lines of DNA, so it would
+be just adding this <code>print file[7]</code> and we would output the last line.
+But, the right way to do it is to check the length of the list and
+output the item which has an index equal to the list length. In Python,
+you can check the length of a list by adding the built-in function <code>len</code>
+before the list name, like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So who do we print the last
+line of our sequence? Simple. <code>len(file)</code> should return an integer of
+value 8, which is the actual number of elements in our list. We already
+know that to access any item in a list we just add its index (that has
+to be an integer) to the list name. One idea then would be to use
+<code>len(file)</code> as the index, like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">file</span><span class="p">)]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Why would that be wrong? Our list has eight
+items, but the indexes are from 0 to <strong>7</strong>. So eight would be one index
+over the list length, which is not accessible because it does not exist.
+Solution? Let&#8217;s use the list length minus one:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and there you
+are, the last line of the sequence. But as we want the last line of the
+file, which is a list there is an easier way to output just the last
+line:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>which tells the interpreter to print the last item of a list. Putting
+everything together, we have</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&#39;I want the first line&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&#39;now the last line&#39;</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">file</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Two points worth mentioning:
+differently of strings, Python&#8217;s lists are mutable, items can be
+removed, deleted, changed, and strings also can be sliced by using
+indexes that access characters. Next we will see some more features of
+lists and strings, and how to manipulate them. It will probably be the
+last entry in the first section as we finish the Chapter 4 in the book.
+As you may have noticed some items in the perl book will not be covered,
+at least not immediately. We will jump back and forth sometimes.</p>
 </div>
   
   
@@ -155,7 +401,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/wikipedia/">Wikipedia</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/02/07/reading-files-in-python-using-lists/">Reading files in Python: using lists</a></h1>
     
     
       <p class="meta">
@@ -171,24 +417,103 @@
   
 
 
-<time datetime="2007-03-02T17:43:45-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-02-07T13:56:59-05:00" pubdate data-updated="true">Feb 7<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Wikipedia is growing daily, and becoming a a major reference for many subjects, from arts and entertainment, sports to quantum physics and population genetics. Myself, I have been following its growth through websites like <a href="http://reddit.com">reddit.com</a> and by the increase of Google top hits directing to Wikipedia entries.</p>
+  <div class="entry-content"><p>Let&#8217;s improve our previous script and put the contents of the file in a
+variable similar to an array. Python understands different formats of
+compound data types, and <code>list</code> is the most versatile. A <code>list</code> in
+Python can be assigned by a series of elements (or values) separated by
+a comma and surrounded by square brackets</p>
 
-<p>In December 2005, a small study compared the freely available encyclopedia to Britannica (summarized <a href="http://www.wired.com/news/culture/0,1284,69844,00.html">here</a>) and found errors on both, almost leveling them. I cannot say about the quality of the content of Wikipedia in English, I only use it to quick scientific searches on topics that I do not have great knowledge or to mundane topics, like writers&#8217; and bands&#8217; biographies.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">shoplist</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;milk&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;lettuce&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s">&#39;coffee&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Lately, I have focused on checking the content of Wikipedia in Portuguese, especially entries that relate to biology, bioinformatics and genetics, with an anonymous profile. I was appalled with the poor quality of the entries, and I decided to edit some articles, in some places correcting minor grammar mistakes and in other replacing entire sections that were completely off the mark. I can say that a gave a minor contribution, I could and can give more if I had more time to edit things and I also have some articles marked for revision.</p>
 
-<p>But that is not my concern. Several entries in the Portuguese version were poor translated material from the English website. So poor that in places the content makes no sense in Portuguese. Checking the profile of &#8220;editors&#8221; that have translated such entries, you invariably see that they claim to have an advanced level (sometimes even native-like) of English, and sometimes advanced levels in other languages. Still you see very poor translations. This, coupled with the poor knowledge of the subject of the entry, is a recipe for disaster. I know by personal experience that is very difficult to master a language that is not your native one (I have good domain of English, but not advertised anywhere); even more difficult is to do a technical translation of a topic that you don&#8217;t master completely.</p>
+<p>Now, we are going to read the same file and store the
+DNA sequence in a <code>list</code> and output this variable. The beginning of the
+script is the same, where we basically tell Python that the file name is
+AY162388.seq.</p>
 
-<p>It has been discussed elsewhere (ie <a href="http://ascii.textfiles.com/archives/000276.html">here</a>) about the potential problems of Wikipedia and the prepotency of some editors (who are volunteers) in protecting the articles from the so-called vandalism. Maybe I should register myself and edit with an username, and be prepared to the criticism and sometimes the bullying in the lengthy discussions that can be found on Wikipedia. It will be a double work: edit the entry and then explain why is was edited.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>I don&#8217;t think I have stomach and patience to do that again. I just fear for the high-school kid that will learn from there, thinking it is a great reference, and in the end will have to relearn it, due to poor content. Just my two cents.</p>
+
+<p>We are going to change the way we
+read the file. Instead of just opening and then reading line-by-line, we
+are going to open it a read all the lines at once, by using this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span><span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice the part in bold? In the previous
+script, we open and store the contents of the file in a <code>file object</code>.
+Now , we are opening the file and just after it is opened, we are
+reading all the lines of the file at once and storing them in
+<code>file object</code>, but is a Python&#8217;s <code>list</code> of strings. Before, if we
+wanted to manipulate our DNA sequence, we would had to read it, and then
+in the loop store in a variable of our choice. In this script, we do
+that all at once, and the result is a variable that we can change the
+way we wanted. The code without the output part is</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python </span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Try putting a <code>print</code>
+statement after the last line to print the <code>file</code> list. You will get
+something like this</p>
+
+<p><code>['GTGACTT...TTGTTC\n', 'TTTAAATA....TAATC\n', 'AGTGA...CTATG\n', 'GAGCTCA....TATAGC\n', ...]</code></p>
+
+<p>which is exactly the description of a Python&#8217;s list. You see all lines,
+separated by comma and surrounded by square brackets. Notice that each
+line has a carriage return (<code>\n</code>) symbol at the end. Let&#8217;s make
+the output a little nicer including a loop. Remember when I introduced
+loop I wrote that Python iterates over &#8220;items in a sequence of items&#8221;,
+what is a good synonym for <code>list</code>. So the loop should be as
+straightforward as</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Putting everything together gives us</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span><span class='line'><span class="k">print</span> <span class="nb">file</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
   
   
@@ -201,7 +526,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/sad-news/">Sad news</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/01/30/reading-files-in-python/">Reading files in Python</a></h1>
     
     
       <p class="meta">
@@ -217,16 +542,94 @@
   
 
 
-<time datetime="2007-03-02T17:43:29-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-01-30T13:53:56-05:00" pubdate data-updated="true">Jan 30<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Sad news to any bioinformatician out there who believes in the support of companies to create nice applications. AbOrygen, creators of the fine software biOpen, very recently reviewed in this space had closed. A note left on the company&#8217;s website mentions the liquidation.</p>
+  <div class="entry-content"><p>We are currently following Chapter 4 of Beginning Perl for
+Bioinformatics, which is the first chapter of the book that actually has
+code snippets and real programming. The last exercises in this chapter
+deal with the ability to read files and operate with information
+extracted from these files, to create arrays and scalar list in perl. We
+are going to check how to read files in python. The book tells you how
+to read protein sequences. Here we are going to read DNA and protein
+sequences from files and change them. Let say you have a file with a DNA
+sequence in some directory in your hard disk. The file cannot be a FASTA
+type (we will see later how to handle FASTA files), just pure sequence,
+something like this:</p>
 
-<p>It is very sad to hear that and also a warning to the future to whoever is in the field.</p>
+<p><code>GTGACTTTGTTCAACGGCCGCGGTATCCTAACCGTGCGAAGGTAGCGTAATCACTTGTTC TTTAAATAAGGACTAGTATGAATGGCATCACGAGGGCTTTACTGTCTCCTTTTTCTAATC AGTGAAACTAATCTCCCGTGAAGAAGCGGGAATTAACTTATAAGACGAGAAGACCCTATG GAGCTTTAAACCAAATAACATTTGCTATTTTACAACATTCAGATATCTAATCTTTATAGC ACTATGATTACAAGTTTTAGGTTGGGGTGACCGCGGAGTAAAAATTAACCTCCACATTGA AGGAATTTCTAAGCAAAAAGCTACAACTTTAAGCATCAACAAATTGACACTTATTGACCC AATATTTTGATCAACGAACCATTACCCTAGGGATAACAGCGCAATCCATTATGAGAGCTA TTATCGACAAGTGGGCTTACGACCTCGATGTTGGATCAGGG</code></p>
+
+<p>You can download the file <a href="http://python.genedrift.org/codepy/AY162388.seq">here</a>. This is a
+partial sequence of a mitochondrial gene from a South American frog
+species called <a href="http://calphotos.berkeley.edu/imgs/128x192/0000_0000/1101/0201.jpeg"><em>Hylodes ornatus</em></a>.</p>
+
+<p>For our purposes you can save the file in the same directory you are
+going to run the script from, or if you are using the Python interpreter
+start it in the directory that contains the file. The file name is not
+important but we will use AY162388.seq from now on. The first thing we
+have to do is to open the file for reading. We define a string variable
+that will contain the file name.</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="p">]</span><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In order to open the file, we can use the
+command <code>open</code>, that receives two strings: the first is the file name
+(it can be the whole location too) to be opened and the <em>mode</em> to be
+used, which is what you want to do with the file. The <em>mode</em> can be one
+or more letters that tell the interpreter what to do. For now we are
+going to use the <code>r</code> <em>mode</em> , which tells Python to read the file, and
+only do that. So our code is</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>file</code> is a file object that contains
+the directives to read our DNA sequence file. Now, we have actually read
+the contents of the file but they are stored in a file object and we did
+not accessed it yet. We can achieve that by using a myriad of commands.
+We will start with the commonest one: read the file line by line. <code>file</code>
+is our file object. We have just opened it, but Python already knows
+that any file contains lines (remember that this is a regular ASCII
+file). We are going to use a loop to read each line of the file, one by
+one</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In Python, the <code>for</code> loop/statement iterates over
+items in a sequence of items, usually a string or a list (we will see
+Python&#8217;s <code>list</code> soon), instead of iterating over a progression of
+numbers. Basically, our <code>for</code> above will iterate over each line in the
+file until EOF (end-of-file) is reached. Our simple script to read a DNA
+sequence from a file and output to the screen is</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
+</span><span class='line'><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">print</span> <span class="n">line</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
   
   
@@ -239,7 +642,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/biopen-a-review/">biOpen: a review</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/01/23/transcribing-the-other-way/">Transcribing: the &#8220;other&#8221; way</a></h1>
     
     
       <p class="meta">
@@ -255,22 +658,53 @@
   
 
 
-<time datetime="2007-03-02T17:40:28-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-01-23T13:52:30-05:00" pubdate data-updated="true">Jan 23<span>rd</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>After reviewing Geneious twice, I decided to search for other proprietary software that would be comparable in price, features and capabilities. I happened to find such software: <a href="http://www.aborygen.com/products/biOpen/">biOpen</a>, from a French company called AbOrygen.</p>
+  <div class="entry-content"><p>We have seen how to transcribe DNA using regular expression, even though
+the regex we used cannot be considered a real one. Now we are going to
+simplify our small script even more and take advantage of some string
+capabilities of Python. Instead of using two lines, we are going to use
+only one. And also we won&#8217;t need to import anything. Let&#8217;s start again
+with the same DNA sequence</p>
 
-<p>biOpen motto is &#8220;Simply modular&#8221;, and in this case the modules come from where they should: the company that makes the software. If I am paying a considerable amount of money for a program that will help me do my research, I want any module/plugin to be reliable and take full advantage of the base program. AbOrygen&#8217;s website mentions that they have plans to release a SDK for biOpen, but no word on availability or features.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>In a full comparison, biOpen lacks some of the eye catching details of Geneious, a little bit the ease of use and some functionality regarding PubMed searches. But biOpen does have some advantages if you are interested in doing actual science and do not care for the latest trend in design. Also, biOpen is a Mac only application, hence its interface using the Mac-favourite approach of a multi-window GUI (they claim a Windows and Linux version are coming). Basically the program has main project window, an analysis window and a small log, that can be scattered around on your desktop. The analysis is based on projects, not on folders as Geneious, and the data is organized as such.</p>
 
-<p>On the scientific side, biOpen excels: contig assembly, vector cleaning, ORF search, PCR and other neat features for DNA/RNA/protein analysis. But the best is their pairwise/multiple alignment suite of programs that allows you to align your sequence with ClustalW (OK), <a href="http://www.drive5.com/muscle/">Muscle</a> (good) and <a href="http://probcons.stanford.edu/">ProbCons</a> (excellent). The latter is one of the best programs to align proteins available (see <a href="http://www.biomedcentral.com/1471-2105/7/471/">here</a>) and it is much better than the reliable old-timer ClustalW. On the other hand, on Geneious you are stuck with ClustalW and a proprietary alignment algorithm that no one tested, or maybe you will be waiting for some good heart develop a plugin that will allow the use of better alignment packages.</p>
+<p>This time we are going to use
+<code>replace</code>. This is one of the Python&#8217;s methods to manipulate strings.
+Basically, we are asking the interpreter to replace a certain string by
+another. The method returns a new copy of your string:</p>
 
-<p>Also, by being &#8220;simply modular&#8221;, you can order only the modules you want, whenever you want. You can get biOpen for a spin before buying. If you are more interested on doing hard-core research, this is a very strong competition to Geneious. And if you are interested in having a GUI for two of the best programs for sequence alignment you definitely would give biOpen a try.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">myDNA</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;U&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This tells Python: <code>myRNA</code> will receive a copy of <code>myDNA</code> where all Ts were
+changed by Us. the &#8220;dot&#8221; after <code>myDNA</code> means that the method <code>replace</code>
+will get that variable as input on that variable. So our code from above
+would like this</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
+</span><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
+</span><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">myDNA</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;U&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">myRNA</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple and efficient. Next we will use the same approach on generating the reverse complement of a DNA sequence, with no
+regex pattern.</p>
 </div>
   
   
@@ -283,7 +717,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/global-warming-here-to-stay/">Global warming: here to stay</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/01/16/the-regular-expression/">The Regular Expression</a></h1>
     
     
       <p class="meta">
@@ -299,16 +733,77 @@
   
 
 
-<time datetime="2007-03-02T17:39:58-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-01-16T13:49:07-05:00" pubdate data-updated="true">Jan 16<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>You know that global warming is here top stay when &#8230;</p>
+  <div class="entry-content"><p>As mentioned above, regex in Python are provided by the <code>re</code> module,
+which provides an interface for the regular expression engine. First
+thing we have to do is to tell the interpreter what to do and what
+expression to use. Let&#8217;s start with a DNA sequence.</p>
 
-<p>invariably everyday when you take the elevator, people only travel one floor. Call it waste of energy.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>How to
+transcribe it to RNA? Transcription creates a single-strand RNA molecule
+from the double-strand DNA; basically the final result is a similar
+sequence, with all <code>T</code>&#8217;s changed to <code>U</code>&#8217;s. So our regular expression has
+to find all <code>T</code> nucleotides in the above sequence and then replace them.
+Regular expressions in Python need to be compiled into a RegexObject,
+that contains all possible regular expression operations. In our case we
+need to search and replace, what can be done by using the <code>sub()</code>
+method. According to the Python&#8217;s <a href="http://www.amk.ca/python/howto/regex/regex.html">Regular Expression HOWTO</a> <code>sub()</code> returns
+the string obtained by replacing the leftmost non-overlapping
+occurrences of the RE in string by the replacement replacement. If the
+pattern isn&#8217;t found, string is returned unchanged. Let&#8217;s put everything
+above in real code. First we need to compile a new RegexObject that will
+search for all thymines in our sequence. It can be achieved by using
+this:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple as that. This line of code tells the
+Python interpreter that our &#8220;regular expression&#8221; is every T in our
+string. Now, we have to make replace those Ts with Us. In order to do
+that we just tell the interpreter:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="n">myDNA</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&#8217;s look at the last two lines of
+code. On the first line we created a new RegexObject, <code>regexp</code> (that
+could have any name, as any variable) and compiled it, making our
+regular expression to be every T in our string. On the second line, we
+assigned our soon to be created RNA sequence to a new string (remember
+that strings in Python are immutable) and used the command <code>sub</code> to
+replace in the Ts by Us present in our original DNA string. Putting all
+together our transcription code will be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python </span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTTGCAACGTTGCAACGTTGCA&#39;</span>
+</span><span class='line'><span class="n">regexp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="n">myRNA</span> <span class="o">=</span> <span class="n">regexp</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&#39;U&#39;</span><span class="p">,</span> <span class="n">myDNA</span><span class="p">)</span>
+</span><span class='line'><span class="k">print</span> <span class="n">myRNA</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
@@ -321,7 +816,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/geneious-a-reply-from-biomatters/">Geneious: a reply from Biomatters</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/01/15/python-printing-statement/">Python printing statement</a></h1>
     
     
       <p class="meta">
@@ -337,98 +832,84 @@
   
 
 
-<time datetime="2007-03-02T17:27:54-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-01-15T18:40:41-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>On the Geneious discussion forum, Tobias, has replied to my review(s) with very interesting points that I think need some further argumentation. I start dissecting his post:</p>
+  <div class="entry-content"><p>Just an apart from the bioinformatics aspect of programming: Python&#8217;s
+<code>print</code> statement. As in most computer languages Python allows an easy
+way to write to the standard output. Python&#8217;s <code>print</code> only accepts
+output of strings, and if the variable sent to it is not a string it is
+first converted and then output. The <code>print</code> always put a linebreak
+(<code>'\n'</code> or <code>"\n"</code>) at the end of the expression to be output, except
+when the <code>print</code> statement ends with a comma. For example:</p>
 
-<blockquote><p>I remember your old post from a year ago and just read your new review, and I thought I&#8217;d address a few of the points you raised.</p></blockquote>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&quot;This is a&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;test&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Although, I &#8220;raised more points&#8221; on my second review, which is based on a more mature version of the software, I had posted some interesting points on my initial assessment which haven&#8217;t been touched by Tobias on his reply. Maybe because my first review was less critical, less &#8220;negative&#8221; than the second one. Regardless, I still think (and I will have this opinion until I see some software better than) that Geneious is a great piece of software and deserve a very high praise.</p>
 
-<blockquote><p>Of course I am 100% biased because I work at Biomatters, but I would like to give my personal view on some points that you raised. You may of course take my affiliation bias into account when reading those</p></blockquote>
+<p>will print</p>
 
-<p>Bias acknowledged.</p>
+<p><strong>This is a</strong>
+<strong>test</strong></p>
 
-<blockquote><ol>
-<li>I agree that the free version gives you &#8220;limited resources&#8221; as you point out. But please do also consider that software is always limited, and in fact Geneious today gives you a lot more than the free version which you have positively reviewed a year ago. So the question here is whether you should compare today&#8217;s free version with Geneious Pro, or with last year&#8217;s free version and the other free software that is available. I lean towards the latter, and I think Geneious 2.5.3 scores very well in this comparison.</li>
-</ol>
-</blockquote>
+<p>while</p>
 
-<p>My first &#8220;positive&#8221; review praised the first version of Geneious. My second &#8220;negative&#8221; one &#8220;slammed&#8221; it, or maybe just gave a little bit of balance to the initial review. I agree that the number of free features in Geneious is good and software is always limiting. But with no bias, compare the pro and free versions.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="s">&quot;This is a&quot;</span><span class="p">,</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;test&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<blockquote><ol>
-<li>The point of Geneious having &#8220;no groundbreaking or innovative feature that wasn&#8217;t seen in other molecular biology/phylogenetics package&#8221; is probably more true than others you raise, however it is also true that Geneious does offer some unique and innovative functionality that I don&#8217;t know from other bioinformatics software:</li>
-<li>collaboration (obviously there is a chicken and egg problem,
-and it will only become really useful once many people start
-using it). The new version of collaboration for Geneious 3.0 has
-much improved collaboration features such as one on one chat
-and will hopefully greatly accelerate this development.</li>
-<li>agents
-Also, Geneious Pro offers many features otherwise found only in much more expensive software packages.</li>
-</ol>
-</blockquote>
 
-<p>As I said, I could not test collaboration. I tried testing it with Daniel Batten, but we never found a right time to meet online. Regarding the interface, you can find similar or even better features in <a href="http://www.mbio.ncsu.edu/BioEdit/bioedit.html">BioEdit</a>, which is also free. But it has major disadvantages, as being Windows-only and being focused only on sequence alignment. Other software that can be comparable to Geneious is <a href="http://www.aborygen.com/downloads/biOpen/">bioOpen</a>, but falls in the same category as BioEdit: Mac-only and not even free. I don&#8217;t know the price of bioOpen but its ordering form gives you the option to select which functionalities you want.</p>
+<p>will print</p>
 
-<blockquote><ol>
-<li>You ask what incentive someone has to write a plugin for Geneious. If I was a bioinformatics student today and wrote software e.g. for my MSc project, I don&#8217;t see what reasons there are <em>not</em> to write it as a plugin for Geneious.</li>
-</ol>
-</blockquote>
+<p><strong>This is a test</strong></p>
 
-<p>I was never a bioinformatics student, maybe because during my time there were not many bioinformatics courses available, even more where I did my graduate studies. So I cannot give you a personal view as a &#8220;bioinformatics student&#8221;. But first, we have to separate bioinformatics students in two classes (too few maybe): the computer scientist that understands biology and the biologist that programs computers. You can even include here a third class which is the computer-savvy biologist: he/she cannot program but have a high knowledge of computers.</p>
+<p>Of course Python&#8217;s <code>print</code> statement allows any programming escape character, such
+as <code>'\n'</code> and <code>'\t'</code>.</p>
 
-<p>With our categories defined I ask you again: what are the benefits of writing a plug-in for Geneious for each one of these classes of users?</p>
+<p><strong>Concatenating strings on output</strong></p>
 
-<blockquote><p>This is much easier than writing the functionality from scratch, because I don&#8217;t have to worry about the graphical user interface - which is one of the biggest workloads in writing software.</p></blockquote>
+<p>To concatenate two strings on output there are two possible ways in Python. You can
+either separate the strings with a comma, like we did here</p>
 
-<p>I agree that writing plugins using a <strong>proprietary</strong> API is much easier than doing for scratch. I also agree that the interface is one of the biggest workloads in writing software. Being a interface programmer like myself, I understand how underrated the interface development is. But how many bioinformatics applications have interfaces? How many are cross-platform? And if I only need some functionality that Geneious does not give me but it would take a couple of hours to write in Perl/Python/Ruby (<a href="http://www.biomatters.com/userforum/comments.php?DiscussionID=87">like this</a>)? If I am a bench biologist with zero knowledge of programming do I have to wait for someone write me a plug-in or wait for Biomatters to include in Geneious?</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA</span><span class="p">,</span> <span class="n">myDNA2</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<blockquote><p>Also, it makes my program a lot more usable for a lot more people. Peer respect and publicity are among the strongest incentives - when people write free software, as many other people as possible using it is their <em>main</em> goal.</p></blockquote>
 
-<p>Of course it makes a program more usable for a lot more people. People that are using Geneious, right? How do you measure peer respect? By doing a wonderful program from scratch or by adding to a <strong>proprietary</strong> software a plug-in? Or, wouldn&#8217;t be better to create a open source project (or join one) that works in bioinformatics development?</p>
+<p> or you can use the &#8220;+&#8221; sign in roder to obtain almost the same result. This is similar to
+what was used here</p>
 
-<blockquote><p>I spent a considerable amount of time during my studies writing software, and I wish Geneious had been around back then - it would have made my software much easier to write and use, and it would have become known to a lot more people&lt;</p></blockquote>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA3</span> <span class="o">=</span> <span class="n">myDNA</span> <span class="o">+</span> <span class="n">myDNA2</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>I did my Masters writing software and my PhD working on phylogenetics. Would Geneious help me in the first case? No (maybe with ideas). Would it help me in the latter? Definitely, yes. Would I spend time during my PhD to write plug-ins to Geneious? No. See the difference?</p>
 
-<blockquote><ol>
-<li>You suggest that we concentrate on writing plugins and sell licenses for using those. Really this isn&#8217;t very far from what we are already doing - the main difference between Geneious and Geneious Pro is that Geneious Pro has more features, and most of these are provided plugins. So really there are already <em>lots</em>of plugins - it&#8217;s just that most of them already come shipped with Geneious, instead of you having to download them in a separate file from our website. In fact, if other people were to write free plugins which provide all of the Geneious Pro functionality for free, the incentive for Geneious Pro would basically disappear. This is the only concern I personally have about our Public API - and it&#8217;s about the opposite from yours.</li>
-</ol>
-</blockquote>
+<p>but instead we would use the <code>print</code> command as</p>
 
-<p>This is not the first time I suggested this. I had discussions with Daniel Batten about this subject, and even point him some licensing possibilities, such as <a href="http://www.mathworks.com/">MatLab</a>. I saw the list of add-ons when customizing Geneious. Regarding your concern, I don&#8217;t think it will be fulfilled.</p>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA3</span> <span class="o">+</span> <span class="n">myDNA</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<blockquote><ol>
-<li>The import feature hasn&#8217;t always worked correctly for you. We would like to keep Geneious as bug free as possible, so if you could please email any files upon which Geneious fails to e.g. tobias@biomatters.com, then that would be much appreciated and we will fix these problems as soon as possible.</li>
-</ol>
-</blockquote>
 
-<p>I have sent samples, even add to other topics guidance to some biological file formats. I personally don&#8217;t have any file that I am working at the moment, but as everyone that releases a new bioinformatics application, releases a new filetype at the same time, the amount of filters and errors will be huge.</p>
+<p>In the latter case, both strings will not be separated by a space and will be
+merged. To get the same result you would have to concatenate an extra
+space between the strings like</p>
 
-<blockquote><p>We are typically quite responsive, even though we live in a different time zone to most other people.</p></blockquote>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA3</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">myDNA</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>When I say that is a disadvantage to be in New Zealand, is that sometimes users (especially the ones that pay) tend to be quite demanding. As I am not a Geneious user <em>per se</em>, this does not affect me.</p>
 
-<blockquote><ol>
-<li>There are now 4 plugins available for download, and a fifth will possibly follow soon. Only three of the currently available ones work for Geneious 2.5.x, but this will probably be fixed at some point. As our API stabilises and more plugins become available, we hope to introduce a more comfortable way of installing them and keeping them up to date.</li>
-</ol>
-</blockquote>
 
-<p>There were only two at the time of my review. It is good that it is increasing, 100% in a couple of days. And going back to the &#8220;peer respect&#8221;, I downloaded <a href="http://mrbayes.csit.fsu.edu/">MrBayes</a> plug-in and I couldn&#8217;t find the names of the developers. Also could not find any reference to MrBayes authors, papers, etc.</p>
-
-<blockquote><ol>
-<li>Scripting language support is already being developed. Update: It probably won&#8217;t make it into Geneious 3.0, but nevertheless Geneious will have scripting support at some point.</li>
-</ol>
-</blockquote>
-
-<p>Great. That was another thing that Daniel and I discussed last year. I think this is nice for people trying to create molecular biology, phylogenetics, etc courses for a large audience or for some university program. I couldn&#8217;t find the Educational plug-in in Geneious.</p>
-
-<p>Still, in my opinion Geneious is a great software.</p>
 </div>
   
   
@@ -441,7 +922,7 @@ Also, Geneious Pro offers many features otherwise found only in much more expens
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/03/02/geneious-one-year-or-almost-later/">Geneious: one year (or almost) later</a></h1>
+      <h1 class="entry-title"><a href="/blog/2007/01/15/importing-and-regular-expressions/">Importing and regular expressions</a></h1>
     
     
       <p class="meta">
@@ -457,38 +938,66 @@ Also, Geneious Pro offers many features otherwise found only in much more expens
   
 
 
-<time datetime="2007-03-02T17:27:24-05:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2007</time>
+<time datetime="2007-01-15T13:47:54-05:00" pubdate data-updated="true">Jan 15<span>th</span>, 2007</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>I intend to cover bioinformatics things in this space. At least mainly. I will try to post here and there stuff about science in general, more specifically biology and genetics. On my first post I reused an old overview of Geneious, and now I will take a fresher look at the program.</p>
+  <div class="entry-content"><p>Tisdall&#8217;s book on Perl introduces next the ability to transcripts DNA
+sequences into RNA. In order to do that we need to check a different
+aspect of programming: regular expressions (or regex). Regular
+expressions is a pattern/string expression that works
+matching/describing/filtering other strings. Let&#8217;s say you want to
+examine or extract all vowels contained in one phrase, one page, one
+word. Another example would be to remove all html tags from a downloaded
+webpage. As HTML tags are encapsulated between <code>&lt;</code> and <code>&gt;</code> signs we can
+create a regex that will search for any characters in between the signs
+and remove (parse) them from our page. We will deal very briefly with
+regex, and if you are interested in learning more about it you can
+search for countless references on the internet (such as <a href="http://www.regular-expressions.info/">this one</a>).</p>
 
-<p>Geneious, at the time of this post, is on its version 2.5.3. Since the first release the program has evolved a lot: new functions were added, a cleaner and leaner interface and major bug killing. My first review claimed that Geneious is the Holy Grail of bioinformatics application, and I still think it is. But &#8230;</p>
+<p>In order to use regular
+expression in Python we need to check another concept present in the
+language: importing modules. Python core functionality provides most of
+the usual operations and also comes with a built-in library of functions
+that &#8220;access to operations that are not part of the core of the language
+but are nevertheless built in&#8221;. One of this operations is the ability to
+interpret regular expression that in Python is located in the <code>re</code>
+module. Apart from the language core, built in modules, Python can be
+further extended by using third-party modules imported into the
+language. Anyone can create a module and distribute to every Python user
+and programmer. So, in order to have regex capabilities we literally
+have to <code>import</code> the regex module. We do that by entering the line:</p>
 
-<p>Well, all stories have a &#8220;but&#8221;, and Geneious&#8217; could not be different. Indeed, its new interface is cleaner, buttons were redesigned, some menus received illustrative icons. But there is (or was) no groundbreaking  or innovative feature that wasn&#8217;t seen in other molecular biology/phylogenetics packages. The strength is still having all features and functions in one cross-platform application. Also the power of having database-like capabilities is another plus: all your sequences, protein structures, references, etc is there in one place, easily accessible and at hand. Sometimes the search is a little bit slow, sometimes the import feature does not work correctly and even sometimes the program indexes entries in a strange fashion.</p>
-
-<p>About new functions, one that calls attention is the collaboration possibilities. Using the free <a href="http://www.jabber.org">Jabber</a> network it is quite easy to register a new user and connect in the wild. But the niceties stop there. In my lab I am the only using Geneious at the moment, so my options of collaboration are minimal. I have tried setting up a virtual meeting with the developers in order to try the feature, but the fact that Biomatters is on the other side of the world makes a little bit difficult to set up a decent time to connect. And this is another small disadvantage of Geneious: the soft-house is located in New Zealand so any hope of fast support for people in North America are at least thin.</p>
-
-<p>The last releases were followed by an introduction of several small (but very useful) features. More types of files are now supported, small bells and whistles were also added. But (always the but) one of the most promising features seems to be underused. Last time I checked Geneious API does not have the same success as the main program. I have tried creating a plugin to share with its userbase, but not being a Java developer I found more obstacles than solutions and gave up on trying. Geneious website gives links to two (yes two) plugins, and this is the result of almost six months of the API in the wild (if you know any other Geneious plugin please let me know).</p>
-
-<p>And here I have to draw a line. Geneious is &#8220;free&#8221;, but this version gives you limited resources. A pro version will make you at least $166 poorer and will give you a lot of power. So my question is: why would you spend time and effort to learn the API and create a plugin to a mostly paid software? I understand people developing Firefox extensions, Linux open-source packages, Python libraries, etc (they are free as in freedom), but I can&#8217;t see scientists creating add-ons to Geneious. I might be wrong and would like to be proven wrong, but at least until now I can say that the plug-in feature hasn&#8217;t taken off.</p>
-
-<p>Maybe the whole plug-in thing wasn&#8217;t a good move for Geneious and Biomatters. Maybe they should invest more time making Geneious even better and dedicate its programming resources to create the plug-ins themselves and charge for them. Something that MatLab does very well, staying in the scientific software realm only. You might argue that MatLab is also a programming language, has a compiler and it light-years more powerful than Geneious. I agree. But MatLab tries to cover many different fields, while Geneious is &#8220;just&#8221; a molecular biology/phylogenetics package.  Most of bench biologists are not interested in understanding how computer programs work, they want a black-box-like application that uses an easy and user friendly input and spits out a pre-formatted result, simply and efficiently. Maybe a macro tool or similar script/automating programming in Geneious would be more than enough for most people.</p>
-
-<p>Overall, I still think that Geneious is the Holy Grail of bioinformatics applications, as mentioned above. But like the quest for the Holy Grail, we still have to wait sometime to finally find it completely. Geneious is great and a little bit of fine tuning would certainly improve it. I think Biomatters should focus on some points:</p>
-
-<ul>
-<li>improving its coverage of biological formats, maybe even making the bold move of standardize the myriad of different file types out there</li>
-<li>improving a little bit more the interface of Geneious, adding some minor features like right-click in some areas</li>
-<li>add a simple and effective scripting/automating feature to the program, instead of relying on the API and the &#8220;heavy&#8221; Java to create plugins</li>
-<li>add some database-like search and access to the data stored, something like a grep for finding motifs on sequences, or even sequences itself when the data stored is massive</li>
-</ul>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">re</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Although excellent, Geneious has room for improvement. We will keep searching for the Holy Grail.</p>
+<p>Python&#8217;s code style
+guide suggests that <code>import</code> statements should be on separate lines</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">sys</span> <span class="nn">import</span> <span class="nn">re</span> <span class="o">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and
+to be put on the top of the file (usually below the line that tells your
+OS to use Python&#8217;s interpreter on the script). So the first two lines of
+our new script would be</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env</span>
+</span><span class='line'><span class="n">python</span> <span class="kn">import</span> <span class="nn">re</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now that we have the ability to use regex,we need to create one expression that will transcribe our DNA sequences
+into RNA.</p>
 </div>
   
   
@@ -501,7 +1010,7 @@ Also, Geneious Pro offers many features otherwise found only in much more expens
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2007/02/26/hello-world/">First post: a take on Geneious</a></h1>
+      <h1 class="entry-title"><a href="/blog/2006/12/14/sequences-and-strings-part-ii/">Sequences and Strings - part II</a></h1>
     
     
       <p class="meta">
@@ -517,69 +1026,51 @@ Also, Geneious Pro offers many features otherwise found only in much more expens
   
 
 
-<time datetime="2007-02-26T21:34:28-05:00" pubdate data-updated="true">Feb 26<span>th</span>, 2007</time>
+<time datetime="2006-12-14T15:30:32-05:00" pubdate data-updated="true">Dec 14<span>th</span>, 2006</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="http://www.geneious.com">Geneious</a> is an excellent bioinformatics software created by Biomatters, a wonderful company from New Zealand. When they released the first version of the software I was delighted to write a review of it. So here is my first take on Geneious from 2006. I will be back with more comments on the program on the other side of this post.</p>
+  <div class="entry-content"><p>Another important task for many biologists is to merge/concatenate
+different strings of DNA in one unique sequence. We can modify the
+previous script to concatenate two distinct DNA sequences in one. We
+start using code_01 structure, adding some extra elements (line 3):</p>
 
-<p><a href="http://www.genedrift.org/geneious.php">Geneious review</a></p>
-
-<p>After installing Geneious and running it from the command line (double clicking if you are a Windows user) you don&#8217;t see anything special about the software. Apart from the nice looking interface there are no fancy buttons, no pop-up messages, no hints (maybe just the tutorial tab on the right side) and no clutter.</p>
-
-<p>After the first minute staring at its interface you wouldn&#8217;t say that this is one of the most innovative software to appear for molecular biology, phylogenetics, bioinformatics and other fields of science. You wouldn&#8217;t say, but after playing for an extra five minutes the only sound in your mind would be &#8220;Wow!!&#8221;. Geneious is wonderful work of a group of bioinformaticians that decided to make science easier to do, at least when doing computer work.</p>
-
-<p>Geneious is really genial. Basically you don’t have to do anything, the program does for you. OK, maybe you have to do something but the program seems to know what you want to do. Import a sequence into it: Geneious knows if it is nucleotides or amino acids. Do you have an annotation for your sequence? Nice, Geneious will display it for you. Structure of your protein? There it is, just select the tab. You don’t have to save anything: it is already there automatically saved for you, just like your personal GenBank, PDB, Swissprot.</p>
-
-<p>And the software can do more, much more. Have internet? (Who doesn’t?) There is a direct connection to NCBI and no worries about formatting searches, remembering parameters, Geneious does it all for you. PubMed? Check, same thing: filter your references, search by first author, date of publication, anything. If you are Linux geek, your BibTex entry is there, if you are Windows person just export it to EndNote.</p>
-
-<p>Another nice addition to the program is the possibility to create agents. These agents are like your free personal search expert who is there 24/7/365. Set up an agent to a specific search pattern and it will get for you when it appears, keeping your records up-to-date even before you have breakfast.</p>
-
-<p>Nothing bad can be said about Geneious, and with endless possibilities of improvement (with a looming API release soon) this is the Holy Grail of molecular biology, phylogenetics and bioinformatics software. Kudos to Geneious</p>
-</div>
-  
-  
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python </span>
+</span><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&#39;ACGTACGTACGTACGTACGTACGT&#39;</span>
+</span><span class='line'><span class="n">myDNA2</span> <span class="o">=</span> <span class="s">&quot;TCGATCGATCGATCGATCGA&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="n">myDNA</span><span class="p">,</span> <span class="n">myDNA2</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/02/22/counting-nucleotides-part-ii/">Counting nucleotides: part II</a></h1>
-    
-    
-      <p class="meta">
-        
+<p>So far, we added a new string containing an extra
+DNA sequence and we <code>print</code> both sequences. In Python <code>print</code> statement
+automatically adds a new line at the end of the string to be printed,
+unless you add a comma (,) to the end. The comma is also needed if you
+are going to print more than one string in order to separate them (<em>try
+removing the comma from the code above</em>). Now, how do we merge myDNA and
+myDNA2? Easy in Python: just <em>sum</em> them with a plus signal:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA3</span> <span class="o">=</span> <span class="n">myDNA</span> <span class="o">+</span> <span class="n">myDNA2</span>
+</span><span class='line'><span class="k">print</span> <span class="n">myDNA3</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-02-22T14:51:58-05:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2007</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Let&#8217;s check the &#8220;short&#8221; way, that is basically a method that avoid the
-&#8220;explosion&#8221; of the string. Instead of transforming the sequence from the
-file from a string to a list, we go and use the string directly,
-applying one of the methods available to manipulate strings. This time
-we read the file at once and convert the list to a string using <code>join</code>.
-To count we simply use the method <code>count</code> on our string. Pretty nice.</p>
+<p>Notice that in Python strings are immutable, meaning they cannot be
+changed. This immutability confers some advantages to the code where
+strings (<em>in Python strings are not <strong>variables</strong></em>) cannot be modified
+anywhere in the program and also allowing some performance gain in the
+interpreter. So, in order to have our sequences merged we create a third
+sequence that receives both strings. Finally our code will be (some
+captions were added):</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -589,42 +1080,133 @@ To count we simply use the method <code>count</code> on our string. Pretty nice.
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
-</span><span class='line'><span class="c">#still keep the file fixed </span>
-</span><span class='line'><span class="n">dnafile</span> <span class="o">=</span> <span class="s">&quot;AY162388.seq&quot;</span>
-</span><span class='line'><span class="c">#opening the file, reading the sequence and storing in a list</span>
-</span><span class='line'><span class="n">seqlist</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dnafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span><span class='line'><span class="c">#let&#39;s join the the lines in a temporary string </span>
-</span><span class='line'><span class="n">temp</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seqlist</span><span class="p">)</span>
-</span><span class='line'><span class="c">#counting </span>
-</span><span class='line'><span class="n">totalA</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalC</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalG</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">totalT</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c">#printing results </span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalA</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; As found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalC</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Cs found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalG</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Gs found&#39;</span>
-</span><span class='line'><span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">totalT</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39; Ts found&#39;</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env</span>
+</span><span class='line'><span class="n">python</span> <span class="n">myDNA</span> <span class="o">=</span> <span class="s">&quot;ACGTACGTACGTACGTACGTACGT&quot;</span>
+</span><span class='line'><span class="n">myDNA2</span> <span class="o">=</span> <span class="s">&quot;TCGATCGATCGATCGATCGA&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;First and Second sequences&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="n">myDNA</span><span class="p">,</span> <span class="n">myDNA2</span>
+</span><span class='line'><span class="n">myDNA3</span> <span class="o">=</span> <span class="n">myDNA</span> <span class="o">+</span> <span class="n">myDNA2</span>
+</span><span class='line'><span class="k">print</span> <span class="s">&quot;Concatenated sequence&quot;</span>
+</span><span class='line'><span class="k">print</span> <span class="n">myDNA3</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>That&#8217;s the short way: using <code>count</code>. This is a method that when applied
-on a string counts the number of times the substring appears in our
-string. We can even set a start and ending point to count. Notice one
-difference in this script to the previous examples: after we join the
-items of the list into a string we do not remove the carriage returns.
-Because in this case we don&#8217;t need it, as it will be an extra character
-there that won&#8217;t make any harm.</p>
+<p>Easy, eh? Of course these two simple scripts do no
+scratch the surface of Python programming, but they are a start.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2006/12/13/hands-on-code-sequences-and-strings-part-i/">Hands on code: Sequences and strings - part I</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2006-12-13T22:27:48-05:00" pubdate data-updated="true">Dec 13<span>th</span>, 2006</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As pointed in <strong>Beginning Perl for Bioinformatics</strong>, a large percentage
+of bioinformatics procedures deals with strings, especially DNA and
+amino acids sequence data. As is largely known DNA is composed of four
+different nucleotides: A, C, T and G and proteins can contain up to 20
+amino acids. Each one of these elements have one letter of the alphabet
+assigned to them. In the DNA case some letters represent one or more
+nucleotides that can be present at some sequence position (click
+<a href="http://www.cns.fr/externe/English/Projets/Resultats/iupaciub.html">here</a>
+for more ).</p>
+
+<p>So, as the amino acid is the basic building block of
+proteins (AKA polypeptides), strings containing sequence is our most
+basic block, from where all the bioinformatics magic will work on.
+Usually in Perl a string is represented by the dollar sign in front of
+the variable name, like this <code>$sequence</code>. Python is dynamically typed,
+meaning variable types are assigned/discovered by the interpreter at run
+time. This means that the value after the equal sign will tell the
+interpreter what variable type you are declaring. So in Python if you
+want to store a DNA sequence you can just enter</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">mydna</span><span class="o">=</span><span class="s">&quot;ACGTACGTACGTACGTACGTACGT&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><em>a quick
+note: Python can be used with the interpreter command line or by
+previously saved scripts. I will try to use the latter in the code
+examples.</em></p>
+
+<p>OK, we are ready to create our first Bioinformatics Python
+Hello World script. Let&#8217;s get the sequence above and print it on the
+screen. The first line will tell the operating system what to use and
+where to find the Python interpreter</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Next we will create the variable myDNA
+and assign the corresponding sequence</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">myDNA</span> <span class="o">=</span> <span class="s">&quot;ACGTACGTACGTACGTACGTACGT&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And finally, we will print the contents of the variable to the screen:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">print</span> <span class="n">myDNA</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As mentioned above, Python mandates that you have your code indented, but in our
+final script this is not needed:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env </span>
+</span><span class='line'><span class="n">python</span> <span class="n">myDNA</span> <span class="o">=</span> <span class="s">&quot;ACGTACGTACGTACGTACGTACGT&quot;</span> <span class="k">print</span> <span class="n">myDNA</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first line tells your operating system that this
+is a Python script and to use the interpreter located in that directory;
+line two declares a variable called <code>myDNA</code> and assigns the sequence
+string to it and the last line simply output this variable to the
+screen. That simple! To run this (extremely simple) script you can copy
+and paste the code above to your favourite text editor save the file
+with a <code>.py</code> extension (recommended but not necessary). To run the
+script, as long as you have Python installed, just open a shell and type
+on the command line:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&gt; python code_01.py
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
   
   
