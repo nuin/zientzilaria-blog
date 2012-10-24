@@ -21,26 +21,28 @@ where we have duplicates in the file (that happens) and another one
 where duplicates are not tested. First for the case with no duplicates:
 
 
-{% codeblock lang:python %}def merge_seqs(data1, data2): 
-	first, second = dict(), dict() 
-	
-	for i in data1: 
-		first[i.name[i.name.find('|') + 1:i.name.find('/')]] = i 
-	
-	for i in data2: 
-		second[i.name[i.name.find('|') + 1:i.name.find('/')]] = i 
-		
-	shared_ids = set(first).intersection(set(second)) 
-	
-	flist = [] 
-	for i in shared_ids:
-		j = first[i] 
-		k = second[i] 
-		tempname = j.name + '-' + k.name + '-\>' + str(len(j.sequence)) 
-		tempseq = j.sequence + k.sequence
-		flist.append(tempname + '\\n' + tempseq) 
-	
-	return flist{% endcodeblock %}
+{% codeblock lang:python %}
+def merge_seqs(data1, data2):
+    first, second = dict(), dict()
+    for i in data1:
+        first[i.name[i.name.find('|') + 1:i.name.find('/')]] = i
+ 
+    for i in data2:
+        second[i.name[i.name.find('|') + 1:i.name.find('/')]] = i
+ 
+    shared_ids = set(first).intersection(set(second))
+ 
+    flist = []
+    for i in shared_ids:
+        j = first[i]
+        k = second[i]
+        tempname = j.name + '-' + k.name + '-&gt;' + str(len(j.sequence))
+        tempseq = j.sequence + k.sequence
+        flist.append(tempname + '\n' + tempseq)
+ 
+    return flist
+
+{% endcodeblock %}
 
 Basically, his approach is to create two dictionaries, `first` and
 `second` to store the data from our lists of
@@ -54,29 +56,31 @@ dictionaries. But, in some cases there are some duplicates in each Pfam
 alignment, and this would make the above approach to miss some
 sequences. Luke also provided a solution for this case 
 
-{% codeblock lang:python %}from collections import defaultdict 
-def merge_seqs(data1, data2): 
-	first, second = defaultdict(list), defaultdict(list) 
-	
-	for i in data1: 
-		first[i.name[i.name.find('|') + 1:i.name.find('/')]].append(i) 
-	for i in data2:
-		second[i.name[i.name.find('|') + 1:i.name.find('/')]].append(i)
+{% codeblock lang:python %}
+from collections import defaultdict
+def merge_seqs(data1, data2):
+    first, second = defaultdict(list), defaultdict(list)
+    for i in data1:
+        first[i.name[i.name.find('|') + 1:i.name.find('/')]].append(i)
+ 
+    for i in data2:
+        second[i.name[i.name.find('|') + 1:i.name.find('/')]].append(i)
+ 
+    shared_ids = set(first).intersection(set(second))
+ 
+    flist = []
+    for i in shared_ids:
+        cross = [(a,b) for a in first[i] for b in second[i]]
+        for j,k in cross:
+            tempname = j.name + '-' + k.name + '-&gt;'’ + str(len(j.sequence))
+            tempseq = j.sequence + k.sequence
+            flist.append(tempname + '\n' + tempseq)
+ 
+    return flist
+{% endcodeblock %} 
 
-	shared_ids = set(first).intersection(set(second)) 
-	flist = [] 
-	
-	for i in shared_ids: 
-		cross = [(a,b) for a in first[i] for b in second[i]] 
-		for j,k in cross: tempname = j.name + '-' + k.name + '-\>'’ + str(len(j.sequence)) 
-		tempseq = j.sequence + k.sequence
-		flist.append(tempname + '\\n' + tempseq) 
-		
-return flist{% endcodeblock %} 
 
-
-which
-is similar to what Mike suggested. In his approach `defaultdict` is used
+which is similar to what Mike suggested. In his approach `defaultdict` is used
 instead of a regular dict, initialized as a list. Again we can take
 advantage of the fact that we that the value of `defaultdict` has the
 same features as the object that was used to initialized it. The same

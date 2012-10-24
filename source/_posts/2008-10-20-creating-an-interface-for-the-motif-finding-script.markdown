@@ -52,23 +52,31 @@ user's interaction with objects on the screen. Like any other graphical
 interface. A very simple script would look like 
 
 
-{% codeblock lang:python %}\#!/usr/bin/env python 
-import wx 
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+import wx
+ 
 class pymot(wx.App):
-	def __init__(self, redirect=False): 
-		wx.App.__init__(self, redirect) 
+ 
+    def __init__(self, redirect=False):
+        wx.App.__init__(self, redirect)
+ 
 class pymotGUI(wx.Frame):
-	def __init__(self, parent, id):
-	wx.Frame.__init__(self, parent, id, 'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE) 
-	self.__do_layout() 
-	
-def __do_layout(self): 
-	pass 
-		
-app = pymot() 
-frame = pymotGUI(parent=None, id = -1) 
-frame.Show() 
-app.MainLoop(){% endcodeblock %} 
+ 
+    def __init__(self, parent, id):
+        wx.Frame.__init__(self, parent, id,  'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE)
+        self.__do_layout()
+ 
+    def __do_layout(self):
+        pass
+ 
+app = pymot()
+frame = pymotGUI(parent=None, id = -1)
+frame.Show()
+app.MainLoop()
+
+{% endcodeblock %} 
 
 Usually a wxPython
 interface has three parts in its script: a class for the

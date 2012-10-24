@@ -19,31 +19,33 @@ Last thing we saw in the previous entry was the function to parse a
 GenBank file in order to get the DNA sequences of an annotated gene.
 This time we will dissect the function. 
 
-{% codeblock lang:python %}def parse_entry(gene_data):
-	#changes a string to list, splitting at line ends 
-	gene_data = gene_data.split('\n') 
-	start, end =  0, 0 
-	gi_id = ''
-	id = '' 
-	complement = False 
-	
-	for line in gene_data: 
-		if line.find(' CDS ') >=0: 
-			temp = line.split() 
-			if temp[1].find('complement') >= 0: 
-				complement = True 
-				temp[1] = temp[1].replace('complement(', '') 
-				temp[1] = temp[1].replace(')', '')
-				temp2 = temp[1].split('..') 
-				start = temp2[0] 
-				end = temp2[1] 
-		elif line.find('GI:') >= 0: 
-			gi_id = 'gi' + line[line.find('GI:')+3:-1] 
-		elif line.find('/product') >=0: 
-			id = line[line.find('=') + 2:-1] 
-		elif line.find('protein_id') >= 0: 
-			id += '\t' + line[line.find('=') + 2: -1] 
-	return CDSinfo(gi_id, id, start, end, complement){% endcodeblock %}
+{% codeblock lang:python %}
+def parse_entry(gene_data):
+    #changes a string to list, splitting at line ends
+    gene_data = gene_data.split('\n')
+    start, end = 0, 0
+    gi_id = ''
+    id = ''
+    complement = False
+    for line in gene_data:
+        if line.find('  CDS  ') >=0:
+            temp = line.split()
+            if temp[1].find('complement') >= 0:
+                complement = True
+                temp[1] = temp[1].replace('complement(', '')
+                temp[1] = temp[1].replace(')', '')
+            temp2 = temp[1].split('..')
+            start = temp2[0]
+            end = temp2[1]
+        elif line.find('GI:') >= 0:
+            gi_id = 'gi' + line[line.find('GI:')+3:-1]
+        elif line.find('/product') >=0:
+            id = line[line.find('=') + 2:-1]
+        elif line.find('protein_id') >= 0:
+            id += '\t' + line[line.find('=') + 2: -1]
+ 
+    return CDSinfo(gi_id, id, start, end, complement)
+{% endcodeblock %}
 
 
 First things first. As in the CDS/protein parsing example, the function
@@ -59,15 +61,17 @@ the file. So we start our loop checking for the elements of each line.
 If we find a `'  CDS  '` we know that we can extract the start and end
 positions of the gene 
 
-{% codeblock lang:python %}if line.find(' CDS') >=0: 
-	temp = line.split() 
-	if temp[1].find('complement') >= 0:
-	complement = True
-	temp[1] = temp[1].replace('complement(', '') 
-	temp[1] = temp[1].replace(')', '') 
-	temp2 = temp[1].split('..') 
-	start = temp2[0]
-	end = temp2[1]{% endcodeblock %} 
+{% codeblock lang:python %}
+if line.find('  CDS  ') >=0:
+    temp = line.split()
+    if temp[1].find('complement') >= 0:
+        complement = True
+        temp[1] = temp[1].replace('complement(', '')
+        temp[1] = temp[1].replace(')', '')
+    temp2 = temp[1].split('..')
+    start = temp2[0]
+    end = temp2[1]
+{% endcodeblock %} 
 
 
 We use temporary list and split the line at

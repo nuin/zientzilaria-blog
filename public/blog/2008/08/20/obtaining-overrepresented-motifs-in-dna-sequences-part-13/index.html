@@ -141,34 +141,72 @@ their literal html enconding. I am working on it, sorry</em></p>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
 <span class='line-number'>28</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python </span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#!/usr/bin/env python</span>
+</span><span class='line'>
 </span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
 </span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
 </span><span class='line'><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">choose</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-</span><span class='line'>  <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
-</span><span class='line'>          <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
-</span><span class='line'>          <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
-</span><span class='line'>          
-</span><span class='line'>          <span class="c">#print ntok // ktok return ntok // ktok else: return 0 def</span>
-</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id\_no to a set use explicit</span>
-</span><span class='line'><span class="s">counter to create seq\_no &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">for</span>
-</span><span class='line'><span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span> <span class="nb">id</span>\<span class="n">_no</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span>
-</span><span class='line'><span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">id</span>\<span class="n">_no</span><span class="p">)</span> <span class="k">return</span> <span class="n">quorum</span> <span class="nb">input</span>\<span class="n">_seqs</span> <span class="o">=</span>
-</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="nb">input</span>\<span class="n">_seqs2</span> <span class="o">=</span>
-</span><span class='line'><span class="n">fasta</span><span class="o">.</span><span class="n">read</span>\<span class="n">_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span> <span class="n">foreground</span> <span class="o">=</span>
-</span><span class='line'><span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="n">background</span> <span class="o">=</span> <span class="n">get</span>\<span class="n">_quorums</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">,</span>
-</span><span class='line'><span class="mi">10</span><span class="p">)</span> <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span> <span class="n">term1</span>
-</span><span class='line'><span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span>
-</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span>
-</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="nb">input</span>\<span class="n">_seqs</span><span class="p">))</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> \<span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span>
-</span><span class='line'><span class="mf">0.0001</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">ntok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">ktok</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">ntok</span> <span class="o">*=</span> <span class="n">n</span>
+</span><span class='line'>            <span class="n">ktok</span> <span class="o">*=</span> <span class="n">t</span>
+</span><span class='line'>            <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="c">#print ntok // ktok</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">ntok</span> <span class="o">//</span> <span class="n">ktok</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">get_quorums</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">    add seq id_no to a set</span>
+</span><span class='line'><span class="sd">    use explicit counter to create seq_no</span>
+</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">id_no</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">seqs</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">id_no</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="n">mlen</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">input_seqs</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'><span class="n">input_seqs2</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">read_seqs</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">foreground</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'><span class="n">background</span> <span class="o">=</span> <span class="n">get_quorums</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs2</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foreground</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">term1</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</span><span class='line'>    <span class="n">term2</span> <span class="o">=</span> <span class="n">choose</span><span class="p">((</span><span class="n">N</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">])),</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">term3</span> <span class="o">=</span> <span class="n">choose</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_seqs</span><span class="p">))</span>
+</span><span class='line'>    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">term1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">term2</span><span class="p">))</span> <span class="o">/</span> <span class="n">term3</span>
+</span><span class='line'>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="mf">0.0001</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">foreground</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">background</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">p</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

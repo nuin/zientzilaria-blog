@@ -254,10 +254,12 @@ for each protein in the file is a good start.</p>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Protein</span><span class="p">:</span> <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
-</span><span class='line'>  <span class="bp">self</span><span class="o">.</span><span class="n">gi</span> <span class="o">=</span> <span class="n">gi</span>
-</span><span class='line'>  <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-</span><span class='line'>  <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">class</span> <span class="nc">Protein</span><span class="p">:</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">gi</span> <span class="o">=</span> <span class="n">gi</span>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+</span><span class='line'>      <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -287,24 +289,22 @@ spaces).</p>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-<span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="n">proteins</span> <span class="o">=</span> <span class="p">[]</span>
 </span><span class='line'><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
 </span><span class='line'><span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>
 </span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39; gene &#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">index</span> \<span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-</span><span class='line'>      <span class="c">#parses the CDS and appends to a list</span>
-</span><span class='line'>      <span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
-</span><span class='line'>      <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>      <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="c">#found the DNA sequence, we can stop now </span>
-</span><span class='line'>      <span class="k">break</span>
-</span><span class='line'>  <span class="k">else</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  gene &#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>            <span class="c">#parses the CDS and appends to a list</span>
+</span><span class='line'>            <span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+</span><span class='line'>            <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="c">#found the DNA sequence, we can stop now</span>
+</span><span class='line'>        <span class="k">break</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -341,24 +341,24 @@ let&#8217;s see how this function is</p>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">prot_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
-</span><span class='line'>  <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">prot_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">prot_id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'>  <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/translation&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">sequence</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span>
-</span><span class='line'>      <span class="n">temp</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_data</span><span class="p">)):</span>
-</span><span class='line'>          <span class="n">sequence</span> <span class="o">+=</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">prot_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">prot_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">prot_id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/translation&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span>
+</span><span class='line'>            <span class="n">temp</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_data</span><span class="p">)):</span>
+</span><span class='line'>                    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="n">Protein</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="n">prot_id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">Protein</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="n">prot_id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -400,8 +400,7 @@ trick, that can be seen on the excerpt below</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p> We find the beginning of the
-translation information by checking the line that contains
+<p> We find the beginning of the translation information by checking the line that contains
 <code>/translation</code> and we extract the initial part of the sequence my
 finding the equal sign and getting everything after it. Then the trick.
 We know that the end of the translation information will be the last

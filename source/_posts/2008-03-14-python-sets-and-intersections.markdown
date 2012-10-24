@@ -42,7 +42,10 @@ this time). After reading the clusters and sequence IDs in each one of
 them we basically need to create unique lists of cluster IDs for each
 one of the genomes. That's where `sets` are used 
 
-{% codeblock lang:python %}from sets import Set genA, genB, genC = Set([]), Set([]), Set([]){% endcodeblock %} 
+{% codeblock lang:python %}
+from sets import Set 
+
+genA, genB, genC = Set([]), Set([]), Set([]){% endcodeblock %} 
 
 We declare three emtpy sets, that will
 store cluster IDs for each one of the genomes. The important part here
@@ -51,20 +54,27 @@ each one of the genomes, just to make it easier to read each cluster
 contents. In each of our genomes the sequences were tagged with their
 letter in the first character
 
-`>genA_sequence1 ACGT >genB_sequence1 ACGTT >genC_sequence1 ACGTT ...`
+`>genA_sequence1 ACGT 
+
+>genB_sequence1 ACGTT 
+
+>genC_sequence1 ACGTT ...`
 
 We run CD-HIT and parse the results, maybe creating a class to store
 information about each cluster and its sequences. Then we analyse this
 list 
 
-{% codeblock lang:python %}for i in clusters: 
-	for id in i.sequence_id: 
-		if id.startswith('>genA'): 
-			genA.add(i.cluster_number)
-		elif id.startswith('genB'): 
-			genB.add(i.cluster_number) 
-		elif id.startswith('genC'): 
-			genC.add(i.cluster_number){% endcodeblock %}
+{% codeblock lang:python %}
+for i in clusters:
+    for id in i.sequence_id:
+        if id.startswith('>genA'):
+            genA.add(i.cluster_number)
+        elif id.startswith('genB'):
+            genB.add(i.cluster_number)
+        elif id.startswith('genC'):
+            o.add(i.cluster_number)
+
+{% endcodeblock %}
 
  Remembering
 that `sets` are unordered unique lists, we don't expect to see repeated
@@ -81,6 +91,8 @@ print len(Set.intersection(genB, genC)){% endcodeblock %}
 
 That's it. Three lines of
 code, one method. The output will be the number of clusters that contain
-sequences of A and B, A and C and B and C, respectively. *PS: If anyone
+sequences of A and B, A and C and B and C, respectively. 
+
+*PS: If anyone
 is interested in the CD-HIT output parsing class/function just let me
 know.*

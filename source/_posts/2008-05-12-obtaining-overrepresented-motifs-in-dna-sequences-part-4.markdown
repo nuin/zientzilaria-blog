@@ -27,25 +27,27 @@ the overrepresented motifs. With only a couple of modifications, we can
 adapt the script used to get the motif counts to get the quorum.
 
 
-{% codeblock lang:python %}#!/scratch/python/bin/python 
-
-from collections import defaultdict 
-import sys 
-import fasta 
-
-seqs = fasta.get_seqs(open(sys.argv[1]).readlines()) 
+{% codeblock lang:python %}
+from collections import defaultdict
+import sys
+import fasta
+ 
+seqs = fasta.get_seqs(open(sys.argv[1]).readlines())
 length = int(sys.argv[2])
-quorum = defaultdict(list) 
+ 
+quorum = defaultdict(list)
+ 
+seq_number = 0
+for i in seqs:
+    seq_number += 1
+    for n in range(len(i.sequence) - int(length)):
+        if not seq_number in quorum[i.sequence[n : n + length]]:
+            quorum[i.sequence[n : n + length]].append(seq_number)
+ 
+for i in quorum:
+    print ''.join(i).upper(), len(quorum[i])
 
-seq_number = 0 
-
-for i in seqs: 
-	seq_number += 1 
-	for n in range(len(i.sequence) - int(length)): 
-		if not seq_number in quorum[i.sequence[n : n + length]]: 
-			quorum[i.sequence[n : n + length]].append(seq\_number) 
-			for i in quorum: 
-				print ''.join(i).upper(), len(quorum[i]){% endcodeblock %}
+{% endcodeblock %}
 
  Basically, we change the way the
 `defaultdict` is initialized, this time as a list instead of int and we

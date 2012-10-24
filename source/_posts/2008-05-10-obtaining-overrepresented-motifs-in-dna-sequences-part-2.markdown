@@ -36,29 +36,34 @@ to find another approach, and Mike showed us how (with some small
 modifications) 
 
 
-{% codeblock lang:python %} #!/usr/bin/env python
-
-from collections import defaultdict 
-import sys 
-import fasta 
-
-seqs = fasta.get_seqs(open(sys.argv[1]).readlines()) 
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+from collections import defaultdict
+import sys
+import fasta
+ 
+seqs = fasta.get_seqs(open(sys.argv[1]).readlines())
 length = int(sys.argv[2])
+ 
+#for a missing key, the dict entry is initialized to zero
+counts = defaultdict(int)
+ 
+#count the length-element subsequences in each sequence
+for i in seqs:
+    for n in range(len(i.sequence) - length):
+        counts[i.sequence[n : n + length]] += 1
+ 
+#counts.keys() will then return the nucleotide sequences
+#that were actually in merged_seqs
+ 
+#print out the sequences that occur more than once
+for count in counts:
+        print ''.join(count), counts[count]
+{% endcodeblock %} 
 
-#for a missing key, the dict entry is initialized to zero 
-counts = defaultdict(int) 
-#count the length-element subsequences in each sequence 
-for i in seqs: 
-	for n in range(len(i.sequence) - length):
-	counts[i.sequence[n : n + length]] += 1 
-	#counts.keys() will then return the nucleotide sequences that were actually in merged_seqs 
-	#print out the sequences that occur more than once 
-	for count in counts: 
-		print ''.join(count), counts[count]{% endcodeblock %} 
 
-
-This time the counting is
-done with a `defaultdict` initialized with integers (all zeroes), and
+This time the counting is done with a `defaultdict` initialized with integers (all zeroes), and
 instead of generating all possible combinations (which was cool and
 fast, but in the end made our script slower) a window with the input
 length is slid along the each sequence and the key of the default

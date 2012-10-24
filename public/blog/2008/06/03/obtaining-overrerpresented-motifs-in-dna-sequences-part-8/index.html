@@ -134,15 +134,19 @@ motifs.</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_06</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'><span class="sd">&quot;&quot;&quot; add seq id\_no to a set use &#39;izip(count(),...) to create seq_no use</span>
-</span><span class='line'><span class="sd">&#39;izip(count(),range(...)) to create start/stop indices for motifs &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
-</span><span class='line'>          <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
+</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">    add seq id_no to a set</span>
+</span><span class='line'><span class="sd">    use &#39;izip(count(),...) to create seq_no</span>
+</span><span class='line'><span class="sd">    use &#39;izip(count(),range(...)) to create start/stop indices for motifs</span>
+</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="n">seqs</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="n">count</span><span class="p">(),</span> <span class="nb">range</span><span class="p">(</span><span class="n">mlen</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">))):</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">seq</span><span class="p">[</span><span class="n">s</span><span class="p">:</span><span class="n">e</span><span class="p">]]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

@@ -23,15 +23,18 @@ intersections at a time and also be able to check the intersection of
 more than two sets. Our previous code to calculate intersections was
 
 
-{% codeblock lang:python %}from sets import Set 
-#for Python 2.3 and below 
-genA, genB, genC = Set([]), Set([]), Set([]) 
-#populate the sets ... 
+{% codeblock lang:python %}
+from sets import Set #for Python 2.3 and below
+genA, genB, genC = Set([]), Set([]), Set([])
+ 
+#populate the sets ...
+ 
+print len(Set.intersection(genA, genB))
+print len(Set.intersection(genA, genC))
+print len(Set.intersection(genB, genC))
 
 
-print len(Set.intersection(genA, genB)) 
-print len(Set.intersection(genA, genC)) 
-print len(Set.intersection(genB, genC)){% endcodeblock %} 
+{% endcodeblock %} 
 
 
 and that's does not gives us the most important
@@ -81,8 +84,8 @@ so we can send 2, 3, 4, 5 or *n* number of sets
 to this function and it will return the intersection among all of them.
 Our simple script would be (including the above function) 
 
-{% codeblock lang:python %}from sets import Set 
-#for Python 2.3 and below 
+{% codeblock lang:python %}from sets import Set #for Python 2.3 and below 
+
 def get_intersection(*my_sets): 
 	return reduce(Set.intersection, my_sets)
 

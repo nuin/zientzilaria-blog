@@ -21,21 +21,24 @@ piece) and cut the long sequence at the bottom. This will require a
 couple of changes in our previous script, basically to get the DNA and
 to cut it. Previously, we had this to read the file 
 
-{% codeblock lang:python %}proteins = [] 
-index = 0 entry = '' 
+{% codeblock lang:python %}
+proteins = []
+index = 0
+entry = ''
 for line in gbfile:
-	if line.find(' gene ') >= 0: 
-		if index \>= 1: 
-		\#parses the CDS and appends to a list 
-			proteins.append(parse_entry(entry)) 
-			entry = '' 
-			index += 1
-			entry += line 
-	elif line.find('ORIGIN') >= 0: 
-		#found the DNA sequence, we can stop now 
-		break 
-	else: 
-		entry += line{% endcodeblock %} 
+    if line.find('  gene ') >= 0:
+        if index >= 1:
+            #parses the CDS and appends to a list
+            proteins.append(parse_entry(entry))
+            entry = ''
+        index += 1
+        entry += line
+    elif line.find('ORIGIN') >= 0:
+        #found the DNA sequence, we can stop now
+        break
+    else:
+        entry += line
+		{% endcodeblock %} 
 
 Notice
 that we stop when we reach the bottom DNA sequence. We need to go
@@ -45,28 +48,29 @@ each line is also there. So we need to join these blocks and remove the
 number from the beginning of the line. In the end we would have this
 
 
-{% codeblock lang:python %}is_seq = False
-genes = [] 
-
-for line in gbfile: 
-	if line.find(' gene ') >= 0: 
-		if index \>= 1:
-			genes.append(parse_entry(entry)) 
-			entry = '' 
-			index += 1 
-			entry += line
-	elif line.find('ORIGIN') >= 0:
-		is_seq = True
-		genes.append(parse_entry(entry)) 
-	elif is_seq == True: 
-		line = line.split() 
-		sequence.append(line) 
-	else:
-		entry += line 
-		str_seq = '' 
-		
-for i in sequence: 
-	str_seq += ''.join(i[1:]).upper(){% endcodeblock %} 
+{% codeblock lang:python %}
+is_seq = False
+genes = []
+for line in gbfile:
+    if line.find('  gene ') >= 0:
+        if index >= 1:
+            genes.append(parse_entry(entry))
+            entry = ''
+        index += 1
+        entry += line
+    elif line.find('ORIGIN') >= 0:
+        is_seq = True
+        genes.append(parse_entry(entry))
+    elif is_seq == True:
+        line = line.split()
+        sequence.append(line)
+    else:
+        entry += line
+ 
+str_seq = ''
+for i in sequence:
+    str_seq += ''.join(i[1:]).upper()
+	{% endcodeblock %} 
 
 We added
 a couple of things. Mainly a flag boolean variable (`is_seq`) that tells
@@ -81,7 +85,8 @@ class to store the information also need to be changed. Previously, our
 class was simpler, with less objects. This time we need to extract more
 information. 
 
-{% codeblock lang:python %}class CDSinfo:
+{% codeblock lang:python %}
+class CDSinfo:
 	def __init__(self, gi_id, id, start, end, complement):
 		self.gi_id = gi_id 
 		self.id = id 
@@ -94,31 +99,34 @@ start, end and a complement, for the cases where the gene is on the
 reverse complement. The function to extract the info looks like
 
 
-{% codeblock lang:python %}def parse_entry(gene_data): 
-	#changes a string to list, splitting at line ends 
-	gene_data = gene_data.split('\n') 
-	start, end = 0, 0 
-	gi_id = '' 
-	id = '' 
-	complement = False 
+{% codeblock lang:python %}
 
-	for line in gene_data:
-		if line.find(' CDS ') >=0: 
-			temp = line.split() 
-			if temp[1].find('complement') >= 0: 
-				complement = True
-				temp[1] = temp[1].replace('complement(', '') 
-				temp[1] = temp[1].replace(')', '') 
-				temp2 = temp[1].split('..') 
-				start = temp2[0] 
-				end = temp2[1] 
-		elif line.find('GI:') >= 0: 
-			gi_id = 'gi' + line[line.find('GI:')+3:-1] 
-		elif line.find('/product') >=0: 
-			id = line[line.find('=') + 2:-1] 
-		elif line.find('protein_id') >= 0: 
-			id += '\t' + line[line.find('=') + 2: -1] 
-		
-	return CDSinfo(gi_id, id, start, end, complement){% endcodeblock %}
+def parse_entry(gene_data):
+    #changes a string to list, splitting at line ends
+    gene_data = gene_data.split('\n')
+    start, end = 0, 0
+    gi_id = ''
+    id = ''
+    complement = False
+    for line in gene_data:
+        if line.find('  CDS  ') >=0:
+            temp = line.split()
+            if temp[1].find('complement') >= 0:
+                complement = True
+                temp[1] = temp[1].replace('complement(', '')
+                temp[1] = temp[1].replace(')', '')
+            temp2 = temp[1].split('..')
+            start = temp2[0]
+            end = temp2[1]
+        elif line.find('GI:') >= 0:
+            gi_id = 'gi' + line[line.find('GI:')+3:-1]
+        elif line.find('/product') >=0:
+            id = line[line.find('=') + 2:-1]
+        elif line.find('protein_id') >= 0:
+            id += '\t' + line[line.find('=') + 2: -1]
+ 
+    return CDSinfo(gi_id, id, start, end, complement)
+
+{% endcodeblock %}
 
 We will discuss the parsing function in the next entry and wrap up both codes, and add them to the repository.

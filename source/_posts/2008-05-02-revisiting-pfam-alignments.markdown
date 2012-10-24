@@ -25,24 +25,28 @@ following the entries, we will see what new things were suggested in the
 comments. We will start with Mike's comment. The code is below.
 
 
-{% codeblock lang:python %}def merge_seqs(data1, data2): 
-	from collections import defaultdict 
-	from itertools import chain 
-	
-	data = defaultdict(list) 
-	for item in chain(data1, data2): 
-		ident = item.name[item.name.find('|') + 1 : item.name.find('/')]
-		data[ident].append((item.name, item.sequence)) 
-		
-	format = "%s-%s-\>%d\\n%s%s" 
-	flist = [] 
-	for key, value in data.iteritems(): 
-		if len(value) == 2: 
-			jname, jseq = value[0] 
-			kname, kseq = value[1]
-			flist.append(format % (jname, kname, len(jseq), jseq, kseq) ) 
+{% codeblock lang:python %}
+def merge_seqs(data1, data2):
+    from collections import defaultdict
+    from itertools import chain
+ 
+    data = defaultdict(list)
+ 
+    for item in chain(data1, data2):
+        ident = item.name[item.name.find('|') + 1 : item.name.find('/')]
+        data[ident].append((item.name, item.sequence))
+ 
+    format = "%s-%s->%d\n%s%s"
+    flist = []
+    for key, value in data.iteritems():
+        if len(value) == 2:
+            jname, jseq = value[0]
+            kname, kseq = value[1]
+            flist.append(format % (jname, kname, len(jseq), jseq, kseq) )
+ 
+    return flist
 
-	return flist{% endcodeblock %}
+{% endcodeblock %}
 
 
 Mike's code would only run on Python 2.5, due to the

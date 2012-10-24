@@ -44,10 +44,12 @@ the protein sequence, get the protein ID and the gi ID from each entry
 in a genome file. An initial assessment, tell us that creating a class
 for each protein in the file is a good start. 
 
-{% codeblock lang:python %}class Protein: def __init__(self, gi, id, sequence): 
-	self.gi = gi 
-	self.id = id 
-	self.sequence = sequence{% endcodeblock %} 
+{% codeblock lang:python %}
+class Protein:
+	def __init__(self, gi, id, sequence): 
+		self.gi = gi 
+		self.id = id 
+		self.sequence = sequence{% endcodeblock %} 
 
 So we declare the class and have elements for the
 IDs and the amino acid sequence. The next problem is how do get each
@@ -59,23 +61,24 @@ this would mean that every gene that has this word in its name will be a
 problem, so we match against `'  gene  '` (the word gene flanked by two
 spaces). 
 
-{% codeblock lang:python %}proteins = [] 
-index = 0 
-entry = '' 
-
-for line in gbfile: 
-	if line.find(' gene ') >= 0: 
-		if index \>= 1:
-		#parses the CDS and appends to a list
-		proteins.append(parse_entry(entry)) 
-		entry = '' 
-		index += 1 
-		entry += line
-	elif line.find('ORIGIN') >= 0: 
-		#found the DNA sequence, we can stop now 
-		break 
-	else: 
-		entry += line{% endcodeblock %}
+{% codeblock lang:python %}
+proteins = []
+index = 0
+entry = ''
+for line in gbfile:
+    if line.find('  gene ') >= 0:
+        if index >= 1:
+            #parses the CDS and appends to a list
+            proteins.append(parse_entry(entry))
+            entry = ''
+        index += 1
+        entry += line
+    elif line.find('ORIGIN') >= 0:
+        #found the DNA sequence, we can stop now
+        break
+    else:
+        entry += line
+{% endcodeblock %}
 
  In the above excerpt we read
 the file line by line, having an index just to keep the code aware of
@@ -90,25 +93,28 @@ after (and eventually we will transform our string in a list by
 splitting it). Notice that we have a call to a function `parse_entry`,
 let's see how this function is 
 
-{% codeblock lang:python %}def parse_entry(gene_data): 
-	prot_id = '' 
-	sequence = '' 
-	gi_id = ''
-	gene_data = gene_data.split('\n') 
-	for line in gene_data: 
-	if line.find('/product') >=0: 
-		prot_id = line[line.find('=') + 2:-1] 
-	elif line.find('protein_id') >= 0: 
-		prot_id += '\t' + line[line.find('=') + 2: -1] 
-	elif line.find('GI:') >= 0: 
-		gi_id = 'gi' + line[line.find('GI:')+3:-1]
-	elif line.find('/translation') >= 0:
-		sequence = line[line.find('=') + 2:] 
-		temp = gene_data.index(line) 
-		for i in range(temp+1, len(gene_data)): 
-			sequence += gene_data[i].strip()
+{% codeblock lang:python %}
+def parse_entry(gene_data):
+    prot_id = ''
+    sequence = ''
+    gi_id = ''
+    gene_data = gene_data.split('\n')
+    for line in gene_data:
+        if line.find('/product') >=0:
+            prot_id = line[line.find('=') + 2:-1]
+        elif line.find('protein_id') >= 0:
+            prot_id += '\t' + line[line.find('=') + 2: -1]
+        elif line.find('GI:') >= 0:
+            gi_id = 'gi' + line[line.find('GI:')+3:-1]
+        elif line.find('/translation') >= 0:
+            sequence = line[line.find('=') + 2:]
+            temp = gene_data.index(line)
+            for i in range(temp+1, len(gene_data)):
+                    sequence += gene_data[i].strip()
+ 
+    return Protein(gi_id, prot_id, sequence)
 
-	return Protein(gi_id, prot_id, sequence){% endcodeblock %}
+{% endcodeblock %}
 
  As mentioned
 above, we split the string in a list (we will check if there is any
@@ -117,7 +123,8 @@ analyse each one of the lines. In this case, we only need the protein,
 the gene name and, evidently, the protein sequence. Dissecting the
 excerpt above we have 
 
-{% codeblock lang:python %}if line.find('/product') >=0: 
+{% codeblock lang:python %}
+if line.find('/product') >=0: 
 	prot_id = line[line.find('=') + 2:-1] 
 elif line.find('protein_id') >= 0: 
 	prot_id += '\t' + line[line.find('=') + 2: -1]{% endcodeblock %} 
@@ -129,14 +136,14 @@ that will be passed to the class instance. The gi ID can be extracted in
 similar fashion. In order to get the sequence we have to do a small
 trick, that can be seen on the excerpt below
 
-{% codeblock lang:python %}elif line.find('/translation') >= 0:
+{% codeblock lang:python %}
+elif line.find('/translation') >= 0:
 	sequence = line[line.find('=') + 2:] 
 	temp = gene_data.index(line) 
 	for i in range(temp+1, len(gene_data)): 
 		sequence += gene_data[i].strip(){% endcodeblock %}
 
- We find the beginning of the
-translation information by checking the line that contains
+ We find the beginning of the translation information by checking the line that contains
 `/translation` and we extract the initial part of the sequence my
 finding the equal sign and getting everything after it. Then the trick.
 We know that the end of the translation information will be the last

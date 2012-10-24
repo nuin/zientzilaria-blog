@@ -134,20 +134,76 @@ of 800 and 4000. First, the functions:</p>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac_01</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span> <span class="n">result</span> \<span class="o">*=</span> <span class="n">i</span> <span class="k">return</span>
-</span><span class='line'><span class="n">result</span> <span class="k">def</span> <span class="nf">fac_02</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> \<span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span>
-</span><span class='line'><span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">value</span> <span class="k">def</span> <span class="nf">fac_03</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="kn">import</span> <span class="nn">operator</span> <span class="nn">value</span> <span class="o">=</span>
-</span><span class='line'><span class="nb">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">value</span> <span class="k">def</span> <span class="nf">fac_04</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span>
-</span><span class='line'><span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>\<span class="o">*</span><span class="nb">long</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">fac_05</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span>\<span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>\<span class="o">*</span><span class="n">n</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">fac_06</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">a</span>\<span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span>
-</span><span class='line'><span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_07</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="n">n</span> \<span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span>
-</span><span class='line'><span class="n">y</span><span class="p">:</span> <span class="n">x</span>\<span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_08</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span>
-</span><span class='line'><span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span>\<span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">fac_09</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[[[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="n">j</span> \<span class="o">*</span> <span class="n">i</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span>
-</span><span class='line'><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">def</span> <span class="nf">fac_10</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="n">fac</span> <span class="o">=</span>
-</span><span class='line'><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="n">j</span> \<span class="o">*</span> <span class="n">i</span><span class="p">]]</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</span><span class='line'><span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">fac_01</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span><span class='line'>        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">result</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_02</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="p">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">value</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_03</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="kn">import</span> <span class="nn">operator</span>
+</span><span class='line'>    <span class="n">value</span> <span class="o">=</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">value</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_04</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">long</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">or</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_05</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">n</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_06</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span><span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">:</span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_07</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">fac</span><span class="o">=</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">][</span><span class="n">n</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_08</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_09</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[[[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="n">i</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)][</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">fac_10</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">fac</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="p">[</span><span class="n">j</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="n">j</span> <span class="o">*</span> <span class="n">i</span><span class="p">]]</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">fac</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -158,13 +214,31 @@ on comments too) and functions 4 to 10 were gathered from the cookbook,
 all of them using <code>lambda</code>. Now, to the results (no fancy graphs, yet),
 average over 1000 repeats, time in seconds:</p>
 
-<p><em>800!</em> fac_01: <strong>0.0010</strong>
-fac_02: 0.0012 fac_03: <strong>0.0010</strong> fac_04: 0.0022 fac_05: 0.0020
-fac_06: 0.0015 fac_07: 0.0013 fac_08: 0.0013 fac_09: 0.0017 fac_10:
-0.0015 <em>4000!</em> fac_01: <strong>0.0226</strong> fac_02: 0.0242 fac_03: <strong>0.0230</strong>
-fac_04: N/A fac_05: N/A fac_06: 0.0244 fac_07: 0.0239 fac_08:
-0.0241 fac_09: 0.0380 fac_10: 0.0362 In both cases the &#8220;best&#8221;
-functions were 1 and 3. For the smallest factorial (800!) 1 and 3 didn&#8217;t
+<p><em>800!</em>
+fac_01: <strong>0.0010</strong>
+fac_02: 0.0012
+fac_03: <strong>0.0010</strong>
+fac_04: 0.0022
+fac_05: 0.0020
+fac_06: 0.0015
+fac_07: 0.0013
+fac_08: 0.0013
+fac_09: 0.0017
+fac_10: 0.0015</p>
+
+<p><em>4000!</em>
+fac_01: <strong>0.0226</strong>
+fac_02: 0.0242
+fac_03: <strong>0.0230</strong>
+fac_04: N/A
+fac_05: N/A
+fac_06: 0.0244
+fac_07: 0.0239
+fac_08: 0.0241
+fac_09: 0.0380
+fac_10: 0.0362</p>
+
+<p>In both cases the &#8220;best&#8221; functions were 1 and 3. For the smallest factorial (800!) 1 and 3 didn&#8217;t
 have a lot of advantage for 2, 6-10, while 4 and 5 were 2 times slower.
 For the largest factorial (4000!) 1 was 4% better than 3, and the third
 best (6) was also 4% slower than 3. Why do 4 and 5 have no computed

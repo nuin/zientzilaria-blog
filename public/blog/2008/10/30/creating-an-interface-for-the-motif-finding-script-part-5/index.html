@@ -109,23 +109,33 @@ functionality. First thing we are going to do is to include a label (or
 static text) on the interface. Remember that initially we added a panel
 to the frame, so the label should go on the panel. For a label we use a
 <a href="http://wxpython.org/docs/api/wx.StaticText-class.htm">wx.StaticText</a>
-and has these parameters <a href="self,%20parent,%0Aid=-1,%20label=EmptyString,%20pos=DefaultPosition,%20size=DefaultSize,%0Astyle=0,%20name=StaticTextNameStr">sourcecode language=&#8217;python&#8217;</a>[/sourcecode] We don&#8217;t need all of them,
-just a couple would be enough. Basically, parent, id, label and pos will
+and has these parameters</p>
+
+<p><a href="self,%20parent,%0Aid=-1,%20label=EmptyString,%20pos=DefaultPosition,%20size=DefaultSize,%0Astyle=0,%20name=StaticTextNameStr">sourcecode language=&#8217;python&#8217;</a>[/sourcecode]</p>
+
+<p>We don&#8217;t need all of them, just a couple would be enough. Basically, parent, id, label and pos will
 do it, as the size would be default and based on the text length we
 input. We are going to work on our __do_layout function and add two
 labels to the panel on the frame, one for each the fore and background
-files [sourcecode language=&#8217;python&#8217;]self.fore_label =
+files</p>
+
+<p>[sourcecode language=&#8217;python&#8217;]self.fore_label =
 wx.StaticText(panel, -1, &#8216;Select the foreground file&#8217;, (10, 10))
 self.back_label = wx.StaticText(panel, -1, &#8216;Select the background
-file&#8217;, (10, 30))[/sourcecode] These two lines are very similar, only the
+file&#8217;, (10, 30))[/sourcecode]</p>
+
+<p>These two lines are very similar, only the
 label, position and name change. panel is the name of the panel we
 created previously, -1 is the ID, the string is the actual text that
 will appear on the label and the values between parentheses are the X, Y
 coordinates to display them on the frame. In the beginning (or when a
 size needs to be set) we can add <code>pos=</code> to the label declaration in
-order to make clearer what the values are setting [sourcecode
-language=&#8217;python&#8217;]self.fore_label = wx.StaticText(panel, -1, &#8216;Select
-the foreground file&#8217;, pos=(10, 10))[/sourcecode] If we add these two
+order to make clearer what the values are setting</p>
+
+<p>[sourcecode language=&#8217;python&#8217;]self.fore_label = wx.StaticText(panel, -1, &#8216;Select
+the foreground file&#8217;, pos=(10, 10))[/sourcecode]</p>
+
+<p>If we add these two
 lines and run our script, both labels will be there on the frame, as can
 be seen in the screencap below. <a href="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui3.png"><img src="http://python.genedrift.org/wordpress/wp-content/uploads/2008/10/gui3-300x187.png" title="GUI with labels" alt="GUI with
 labels" /></a>

@@ -21,7 +21,9 @@ This entry serves only to remember the method and add a function to the
 Python, by employing the `replace` method on strings. Our function looks
 like 
 
-{% codeblock lang:python %}def transcribe(seq): RNA = seq.replace('T', 'U') return RNA{% endcodeblock %} 
+{% codeblock lang:python %}def transcribe(seq): 
+	RNA = seq.replace('T', 'U') 
+	return RNA{% endcodeblock %} 
 
 Some other functions will
 be added to the module in the next couple of weeks. After that we will

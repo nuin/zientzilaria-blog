@@ -39,27 +39,32 @@ Another idea, to simplify the process, is to read both files, extract
 the protein IDs and check for the intersection of the two sets of IDs
 and then just extract the sequences from a list of matches. 
 
-{% codeblock lang:python %}def merge_seqs(data1, data2): 
-	myset1, myset2 = Set([]), Set([]) 
-	
-	for i in data1: 
-		myset1.add(i.name[i.name.find('|') + 1:i.name.find('/')]) 
-	
-	for i in data2:
-		myset2.add(i.name[i.name.find('|')+1:i.name.find('/')]) 
-		
-	mylist = Set.intersection(myset1, myset2) 
-	flist = [] 
-	
-	for i in mylist: 
-		for j in data1: 
-			if j.name[j.name.find('|') + 1:j.name.find('/')] == i: 
-			for k in data2: 
-				if k.name[k.name.find('|')+1:k.name.find('/')] == j.name[j.name.find('|')+1:j.name.find('/')]: 
-					tempname = j.name + '-' + k.name + '-\>' + str(len(j.sequence)) 
-					tempseq = j.sequence + k.sequence
-					flist.append(tempname + '\\n' + tempseq) 
-	return flist{% endcodeblock %}
+{% codeblock lang:python %}
+def merge_seqs(data1, data2):
+ 
+    myset1, myset2 = Set([]), Set([])
+ 
+    for i in data1:
+        myset1.add(i.name[i.name.find('|')+1:i.name.find('/')])
+ 
+    for i in data2:
+        myset2.add(i.name[i.name.find('|')+1:i.name.find('/')])
+ 
+    mylist = Set.intersection(myset1, myset2)
+ 
+    flist = []
+    for i in mylist:
+        for j in data1:
+            if j.name[j.name.find('|')+1:j.name.find('/')] == i:
+                for k in data2:
+                    if k.name[k.name.find('|')+1:k.name.find('/')] == j.name[j.name.find('|')+1:j.name.find('/')]:
+                        tempname = j.name + '-' + k.name + '->' + str(len(j.sequence))
+                        tempseq = j.sequence + k.sequence
+                        flist.append(tempname + '\n' + tempseq)
+ 
+    return flist
+
+{% endcodeblock %}
 
 This
 is the function that matches the sequence IDs. As we are reading the
@@ -73,4 +78,6 @@ instances of the `fasta` class, and we read these lists and add the
 find the matching sequences, as we need to merge them, we add both names
 and residues. Simple and easy. All merged sequences, and their
 respective merged names, are appended to a list that is returned at the
-end of the function. \**if there is a more direct way, just let me know*
+end of the function. 
+
+\**if there is a more direct way, just let me know*

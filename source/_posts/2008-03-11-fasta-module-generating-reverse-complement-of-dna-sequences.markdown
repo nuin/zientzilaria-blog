@@ -21,7 +21,8 @@ strand. Using our `fasta` module it is easy to implement a function to
 generate the antiparallel sequence Basically we can do this in two step,
 one - obtaining the complement and two - reversing it. 
 
-{% codeblock lang:python %}def complement(seq): 
+{% codeblock lang:python %}
+def complement(seq): 
 	abuffer = [] 
 	for i in seq: 
 		if i == 'A': 

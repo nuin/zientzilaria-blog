@@ -36,15 +36,20 @@ number and the sequence itself. The sequence in the tuple is then used
 in another `izip` to create the windows on the sequences to count
 motifs. 
 
-{% codeblock lang:python %}def get_quorums_06(seqs, mlen):
-""" add seq id\_no to a set use 'izip(count(),...) to create seq_no use
-'izip(count(),range(...)) to create start/stop indices for motifs """
-	quorum = defaultdict(set) 
-	for id_no, seq in izip(count(), seqs): 
-		for s, e in izip(count(), range(mlen, len(seq))): 
-			quorum[seq[s:e]].add(id_no)
-	
-	return quorum{% endcodeblock %} 
+{% codeblock lang:python %}
+def get_quorums_06(seqs, mlen):
+    """
+    add seq id_no to a set
+    use 'izip(count(),...) to create seq_no
+    use 'izip(count(),range(...)) to create start/stop indices for motifs
+    """
+    quorum = defaultdict(set)
+    for id_no, seq in izip(count(), seqs):
+        for s, e in izip(count(), range(mlen, len(seq))):
+            quorum[seq[s:e]].add(id_no)
+    return quorum
+
+{% endcodeblock %} 
 	
 In the next couple of posts we still be
 checking motif quorum functions. Stay tuned.

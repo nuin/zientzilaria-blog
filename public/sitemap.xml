@@ -644,7 +644,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/02/15/parsing-a-genbank-file-another-approach/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:48:28-04:00</lastmod>
     </url>
     <url>
         <loc>
@@ -686,7 +686,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/03/06/parsing-genbank-getting-dna-from-genome-entries-part-i/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:50:24-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/10/are-we-there-yet-pretty-much/</loc>
@@ -694,13 +694,13 @@
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/11/genbank-parsing-part-ii/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:52:15-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/03/11/fasta-module-generating-reverse-complement-of-dna-sequences/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:53:44-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/11/year-of-the-frog/</loc>
@@ -708,7 +708,7 @@
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/11/fasta-module-transcribing-dna/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:53:10-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/14/we-salute-you-2/</loc>
@@ -716,11 +716,11 @@
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/14/genbank-parsing-both-scripts/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:55:06-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/14/python-sets-and-intersections/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:57:19-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/17/how-realistic-is-10000-bc/</loc>
@@ -730,7 +730,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/03/17/python-sets-intersections-reduce-and-more/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:58:21-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/18/sad-sad-day/</loc>
@@ -748,7 +748,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/03/28/merging-sequences-from-a-pfam-alignment-using-sets/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T18:59:03-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/03/29/earth-hour/</loc>
@@ -758,7 +758,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/03/30/merging-sequences-from-a-pfam-alignment-using-sets-part-ii/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:00:18-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/04/13/twitter-updates-for-2008-04-13/</loc>
@@ -854,23 +854,23 @@
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/05/02/revisiting-pfam-alignments/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:01:09-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/05/03/revisting-pfam-alignments-again/</loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:02:03-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/05/05/still-on-merging-pfam-alignments/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:07:45-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/05/09/obtaining-overrepresented-motifs-in-dna-sequences-part-i/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:09:39-04:00</lastmod>
     </url>
     <url>
         <loc>
@@ -882,7 +882,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/05/10/obtaining-overrepresented-motifs-in-dna-sequences-part-2/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:21:33-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/05/12/a-new-religion/</loc>
@@ -898,13 +898,13 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/05/12/obtaining-overrepresented-motifs-in-dna-sequences-part-4/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:22:08-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/05/21/obtaining-overrepresented-motifs-in-dna-sequences-part-iv/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:23:17-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/05/21/how-british/</loc>
@@ -924,25 +924,25 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/05/30/obtaining-overrepresented-motifs-part-6/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:24:04-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-7/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:25:17-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/06/03/obtaining-overrerpresented-motifs-in-dna-sequences-part-8/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:29:48-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/06/03/obtaining-overrepresented-motifs-in-dna-sequences-part-8/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:27:18-04:00</lastmod>
     </url>
     <url>
         <loc>
@@ -958,7 +958,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/06/06/a-quick-assessment-of-factorial-functions-in-python/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:36:11-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/06/11/chelsea/</loc>
@@ -1006,13 +1006,13 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/08/12/obtaining-overrepresented-motifs-in-dna-sequences-part-11/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:38:09-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/08/15/obtaining-overrepresented-motifs-in-dna-sequences-part-12/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:39:24-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/08/19/business-opportunities/</loc>
@@ -1026,7 +1026,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/08/20/obtaining-overrepresented-motifs-in-dna-sequences-part-13/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:43:20-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/08/25/mendeley-a-very-short-review/</loc>
@@ -1042,7 +1042,7 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/09/05/python-overepresented-motifs-the-grand-finale/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:45:10-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/09/21/i-love-spam/</loc>
@@ -1052,31 +1052,31 @@
         <loc>
             http://zientzilaria.heroku.com/blog/2008/10/20/creating-an-interface-for-the-motif-finding-script/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:45:50-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/10/21/creating-an-interface-for-the-motif-finding-script-part-2/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:47:15-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/10/22/creating-an-interface-for-the-motif-finding-script-part-3/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T19:48:48-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/10/29/creating-an-interface-for-the-motif-finding-script-part-4/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T20:00:43-04:00</lastmod>
     </url>
     <url>
         <loc>
             http://zientzilaria.heroku.com/blog/2008/10/30/creating-an-interface-for-the-motif-finding-script-part-5/
         </loc>
-        <lastmod>2012-10-23T11:34:09-04:00</lastmod>
+        <lastmod>2012-10-23T20:02:25-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/2008/10/30/motif-interface-on-github/</loc>
@@ -1916,11 +1916,11 @@
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/blog/archives/</loc>
-        <lastmod>2012-10-23T16:09:41-04:00</lastmod>
+        <lastmod>2012-10-23T20:02:25-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/</loc>
-        <lastmod>2012-10-23T16:09:41-04:00</lastmod>
+        <lastmod>2012-10-23T20:02:25-04:00</lastmod>
     </url>
     <url>
         <loc>http://zientzilaria.heroku.com/temp/2006-12-13-3.html</loc>

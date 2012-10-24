@@ -113,8 +113,7 @@ won&#8217;t see here) and for instance determine new or already known
 transcription factor binding sites. A well established statistical
 method to determine such overrepresented words is the <a href="http://www.mnlottery.com/hypergeo.html">Hypergeometric Distribution</a> (HD for short).</p>
 
-<p>HD
-measures &#8220;success&#8221; and &#8220;failures&#8221; for values that do not fit in the
+<p>HD measures &#8220;success&#8221; and &#8220;failures&#8221; for values that do not fit in the
 <a href="http://en.wikipedia.org/wiki/Binomial_distribution" title="Binomial distribution">binomial distribution</a>,
 and depend on the measurements without replacement. Basically, HD&#8217;s
 equation has a a series of binomial coefficients/combinations <img src="http://www.genedrift.org/hd.gif" alt="HD equation" /> where <em>N</em> is the population
@@ -126,8 +125,7 @@ have to be expanded to factorials that depending on the value to be
 calculated are very computer intensive and sometimes don&#8217;t fit in the
 memory (either a float or integer).</p>
 
-<p>But
-<a href="http://python.org/" title="Python (programming language)">Python</a> is able to
+<p>But <a href="http://python.org/" title="Python (programming language)">Python</a> is able to
 handle very large numbers and the calculation of large factorials is
 relatively fast. In C++, I had to use a couple of tricks to achieve a
 good speed in the factorial determination, and specially in the HD

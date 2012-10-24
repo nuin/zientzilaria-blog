@@ -24,24 +24,27 @@ items and build the output list from dictionary entries of length == 2.
 Obviously, I don’t have any data sets to test it on, but something like
 this might work: 
 
-{% codeblock lang:python %}def merge_seqs(data1, data2): 
-	from collections import defaultdict 
-	from itertools import chain
-	data = defaultdict(list) 
-	
-	for item in chain(data1, data2):
-		ident = i.name[i.name.find(’|')+1:i.name.find(’/')] 
-		data[ident].append((i.name, i.sequence)) 
-		format = “%s-%s-\>%d\\n%s%s”
-		flist = [ ] 
-		
-		for key,value in data.iteritems(): 
-			if len(value) == 2: 
-				jname,jseq = value[0] 
-				kname,kseq = value[1] 
-				flist.append(fmt % (jname, kname, len(jseq), jseq, kseq))
-
-	return flist{% endcodeblock %} 
+{% codeblock lang:python %}
+def merge_seqs(data1, data2):
+    from collections import defaultdict
+    from itertools import chain
+ 
+    data = defaultdict(list)
+ 
+    for item in chain(data1, data2):
+        ident = i.name[i.name.find(’|')+1:i.name.find(’/')]
+        data[ident].append( (i.name, i.sequence) )
+ 
+    format = “%s-%s->%d\n%s%s”
+    flist = [ ]
+    for key,value in data.iteritems():
+        if len(value) == 2:
+            jname,jseq = value[0]
+            kname,kseq = value[1]
+            flist.append(fmt % (jname, kname, len(jseq), jseq, kseq) )
+ 
+    return flist
+{% endcodeblock %} 
 
 
 Luke: Are there duplicate IDs in a single
@@ -50,24 +53,28 @@ once by nested loop). Sets and dictionaries are both hashes, so just
 remember the instances with the id: 
 
 
-{% codeblock lang:python %}def merge_seqs(data1, data2): 
-	first, second = dict(), dict() 
-	for i in data1: 
-		first[i.name[i.name.find(’|') + 1:i.name.find(’/')]] = i 
-	for i in data2: 
-		second[i.name[i.name.find(’|') + 1:i.name.find(’/')]] = i
-		
-	shared_ids = set(first).intersection(set(second))
-	
-	flist = [] 
-	for i in shared_ids: 
-		j = first[i] 
-		k = second[i] 
-		tempname = j.name + ‘-’ + k.name + ‘-\>’ + str(len(j.sequence)) 
-		tempseq = j.sequence + k.sequence
-		flist.append(tempname + ‘\\n’ + tempseq) 
-	
-	return flist{% endcodeblock %} 
+{% codeblock lang:python %}
+def merge_seqs(data1, data2):
+    first, second = dict(), dict()
+    for i in data1:
+        first[i.name[i.name.find(’|')+1:i.name.find(’/')]] = i
+ 
+    for i in data2:
+        second[i.name[i.name.find(’|')+1:i.name.find(’/')]] = i
+ 
+    shared_ids = set(first).intersection(set(second))
+ 
+    flist = []
+    for i in shared_ids:
+        j = first[i]
+        k = second[i]
+        tempname = j.name + ‘-’ + k.name + ‘->’ + str(len(j.sequence))
+        tempseq = j.sequence + k.sequence
+        flist.append(tempname + ‘\n’ + tempseq)
+ 
+    return flist
+
+{% endcodeblock %} 
 
 
 If there are duplicate IDs in a file, and you want the behaviour of your
@@ -77,31 +84,31 @@ python2.5’s `collections.defaultdict`, if you’re on an earlier version use
 .`setdefault` . The cross product brings back a nested loop, but it’s only
 over values we want rather than the whole datasets.) 
 
-{% codeblock lang:python %}from collections import defaultdict 
+{% codeblock lang:python %}
+from collections import defaultdict
+def merge_seqs(data1, data2):
+    first, second = defaultdict(list), defaultdict(list)
+    for i in data1:
+        first[i.name[i.name.find(’|')+1:i.name.find(’/')]].append(i)
+ 
+    for i in data2:
+        second[i.name[i.name.find(’|')+1:i.name.find(’/')]].append(i)
+ 
+    shared_ids = set(first).intersection(set(second))
+ 
+    flist = []
+    for i in shared_ids:
+        cross = [(a,b) for a in first[i] for b in second[i]]
+        for j,k in cross:
+            tempname = j.name + ‘-’ + k.name + ‘->’ + str(len(j.sequence))
+            tempseq = j.sequence + k.sequence
+            flist.append(tempname + ‘\n’ + tempseq)
+ 
+    return flist
 
-	def merge_seqs(data1, data2): 
-		first, second = defaultdict(list), defaultdict(list) 
-	
-	for i in data1:
-		first[i.name[i.name.find(’|')+1:i.name.find(’/')]].append(i) 
-		
-	for i in data2: 
-		second[i.name[i.name.find(’|')+1:i.name.find(’/')]].append(i)
-		
-	shared_ids = set(first).intersection(set(second)) 
-	flist = [] 
-	for i in shared_ids: 
-		cross = [(a,b) for a in first[i] for b in second[i]] 
-		
-	for j,k in cross: 
-		tempname = j.name + ‘-’ + k.name + ‘-\>’ + str(len(j.sequence)) 
-		tempseq = j.sequence + k.sequence
-		flist.append(tempname + ‘\\n’ + tempseq)
-	
-	return flist{% endcodeblock %} 
+{% endcodeblock %} 
 
-And
-if you want combinations from within a file as well, just use one
+And if you want combinations from within a file as well, just use one
 dictionary of lists and cross each list value with itself, excluding
 identical elements: 
 

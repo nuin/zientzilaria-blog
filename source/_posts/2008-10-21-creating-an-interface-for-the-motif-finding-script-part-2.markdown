@@ -19,9 +19,11 @@ wordpress_id: '176'
 Let's take a deeper look on the code we started yesterday, piece by
 piece 
 
-{% codeblock lang:python %}class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect,
-filename){% endcodeblock %}
+{% codeblock lang:python %}
+class pymot(wx.App):
+    def __init__(self, redirect=False):
+        wx.App.__init__(self, redirect, filename)
+{% endcodeblock %}
 
 This is the class `pymot` we derived from wx.App,
 and this will be the main class for your application. As any other class
@@ -32,13 +34,16 @@ command line. We actually don't need a `redirect`, but it can be useful
 in the future to track errors. It's set to false as we don't need it
 now. 
 
-{% codeblock lang:python %}class pymotGUI(wx.Frame): 
-	def __init__(self, parent, id): 
-		wx.Frame.__init__(self, parent, id,'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE)
-		self.__do_layout() 
-	
-	def __do_layout(self): 
-		pass{% endcodeblock %}
+{% codeblock lang:python %}
+class pymotGUI(wx.Frame):
+    def __init__(self, parent, id):
+        wx.Frame.__init__(self, parent, id,  'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE)
+        self.__do_layout()
+ 
+    def __do_layout(self):
+        pass
+
+{% endcodeblock %}
 
 
 This is the pymotGUI class derived, in this case, from wx.Frame. a wx.Frame
@@ -62,10 +67,13 @@ and correct it if needed. Most of the main part of the script could be
 moved to the wx.App class derivation, but for now, we can keep it there.
 
 
-{% codeblock lang:python %}app = pymot() 
-frame = pymotGUI(parent=None, id = -1) 
+{% codeblock lang:python %}
+app = pymot()
+frame = pymotGUI(parent=None, id = -1)
 frame.Show()
-app.MainLoop(){% endcodeblock %} 
+app.MainLoop()
+
+{% endcodeblock %} 
 
 
 The first line initializes the application, the second calls and

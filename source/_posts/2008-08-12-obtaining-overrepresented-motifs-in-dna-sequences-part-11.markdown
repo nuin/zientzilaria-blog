@@ -19,8 +19,14 @@ scripts to determine overrepresented motifs in DNA sequences. Last time
 we checked we defined the "best" [factorial function](http://en.wikipedia.org/wiki/Factorial "Factorial") in Python
 
 
-{% codeblock lang:python %}def fac_01(n): result = 1 for i in
-xrange(2, n+1): result \*= i return result{% endcodeblock %}
+{% codeblock lang:python %}
+def fac_01(n):
+    result = 1
+    for i in xrange(2, n+1):
+        result *= i
+    return result
+
+{% endcodeblock %}
 
  and Andrew Dalke
 sent a couple of links pointing out to a binomial calculation function,

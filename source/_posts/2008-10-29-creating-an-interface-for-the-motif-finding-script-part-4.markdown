@@ -34,48 +34,90 @@ function name then. Remember that we created the menu last time by using
 (the menu name were changed in the previous entry - it was some old code
 that got in the way - my mistake) 
 
-{% codeblock lang:python %}foreground_menu = filemenu.Append(-1, 'Select
-foreground file') background_menu = filemenu.Append(-1, 'Select
-background file') ... quitmenu = filemenu.Append(-1,
-'Quit'){% endcodeblock %}  hence our menu names are `foreground_menu`,
-`background_menu` and `quit_menu`. Basically a wx.Bind method has this
-structure {% codeblock lang:python %}self.Bind(EVENT_TYPE, handler,
-source){% endcodeblock %}  where the handler is the function and the source is
-the actual source of the event. Let's say then we want to use function
+{% codeblock lang:python %}
+foreground_menu = filemenu.Append(-1, 'Select foreground file')
+background_menu = filemenu.Append(-1, 'Select background file')
+...
+quitmenu = filemenu.Append(-1, 'Quit')
+{% endcodeblock %}  
+
+hence our menu names are `foreground_menu`, `background_menu` and `quit_menu`. Basically a wx.Bind method has this structure 
+
+{% codeblock lang:python %}
+
+self.Bind(EVENT_TYPE, handler, source)
+{% endcodeblock %}  
+
+
+where the handler is the function and the source is the actual source of the event. Let's say then we want to use function
 `on_foreground` every time someone clicks on foreground menu, and
 `on_background` every time someone clicks on the background menu. We add
 a couple of lines to our layout function 
 
-{% codeblock lang:python %}self.Bind(wx.EVT_MENU, self.on_foreground,
-foreground_menu) self.Bind(wx.EVT_MENU, self.on_background,
-background_menu){% endcodeblock %} 
+{% codeblock lang:python %}s
+self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
+self.Bind(wx.EVT_MENU, self.on_background, background_menu)
+{% endcodeblock %} 
 
 
  This will tell the code where to go when
 these items are clicked. If you start the interface, and error will be
 generated because we still haven't created the event handler functions.
-We should define them {% codeblock lang:python %}def
-on_foreground(self, event): pass def on_background(self, event):
-pass{% endcodeblock %}  Note that these function receive an `event` parameter,
-which is the actual event itself. The `pass` line means that the
-function is defined but no actual code has been added, so execution can
-bypass it and do nothing when the function is called. Our complete code
-would look like {% codeblock lang:python %}\#!/usr/bin/env python
-import wx import pymot import fasta class pymot(wx.App): def
-__init__(self, redirect=False): wx.App.__init__(self, redirect)
-class pymotGUI(wx.Frame): def __init__(self, parent, id):
-wx.Frame.__init__(self, parent, id, 'Python Motif Finder',
-style=wx.DEFAULT_FRAME_STYLE) self.__do_layout() def
-__do_layout(self): \#adding the panel panel = wx.Panel(self)
-\#defines the menubar menubar = wx.MenuBar() \#file menu filemenu =
-wx.Menu() foreground_menu = filemenu.Append(-1, 'Select foreground
-file') background_menu = filemenu.Append(-1, 'Select background file')
-sep = filemenu.AppendSeparator() quitmenu = filemenu.Append(-1, 'Quit')
-\#appends the menu to the menubar and creates it
-menubar.Append(filemenu, 'File') self.SetMenuBar(menubar)
-self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
-self.Bind(wx.EVT_MENU, self.on_background, background_menu) def
-on_foreground(self, event): pass def on_background(self, event): pass
-app = pymot() frame = pymotGUI(parent=None, id = -1) frame.Show()
-app.MainLoop(){% endcodeblock %}  Next time we will make good use of the
+We should define them 
+
+
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+import wx
+import pymot
+import fasta
+ 
+class pymot(wx.App):
+ 
+    def __init__(self, redirect=False):
+        wx.App.__init__(self, redirect)
+ 
+class pymotGUI(wx.Frame):
+ 
+    def __init__(self, parent, id):
+        wx.Frame.__init__(self, parent, id,  'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE)
+        self.__do_layout()
+ 
+    def __do_layout(self):
+ 
+        #adding the panel
+        panel = wx.Panel(self)
+ 
+        #defines the menubar
+        menubar = wx.MenuBar()
+ 
+        #file menu
+        filemenu = wx.Menu()
+        foreground_menu = filemenu.Append(-1, 'Select foreground file')
+        background_menu = filemenu.Append(-1, 'Select background file')
+        sep = filemenu.AppendSeparator()
+        quitmenu = filemenu.Append(-1, 'Quit')
+ 
+        #appends the menu to the menubar and creates it
+        menubar.Append(filemenu, 'File')
+        self.SetMenuBar(menubar)
+ 
+        self.Bind(wx.EVT_MENU, self.on_foreground, foreground_menu)
+        self.Bind(wx.EVT_MENU, self.on_background, background_menu)
+ 
+    def on_foreground(self, event):
+        pass
+ 
+    def on_background(self, event):
+        pass
+ 
+app = pymot()
+frame = pymotGUI(parent=None, id = -1)
+frame.Show()
+app.MainLoop()
+
+{% endcodeblock %} 
+
+Next time we will make good use of the
 events.

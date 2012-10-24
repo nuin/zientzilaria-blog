@@ -33,7 +33,8 @@ but easier to understand. We will start by adding the
 `__do_layout` function (where most of our changes will happen for now).
 Basically, only one line is required: 
 
-{% codeblock lang:python %}\#adding the panel panel = wx.Panel(self){% endcodeblock %} 
+{% codeblock lang:python %}#adding the panel 
+panel = wx.Panel(self){% endcodeblock %} 
 
 
 That's it, the wx.Panel method only needs one parameter, where the panel
@@ -47,18 +48,16 @@ added. At the end each menu derived from wx.Menu will be added to the
 menubar. In order case we have to initialize a menubar 
 
 
-{% codeblock lang:python %}\#defines the menubar 
+{% codeblock lang:python %}#defines the menubar 
 menubar = wx.MenuBar(){% endcodeblock %}
 
-and then initialize a menu element, which we
-will call filemenu and will be labeled File
+and then initialize a menu element, which we will call filemenu and will be labeled File
 
 {% codeblock lang:python %}#file menu 
 filemenu = wx.Menu(){% endcodeblock %}  
 
 
-This
-will only initialize a menu element with the name `filemenu`, it won't
+This will only initialize a menu element with the name `filemenu`, it won't
 add anything anywhere. In our case from the start, as we didn't do any
 planning on how our interface would look like (no UML, no case studies,
 nothing!), we need at least three menu items: one to open/set the
@@ -66,10 +65,12 @@ foreground sequence file, one to open/set the background sequence file
 and one to quit the application. So what we are going to do is append
 these items to the `filemenu` 
 
-{% codeblock lang:python %}convertmenu = filemenu.Append(-1, 'Select foreground file') 
+{% codeblock lang:python %}
+convertmenu = filemenu.Append(-1, 'Select foreground file') 
 seqmenu = filemenu.Append(-1, 'Select background file') 
 sep = filemenu.AppendSeparator() 
-treenooutmenu = filemenu.Append(-1,'Quit'){% endcodeblock %} 
+treenooutmenu = filemenu.Append(-1,'Quit')
+{% endcodeblock %} 
 
 that simple. The first two lines and the last one
 append the items that open/set files. The -1 parameter is an ID, as we
@@ -79,45 +80,52 @@ a separator, keeping apart the file open/set items and the quit element.
 One final thing is append the derived wx.Menu to the menubar and set it.
 We accomplish that by 
 
-{% codeblock lang:python %}\#appends the menu to the menubar and creates it
-menubar.Append(filemenu, 'File')
-self.SetMenuBar(menubar){% endcodeblock %} 
+{% codeblock lang:python %}
+#!/usr/bin/env python
+ 
+import wx
+import pymot
+import fasta
+ 
+class pymot(wx.App):
+ 
+    def __init__(self, redirect=False):
+        wx.App.__init__(self, redirect)
+ 
+class pymotGUI(wx.Frame):
+ 
+    def __init__(self, parent, id):
+ 
+        wx.Frame.__init__(self, parent, id,  'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE)
+        self.__do_layout()
+#        self.__do_binding()
+ 
+    def __do_layout(self):
+ 
+        #adding the panel
+        panel = wx.Panel(self)
+ 
+        #defines the menubar
+        menubar = wx.MenuBar()
+ 
+        #file menu
+        filemenu = wx.Menu()
+        foreground_menu = filemenu.Append(-1, 'Select foreground file')
+        background_menu = filemenu.Append(-1, 'Select background file')
+        sep = filemenu.AppendSeparator()
+        quit_menu = filemenu.Append(-1, 'Quit')
+ 
+        #appends the menu to the menubar and creates it
+        menubar.Append(filemenu, 'File')
+        self.SetMenuBar(menubar)
+ 
+#if __name__ == '__main__':
+app = pymot()
+frame = pymotGUI(parent=None, id = -1)
+#frame.CentreOnScreen()
+frame.Show()
+app.MainLoop()
+{% endcodeblock %}
 
-Line 2 initializes menubar on self, also known as pymotGUI, our main window. Putting everything
-together our code would look like 
 
-{% codeblock lang:python %}#!/usr/bin/env python 
-import wx 
-import pymot 
-import fasta 
-
-class pymot(wx.App): 
-	def __init__(self, redirect=False):
-		wx.App.__init__(self, redirect) 
-		
-class pymotGUI(wx.Frame): 
-	def __init__(self, parent, id): 
-		wx.Frame.__init__(self, parent, id,'Python Motif Finder', style=wx.DEFAULT_FRAME_STYLE)
-		self.__do_layout() 
-		# self.__do_binding() 
-
-	def __do_layout(self): 
-		#adding the panel 
-		panel = wx.Panel(self)
-		#defines the menubar 
-		menubar = wx.MenuBar() 
-		#file menu 
-		filemenu = wx.Menu() 
-		foreground_menu = filemenu.Append(-1, 'Select foreground file') 
-		background_menu = filemenu.Append(-1, 'Select background file')
-		sep = filemenu.AppendSeparator() quit_menu = filemenu.Append(-1,'Quit') 
-		#appends the menu to the menubar and creates it
-		menubar.Append(filemenu, 'File') 
-		
-		self.SetMenuBar(menubar) 
-		
-if __name__ == '__main__': app = pymot() frame =
-pymotGUI(parent=None, id = -1) 
-#frame.CentreOnScreen() frame.Show()
-app.MainLoop(){% endcodeblock %}
 Next time we will work on more elements and activate the menu items.

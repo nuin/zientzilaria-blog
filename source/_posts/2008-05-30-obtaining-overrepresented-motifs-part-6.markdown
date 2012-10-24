@@ -42,32 +42,43 @@ motifs, only if they are not already present in it. The sequence id is
 generated in a variable incremented each time the loop iterates.
 
 
-{% codeblock lang:python %}def get_quorums_01(seqs, mlen): 
-	"""append seq id_no to list after checking to see if already present use explicit counter to create seq_no """ 
-	quorum = defaultdict(list) 
-	id_no = 0 
-	
-	for seq in seqs: 
-		id_no += 1 
-		for n in range(len(seq) - mlen): 
-			if id not in quorum[seq[n:n+mlen]]: quorum[seq[n:n + mlen]].append(id_no)
+{% codeblock lang:python %}
+def get_quorums_01(seqs, mlen):
+    """
+    append seq id_no to list after checking to see if already present
+    use explicit counter to create seq_no
+    """
+    quorum = defaultdict(list)
+    id_no = 0
+    for seq in seqs:
+        id_no += 1
+        for n in range(len(seq) - mlen):
+            if id not in quorum[seq[n:n+mlen]]:
+                quorum[seq[n:n + mlen]].append(id_no)
+    return quorum
 
-	return quorum{% endcodeblock %} 
+{% endcodeblock %} 
 
 The second function is very similar to the
 first one, with the caveat that sequence id numbers are generated with
 `enumerate`. 
 
-{% codeblock lang:python %}def get_quorums_02(seqs, mlen): 
-	""" append seq id_no to list after checking to see if already present use 'enumerate' to create seq_no """ 
-	quorum = defaultdict(list)
+{% codeblock lang:python %}
+def get_quorums_02(seqs, mlen):
+    """
+    append seq id_no to list after checking to see if already present
+    use 'enumerate' to create seq_no
+    """
+    quorum = defaultdict(list)
+ 
+    for id_no, seq in enumerate(seqs):
+        for n in range(len(seq) - mlen):
+            if id_no not in quorum[seq[n:n+mlen]]:
+                quorum[seq[n:n+mlen]].append(id_no)
+    return quorum
 
-	for id_no, seq in enumerate(seqs): 
-		for n in range(len(seq) - mlen): 
-			if id_no not in quorum[seq[n:n+mlen]]:
-				quorum[seq[n:n+mlen]].append(id_no) 
-				
-	return quorum{% endcodeblock %}
+
+{% endcodeblock %}
 
 
 `enumerate` is a object based on another iterable object. When called

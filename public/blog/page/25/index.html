@@ -153,27 +153,31 @@ and then just extract the sequences from a list of matches.</p>
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">merge_seqs</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span> <span class="n">data2</span><span class="p">):</span>
-</span><span class='line'>  <span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">myset1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
-</span><span class='line'>      <span class="n">myset2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="n">mylist</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
-</span><span class='line'>          <span class="k">if</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
-</span><span class='line'>          <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
-</span><span class='line'>              <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]:</span>
-</span><span class='line'>                  <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-\&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
-</span><span class='line'>                  <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
-</span><span class='line'>                  <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">flist</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">myset1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">myset2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)])</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">mylist</span> <span class="o">=</span> <span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">myset1</span><span class="p">,</span> <span class="n">myset2</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">flist</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mylist</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">data1</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">i</span><span class="p">:</span>
+</span><span class='line'>                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data2</span><span class="p">:</span>
+</span><span class='line'>                    <span class="k">if</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]</span> <span class="o">==</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;|&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">j</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)]:</span>
+</span><span class='line'>                        <span class="n">tempname</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s">&#39;-&gt;&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">sequence</span><span class="p">))</span>
+</span><span class='line'>                        <span class="n">tempseq</span> <span class="o">=</span> <span class="n">j</span><span class="o">.</span><span class="n">sequence</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">sequence</span>
+</span><span class='line'>                        <span class="n">flist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tempname</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">tempseq</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">flist</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -189,7 +193,9 @@ instances of the <code>fasta</code> class, and we read these lists and add the
 find the matching sequences, as we need to merge them, we add both names
 and residues. Simple and easy. All merged sequences, and their
 respective merged names, are appended to a list that is returned at the
-end of the function. *<em>if there is a more direct way, just let me know</em></p>
+end of the function.</p>
+
+<p>*<em>if there is a more direct way, just let me know</em></p>
 </div>
   
   
@@ -350,12 +356,10 @@ more than two sets. Our previous code to calculate intersections was</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
-</span><span class='line'><span class="c">#for Python 2.3 and below </span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span> <span class="c">#for Python 2.3 and below</span>
 </span><span class='line'><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
-</span><span class='line'><span class="c">#populate the sets ... </span>
 </span><span class='line'>
+</span><span class='line'><span class="c">#populate the sets ...</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">))</span>
 </span><span class='line'><span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">genA</span><span class="p">,</span> <span class="n">genC</span><span class="p">))</span>
@@ -436,8 +440,8 @@ Our simple script would be (including the above function)</p>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
-</span><span class='line'><span class="c">#for Python 2.3 and below </span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span> <span class="c">#for Python 2.3 and below </span>
+</span><span class='line'>
 </span><span class='line'><span class="k">def</span> <span class="nf">get_intersection</span><span class="p">(</span><span class="o">*</span><span class="n">my_sets</span><span class="p">):</span>
 </span><span class='line'>  <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="n">Set</span><span class="o">.</span><span class="n">intersection</span><span class="p">,</span> <span class="n">my_sets</span><span class="p">)</span>
 </span><span class='line'>
@@ -552,7 +556,11 @@ them we basically need to create unique lists of cluster IDs for each
 one of the genomes. That&#8217;s where <code>sets</code> are used</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span> <span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">sets</span> <span class="kn">import</span> <span class="n">Set</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">genA</span><span class="p">,</span> <span class="n">genB</span><span class="p">,</span> <span class="n">genC</span> <span class="o">=</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([]),</span> <span class="n">Set</span><span class="p">([])</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -563,7 +571,11 @@ each one of the genomes, just to make it easier to read each cluster
 contents. In each of our genomes the sequences were tagged with their
 letter in the first character</p>
 
-<p><code>&gt;genA_sequence1 ACGT &gt;genB_sequence1 ACGTT &gt;genC_sequence1 ACGTT ...</code></p>
+<p>`>genA_sequence1 ACGT</p>
+
+<blockquote><p>genB_sequence1 ACGTT</p>
+
+<p>genC_sequence1 ACGTT &#8230;`</p></blockquote>
 
 <p>We run CD-HIT and parse the results, maybe creating a class to store
 information about each cluster and its sequences. Then we analyse this
@@ -578,13 +590,13 @@ list</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
-</span><span class='line'>  <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence_id</span><span class="p">:</span>
-</span><span class='line'>      <span class="k">if</span> <span class="nb">id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;&gt;genA&#39;</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">genA</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">cluster_number</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="nb">id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;genB&#39;</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">genB</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">cluster_number</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">elif</span> <span class="nb">id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;genC&#39;</span><span class="p">):</span>
-</span><span class='line'>          <span class="n">genC</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">cluster_number</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence_id</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="nb">id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;&gt;genA&#39;</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">genA</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">cluster_number</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="nb">id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;genB&#39;</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">genB</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">cluster_number</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="nb">id</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;genC&#39;</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">o</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">cluster_number</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -608,7 +620,9 @@ that.</p>
 
 <p>That&#8217;s it. Three lines of
 code, one method. The output will be the number of clusters that contain
-sequences of A and B, A and C and B and C, respectively. <em>PS: If anyone
+sequences of A and B, A and C and B and C, respectively.</p>
+
+<p><em>PS: If anyone
 is interested in the CD-HIT output parsing class/function just let me
 know.</em></p>
 </div>
@@ -681,37 +695,137 @@ the latest to extract the DNA.</p>
 <span class='line-number'>29</span>
 <span class='line-number'>30</span>
 <span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#!</span>
-</span><span class='line'><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">python</span> <span class="s">&#39;&#39;&#39; input is a GenBank file. The script searches for</span>
-</span><span class='line'><span class="s">gene annotations, extract all lines from the file and then parses these</span>
-</span><span class='line'><span class="s">lines in order to extract protein sequences Ribosomal genes and other</span>
-</span><span class='line'><span class="s">non-coding genes are not extracted - plan to do it later output is a</span>
-</span><span class='line'><span class="s">fasta formatted file &#39;&#39;&#39;</span> <span class="kn">import</span> <span class="nn">sys</span> <span class="nn">import</span> <span class="nn">fasta</span> <span class="nn">class</span> <span class="nn">Protein</span><span class="p">:</span> <span class="s">&#39;&#39;&#39;</span>
-</span><span class='line'><span class="s">class that stores protein information &#39;&#39;&#39;</span> <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span>
-</span><span class='line'><span class="n">sequence</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">gi</span> <span class="o">=</span> <span class="n">gi</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span> <span class="s">&#39;&#39;&#39; parses the entry received from the main</span>
-</span><span class='line'><span class="s">function in order to extract information as protein id gi, etc &#39;&#39;&#39;</span>
-</span><span class='line'><span class="n">prot_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="n">gene_data</span> <span class="o">=</span>
-</span><span class='line'><span class="n">gene_data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span>
-</span><span class='line'>\<span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span> <span class="n">prot_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">elif</span>
-</span><span class='line'><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="n">prot_id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span>
-</span><span class='line'><span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/translation&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span>
-</span><span class='line'><span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_data</span><span class="p">)):</span> <span class="k">if</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;sig_peptide&#39;</span><span class="p">)</span>
-</span><span class='line'>\<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">break</span> <span class="k">else</span><span class="p">:</span> <span class="n">sequence</span> <span class="o">+=</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">return</span>
-</span><span class='line'><span class="n">Protein</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="n">prot_id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span> \<span class="c">#only input is a genbank file</span>
-</span><span class='line'><span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="n">proteins</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="k">for</span> <span class="n">line</span>
-</span><span class='line'><span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39; gene &#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">if</span> <span class="n">index</span> \<span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span> \<span class="c">#parses the</span>
-</span><span class='line'><span class="n">CDS</span> <span class="ow">and</span> <span class="n">appends</span> <span class="n">to</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span> <span class="n">entry</span> <span class="o">=</span>
-</span><span class='line'><span class="s">&#39;&#39;</span> <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span> <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> \<span class="c">#found the</span>
-</span><span class='line'><span class="n">DNA</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">we</span> <span class="n">can</span> <span class="n">stop</span> <span class="n">now</span> <span class="k">break</span> <span class="k">else</span><span class="p">:</span> <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span> \<span class="c">#parses the</span>
-</span><span class='line'><span class="n">last</span> <span class="n">entry</span> <span class="n">after</span> <span class="n">leaving</span> <span class="n">the</span> <span class="n">loop</span> <span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
-</span><span class='line'>\<span class="c">#output for i in proteins: if len(i.gi) \&gt; 2: print i.gi, i.id output =</span>
-</span><span class='line'><span class="nb">open</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">gi</span> <span class="o">+</span> <span class="s">&#39;.fasta&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">gi</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span>
-</span><span class='line'><span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span><span class="p">)</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\\</span><span class="s">&quot;&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fasta</span><span class="o">.</span><span class="n">format_output</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span> <span class="k">print</span>
-</span><span class='line'><span class="n">i</span><span class="o">.</span><span class="n">id</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="sd">&#39;&#39;&#39;</span>
+</span><span class='line'><span class="sd">input is a GenBank file. The script searches for gene annotations, extract all lines</span>
+</span><span class='line'><span class="sd">from the file and then parses these lines in order to extract protein sequences</span>
+</span><span class='line'><span class="sd">Ribosomal genes and other non-coding genes are not extracted - plan to do it later</span>
+</span><span class='line'><span class="sd">output is a fasta formatted file</span>
+</span><span class='line'><span class="sd">&#39;&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Protein</span><span class="p">:</span>
+</span><span class='line'>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span class='line'><span class="sd">    class that stores protein information</span>
+</span><span class='line'><span class="sd">    &#39;&#39;&#39;</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gi</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">gi</span> <span class="o">=</span> <span class="n">gi</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span class='line'><span class="sd">    parses the entry received from the main function</span>
+</span><span class='line'><span class="sd">    in order to extract information as protein id</span>
+</span><span class='line'><span class="sd">    gi, etc</span>
+</span><span class='line'><span class="sd">    &#39;&#39;&#39;</span>
+</span><span class='line'>    <span class="n">prot_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">sequence</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">prot_id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">prot_id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/translation&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">sequence</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span>
+</span><span class='line'>            <span class="n">temp</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gene_data</span><span class="p">)):</span>
+</span><span class='line'>                <span class="k">if</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;sig_peptide&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>                    <span class="k">break</span>
+</span><span class='line'>                <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>                    <span class="n">sequence</span> <span class="o">+=</span> <span class="n">gene_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">Protein</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="n">prot_id</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#only input is a genbank file</span>
+</span><span class='line'><span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">proteins</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  gene &#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>            <span class="c">#parses the CDS and appends to a list</span>
+</span><span class='line'>            <span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+</span><span class='line'>            <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="c">#found the DNA sequence, we can stop now</span>
+</span><span class='line'>        <span class="k">break</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#parses the last entry after leaving the loop</span>
+</span><span class='line'><span class="n">proteins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#output</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">proteins</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">gi</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">gi</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span>
+</span><span class='line'>        <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">gi</span> <span class="o">+</span> <span class="s">&#39;.fasta&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">gi</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">i</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\&quot;</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fasta</span><span class="o">.</span><span class="n">format_output</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+</span><span class='line'>        <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -763,52 +877,172 @@ the latest to extract the DNA.</p>
 <span class='line-number'>44</span>
 <span class='line-number'>45</span>
 <span class='line-number'>46</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'>\<span class="c">#! /usr/bin/env python</span>
-</span><span class='line'><span class="sd">&#39;&#39;&#39; script that extracts sequences from a GenBank file. Script reads the</span>
-</span><span class='line'><span class="sd">gene CDS from the file and builds a list of start and end positions, and</span>
-</span><span class='line'><span class="sd">if gene is complement outputs the 5&#39;3&#39; sequence and its reverse</span>
-</span><span class='line'><span class="sd">complement only input is a GenBank file outputs a fasta file with the GI</span>
-</span><span class='line'><span class="sd">ID as its name. &#39;&#39;&#39;</span> <span class="kn">import</span> <span class="nn">sys</span> <span class="nn">import</span> <span class="nn">fasta</span> <span class="nn">class</span> <span class="nn">CDSinfo</span><span class="p">:</span> <span class="s">&#39;&#39;&#39; CDSinf</span>
-</span><span class='line'><span class="s">class to store all the information from CDS &#39;&#39;&#39;</span> <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-</span><span class='line'><span class="n">gi_id</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">complement</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">gi_id</span> <span class="o">=</span> <span class="n">gi_id</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
-</span><span class='line'><span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span> <span class="bp">self</span><span class="o">.</span><span class="n">complement</span> <span class="o">=</span> <span class="n">complement</span> <span class="k">def</span>
-</span><span class='line'><span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span> <span class="s">&#39;&#39;&#39; each CDS entry is obtained in the main</span>
-</span><span class='line'><span class="s">function and a string of lines with information is passed to</span>
-</span><span class='line'><span class="s">parse_entry to be parsed and have information extracted &#39;&#39;&#39;</span> <span class="n">gene_data</span>
-</span><span class='line'><span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> \<span class="c">#changes a string to list, splitting at line</span>
-</span><span class='line'><span class="n">ends</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="nb">id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="n">complement</span> <span class="o">=</span> <span class="bp">False</span> <span class="k">for</span> <span class="n">line</span>
-</span><span class='line'><span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span> \<span class="c">#searches for regions annotated as CDS if line.find(&#39;</span>
-</span><span class='line'><span class="n">CDS</span> <span class="s">&#39;) \&gt;=0: temp = line.split() \#checks for complement sequence, if</span>
-</span><span class='line'><span class="n">true</span> <span class="n">remove</span> <span class="n">extra</span> <span class="n">characters</span> <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;complement&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'><span class="n">complement</span> <span class="o">=</span> <span class="bp">True</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;complement(&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span>
-</span><span class='line'><span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;..&#39;</span><span class="p">)</span> <span class="n">start</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span class='line'><span class="n">end</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> \<span class="c">#checks for GI IDs elif line.find(&#39;GI:&#39;) \&gt;= 0: gi_id =</span>
-</span><span class='line'><span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> \<span class="c">#get the gene name/function elif</span>
-</span><span class='line'><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span> <span class="nb">id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> \<span class="c">#and adds</span>
-</span><span class='line'><span class="n">the</span> <span class="n">protein</span> <span class="nb">id</span> <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> <span class="nb">id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span>
-</span><span class='line'><span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">return</span> <span class="n">CDSinfo</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span>
-</span><span class='line'><span class="n">complement</span><span class="p">)</span> \<span class="c">#only input is the genbank file with annotation and</span>
-</span><span class='line'><span class="n">sequence</span> <span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="n">sequence</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span class='line'><span class="n">is_seq</span> <span class="o">=</span> <span class="bp">False</span> <span class="n">genes</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span> \<span class="c">#reads the genbank file</span>
-</span><span class='line'><span class="ow">and</span> <span class="n">whenever</span> <span class="n">finds</span> <span class="n">a</span> <span class="n">gene</span> <span class="n">annotation</span> \<span class="c">#concatenate the lines up to the</span>
-</span><span class='line'><span class="nb">next</span> <span class="n">gene</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39; gene &#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> \<span class="c">#if an entry is complete, send</span>
-</span><span class='line'><span class="n">it</span> <span class="n">to</span> <span class="n">parse</span> <span class="k">if</span> <span class="n">index</span> \<span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span> \<span class="c">#appends to a list of CDSinfo objects</span>
-</span><span class='line'><span class="n">genes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span> <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span> <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
-</span><span class='line'><span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span> \<span class="c">#found sequence start, set the flag on</span>
-</span><span class='line'><span class="ow">and</span> <span class="n">parses</span> <span class="n">the</span> <span class="n">last</span> <span class="n">entry</span> <span class="n">is_seq</span> <span class="o">=</span> <span class="bp">True</span>
-</span><span class='line'><span class="n">genes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span> <span class="k">elif</span> <span class="n">is_seq</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span> \<span class="c">#if flag is</span>
-</span><span class='line'><span class="n">true</span> <span class="n">keep</span> <span class="n">going</span><span class="p">,</span> <span class="n">usually</span> <span class="n">sequences</span> <span class="n">are</span> <span class="n">store</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">file</span> <span class="n">line</span>
-</span><span class='line'><span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="n">sequence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="k">else</span><span class="p">:</span> \<span class="c">#this is an entry so append</span>
-</span><span class='line'><span class="n">line</span> <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span> <span class="n">str_seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span> \<span class="c">#make the sequence a string for i in</span>
-</span><span class='line'><span class="n">sequence</span><span class="p">:</span> <span class="n">str_seq</span> <span class="o">+=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">genes</span><span class="p">:</span> <span class="k">if</span>
-</span><span class='line'><span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">gi_id</span><span class="p">)</span> \<span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span> <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">end</span> <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">gi_id</span> <span class="o">+</span>
-</span><span class='line'><span class="s">&#39;.DNA.fasta&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span> <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;\&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">gi_id</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">t&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span><span class="p">)</span>
-</span><span class='line'>\<span class="c"># if this is a complement, print both 5&#39;-3&#39; and reverse complement</span>
-</span><span class='line'><span class="n">sequences</span> <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">complement</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
-</span><span class='line'><span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fasta</span><span class="o">.</span><span class="n">format_output</span><span class="p">(</span><span class="n">fasta</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">str_seq</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">end</span><span class="p">)]),</span>
-</span><span class='line'><span class="mi">80</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\\</span><span class="s">n&#39;</span><span class="p">)</span> <span class="k">else</span><span class="p">:</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;join&#39;</span><span class="p">)</span> \<span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span><span class='line'><span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fasta</span><span class="o">.</span><span class="n">format_output</span><span class="p">(</span><span class="n">str_seq</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">end</span><span class="p">)],</span>
-</span><span class='line'><span class="mi">80</span><span class="p">))</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#! /usr/bin/env python</span>
+</span><span class='line'>
+</span><span class='line'><span class="sd">&#39;&#39;&#39;</span>
+</span><span class='line'><span class="sd">script that extracts sequences from a GenBank file. Script reads the gene CDS from the file and</span>
+</span><span class='line'><span class="sd">builds a list of start and end positions, and if gene is complement outputs the 5&#39;3&#39; sequence and</span>
+</span><span class='line'><span class="sd">its reverse complement</span>
+</span><span class='line'><span class="sd">only input is a GenBank file</span>
+</span><span class='line'><span class="sd">outputs a fasta file with the GI ID as its name.</span>
+</span><span class='line'><span class="sd">&#39;&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kn">import</span> <span class="nn">sys</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">fasta</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">CDSinfo</span><span class="p">:</span>
+</span><span class='line'>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span class='line'><span class="sd">    CDSinf class to store all the information from CDS</span>
+</span><span class='line'><span class="sd">    &#39;&#39;&#39;</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gi_id</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">complement</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">gi_id</span> <span class="o">=</span> <span class="n">gi_id</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">complement</span> <span class="o">=</span> <span class="n">complement</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">parse_entry</span><span class="p">(</span><span class="n">gene_data</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&#39;&#39;&#39;</span>
+</span><span class='line'><span class="sd">    each CDS entry is obtained in the main function and a string of lines with</span>
+</span><span class='line'><span class="sd">    information is passed to parse_entry to be parsed and have information extracted</span>
+</span><span class='line'><span class="sd">    &#39;&#39;&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">gene_data</span> <span class="o">=</span> <span class="n">gene_data</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="c">#changes a string to list, splitting at line ends</span>
+</span><span class='line'>    <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="nb">id</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">complement</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gene_data</span><span class="p">:</span> <span class="c">#searches for regions annotated as CDS</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  CDS  &#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">temp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span class='line'>            <span class="c">#checks for complement sequence, if true remove extra characters</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;complement&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">complement</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>                <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;complement(&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;)&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">temp2</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;..&#39;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">start</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>            <span class="n">end</span> <span class="o">=</span> <span class="n">temp2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="c">#checks for GI IDs</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">gi_id</span> <span class="o">=</span> <span class="s">&#39;gi&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;GI:&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="c">#get the gene name/function</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;/product&#39;</span><span class="p">)</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="nb">id</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>        <span class="c">#and adds the protein id</span>
+</span><span class='line'>        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;protein_id&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>            <span class="nb">id</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">line</span><span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">CDSinfo</span><span class="p">(</span><span class="n">gi_id</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">complement</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#only input is the genbank file with annotation and sequence</span>
+</span><span class='line'><span class="n">gbfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="n">sequence</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="n">is_seq</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">genes</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">gbfile</span><span class="p">:</span>
+</span><span class='line'>    <span class="c">#reads the genbank file and whenever finds a gene annotation</span>
+</span><span class='line'>    <span class="c">#concatenate the lines up to the next gene</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;  gene &#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="c">#if an entry is complete, send it to parse</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>            <span class="c">#appends to a list of CDSinfo objects</span>
+</span><span class='line'>            <span class="n">genes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+</span><span class='line'>            <span class="n">entry</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>        <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;ORIGIN&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>        <span class="c">#found sequence start, set the flag on and parses the last entry</span>
+</span><span class='line'>        <span class="n">is_seq</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class='line'>        <span class="n">genes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parse_entry</span><span class="p">(</span><span class="n">entry</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">elif</span> <span class="n">is_seq</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+</span><span class='line'>        <span class="c">#if flag is true keep going, usually sequences are store at the end of the file</span>
+</span><span class='line'>        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span><span class='line'>        <span class="n">sequence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="c">#this is an entry so append line</span>
+</span><span class='line'>        <span class="n">entry</span> <span class="o">+=</span> <span class="n">line</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">str_seq</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'><span class="c">#make the sequence a string</span>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">str_seq</span> <span class="o">+=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">genes</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">gi_id</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">end</span>
+</span><span class='line'>        <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">gi_id</span> <span class="o">+</span> <span class="s">&#39;.DNA.fasta&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">gi_id</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="c"># if this is a complement, print both 5&#39;-3&#39; and reverse complement sequences</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">complement</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fasta</span><span class="o">.</span><span class="n">format_output</span><span class="p">(</span><span class="n">fasta</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">str_seq</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">end</span><span class="p">)]),</span> <span class="mi">80</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;join&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fasta</span><span class="o">.</span><span class="n">format_output</span><span class="p">(</span><span class="n">str_seq</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">start</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">end</span><span class="p">)],</span> <span class="mi">80</span><span class="p">))</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -899,7 +1133,11 @@ Python, by employing the <code>replace</code> method on strings. Our function lo
 like</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span> <span class="n">RNA</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;U&#39;</span><span class="p">)</span> <span class="k">return</span> <span class="n">RNA</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">transcribe</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+</span><span class='line'>  <span class="n">RNA</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;U&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">RNA</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

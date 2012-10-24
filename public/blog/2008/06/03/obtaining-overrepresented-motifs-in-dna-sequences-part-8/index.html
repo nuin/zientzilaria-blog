@@ -123,17 +123,27 @@ scope of the generator that is coded inside a function.</p>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
 </pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_08</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'><span class="sd">&quot;&quot;&quot;add seq id_no to a set use enumerate to create seq_no use an explicit generator to</span>
-</span><span class='line'><span class="sd">create the motifs &quot;&quot;&quot;</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">motif_gen</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>      <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
-</span><span class='line'>          <span class="k">yield</span> <span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]</span>
-</span><span class='line'>          <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
-</span><span class='line'>          <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
-</span><span class='line'>              <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="n">motif_gen</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
-</span><span class='line'>                  <span class="n">quorum</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">return</span> <span class="n">quorum</span>
+</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">    add seq id_no to a set</span>
+</span><span class='line'><span class="sd">    use enumerate to create seq_no</span>
+</span><span class='line'><span class="sd">    use an explicit generator to create the motifs</span>
+</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">motif_gen</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">yield</span> <span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="n">motif_gen</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -153,12 +163,24 @@ loop with <code>motif</code> as index. Very simple and elegant.</p>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_09</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span> <span class="s">&quot;&quot;&quot; add seq id_no</span>
-</span><span class='line'><span class="s">to a set use enumerate to create seq_no use a generator expression to</span>
-</span><span class='line'><span class="s">create the motifs &quot;&quot;&quot;</span> <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span> <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span>
-</span><span class='line'><span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span> <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span>
-</span><span class='line'><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">)):</span> <span class="n">quorum</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span> <span class="k">return</span>
-</span><span class='line'><span class="n">quorum</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">def</span> <span class="nf">get_quorums_09</span><span class="p">(</span><span class="n">seqs</span><span class="p">,</span> <span class="n">mlen</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">    add seq id_no to a set</span>
+</span><span class='line'><span class="sd">    use enumerate to create seq_no</span>
+</span><span class='line'><span class="sd">    use a generator expression to create the motifs</span>
+</span><span class='line'><span class="sd">    &quot;&quot;&quot;</span>
+</span><span class='line'>    <span class="n">quorum</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">id_no</span><span class="p">,</span> <span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seqs</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">motif</span> <span class="ow">in</span> <span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">mlen</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">-</span><span class="n">mlen</span><span class="p">)):</span>
+</span><span class='line'>            <span class="n">quorum</span><span class="p">[</span><span class="n">motif</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">id_no</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="n">quorum</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

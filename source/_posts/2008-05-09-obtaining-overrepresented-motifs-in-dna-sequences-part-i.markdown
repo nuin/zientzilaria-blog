@@ -64,7 +64,8 @@ for(j = 0; j < seqsize; j++)
 			break; 
 		} 
 	} 
-}{% endcodeblock %}
+}
+{% endcodeblock %}
 
 
  reading all
@@ -72,14 +73,33 @@ sequences and pushing an figure for each nucleotide in a vector, and
 then sliding a window on this vector and hashing the base-four number
 
 
-{% codeblock lang:c %}int hashSeq(vector subseq) { int w, i,
-hashvalue = 0, power; w = subseq.size() - 1; for(i = 0; i <
-subseq.size(); i++) { power = 0; hashvalue += subseq[i] \*
-pow((double)4,(double)w); w--; } return hashvalue; } if(binseq[i].size()
-\> motifwidth) { for(j = 0; j < binseq[i].size()-motifwidth+1; j++) {
-sub.assign(binseq[i].begin() + j, binseq[i].begin() + j+motifwidth);
-hashed = hashSeq(sub); nmercount[hashed]++; sub.clear(); }
-}{% endcodeblock %} 
+{% codeblock lang:c %}
+int hashSeq(vector<short> subseq)
+{
+    int w, i, hashvalue = 0, power;
+    w = subseq.size() - 1;
+    for(i = 0; i &lt; subseq.size(); i++)
+    {
+            power = 0;
+            hashvalue += subseq[i] * pow((double)4,(double)w);
+            w--;
+    }
+    return hashvalue;
+}
+ 
+if(binseq[i].size() &gt; motifwidth)
+{
+    for(j = 0; j &lt; binseq[i].size()-motifwidth+1; j++)
+    {
+        sub.assign(binseq[i].begin() + j, binseq[i].begin() + j+motifwidth);
+        hashed = hashSeq(sub);
+        nmercount[hashed]++;
+        sub.clear();
+    }
+}
+
+
+{% endcodeblock %} 
 
 
 The whole C++ code has about 400 lines, including all the
@@ -105,13 +125,16 @@ function similar to the one below (modified from
 [here](http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/190465))
 
 
-{% codeblock lang:python %}def permutations(items, n): 
-	if n == 0:
-		yield '' 
-	else: 
-		for i in range(len(items)): 
-			for base in permutations(items, n - 1): 
-				yield str(items[i]) + str(base){% endcodeblock %}
+{% codeblock lang:python %}
+def permutations(items, n):
+    if n == 0:
+        yield ''
+    else:
+        for i in range(len(items)):
+            for base in permutations(items, n - 1):
+                yield str(items[i]) + str(base)
+
+{% endcodeblock %}
 
 
 Basically, what this generator function does is to combine all four
@@ -127,29 +150,35 @@ constant for each iteration of the second loop and only `n` changes from
 starts with `AAAAAAAAAA`, then `AAAAAAAAAC`, then `AAAAAAAAAG`, until it gets
 to a poly-T. Our final code would look like the one below 
 
-{% codeblock lang:python %}import fasta 
-import sys 
-def permutations(items, n): 
-	if n == 0: 
-		yield '' 
-	else: 
-		for i in range(len(items)): 
-			for base in permutations(items, n - 1): 
-				yield str(items[i]) + str(base) 
+{% codeblock lang:python %}
 
-seqs = fasta.get_seqs(open(sys.argv[1]).readlines()) 
+import fasta
+import sys
+ 
+def permutations(items, n):
+    if n == 0:
+        yield ''
+    else:
+        for i in range(len(items)):
+            for base in permutations(items, n - 1):
+                yield str(items[i]) + str(base)
+ 
+seqs = fasta.get_seqs(open(sys.argv[1]).readlines())
 length = sys.argv[2]
-nucleotides = ['A', 'C', 'G', 'T'] 
+ 
+nucleotides = ['A', 'C', 'G', 'T']
+ 
+merged_seqs = ''
+for i in seqs:
+    merged_seqs += i.sequence
+ 
+for i in permutations(nucleotides, int(length)):
+    print i + '\t' + merged_seqs.count(i)
 
-merged_seqs = '' 
 
-for i in seqs: 
-	merged_seqs += i.sequence 
-	for i in permutations(nucleotides, int(length)): 
-		print i + '\t' + merged_seqs.count(i){% endcodeblock %} 
+{% endcodeblock %} 
 		
-where
-we read the input sequence(s), merge them in one long string and as we
+where we read the input sequence(s), merge them in one long string and as we
 generate all possible combinations we count the number of times they
 appear. This code running on the same input file used on the C++
 executable is 60 times slower, taking in average one full minute to
